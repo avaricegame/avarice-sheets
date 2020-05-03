@@ -54,9 +54,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="container">
+        <Header />
         <Navbar />
-        <p> is this working </p>
+      <Gameplay />
+      <Footer />
       </div>
     );
   }
