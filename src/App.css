@@ -1,38 +1,404 @@
-.App {
+#editLevelForm, #editExcellenceChipsForm {
+  display: none; }
+
+#createNewNoteForm {
+  display: none; }
+
+#editCharacterDescriptionForm, #editCharacterBackgroundForm {
+  display: none; }
+
+#addNewCustomItemForm, #addNewWeaponForm, #addNewArmourForm, #addSubtractMoneyForm {
+  display: none; }
+
+.attack, .use-ability, .cast-spell, .pay-money, .sell-items {
+  display: none; }
+
+#createNewCharacterSheetForm {
+  display: none;
+  /* z-index: 1;
+    width: 100vw;
+    height: 100vh;
+  
+    background-color: darkslategray;
+    position: absolute;
+    top: 0;
+    left: 0; */ }
+
+.liquidated-wealth-information {
+  display: none; }
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box;
+  background: #56566b; }
+
+.bgb {
+  background: #87929c;
+  border-right: 2px solid #56566b;
+  border-left: 2px solid #56566b;
+  border-bottom: 4px solid #56566b;
+  padding: 0 0.5rem; }
+
+.color--accent {
+  color: #8b7b52; }
+
+.red {
+  background: #774949; }
+
+.toggle-green {
+  background: #506850; }
+
+body {
+  font-size: 1.6rem;
+  font-family: "Mukta", sans-serif;
+  font-weight: 400; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #f5f5df;
+  margin: .5rem 0;
+  padding: 0 .5rem; }
+
+h1 {
+  font-size: 4rem;
   text-align: center;
-}
+  letter-spacing: 0.2rem; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+h2 {
+  margin: 0;
+  text-align: center; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+h3 {
+  font-weight: 400;
+  background: #8b7b52; }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h4 {
+  font-weight: 400;
+  background: #56566b; }
+
+h5 {
+  font-weight: 400;
+  background: #774949; }
+
+h6 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  background: #8b7b52; }
+
+button {
+  font-family: "Mukta", sans-serif; }
+
+a {
+  color: #774949; }
+  a:hover {
+    color: #f5f5df; }
+
+form input,
+form select,
+form option,
+form textarea {
+  font-family: "Mukta", sans-serif; }
+
+header {
+  background: #56566b;
+  width: 100%; }
+
+nav {
+  background: #56566b;
+  width: 100%; }
+
+.navigation {
+  background: #774949;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  justify-content: space-evenly;
+  max-width: 100%; }
 
-.App-link {
-  color: #61dafb;
-}
+.navigation li {
+  list-style-type: none;
+  width: 100%; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.navigation li:hover {
+  background: #f5f5df;
+  color: #774949; }
+
+.navigation a {
+  color: #f5f5df;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 2.2rem;
+  text-align: center;
+  width: 100%; }
+
+.secondary-header {
+  background: #87929c; }
+
+footer {
+  background: #56566b;
+  color: #f5f5df;
+  text-align: center;
+  text-transform: uppercase; }
+
+.heading-bar {
+  background: #56566b;
+  margin: 0 -0.5rem; }
+
+button {
+  background-image: linear-gradient(white, #d6d6ca);
+  color: darkslategray;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: none;
+  padding: 5px;
+  border-radius: 4px;
+  margin: 10px 10px 10px 0; }
+
+button:hover {
+  color: lightgoldenrodyellow;
+  background-image: linear-gradient(lightslategray, darkslategray); }
+
+table, th, td {
+  text-align: center;
+  padding: .2rem; }
+
+table {
+  border-collapse: collapse;
+  margin: 1rem; }
+
+th {
+  font-size: 1.4rem; }
+
+table input {
+  width: 50px; }
+
+form {
+  background: #b6b610; }
+
+label {
+  display: block;
+  margin: .5rem; }
+
+form input, textarea, select {
+  width: 90%;
+  margin: .5rem; }
+
+.submit-button {
+  margin: 1rem .5rem;
+  border-radius: 4px; }
+
+fieldset {
+  border: none;
+  margin: .5rem; }
+
+header {
+  grid-column: 1 / -1;
+  grid-row: 1 / 2; }
+
+nav {
+  grid-column: 1 / -1;
+  grid-row: 2 / 3; }
+
+.secondary-header {
+  grid-column: 1 / -1;
+  grid-row: 3 / 4; }
+
+.container {
+  margin: 0 2px;
+  background: #56566b;
+  display: grid;
+  grid-template-columns: minmax(300px, 25%) repeat(4, 1fr) minmax(300px, 25%);
+  grid-template-rows: 100px 50px 75px max-content max-content;
+  grid-auto-rows: max-content; }
+
+@media (max-width: 1380px) {
+  .container {
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 100px 50px 75px;
+    grid-auto-rows: minmax(450px, maxcontent); }
+  .messages {
+    grid-column: 1 / -1; }
+  .money {
+    grid-column: 1 / -1;
+    grid-row: 4 / 5; }
+  .action-options {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5; }
+  .spell-points {
+    grid-column: 1 / 2; }
+  .quick-links {
+    grid-column: 1 / -1; }
+  .quick-rules {
+    grid-column: 1 / -1; }
+  .skills {
+    grid-column: 2 / 3;
+    grid-row: 4 / 6; } }
+
+@media (max-width: 1050px) {
+  .container {
+    grid-template-columns: repeat(1, 100%);
+    grid-template-rows: 100px 50px 75px;
+    grid-auto-rows: max-content; }
+  .action-options {
+    grid-column: 1 / -1;
+    grid-row: auto; }
+  .skills {
+    grid-column: 1 / -1;
+    grid-row: auto; } }
+
+@media (max-width: 650px) {
+  .container {
+    grid-template-columns: repeat(1, 100%);
+    grid-template-rows: 100px 270px 75px;
+    grid-auto-rows: max-content; }
+  .navigation {
+    flex-direction: column; } }
+
+@media (max-width: 400px) {
+  .bgb--overflow {
+    overflow-x: scroll; }
+  .bgb--full-width {
+    margin-right: -148px; } }
+
+/***** ABILITIES PAGE LAYOUT *****/
+@media (min-width: 1381px) {
+  .race-class-abilities {
+    grid-column: 1 / 7; }
+  .spells {
+    grid-column: 1 / 7; }
+  .item-abilities {
+    grid-column: 1 / 7; }
+  .other-abilities {
+    grid-column: 1 / 7; } }
+
+/***** END ABILITIES PAGE LAYOUT *****/
+/***** GAMEPLAY PAGE LAYOUT *****/
+@media (min-width: 1381px) {
+  .hit-points {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5; }
+  .spell-points {
+    grid-column: 1 / 2;
+    grid-row: 5 / 6; }
+  .action-options {
+    grid-column: 2 / 4;
+    grid-row: 4 / 6; }
+  .action-steps {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    grid-column: 4 / 6;
+    grid-row: 4 / 6; }
+  .quick-links {
+    grid-column: 6 / 7;
+    grid-row: 4 / 6; } }
+
+.action-button {
+  width: 100%; }
+
+.quick-links-list {
+  margin-top: 1rem;
+  list-style-type: none;
+  text-align: center; }
+
+.quick-links-list li a {
+  text-transform: uppercase;
+  font-size: 1.6rem; }
+
+/***** INVENTORY PAGE LAYOUT *****/
+@media (min-width: 1381px) {
+  .equipped {
+    grid-column: 1 / 2;
+    grid-row: 4 / 8;
+    overflow-y: hidden; }
+  .money {
+    grid-column: 2 / 3;
+    grid-row: 4 / 8; }
+  .weapons {
+    grid-column: 6 / 7;
+    grid-row: 4 / 8;
+    overflow-y: hidden; }
+  .armour {
+    grid-column: 5 / 6;
+    grid-row: 4 / 8;
+    overflow-y: hidden; }
+  .items {
+    grid-column: 3 / 5;
+    grid-row: 4 / 8;
+    overflow-y: hidden; } }
+
+.liquidated-wealth-ul {
+  list-style-type: none;
+  border-bottom: 1px solid darkslategray; }
+
+/***** STATS PAGE LAYOUT *****/
+@media (min-width: 1381px) {
+  .ability-scores {
+    grid-column: 2 / 5;
+    grid-row: 4 / 5; }
+  .proficiencies {
+    grid-column: 1 / 2;
+    grid-row: 5 / 6; }
+  .skills {
+    grid-column: 5 / 7;
+    grid-row: 4 / 6; }
+  .important-stats {
+    grid-column: 2 / 5;
+    grid-row: 5 / 6; } }
+
+/***** ABILITIES PAGE LAYOUT *****/
+@media (min-width: 1381px) {
+  .race-class-abilities {
+    grid-column: 1 / 7; }
+  .spells {
+    grid-column: 1 / 7; }
+  .item-abilities {
+    grid-column: 1 / 7; }
+  .other-abilities {
+    grid-column: 1 / 7; } }
+
+/***** END ABILITIES PAGE LAYOUT *****/
+/***** INFO PAGE LAYOUT *****/
+@media (min-width: 1381px) {
+  .campaign-details {
+    grid-column: 1 / 6; }
+  .character-details {
+    grid-column: 1 / 6; }
+  .race-details {
+    grid-column: 1 / 6; }
+  .class-details {
+    grid-column: 1 / 6; }
+  .quick-rules {
+    grid-column: 6 / 7;
+    grid-row: 4 / 8; } }
+
+/***** MESSAGES PAGE LAYOUT *****/
+@media (min-width: 1381px) {
+  .messages {
+    grid-column: 1 / 7;
+    grid-row: 4 / 6; } }
+
+/***** NOTES PAGE LAYOUT *****/
+@media (min-width: 1381px) {
+  .all-notes {
+    grid-column: 1 / 2;
+    grid-row: 4 / 6; }
+  .notes {
+    grid-column: 2 / 7;
+    grid-row: 4 / 6; } }
+
+span {
+  color: darkred; }
