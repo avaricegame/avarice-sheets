@@ -185,6 +185,7 @@ const Gameplay = () => {
                                 <li><a href="">Messages</a></li>
                                 <li><a href="">More...</a></li>
                         </ul>
+                        
                 </div>
  </React.Fragment>
         
