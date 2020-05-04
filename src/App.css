@@ -27,6 +27,27 @@
 .liquidated-wealth-information {
   display: none; }
 
+.campaigns {
+  grid-column: 1 / -1;
+}
+
+.character-sheets {
+  grid-column: 1 / -1;
+}
+
+article {
+  margin-top: 200px !important;
+}
+
+.particles {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
 *,
 *::after,
 *::before {
@@ -39,10 +60,10 @@ html {
 
 body {
   box-sizing: border-box;
-  background: #56566b; }
+}
 
 .bgb {
-  background: #87929c;
+  /* background: linear-gradient(to bottom, rgb(21, 48, 87), rgb(4, 2, 29)); */
   border-right: 2px solid #56566b;
   border-left: 2px solid #56566b;
   border-bottom: 4px solid #56566b;
@@ -115,11 +136,9 @@ form textarea {
   font-family: "Mukta", sans-serif; }
 
 header {
-  background: #56566b;
   width: 100%; }
 
 nav {
-  background: #56566b;
   width: 100%; }
 
 .navigation {
@@ -144,17 +163,16 @@ nav {
   text-align: center;
   width: 100%; }
 
-.secondary-header {
-  background: #87929c; }
+/* .secondary-header {
+ } */
 
 footer {
-  background: #56566b;
   color: #f5f5df;
   text-align: center;
   text-transform: uppercase; }
 
 .heading-bar {
-  background: #56566b;
+  /* background: #56566b; */
   margin: 0 -0.5rem; }
 
 button {
@@ -218,7 +236,6 @@ nav {
 
 .container {
   margin: 0 2px;
-  background: #56566b;
   display: grid;
   grid-template-columns: minmax(300px, 25%) repeat(4, 1fr) minmax(300px, 25%);
   grid-template-rows: 100px 50px 75px max-content max-content;
