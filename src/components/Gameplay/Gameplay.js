@@ -5,19 +5,19 @@ const Gameplay = () => {
     return (
                 <React.Fragment>
                     
-                     <div class="secondary-header">
+                     <div className="secondary-header">
                         <h1>Gameplay</h1>
                 </div>
 
-                <div class="hit-points bgb">
-                        <div class="heading-bar">
+                <div className="hit-points bgb">
+                        <div className="heading-bar">
                                 <h2>Hit Points</h2>
                         </div> 
                         <button>Take Damage</button>
                         <button>Heal HP</button>
                         <h4>Max HP: 86</h4>
                        
-                        <h4 class="red toggle-green">Current HP: -7</h4>
+                        <h4 className="red toggle-green">Current HP: -7</h4>
                         <h4>Wounds and Healing History</h4>
                         <ul>
                                 <li><input type="number" /></li>
@@ -28,15 +28,15 @@ const Gameplay = () => {
                                 <li><input type="number" /></li>
                         </ul>
                 </div>
-                <div class="spell-points bgb">
-                        <div class="heading-bar">
+                <div className="spell-points bgb">
+                        <div className="heading-bar">
                                 <h2>Spell Points</h2>
                         </div>
                         <button>Use Spell Points</button>
                         <button>Heal Spell Points</button>
                         <h4>Max Spell Points: 86</h4>
                        
-                        <h4 class="red toggle-green">Current Spell Points: -7</h4>
+                        <h4 className="red toggle-green">Current Spell Points: -7</h4>
                         <h4>Spell Energy Points History</h4>
                         <ul>
                                 <li><input type="number" /></li>
@@ -47,22 +47,22 @@ const Gameplay = () => {
                                 <li><input type="number" /></li>
                         </ul>
                 </div>
-                <div class="action-options bgb">
-                        <div class="heading-bar">
+                <div className="action-options bgb">
+                        <div className="heading-bar">
                                 <h2>Actions</h2>
                         </div>
-                        <button id="attackButton" class="action-button">Attack</button>
-                        <button id="useAbilityButton" class="action-button">Use Ability</button>
-                        <button id="castSpellButton" class="action-button">Cast Spell</button>
-                        <button id="payMoneyButton" class="action-button">Pay Money</button>
-                        <button id="sellItemsButton" class="action-button">Sell Items</button>
+                        <button id="attackButton" className="action-button">Attack</button>
+                        <button id="useAbilityButton" className="action-button">Use Ability</button>
+                        <button id="castSpellButton" className="action-button">Cast Spell</button>
+                        <button id="payMoneyButton" className="action-button">Pay Money</button>
+                        <button id="sellItemsButton" className="action-button">Sell Items</button>
                 </div>
-                <div class="action-steps bgb">
-                        <div class="heading-bar">
+                <div className="action-steps bgb">
+                        <div className="heading-bar">
                                 <h2 id="actionStepsTitle">Please Choose an Action</h2>
                         </div>
 
-                        <div class="attack">
+                        <div className="attack">
                                 <h4>Which weapon are you using?</h4>
                                 <ul>
                                         <li><button>Weapon #1</button></li>
@@ -78,7 +78,7 @@ const Gameplay = () => {
                                 <h6>Modifier(s) Used: <span>Climb</span></h6>
                         </div>
 
-                        <div class="use-ability">
+                        <div className="use-ability">
                                 <h4>Which ability are you using?</h4>
                                 <ul>
                                         <li><button>Ability #1</button></li>
@@ -94,7 +94,7 @@ const Gameplay = () => {
                                 <h6>Modifier(s) Used: <span>Climb</span></h6>
                         </div>
 
-                        <div class="cast-spell">
+                        <div className="cast-spell">
                                 <h4>Which spell are you casting?</h4>
                                 <ul>
                                         <li><button>Spell #1</button></li>
@@ -111,7 +111,7 @@ const Gameplay = () => {
 
                         </div>
 
-                        <div class="pay-money">
+                        <div className="pay-money">
                                 <h4>Who are you paying?</h4>
                                 <ul>
                                         <li><button>NPC</button></li>
@@ -128,7 +128,7 @@ const Gameplay = () => {
 
                         </div>
 
-                        <div class="sell-items">
+                        <div className="sell-items">
                                 <h4>Which item are you selling?</h4>
                                 <select>
                                         <option>Weapons</option>
@@ -169,11 +169,11 @@ const Gameplay = () => {
                         </div>
 
                 </div>
-                <div class="quick-links bgb">
-                        <div class="heading-bar">
+                <div className="quick-links bgb">
+                        <div className="heading-bar">
                                 <h2>Quick Links</h2>
                         </div>
-                        <ul class="quick-links-list">
+                        <ul className="quick-links-list">
                                 <li><a href="">Equip / Unequip Armour</a></li>
                                 <li><a href="">See My Abilities</a></li>
                                 <li><a href="">My Race and Class</a></li>

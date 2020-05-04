@@ -1,29 +1,29 @@
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = ( { onRouteChange }) => {
     return (
         <nav>
-        <ul class="navigation">
+        <ul className="navigation">
                 
-                <a href="index.html" class="active">
+                <a onClick={() => onRouteChange('gameplay')}>
                         <li>Gameplay</li>
                 </a>
-                <a href="inventory.html">
+                <a onClick={() => onRouteChange('inventory')}>
                         <li>Inventory</li>
                 </a>
-                <a href="stats.html">
+                <a onClick={() => onRouteChange('stats')}>
                         <li>Stats</li>
                 </a>
-                <a href="abilities.html">
+                <a onClick={() => onRouteChange('abilities')}>
                         <li>Abilities</li>
                 </a>
-                <a href="info.html">
+                <a onClick={() => onRouteChange('info')}>
                         <li>Info</li>
                 </a>
-                <a href="messages.html">
+                <a onClick={() => onRouteChange('messages')}>
                         <li>Messages</li>
                 </a>
-                <a href="notes.html">
+                <a onClick={() => onRouteChange('notes')}>
                         <li>Notes</li>
                 </a>
         </ul>
