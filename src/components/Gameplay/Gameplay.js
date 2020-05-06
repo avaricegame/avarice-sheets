@@ -19,14 +19,14 @@ const Gameplay = () => {
                        
                         <h4 className="red toggle-green">Current HP: -7</h4>
                         <h4>Wounds and Healing History</h4>
-                        <ul>
+                        {/* <ul>
                                 <li><input type="number" /></li>
                                 <li><input type="number" /></li>
                                 <li><input type="number" /></li>
                                 <li><input type="number" /></li>
                                 <li><input type="number" /></li>
                                 <li><input type="number" /></li>
-                        </ul>
+                        </ul> */}
                 </div>
                 <div className="spell-points bgb">
                         <div className="heading-bar">
@@ -38,14 +38,14 @@ const Gameplay = () => {
                        
                         <h4 className="red toggle-green">Current Spell Points: -7</h4>
                         <h4>Spell Energy Points History</h4>
-                        <ul>
+                        {/* <ul>
                                 <li><input type="number" /></li>
                                 <li><input type="number" /></li>
                                 <li><input type="number" /></li>
                                 <li><input type="number" /></li>
                                 <li><input type="number" /></li>
                                 <li><input type="number" /></li>
-                        </ul>
+                        </ul> */}
                 </div>
                 <div className="action-options bgb">
                         <div className="heading-bar">
@@ -173,18 +173,18 @@ const Gameplay = () => {
                         <div className="heading-bar">
                                 <h2>Quick Links</h2>
                         </div>
-                        <ul className="quick-links-list">
-                                <li><a href="">Equip / Unequip Armour</a></li>
-                                <li><a href="">See My Abilities</a></li>
-                                <li><a href="">My Race and Class</a></li>
-                                <li><a href="">Campaign Info</a></li>
-                                <li><a href="">See My Stats</a></li>
-                                <li><a href="">Excelence Chips</a></li>
-                                <li><a href="">Level Up</a></li>
-                                <li><a href="">My Notes</a></li>
-                                <li><a href="">Messages</a></li>
-                                <li><a href="">More...</a></li>
-                        </ul>
+                        
+                                <button className="action-button">Equip / Unequip Armour</button>
+                                <button className="action-button">See My Abilities</button>
+                                <button className="action-button">My Race and Class</button>
+                                <button className="action-button">Campaign Info</button>
+                                <button className="action-button">See My Stats</button>
+                                <button className="action-button">Excelence Chips</button>
+                                <button className="action-button">Level Up</button>
+                                <button className="action-button">My Notes</button>
+                                <button className="action-button">Messages</button>
+                                <button className="action-button">More...</button>
+                       
                         
                 </div>
  </React.Fragment>
