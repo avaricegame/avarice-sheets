@@ -34,7 +34,7 @@ const particlesOptions = {
   }, 
 };
 
-let characterSheet
+let characterSheet, weapons, armour, items
 
 class App extends Component {
   constructor() {
@@ -52,6 +52,25 @@ class App extends Component {
 characterSheet = response
 console.log(characterSheet)
 })
+fetch('http://localhost:2890/weapons')
+          .then(response => response.json())
+          .then(response => {
+weapons = response
+console.log(weapons)
+})
+fetch('http://localhost:2890/armour')
+          .then(response => response.json())
+          .then(response => {
+armour = response
+console.log(armour)
+})
+fetch('http://localhost:2890/items')
+          .then(response => response.json())
+          .then(response => {
+items = response
+console.log(items)
+})
+
       //.catch(err => console.log(err));
   }
   
@@ -119,7 +138,7 @@ console.log(characterSheet)
         {this.state.route === "gameplay" ? (
           <Gameplay characterSheet={characterSheet}/>
         ) : this.state.route === "inventory" ? (
-          <Inventory characterSheet={characterSheet}/>
+          <Inventory characterSheet={characterSheet} weapons={weapons} armour={armour} items={items}/>
         ) : this.state.route === "stats" ? (
           <Stats characterSheet={characterSheet} />
         ) : this.state.route === "abilities" ? (

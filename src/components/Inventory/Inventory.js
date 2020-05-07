@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Inventory = ({ characterSheet }) => {
+const Inventory = ({ characterSheet, weapons, armour, items }) => {
     return (
                 <React.Fragment>
                     
@@ -15,289 +15,71 @@ const Inventory = ({ characterSheet }) => {
                                 </div>
                                 <button>Equip/Unequip</button>
                                 <h4>Weapons:</h4>
-                                <h5>Melee/Ranged Weapon Name: </h5>
-                                <h6><span>{characterSheet[0]['inventory']['weapons'][0].name}</span></h6>
-                                <ul>
+                                {//characterSheet[0]['inventory']['weapons'].map(function(weapon) {
+                                  weapons.map(function(weapon) {
+                                          let x = [
+                                          <h5>Melee/Ranged Weapon Name: </h5>,
+                                                <h6>{weapon.name}</h6>,
+                                                <ul>
+                                                        <li>Range: {weapon.range}</li>
+                                                        <li>Proficiency: {weapon.proficiency}</li>
+                                                        <li>Requirements: {weapon.requirements}</li>
+                                                        <li>Weapon Type: {weapon.weaponType}</li>
+                                                        <li>Ability Bonus: {weapon.abilityBonus}</li>
+                                                        <li>Damage: {weapon.damage}</li>
+                                                        <li>Uses: {weapon.uses}</li>
+                                                        <li>Critical: {weapon.critical}</li>
+                                                        <li>Description: {weapon.description}</li>
+                                                </ul>
+                                                ]
 
-                                        <li>Range: <span>1</span></li>
-                                        <li>Proficiency: <span>2</span></li>
-                                        <li>Weapon Type: <span>Improvised/Normal</span></li>
-                                        <li>Ability Bonus: <span>Dexterity/Constitution</span></li>
-                                        <li>Damage: <span>D4/D6/D8/etc</span></li>
-                                        <li>Uses: <span>undefined</span></li>
-                                        <li>Critical: <span>20</span></li>
-                                        <li>Weapon Notes: <span>Here are the weapon notes</span></li>
+                                                console.log(x)
+                                          
+                                        console.log(weapon)
+                                        console.log(weapon.name)
 
-                                </ul>
-                                <h5>Melee/Ranged Weapon Name: </h5>
-                                <h6><span>{characterSheet[0]['inventory']['weapons'][1].name}</span></h6>
-                                <ul>
 
-                                        <li>Range: <span>1</span></li>
-                                        <li>Proficiency: <span>2</span></li>
-                                        <li>Weapon Type: <span>Improvised/Normal</span></li>
-                                        <li>Ability Bonus: <span>Dexterity/Constitution</span></li>
-                                        <li>Damage: <span>D4/D6/D8/etc</span></li>
-                                        <li>Uses: <span>undefined</span></li>
-                                        <li>Critical: <span>20</span></li>
-                                        <li>Weapon Notes: <span>Here are the weapon notes</span></li>
+     return x
+                                          })}
+                                          
 
-                                </ul>
-                                <h4>Armour and Items:</h4>
-                                <h5>Head</h5>
-                                <h6>Name of Armour Piece Here</h6>
-                               
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Hands</h5>
-                                <h6>Name of Armour Piece Here</h6>
 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Arms</h5>
-                                <h6>Name of Armour Piece Here</h6>
+                                
+                                <h4>Armour:</h4>
+                                {//characterSheet[0]['inventory']['weapons'].map(function(weapon) {
+                                  armour.map(function(armour) {
+                                        let x = [
+                                        <h5>{armour.bodyArea}</h5>,
+                                              <h6>{armour.name}</h6>,
+                                              <ul>
+                                                      <li>Requirements: {armour.requirements}</li>
+                                                      
+                                                      <li>Hit Points: {armour.modifiers.hp}</li>
+                                               <li>Speed: {armour.modifiers.speed}</li>
+                                               <li>Strength: {armour.modifiers.strength}</li>
+                                               <li>Dexterity/Reflex: {armour.modifiers.dexterityReflex}</li>
+                                               <li>Constitution/Fortitude: {armour.modifiers.constitutionFortitude}</li>
+                                               <li>Intelligence: {armour.modifiers.intelligence}</li>
+                                               <li>Charisma: {armour.modifiers.charisma}</li>
+                                               <li>Perception: {armour.modifiers.perception}</li>
+                                               <li>Stealth: {armour.modifiers.stealth}</li>
+                                               <li>Ranged Accuracy: {armour.modifiers.rangedAccuracy}</li>
+                                               <li>Melee Accuracy: {armour.modifiers.meleeAccuracy}</li>
+                                                      
+                                                      <li>Magical Abilities {armour.magicalAbilities}</li>
+                                                      <li>Description: {armour.description}</li>
+                                              </ul>
+                                              ]
 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Torso</h5>
-                                <h6>Name of Armour Piece Here</h6>
-                                 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Waist</h5>
-                                <h6>Name of Armour Piece Here</h6>
-                                 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Feet</h5>
-                                <h6>Name of Armour Piece Here</h6>
-                                 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Neck</h5>
-                                <h6>Name of Armour Piece Here</h6>
-                                 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Shoulders</h5>
-                                <h6>Name of Armour Piece Here</h6>
-                                 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Eyes</h5>
-                                <h6>Name of Armour Piece Here</h6>
-                                 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Wrists</h5>
-                                <h6>Name of Armour Piece Here</h6>
-                                 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Ring 1</h5>
-                                <h6>Name of Armour Piece Here</h6>
-                                <p>Modifier Information</p>
-                                 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
-                                <h5>Ring 2</h5>
-                                <h6>Name of Armour Piece Here</h6>
-                                 
-                                <div className="equipped-armour-details">
-                                        <p>Modifier Information</p>
-                                        <ul>
-                                                <li>Type: <span>Armour/Item</span></li>
-                                                <li>Speed:<span>n/a</span></li>
-                                                <li>Hit Points:<span> 1</span></li>
-                                                <li>Strength:<span></span>n/a</li>
-                                                <li>Dexterity/Reflex:<span>n/a</span></li>
-                                                <li>Constitution/Fortitude:<span>n/a</span></li>
-                                                <li>Intelligence:<span>n/a</span></li>
-                                                <li>Charisma:<span>n/a</span></li>
-                                                <li>Perception:<span>n/a</span></li>
-                                                <li>Stealth:<span>n/a</span></li>
-                                                <li>Ranged Accuracy:<span>n/a</span></li>
-                                                <li>Melee Accuracy:<span>n/a</span></li>
-                                                <li>Other:<span>n/a</span></li>
-                                        </ul>
-                                </div>
+                                              console.log(x)
+                                        
+                                      console.log(armour)
+                                      console.log(armour.name)
 
+
+   return x
+                                        })}
+                        
                                 
                         </div>
                         <div className="money bgb">

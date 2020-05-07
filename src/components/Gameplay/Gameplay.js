@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Gameplay = ({ fetchCharacterSheet }) => {
+const Gameplay = ({ characterSheet }) => {
     return (
                 <React.Fragment>
                     
@@ -13,11 +13,11 @@ const Gameplay = ({ fetchCharacterSheet }) => {
                         <div className="heading-bar">
                                 <h2>Hit Points</h2>
                         </div> 
-                        <button onClick={() => fetchCharacterSheet()}>Take Damage</button>
+                        <button>Take Damage</button>
                         <button>Heal HP</button>
-                        <h4>Max HP: 86</h4>
+                        <h4>Max HP: {characterSheet[0]['stats']['maxHP']}</h4>
                        
-                        <h4 className="red toggle-green">Current HP: -7</h4>
+                        <h4 className="red toggle-green">Current HP: {characterSheet[0]['stats']['currentHP']}</h4>
                         <h4>Wounds and Healing History</h4>
                         {/* <ul>
                                 <li><input type="number" /></li>
@@ -34,9 +34,9 @@ const Gameplay = ({ fetchCharacterSheet }) => {
                         </div>
                         <button>Use Spell Points</button>
                         <button>Heal Spell Points</button>
-                        <h4>Max Spell Points: 86</h4>
+                        <h4>Max Spell Points: {characterSheet[0]['stats']['maxSP']}</h4>
                        
-                        <h4 className="red toggle-green">Current Spell Points: -7</h4>
+                        <h4 className="red toggle-green">Current Spell Points: {characterSheet[0]['stats']['currentSP']}</h4>
                         <h4>Spell Energy Points History</h4>
                         {/* <ul>
                                 <li><input type="number" /></li>
