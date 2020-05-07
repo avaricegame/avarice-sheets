@@ -34,6 +34,8 @@ const particlesOptions = {
   }, 
 };
 
+let characterSheet
+
 class App extends Component {
   constructor() {
     super();
@@ -43,7 +45,16 @@ class App extends Component {
     };
   }
 
-
+  componentDidMount = () => {
+    fetch('http://localhost:2890')
+          .then(response => response.json())
+          .then(response => {
+characterSheet = response
+console.log(characterSheet)
+})
+      //.catch(err => console.log(err));
+  }
+  
   // onInputChange = (event) => {
   //   this.setState({ input: event.target.value });
   // }
@@ -106,19 +117,19 @@ class App extends Component {
         />
         <Navbar onRouteChange={this.onRouteChange} />
         {this.state.route === "gameplay" ? (
-          <Gameplay />
+          <Gameplay characterSheet={characterSheet}/>
         ) : this.state.route === "inventory" ? (
-          <Inventory />
+          <Inventory characterSheet={characterSheet}/>
         ) : this.state.route === "stats" ? (
-          <Stats />
+          <Stats characterSheet={characterSheet} />
         ) : this.state.route === "abilities" ? (
-          <Abilities />
+          <Abilities characterSheet={characterSheet} />
         ) : this.state.route === "info" ? (
-          <Info />
+          <Info characterSheet={characterSheet} />
         ) : this.state.route === "messages" ? (
           <Messages />
         ) : this.state.route === "notes" ? (
-          <Notes />
+          <Notes  characterSheet={characterSheet}/>
         ) : (
           <Error />
         )}

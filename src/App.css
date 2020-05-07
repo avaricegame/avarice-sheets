@@ -45,7 +45,7 @@
 }
 
 .header__h2--link {
-  color: white;
+  color: black;
   cursor: pointer;
   transition: all .5s;
 }
@@ -54,7 +54,7 @@
   background: whitesmoke;
   color: black;
   padding: 2rem;
-  border: 1px solid white;
+  border: 1px solid black;
   
 }
 
@@ -84,14 +84,14 @@ body {
 
 .bgb {
   border: 2px solid #861919;
-  color: whitesmoke;
+  color: black;
   /* border-right: 2px solid #56566b;
   border-left: 2px solid #56566b;
   border-bottom: 4px solid #56566b; */
   padding: 0 0.5rem; }
 
 .color--accent {
-  color: whitesmoke; }
+  color: black; }
 
 .red {
   background: #d42c2c; }
@@ -118,7 +118,7 @@ h6 {
 h1 {
   font-size: 6rem;
   padding: 1rem;
-  color: whitesmoke;
+  color: black;
   /* text-align: center; */
   letter-spacing: 0.2rem; }
 

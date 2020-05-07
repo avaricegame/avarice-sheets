@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Gameplay = () => {
+const Gameplay = ({ fetchCharacterSheet }) => {
     return (
                 <React.Fragment>
                     
@@ -13,7 +13,7 @@ const Gameplay = () => {
                         <div className="heading-bar">
                                 <h2>Hit Points</h2>
                         </div> 
-                        <button>Take Damage</button>
+                        <button onClick={() => fetchCharacterSheet()}>Take Damage</button>
                         <button>Heal HP</button>
                         <h4>Max HP: 86</h4>
                        

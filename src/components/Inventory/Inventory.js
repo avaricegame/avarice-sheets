@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Inventory = () => {
+const Inventory = ({ characterSheet }) => {
     return (
                 <React.Fragment>
                     
@@ -16,7 +16,7 @@ const Inventory = () => {
                                 <button>Equip/Unequip</button>
                                 <h4>Weapons:</h4>
                                 <h5>Melee/Ranged Weapon Name: </h5>
-                                <h6><span>Weapon #1</span></h6>
+                                <h6><span>{characterSheet[0]['inventory']['weapons'][0].name}</span></h6>
                                 <ul>
 
                                         <li>Range: <span>1</span></li>
@@ -30,7 +30,7 @@ const Inventory = () => {
 
                                 </ul>
                                 <h5>Melee/Ranged Weapon Name: </h5>
-                                <h6><span>Weapon #2</span></h6>
+                                <h6><span>{characterSheet[0]['inventory']['weapons'][1].name}</span></h6>
                                 <ul>
 
                                         <li>Range: <span>1</span></li>
