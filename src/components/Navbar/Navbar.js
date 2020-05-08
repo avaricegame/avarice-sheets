@@ -6,7 +6,7 @@ const Navbar = ( { onRouteChange }) => {
         <ul className="navigation">
                 
                 <a onClick={() => onRouteChange('gameplay')}>
-                        <li>Gameplay</li>
+                        <li className="active">Gameplay</li>
                 </a>
                 <a onClick={() => onRouteChange('inventory')}>
                         <li>Inventory</li>
@@ -24,7 +24,7 @@ const Navbar = ( { onRouteChange }) => {
                         <li>Messages</li>
                 </a>
                 <a onClick={() => onRouteChange('notes')}>
-                        <li>Notes</li>
+                        <li className="here" >Notes</li>
                 </a>
         </ul>
 </nav> 

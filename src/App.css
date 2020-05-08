@@ -83,15 +83,15 @@ body {
 }
 
 .bgb {
-  border: 2px solid #861919;
-  color: whitesmoke;
+  border: 2px dashed #00C5ED;
+  color: #f5f5df;
   /* border-right: 2px solid #56566b;
   border-left: 2px solid #56566b;
   border-bottom: 4px solid #56566b; */
   padding: 2rem; }
 
 .color--accent {
-  color: whitesmoke; }
+  color: #EBB65D; }
 
 .red {
   background: #d42c2c; }
@@ -101,7 +101,7 @@ body {
 
 body {
   font-size: 1.6rem;
-  font-family: sans-serif;
+  font-family: 'courier', sans-serif;
   font-weight: 400; }
 
 h1,
@@ -118,7 +118,7 @@ h6 {
 h1 {
   font-size: 6rem;
   padding: 1rem;
-  color: whitesmoke;
+  color: #f5f5df;
   /* text-align: center; */
   letter-spacing: 0.2rem; }
 
@@ -129,30 +129,42 @@ h2 {
 h3 {
   font-weight: bold;
   color: black;
-  background: #f5bc2d; }
+  background: #f5bc2d;
+  background: #00139A; 
+  background: #f5f5df;
+  
+
+}
 
 h4 {
   font-weight: bold;
   color: black;
-  background: #5d5de6; }
+  background: #5d5de6;
+background: rgb(224, 137, 22);
+background: #00139A;
+background: #EBB65D;
+ }
 
 h5 {
   font-weight: bold;
   color: black;
-  background: #d42c2c; }
+  background: #d81b1b;
+ }
 
 h6 {
   font-size: 1.4rem;
   font-weight: bold;
   color: black;
-  background: #f5bc2d; }
+  background: #f5bc2d;
+  background: #EBB65D;
+ }
 
 button {
-  font-family: sans-serif;
+  font-family: 'courier', sans-serif;
 font-size: 1.8rem; }
 
 a {
-  color: #774949; }
+  color: #EBB65D; }
   a:hover {
     color: #f5f5df; }
 
@@ -175,7 +187,7 @@ form textarea {
 
 
   .underline {
-    color: rgb(98, 206, 48);
+    color: #00C5ED;
    transition: all .2s;
     cursor: pointer;
   }
@@ -201,14 +213,14 @@ form textarea {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 2rem !important;
-    color: rgb(98, 206, 48);
+    color: #00C5ED;
     padding: 2rem 0 !important;
     transition: all .8s;
   }
 
   .h2-signin-header {
     text-align: center;
-    color: rgb(98, 206, 48) !important;
+    color: #00C5ED !important;
     font-size: 5rem;
   }
 
@@ -222,14 +234,14 @@ form textarea {
     background: none;
     width: 100%;
     min-height: 50px;
-    color: rgb(98, 206, 48);
-    border: 1px solid rgb(98, 206, 48);
+    color: #00C5ED;
+    border: 1px solid #00C5ED;
   }
 
 .signin-box {
   
-  color: rgb(98, 206, 48);
-  border: 1px solid rgb(98, 206, 48);
+  color: #00C5ED;
+  border: 1px solid #00C5ED;
   text-transform: uppercase;
   font-size: 2rem;
   padding: 4rem;
@@ -260,7 +272,7 @@ min-height: 120px;
 .header-button {
   font-family: "courier";
   background: none;
-  color: rgb(98, 206, 48);
+  color: #00C5ED;
   font-size: 2rem;
   text-transform: uppercase;
   font-weight: 700;
@@ -271,7 +283,7 @@ min-height: 120px;
   transition: all .2s; }
 
   .header-button:hover {
-    border: 4px solid rgb(98, 206, 48) !important;
+    border: 4px solid #00C5ED !important;
     background: none;
     transform: translateY(-3px);
     transform: translateX(4px);
@@ -280,13 +292,13 @@ min-height: 120px;
   }
 
   .character-sheet-option:hover {
-    border: 4px solid rgb(98, 206, 48);
+    border: 4px solid #00C5ED;
     
   }
 
   .character-sheet-option {
     background: none;
-  color: rgb(98, 206, 48);
+  color: #00C5ED;
   font-size: 1.8rem;
   text-transform: uppercase;
   font-weight: 700;
@@ -302,8 +314,8 @@ min-height: 120px;
     height: 9rem;
     width: 90%;
     margin: 4rem auto;
-    border-left: 4px dashed rgb(98, 206, 48);
-    border-right: 4px dashed rgb(98, 206, 48);
+    border-left: 4px dashed #00C5ED;
+    border-right: 4px dashed #00C5ED;
   }
 
 .character-sheet-option h2 {
@@ -314,13 +326,13 @@ min-height: 120px;
 .character-sheets-heading-div {
   display: flex;
   justify-content: space-between;
-  border-bottom: 4px dashed rgb(98, 206, 48);
-  border-top: 4px dashed rgb(98, 206, 48);
+  border-bottom: 4px dashed #00C5ED;
+  border-top: 4px dashed #00C5ED;
   padding: 1rem;
 }
 
 .character-sheets-heading {
-  color: rgb(98, 206, 48);
+  color: #00C5ED;
   padding: 2rem;
   font-weight: bold;
   font-size: 3.5rem;
@@ -330,13 +342,13 @@ min-height: 120px;
 .heading-link {
   font-weight: bold;
   font-size: 2rem;
-  color: rgb(98, 206, 48);
+  color: #00C5ED;
   padding: 2rem;
   transition: all .8s;
 }
 
 .heading-link:hover {
-  border: 2px solid rgb(98, 206, 48);
+  border: 2px solid #00C5ED;
   
 }
 
@@ -344,7 +356,8 @@ min-height: 120px;
   font-weight: 700;
   font-size: 4rem;
   text-align: center;
-  color: rgb(98, 206, 48);
+  color: #00C5ED;
+  /* color: rgb(98, 206, 48); */
 
 }
 
@@ -352,19 +365,46 @@ nav {
   width: 100%; }
 
 .navigation {
-  background: linear-gradient(to right, #940808, #861919);
-  /* background: #774949; */
+  /*background: linear-gradient(to right, #940808, #861919);*/
+  height: 100%;
+  border-top: 2px dashed #00C5ED;
+  border-bottom: 2px dashed #00C5ED;
+  /* background: #00C5ED; */
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
   max-width: 100%; }
 
 .navigation li {
   list-style-type: none;
-  width: 100%; }
+  border-right: 2px dashed #00C5ED;
+  width: 100%;
+transition: all .5s; }
+
+.here {
+  border-right: none !important;
+}
+
+.active {
+  z-index: 1;
+  padding: 1rem;
+  margin: -5px;
+  width: 100%;
+  height: 100%;
+  background: #00C5ED;
+  border: 2px solid #00C5ED;
+ cursor: pointer;
+}
 
 .navigation li:hover {
-  background: #f5f5df;
-  color: #774949; }
+  z-index: 1;
+  padding: 1rem;
+  margin: -5px;
+  width: 100%;
+  height: 100%;
+  background: #00C5ED;
+  border: 2px solid #00C5ED;
+ cursor: pointer;}
 
 .navigation a {
   color: #f5f5df;
@@ -372,6 +412,7 @@ nav {
   text-decoration: none;
   font-size: 2.2rem;
   text-align: center;
+  height: 100%;
   width: 100%; }
 
 /* .secondary-header {
@@ -386,8 +427,9 @@ footer {
 
 .heading-bar {
   text-align: center;
-  background: #861919;
-  color: whitesmoke;
+  /*background: #00C5ED;*/
+  border-bottom: 2px dashed #00C5ED;
+  color: #f5f5df;
   padding: 1rem;
   min-height: 50px;
   margin: -2rem;
@@ -396,8 +438,8 @@ margin-bottom: 2rem; }
 button {
   width: 100%;
   background: none;
-  color: whitesmoke;
-  border: 1px solid whitesmoke !important;
+  color: #f5f5df;
+  border: 1px solid #f5f5df !important;
   text-transform: uppercase;
   /* font-weight: 700; */
   border: none;
@@ -408,7 +450,7 @@ transition: all .2s; }
 
 button:hover {
   color: black;
-  background: whitesmoke;
+  background: #f5f5df;
 }
 
 table, th, td {
