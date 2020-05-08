@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Info = () => {
+const Info = ({ characterSheet, races, classes }) => {
     return (
                 <React.Fragment>
 
@@ -22,8 +22,8 @@ const Info = () => {
                                 <h2>Character Background and Information</h2>
                         </div>
                         <h4>Character Race and Class</h4>
-                        <p>Character Race: <span>The Race Here</span></p>
-                        <p>Character Class: <span>The Class Here</span></p>
+    <p>Character Race: <span>{races[0].name}</span></p>
+                        <p>Character Class: <span>{classes[0].name}</span></p>
 
                         <h4>Character Description</h4>
                         <button id="editCharacterDescriptionButton">Edit/Create Character Description</button>
@@ -111,7 +111,7 @@ const Info = () => {
                                 </fieldset>
                                 <input type="submit" className="submit-button" value="Save Changes" />
                         </form>
-                        <p>All of the information on the characters background and information goes here.</p>
+                        <p>{characterSheet[0].characterDescription.eyeColor}</p>
 
 
                         <h4>Character Background</h4>

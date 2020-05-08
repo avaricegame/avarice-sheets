@@ -23,32 +23,29 @@ const Notes = ({ characterSheet }) => {
                                         <input type="submit" className="submit-button" value="Save Note" />
                                 </fieldset>
                         </form>
-                        <ul>
-                                <a href="">
-                                        <li>Note #1</li>
-                                </a>
-                                <a href="">
-                                        <li>Note #2</li>
-                                </a>
-                                <a href="">
-                                        <li>Note #3</li>
-                                </a>
-                                <a href="">
-                                        <li>Note #4</li>
-                                </a>
-                                <a href="">
-                                        <li>Note #5</li>
-                                </a>
-                                <a href="">
-                                        <li>Note #6</li>
-                                </a>
-                        </ul>
+                        {//characterSheet[0]['inventory']['weapons'].map(function(weapon) {
+                                  characterSheet[0]['notes'].map(function(note) {
+                                        let x = [
+                                              
+                                                      <button>{note.title}</button>,<br />
+                                              ]
+
+                                              console.log(x)
+                                        
+                                      console.log(note)
+                                      console.log(note.name)
+
+
+   return x
+                                        })} 
+                       
                 </div>
                 <div className="notes bgb">
                         <div className="heading-bar">
-                                <h2>{characterSheet[0]['notes'][0].title}</h2>
+                                <h2>Note Content</h2>
                         </div>
                         {/* <h4>Heading for the note</h4> */}
+                        <h4>{characterSheet[0]['notes'][0].title}</h4>
     <p>{characterSheet[0]['notes'][0].content}</p>
                         {/* <h4>Heading for the note</h4>
                         <p>

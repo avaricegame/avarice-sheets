@@ -34,7 +34,7 @@ const particlesOptions = {
   }, 
 };
 
-let characterSheet, weapons, armour, items
+let characterSheet, weapons, armour, items, races, classes, customAbilities, spells, equipmentAbilities
 
 class App extends Component {
   constructor() {
@@ -69,6 +69,36 @@ fetch('http://localhost:2890/items')
           .then(response => {
 items = response
 console.log(items)
+})
+fetch('http://localhost:2890/races')
+          .then(response => response.json())
+          .then(response => {
+races = response
+console.log(races)
+})
+fetch('http://localhost:2890/classes')
+          .then(response => response.json())
+          .then(response => {
+classes = response
+console.log(classes)
+})
+fetch('http://localhost:2890/spells')
+          .then(response => response.json())
+          .then(response => {
+spells = response
+console.log(spells, "logging from app js")
+})
+fetch('http://localhost:2890/customabilities')
+          .then(response => response.json())
+          .then(response => {
+customAbilities = response
+console.log(customAbilities)
+})
+fetch('http://localhost:2890/equipmentabilities')
+          .then(response => response.json())
+          .then(response => {
+equipmentAbilities = response
+console.log(equipmentAbilities)
 })
 
       //.catch(err => console.log(err));
@@ -123,7 +153,7 @@ console.log(items)
       return (
         <React.Fragment>
           <Particles className="particles" params={particlesOptions} />
-          <Home onRouteChange={this.onRouteChange} />;
+          <Home onRouteChange={this.onRouteChange}/>;
         </React.Fragment>
       );
     }
@@ -133,18 +163,19 @@ console.log(items)
         <Header
           isSignedin={this.isSignedin}
           onRouteChange={this.onRouteChange}
+          characterSheet={characterSheet}
         />
         <Navbar onRouteChange={this.onRouteChange} />
         {this.state.route === "gameplay" ? (
-          <Gameplay characterSheet={characterSheet}/>
+          <Gameplay characterSheet={characterSheet} races={races} classes={classes} armour={armour}/>
         ) : this.state.route === "inventory" ? (
-          <Inventory characterSheet={characterSheet} weapons={weapons} armour={armour} items={items}/>
+          <Inventory characterSheet={characterSheet} weapons={weapons} armour={armour} items={items} equipmentAbilities={equipmentAbilities}/>
         ) : this.state.route === "stats" ? (
-          <Stats characterSheet={characterSheet} />
+          <Stats characterSheet={characterSheet} races={races} classes={classes} armour={armour} />
         ) : this.state.route === "abilities" ? (
-          <Abilities characterSheet={characterSheet} />
+          <Abilities characterSheet={characterSheet} races={races} classes={classes} customAbilities={customAbilities} spells={spells} />
         ) : this.state.route === "info" ? (
-          <Info characterSheet={characterSheet} />
+          <Info characterSheet={characterSheet} characterSheet={characterSheet} races={races} classes={classes} />
         ) : this.state.route === "messages" ? (
           <Messages />
         ) : this.state.route === "notes" ? (
