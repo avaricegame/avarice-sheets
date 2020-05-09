@@ -7,9 +7,6 @@
 #editCharacterDescriptionForm, #editCharacterBackgroundForm {
   display: none; }
 
-#addNewCustomItemForm, #addNewWeaponForm, #addNewArmourForm, #addSubtractMoneyForm {
-  display: none; }
-
 .attack, .use-ability, .cast-spell, .pay-money, .sell-items {
   display: none; }
 
@@ -23,9 +20,6 @@
     position: absolute;
     top: 0;
     left: 0; */ }
-
-.liquidated-wealth-information {
-  display: none; }
 
 .campaigns {
   grid-column: 1 / -1;
