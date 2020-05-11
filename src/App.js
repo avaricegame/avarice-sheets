@@ -7,7 +7,7 @@ import Footer from "./components/Footer/Footer";
 
 import Signin from "./components/Signin/Signin";
 import Register from "./components/Register/Register";
-import Signedout from "./components/Signedout/Signedout";
+//import Signedout from "./components/Signedout/Signedout";
 
 import Gameplay from "./components/Gameplay/Gameplay";
 import Inventory from "./components/Inventory/Inventory";
@@ -166,6 +166,7 @@ console.log(equipmentAbilities)
           characterSheet={characterSheet}
         />
         <Navbar onRouteChange={this.onRouteChange} />
+        
         {this.state.route === "gameplay" ? (
           <Gameplay characterSheet={characterSheet} races={races} classes={classes} armour={armour}/>
         ) : this.state.route === "inventory" ? (
