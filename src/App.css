@@ -4,9 +4,6 @@
 #createNewNoteForm {
   display: none; }
 
-#editCharacterDescriptionForm, #editCharacterBackgroundForm {
-  display: none; }
-
 .attack, .use-ability, .cast-spell, .pay-money, .sell-items {
   display: none; }
 

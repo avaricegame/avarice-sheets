@@ -14,6 +14,7 @@ import LiquidatedWealth from "./Maps/LiquidatedWealth";
 import Weapons from "./Maps/Weapons";
 import Armour from "./Maps/Armour";
 import Items from "./Maps/Items";
+import Money from "./Maps/Money"
 
 class Inventory extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class Inventory extends React.Component {
       items,
       equipmentAbilities,
     } = this.props;
+
     return (
       <React.Fragment>
         <div className="secondary-header">
@@ -61,7 +63,8 @@ class Inventory extends React.Component {
             <h2>Equipped</h2>
           </div>
 
-          <button>Equip/Unequip</button>
+          <p>The equip and unequip functionality is currently under construction, but will be available soon!</p>
+          
         </div>
 
         {/****** BEGIN MONEY SECTION ******/}
@@ -71,11 +74,7 @@ class Inventory extends React.Component {
           </div>
 
           <AddSubtractMoneyForm />
-          <h4>Uni-Credits/Gold</h4>
-          <h5>Current Savings:</h5>
-          <h3>{characterSheet[0]["inventory"]["money"]}</h3>
-          <h5>Liquidated Savings:</h5>
-          <h3>895 Gold</h3>
+          <Money characterSheet={characterSheet} />
           <LiquidatedWealth />
         </div>
 
