@@ -25,7 +25,7 @@ class NewItemForm extends React.Component {
   };
 
   render() {
-    let { characterSheet } = this.props;
+    let { characterSheet, items } = this.props;
     return (
       <Toggle>
         {({ on, toggle }) => (
@@ -37,7 +37,7 @@ class NewItemForm extends React.Component {
                   <label>Select Item:</label>
                   <select>
                     <option></option>
-                  {characterSheet["inventory"]["items"].map(function (
+                  {items.map(function (
                       item
                     ) {
                       let x = [<option>{item.name}</option>];

@@ -16,35 +16,42 @@ import Armour from "./Maps/Armour";
 import Items from "./Maps/Items";
 import Money from "./Maps/Money"
 
-// DECLARING VARIABLES TO STORE DATABASE DATA IN
-let weapons, armour, items
+// BEGIN CLASS
 
 class Inventory extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      weapons: "",
+      armour: "",
+      items: "",
+    };
   }
 
   componentDidMount = () => {
     fetch("http://localhost:2890/weapons")
       .then((response) => response.json())
       .then((response) => {
-        weapons = response;
+        this.setState({weapons: response})
       });
     fetch("http://localhost:2890/armour")
       .then((response) => response.json())
       .then((response) => {
-        armour = response;
+        this.setState({armour: response})
       });
     fetch("http://localhost:2890/items")
       .then((response) => response.json())
       .then((response) => {
-        items = response;
+        this.setState({items: response})
       });
   }
 
   render() {
-    const {} = this.state;
+    const {
+      weapons,
+      armour,
+      items,
+    } = this.state;
     let {
       characterSheet,
     } = this.props;
