@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 
+// IMPORT THE LAYOUT COMPONENTS
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 
+// IMPORT USER FEATURES COMPONENTS
 import Signin from "./components/Signin/Signin";
 import Register from "./components/Register/Register";
+//import Error from "./components/Error/Error";
 //import Signedout from "./components/Signedout/Signedout";
 
+// IMPORT THE MAIN PAGES
 import Gameplay from "./components/Gameplay/Gameplay";
 import Inventory from "./components/Inventory/Inventory";
 import Stats from "./components/Stats/Stats";
@@ -17,11 +21,11 @@ import Info from "./components/Info/Info";
 import Messages from "./components/Messages/Messages";
 import Notes from "./components/Notes/Notes";
 
-import Error from "./components/Error/Error";
-
+// IMPORT STYLING FEATURES
 import "./App.css";
 import Particles from "react-particles-js";
 
+// BEGIN FILE
 const particlesOptions = {
   particles: { 
     number: { 
@@ -103,19 +107,6 @@ console.log(equipmentAbilities)
 
       //.catch(err => console.log(err));
   }
-  
-  // onInputChange = (event) => {
-  //   this.setState({ input: event.target.value });
-  // }
-
-  // onButtonSubmit = () => {
-  //   this.setState({ imageUrl: this.state.input });
-  //   app.models.predict(
-  //     Clarifai.FACE_DETECT_MODEL,
-  //     this.state.input)
-  //     .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
-  //     .catch(err => console.log(err));
-  // }
 
   onRouteChange = (route) => {
     if (route === "signin" || route === "register") {
@@ -190,15 +181,4 @@ console.log(equipmentAbilities)
   }
 }
 
-
-
-
-
-
-
-
 export default App;
-
-
-
-
