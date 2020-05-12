@@ -17,7 +17,6 @@ class Armour extends React.Component {
                 <h6>{armour.name}</h6>,
                 <ul>
                   <li>Requirements: {armour.requirements}</li>
-
                   <li>Hit Points: {armour.modifiers.hp}</li>
                   <li>Speed: {armour.modifiers.speed}</li>
                   <li>Strength: {armour.modifiers.strength}</li>

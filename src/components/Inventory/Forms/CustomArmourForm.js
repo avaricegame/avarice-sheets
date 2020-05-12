@@ -4,28 +4,139 @@ import Toggle from "../../Toggle/Toggle";
 class CustomArmourForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      name:  "",
+      bodyArea: "",
+      requirements: "",
+        hp: "",
+        speed: "",
+        strength: "",
+        dexterityReflex: "",
+        constitutionFortitude: "",
+        intelligence: "",
+        charisma: "",
+        perception: "",
+        stealth: "",
+        rangedAccuracy: "",
+        meleeAccuracy: "",
+      magicalAbilities: [
+        {name: "", description: [""]},
+      ],
+      description: "",
+      createdBy: "",
+      published: "",
+      imageurl: "",
+    };
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
+    onChange = (e) => {
+      console.log(e.target.value);
+      console.log(e.target.name);
+      this.setState({ [e.target.name]: e.target.value });
+    };
 
   onSubmit = (e) => {
     e.preventDefault();
-    const {} = this.state;
+    const {
+      name,
+      bodyArea,
+      requirements,
+      hp,
+      speed,
+      strength,
+      dexterityReflex,
+      constitutionFortitude,
+      intelligence,
+      charisma,
+      perception,
+      stealth,
+      rangedAccuracy,
+      meleeAccuracy,
+      magicalAbilities,
+      description,
+      createdBy,
+      published,
+      imageurl,
 
-    fetch("", {
+    } = this.state;
+
+    if (published === "Yes") {
+      fetch("http://localhost:2890/createarmourpublish", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+      bodyArea,
+      requirements,
+      hp,
+      speed,
+      strength,
+      dexterityReflex,
+      constitutionFortitude,
+      intelligence,
+      charisma,
+      perception,
+      stealth,
+      rangedAccuracy,
+      meleeAccuracy,
+      magicalAbilities,
+      description,
+      createdBy,
+      published,
+      imageurl,
+        }),
+      });
+    }
+
+    fetch("http://localhost:2890/createarmour", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+      body: JSON.stringify({
+        name,
+      bodyArea,
+      requirements,
+      hp,
+      speed,
+      strength,
+      dexterityReflex,
+      constitutionFortitude,
+      intelligence,
+      charisma,
+      perception,
+      stealth,
+      rangedAccuracy,
+      meleeAccuracy,
+      magicalAbilities,
+      description,
+      createdBy,
+      published,
+      imageurl,
+      }),
     });
   };
 
   render() {
-    const {} = this.state;
+    const {
+      name,
+      bodyArea,
+      requirements,
+      hp,
+      speed,
+      strength,
+      dexterityReflex,
+      constitutionFortitude,
+      intelligence,
+      charisma,
+      perception,
+      stealth,
+      rangedAccuracy,
+      meleeAccuracy,
+      magicalAbilities,
+      description,
+      createdBy,
+      published,
+      imageurl,
+    } = this.state;
 
     return (
         <Toggle>
@@ -33,10 +144,15 @@ class CustomArmourForm extends React.Component {
               <div>
                 <button onClick={toggle}>Create Custom Armour</button>
                 {on && (
-                  <form id="addNewArmourForm">
+                  <form id="addNewArmourForm" onSubmit={this.onSubmit}>
                     <fieldset>
                       <label>Armour Type:</label>
-                      <select>
+                      <select
+                      name="bodyArea"
+                      value={bodyArea}
+                      onChange={this.onChange}
+                      >
+                        <option></option>
                         <option>Head</option>
                         <option>Hands</option>
                         <option>Arms</option>
@@ -51,34 +167,95 @@ class CustomArmourForm extends React.Component {
                         <option>Ring 2</option>
                       </select>
                       <label>Armour Piece Name:</label>
-                      <input type="text" />
+                      <input 
+                      name="name"
+                      value={name}
+                      onChange={this.onChange}
+                      type="text" />
                       <h4>Modifiers</h4>
                       <label>Speed:</label>
-                      <input type="number" />
+                      <input 
+                      name="speed"
+                      value={speed}
+                      onChange={this.onChange}
+                      type="number" />
                       <label>Hit Points:</label>
-                      <input type="number" />
+                      <input 
+                      name="hp"
+                      value={hp}
+                      onChange={this.onChange}
+                      type="number" />
                       <label>Strength:</label>
-                      <input type="number" />
+                      <input 
+                      name="strength"
+                      value={strength}
+                      onChange={this.onChange}
+                      type="number" />
                       <label>Dexterity/Reflex:</label>
-                      <input type="number" />
+                      <input 
+                      name="dexterityReflex"
+                      value={dexterityReflex}
+                      onChange={this.onChange}
+                      type="number" />
                       <label>Constitution/Fortitude:</label>
-                      <input type="number" />
+                      <input 
+                      name="constitutionFortitude"
+                      value={constitutionFortitude}
+                      onChange={this.onChange}
+                      type="number" />
                       <label>Intelligence:</label>
-                      <input type="number" />
+                      <input 
+                      name="intelligence"
+                      value={intelligence}
+                      onChange={this.onChange}
+                      type="number" />
                       <label>Charisma:</label>
-                      <input type="number" />
+                      <input 
+                      name="charisma"
+                      value={charisma}
+                      onChange={this.onChange}
+                      type="number" />
                       <label>Perception:</label>
-                      <input type="number" />
+                      <input name="perception"
+                      value={perception}
+                      onChange={this.onChange}
+                       type="number" />
                       <label>Stealth:</label>
-                      <input type="number" />
+                      <input
+                      name="stealth"
+                      value={stealth}
+                      onChange={this.onChange}
+                       type="number" />
                       <label>Ranged Accuracy:</label>
-                      <input type="number" />
+                      <input
+                      name="rangedAccuracy"
+                      value={rangedAccuracy}
+                      onChange={this.onChange}
+                       type="number" />
                       <label>Melee Accuracy:</label>
-                      <input type="number" />
-                      <label>Abilities Given:</label>
-                      <select>
-                        <option>TBA</option>
-                      </select>
+                      <input 
+                      name="meleeAccuracy"
+                      value={meleeAccuracy}
+                      onChange={this.onChange}
+                      type="number" />
+                      <label>Description:</label>
+                      <textarea
+                      name="description"
+                      value={description}
+                      onChange={this.onChange}
+                      >
+
+                      </textarea>
+                      <labe>Publish?</labe>
+                  <select
+                  name="published"
+                  value={published}
+                  onChange={this.onChange}
+                  >
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    </select>
                       <input
                         type="submit"
                         className="submit-button"

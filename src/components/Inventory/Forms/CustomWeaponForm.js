@@ -23,12 +23,14 @@ class CustomWeaponForm extends React.Component {
         },
       ],
       description: "",
+      createdBy: "",
+      published: "",
     };
   }
 
   onChange = (e) => {
     console.log(e.target.value);
-    console.log(e.target.name);
+    console.log(e.target.weaponName);
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -49,7 +51,33 @@ class CustomWeaponForm extends React.Component {
       critical,
       magicalAbilities,
       description,
+      published,
+      createdBy,
     } = this.state;
+
+    if (published === "Yes") {
+      fetch("http://localhost:2890/createweaponpublish", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          weaponName,
+          rangedMelee,
+          imageurl,
+          range,
+          proficiency,
+          weaponType,
+          requirements,
+          abilityBonus,
+          damage,
+          uses,
+          critical,
+          magicalAbilities,
+          description,
+          published,
+          createdBy,
+        }),
+      });
+    }
 
     fetch("http://localhost:2890/createweapon", {
       method: "post",
@@ -68,6 +96,8 @@ class CustomWeaponForm extends React.Component {
         critical,
         magicalAbilities,
         description,
+        published,
+        createdBy,
       }),
     });
   };
@@ -87,6 +117,8 @@ class CustomWeaponForm extends React.Component {
       critical,
       magicalAbilities,
       description,
+      published,
+      createdBy,
     } = this.state;
 
     return (
@@ -106,22 +138,46 @@ class CustomWeaponForm extends React.Component {
                     value={weaponName}
                     onChange={this.onChange}
                   />
+                  <label>Ranged or Melee?</label>
+                  <select
+                  name="rangedMelee"
+                  value={rangedMelee}
+                  onChange={this.onChange}
+                  >
+                    <option></option>
+                    <option>Ranged</option>
+                    <option>Melee</option>
+                  </select>
                   <label>Range:</label>
-                  <input
+                  <select
                     name="range"
-                    type="number"
                     value={range}
                     onChange={this.onChange}
-                  />
+                  >
+                    <option></option>
+                    <option>0</option>
+                    <option>0-1</option>
+                    <option>1</option>
+                    <option>1-2</option>
+                    <option>2</option>
+                    <option>2-4</option>
+                    <option>1-5</option>
+                    <option>4-5</option>
+                    <option>2-7</option>
+                    <option>3-10</option>
+                  </select>
                   <label>Weapon Type:</label>
                   <select
                     name="weaponType"
                     value={weaponType}
                     onChange={this.onChange}
                   >
+                    <option></option>
                     <option>Improvised</option>
                     <option>Normal</option>
                     <option>Unarmed</option>
+                    <option>Heavy</option>
+                    <option>Magic</option>
                   </select>
                   <label>Ability Bonus:</label>
                   <select
@@ -129,19 +185,46 @@ class CustomWeaponForm extends React.Component {
                     value={abilityBonus}
                     onChange={this.onChange}
                   >
-                    <option>Strength</option>
-                    <option>Dexterity</option>
-                    <option>Mixed</option>
+                    <option></option>
+                    <option>PHY</option>
+                    <option>REF</option>
+                    <option>INT</option>
+                    <option>CHA</option>
+                    <option>PHY/REF</option>
+                    <option>PHY/INT</option>
+                    <option>PHY/CHA</option>
+                    <option>REF/INT</option>
+                    <option>REF/CHA</option>
+                    <option>INT/CHA</option>
+                    <option>BALANCED</option>
                   </select>
-                  <label>Uses (1 - 15):</label>
-                  <input
+                  <label>Uses:</label>
+                  <select
                     name="uses"
-                    type="number"
                     value={uses}
                     onChange={this.onChange}
-                  />
+                  >
+                    <option></option>
+                    <option>Unlimited</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                  </select>
                   <label>Damage:</label>
                   <select name="damage" value={damage} onChange={this.onChange}>
+                    <option></option>
                     <option>D2</option>
                     <option>D4</option>
                     <option>D6</option>
@@ -157,6 +240,7 @@ class CustomWeaponForm extends React.Component {
                     value={critical}
                     onChange={this.onChange}
                   >
+                    <option></option>
                     <option>20</option>
                     <option>19-20</option>
                     <option>18-20</option>
@@ -164,6 +248,23 @@ class CustomWeaponForm extends React.Component {
                     <option>16-20</option>
                     <option>15-20</option>
                   </select>
+                  <label>Description:</label>
+                  <textarea
+                  name="description"
+                  value={description}
+                  onChange={this.onChange}
+                  >
+                  </textarea>
+                  <labe>Publish?</labe>
+                  <select
+                  name="published"
+                  value={published}
+                  onChange={this.onChange}
+                  >
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    </select>
                   <input
                     type="submit"
                     className="submit-button"

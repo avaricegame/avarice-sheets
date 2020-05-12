@@ -4,28 +4,65 @@ import Toggle from "../../Toggle/Toggle";
 class CustomItemForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      itemName: "",
+      published: "",
+      imageurl: "",
+      itemDescription: "",
+      createdBy: "",
+    };
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
+    onChange = (e) => {
+      console.log(e.target.value);
+      console.log(e.target.name);
+      this.setState({ [e.target.name]: e.target.value });
+    };
 
   onSubmit = (e) => {
     e.preventDefault();
-    const {} = this.state;
+    const {
+      itemName,
+      published,
+      imageurl,
+      itemDescription,
+      createdBy,
+    } = this.state;
 
-    fetch("", {
+    if (published === "Yes") {
+      fetch("http://localhost:2890/createitempublish", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          itemName,
+          published,
+          imageurl,
+          itemDescription,
+          createdBy,
+        }),
+      });
+    }
+
+    fetch("http://localhost:2890/createitem", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+      body: JSON.stringify({
+        itemName,
+        published,
+        imageurl,
+        itemDescription,
+      }),
     });
   };
 
   render() {
-    const {characterSheet} = this.state;
+    const {
+      itemName,
+      published,
+      imageurl,
+      itemDescription,
+      createdBy,
+    } = this.state;
 
     return (
         <Toggle>
@@ -33,35 +70,29 @@ class CustomItemForm extends React.Component {
           <div>
             <button onClick={toggle}>Create Custom Item</button>
             {on && (
-              <form id="addNewCustomItemForm">
+              <form id="addNewCustomItemForm" onSubmit={this.onSubmit}>
                 <fieldset>
                   <label>Item Name:</label>
-                  <input type="text" />
+                  <input
+                    name="itemName"
+                    value={itemName}
+                    onChange={this.onChange}
+                   type="text" />
                   <label>Item Description:</label>
-                  <textarea></textarea>
-                  <h4>Modifiers</h4>
-                  <label>Speed:</label>
-                  <input type="number" />
-                  <label>Hit Points:</label>
-                  <input type="number" />
-                  <label>Strength:</label>
-                  <input type="number" />
-                  <label>Dexterity/Reflex:</label>
-                  <input type="number" />
-                  <label>Constitution/Fortitude:</label>
-                  <input type="number" />
-                  <label>Intelligence:</label>
-                  <input type="number" />
-                  <label>Charisma:</label>
-                  <input type="number" />
-                  <label>Perception:</label>
-                  <input type="number" />
-                  <label>Stealth:</label>
-                  <input type="number" />
-                  <label>Ranged Accuracy:</label>
-                  <input type="number" />
-                  <label>Melee Accuracy:</label>
-                  <input type="number" />
+                  <textarea
+                  name="itemDescription"
+                    value={itemDescription}
+                    onChange={this.onChange}
+                    ></textarea>
+                  <select
+                  name="published"
+                  value={published}
+                  onChange={this.onChange}
+                  >
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
                   <input
                     type="submit"
                     className="submit-button"

@@ -36,6 +36,7 @@ class NewWeaponForm extends React.Component {
                 <fieldset>
                   <label>Select Weapon:</label>
                   <select>
+                  <option></option>
                     {characterSheet["inventory"]["weapons"].map(function (
                       weapon
                     ) {
