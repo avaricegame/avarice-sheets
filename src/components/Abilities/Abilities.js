@@ -1,107 +1,92 @@
-import React from 'react';
+import React, { Component } from "react";
 
+// IMPORT ALL THE FORM COMPONENTS
+import CustomAbilitiesForm from "./Forms/CustomAbilitiesForm";
 
-const Abilities = ({ races, classes, customAbilities, characterSheet, spells}) => {
-        console.log(spells, "look here!")
+// IMPORT ALL OF THE MAPPING COMPONENTS
+import RaceAbilities from "./Maps/RaceAbilities";
+import ClassAbilities from "./Maps/ClassAbilities";
+import Spells from "./Maps/Spells";
+import CustomAbilities from "./Maps/CustomAbilities";
+
+// BEGIN CLASS
+
+class Abilities extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  onChange = (e) => {
+    console.log(e.target.value);
+    console.log(e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onSubmit = (e) => {
+    console.log(e.target.value);
+    e.preventDefault();
+    const {} = this.state;
+
+    fetch("", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
+  };
+
+  render() {
+    const {} = this.state;
+
+    let {
+      characterSheet,
+      weapons,
+      armour,
+      items,
+      equipmentAbilities,
+    } = this.props;
+
     return (
-                <React.Fragment>
+      <React.Fragment>
+        <div className="secondary-header">
+          <h1>Abilities</h1>
+        </div>
 
-                   <div className="secondary-header">
-                        <h1>Abilities</h1>
-                </div>
+        {/****** BEGIN RACE ABILITIES SECTION ******/}
+        <div className="race-class-abilities bgb">
+          <div className="heading-bar">
+            <h2>Race Abilities</h2>
+          </div>
+          <RaceAbilities />
+        </div>
 
-                <div className="race-class-abilities bgb">
-                        <div className="heading-bar">
-                                <h2>Race Abilities</h2>
-                        </div>
-                         {//characterSheet[0]['inventory']['weapons'].map(function(weapon) {
-                                  races[0].specialTraits.map(function(trait) {
-                                        let x = [
-                                                <h4>{trait.name}</h4>,
-                                                <p>{trait.description}</p>
-                                              ]
+        {/****** BEGIN SPELLS SECTION ******/}
+        <div className="spells bgb">
+          <div className="heading-bar">
+            <h2>Spells</h2>
+          </div>
+          <Spells />
+        </div>
 
-                                              console.log(x)
-                                        
-                                      console.log(trait)
-                                      console.log(trait.name)
+        {/****** BEGIN CLASS ABILITIES SECTION ******/}
+        <div className="item-abilities bgb">
+          <div className="heading-bar">
+            <h2>Class Abilities</h2>
+          </div>
+          <ClassAbilities />
+        </div>
 
-
-   return x
-                                        })} 
-                       
-                </div>
-                <div className="spells bgb">
-                        <div className="heading-bar">
-                                <h2>Spells</h2>
-                        </div>
-                        {//characterSheet[0]['inventory']['weapons'].map(function(weapon) {
-                                  spells[0].apaspells.map(function(spell) {
-                                        let x = [
-                                                <h4>{spell.spellName}</h4>,
-                                                <h5> Spell Points: {spell.spellPoints}</h5>,
-                                                <p>{spell.spellDescription}</p>
-                                              ]
-
-                                              console.log(x)
-                                        
-                                      console.log(spells)
-                                      console.log(spell.name)
-
-
-   return x
-                                        })} 
-
-                </div>
-                <div className="item-abilities bgb">
-                        <div className="heading-bar">
-                                <h2>Class Abilities</h2>
-                        </div>
-                        {//characterSheet[0]['inventory']['weapons'].map(function(weapon) {
-                                  classes[0].abilities.map(function(classes) {
-                                        let x = [
-                                                <h4>{classes.name}</h4>,
-                                                <h5>Available at Level {classes.level}</h5>,
-                                                <p>{classes.description}</p>
-                                              ]
-
-                                              console.log(x)
-                                        
-                                      console.log(classes)
-                                      console.log(classes.name)
-
-
-   return x
-                                        })} 
-                </div>
-                <div className="other-abilities bgb">
-                        <div className="heading-bar">
-                                <h2>Other Abilities</h2>
-                        </div>
-                        {/* {
-                                  customAbilities[0].map(function(ability) {
-                                        let x = [
-                                                <h4>{ability.name}</h4>,
-                                                <h5>Available at Level {ability.level}</h5>,
-                                                <p>{ability.description}</p>
-                                              ]
-
-                                              console.log(x)
-                                        
-                                      console.log(ability)
-                                      console.log(ability.name)
-
-
-   return x
-                                        })} */}
-
-                </div> 
-                     
- </React.Fragment>
-        
-    );
-}
-
-
+        {/****** BEGIN CUSTOM ABILITIES SECTION ******/}
+        <div className="other-abilities bgb">
+          <div className="heading-bar">
+            <h2>Other Abilities</h2>
+          </div>
+          <CustomAbilitiesForm />
+          <CustomAbilities />
+        </div>
+      </React.Fragment>
+    ); // END RETURN
+  } // END RENDER
+} // END CLASS
 
 export default Abilities;
