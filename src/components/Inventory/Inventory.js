@@ -16,39 +16,37 @@ import Armour from "./Maps/Armour";
 import Items from "./Maps/Items";
 import Money from "./Maps/Money"
 
+// DECLARING VARIABLES TO STORE DATABASE DATA IN
+let weapons, armour, items
+
 class Inventory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  onChange = (e) => {
-    console.log(e.target.value);
-    console.log(e.target.name);
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onSubmit = (e) => {
-    console.log(e.target.value);
-    e.preventDefault();
-    const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
-  };
+  componentDidMount = () => {
+    fetch("http://localhost:2890/weapons")
+      .then((response) => response.json())
+      .then((response) => {
+        weapons = response;
+      });
+    fetch("http://localhost:2890/armour")
+      .then((response) => response.json())
+      .then((response) => {
+        armour = response;
+      });
+    fetch("http://localhost:2890/items")
+      .then((response) => response.json())
+      .then((response) => {
+        items = response;
+      });
+  }
 
   render() {
     const {} = this.state;
-
     let {
       characterSheet,
-      weapons,
-      armour,
-      items,
-      equipmentAbilities,
     } = this.props;
 
     return (
@@ -73,9 +71,9 @@ class Inventory extends React.Component {
             <h2>Money</h2>
           </div>
 
-          <AddSubtractMoneyForm />
+          <AddSubtractMoneyForm characterSheet={characterSheet} />
           <Money characterSheet={characterSheet} />
-          <LiquidatedWealth />
+          <LiquidatedWealth characterSheet={characterSheet} />
         </div>
 
         {/****** BEGIN WEAPONS SECTION ******/}
@@ -84,9 +82,9 @@ class Inventory extends React.Component {
             <h2>Weapons</h2>
           </div>
 
-          <NewWeaponForm />
-          <CustomWeaponForm />
-          <Weapons />
+          <NewWeaponForm characterSheet={characterSheet} weapons={weapons} />
+          <CustomWeaponForm characterSheet={characterSheet} />
+          <Weapons characterSheet={characterSheet} />
         </div>
 
         {/****** BEGIN ARMOUR SECTION ******/}
@@ -95,9 +93,9 @@ class Inventory extends React.Component {
             <h2>Armour</h2>
           </div>
 
-          <NewArmourForm />
-          <CustomArmourForm />
-          <Armour />
+          <NewArmourForm characterSheet={characterSheet} armour={armour} />
+          <CustomArmourForm characterSheet={characterSheet} />
+          <Armour characterSheet={characterSheet} />
         </div>
 
         {/****** BEGIN ITEMS SECTION ******/}
@@ -106,9 +104,9 @@ class Inventory extends React.Component {
             <h2>Items</h2>
           </div>
 
-          <NewItemForm />
-          <CustomItemForm />
-          <Items />
+          <NewItemForm characterSheet={characterSheet} items={items} />
+          <CustomItemForm characterSheet={characterSheet} />
+          <Items characterSheet={characterSheet} />
         </div>
       </React.Fragment>
     ); // END RETURN

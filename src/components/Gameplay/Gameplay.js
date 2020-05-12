@@ -4,52 +4,52 @@ import React from 'react';
 
 const Gameplay = ({ characterSheet, races, classes, armour }) => {
 
-        let ahp = 0;
-        let aint = 0;
-        let aconfor = 0;
+        // let ahp = 0;
+        // let aint = 0;
+        // let aconfor = 0;
 
-        armour.map(function (armour) {
-          ahp += armour.modifiers.hp;
-          aconfor += armour.modifiers.constitutionFortitude;
-          aint += armour.modifiers.intelligence;
-          console.log(ahp);
+        // armour.map(function (armour) {
+        //   ahp += armour.modifiers.hp;
+        //   aconfor += armour.modifiers.constitutionFortitude;
+        //   aint += armour.modifiers.intelligence;
+        //   console.log(ahp);
 
-          return ahp, aint, aconfor;
-        });
+        //   return ahp, aint, aconfor;
+        // });
 
-        let constitution = 0
-        constitution =
-        characterSheet[0].stats.abilityScores.constitutionLevelUps * 2 +
-        5 +
-        aconfor +
-        characterSheet[0].stats.abilityScores.constitutionTempMod +
-        characterSheet[0].stats.abilityScores.constitutionMiscMod +
-        races[0].abilities.constitution +
-        classes[0].abilityModifiers.constitution;
-        let intelligence =
-        characterSheet[0].stats.abilityScores.intelligenceLevelUps * 2 +
-        5 +
-        aint +
-        characterSheet[0].stats.abilityScores.intelligenceTempMod +
-        characterSheet[0].stats.abilityScores.intelligenceMiscMod +
-        races[0].abilities.intelligence +
-        classes[0].abilityModifiers.intelligence;
-        let level = 0
-        level = characterSheet[0].stats.level
-        let maxHP = 0
-        maxHP =
-        Math.ceil(((level * constitution) / 1.5) + ahp + 10)
-        let maxSP = 0
-        maxSP =
-        Math.ceil((
-                characterSheet[0].stats.skills.spellcraftMisc +
-                  (classes[0].skills.spellcraft === false &&
-                  characterSheet[0].stats.skills.spellcraft === false
-                    ? 0
-                    : intelligence * 0.25) +
-                  (characterSheet[0].stats.skills.spellcraftRanks * 1.25) / 
-                  3.5
-              ) * 2.75)
+        // let constitution = 0
+        // constitution =
+        // characterSheet[0].stats.abilityScores.constitutionLevelUps * 2 +
+        // 5 +
+        // aconfor +
+        // characterSheet[0].stats.abilityScores.constitutionTempMod +
+        // characterSheet[0].stats.abilityScores.constitutionMiscMod +
+        // races[0].abilities.constitution +
+        // classes[0].abilityModifiers.constitution;
+        // let intelligence =
+        // characterSheet[0].stats.abilityScores.intelligenceLevelUps * 2 +
+        // 5 +
+        // aint +
+        // characterSheet[0].stats.abilityScores.intelligenceTempMod +
+        // characterSheet[0].stats.abilityScores.intelligenceMiscMod +
+        // races[0].abilities.intelligence +
+        // classes[0].abilityModifiers.intelligence;
+        // let level = 0
+        // level = characterSheet[0].stats.level
+        // let maxHP = 0
+        // maxHP =
+        // Math.ceil(((level * constitution) / 1.5) + ahp + 10)
+        // let maxSP = 0
+        // maxSP =
+        // Math.ceil((
+        //         characterSheet[0].stats.skills.spellcraftMisc +
+        //           (classes[0].skills.spellcraft === false &&
+        //           characterSheet[0].stats.skills.spellcraft === false
+        //             ? 0
+        //             : intelligence * 0.25) +
+        //           (characterSheet[0].stats.skills.spellcraftRanks * 1.25) / 
+        //           3.5
+        //       ) * 2.75)
 
     return (
                 <React.Fragment>
@@ -64,9 +64,9 @@ const Gameplay = ({ characterSheet, races, classes, armour }) => {
                         </div> 
                         <button>Take Damage</button>
                         <button>Heal HP</button>
-                        <h4>Max HP: {/*characterSheet[0]['stats']['maxHP']*/maxHP}</h4>
+                        <h4>Max HP: {characterSheet['stats']['maxHP']}</h4>
                        
-                        <h4 className="red toggle-green">Current HP: {characterSheet[0]['stats']['currentHP']}</h4>
+                        <h4 className="red toggle-green">Current HP: {characterSheet['stats']['currentHP']}</h4>
                         <h4>Wounds and Healing History</h4>
                         {/* <ul>
                                 <li><input type="number" /></li>
@@ -83,9 +83,9 @@ const Gameplay = ({ characterSheet, races, classes, armour }) => {
                         </div>
                         <button>Use Spell Points</button>
                         <button>Heal Spell Points</button>
-                        <h4>Max Spell Points: {/*characterSheet[0]['stats']['maxSP']*/maxSP}</h4>
+                        <h4>Max Spell Points: {characterSheet['stats']['maxSP']}</h4>
                        
-                        <h4 className="red toggle-green">Current Spell Points: {characterSheet[0]['stats']['currentSP']}</h4>
+                        <h4 className="red toggle-green">Current Spell Points: {characterSheet['stats']['currentSP']}</h4>
                         <h4>Spell Energy Points History</h4>
                         {/* <ul>
                                 <li><input type="number" /></li>

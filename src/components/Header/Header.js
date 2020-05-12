@@ -8,7 +8,7 @@ const Header = ({ onRouteChange, isSignedin, characterSheet }) => {
                     <div className="player-character-campaign">
                       {/* <div className="padding-right"> */}
                             {/* <span class="color--accent"><h2>Player: Zack Bringhurst</h2></span> */}
-                            <span class="color--accent"><h1 className="name-of-character-heading">{characterSheet[0].characterName} #{characterSheet[0].charid}</h1></span>
+                            <span class="color--accent"><h1 className="name-of-character-heading">{characterSheet.characterName} #{characterSheet.charid}</h1></span>
                             {/* <span class="color--accent"><h2>Sheet ID: {characterSheet[0].charid}</h2></span> */}
                              {/* <span class="color--accent"><h2>Campaign:The Creton of Death</h2></span> */}
                              </div>

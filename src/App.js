@@ -63,27 +63,10 @@ class App extends Component {
     fetch("http://localhost:2890")
       .then((response) => response.json())
       .then((response) => {
-        characterSheet = response;
+        characterSheet = response[0];
         console.log(characterSheet);
       });
-    fetch("http://localhost:2890/weapons")
-      .then((response) => response.json())
-      .then((response) => {
-        weapons = response;
-        console.log(weapons);
-      });
-    fetch("http://localhost:2890/armour")
-      .then((response) => response.json())
-      .then((response) => {
-        armour = response;
-        console.log(armour);
-      });
-    fetch("http://localhost:2890/items")
-      .then((response) => response.json())
-      .then((response) => {
-        items = response;
-        console.log(items);
-      });
+    
     fetch("http://localhost:2890/races")
       .then((response) => response.json())
       .then((response) => {
@@ -175,9 +158,6 @@ class App extends Component {
         ) : this.state.route === "inventory" ? (
           <Inventory
             characterSheet={characterSheet}
-            weapons={weapons}
-            armour={armour}
-            items={items}
             equipmentAbilities={equipmentAbilities}
           />
         ) : this.state.route === "stats" ? (

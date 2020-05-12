@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Toggle from "../../Toggle/Toggle";
 
 class Items extends React.Component {
   constructor(props) {
@@ -7,48 +6,34 @@ class Items extends React.Component {
     this.state = {};
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
-  };
-
   render() {
-    const {characterSheet} = this.state;
-
+    let { characterSheet } = this.props;
     return (
       <React.Fragment>
-{/* {
-            //characterSheet[0]['inventory']['weapons'].map(function(weapon) {
-            items.map(function (item) {
-              let x = [
-                <h4>{item.itemName}</h4>,
-                <div className="item-details">
-                  <p>
-                    <strong>Item Description:</strong> {item.itemDescription}
-                  </p>
-                </div>,
-              ];
-
-              // console.log(x)
-
-              // console.log(item)
-              // console.log(item.name)
-
-              return x;
-            })
-          } */}
+        <h2>Custom Items</h2>
+        {characterSheet["inventory"]["customItems"].map(function (item) {
+          let x = [
+            <h4>{item.itemName}</h4>,
+            <div className="item-details">
+              <p>
+                <strong>Item Description:</strong> {item.itemDescription}
+              </p>
+            </div>,
+          ];
+          return x;
+        })}
+        <h2>Normal Items</h2>
+        {characterSheet["inventory"]["items"].map(function (item) {
+          let x = [
+            <h4>{item.name}</h4>,
+            <div className="item-details">
+              <p>
+                <strong>Item Description:</strong> {item.itemDescription}
+              </p>
+            </div>,
+          ];
+          return x;
+        })}
       </React.Fragment>
     ); // END RETURN
   } // END RENDER

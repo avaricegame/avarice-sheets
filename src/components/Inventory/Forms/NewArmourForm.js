@@ -25,8 +25,7 @@ class NewArmourForm extends React.Component {
   };
 
   render() {
-    const {} = this.state;
-
+    let { characterSheet } = this.props;
     return (
         <Toggle>
         {({ on, toggle }) => (
@@ -37,8 +36,12 @@ class NewArmourForm extends React.Component {
                 <fieldset>
                   <label>Select Armour:</label>
                   <select>
-                    <option>Armour 1</option>
-                    <option>Armour 2</option>
+                  {characterSheet["inventory"]["armour"].map(function (
+                      armour
+                    ) {
+                      let x = [<option>{armour.name}</option>];
+                      return x;
+                    })}
                   </select>
                   <input
                     type="submit"

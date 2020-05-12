@@ -33,7 +33,7 @@ class Money extends React.Component {
       <React.Fragment>
         <h4>Uni-Credits/Gold</h4>
           <h5>Current Savings:</h5>
-          <h3>{characterSheet[0]["inventory"]["money"]}</h3>
+          <h3>{characterSheet["inventory"]["money"]}</h3>
           <h5>Liquidated Savings:</h5>
           <h3>895 Gold</h3>
       </React.Fragment>
