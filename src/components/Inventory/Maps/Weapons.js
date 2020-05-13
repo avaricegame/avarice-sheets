@@ -15,21 +15,40 @@ class Weapons extends React.Component {
           let x = [
             <h5>{weapon.rangedMelee} Weapon Name: </h5>,
             <h6>{weapon.name}</h6>,
-            <ul>
-              <li>Range: {weapon.range}</li>
-              <li>Proficiency: {weapon.proficiency}</li>
-              <li>Requirements: {weapon.requirements}</li>
-              <li>Weapon Type: {weapon.weaponType}</li>
-              <li>Ability Bonus: {weapon.abilityBonus}</li>
-              <li>Damage: {weapon.damage}</li>
-              <li>Uses: {weapon.uses}</li>
-              <li>Critical: {weapon.critical}</li>
-              <li>Magical Abilities:</li>
-
-              <li>
-                <strong>Description:</strong> {weapon.description}
-              </li>
-            </ul>,
+            <p><strong>Description:</strong> {weapon.description}</p>,
+            <p><strong>Requirements:</strong> {weapon.requirements}</p>,
+            <p><strong>Stats:</strong></p>,
+            <table className="inventory-table">
+              <tr>
+                <td>Range</td>
+                <td>{weapon.range}</td>
+              </tr>
+              <tr>
+                <td>Proficiency</td>
+                <td>{weapon.proficiency}</td>
+              </tr>
+              <tr>
+                <td>Weapon Type</td>
+                <td>{weapon.weaponType}</td>
+              </tr>
+              <tr>
+                <td>Ability Bonus</td>
+                <td>{weapon.abilityBonus}</td>
+              </tr>
+              <tr>
+                <td>Damage</td>
+                <td>{weapon.damage}</td>
+              </tr>
+              <tr>
+                <td>Uses</td>
+                <td>{weapon.uses}</td>
+              </tr>
+              <tr>
+                <td>Critical</td>
+                <td>{weapon.critical}</td>
+              </tr>
+            </table>
+              // <li>Magical Abilities:</li>
           ];
           return x;
         })}
@@ -38,21 +57,40 @@ class Weapons extends React.Component {
           let y = [
             <h5>{weapon.rangedMelee} Weapon Name: </h5>,
             <h6>{weapon.name}</h6>,
-            <ul>
-              <li>Range: {weapon.range}</li>
-              <li>Proficiency: {weapon.proficiency}</li>
-              <li>Requirements: {weapon.requirements}</li>
-              <li>Weapon Type: {weapon.weaponType}</li>
-              <li>Ability Bonus: {weapon.abilityBonus}</li>
-              <li>Damage: {weapon.damage}</li>
-              <li>Uses: {weapon.uses}</li>
-              <li>Critical: {weapon.critical}</li>
-              <li>Magical Abilities:</li>
-
-              <li>
-                <strong>Description:</strong> {weapon.description}
-              </li>
-            </ul>,
+            <p><strong>Description:</strong> {weapon.description}</p>,
+            <p><strong>Requirements:</strong> {weapon.requirements}</p>,
+            <p><strong>Stats:</strong></p>,
+            <table className="inventory-table">
+              <tr>
+                <td>Range</td>
+                <td>{weapon.range}</td>
+              </tr>
+              <tr>
+                <td>Proficiency</td>
+                <td>{weapon.proficiency}</td>
+              </tr>
+              <tr>
+                <td>Weapon Type</td>
+                <td>{weapon.weaponType}</td>
+              </tr>
+              <tr>
+                <td>Ability Bonus</td>
+                <td>{weapon.abilityBonus}</td>
+              </tr>
+              <tr>
+                <td>Damage</td>
+                <td>{weapon.damage}</td>
+              </tr>
+              <tr>
+                <td>Uses</td>
+                <td>{weapon.uses}</td>
+              </tr>
+              <tr>
+                <td>Critical</td>
+                <td>{weapon.critical}</td>
+              </tr>
+            </table>
+              // <li>Magical Abilities:</li>
           ];
           return y;
         })}
