@@ -41,9 +41,7 @@ class NewArmourForm extends React.Component {
     let { armour } = this.props;
     console.log(armour);
 
-    let {
-      armourName,
-    } = this.state;
+    let { armourName } = this.state;
 
     console.log(armourName, "This is the new armourName state.");
 
@@ -53,9 +51,8 @@ class NewArmourForm extends React.Component {
 
     console.log(correctWeapon, "This is the correct weapon!!");
 
-    this.setTheStates(correctWeapon)
-    this.sendTheData()
-    
+    this.setTheStates(correctWeapon);
+    this.sendTheData();
   };
 
   sendTheData = () => {
@@ -88,11 +85,11 @@ class NewArmourForm extends React.Component {
         name,
       }),
     });
-  }
+  };
 
   setTheStates = (x) => {
-    this.setState({name: x[0].name})
-  }
+    this.setState({ name: x[0].name });
+  };
 
   render() {
     let { characterSheet, armour } = this.props;
@@ -105,8 +102,10 @@ class NewArmourForm extends React.Component {
             {on && (
               <form onSubmit={this.onSubmit}>
                 <fieldset>
+                  <h6 className="edit-h6">Custom Armour Form</h6>
                   <label>Select Armour:</label>
                   <select
+                    required
                     name="armourName"
                     value={armourName}
                     onChange={this.onChange}

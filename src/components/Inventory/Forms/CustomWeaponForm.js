@@ -131,8 +131,10 @@ class CustomWeaponForm extends React.Component {
             {on && (
               <form id="addNewWeaponForm" onSubmit={this.onSubmit}>
                 <fieldset>
+                  <h6 className="edit-h6">Custom Armour Form</h6>
                   <label>Weapon Name:</label>
                   <input
+                    required
                     name="weaponName"
                     type="text"
                     value={weaponName}
@@ -140,9 +142,10 @@ class CustomWeaponForm extends React.Component {
                   />
                   <label>Ranged or Melee?</label>
                   <select
-                  name="rangedMelee"
-                  value={rangedMelee}
-                  onChange={this.onChange}
+                    required
+                    name="rangedMelee"
+                    value={rangedMelee}
+                    onChange={this.onChange}
                   >
                     <option></option>
                     <option>Ranged</option>
@@ -150,6 +153,7 @@ class CustomWeaponForm extends React.Component {
                   </select>
                   <label>Range:</label>
                   <select
+                    required
                     name="range"
                     value={range}
                     onChange={this.onChange}
@@ -168,6 +172,7 @@ class CustomWeaponForm extends React.Component {
                   </select>
                   <label>Weapon Type:</label>
                   <select
+                    required
                     name="weaponType"
                     value={weaponType}
                     onChange={this.onChange}
@@ -181,6 +186,7 @@ class CustomWeaponForm extends React.Component {
                   </select>
                   <label>Ability Bonus:</label>
                   <select
+                    required
                     name="abilityBonus"
                     value={abilityBonus}
                     onChange={this.onChange}
@@ -200,6 +206,7 @@ class CustomWeaponForm extends React.Component {
                   </select>
                   <label>Uses:</label>
                   <select
+                    required
                     name="uses"
                     value={uses}
                     onChange={this.onChange}
@@ -223,7 +230,12 @@ class CustomWeaponForm extends React.Component {
                     <option>15</option>
                   </select>
                   <label>Damage:</label>
-                  <select name="damage" value={damage} onChange={this.onChange}>
+                  <select
+                    required
+                    name="damage"
+                    value={damage}
+                    onChange={this.onChange}
+                  >
                     <option></option>
                     <option>D2</option>
                     <option>D4</option>
@@ -236,6 +248,7 @@ class CustomWeaponForm extends React.Component {
                   </select>
                   <label>Critical:</label>
                   <select
+                    required
                     name="critical"
                     value={critical}
                     onChange={this.onChange}
@@ -250,21 +263,22 @@ class CustomWeaponForm extends React.Component {
                   </select>
                   <label>Description:</label>
                   <textarea
-                  name="description"
-                  value={description}
-                  onChange={this.onChange}
-                  >
-                  </textarea>
-                  <labe>Publish?</labe>
+                    required
+                    name="description"
+                    value={description}
+                    onChange={this.onChange}
+                  ></textarea>
+                  <label>Publish?</label>
                   <select
-                  name="published"
-                  value={published}
-                  onChange={this.onChange}
+                    required
+                    name="published"
+                    value={published}
+                    onChange={this.onChange}
                   >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
-                    </select>
+                  </select>
                   <input
                     type="submit"
                     className="submit-button"

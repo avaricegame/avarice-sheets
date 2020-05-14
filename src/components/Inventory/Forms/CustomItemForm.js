@@ -13,11 +13,11 @@ class CustomItemForm extends React.Component {
     };
   }
 
-    onChange = (e) => {
-      console.log(e.target.value);
-      console.log(e.target.name);
-      this.setState({ [e.target.name]: e.target.value });
-    };
+  onChange = (e) => {
+    console.log(e.target.value);
+    console.log(e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -65,29 +65,35 @@ class CustomItemForm extends React.Component {
     } = this.state;
 
     return (
-        <Toggle>
+      <Toggle>
         {({ on, toggle }) => (
           <div>
             <button onClick={toggle}>Create Custom Item</button>
             {on && (
               <form id="addNewCustomItemForm" onSubmit={this.onSubmit}>
                 <fieldset>
+                  <h6 className="edit-h6">Custom Armour Form</h6>
                   <label>Item Name:</label>
                   <input
+                    required
                     name="itemName"
                     value={itemName}
                     onChange={this.onChange}
-                   type="text" />
-                  <label>Item Description:</label>
+                    type="text"
+                  />
+                  <label>Description:</label>
                   <textarea
-                  name="itemDescription"
+                    required
+                    name="itemDescription"
                     value={itemDescription}
                     onChange={this.onChange}
-                    ></textarea>
+                  ></textarea>
+                  <label>Publish?</label>
                   <select
-                  name="published"
-                  value={published}
-                  onChange={this.onChange}
+                    required
+                    name="published"
+                    value={published}
+                    onChange={this.onChange}
                   >
                     <option></option>
                     <option>Yes</option>
@@ -103,7 +109,7 @@ class CustomItemForm extends React.Component {
             )}
           </div>
         )}
-      </Toggle>    
+      </Toggle>
     ); // END RETURN
   } // END RENDER
 } // END CLASS

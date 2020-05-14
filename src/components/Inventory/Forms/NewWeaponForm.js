@@ -34,12 +34,11 @@ class NewWeaponForm extends React.Component {
             {on && (
               <form>
                 <fieldset>
+                  <h6 className="edit-h6">Custom Armour Form</h6>
                   <label>Select Weapon:</label>
-                  <select>
-                  <option></option>
-                    {weapons.map(function (
-                      weapon
-                    ) {
+                  <select required>
+                    <option></option>
+                    {weapons.map(function (weapon) {
                       let x = [<option>{weapon.name}</option>];
                       return x;
                     })}

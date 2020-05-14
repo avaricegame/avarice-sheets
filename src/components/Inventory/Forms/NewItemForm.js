@@ -34,12 +34,11 @@ class NewItemForm extends React.Component {
             {on && (
               <form>
                 <fieldset>
+                  <h6 className="edit-h6">Custom Armour Form</h6>
                   <label>Select Item:</label>
-                  <select>
+                  <select required>
                     <option></option>
-                  {items.map(function (
-                      item
-                    ) {
+                    {items.map(function (item) {
                       let x = [<option>{item.name}</option>];
                       return x;
                     })}

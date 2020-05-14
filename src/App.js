@@ -66,7 +66,7 @@ class App extends Component {
         characterSheet = response[0];
         console.log(characterSheet);
       });
-    
+
     fetch("http://localhost:2890/races")
       .then((response) => response.json())
       .then((response) => {

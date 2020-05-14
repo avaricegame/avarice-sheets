@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Toggle from "../../Toggle/Toggle";
 
 class Armour extends React.Component {
   constructor(props) {
@@ -10,69 +11,165 @@ class Armour extends React.Component {
     let { characterSheet } = this.props;
     return (
       <React.Fragment>
-        <h2>Custom Armour</h2>
-          {characterSheet["inventory"]["customArmour"].map(function (armour) {
-              let x = [
-                <h5>{armour.bodyArea}</h5>,
-                <h6>{armour.name}</h6>,
-                <ul>
-                  <li>Requirements: {armour.requirements}</li>
-                  <li>Hit Points: {armour.modifiers.hp}</li>
-                  <li>Speed: {armour.modifiers.speed}</li>
-                  <li>Strength: {armour.modifiers.strength}</li>
-                  <li>Dexterity/Reflex: {armour.modifiers.dexterityReflex}</li>
-                  <li>
-                    Constitution/Fortitude:{" "}
-                    {armour.modifiers.constitutionFortitude}
-                  </li>
-                  <li>Intelligence: {armour.modifiers.intelligence}</li>
-                  <li>Charisma: {armour.modifiers.charisma}</li>
-                  <li>Perception: {armour.modifiers.perception}</li>
-                  <li>Stealth: {armour.modifiers.stealth}</li>
-                  <li>Ranged Accuracy: {armour.modifiers.rangedAccuracy}</li>
-                  <li>Melee Accuracy: {armour.modifiers.meleeAccuracy}</li>
+        {characterSheet["inventory"]["customArmour"].map(function (armour) {
+          let x = [
+            <div className="weapon-div">
+              <Toggle>
+                {({ on, toggle }) => (
+                  <div>
+                    <h6 onClick={toggle}>{armour.name}</h6>
+                    <h5 onClick={toggle}>{armour.bodyArea}</h5>
+                    <p onClick={toggle} className="cursor">
+                      <strong>Description:</strong> {armour.description}
+                    </p>
+                    {on && (
+                      <React.Fragment>
+                        <p>
+                          <strong>Stats:</strong>
+                        </p>
+                        <table>
+                          <tr>
+                            <td>Hit Points:</td>
+                            <td>{armour.modifiers.hp}</td>
+                          </tr>
+                          <tr>
+                            <td>Speed:</td>
+                            <td>{armour.modifiers.speed}</td>
+                          </tr>
+                          <tr>
+                            <td>Strength:</td>
+                            <td>{armour.modifiers.strength}</td>
+                          </tr>
+                          <tr>
+                            <td>Dexterity/Reflex:</td>
+                            <td>{armour.modifiers.dexterityReflex}</td>
+                          </tr>
+                          <tr>
+                            <td>Constitution/Fortitude:</td>
+                            <td>{armour.modifiers.constitutionFortitude}</td>
+                          </tr>
+                          <tr>
+                            <td>Intelligence:</td>
+                            <td>{armour.modifiers.intelligence}</td>
+                          </tr>
+                          <tr>
+                            <td>Charisma:</td>
+                            <td>{armour.modifiers.charisma}</td>
+                          </tr>
+                          <tr>
+                            <td>Perception:</td>
+                            <td>{armour.modifiers.perception}</td>
+                          </tr>
+                          <tr>
+                            <td>Stealth:</td>
+                            <td>{armour.modifiers.stealth}</td>
+                          </tr>
+                          <tr>
+                            <td>Ranged Accuracy:</td>
+                            <td>{armour.modifiers.rangedAccuracy}</td>
+                          </tr>
+                          <tr>
+                            <td>Melee Accuracy:</td>
+                            <td>{armour.modifiers.meleeAccuracy}</td>
+                          </tr>
+                        </table>
+                        <p>
+                          <strong>Magical Abilities:</strong>
+                        </p>
+                        <p>
+                          <strong>Requirements:</strong> {armour.requirements}
+                        </p>
+                        <h6 className="delete-button">Delete</h6>
+                      </React.Fragment>
+                    )}
+                  </div>
+                )}
+              </Toggle>
+            </div>,
+          ];
+          return x;
+        })}
 
-                  <li>Magical Abilities:</li>
+        {characterSheet["inventory"]["armour"].map(function (armour) {
+          let y = [
+            <div className="weapon-div">
+              <Toggle>
+                {({ on, toggle }) => (
+                  <div>
+                    <h6 onClick={toggle}>{armour.name}</h6>
+                    <h5 onClick={toggle}>{armour.bodyArea}</h5>
 
-                  <li>
-                    <strong>Description:</strong> {armour.description}
-                  </li>
-                </ul>,
-              ];
-              return x;
-            })}
-            <h2>Normal Armour</h2>
-            {characterSheet["inventory"]["armour"].map(function (armour) {
-              let y = [
-                <h5>{armour.bodyArea}</h5>,
-                <h6>{armour.name}</h6>,
-                <ul>
-                  <li>Requirements: {armour.requirements}</li>
-
-                  <li>Hit Points: {armour.modifiers.hp}</li>
-                  <li>Speed: {armour.modifiers.speed}</li>
-                  <li>Strength: {armour.modifiers.strength}</li>
-                  <li>Dexterity/Reflex: {armour.modifiers.dexterityReflex}</li>
-                  <li>
-                    Constitution/Fortitude:{" "}
-                    {armour.modifiers.constitutionFortitude}
-                  </li>
-                  <li>Intelligence: {armour.modifiers.intelligence}</li>
-                  <li>Charisma: {armour.modifiers.charisma}</li>
-                  <li>Perception: {armour.modifiers.perception}</li>
-                  <li>Stealth: {armour.modifiers.stealth}</li>
-                  <li>Ranged Accuracy: {armour.modifiers.rangedAccuracy}</li>
-                  <li>Melee Accuracy: {armour.modifiers.meleeAccuracy}</li>
-
-                  <li>Magical Abilities:</li>
-
-                  <li>
-                    <strong>Description:</strong> {armour.description}
-                  </li>
-                </ul>,
-              ];
-              return y;
-            })}
+                    <p onClick={toggle} className="cursor">
+                      <strong>Description:</strong> {armour.description}
+                    </p>
+                    {on && (
+                      <React.Fragment>
+                        <p>
+                          <strong>Stats:</strong>
+                        </p>
+                        <table>
+                          <tr>
+                            <td>Hit Points:</td>
+                            <td>{armour.modifiers.hp}</td>
+                          </tr>
+                          <tr>
+                            <td>Speed:</td>
+                            <td>{armour.modifiers.speed}</td>
+                          </tr>
+                          <tr>
+                            <td>Strength:</td>
+                            <td>{armour.modifiers.strength}</td>
+                          </tr>
+                          <tr>
+                            <td>Dexterity/Reflex:</td>
+                            <td>{armour.modifiers.dexterityReflex}</td>
+                          </tr>
+                          <tr>
+                            <td>Constitution/Fortitude:</td>
+                            <td>{armour.modifiers.constitutionFortitude}</td>
+                          </tr>
+                          <tr>
+                            <td>Intelligence:</td>
+                            <td>{armour.modifiers.intelligence}</td>
+                          </tr>
+                          <tr>
+                            <td>Charisma:</td>
+                            <td>{armour.modifiers.charisma}</td>
+                          </tr>
+                          <tr>
+                            <td>Perception:</td>
+                            <td>{armour.modifiers.perception}</td>
+                          </tr>
+                          <tr>
+                            <td>Stealth:</td>
+                            <td>{armour.modifiers.stealth}</td>
+                          </tr>
+                          <tr>
+                            <td>Ranged Accuracy:</td>
+                            <td>{armour.modifiers.rangedAccuracy}</td>
+                          </tr>
+                          <tr>
+                            <td>Melee Accuracy:</td>
+                            <td>{armour.modifiers.meleeAccuracy}</td>
+                          </tr>
+                        </table>
+                        <p>
+                          <strong>Magical Abilities:</strong>
+                        </p>
+                        <p>
+                          <strong>Requirements:</strong> {armour.requirements}
+                        </p>
+                        <h6 className="delete-button">Delete</h6>
+                      </React.Fragment>
+                    )}
+                  </div>
+                )}
+              </Toggle>
+            </div>,
+            //<li>Magical Abilities:</li>
+          ];
+          return y;
+        })}
       </React.Fragment>
     ); // END RETURN
   } // END RENDER

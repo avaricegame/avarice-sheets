@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Toggle from "../../Toggle/Toggle";
 
 class Items extends React.Component {
   constructor(props) {
@@ -10,26 +11,48 @@ class Items extends React.Component {
     let { characterSheet } = this.props;
     return (
       <React.Fragment>
-        <h2>Custom Items</h2>
         {characterSheet["inventory"]["customItems"].map(function (item) {
           let x = [
-            <h4>{item.itemName}</h4>,
-            <div className="item-details">
-              <p>
-                <strong>Item Description:</strong> {item.itemDescription}
-              </p>
+            <div className="weapon-div">
+              <Toggle>
+                {({ on, toggle }) => (
+                  <div>
+                    <h6 onClick={toggle}>{item.itemName}</h6>
+                    <h5 onClick={toggle}>Item Type</h5>
+                    <p onClick={toggle} className="cursor">
+                      <strong>Description:</strong> {item.itemDescription}
+                    </p>
+                    {on && (
+                      <React.Fragment>
+                        <h6 className="delete-button">Delete</h6>
+                      </React.Fragment>
+                    )}
+                  </div>
+                )}
+              </Toggle>
             </div>,
           ];
           return x;
         })}
-        <h2>Normal Items</h2>
         {characterSheet["inventory"]["items"].map(function (item) {
           let x = [
-            <h4>{item.name}</h4>,
-            <div className="item-details">
-              <p>
-                <strong>Item Description:</strong> {item.itemDescription}
-              </p>
+            <div className="weapon-div">
+              <Toggle>
+                {({ on, toggle }) => (
+                  <div>
+                    <h6 onClick={toggle}>{item.name}</h6>
+                    <h5 onClick={toggle}>Item Type</h5>
+                    <p onClick={toggle} className="cursor">
+                      <strong>Description:</strong> {item.itemDescription}
+                    </p>
+                    {on && (
+                      <React.Fragment>
+                        <h6 className="delete-button">Delete</h6>
+                      </React.Fragment>
+                    )}
+                  </div>
+                )}
+              </Toggle>
             </div>,
           ];
           return x;
