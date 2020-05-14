@@ -179,10 +179,20 @@ cursor: pointer;
    transition: all .4s;
  }
 
+ .gray {
+   cursor: not-allowed;
+   background: rgb(168, 168, 168);
+ }
  .delete-button:hover {
    box-shadow: 0 -1px 4px rgb(151, 151, 151);
    background: red;
    margin: 2rem -13px -10px -13px;
+ }
+
+ .gray:hover {
+   box-shadow: none;
+   background: rgb(168, 168, 168);
+   margin: 2rem -10px -10px -10px;
  }
 
  .submit-button {

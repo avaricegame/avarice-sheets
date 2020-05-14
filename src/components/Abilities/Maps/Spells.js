@@ -31,10 +31,13 @@ class Spells extends React.Component {
                     <h6 onClick={toggle}>{spell.spellName}</h6>
                     <h5 onClick={toggle}>Spell Points: {spell.spellPoints}</h5>
                     {on && (
+                      <React.Fragment>
                       <p className="margin-bottom">
                         <strong>Details: </strong>
                         {spell.spellDescription}
                       </p>
+                      <h6 className="delete-button gray">Delete</h6>
+                      </React.Fragment>
                     )}
                   </div>
                 )}

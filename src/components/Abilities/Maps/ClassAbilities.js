@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import Toggle from "../../Toggle/Toggle";
+
+let charactersClass;
+let correctAbilities;
 
 class ClassAbilities extends React.Component {
   constructor(props) {
@@ -6,44 +10,47 @@ class ClassAbilities extends React.Component {
     this.state = {};
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
-  };
-
   render() {
-    const {characterSheet} = this.state;
+    let { classes, characterSheet } = this.props;
+
+    let charactersClass = characterSheet.class;
+
+    if (charactersClass === "Apa") {
+      correctAbilities = classes[0].abilities;
+    } // ADD ALL OF THE OTHER CLASSES HERE AS ELSE IF STATEMENTS
 
     return (
       <React.Fragment>
-           {/* {//characterSheet[0]['inventory']['weapons'].map(function(weapon) {
-                                  classes[0].abilities.map(function(classes) {
-                                    let x = [
-                                            <h4>{classes.name}</h4>,
-                                            <h5>Available at Level {classes.level}</h5>,
-                                            <p>{classes.description}</p>
-                                          ]
+        {correctAbilities.map(function (ability) {
+          let x = [
+            <div className="weapon-div">
+              <Toggle>
+                {({ on, toggle }) => (
+                  <div>
+                    <h6 onClick={toggle}>{ability.name}</h6>
+                    <h5 onClick={toggle}>Available at Level {ability.level}</h5>
+                    {on && (
+                      <React.Fragment>
+                        <p onClick={toggle} className="cursor">
+                          <strong>Details: </strong>
+                          {ability.description}
+                        </p>
+                        <h6 className="delete-button gray">Delete</h6>
+                      </React.Fragment>
+                    )}
+                  </div>
+                )}
+              </Toggle>
+            </div>,
+          ];
 
-                                          console.log(x)
-                                    
-                                  console.log(classes)
-                                  console.log(classes.name)
+          console.log(x);
 
+          console.log(classes);
+          console.log(classes.name);
 
-return x
-                                    })}  */}
+          return x;
+        })}
       </React.Fragment>
     ); // END RETURN
   } // END RENDER

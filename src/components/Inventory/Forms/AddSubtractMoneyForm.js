@@ -51,6 +51,7 @@ class AddSubtractMoneyForm extends React.Component {
             {on && (
               <form id="addSubtractMoneyForm" onSubmit={this.onSubmit}>
                 <fieldset>
+                <h6 className="edit-h6">Add/Subtract Money Form</h6>
                   <label>Add or Subtract</label>
                   <select
                     name="operator"

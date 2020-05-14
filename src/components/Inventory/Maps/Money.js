@@ -31,11 +31,13 @@ class Money extends React.Component {
 
     return (
       <React.Fragment>
-        <h4>Uni-Credits/Gold</h4>
+        <div className="weapon-div">
+        <h6>Uni-Credits/Gold</h6>
           <h5>Current Savings:</h5>
-          <h3>{characterSheet["inventory"]["money"]}</h3>
+          <h3>{characterSheet["inventory"]["money"]} Gold</h3>
           <h5>Liquidated Savings:</h5>
           <h3>895 Gold</h3>
+          </div>
       </React.Fragment>
     ); // END RETURN
   } // END RENDER

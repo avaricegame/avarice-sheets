@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import Toggle from "../../Toggle/Toggle";
+
+let charactersRace;
+let correctSpecialTraits;
 
 class RaceAbilities extends React.Component {
   constructor(props) {
@@ -6,41 +10,41 @@ class RaceAbilities extends React.Component {
     this.state = {};
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
-  };
-
   render() {
-    const { characterSheet } = this.state;
+    let { races, characterSheet } = this.props;
+
+    let charactersRace = characterSheet.race;
+
+    if (charactersRace === "Bruttu") {
+      correctSpecialTraits = races[0].specialTraits;
+    } // ADD ALL OF THE OTHER CLASSES HERE AS ELSE IF STATEMENTS
 
     return (
       <React.Fragment>
-        {/* {
-          //characterSheet[0]['inventory']['weapons'].map(function(weapon) {
-          races[0].specialTraits.map(function (trait) {
-            let x = [<h4>{trait.name}</h4>, <p>{trait.description}</p>];
-
-            console.log(x);
-
-            console.log(trait);
-            console.log(trait.name);
-
-            return x;
-          })
-        } */}
+        {correctSpecialTraits.map(function (trait) {
+          let x = [
+            <div className="weapon-div">
+              <Toggle>
+                {({ on, toggle }) => (
+                  <div>
+                    <h6 onClick={toggle}>{trait.name}</h6>
+                    <h5 onClick={toggle}>Subheading</h5>
+                    <p onClick={toggle} className="cursor">
+                      <strong>Details: </strong>
+                      {trait.description}
+                    </p>
+                    {on && (
+                      <React.Fragment>
+                        <h6 className="delete-button gray">Delete</h6>
+                      </React.Fragment>
+                    )}
+                  </div>
+                )}
+              </Toggle>
+            </div>,
+          ];
+          return x;
+        })}
       </React.Fragment>
     ); // END RETURN
   } // END RENDER
