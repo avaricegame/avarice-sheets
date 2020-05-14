@@ -72,7 +72,7 @@ class CustomItemForm extends React.Component {
             {on && (
               <form id="addNewCustomItemForm" onSubmit={this.onSubmit}>
                 <fieldset>
-                  <h6 className="edit-h6">Custom Armour Form</h6>
+                  <h6 className="edit-h6">Custom Item Form</h6>
                   <label>Item Name:</label>
                   <input
                     required

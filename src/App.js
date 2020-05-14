@@ -85,12 +85,7 @@ class App extends Component {
         spells = response;
         console.log(spells, "logging from app js");
       });
-    fetch("http://localhost:2890/customabilities")
-      .then((response) => response.json())
-      .then((response) => {
-        customAbilities = response;
-        console.log(customAbilities);
-      });
+    
     fetch("http://localhost:2890/equipmentabilities")
       .then((response) => response.json())
       .then((response) => {

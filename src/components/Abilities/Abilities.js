@@ -9,30 +9,42 @@ import ClassAbilities from "./Maps/ClassAbilities";
 import Spells from "./Maps/Spells";
 import CustomAbilities from "./Maps/CustomAbilities";
 
-// BEGIN CLASS
+// DECLARING THE VARIABLES THAT WILL STORE THE DATABASE DATA
+let spells, characterSheet, customAbilities, classes, races;
 
+// BEGIN CLASS
 class Abilities extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  onChange = (e) => {
-    console.log(e.target.value);
-    console.log(e.target.name);
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onSubmit = (e) => {
-    console.log(e.target.value);
-    e.preventDefault();
-    const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
+  componentDidMount = () => {
+    fetch("http://localhost:2890")
+      .then((response) => response.json())
+      .then((response) => {
+        characterSheet = response[0];
+      });
+    fetch("http://localhost:2890/spells")
+      .then((response) => response.json())
+      .then((response) => {
+        spells = response;
+      });
+    fetch("http://localhost:2890/customabilities")
+      .then((response) => response.json())
+      .then((response) => {
+        customAbilities = response;
+      });
+    fetch("http://localhost:2890/races")
+      .then((response) => response.json())
+      .then((response) => {
+        races = response;
+      });
+    fetch("http://localhost:2890/classes")
+      .then((response) => response.json())
+      .then((response) => {
+        classes = response;
+      });
   };
 
   render() {
@@ -40,10 +52,10 @@ class Abilities extends React.Component {
 
     let {
       characterSheet,
-      weapons,
-      armour,
-      items,
-      equipmentAbilities,
+      spells,
+      races,
+      classes,
+      customAbilities,
     } = this.props;
 
     return (
@@ -57,7 +69,7 @@ class Abilities extends React.Component {
           <div className="heading-bar">
             <h2>Race Abilities</h2>
           </div>
-          <RaceAbilities />
+          <RaceAbilities races={races} characterSheet={characterSheet} />
         </div>
 
         {/****** BEGIN SPELLS SECTION ******/}
@@ -65,7 +77,7 @@ class Abilities extends React.Component {
           <div className="heading-bar">
             <h2>Spells</h2>
           </div>
-          <Spells />
+          <Spells spells={spells} characterSheet={characterSheet} />
         </div>
 
         {/****** BEGIN CLASS ABILITIES SECTION ******/}
@@ -73,7 +85,7 @@ class Abilities extends React.Component {
           <div className="heading-bar">
             <h2>Class Abilities</h2>
           </div>
-          <ClassAbilities />
+          <ClassAbilities classes={classes} characterSheet={characterSheet} />
         </div>
 
         {/****** BEGIN CUSTOM ABILITIES SECTION ******/}
@@ -82,7 +94,9 @@ class Abilities extends React.Component {
             <h2>Other Abilities</h2>
           </div>
           <CustomAbilitiesForm />
-          <CustomAbilities />
+          <CustomAbilities
+            characterSheet={characterSheet}
+          />
         </div>
       </React.Fragment>
     ); // END RETURN
