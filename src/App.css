@@ -137,10 +137,10 @@ h2 {
 h3 {
   font-weight: bold;
   color: black;
-  background: #f5bc2d;
+  /* background: #f5bc2d;
   background: #00139A; 
-  background: #f5f5df;
-  
+  background: #f5f5df; */
+  margin-left: .5rem;
 
 }
 

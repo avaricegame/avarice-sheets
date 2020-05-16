@@ -35,6 +35,9 @@ class Money extends React.Component {
         <h6>Uni-Credits/Gold</h6>
           <h5>Current Savings:</h5>
           <h3>{characterSheet["inventory"]["money"]} Gold</h3>
+          </div>
+          <div className="weapon-div">
+            <h6>Liquidated Wealth</h6>
           <h5>Liquidated Savings:</h5>
           <h3>895 Gold</h3>
           </div>

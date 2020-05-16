@@ -35,6 +35,7 @@ class CustomArmourForm extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    
     const {
       name,
       bodyArea,

@@ -24,7 +24,7 @@ const Notes = ({ characterSheet }) => {
                                 </fieldset>
                         </form>
                         {//characterSheet[0]['inventory']['weapons'].map(function(weapon) {
-                                  characterSheet[0]['notes'].map(function(note) {
+                                  characterSheet['notes'].map(function(note) {
                                         let x = [
                                               
                                                       <button>{note.title}</button>,<br />
@@ -45,8 +45,8 @@ const Notes = ({ characterSheet }) => {
                                 <h2>Note Content</h2>
                         </div>
                         {/* <h4>Heading for the note</h4> */}
-                        <h4>{characterSheet[0]['notes'][0].title}</h4>
-    <p>{characterSheet[0]['notes'][0].content}</p>
+                        <h4>{characterSheet['notes'][0].title}</h4>
+    <p>{characterSheet['notes'][0].content}</p>
                         {/* <h4>Heading for the note</h4>
                         <p>
                                 Platea dictumst quisque sagittis purus sit. Amet risus nullam eget felis eget. Interdum
