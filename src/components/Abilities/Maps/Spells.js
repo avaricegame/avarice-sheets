@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Toggle from "../../Toggle/Toggle";
 
 let spellListName;
@@ -32,11 +32,11 @@ class Spells extends React.Component {
                     <h5 onClick={toggle}>Spell Points: {spell.spellPoints}</h5>
                     {on && (
                       <React.Fragment>
-                      <p className="margin-bottom">
-                        <strong>Details: </strong>
-                        {spell.spellDescription}
-                      </p>
-                      <h6 className="delete-button gray">Delete</h6>
+                        <p className="margin-bottom">
+                          <strong>Details: </strong>
+                          {spell.spellDescription}
+                        </p>
+                        <h6 className="delete-button gray">Delete</h6>
                       </React.Fragment>
                     )}
                   </div>

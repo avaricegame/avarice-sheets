@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 // IMPORT ALL THE FORM COMPONENTS
 import CustomAbilitiesForm from "./Forms/CustomAbilitiesForm";
@@ -15,34 +15,6 @@ class Abilities extends React.Component {
     super(props);
     this.state = {};
   }
-
-  componentDidMount = () => {
-    // fetch("http://localhost:2890")
-    //   .then((response) => response.json())
-    //   .then((response) => {
-    //     characterSheet = response[0];
-    //   });
-    // fetch("http://localhost:2890/spells")
-    //   .then((response) => response.json())
-    //   .then((response) => {
-    //     spells = response;
-    //   });
-    // fetch("http://localhost:2890/customabilities")
-    //   .then((response) => response.json())
-    //   .then((response) => {
-    //     customAbilities = response;
-    //   });
-    // fetch("http://localhost:2890/races")
-    //   .then((response) => response.json())
-    //   .then((response) => {
-    //     races = response;
-    //   });
-    // fetch("http://localhost:2890/classes")
-    //   .then((response) => response.json())
-    //   .then((response) => {
-    //     classes = response;
-    //   });
-  };
 
   render() {
     const {} = this.state;
@@ -94,7 +66,6 @@ class Abilities extends React.Component {
           </div>
           <CustomAbilitiesForm addCustomAbility={addCustomAbility} />
           <CustomAbilities
-            characterSheet={characterSheet}
             customAbilities={customAbilities}
             deleteCustomAbility={deleteCustomAbility}
           />

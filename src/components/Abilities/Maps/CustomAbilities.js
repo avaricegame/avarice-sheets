@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Toggle from "../../Toggle/Toggle";
 
 class CustomAbilities extends React.Component {
@@ -8,7 +8,7 @@ class CustomAbilities extends React.Component {
   }
 
   render() {
-    let { characterSheet,  customAbilities, deleteCustomAbility, } = this.props;
+    let { customAbilities, deleteCustomAbility } = this.props;
 
     return (
       <React.Fragment>
@@ -19,16 +19,24 @@ class CustomAbilities extends React.Component {
                 {({ on, toggle }) => (
                   <div>
                     <h6 onClick={toggle}>{ability.name}</h6>
-            <h5 onClick={toggle}>Available at Level: {ability.level}</h5>
-            <p onClick={toggle} className="cursor"><strong>Details: </strong>{ability.description}</p>
+                    <h5 onClick={toggle}>
+                      Available at Level: {ability.level}
+                    </h5>
+                    <p onClick={toggle} className="cursor">
+                      <strong>Details: </strong>
+                      {ability.description}
+                    </p>
                     {on && (
-                      <h6 onClick={deleteCustomAbility.bind(this, ability.id)} className="delete-button">Delete</h6>
+                      <h6
+                        onClick={deleteCustomAbility.bind(this, ability.id)}
+                        className="delete-button"
+                      >
+                        Delete
+                      </h6>
                     )}
                   </div>
                 )}
               </Toggle>
-            
-            
             </div>,
           ];
           return x;
