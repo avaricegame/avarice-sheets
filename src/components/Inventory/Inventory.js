@@ -63,6 +63,8 @@ class Inventory extends React.Component {
       addWeapon,
       addArmour,
       addItem,
+      money,
+      editMoney,
     } = this.props;
 
     return (
@@ -87,9 +89,9 @@ class Inventory extends React.Component {
             <h2>Money</h2>
           </div>
 
-          <AddSubtractMoneyForm characterSheet={characterSheet} />
-          <Money characterSheet={characterSheet} />
-          <LiquidatedWealth characterSheet={characterSheet} />
+          <AddSubtractMoneyForm characterSheet={characterSheet} money={money} editMoney={editMoney} />
+          <Money characterSheet={characterSheet} money={money} />
+          {/* <LiquidatedWealth characterSheet={characterSheet} /> */}
         </div>
 
         {/****** BEGIN WEAPONS SECTION ******/}

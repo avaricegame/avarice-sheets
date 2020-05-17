@@ -49,7 +49,8 @@ let characterSheet,
   classes,
   customAbilities,
   spells,
-  equipmentAbilities;
+  equipmentAbilities,
+  money;
 
 class App extends Component {
   constructor() {
@@ -63,6 +64,7 @@ class App extends Component {
       items: [],
       customAbilities: [],
       stats: [],
+      money: 0,
     };
   }
 
@@ -73,6 +75,10 @@ class App extends Component {
         characterSheet = response[0];
         this.setState({ characterSheet: characterSheet });
         console.log(characterSheet, "CHARACTER SHEET LOGGED HERE");
+
+        money = response[0].inventory.money
+        this.setState({ money: money });
+        console.log(money, "MONEY IS LOGGED HERE")
 
         customAbilities = response[0].customCharacterAbilities;
         this.setState({ customAbilities: customAbilities });
@@ -296,6 +302,17 @@ class App extends Component {
     console.log("Deleted!!", this.state.items);
   };
 
+// EDITING THE AMOUNT OF MONEY
+
+editMoney = (amount, total) => {
+console.log("AMOUNT", amount)
+console.log("TOTAL", total)
+this.setState({
+  money: total,
+});
+console.log("new MONAEY TOATL: ", this.state.money)
+};
+
   render() {
     if (this.state.route === "signin") {
       return (
@@ -337,14 +354,16 @@ class App extends Component {
 
         {this.state.route === "gameplay" ? (
           <Gameplay
-            characterSheet={characterSheet}
+            characterSheet={this.state.characterSheet}
             races={races}
             classes={classes}
             armour={armour}
           />
         ) : this.state.route === "inventory" ? (
           <Inventory
-            characterSheet={characterSheet}
+            characterSheet={this.state.characterSheet}
+            money={this.state.money}
+            editMoney={this.editMoney}
             weapons={this.state.weapons}
             armour={this.state.armour}
             items={this.state.items}
@@ -358,14 +377,14 @@ class App extends Component {
           />
         ) : this.state.route === "stats" ? (
           <Stats
-            characterSheet={characterSheet}
+            characterSheet={this.state.characterSheet}
             races={races}
             classes={classes}
             armour={armour}
           />
         ) : this.state.route === "abilities" ? (
           <Abilities
-            characterSheet={characterSheet}
+            characterSheet={this.state.characterSheet}
             races={races}
             classes={classes}
             customAbilities={this.state.customAbilities}
@@ -375,15 +394,14 @@ class App extends Component {
           />
         ) : this.state.route === "info" ? (
           <Info
-            characterSheet={characterSheet}
-            characterSheet={characterSheet}
+            characterSheet={this.state.characterSheet}
             races={races}
             classes={classes}
           />
         ) : this.state.route === "messages" ? (
           <Messages />
         ) : this.state.route === "notes" ? (
-          <Notes characterSheet={characterSheet} />
+          <Notes characterSheet={this.state.characterSheet} />
         ) : (
           <Error />
         )}

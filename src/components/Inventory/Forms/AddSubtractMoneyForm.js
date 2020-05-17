@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import Toggle from "../../Toggle/Toggle";
 
 class AddSubtractMoneyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      charid: 144,
       operator: "",
       amount: "",
       total: "",
@@ -18,30 +17,37 @@ class AddSubtractMoneyForm extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { charid, total } = this.state;
+    const { operator, amount, total } = this.state;
+    this.props.editMoney( amount, total )
 
-    fetch("http://localhost:2890/editmoney", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        charid,
-        total,
-      }),
-    });
+    this.setState({
+      operator: "",
+      amount: "",
+      total: "",
+    })
+
+    // fetch("http://localhost:2890/editmoney", {
+    //   method: "post",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     charid,
+    //     total,
+    //   }),
+    // });
   };
 
   render() {
     let { operator, amount, total } = this.state;
-    let { characterSheet } = this.props;
+    let { characterSheet, money } = this.props;
 
-    let x = characterSheet["inventory"]["money"];
     if (operator === "Add") {
-      total = parseFloat(x) + parseFloat(amount);
+      total = parseFloat(money) + parseFloat(amount);
       console.log(`This is the total: ${total}. It was added!`);
     } else if (operator === "Subtract") {
-      total = parseFloat(x) - parseFloat(amount);
+      total = parseFloat(money) - parseFloat(amount);
       console.log(`This is the total ${total}. It was subtracted!`);
     }
+    console.log(total)
 
     return (
       <Toggle>
