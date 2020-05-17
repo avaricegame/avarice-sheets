@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Toggle from "../../Toggle/Toggle";
 
 class CustomAbilitiesForm extends React.Component {
@@ -8,36 +8,36 @@ class CustomAbilitiesForm extends React.Component {
       name: "",
       description: "",
       published: "",
+      level: 1,
     };
   }
 
-    onChange = (e) => {
-      console.log(e.target.value);
-      console.log(e.target.name);
-      this.setState({ [e.target.name]: e.target.value });
-    };
+  onChange = (e) => {
+    console.log(e.target.value);
+    console.log(e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
-    const {name, description, published} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+    const { name, description, published } = this.state;
+    this.props.addCustomAbility(name, description, published);
+    this.setState({
+      name: "",
+      description: "",
+      published: "",
     });
   };
 
   render() {
-    const {name, description, published} = this.state;
-
+    const { name, description, published } = this.state;
     return (
       <Toggle>
         {({ on, toggle }) => (
           <div>
             <button onClick={toggle}>Create New Character Ability</button>
             {on && (
-              <form id="customAbilitiesForm">
+              <form id="customAbilitiesForm" onSubmit={this.onSubmit}>
                 <fieldset>
                   <h6 className="edit-h6">Custom Ability Form</h6>
                   <label>Ability Name:</label>
@@ -72,7 +72,7 @@ class CustomAbilitiesForm extends React.Component {
                     value="Save New Ability"
                   />
                 </fieldset>
-            </form>
+              </form>
             )}
           </div>
         )}

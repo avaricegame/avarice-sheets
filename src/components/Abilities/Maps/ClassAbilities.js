@@ -43,12 +43,6 @@ class ClassAbilities extends React.Component {
               </Toggle>
             </div>,
           ];
-
-          console.log(x);
-
-          console.log(classes);
-          console.log(classes.name);
-
           return x;
         })}
       </React.Fragment>

@@ -8,11 +8,11 @@ class CustomAbilities extends React.Component {
   }
 
   render() {
-    let { characterSheet } = this.props;
+    let { characterSheet,  customAbilities, deleteCustomAbility, } = this.props;
 
     return (
       <React.Fragment>
-        {characterSheet.customCharacterAbilities.map(function (ability) {
+        {customAbilities.map(function (ability) {
           let x = [
             <div className="weapon-div">
               <Toggle>
@@ -22,7 +22,7 @@ class CustomAbilities extends React.Component {
             <h5 onClick={toggle}>Available at Level: {ability.level}</h5>
             <p onClick={toggle} className="cursor"><strong>Details: </strong>{ability.description}</p>
                     {on && (
-                      <h6 className="delete-button">Delete</h6>
+                      <h6 onClick={deleteCustomAbility.bind(this, ability.id)} className="delete-button">Delete</h6>
                     )}
                   </div>
                 )}

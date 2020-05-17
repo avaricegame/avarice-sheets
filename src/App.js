@@ -23,6 +23,7 @@ import Notes from "./components/Notes/Notes";
 // IMPORT STYLING FEATURES
 import "./App.css";
 import Particles from "react-particles-js";
+import uniqid from "uniqid";
 
 // IMPORT OTHER COMPONENTS
 import Error from "./components/Error/Error";
@@ -56,6 +57,12 @@ class App extends Component {
     this.state = {
       route: "signin",
       isSignedin: false,
+      characterSheet: [],
+      weapons: [],
+      armour: [],
+      items: [],
+      customAbilities: [],
+      stats: [],
     };
   }
 
@@ -64,33 +71,53 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         characterSheet = response[0];
-        console.log(characterSheet);
+        this.setState({ characterSheet: characterSheet})
+        console.log(characterSheet, "CHARACTER SHEET LOGGED HERE");
+
+        customAbilities = response[0].customCharacterAbilities
+        this.setState({ customAbilities: customAbilities })
+        console.log(customAbilities, "CUSTOM ABILITIES LOGGED HERE")
+
+        weapons = response[0].inventory.weapons
+        weapons.push(...response[0].inventory.customWeapons)
+        this.setState({ weapons: weapons})
+        console.log(weapons, "WEAPONS LOGGED HERE")
+
+        armour = response[0].inventory.armour
+        armour.push(...response[0].inventory.customArmour)
+        this.setState({ armour: armour})
+        console.log(armour, "ARMOUR LOGGED HERE")
+
+        items = response[0].inventory.items
+        items.push(...response[0].inventory.customItems)
+        this.setState({ items: items})
+        console.log(items, "ITEMS LOGGED HERE")
       });
 
     fetch("http://localhost:2890/races")
       .then((response) => response.json())
       .then((response) => {
         races = response;
-        console.log(races);
+        console.log(races, "RACES ARRAY LOGGED HERE");
       });
     fetch("http://localhost:2890/classes")
       .then((response) => response.json())
       .then((response) => {
         classes = response;
-        console.log(classes);
+        console.log(classes, "CLASSES ARRAY LOGGED HERE");
       });
     fetch("http://localhost:2890/spells")
       .then((response) => response.json())
       .then((response) => {
         spells = response;
-        console.log(spells, "logging from app js");
+        console.log(spells, "SPELLS ARRAY LOGGED HERE");
       });
     
     fetch("http://localhost:2890/equipmentabilities")
       .then((response) => response.json())
       .then((response) => {
         equipmentAbilities = response;
-        console.log(equipmentAbilities);
+        console.log(equipmentAbilities, "EQUIPMENT ABILITIES ARRAY LOGGED HERE");
       });
   }; // END COMPONENT DID MOUNT
 
@@ -103,6 +130,26 @@ class App extends Component {
 
     this.setState({ route: route });
   }; // END ON ROUTE CHANGE
+
+  // ADDING NEW ARRAY ITEM TO VARYING ARRAYS
+  addCustomAbility = (name, description, published) => {
+    const newAbility = {
+      id: uniqid(),
+      level: 1,
+      name: name,
+      description: description,
+      published: published,
+    }
+    this.setState({ customAbilities: [...this.state.customAbilities, newAbility]})
+    console.log(newAbility.id)
+  }
+
+  // DELETING THE VARYING ITEMS THAT CAN BE DELETED
+  deleteCustomAbility = (id) => {
+    console.log(id)
+    this.setState({ customAbilities: [...this.state.customAbilities.filter(customAbility => customAbility.id !== id)]})
+    console.log("Deleted!!", this.state.customAbilities)
+  }
 
   render() {
     if (this.state.route === "signin") {
@@ -167,8 +214,10 @@ class App extends Component {
             characterSheet={characterSheet}
             races={races}
             classes={classes}
-            customAbilities={customAbilities}
+            customAbilities={this.state.customAbilities}
             spells={spells}
+            deleteCustomAbility={this.deleteCustomAbility}
+            addCustomAbility={this.addCustomAbility}
           />
         ) : this.state.route === "info" ? (
           <Info
