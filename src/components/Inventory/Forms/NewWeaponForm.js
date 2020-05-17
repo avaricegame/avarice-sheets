@@ -7,11 +7,11 @@ class NewWeaponForm extends React.Component {
     this.state = {};
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
+    onChange = (e) => {
+      console.log(e.target.value);
+      console.log(e.target.name);
+      this.setState({ [e.target.name]: e.target.value });
+    };
 
   onSubmit = (e) => {
     e.preventDefault();
