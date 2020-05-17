@@ -71,27 +71,27 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         characterSheet = response[0];
-        this.setState({ characterSheet: characterSheet})
+        this.setState({ characterSheet: characterSheet });
         console.log(characterSheet, "CHARACTER SHEET LOGGED HERE");
 
-        customAbilities = response[0].customCharacterAbilities
-        this.setState({ customAbilities: customAbilities })
-        console.log(customAbilities, "CUSTOM ABILITIES LOGGED HERE")
+        customAbilities = response[0].customCharacterAbilities;
+        this.setState({ customAbilities: customAbilities });
+        console.log(customAbilities, "CUSTOM ABILITIES LOGGED HERE");
 
-        weapons = response[0].inventory.weapons
-        weapons.push(...response[0].inventory.customWeapons)
-        this.setState({ weapons: weapons})
-        console.log(weapons, "WEAPONS LOGGED HERE")
+        weapons = response[0].inventory.weapons;
+        weapons.push(...response[0].inventory.customWeapons);
+        this.setState({ weapons: weapons });
+        console.log(weapons, "WEAPONS LOGGED HERE");
 
-        armour = response[0].inventory.armour
-        armour.push(...response[0].inventory.customArmour)
-        this.setState({ armour: armour})
-        console.log(armour, "ARMOUR LOGGED HERE")
+        armour = response[0].inventory.armour;
+        armour.push(...response[0].inventory.customArmour);
+        this.setState({ armour: armour });
+        console.log(armour, "ARMOUR LOGGED HERE");
 
-        items = response[0].inventory.items
-        items.push(...response[0].inventory.customItems)
-        this.setState({ items: items})
-        console.log(items, "ITEMS LOGGED HERE")
+        items = response[0].inventory.items;
+        items.push(...response[0].inventory.customItems);
+        this.setState({ items: items });
+        console.log(items, "ITEMS LOGGED HERE");
       });
 
     fetch("http://localhost:2890/races")
@@ -112,12 +112,15 @@ class App extends Component {
         spells = response;
         console.log(spells, "SPELLS ARRAY LOGGED HERE");
       });
-    
+
     fetch("http://localhost:2890/equipmentabilities")
       .then((response) => response.json())
       .then((response) => {
         equipmentAbilities = response;
-        console.log(equipmentAbilities, "EQUIPMENT ABILITIES ARRAY LOGGED HERE");
+        console.log(
+          equipmentAbilities,
+          "EQUIPMENT ABILITIES ARRAY LOGGED HERE"
+        );
       });
   }; // END COMPONENT DID MOUNT
 
@@ -139,17 +142,159 @@ class App extends Component {
       name: name,
       description: description,
       published: published,
-    }
-    this.setState({ customAbilities: [...this.state.customAbilities, newAbility]})
-    console.log(newAbility.id)
-  }
+    };
+    this.setState({
+      customAbilities: [...this.state.customAbilities, newAbility],
+    });
+    console.log(newAbility.id);
+  };
+
+  addWeapon = (
+    weaponName,
+    rangedMelee,
+    imageurl,
+    range,
+    proficiency,
+    weaponType,
+    requirements,
+    abilityBonus,
+    damage,
+    uses,
+    critical,
+    magicalAbilities,
+    description,
+    published,
+    createdBy
+  ) => {
+    const newWeapon = {
+      id: uniqid(),
+      name: weaponName,
+      rangedMelee,
+      imageurl,
+      range,
+      proficiency,
+      weaponType,
+      requirements: "None",
+      abilityBonus,
+      damage,
+      uses,
+      critical,
+      magicalAbilities: "coming soon...",
+      description,
+      published,
+      createdBy,
+      published: published,
+    };
+    this.setState({ weapons: [...this.state.weapons, newWeapon] });
+    console.log(newWeapon.id);
+  };
+
+  addArmour = (
+    name,
+    bodyArea,
+    requirements,
+    hp,
+    speed,
+    strength,
+    dexterityReflex,
+    constitutionFortitude,
+    intelligence,
+    charisma,
+    perception,
+    stealth,
+    rangedAccuracy,
+    meleeAccuracy,
+    magicalAbilities,
+    description,
+    createdBy,
+    published,
+    imageurl
+  ) => {
+    const newArmour = {
+      id: uniqid(),
+      name,
+      bodyArea,
+      requirements,
+      modifiers: {
+        hp,
+        speed,
+        strength,
+        dexterityReflex,
+        constitutionFortitude,
+        intelligence,
+        charisma,
+        perception,
+        stealth,
+        rangedAccuracy,
+        meleeAccuracy,
+      },
+      magicalAbilities: "coming soon...",
+      description,
+      createdBy,
+      published,
+      imageurl,
+    };
+    this.setState({ armour: [...this.state.armour, newArmour] });
+    console.log(newArmour.id);
+  };
+
+  addItem = (
+    itemName,
+    published,
+    imageurl,
+    itemDescription,
+    createdBy,
+    ) => {
+    const newItem = {
+      id: uniqid(),
+      itemName,
+      published,
+      imageurl,
+      itemDescription,
+      createdBy,
+    };
+    this.setState({
+      items: [...this.state.items, newItem],
+    });
+    console.log(newItem.id);
+  };
 
   // DELETING THE VARYING ITEMS THAT CAN BE DELETED
   deleteCustomAbility = (id) => {
-    console.log(id)
-    this.setState({ customAbilities: [...this.state.customAbilities.filter(customAbility => customAbility.id !== id)]})
-    console.log("Deleted!!", this.state.customAbilities)
-  }
+    console.log(id);
+    this.setState({
+      customAbilities: [
+        ...this.state.customAbilities.filter(
+          (customAbility) => customAbility.id !== id
+        ),
+      ],
+    });
+    console.log("Deleted!!", this.state.customAbilities);
+  };
+
+  deleteWeapon = (id) => {
+    console.log(id);
+    this.setState({
+      weapons: [...this.state.weapons.filter((weapon) => weapon.id !== id)],
+    });
+    console.log("Deleted!!", this.state.weapons);
+  };
+
+  deleteArmour = (id) => {
+    console.log(id);
+    this.setState({
+      armour: [...this.state.armour.filter((armour) => armour.id !== id)],
+    });
+    console.log("Deleted!!", this.state.armour);
+  };
+
+  deleteItem = (id) => {
+    console.log(id);
+    this.setState({
+      items: [...this.state.items.filter((item) => item.id !== id)],
+    });
+    console.log("Deleted!!", this.state.items);
+  };
 
   render() {
     if (this.state.route === "signin") {
@@ -200,7 +345,16 @@ class App extends Component {
         ) : this.state.route === "inventory" ? (
           <Inventory
             characterSheet={characterSheet}
+            weapons={this.state.weapons}
+            armour={this.state.armour}
+            items={this.state.items}
             equipmentAbilities={equipmentAbilities}
+            addWeapon={this.addWeapon}
+            addArmour={this.addArmour}
+            addItem={this.addItem}
+            deleteArmour={this.deleteArmour}
+            deleteWeapon={this.deleteWeapon}
+            deleteItem={this.deleteItem}
           />
         ) : this.state.route === "stats" ? (
           <Stats

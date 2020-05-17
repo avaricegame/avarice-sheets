@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Toggle from "../../Toggle/Toggle";
 
 class Items extends React.Component {
@@ -8,10 +8,10 @@ class Items extends React.Component {
   }
 
   render() {
-    let { characterSheet } = this.props;
+    let { characterSheet, items, deleteItem } = this.props;
     return (
       <React.Fragment>
-        {characterSheet["inventory"]["customItems"].map(function (item) {
+        {items.map(function (item) {
           let x = [
             <div className="weapon-div">
               <Toggle>
@@ -24,30 +24,7 @@ class Items extends React.Component {
                     </p>
                     {on && (
                       <React.Fragment>
-                        <h6 className="delete-button">Delete</h6>
-                      </React.Fragment>
-                    )}
-                  </div>
-                )}
-              </Toggle>
-            </div>,
-          ];
-          return x;
-        })}
-        {characterSheet["inventory"]["items"].map(function (item) {
-          let x = [
-            <div className="weapon-div">
-              <Toggle>
-                {({ on, toggle }) => (
-                  <div>
-                    <h6 onClick={toggle}>{item.name}</h6>
-                    <h5 onClick={toggle}>Item Type</h5>
-                    <p onClick={toggle} className="cursor">
-                      <strong>Description:</strong> {item.itemDescription}
-                    </p>
-                    {on && (
-                      <React.Fragment>
-                        <h6 className="delete-button">Delete</h6>
+                        <h6 onClick={deleteItem.bind(this, item.id)} className="delete-button">Delete</h6>
                       </React.Fragment>
                     )}
                   </div>

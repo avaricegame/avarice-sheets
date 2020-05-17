@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Toggle from "../../Toggle/Toggle";
 
 class CustomArmourForm extends React.Component {
@@ -35,7 +35,6 @@ class CustomArmourForm extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    
     const {
       name,
       bodyArea,
@@ -58,59 +57,102 @@ class CustomArmourForm extends React.Component {
       imageurl,
     } = this.state;
 
-    if (published === "Yes") {
-      fetch("http://localhost:2890/createarmourpublish", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          bodyArea,
-          requirements,
-          hp,
-          speed,
-          strength,
-          dexterityReflex,
-          constitutionFortitude,
-          intelligence,
-          charisma,
-          perception,
-          stealth,
-          rangedAccuracy,
-          meleeAccuracy,
-          magicalAbilities,
-          description,
-          createdBy,
-          published,
-          imageurl,
-        }),
-      });
-    }
+    this.props.addArmour(
+      name,
+      bodyArea,
+      requirements,
+      hp,
+      speed,
+      strength,
+      dexterityReflex,
+      constitutionFortitude,
+      intelligence,
+      charisma,
+      perception,
+      stealth,
+      rangedAccuracy,
+      meleeAccuracy,
+      magicalAbilities,
+      description,
+      createdBy,
+      published,
+      imageurl,
+    )
+    this.setState({
+      name: "",
+      bodyArea: "",
+      requirements: "",
+      hp: 0,
+      speed: 0,
+      strength: 0,
+      dexterityReflex: 0,
+      constitutionFortitude: 0,
+      intelligence: 0,
+      charisma: 0,
+      perception: 0,
+      stealth: 0,
+      rangedAccuracy: 0,
+      meleeAccuracy: 0,
+      magicalAbilities: [{ name: "", description: [""] }],
+      description: "",
+      createdBy: "",
+      published: "",
+      imageurl: "",
+    })
 
-    fetch("http://localhost:2890/createarmour", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        bodyArea,
-        requirements,
-        hp,
-        speed,
-        strength,
-        dexterityReflex,
-        constitutionFortitude,
-        intelligence,
-        charisma,
-        perception,
-        stealth,
-        rangedAccuracy,
-        meleeAccuracy,
-        magicalAbilities,
-        description,
-        createdBy,
-        published,
-        imageurl,
-      }),
-    });
+    // if (published === "Yes") {
+    //   fetch("http://localhost:2890/createarmourpublish", {
+    //     method: "post",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       name,
+    //       bodyArea,
+    //       requirements,
+    //       hp,
+    //       speed,
+    //       strength,
+    //       dexterityReflex,
+    //       constitutionFortitude,
+    //       intelligence,
+    //       charisma,
+    //       perception,
+    //       stealth,
+    //       rangedAccuracy,
+    //       meleeAccuracy,
+    //       magicalAbilities,
+    //       description,
+    //       createdBy,
+    //       published,
+    //       imageurl,
+    //     }),
+    //   });
+    // }
+
+    // fetch("http://localhost:2890/createarmour", {
+    //   method: "post",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     name,
+    //     bodyArea,
+    //     requirements,
+    //     hp,
+    //     speed,
+    //     strength,
+    //     dexterityReflex,
+    //     constitutionFortitude,
+    //     intelligence,
+    //     charisma,
+    //     perception,
+    //     stealth,
+    //     rangedAccuracy,
+    //     meleeAccuracy,
+    //     magicalAbilities,
+    //     description,
+    //     createdBy,
+    //     published,
+    //     imageurl,
+    //   }),
+    // });
   };
 
   render() {

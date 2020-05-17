@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Toggle from "../../Toggle/Toggle";
 
 class Armour extends React.Component {
@@ -8,10 +8,10 @@ class Armour extends React.Component {
   }
 
   render() {
-    let { characterSheet } = this.props;
+    let { characterSheet, armour, deleteArmour } = this.props;
     return (
       <React.Fragment>
-        {characterSheet["inventory"]["customArmour"].map(function (armour) {
+        {armour.map(function (armour) {
           let x = [
             <div className="weapon-div">
               <Toggle>
@@ -79,7 +79,7 @@ class Armour extends React.Component {
                         <p>
                           <strong>Requirements:</strong> {armour.requirements}
                         </p>
-                        <h6 className="delete-button">Delete</h6>
+                        <h6 onClick={deleteArmour.bind(this, armour.id)} className="delete-button">Delete</h6>
                       </React.Fragment>
                     )}
                   </div>
@@ -88,87 +88,6 @@ class Armour extends React.Component {
             </div>,
           ];
           return x;
-        })}
-
-        {characterSheet["inventory"]["armour"].map(function (armour) {
-          let y = [
-            <div className="weapon-div">
-              <Toggle>
-                {({ on, toggle }) => (
-                  <div>
-                    <h6 onClick={toggle}>{armour.name}</h6>
-                    <h5 onClick={toggle}>{armour.bodyArea}</h5>
-
-                    <p onClick={toggle} className="cursor">
-                      <strong>Description:</strong> {armour.description}
-                    </p>
-                    {on && (
-                      <React.Fragment>
-                        <p>
-                          <strong>Stats:</strong>
-                        </p>
-                        <table>
-                          <tr>
-                            <td>Hit Points:</td>
-                            <td>{armour.modifiers.hp}</td>
-                          </tr>
-                          <tr>
-                            <td>Speed:</td>
-                            <td>{armour.modifiers.speed}</td>
-                          </tr>
-                          <tr>
-                            <td>Strength:</td>
-                            <td>{armour.modifiers.strength}</td>
-                          </tr>
-                          <tr>
-                            <td>Dexterity/Reflex:</td>
-                            <td>{armour.modifiers.dexterityReflex}</td>
-                          </tr>
-                          <tr>
-                            <td>Constitution/Fortitude:</td>
-                            <td>{armour.modifiers.constitutionFortitude}</td>
-                          </tr>
-                          <tr>
-                            <td>Intelligence:</td>
-                            <td>{armour.modifiers.intelligence}</td>
-                          </tr>
-                          <tr>
-                            <td>Charisma:</td>
-                            <td>{armour.modifiers.charisma}</td>
-                          </tr>
-                          <tr>
-                            <td>Perception:</td>
-                            <td>{armour.modifiers.perception}</td>
-                          </tr>
-                          <tr>
-                            <td>Stealth:</td>
-                            <td>{armour.modifiers.stealth}</td>
-                          </tr>
-                          <tr>
-                            <td>Ranged Accuracy:</td>
-                            <td>{armour.modifiers.rangedAccuracy}</td>
-                          </tr>
-                          <tr>
-                            <td>Melee Accuracy:</td>
-                            <td>{armour.modifiers.meleeAccuracy}</td>
-                          </tr>
-                        </table>
-                        <p>
-                          <strong>Magical Abilities:</strong>
-                        </p>
-                        <p>
-                          <strong>Requirements:</strong> {armour.requirements}
-                        </p>
-                        <h6 className="delete-button">Delete</h6>
-                      </React.Fragment>
-                    )}
-                  </div>
-                )}
-              </Toggle>
-            </div>,
-            //<li>Magical Abilities:</li>
-          ];
-          return y;
         })}
       </React.Fragment>
     ); // END RETURN

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Toggle from "../../Toggle/Toggle";
 
 class CustomItemForm extends React.Component {
@@ -29,30 +29,45 @@ class CustomItemForm extends React.Component {
       createdBy,
     } = this.state;
 
-    if (published === "Yes") {
-      fetch("http://localhost:2890/createitempublish", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          itemName,
-          published,
-          imageurl,
-          itemDescription,
-          createdBy,
-        }),
-      });
-    }
+    this.props.addItem(
+      itemName,
+      published,
+      imageurl,
+      itemDescription,
+      createdBy,
+    )
+    this.setState({
+      itemName: "",
+      published: "",
+      imageurl: "",
+      itemDescription: "",
+      createdBy: "",
+    })
 
-    fetch("http://localhost:2890/createitem", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        itemName,
-        published,
-        imageurl,
-        itemDescription,
-      }),
-    });
+    // if (published === "Yes") {
+    //   fetch("http://localhost:2890/createitempublish", {
+    //     method: "post",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       itemName,
+    //       published,
+    //       imageurl,
+    //       itemDescription,
+    //       createdBy,
+    //     }),
+    //   });
+    // }
+
+    // fetch("http://localhost:2890/createitem", {
+    //   method: "post",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     itemName,
+    //     published,
+    //     imageurl,
+    //     itemDescription,
+    //   }),
+    // });
   };
 
   render() {

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 // IMPORT ALL THE FORM COMPONENTS
 import CustomWeaponForm from "./Forms/CustomWeaponForm";
@@ -22,9 +22,9 @@ class Inventory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      weapons: "",
-      armour: "",
-      items: "",
+      weaponsCannon: [],
+      armourCannon: [],
+      itemsCannon: [],
     };
   }
 
@@ -48,12 +48,21 @@ class Inventory extends React.Component {
 
   render() {
     const {
-      weapons,
-      armour,
-      items,
+      weaponsCannon,
+      armourCannon,
+      itemsCannon,
     } = this.state;
     let {
       characterSheet,
+      weapons,
+      armour,
+      items,
+      deleteWeapon,
+      deleteItem,
+      deleteArmour,
+      addWeapon,
+      addArmour,
+      addItem,
     } = this.props;
 
     return (
@@ -89,9 +98,9 @@ class Inventory extends React.Component {
             <h2>Weapons</h2>
           </div>
 
-          <NewWeaponForm characterSheet={characterSheet} weapons={weapons} />
-          <CustomWeaponForm characterSheet={characterSheet} />
-          <Weapons characterSheet={characterSheet} />
+          <NewWeaponForm characterSheet={characterSheet} weaponsCannon={weaponsCannon} />
+          <CustomWeaponForm characterSheet={characterSheet} addWeapon={addWeapon} />
+          <Weapons characterSheet={characterSheet} weapons={weapons} deleteWeapon={deleteWeapon} />
         </div>
 
         {/****** BEGIN ARMOUR SECTION ******/}
@@ -100,9 +109,9 @@ class Inventory extends React.Component {
             <h2>Armour</h2>
           </div>
 
-          <NewArmourForm characterSheet={characterSheet} armour={armour} />
-          <CustomArmourForm characterSheet={characterSheet} />
-          <Armour characterSheet={characterSheet} />
+          <NewArmourForm characterSheet={characterSheet} armourCannon={armourCannon} />
+          <CustomArmourForm characterSheet={characterSheet} addArmour={addArmour} />
+          <Armour characterSheet={characterSheet} armour={armour} deleteArmour={deleteArmour} />
         </div>
 
         {/****** BEGIN ITEMS SECTION ******/}
@@ -111,9 +120,9 @@ class Inventory extends React.Component {
             <h2>Items</h2>
           </div>
 
-          <NewItemForm characterSheet={characterSheet} items={items} />
-          <CustomItemForm characterSheet={characterSheet} />
-          <Items characterSheet={characterSheet} />
+          <NewItemForm characterSheet={characterSheet} itemsCannon={itemsCannon} />
+          <CustomItemForm characterSheet={characterSheet} addItem={addItem} />
+          <Items characterSheet={characterSheet} items={items} deleteItem={deleteItem} />
         </div>
       </React.Fragment>
     ); // END RETURN

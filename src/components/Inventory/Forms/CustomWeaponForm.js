@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Toggle from "../../Toggle/Toggle";
 
 class CustomWeaponForm extends React.Component {
@@ -54,52 +54,92 @@ class CustomWeaponForm extends React.Component {
       published,
       createdBy,
     } = this.state;
-
-    if (published === "Yes") {
-      fetch("http://localhost:2890/createweaponpublish", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          weaponName,
-          rangedMelee,
-          imageurl,
-          range,
-          proficiency,
-          weaponType,
-          requirements,
-          abilityBonus,
-          damage,
-          uses,
-          critical,
-          magicalAbilities,
-          description,
-          published,
-          createdBy,
-        }),
-      });
-    }
-
-    fetch("http://localhost:2890/createweapon", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        weaponName,
-        rangedMelee,
-        imageurl,
-        range,
-        proficiency,
-        weaponType,
-        requirements,
-        abilityBonus,
-        damage,
-        uses,
-        critical,
-        magicalAbilities,
-        description,
-        published,
-        createdBy,
-      }),
+    
+    this.props.addWeapon(
+      weaponName,
+      rangedMelee,
+      imageurl,
+      range,
+      proficiency,
+      weaponType,
+      requirements,
+      abilityBonus,
+      damage,
+      uses,
+      critical,
+      magicalAbilities,
+      description,
+      published,
+      createdBy
+    );
+    this.setState({
+      weaponName: "",
+      rangedMelee: "",
+      imageurl: "",
+      range: "",
+      proficiency: 0,
+      weaponType: "",
+      requirements: "",
+      abilityBonus: "",
+      damage: "",
+      uses: "",
+      critical: "",
+      magicalAbilities: [
+        {
+          name: "",
+          description: "",
+        },
+      ],
+      description: "",
+      createdBy: "",
+      published: "",
     });
+
+    // if (published === "Yes") {
+    //   fetch("http://localhost:2890/createweaponpublish", {
+    //     method: "post",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       weaponName,
+    //       rangedMelee,
+    //       imageurl,
+    //       range,
+    //       proficiency,
+    //       weaponType,
+    //       requirements,
+    //       abilityBonus,
+    //       damage,
+    //       uses,
+    //       critical,
+    //       magicalAbilities,
+    //       description,
+    //       published,
+    //       createdBy,
+    //     }),
+    //   });
+    // }
+
+    // fetch("http://localhost:2890/createweapon", {
+    //   method: "post",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     weaponName,
+    //     rangedMelee,
+    //     imageurl,
+    //     range,
+    //     proficiency,
+    //     weaponType,
+    //     requirements,
+    //     abilityBonus,
+    //     damage,
+    //     uses,
+    //     critical,
+    //     magicalAbilities,
+    //     description,
+    //     published,
+    //     createdBy,
+    //   }),
+    // });
   };
 
   render() {
