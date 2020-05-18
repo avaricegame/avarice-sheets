@@ -7,7 +7,6 @@ class AddSubtractMoneyForm extends React.Component {
     this.state = {
       operator: "",
       amount: "",
-      total: "",
     };
   }
   onChange = (e) => {
@@ -17,13 +16,23 @@ class AddSubtractMoneyForm extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { operator, amount, total } = this.state;
-    this.props.editMoney( amount, total )
+    const { operator, amount } = this.state;
+    let x
+    if (operator === "Add") {
+      x = parseInt(this.props.money) + parseInt(amount)
+      console.log(this.props.money) 
+    } else if (operator === "Subtract") {
+      x = parseInt(this.props.money) - parseInt(amount)
+      console.log(this.props.money)
+    }
+
+    console.log(x, "THIS IS X")
+
+    this.props.editMoney( x )
 
     this.setState({
       operator: "",
       amount: "",
-      total: "",
     })
 
     // fetch("http://localhost:2890/editmoney", {
@@ -37,17 +46,8 @@ class AddSubtractMoneyForm extends React.Component {
   };
 
   render() {
-    let { operator, amount, total } = this.state;
+    let { operator, amount } = this.state;
     let { characterSheet, money } = this.props;
-
-    if (operator === "Add") {
-      total = parseFloat(money) + parseFloat(amount);
-      console.log(`This is the total: ${total}. It was added!`);
-    } else if (operator === "Subtract") {
-      total = parseFloat(money) - parseFloat(amount);
-      console.log(`This is the total ${total}. It was subtracted!`);
-    }
-    console.log(total)
 
     return (
       <Toggle>

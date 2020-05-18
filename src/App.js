@@ -265,6 +265,9 @@ class App extends Component {
     console.log(newItem.id);
   };
 
+  // ADDING A NEW ITEM FROM THE LIST OF CANNON PAX ITEMS
+  
+
   // DELETING THE VARYING ITEMS THAT CAN BE DELETED
   deleteCustomAbility = (id) => {
     console.log(id);
@@ -303,14 +306,9 @@ class App extends Component {
   };
 
 // EDITING THE AMOUNT OF MONEY
-
-editMoney = (amount, total) => {
-console.log("AMOUNT", amount)
-console.log("TOTAL", total)
-this.setState({
-  money: total,
-});
-console.log("new MONAEY TOATL: ", this.state.money)
+editMoney = ( x ) => {
+  console.log(x, "THIS IS X FROM APP")
+  this.setState(Object.assign(this.state.money, { money: x }))
 };
 
   render() {
