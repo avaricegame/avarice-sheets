@@ -23,9 +23,52 @@ class ClassDetails extends React.Component {
         <div className="weapon-div">
           <h6>Character Class</h6>
           <h5>Class: {correctClass.name}</h5>
-
-          <p>All the information on the character's class goes here.</p>
-        </div>
+    <p><strong>Quote:</strong>
+    <em>{correctClass.quote}</em></p>
+<table>
+  <tr>
+    <td>Class Name:</td>
+    <td>{correctClass.name}</td>
+  </tr>
+  <tr>
+    <td>Common Name:</td>
+    <td>{correctClass.commonName}</td>
+  </tr>
+  <tr>
+    <td>Special Skills:</td>
+    <td><em>See Abilities Tab</em></td>
+  </tr>
+  <tr>
+    <td>Spells List:</td>
+    <td><em>See Abilities Tab</em></td>
+  </tr>
+</table>
+<table>
+            <tr>
+              <td><strong>Ability Scores:</strong></td>
+            </tr>
+          <tr>
+                  <td>Strength:</td>
+                  <td>{correctClass.abilityModifiers.strength}</td>
+                </tr>
+                <tr>
+                  <td>Dexterity:</td>
+                  <td>{correctClass.abilityModifiers.dexterity}</td>
+                </tr>
+                <tr>
+                  <td>Constitution:</td>
+                  <td>{correctClass.abilityModifiers.constitution}</td>
+                </tr>
+                <tr>
+                  <td>Intelligence:</td>
+                  <td>{correctClass.abilityModifiers.intelligence}</td>
+                </tr>
+                <tr>
+                  <td>Charisma:</td>
+                  <td>{correctClass.abilityModifiers.charisma}</td>
+                </tr>
+          </table>
+</div>
       </React.Fragment>
     ); // END RETURN
   } // END RENDER
