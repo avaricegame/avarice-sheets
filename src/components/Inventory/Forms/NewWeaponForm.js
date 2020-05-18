@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Toggle from "../../Toggle/Toggle";
 
 class NewWeaponForm extends React.Component {
@@ -25,7 +25,7 @@ class NewWeaponForm extends React.Component {
   };
 
   render() {
-    let { characterSheet, weapons } = this.props;
+    let { characterSheet, weaponsCannon } = this.props;
     return (
       <Toggle>
         {({ on, toggle }) => (
@@ -38,7 +38,7 @@ class NewWeaponForm extends React.Component {
                   <label>Select Weapon:</label>
                   <select required>
                     <option></option>
-                    {weapons.map(function (weapon) {
+                    {weaponsCannon.map(function (weapon) {
                       let x = [<option>{weapon.name}</option>];
                       return x;
                     })}

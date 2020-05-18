@@ -150,7 +150,7 @@ class App extends Component {
       published: published,
     };
     this.setState({
-      customAbilities: [...this.state.customAbilities, newAbility],
+      customAbilities: [newAbility, ...this.state.customAbilities],
     });
     console.log(newAbility.id);
   };
@@ -191,7 +191,7 @@ class App extends Component {
       createdBy,
       published: published,
     };
-    this.setState({ weapons: [...this.state.weapons, newWeapon] });
+    this.setState({ weapons: [newWeapon, ...this.state.weapons] });
     console.log(newWeapon.id);
   };
 
@@ -240,7 +240,7 @@ class App extends Component {
       published,
       imageurl,
     };
-    this.setState({ armour: [...this.state.armour, newArmour] });
+    this.setState({ armour: [newArmour, ...this.state.armour] });
     console.log(newArmour.id);
   };
 
@@ -260,13 +260,13 @@ class App extends Component {
       createdBy,
     };
     this.setState({
-      items: [...this.state.items, newItem],
+      items: [newItem, ...this.state.items],
     });
     console.log(newItem.id);
   };
 
   // ADDING A NEW ITEM FROM THE LIST OF CANNON PAX ITEMS
-  
+
 
   // DELETING THE VARYING ITEMS THAT CAN BE DELETED
   deleteCustomAbility = (id) => {

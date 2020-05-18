@@ -32,17 +32,18 @@ class Inventory extends React.Component {
     fetch("http://localhost:2890/weapons")
       .then((response) => response.json())
       .then((response) => {
-        this.setState({weapons: response})
+
+        this.setState({weaponsCannon: response})
       });
     fetch("http://localhost:2890/armour")
       .then((response) => response.json())
       .then((response) => {
-        this.setState({armour: response})
+        this.setState({armourCannon: response})
       });
     fetch("http://localhost:2890/items")
       .then((response) => response.json())
       .then((response) => {
-        this.setState({items: response})
+        this.setState({itemsCannon: response})
       });
   }
 
@@ -100,7 +101,7 @@ class Inventory extends React.Component {
             <h2>Weapons</h2>
           </div>
 
-          <NewWeaponForm characterSheet={characterSheet} weaponsCannon={weaponsCannon} />
+          <NewWeaponForm characterSheet={characterSheet} weaponsCannon={weaponsCannon} addWeapon={addWeapon} />
           <CustomWeaponForm characterSheet={characterSheet} addWeapon={addWeapon} />
           <Weapons characterSheet={characterSheet} weapons={weapons} deleteWeapon={deleteWeapon} />
         </div>
@@ -111,7 +112,7 @@ class Inventory extends React.Component {
             <h2>Armour</h2>
           </div>
 
-          <NewArmourForm characterSheet={characterSheet} armourCannon={armourCannon} />
+          <NewArmourForm characterSheet={characterSheet} armourCannon={armourCannon} addArmour={addArmour} />
           <CustomArmourForm characterSheet={characterSheet} addArmour={addArmour} />
           <Armour characterSheet={characterSheet} armour={armour} deleteArmour={deleteArmour} />
         </div>
@@ -122,7 +123,7 @@ class Inventory extends React.Component {
             <h2>Items</h2>
           </div>
 
-          <NewItemForm characterSheet={characterSheet} itemsCannon={itemsCannon} />
+          <NewItemForm characterSheet={characterSheet} itemsCannon={itemsCannon} addItem={addItem} />
           <CustomItemForm characterSheet={characterSheet} addItem={addItem} />
           <Items characterSheet={characterSheet} items={items} deleteItem={deleteItem} />
         </div>
