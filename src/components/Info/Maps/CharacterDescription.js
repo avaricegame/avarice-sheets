@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 class CharacterDescription extends React.Component {
   constructor(props) {
@@ -6,31 +6,48 @@ class CharacterDescription extends React.Component {
     this.state = {};
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
-  };
-
   render() {
-    const {} = this.state;
-    let {
-        characterSheet,
-      } = this.props;
+    let { characterSheet } = this.props;
     return (
       <React.Fragment>
-                {/* <p>{characterSheet[0].characterDescription.eyeColor}</p> */}
+        <div className="weapon-div">
+          <h6>Character Description</h6>
+          <h5>For: {characterSheet.characterName}</h5>
+          <table>
+            <tr>
+              <td>Age:</td>
+              <td>{characterSheet.characterDescription.age} years old</td>
+            </tr>
+            <tr>
+              <td>Weight:</td>
+              <td>{characterSheet.characterDescription.weight} lbs.</td>
+            </tr>
+            <tr>
+              <td>Height:</td>
+              <td>{characterSheet.characterDescription.height} ft.</td>
+            </tr>
+            <tr>
+              <td>Gender:</td>
+              <td>{characterSheet.characterDescription.gender}</td>
+            </tr>
+            <tr>
+              <td>Skin Tone:</td>
+              <td>{characterSheet.characterDescription.skinTone}</td>
+            </tr>
+            <tr>
+              <td>Eye Color:</td>
+              <td>{characterSheet.characterDescription.eyeColor}</td>
+            </tr>
+            <tr>
+              <td>Hair Color:</td>
+              <td>{characterSheet.characterDescription.hairColor}</td>
+            </tr>
+            <tr>
+              <td>Hair Length:</td>
+              <td>{characterSheet.characterDescription.hairLength}</td>
+            </tr>
+          </table>
+        </div>
       </React.Fragment>
     ); // END RETURN
   } // END RENDER

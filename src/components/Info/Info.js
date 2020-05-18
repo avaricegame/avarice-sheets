@@ -41,10 +41,8 @@ class Info extends React.Component {
 
     let {
       characterSheet,
-      weapons,
-      armour,
-      items,
-      equipmentAbilities,
+      races,
+      classes
     } = this.props;
 
     return (
@@ -69,12 +67,10 @@ class Info extends React.Component {
           <div className="heading-bar">
             <h2>Character Background and Information</h2>
           </div>
-          <h4>Character Description</h4>
-          <CharacterDescriptionForm />
-          <CharacterDescription />
-          <h4>Character Background</h4>
-          <CharacterBackgroundForm />
-          <CharacterBackground />
+          {/* <CharacterDescriptionForm /> */}
+          <CharacterDescription characterSheet={characterSheet} />
+          {/* <CharacterBackgroundForm /> */}
+          <CharacterBackground characterSheet={characterSheet} />
         </div>
 
         {/****** BEGIN RACE INFO SECTION ******/}
@@ -82,7 +78,7 @@ class Info extends React.Component {
           <div className="heading-bar">
             <h2>Race Details and Information</h2>
           </div>
-          <RaceDetails />
+          <RaceDetails races={races} characterSheet={characterSheet} />
         </div>
 
         {/****** BEGIN CLASS INFO SECTION ******/}
@@ -90,7 +86,7 @@ class Info extends React.Component {
           <div className="heading-bar">
             <h2>Class Details and Information</h2>
           </div>
-         <ClassDetails />
+         <ClassDetails classes={classes} characterSheet={characterSheet} />
         </div>
 
         {/****** BEGIN QUICK RULES SECTION ******/}

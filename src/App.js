@@ -265,9 +265,6 @@ class App extends Component {
     console.log(newItem.id);
   };
 
-  // ADDING A NEW ITEM FROM THE LIST OF CANNON PAX ITEMS
-
-
   // DELETING THE VARYING ITEMS THAT CAN BE DELETED
   deleteCustomAbility = (id) => {
     console.log(id);
