@@ -34,15 +34,15 @@ class CustomItemForm extends React.Component {
       published,
       imageurl,
       itemDescription,
-      createdBy,
-    )
+      createdBy
+    );
     this.setState({
       itemName: "",
       published: "",
       imageurl: "",
       itemDescription: "",
       createdBy: "",
-    })
+    });
 
     // if (published === "Yes") {
     //   fetch("http://localhost:2890/createitempublish", {
