@@ -59,6 +59,17 @@ class Stats extends React.Component {
       calculateStealthTotal,
       skillsStealth,
       calculateSkillsStealth,
+      equipmentHp,
+      equipmentReflex, 
+      equipmentPhysique,
+      equipmentSpeed,
+      equipmentIntelligence,
+      equipmentCharisma,
+      equipmentPerception,
+      equipmentStealth,
+      equipmentRangedAcc,
+      equipmentMeleeAcc,
+
     } = this.props;
 
     console.log(refTotal, "LOGGIN FROM STATS")
@@ -82,7 +93,13 @@ class Stats extends React.Component {
         <div className="heading-bar bgb--full-width">
           <h2>Important Stats</h2>
         </div>
-        <ImportantStats phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} calculateSpeedTotal={calculateSpeedTotal} calculatePerceptionTotal={calculatePerceptionTotal} calculateReactionTotal={calculateReactionTotal} calculateFortitudeTotal={calculateFortitudeTotal} calculateStealthTotal={calculateStealthTotal} skillsStealth={skillsStealth} />
+        <ImportantStats 
+        equipmentSpeed={equipmentSpeed}
+        equipmentPerception={equipmentPerception}
+        equipmentStealth={equipmentStealth}
+        equipmentReflex={equipmentReflex}
+        equipmentPhysique={equipmentPhysique}
+        phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} calculateSpeedTotal={calculateSpeedTotal} calculatePerceptionTotal={calculatePerceptionTotal} calculateReactionTotal={calculateReactionTotal} calculateFortitudeTotal={calculateFortitudeTotal} calculateStealthTotal={calculateStealthTotal} skillsStealth={skillsStealth} />
       </div>
 
         {/****** BEGIN ABILITY SCORES SECTION ******/}
@@ -90,7 +107,12 @@ class Stats extends React.Component {
         <div className="heading-bar bgb--full-width">
           <h2>Ability Scores</h2>
         </div>
-        <AbilityScores characterSheet={characterSheet} classes={classes} races={races} phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} calculatePhyTotal={calculatePhyTotal} calculateRefTotal={calculateRefTotal} calculateIntTotal={calculateIntTotal} calculateChaTotal={calculateChaTotal} />
+        <AbilityScores 
+        equipmentPhysique={equipmentPhysique}
+        equipmentReflex={equipmentReflex}
+        equipmentIntelligence={equipmentIntelligence}
+        equipmentCharisma={equipmentCharisma}
+        characterSheet={characterSheet} classes={classes} races={races} phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} calculatePhyTotal={calculatePhyTotal} calculateRefTotal={calculateRefTotal} calculateIntTotal={calculateIntTotal} calculateChaTotal={calculateChaTotal} />
       </div>
 
         {/****** BEGIN PROFICIENCIES SECTION ******/}
@@ -115,3 +137,14 @@ class Stats extends React.Component {
 } // END CLASS
 
 export default Stats;
+
+// equipmentHp={equipmentHp}
+//             equipmentReflex={equipmentReflex}
+//             equipmentPhysique={equipmentPhysique}
+//             equipmentSpeed={equipmentSpeed}
+//             equipmentIntelligence={equipmentIntelligence}
+//             equipmentCharisma={equipmentCharisma}
+//             equipmentPerception={equipmentPerception}
+//             equipmentStealth={equipmentStealth}
+//             equipmentRangedAc={equipmentRangedAc}
+//             equipmentMeleeAcc={equipmentMeleeAcc}

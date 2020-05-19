@@ -50,7 +50,18 @@ let characterSheet,
   customAbilities,
   spells,
   equipmentAbilities,
-  money;
+  money
+
+ let equipmentHp = 0
+ let equipmentReflex = 0
+ let equipmentPhysique = 0
+ let equipmentSpeed = 0
+ let equipmentIntelligence = 0
+ let equipmentCharisma = 0
+ let equipmentPerception = 0
+ let equipmentStealth = 0
+ let equipmentRangedAcc = 0
+ let equipmentMeleeAcc = 0
 
 class App extends Component {
   constructor() {
@@ -75,15 +86,20 @@ class App extends Component {
       fortitudeTotal: 0,
       stealthTotal: 0,
       skillsStealth: 0,
-      equipmentReflex: 0, 
-      equipmentPhysique: 0,
-      equipmentSpeed: 0,
-      equipmentIntelligence: 0,
-      equipmentCharisma: 0,
-      equipmentPerception: 0,
-      equipmentStealth: 0,
-      equipmentRangedAcc: 0,
-      equipmentMeleeAcc: 0,
+      skillsExplosives: 0,
+      skillsUseMagicItem: 0,
+      skillsMedicine: 0,
+      skillsTechnology: 0,
+      equipmentHp: equipmentHp,
+      equipmentReflex: equipmentReflex, 
+      equipmentPhysique: equipmentPhysique,
+      equipmentSpeed: equipmentSpeed,
+      equipmentIntelligence: equipmentIntelligence,
+      equipmentCharisma: equipmentCharisma,
+      equipmentPerception: equipmentPerception,
+      equipmentStealth: equipmentStealth,
+      equipmentRangedAcc: equipmentRangedAcc,
+      equipmentMeleeAcc: equipmentMeleeAcc,
     };
   }
 
@@ -117,6 +133,21 @@ class App extends Component {
         items.push(...response[0].inventory.customItems);
         this.setState({ items: items });
         console.log(items, "ITEMS LOGGED HERE");
+
+        armour.map(function(armour) {
+        equipmentHp += parseInt(armour.modifiers.hp)
+        equipmentReflex += parseInt(armour.modifiers.dexterityReflex)
+        equipmentPhysique += parseInt(armour.modifiers.constitutionFortitude) + parseInt(armour.modifiers.strength)
+        equipmentSpeed += parseInt(armour.modifiers.speed)
+        equipmentIntelligence += parseInt(armour.modifiers.intelligence)
+        equipmentCharisma += parseInt(armour.modifiers.charisma)
+        equipmentPerception += parseInt(armour.modifiers.perception)
+        equipmentStealth += parseInt(armour.modifiers.stealth)
+        equipmentRangedAcc += parseInt(armour.modifiers.rangedAccuracy)
+        equipmentMeleeAcc += parseInt(armour.modifiers.rangedMelee)
+        })
+        console.log(equipmentStealth, "STEALTH")
+
       });
 
     fetch("http://localhost:2890/races")
@@ -150,6 +181,7 @@ class App extends Component {
       
   }; // END COMPONENT DID MOUNT
 
+ 
   onRouteChange = (route) => {
     if (route === "signin" || route === "register") {
       this.setState({ isSignedin: false });
@@ -262,6 +294,16 @@ class App extends Component {
     };
     this.setState({ armour: [newArmour, ...this.state.armour] });
     console.log(newArmour.id);
+    equipmentHp += parseInt(hp)
+        equipmentReflex += parseInt(dexterityReflex)
+        equipmentPhysique += parseInt(constitutionFortitude) + parseInt(strength)
+        equipmentSpeed += parseInt(speed)
+        equipmentIntelligence += parseInt(intelligence)
+        equipmentCharisma += parseInt(charisma)
+        equipmentPerception += parseInt(perception)
+        equipmentStealth += parseInt(stealth)
+        equipmentRangedAcc += parseInt(rangedAccuracy)
+        equipmentMeleeAcc += parseInt(meleeAccuracy)
   };
 
   addItem = (
@@ -370,6 +412,18 @@ calculateStealthTotal = ( x ) => {
 calculateSkillsStealth = ( x ) => {
   this.setState(Object.assign(this.state.skillsStealth, { skillsStealth: x }))
 }
+calculateSkillsExplosives = ( x ) => {
+  this.setState(Object.assign(this.state.skillsExplosives, { skillsExplosives: x }))
+}
+calculateSkillsMagic = ( x ) => {
+  this.setState(Object.assign(this.state.skillsUseMagicItem, { skillsUseMagicItem: x }))
+}
+calculateSkillsMedicine = ( x ) => {
+  this.setState(Object.assign(this.state.skillsMedicine, { skillsMedicine: x }))
+}
+calculateSkillsTechnology = ( x ) => {
+  this.setState(Object.assign(this.state.skillsTechnology, { skillsTechnology: x }))
+}
 
   render() {
     if (this.state.route === "signin") {
@@ -439,21 +493,44 @@ calculateSkillsStealth = ( x ) => {
             races={races}
             classes={classes}
             armour={armour}
+
             phyTotal={this.state.phyTotal}
             refTotal={this.state.refTotal}
             intTotal={this.state.intTotal}
             chaTotal={this.state.chaTotal}
+
             calculatePhyTotal={this.calculatePhyTotal}
             calculateRefTotal={this.calculateRefTotal}
             calculateIntTotal={this.calculateIntTotal}
             calculateChaTotal={this.calculateChaTotal}
+
             calculateReactionTotal={this.calculateReactionTotal}
             calculatePerceptionTotal={this.calculatePerceptionTotal}
             calculateSpeedTotal={this.calculateSpeedTotal}
             calculateFortitudeTotal={this.calculateFortitudeTotal}
             calculateStealthTotal={this.calculateStealthTotal}
+
             skillsStealth={this.state.skillsStealth}
             calculateSkillsStealth={this.calculateSkillsStealth}
+            skillsExplosives={this.state.skillsExplosives}
+            calculateSkillsExplosives={this.calculateSkillsExplosives}
+            skillsUseMagicItem={this.state.skillsUseMagicItem}
+            calculateSkillsMagic={this.calculateSkillsMagic}
+            skillsMedicine={this.state.skillsMedicine}
+            calculateSkillsMedicine={this.calculateSkillsMedicine}
+            skillsTechnology={this.state.skillsTechnology}
+            calculateSkillsTechnology={this.calculateSkillsTechnology}
+
+            equipmentHp={equipmentHp}
+            equipmentReflex={equipmentReflex}
+            equipmentPhysique={equipmentPhysique}
+            equipmentSpeed={equipmentSpeed}
+            equipmentIntelligence={equipmentIntelligence}
+            equipmentCharisma={equipmentCharisma}
+            equipmentPerception={equipmentPerception}
+            equipmentStealth={equipmentStealth}
+            equipmentRangedAcc={equipmentRangedAcc}
+            equipmentMeleeAcc={equipmentMeleeAcc}
           />
         ) : this.state.route === "abilities" ? (
           <Abilities

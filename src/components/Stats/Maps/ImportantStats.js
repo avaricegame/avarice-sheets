@@ -1,11 +1,5 @@
 import React from "react";
 
-let speedEquip = 2
-let perceptionEquip = 2
-let reactionEquip = 2
-let fortitudeEquip = 2
-let stealthEquip = 2
-
 let speedAbility
 let perceptionAbility
 let reactionAbility
@@ -66,19 +60,24 @@ class LevelInfo extends React.Component {
       intTotal, 
       chaTotal,
       skillsStealth,
+      equipmentSpeed,
+      equipmentPerception,
+      equipmentStealth,
+      equipmentReflex,
+      equipmentPhysique,
     } = this.props
 
 speedAbility = Math.ceil(parseInt(refTotal) * .10)
     perceptionAbility = Math.ceil(parseInt(intTotal) / 5 || 1)
-    reactionAbility = 2
-    fortitudeAbility = 2
+    reactionAbility = Math.ceil(((refTotal - equipmentReflex) / 5) -1)
+    fortitudeAbility = Math.ceil(((phyTotal - equipmentPhysique) / 5) -1)
     stealthAbility = skillsStealth
 
-    speedTotalH = parseInt(speedAbility) + parseInt(speedEquip) + parseInt(speedTemp) + parseInt(speedMisc)
-    perceptionTotalH = parseInt(perceptionAbility) + parseInt(perceptionEquip) + parseInt(perceptionTemp) + parseInt(perceptionMisc)
-    reactionTotalH = parseInt(reactionAbility) + parseInt(reactionEquip) + parseInt(reactionTemp) + parseInt(reactionMisc)
-    fortitudeTotalH = parseInt(fortitudeAbility) + parseInt(fortitudeEquip) + parseInt(fortitudeTemp) + parseInt(fortitudeMisc)
-    stealthTotalH = parseInt(stealthAbility) + parseInt(stealthEquip) + parseInt(stealthTemp) + parseInt(stealthMisc)
+    speedTotalH = parseInt(speedAbility) + parseInt(equipmentSpeed) + parseInt(speedTemp) + parseInt(speedMisc)
+    perceptionTotalH = parseInt(perceptionAbility) + parseInt(equipmentPerception) + parseInt(perceptionTemp) + parseInt(perceptionMisc)
+    reactionTotalH = parseInt(reactionAbility) + parseInt(equipmentReflex) + parseInt(reactionTemp) + parseInt(reactionMisc)
+    fortitudeTotalH = parseInt(fortitudeAbility) + parseInt(equipmentPhysique) + parseInt(fortitudeTemp) + parseInt(fortitudeMisc)
+    stealthTotalH = parseInt(stealthAbility) + parseInt(equipmentStealth) + parseInt(stealthTemp) + parseInt(stealthMisc)
 
     return (
       <React.Fragment>
@@ -102,7 +101,7 @@ speedAbility = Math.ceil(parseInt(refTotal) * .10)
               <span>{speedAbility}</span>
             </td>
             <td>
-              <span>{speedEquip}</span>
+              <span>{equipmentSpeed}</span>
             </td>
             <td>
               <span>
@@ -136,7 +135,7 @@ speedAbility = Math.ceil(parseInt(refTotal) * .10)
               <span>{perceptionAbility}</span>
             </td>
             <td>
-              <span>{perceptionEquip}</span>
+              <span>{equipmentPerception}</span>
             </td>
             <td>
               <span>
@@ -170,7 +169,7 @@ speedAbility = Math.ceil(parseInt(refTotal) * .10)
               <span>{reactionAbility}</span>
             </td>
             <td>
-              <span>{reactionEquip}</span>
+              <span>{equipmentReflex}</span>
             </td>
             <td>
               <span>
@@ -204,7 +203,7 @@ speedAbility = Math.ceil(parseInt(refTotal) * .10)
               <span>{fortitudeAbility}</span>
             </td>
             <td>
-              <span>{fortitudeEquip}</span>
+              <span>{equipmentPhysique}</span>
             </td>
             <td>
               <span>
@@ -240,7 +239,7 @@ speedAbility = Math.ceil(parseInt(refTotal) * .10)
               </span>
             </td>
             <td>
-              <span>{stealthEquip}</span>
+              <span>{equipmentStealth}</span>
             </td>
             <td>
               <span>

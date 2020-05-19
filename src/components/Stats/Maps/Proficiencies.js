@@ -28,17 +28,14 @@ class LevelInfo extends React.Component {
 
     return (
       <React.Fragment>
-        {/* <table>
+        <h6>Ability Proficiencies</h6>
+        <table>
           <tr>
             <th>Proficiency</th>
-            <th>Unarmed</th>
-            <th>Improvised Weapon</th>
-            <th>Normal / Unique Weapon</th>
+            <th>Value</th>
           </tr>
           <tr>
-            <td>Tech Item Proficiency</td>
-            <td>-</td>
-            <td>-</td>
+            <td>Tech</td>
             <td>
               {Math.ceil(
                 characterSheet[0].stats.skills.technologyMisc +
@@ -51,9 +48,7 @@ class LevelInfo extends React.Component {
             </td>
           </tr>
           <tr>
-            <td>Explosive Proficiency</td>
-            <td>-</td>
-            <td>-</td>
+            <td>Explosive</td>
             <td>
               {Math.ceil(
                 characterSheet[0].stats.skills.explosivesMisc +
@@ -66,9 +61,7 @@ class LevelInfo extends React.Component {
             </td>
           </tr>
           <tr>
-            <td>Magic Item Proficiency</td>
-            <td>-</td>
-            <td>-</td>
+            <td>Magic</td>
             <td>
               {Math.ceil(
                 characterSheet[0].stats.skills.useMagicDeviceMisc +
@@ -82,9 +75,7 @@ class LevelInfo extends React.Component {
             </td>
           </tr>
           <tr>
-            <td>Spellcasting Proficiency</td>
-            <td>-</td>
-            <td>-</td>
+            <td>Poison</td>
             <td>
               {Math.ceil(
                 characterSheet[0].stats.skills.spellcraftMisc +
@@ -96,6 +87,18 @@ class LevelInfo extends React.Component {
                   3.5
               )}
             </td>
+          </tr>
+</table>
+
+        <h6>Weapon Proficiencies</h6>
+
+        {/* 
+        <table>
+          <tr>
+            <th>Proficiency</th>
+            <th>Unarmed</th>
+            <th>Improvised Weapon</th>
+            <th>Normal / Unique Weapon</th>
           </tr>
           <tr>
             <td>Dexterity Proficiency</td>

@@ -1,10 +1,5 @@
 import React from "react";
 
-let physiqueEquip = 2
-let reflexEquip = 2
-let intelligenceEquip = 2
-let charismaEquip = 2
-
 let correctClass = [];
 let correctRace = [];
 let phyTotalH
@@ -12,11 +7,7 @@ let refTotalH
 let intTotalH
 let chaTotalH 
 
-
-
 class AbilityScores extends React.Component {
-
-
   
   constructor(props) {
     super(props);
@@ -70,7 +61,7 @@ class AbilityScores extends React.Component {
       charismaMisc,
     } = this.state;
 
-    let { classes, races, characterSheet, phyTotal, refTotal, intTotal, chaTotal } = this.props;
+    let { classes, races, characterSheet, phyTotal, refTotal, intTotal, chaTotal, equipmentPhysique, equipmentReflex, equipmentIntelligence, equipmentCharisma } = this.props;
 
     let charactersClass = characterSheet.class;
     let charactersRace = characterSheet.race;
@@ -89,12 +80,10 @@ class AbilityScores extends React.Component {
     let intelligenceRaceClassMod = parseInt(correctRace.abilities.intelligence) + parseInt(correctClass.abilityModifiers.intelligence)
     let charismaRaceClassMod = parseInt(correctRace.abilities.charisma) + parseInt(correctClass.abilityModifiers.charisma)
 
-    phyTotalH = (parseInt(physiqueRaceClassMod) + parseInt(physiqueLevelUps) + 5) + parseInt(physiqueEquip) + parseInt(physiqueTemp) + parseInt(physiqueMisc)
-    refTotalH = (parseInt(reflexRaceClassMod) + parseInt(reflexLevelUps) + 5) + parseInt(reflexEquip) + parseInt(reflexTemp) + parseInt(reflexMisc)
-    intTotalH = (parseInt(intelligenceRaceClassMod) + parseInt(intelligenceLevelUps) + 5) + parseInt(intelligenceEquip) + parseInt(intelligenceTemp) + parseInt(intelligenceMisc)
-    chaTotalH = (parseInt(charismaRaceClassMod) + parseInt(charismaLevelUps) + 5) + parseInt(charismaEquip) + parseInt(charismaTemp) + parseInt(charismaMisc)
-
-    console.log(physiqueRaceClassMod, physiqueLevelUps, physiqueEquip, physiqueTemp, physiqueMisc, "LOOK OVER HERE")
+    phyTotalH = (parseInt(physiqueRaceClassMod) + parseInt(physiqueLevelUps) + 5) + parseInt(equipmentPhysique) + parseInt(physiqueTemp) + parseInt(physiqueMisc)
+    refTotalH = (parseInt(reflexRaceClassMod) + parseInt(reflexLevelUps) + 5) + parseInt(equipmentReflex) + parseInt(reflexTemp) + parseInt(reflexMisc)
+    intTotalH = (parseInt(intelligenceRaceClassMod) + parseInt(intelligenceLevelUps) + 5) + parseInt(equipmentIntelligence) + parseInt(intelligenceTemp) + parseInt(intelligenceMisc)
+    chaTotalH = (parseInt(charismaRaceClassMod) + parseInt(charismaLevelUps) + 5) + parseInt(equipmentCharisma) + parseInt(charismaTemp) + parseInt(charismaMisc)
 
     return (
       <React.Fragment>
@@ -122,7 +111,7 @@ class AbilityScores extends React.Component {
               />
             </td>
             <td>
-              <span>{physiqueEquip}</span>
+              <span>{equipmentPhysique}</span>
             </td>
             <td>
               <input
@@ -160,7 +149,7 @@ class AbilityScores extends React.Component {
               />
             </td>
             <td>
-              <span>{intelligenceEquip}</span>
+              <span>{equipmentIntelligence}</span>
             </td>
             <td>
               <input
@@ -198,7 +187,7 @@ class AbilityScores extends React.Component {
               />
             </td>
             <td>
-              <span>{reflexEquip}</span>
+              <span>{equipmentReflex}</span>
             </td>
             <td>
               <input
@@ -236,7 +225,7 @@ class AbilityScores extends React.Component {
               />
             </td>
             <td>
-              <span>{charismaEquip}</span>
+              <span>{equipmentCharisma}</span>
             </td>
             <td>
               <input
