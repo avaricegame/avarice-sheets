@@ -42,6 +42,7 @@ class Stats extends React.Component {
       armour,
       items,
       equipmentAbilities,
+      classes,
     } = this.props;
 
     return (
@@ -87,7 +88,7 @@ class Stats extends React.Component {
         <div class="heading-bar bgb--full-width">
           <h2>Skills</h2>
         </div>
-        <Skills />
+        <Skills characterSheet={characterSheet} classes={classes} />
       </div>
 
       </React.Fragment>

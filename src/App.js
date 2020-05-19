@@ -308,6 +308,9 @@ editMoney = ( x ) => {
   this.setState(Object.assign(this.state.money, { money: x }))
 };
 
+// CALCULATING THE COMBINED STATS OF ALL THE WEAPONS
+
+
   render() {
     if (this.state.route === "signin") {
       return (

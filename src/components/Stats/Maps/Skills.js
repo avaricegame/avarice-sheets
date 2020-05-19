@@ -1,36 +1,232 @@
-import React, { Component } from "react";
+import React from "react";
+
+let correctClass = [];
+let physique = 5;
+let reflex = 5;
+let intelligence = 5;
+let charisma = 5;
 
 class LevelInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      acrobaticsRanks: 0,
+      acrobaticsMisc: 0,
+      accuracyRanks: 0,
+      accuracyMisc: 0,
+      bluffRanks: 0,
+      bluffMisc: 0,
+      climbRanks: 0,
+      climbMisc: 0,
+      diplomacyRanks: 0,
+      diplomacyMisc: 0,
+      disableDeviceRanks: 0,
+      disableDeviceMisc: 0,
+      disguiseRanks: 0,
+      disguiseMisc: 0,
+      escapeArtistRanks: 0,
+      escapeArtistMisc: 0,
+      explosivesRanks: 0,
+      explosivesMisc: 0,
+      handleAnimalRanks: 0,
+      handleAnimalMisc: 0,
+      heavyWeaponsRanks: 0,
+      heavyWeaponsMisc: 0,
+      medicineRanks: 0,
+      medicineMisc: 0,
+      intimidateRanks: 0,
+      intimidateMisc: 0,
+      linguisticsRanks: 0,
+      linguisticsMisc: 0,
+      lockpickRanks: 0,
+      lockpickMisc: 0,
+      performRanks: 0,
+      performMisc: 0,
+      ridePilotRanks: 0,
+      ridePilotMisc: 0,
+      repairRanks: 0,
+      repairMisc: 0,
+      technologyRanks: 0,
+      technologyMisc: 0,
+      senseMotiveRanks: 0,
+      senseMotiveMisc: 0,
+      sleightOfHandRanks: 0,
+      sleightOfHandMisc: 0,
+      spellcraftRanks: 0,
+      spellcraftMisc: 0,
+      stealthRanks: 0,
+      stealthMisc: 0,
+      survivalRanks: 0,
+      survivalMisc: 0,
+      swimRanks: 0,
+      swimMisc: 0,
+      unarmedRanks: 0,
+      unarmedMisc: 0,
+      useMagicDeviceRanks: 0,
+      useMagicDeviceMisc: 0,
+    };
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
+  onChange = (e) => {
+    console.log(e.target.value);
+    console.log(e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
   };
 
+  // onSubmit = (e) => {
+  //   e.preventDefault();
+  //   const {} = this.state;
+
+  //   fetch("", {
+  //     method: "post",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({}),
+  //   });
+  // };
+
   render() {
-    const { characterSheet } = this.state;
+    const {
+      acrobaticsRanks,
+      acrobaticsMisc,
+      accuracyRanks,
+      accuracyMisc,
+      bluffRanks,
+      bluffMisc,
+      climbRanks,
+      climbMisc,
+      diplomacyRanks,
+      diplomacyMisc,
+      disableDeviceRanks,
+      disableDeviceMisc,
+      disguiseRanks,
+      disguiseMisc,
+      escapeArtistRanks,
+      escapeArtistMisc,
+      explosivesRanks,
+      explosivesMisc,
+      handleAnimalRanks,
+      handleAnimalMisc,
+      heavyWeaponsRanks,
+      heavyWeaponsMisc,
+      medicineRanks,
+      medicineMisc,
+      intimidateRanks,
+      intimidateMisc,
+      linguisticsRanks,
+      linguisticsMisc,
+      lockpickRanks,
+      lockpickMisc,
+      performRanks,
+      performMisc,
+      ridePilotRanks,
+      ridePilotMisc,
+      repairRanks,
+      repairMisc,
+      technologyRanks,
+      technologyMisc,
+      senseMotiveRanks,
+      senseMotiveMisc,
+      sleightOfHandRanks,
+      sleightOfHandMisc,
+      spellcraftRanks,
+      spellcraftMisc,
+      stealthRanks,
+      stealthMisc,
+      survivalRanks,
+      survivalMisc,
+      swimRanks,
+      swimMisc,
+      unarmedRanks,
+      unarmedMisc,
+      useMagicDeviceRanks,
+      useMagicDeviceMisc,
+    } = this.state;
+
+    let { classes, characterSheet } = this.props;
+
+    let charactersClass = characterSheet.class;
+
+    if (charactersClass === "Apa") {
+      correctClass = classes[0];
+    } // ADD ALL OF THE OTHER CLASSES HERE AS ELSE IF STATEMENTS
+
+
+    let calculateAbility = (x, key) => {
+      return Math.ceil(
+        correctClass.skills[x] === false &&
+          characterSheet.stats.skills[x] === false
+          ? 0
+          : parseInt(key) * 0.25
+      )
+  }
+
+    let acrobaticsAbility = calculateAbility("acrobatics", reflex)
+    let accuracy
+    let bluff
+    let climb
+    let diplomacy
+    let disableDevice
+    let disguise
+    let escapeArtist
+    let explosives
+    let handleAnimal
+    let heavyWeapons
+    let medicine
+    let intimidate
+    let linguistics
+    let lockpick
+    let perform
+    let ridePilot
+    let repair
+    let technology
+    let senseMotive
+    let sleightOfHand
+    let spellcraft
+    let stealth
+    let survival
+    let swim
+    let unarmed
+    let useMagicDevice
+
+    let calculateTotal = (misc, abl, ran) => {
+      return Math.ceil(
+        parseInt(misc) + parseInt(abl) + (parseInt(ran) * 1.25)
+      )
+    }
+
+    let acrobatics = calculateTotal(acrobaticsMisc, acrobaticsAbility, acrobaticsRanks)
+    // let accuracy
+    // let bluff
+    // let climb
+    // let diplomacy
+    // let disableDevice
+    // let disguise
+    // let escapeArtist
+    // let explosives
+    // let handleAnimal
+    // let heavyWeapons
+    // let medicine
+    // let intimidate
+    // let linguistics
+    // let lockpick
+    // let perform
+    // let ridePilot
+    // let repair
+    // let technology
+    // let senseMotive
+    // let sleightOfHand
+    // let spellcraft
+    // let stealth
+    // let survival
+    // let swim
+    // let unarmed
+    // let useMagicDevice
 
     return (
       <React.Fragment>
-        {/* <table>
+        <table>
           <tr>
-            <th>Proficiency</th>
+            <th>Competency</th>
             <th>Skill</th>
             <th>Key</th>
             <th>Total</th>
@@ -40,45 +236,35 @@ class LevelInfo extends React.Component {
           </tr>
           <tr>
             <td>
-              {classes[0].skills.acrobatics === true ||
-              characterSheet[0].stats.skills.acrobatics === true
+              {correctClass.skills.acrobatics === true ||
+              characterSheet.stats.skills.acrobatics === true
                 ? "Yes"
                 : "-"}
             </td>
             <td>Acrobatics</td>
-            <td>DEX</td>
+            <td>REF</td>
+            <td>{acrobatics}</td>
             <td>
-              {Math.ceil(
-                characterSheet[0].stats.skills.acrobaticsMisc +
-                  (classes[0].skills.acrobatics === false &&
-                  characterSheet[0].stats.skills.acrobatics === false
-                    ? 0
-                    : dexterity * 0.25) +
-                  characterSheet[0].stats.skills.acrobaticsRanks * 1.25
-              )}
-            </td>
-            <td>
-              {Math.ceil(
-                classes[0].skills.acrobatics === false &&
-                  characterSheet[0].stats.skills.acrobatics === false
-                  ? 0
-                  : dexterity * 0.25
-              )}
+              {acrobaticsAbility}
             </td>
             <td>
               <input
                 type="number"
-                value={characterSheet[0].stats.skills.acrobaticsRanks}
+                name="acrobaticsRanks"
+                onChange={this.onChange}
+                value={acrobaticsRanks}
               />
             </td>
             <td>
               <input
                 type="number"
-                value={characterSheet[0].stats.skills.acrobaticsMisc}
+                name="acrobaticsMisc"
+                onChange={this.onChange}
+                value={acrobaticsMisc}
               />
             </td>
           </tr>
-          <tr>
+          {/* <tr>
             <td>
               {classes[0].skills.appraise === true ||
               characterSheet[0].stats.skills.appraise === true
@@ -1077,8 +1263,8 @@ class LevelInfo extends React.Component {
                 value={characterSheet[0].stats.skills.meleeAccuracyMisc}
               />
             </td>
-          </tr>
-        </table> */}
+          </tr> */}
+        </table>
       </React.Fragment>
     ); // END RETURN
   } // END RENDER
