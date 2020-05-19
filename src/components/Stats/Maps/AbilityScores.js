@@ -36,6 +36,13 @@ class AbilityScores extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    this.props.calculatePhyTotal(phyTotalH)
+      this.props.calculateRefTotal(refTotalH)
+      this.props.calculateIntTotal(intTotalH)
+      this.props.calculateChaTotal(chaTotalH)
+  }
+
 
     onChange = (e) => {
       console.log(e.target.value);

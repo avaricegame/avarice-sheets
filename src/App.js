@@ -69,6 +69,21 @@ class App extends Component {
       refTotal: 0,
       intTotal: 0,
       chaTotal: 0,
+      speedTotal: 0,
+      perceptionTotal: 0,
+      reactionTotal: 0,
+      fortitudeTotal: 0,
+      stealthTotal: 0,
+      skillsStealth: 0,
+      equipmentReflex: 0, 
+      equipmentPhysique: 0,
+      equipmentSpeed: 0,
+      equipmentIntelligence: 0,
+      equipmentCharisma: 0,
+      equipmentPerception: 0,
+      equipmentStealth: 0,
+      equipmentRangedAcc: 0,
+      equipmentMeleeAcc: 0,
     };
   }
 
@@ -132,6 +147,7 @@ class App extends Component {
           "EQUIPMENT ABILITIES ARRAY LOGGED HERE"
         );
       });
+      
   }; // END COMPONENT DID MOUNT
 
   onRouteChange = (route) => {
@@ -322,6 +338,7 @@ calculatePhyTotal = ( x ) => {
 
 calculateRefTotal = ( x ) => {
   this.setState(Object.assign(this.state.refTotal, { refTotal: x }))
+  console.log(x, "THIS IS FRO CALCIA TRE T SJR")
 }
 
 calculateIntTotal = ( x ) => {
@@ -330,6 +347,28 @@ calculateIntTotal = ( x ) => {
 
 calculateChaTotal = ( x ) => {
   this.setState(Object.assign(this.state.chaTotal, { chaTotal: x }))
+}
+
+// CALCULATING THE IMPORTANT STATS TOTALS
+calculateSpeedTotal = ( x ) => {
+  this.setState(Object.assign(this.state.speedTotal, { speedTotal: x }))
+}
+calculatePerceptionTotal = ( x ) => {
+  this.setState(Object.assign(this.state.perceptionTotal, { perceptionTotal: x }))
+}
+calculateReactionTotal = ( x ) => {
+  this.setState(Object.assign(this.state.reactionTotal, { reactionTotal: x }))
+}
+calculateFortitudeTotal = ( x ) => {
+  this.setState(Object.assign(this.state.fortitudeTotal, { fortitudeTotal: x }))
+}
+calculateStealthTotal = ( x ) => {
+  this.setState(Object.assign(this.state.stealthTotal, { stealthTotal: x }))
+}
+
+// CALCULATING CERTAIN SKILLS TOTALS
+calculateSkillsStealth = ( x ) => {
+  this.setState(Object.assign(this.state.skillsStealth, { skillsStealth: x }))
 }
 
   render() {
@@ -408,6 +447,13 @@ calculateChaTotal = ( x ) => {
             calculateRefTotal={this.calculateRefTotal}
             calculateIntTotal={this.calculateIntTotal}
             calculateChaTotal={this.calculateChaTotal}
+            calculateReactionTotal={this.calculateReactionTotal}
+            calculatePerceptionTotal={this.calculatePerceptionTotal}
+            calculateSpeedTotal={this.calculateSpeedTotal}
+            calculateFortitudeTotal={this.calculateFortitudeTotal}
+            calculateStealthTotal={this.calculateStealthTotal}
+            skillsStealth={this.state.skillsStealth}
+            calculateSkillsStealth={this.calculateSkillsStealth}
           />
         ) : this.state.route === "abilities" ? (
           <Abilities

@@ -52,6 +52,13 @@ class Stats extends React.Component {
       calculateRefTotal,
       calculateIntTotal,
       calculateChaTotal,
+      calculateSpeedTotal,
+      calculatePerceptionTotal,
+      calculateReactionTotal,
+      calculateFortitudeTotal,
+      calculateStealthTotal,
+      skillsStealth,
+      calculateSkillsStealth,
     } = this.props;
 
     console.log(refTotal, "LOGGIN FROM STATS")
@@ -75,7 +82,7 @@ class Stats extends React.Component {
         <div className="heading-bar bgb--full-width">
           <h2>Important Stats</h2>
         </div>
-        <ImportantStats />
+        <ImportantStats phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} calculateSpeedTotal={calculateSpeedTotal} calculatePerceptionTotal={calculatePerceptionTotal} calculateReactionTotal={calculateReactionTotal} calculateFortitudeTotal={calculateFortitudeTotal} calculateStealthTotal={calculateStealthTotal} skillsStealth={skillsStealth} />
       </div>
 
         {/****** BEGIN ABILITY SCORES SECTION ******/}
@@ -99,7 +106,7 @@ class Stats extends React.Component {
         <div class="heading-bar bgb--full-width">
           <h2>Skills</h2>
         </div>
-        <Skills characterSheet={characterSheet} classes={classes} phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} />
+        <Skills characterSheet={characterSheet} classes={classes} phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} calculateSkillsStealth={calculateSkillsStealth} />
       </div>
 
       </React.Fragment>

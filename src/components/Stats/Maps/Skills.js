@@ -1,8 +1,9 @@
 import React from "react";
 
 let correctClass = [];
+let stealth
 
-class LevelInfo extends React.Component {
+class Skills extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,6 +68,7 @@ class LevelInfo extends React.Component {
     console.log(e.target.value);
     console.log(e.target.name);
     this.setState({ [e.target.name]: e.target.value });
+    this.props.calculateSkillsStealth(stealth)
   };
 
   // onSubmit = (e) => {
@@ -180,7 +182,7 @@ class LevelInfo extends React.Component {
     let senseMotive
     let sleightOfHand
     let spellcraft
-    let stealth
+    let stealthAbility = calculateAbility("stealth", refTotal)
     let survival
     let swim
     let unarmed
@@ -196,7 +198,7 @@ class LevelInfo extends React.Component {
     }
 
     let acrobatics = calculateTotal("acrobatics", acrobaticsMisc, acrobaticsAbility, acrobaticsRanks)
-    let accuracy = calculateTotal("accuracy", accuracyMisc, accuracyAbility, accuracyRanks) // FIX THE DATABASE
+    let accuracy = calculateTotal("accuracy", accuracyMisc, accuracyAbility, accuracyRanks)
     // let bluff
     // let climb
     // let diplomacy
@@ -217,7 +219,7 @@ class LevelInfo extends React.Component {
     // let senseMotive
     // let sleightOfHand
     // let spellcraft
-    // let stealth
+    stealth = calculateTotal("stealth", stealthMisc, stealthAbility, stealthRanks)
     // let survival
     // let swim
     // let unarmed
@@ -297,10 +299,42 @@ class LevelInfo extends React.Component {
               />
             </td>
           </tr>
+          <tr>
+            <td>
+              {correctClass.skills.stealth === true ||
+              characterSheet.stats.skills.stealth === true
+                ? "Yes"
+                : "-"}
+            </td>
+            <td>Accuracy</td>
+            <td>REF</td>
+            <td>
+              {stealth}
+            </td>
+            <td>
+              {stealthAbility}
+            </td>
+            <td>
+              <input
+                name="stealthRanks"
+                type="number"
+                value={stealthRanks}
+                onChange={this.onChange}
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                name="stealthMisc"
+                onChange={this.onChange}
+                value={stealthMisc}
+              />
+            </td>
+          </tr>
         </table>
       </React.Fragment>
     ); // END RETURN
   } // END RENDER
 } // END CLASS
 
-export default LevelInfo;
+export default Skills;

@@ -1,34 +1,88 @@
-import React, { Component } from "react";
+import React from "react";
+
+let speedEquip = 2
+let perceptionEquip = 2
+let reactionEquip = 2
+let fortitudeEquip = 2
+let stealthEquip = 2
+
+let speedAbility
+let perceptionAbility
+let reactionAbility
+let fortitudeAbility
+let stealthAbility
+
+let speedTotalH
+let perceptionTotalH
+let reactionTotalH
+let fortitudeTotalH
+let stealthTotalH
 
 class LevelInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      speedTemp: 0,
+      speedMisc: 0,
+      perceptionTemp: 0,
+      perceptionMisc: 0,
+      reactionTemp: 0,
+      reactionMisc: 0,
+      fortitudeTemp: 0,
+      fortitudeMisc: 0,
+      stealthTemp: 0,
+      stealthMisc: 0,
+    };
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
-  };
+    onChange = (e) => {
+      console.log(e.target.value);
+      console.log(e.target.name);
+      this.setState({ [e.target.name]: e.target.value });
+      this.props.calculateSpeedTotal(speedTotalH)
+      this.props.calculatePerceptionTotal(perceptionTotalH)
+      this.props.calculateReactionTotal(reactionTotalH)
+      this.props.calculateFortitudeTotal(fortitudeTotalH)
+      this.props.calculateStealthTotal(stealthTotalH)
+    };
 
   render() {
-    const { characterSheet } = this.state;
+    const {
+      speedTemp,
+      speedMisc,
+      perceptionTemp,
+      perceptionMisc,
+      reactionTemp,
+      reactionMisc,
+      fortitudeTemp,
+      fortitudeMisc,
+      stealthTemp,
+      stealthMisc,
+    } = this.state;
+
+    let {
+      phyTotal,
+      refTotal,
+      intTotal, 
+      chaTotal,
+      skillsStealth,
+    } = this.props
+
+speedAbility = Math.ceil(parseInt(refTotal) * .10)
+    perceptionAbility = Math.ceil(parseInt(intTotal) / 5 || 1)
+    reactionAbility = 2
+    fortitudeAbility = 2
+    stealthAbility = skillsStealth
+
+    speedTotalH = parseInt(speedAbility) + parseInt(speedEquip) + parseInt(speedTemp) + parseInt(speedMisc)
+    perceptionTotalH = parseInt(perceptionAbility) + parseInt(perceptionEquip) + parseInt(perceptionTemp) + parseInt(perceptionMisc)
+    reactionTotalH = parseInt(reactionAbility) + parseInt(reactionEquip) + parseInt(reactionTemp) + parseInt(reactionMisc)
+    fortitudeTotalH = parseInt(fortitudeAbility) + parseInt(fortitudeEquip) + parseInt(fortitudeTemp) + parseInt(fortitudeMisc)
+    stealthTotalH = parseInt(stealthAbility) + parseInt(stealthEquip) + parseInt(stealthTemp) + parseInt(stealthMisc)
 
     return (
       <React.Fragment>
-        {/* <table>
+        <table>
           <tr>
             <th>Stat</th>
             <th>Total</th>
@@ -41,23 +95,22 @@ class LevelInfo extends React.Component {
             <td>Speed</td>
             <td>
               <span>
-                {((dexterity - adexref - 5) / 3 || 1) +
-                  asp +
-                  characterSheet[0].stats.importantStats.speedTempMod +
-                  characterSheet[0].stats.importantStats.speedMiscMod || 2}
+                {speedTotalH}
               </span>
             </td>
             <td>
-              <span>{(dexterity - adexref - 5) / 3 || 1}</span>
+              <span>{speedAbility}</span>
             </td>
             <td>
-              <span>{asp}</span>
+              <span>{speedEquip}</span>
             </td>
             <td>
               <span>
                 <input
                   type="number"
-                  value={characterSheet[0].stats.importantStats.speedTempMod}
+                  name="speedTemp"
+                  onChange={this.onChange}
+                  value={speedTemp}
                 />
               </span>
             </td>
@@ -65,7 +118,9 @@ class LevelInfo extends React.Component {
               <span>
                 <input
                   type="number"
-                  value={characterSheet[0].stats.importantStats.speedMiscMod}
+                  name="speedMisc"
+                  onChange={this.onChange}
+                  value={speedMisc}
                 />
               </span>
             </td>
@@ -74,25 +129,22 @@ class LevelInfo extends React.Component {
             <td>Perception</td>
             <td>
               <span>
-                {(intelligence / 5 || 1) +
-                  aper +
-                  characterSheet[0].stats.importantStats.perceptionTempMod +
-                  characterSheet[0].stats.importantStats.perceptionMiscMod}
+                {perceptionTotalH}
               </span>
             </td>
             <td>
-              <span>{intelligence / 5 || 1}</span>
+              <span>{perceptionAbility}</span>
             </td>
             <td>
-              <span>{aper}</span>
+              <span>{perceptionEquip}</span>
             </td>
             <td>
               <span>
                 <input
                   type="number"
-                  value={
-                    characterSheet[0].stats.importantStats.perceptionTempMod
-                  }
+                  name="perceptionTemp"
+                  onChange={this.onChange}
+                  value={perceptionTemp}
                 />
               </span>
             </td>
@@ -100,69 +152,33 @@ class LevelInfo extends React.Component {
               <span>
                 <input
                   type="number"
-                  value={
-                    characterSheet[0].stats.importantStats.perceptionMiscMod
-                  }
-                />
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>Reflex (DEX)</td>
-            <td>
-              <span>
-                {((dexterity - adexref) / 5 || 1) +
-                  adexref +
-                  characterSheet[0].stats.importantStats.reflexTempMod +
-                  characterSheet[0].stats.importantStats.reflexMiscMod}
-              </span>
-            </td>
-            <td>
-              <span>{(dexterity - adexref) / 5 || 1}</span>
-            </td>
-            <td>
-              <span>{adexref}</span>
-            </td>
-            <td>
-              <span>
-                <input
-                  type="number"
-                  value={characterSheet[0].stats.importantStats.reflexTempMod}
-                />
-              </span>
-            </td>
-            <td>
-              <span>
-                <input
-                  type="number"
-                  value={characterSheet[0].stats.importantStats.reflexMiscMod}
+                  name="perceptionMisc"
+                  onChange={this.onChange}
+                  value={perceptionMisc}
                 />
               </span>
             </td>
           </tr>
           <tr>
-            <td>Fortitude (CON)</td>
+            <td>Reaction</td>
             <td>
               <span>
-                {((constitution - aconfor) / 5 || 1) +
-                  aconfor +
-                  characterSheet[0].stats.importantStats.fortitudeTempMod +
-                  characterSheet[0].stats.importantStats.fortitudeMiscMod}
+                {reactionTotalH}
               </span>
             </td>
             <td>
-              <span>{(constitution - aconfor) / 5 || 1}</span>
+              <span>{reactionAbility}</span>
             </td>
             <td>
-              <span>{aconfor}</span>
+              <span>{reactionEquip}</span>
             </td>
             <td>
               <span>
                 <input
                   type="number"
-                  value={
-                    characterSheet[0].stats.importantStats.fortitudeTempMod
-                  }
+                  name="reactionTemp"
+                  onChange={this.onChange}
+                  value={reactionTemp}
                 />
               </span>
             </td>
@@ -170,9 +186,43 @@ class LevelInfo extends React.Component {
               <span>
                 <input
                   type="number"
-                  value={
-                    characterSheet[0].stats.importantStats.fortitudeMiscMod
-                  }
+                  name="reactionMisc"
+                  onChange={this.onChange}
+                  value={reactionMisc}
+                />
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Fortitude</td>
+            <td>
+              <span>
+                {fortitudeTotalH}
+              </span>
+            </td>
+            <td>
+              <span>{fortitudeAbility}</span>
+            </td>
+            <td>
+              <span>{fortitudeEquip}</span>
+            </td>
+            <td>
+              <span>
+                <input
+                  type="number"
+                  name="fortitudeTemp"
+                  onChange={this.onChange}
+                  value={fortitudeTemp}
+                />
+              </span>
+            </td>
+            <td>
+              <span>
+                <input
+                  type="number"
+                  name="fortitudeMisc"
+                  onChange={this.onChange}
+                  value={fortitudeMisc}
                 />
               </span>
             </td>
@@ -181,35 +231,24 @@ class LevelInfo extends React.Component {
             <td>Stealth</td>
             <td>
               <span>
-                {characterSheet[0].stats.skills.stealthMisc +
-                  (classes[0].skills.stealth === false &&
-                  characterSheet[0].stats.skills.stealth === false
-                    ? 0
-                    : dexterity * 0.25) +
-                  characterSheet[0].stats.skills.stealthRanks * 1.25 +
-                  astl +
-                  characterSheet[0].stats.importantStats.stealthTempMod +
-                  characterSheet[0].stats.importantStats.stealthMiscMod}
+                {stealthTotalH}
               </span>
             </td>
             <td>
               <span>
-                {characterSheet[0].stats.skills.stealthMisc +
-                  (classes[0].skills.stealth === false &&
-                  characterSheet[0].stats.skills.stealth === false
-                    ? 0
-                    : dexterity * 0.25) +
-                  characterSheet[0].stats.skills.stealthRanks * 1.25}
+                {stealthAbility}
               </span>
             </td>
             <td>
-              <span>{astl}</span>
+              <span>{stealthEquip}</span>
             </td>
             <td>
               <span>
                 <input
                   type="number"
-                  value={characterSheet[0].stats.importantStats.stealthTempMod}
+                  name="stealthTemp"
+                  onChange={this.onChange}
+                  value={stealthTemp}
                 />
               </span>
             </td>
@@ -217,106 +256,14 @@ class LevelInfo extends React.Component {
               <span>
                 <input
                   type="number"
-                  value={characterSheet[0].stats.importantStats.stealthMiscMod}
+                  name="stealthMisc"
+                  onChange={this.onChange}
+                  value={stealthMisc}
                 />
               </span>
             </td>
           </tr>
-          <tr>
-            <td>Ranged Accuracy</td>
-            <td>
-              <span>
-                {characterSheet[0].stats.skills.rangedAccuracyMisc +
-                  (classes[0].skills.rangedAccuracy === false &&
-                  characterSheet[0].stats.skills.rangedAccuracy === false
-                    ? 0
-                    : dexterity * 0.25) +
-                  characterSheet[0].stats.skills.rangedAccuracyRanks * 1.25 +
-                  ara +
-                  characterSheet[0].stats.importantStats.rangedAccTempMod +
-                  characterSheet[0].stats.importantStats.rangedAccMiscMod}
-              </span>
-            </td>
-            <td>
-              <span>
-                {characterSheet[0].stats.skills.rangedAccuracyMisc +
-                  (classes[0].skills.rangedAccuracy === false &&
-                  characterSheet[0].stats.skills.rangedAccuracy === false
-                    ? 0
-                    : dexterity * 0.25) +
-                  characterSheet[0].stats.skills.rangedAccuracyRanks * 1.25}
-              </span>
-            </td>
-            <td>
-              <span>{ara}</span>
-            </td>
-            <td>
-              <span>
-                <input
-                  type="number"
-                  value={
-                    characterSheet[0].stats.importantStats.rangedAccTempMod
-                  }
-                />
-              </span>
-            </td>
-            <td>
-              <span>
-                <input
-                  type="number"
-                  value={
-                    characterSheet[0].stats.importantStats.rangedAccMiscMod
-                  }
-                />
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>Melee Accuracy</td>
-            <td>
-              <span>
-                {characterSheet[0].stats.skills.meleeAccuracyMisc +
-                  (classes[0].skills.meleeAccuracy === false &&
-                  characterSheet[0].stats.skills.meleeAccuracy === false
-                    ? 0
-                    : dexterity * 0.25) +
-                  characterSheet[0].stats.skills.meleeAccuracyRanks * 1.25 +
-                  ama +
-                  characterSheet[0].stats.importantStats.meleeAccTempMod +
-                  characterSheet[0].stats.importantStats.meleeAccMiscMod}
-              </span>
-            </td>
-            <td>
-              <span>
-                {characterSheet[0].stats.skills.meleeAccuracyMisc +
-                  (classes[0].skills.meleeAccuracy === false &&
-                  characterSheet[0].stats.skills.meleeAccuracy === false
-                    ? 0
-                    : dexterity * 0.25) +
-                  characterSheet[0].stats.skills.meleeAccuracyRanks * 1.25}
-              </span>
-            </td>
-            <td>
-              <span>{ama}</span>
-            </td>
-            <td>
-              <span>
-                <input
-                  type="number"
-                  value={characterSheet[0].stats.importantStats.meleeAccTempMod}
-                />
-              </span>
-            </td>
-            <td>
-              <span>
-                <input
-                  type="number"
-                  value={characterSheet[0].stats.importantStats.meleeAccMiscMod}
-                />
-              </span>
-            </td>
-          </tr>
-        </table> */}
+        </table>
       </React.Fragment>
     ); // END RETURN
   } // END RENDER
