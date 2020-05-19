@@ -1,10 +1,6 @@
 import React from "react";
 
 let correctClass = [];
-let physique = 5;
-let reflex = 5;
-let intelligence = 5;
-let charisma = 5;
 
 class LevelInfo extends React.Component {
   constructor(props) {
@@ -142,7 +138,9 @@ class LevelInfo extends React.Component {
       useMagicDeviceMisc,
     } = this.state;
 
-    let { classes, characterSheet } = this.props;
+    let { classes, characterSheet, physique, refTotal, intelligence, charisma } = this.props;
+
+    console.log(refTotal, "LOK OER F HERE ")
 
     let charactersClass = characterSheet.class;
 
@@ -160,8 +158,8 @@ class LevelInfo extends React.Component {
       )
   }
 
-    let acrobaticsAbility = calculateAbility("acrobatics", reflex)
-    let accuracyAbility = calculateAbility("accuracy", reflex)
+    let acrobaticsAbility = calculateAbility("acrobatics", refTotal)
+    let accuracyAbility = calculateAbility("accuracy", refTotal)
     let bluff
     let climb
     let diplomacy

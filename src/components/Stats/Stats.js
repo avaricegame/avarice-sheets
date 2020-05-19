@@ -9,6 +9,11 @@ import Skills from "./Maps/Skills";
 
 // BEGIN CLASS
 
+let phyTotal
+let refTotal
+let intTotal
+let chaTotal
+
 class Stats extends React.Component {
   constructor(props) {
     super(props);
@@ -43,7 +48,10 @@ class Stats extends React.Component {
       items,
       equipmentAbilities,
       classes,
+      races,
     } = this.props;
+
+    console.log(refTotal, "LOGGIN FROM STATS")
 
     return (
       <React.Fragment>
@@ -72,7 +80,7 @@ class Stats extends React.Component {
         <div className="heading-bar bgb--full-width">
           <h2>Ability Scores</h2>
         </div>
-        <AbilityScores />
+        <AbilityScores characterSheet={characterSheet} classes={classes} races={races} phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} />
       </div>
 
         {/****** BEGIN PROFICIENCIES SECTION ******/}
@@ -88,7 +96,7 @@ class Stats extends React.Component {
         <div class="heading-bar bgb--full-width">
           <h2>Skills</h2>
         </div>
-        <Skills characterSheet={characterSheet} classes={classes} />
+        <Skills characterSheet={characterSheet} classes={classes} phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} />
       </div>
 
       </React.Fragment>
