@@ -7,8 +7,17 @@ let charismaEquip = 2
 
 let correctClass = [];
 let correctRace = [];
+let phyTotalH
+let refTotalH
+let intTotalH
+let chaTotalH 
+
+
 
 class AbilityScores extends React.Component {
+
+
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -27,10 +36,15 @@ class AbilityScores extends React.Component {
     };
   }
 
+
     onChange = (e) => {
       console.log(e.target.value);
       console.log(e.target.name);
       this.setState({ [e.target.name]: e.target.value });
+      this.props.calculatePhyTotal(phyTotalH)
+      this.props.calculateRefTotal(refTotalH)
+      this.props.calculateIntTotal(intTotalH)
+      this.props.calculateChaTotal(chaTotalH)
     };
 
   render() {
@@ -68,10 +82,10 @@ class AbilityScores extends React.Component {
     let intelligenceRaceClassMod = parseInt(correctRace.abilities.intelligence) + parseInt(correctClass.abilityModifiers.intelligence)
     let charismaRaceClassMod = parseInt(correctRace.abilities.charisma) + parseInt(correctClass.abilityModifiers.charisma)
 
-    phyTotal = (parseInt(physiqueRaceClassMod) + parseInt(physiqueLevelUps) + 5) + parseInt(physiqueEquip) + parseInt(physiqueTemp) + parseInt(physiqueMisc)
-    refTotal = (parseInt(reflexRaceClassMod) + parseInt(reflexLevelUps) + 5) + parseInt(reflexEquip) + parseInt(reflexTemp) + parseInt(reflexMisc)
-    intTotal = (parseInt(intelligenceRaceClassMod) + parseInt(intelligenceLevelUps) + 5) + parseInt(intelligenceEquip) + parseInt(intelligenceTemp) + parseInt(intelligenceMisc)
-    chaTotal = (parseInt(charismaRaceClassMod) + parseInt(charismaLevelUps) + 5) + parseInt(charismaEquip) + parseInt(charismaTemp) + parseInt(charismaMisc)
+    phyTotalH = (parseInt(physiqueRaceClassMod) + parseInt(physiqueLevelUps) + 5) + parseInt(physiqueEquip) + parseInt(physiqueTemp) + parseInt(physiqueMisc)
+    refTotalH = (parseInt(reflexRaceClassMod) + parseInt(reflexLevelUps) + 5) + parseInt(reflexEquip) + parseInt(reflexTemp) + parseInt(reflexMisc)
+    intTotalH = (parseInt(intelligenceRaceClassMod) + parseInt(intelligenceLevelUps) + 5) + parseInt(intelligenceEquip) + parseInt(intelligenceTemp) + parseInt(intelligenceMisc)
+    chaTotalH = (parseInt(charismaRaceClassMod) + parseInt(charismaLevelUps) + 5) + parseInt(charismaEquip) + parseInt(charismaTemp) + parseInt(charismaMisc)
 
     console.log(physiqueRaceClassMod, physiqueLevelUps, physiqueEquip, physiqueTemp, physiqueMisc, "LOOK OVER HERE")
 
@@ -90,7 +104,7 @@ class AbilityScores extends React.Component {
           <tr>
             <td>Physique (PHY)</td>
             <td>
-              <span>{phyTotal}</span>
+              <span>{phyTotalH}</span>
             </td>
             <td>
               <input
@@ -128,7 +142,7 @@ class AbilityScores extends React.Component {
           <tr>
             <td>Intelligence (INT)</td>
             <td>
-              <span>{intTotal}</span>
+              <span>{intTotalH}</span>
             </td>
             <td>
               <input
@@ -166,7 +180,7 @@ class AbilityScores extends React.Component {
           <tr>
             <td>Reflex (REF)</td>
             <td>
-              <span>{refTotal}</span>
+              <span>{refTotalH}</span>
             </td>
             <td>
               <input
@@ -204,7 +218,7 @@ class AbilityScores extends React.Component {
           <tr>
             <td>Charisma (CHA)</td>
             <td>
-              <span>{chaTotal}</span>
+              <span>{chaTotalH}</span>
             </td>
             <td>
               <input

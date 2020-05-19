@@ -9,11 +9,6 @@ import Skills from "./Maps/Skills";
 
 // BEGIN CLASS
 
-let phyTotal
-let refTotal
-let intTotal
-let chaTotal
-
 class Stats extends React.Component {
   constructor(props) {
     super(props);
@@ -49,6 +44,14 @@ class Stats extends React.Component {
       equipmentAbilities,
       classes,
       races,
+      phyTotal,
+      refTotal,
+      intTotal,
+      chaTotal,
+      calculatePhyTotal,
+      calculateRefTotal,
+      calculateIntTotal,
+      calculateChaTotal,
     } = this.props;
 
     console.log(refTotal, "LOGGIN FROM STATS")
@@ -80,7 +83,7 @@ class Stats extends React.Component {
         <div className="heading-bar bgb--full-width">
           <h2>Ability Scores</h2>
         </div>
-        <AbilityScores characterSheet={characterSheet} classes={classes} races={races} phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} />
+        <AbilityScores characterSheet={characterSheet} classes={classes} races={races} phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} calculatePhyTotal={calculatePhyTotal} calculateRefTotal={calculateRefTotal} calculateIntTotal={calculateIntTotal} calculateChaTotal={calculateChaTotal} />
       </div>
 
         {/****** BEGIN PROFICIENCIES SECTION ******/}

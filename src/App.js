@@ -65,6 +65,10 @@ class App extends Component {
       customAbilities: [],
       stats: [],
       money: 0,
+      phyTotal: 0,
+      refTotal: 0,
+      intTotal: 0,
+      chaTotal: 0,
     };
   }
 
@@ -311,6 +315,23 @@ editMoney = ( x ) => {
 // CALCULATING THE COMBINED STATS OF ALL THE WEAPONS
 
 
+// CALCULATING THE ABILITY SCORE TOTALS
+calculatePhyTotal = ( x ) => {
+  this.setState(Object.assign(this.state.phyTotal, { phyTotal: x }))
+}
+
+calculateRefTotal = ( x ) => {
+  this.setState(Object.assign(this.state.refTotal, { refTotal: x }))
+}
+
+calculateIntTotal = ( x ) => {
+  this.setState(Object.assign(this.state.intTotal, { intTotal: x }))
+}
+
+calculateChaTotal = ( x ) => {
+  this.setState(Object.assign(this.state.chaTotal, { chaTotal: x }))
+}
+
   render() {
     if (this.state.route === "signin") {
       return (
@@ -379,6 +400,14 @@ editMoney = ( x ) => {
             races={races}
             classes={classes}
             armour={armour}
+            phyTotal={this.state.phyTotal}
+            refTotal={this.state.refTotal}
+            intTotal={this.state.intTotal}
+            chaTotal={this.state.chaTotal}
+            calculatePhyTotal={this.calculatePhyTotal}
+            calculateRefTotal={this.calculateRefTotal}
+            calculateIntTotal={this.calculateIntTotal}
+            calculateChaTotal={this.calculateChaTotal}
           />
         ) : this.state.route === "abilities" ? (
           <Abilities
