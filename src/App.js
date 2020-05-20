@@ -63,6 +63,11 @@ let characterSheet,
  let equipmentRangedAcc = 0
  let equipmentMeleeAcc = 0
 
+ let skillsTechnology = 0
+ let skillsMedicine = 0
+ let skillsExplosives = 0
+ let skillsUseMagicItem = 0
+
 class App extends Component {
   constructor() {
     super();
@@ -87,7 +92,7 @@ class App extends Component {
       stealthTotal: 0,
       skillsStealth: 0,
       skillsExplosives: 0,
-      skillsUseMagicItem: 0,
+      skillsUseMagicDevice: 0,
       skillsMedicine: 0,
       skillsTechnology: 0,
       equipmentHp: equipmentHp,
@@ -412,17 +417,17 @@ calculateStealthTotal = ( x ) => {
 calculateSkillsStealth = ( x ) => {
   this.setState(Object.assign(this.state.skillsStealth, { skillsStealth: x }))
 }
+calculateSkillsTechnology = ( x ) => {
+  this.setState(Object.assign(this.state.skillsTechnology, { skillsTechnology: x }))
+}
+calculateSkillsMagic = ( x ) => {
+  this.setState(Object.assign(this.state.skillsUseMagicDevice, { skillsUseMagicDevice: x }))
+}
 calculateSkillsExplosives = ( x ) => {
   this.setState(Object.assign(this.state.skillsExplosives, { skillsExplosives: x }))
 }
-calculateSkillsMagic = ( x ) => {
-  this.setState(Object.assign(this.state.skillsUseMagicItem, { skillsUseMagicItem: x }))
-}
 calculateSkillsMedicine = ( x ) => {
   this.setState(Object.assign(this.state.skillsMedicine, { skillsMedicine: x }))
-}
-calculateSkillsTechnology = ( x ) => {
-  this.setState(Object.assign(this.state.skillsTechnology, { skillsTechnology: x }))
 }
 
   render() {
@@ -514,7 +519,7 @@ calculateSkillsTechnology = ( x ) => {
             calculateSkillsStealth={this.calculateSkillsStealth}
             skillsExplosives={this.state.skillsExplosives}
             calculateSkillsExplosives={this.calculateSkillsExplosives}
-            skillsUseMagicItem={this.state.skillsUseMagicItem}
+            skillsUseMagicDevice={this.state.skillsUseMagicDevice}
             calculateSkillsMagic={this.calculateSkillsMagic}
             skillsMedicine={this.state.skillsMedicine}
             calculateSkillsMedicine={this.calculateSkillsMedicine}

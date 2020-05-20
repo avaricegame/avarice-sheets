@@ -1,7 +1,7 @@
 import React from "react";
 
 let correctClass = [];
-let stealth
+let stealth, explosives, technology, medicine, useMagicDevice
 
 class Skills extends React.Component {
   constructor(props) {
@@ -69,18 +69,20 @@ class Skills extends React.Component {
     console.log(e.target.name);
     this.setState({ [e.target.name]: e.target.value });
     this.props.calculateSkillsStealth(stealth)
+    this.props.calculateSkillsExplosives(explosives)
+  this.props.calculateSkillsTechnology(technology)
+  this.props.calculateSkillsMagic(useMagicDevice)
+  this.props.calculateSkillsMedicine(medicine)
   };
 
-  // onSubmit = (e) => {
-  //   e.preventDefault();
-  //   const {} = this.state;
+// componentDidMount = () => {
+//   this.props.calculateSkills("skillsStealth", stealth)
+//   this.props.calculateSkills("skillsExplosives", explosives)
+//   this.props.calculateSkills("skillsTechnology", technology)
+//   this.props.calculateSkills("skillsUseMagicDevice", useMagicDevice)
+//   this.props.calculateSkills("skillsMedicine", medicine)
+// }
 
-  //   fetch("", {
-  //     method: "post",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({}),
-  //   });
-  // };
 
   render() {
     const {
@@ -140,9 +142,7 @@ class Skills extends React.Component {
       useMagicDeviceMisc,
     } = this.state;
 
-    let { classes, characterSheet, physique, refTotal, intelligence, charisma } = this.props;
-
-    console.log(refTotal, "LOK OER F HERE ")
+    let { classes, characterSheet, phyTotal, refTotal, intTotal, chaTotal } = this.props;
 
     let charactersClass = characterSheet.class;
 
@@ -153,10 +153,11 @@ class Skills extends React.Component {
 
     let calculateAbility = (x, key) => {
       return Math.ceil(
-        correctClass.skills[x] === false &&
-          characterSheet.stats.skills[x] === false
-          ? 0
-          : parseInt(key) * 0.25
+        // correctClass.skills[x] === false &&
+        //   characterSheet.stats.skills[x] === false
+        //   ? 0
+        //   : parseInt(key) * 0.25
+        parseInt(key) * .25
       )
   }
 
@@ -168,17 +169,17 @@ class Skills extends React.Component {
     let disableDevice
     let disguise
     let escapeArtist
-    let explosives
+    let explosivesAbility = calculateAbility("explosives", intTotal)
     let handleAnimal
     let heavyWeapons
-    let medicine
+    let medicineAbility = calculateAbility("medicine", intTotal)
     let intimidate
     let linguistics
     let lockpick
     let perform
     let ridePilot
     let repair
-    let technology
+    let technologyAbility = calculateAbility("technology", intTotal)
     let senseMotive
     let sleightOfHand
     let spellcraft
@@ -186,7 +187,7 @@ class Skills extends React.Component {
     let survival
     let swim
     let unarmed
-    let useMagicDevice
+    let useMagicDeviceAbility = calculateAbility("useMagicDevice", chaTotal)
 
     let calculateTotal = (x, misc, abl, ran) => {
       return Math.ceil(
@@ -205,17 +206,17 @@ class Skills extends React.Component {
     // let disableDevice
     // let disguise
     // let escapeArtist
-    // let explosives
+    explosives = calculateTotal("explosives", explosivesMisc, explosivesAbility, explosivesRanks)
     // let handleAnimal
     // let heavyWeapons
-    // let medicine
+    medicine = calculateTotal("medicine", medicineMisc, medicineAbility, medicineRanks)
     // let intimidate
     // let linguistics
     // let lockpick
     // let perform
     // let ridePilot
     // let repair
-    // let technology
+    technology = calculateTotal("technology", technologyMisc, technologyAbility, technologyRanks)
     // let senseMotive
     // let sleightOfHand
     // let spellcraft
@@ -223,7 +224,7 @@ class Skills extends React.Component {
     // let survival
     // let swim
     // let unarmed
-    // let useMagicDevice
+    useMagicDevice = calculateTotal("useMagicDevice", useMagicDeviceMisc, useMagicDeviceAbility, useMagicDeviceRanks)
 
     return (
       <React.Fragment>
@@ -306,7 +307,7 @@ class Skills extends React.Component {
                 ? "Yes"
                 : "-"}
             </td>
-            <td>Accuracy</td>
+            <td>Stealth</td>
             <td>REF</td>
             <td>
               {stealth}
@@ -328,6 +329,134 @@ class Skills extends React.Component {
                 name="stealthMisc"
                 onChange={this.onChange}
                 value={stealthMisc}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {correctClass.skills.explosives === true ||
+              characterSheet.stats.skills.explosives === true
+                ? "Yes"
+                : "-"}
+            </td>
+            <td>Explosives</td>
+            <td>INT</td>
+            <td>
+              {explosives}
+            </td>
+            <td>
+              {explosivesAbility}
+            </td>
+            <td>
+              <input
+                name="explosivesRanks"
+                type="number"
+                value={explosivesRanks}
+                onChange={this.onChange}
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                name="explosivesMisc"
+                onChange={this.onChange}
+                value={explosivesMisc}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {correctClass.skills.medicine === true ||
+              characterSheet.stats.skills.medicine === true
+                ? "Yes"
+                : "-"}
+            </td>
+            <td>Medicine</td>
+            <td>INT</td>
+            <td>
+              {medicine}
+            </td>
+            <td>
+              {medicineAbility}
+            </td>
+            <td>
+              <input
+                name="medicineRanks"
+                type="number"
+                value={medicineRanks}
+                onChange={this.onChange}
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                name="medicineMisc"
+                onChange={this.onChange}
+                value={medicineMisc}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {correctClass.skills.technology === true ||
+              characterSheet.stats.skills.technology === true
+                ? "Yes"
+                : "-"}
+            </td>
+            <td>Technology</td>
+            <td>INT</td>
+            <td>
+              {technology}
+            </td>
+            <td>
+              {technologyAbility}
+            </td>
+            <td>
+              <input
+                name="technologyRanks"
+                type="number"
+                value={technologyRanks}
+                onChange={this.onChange}
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                name="technologyMisc"
+                onChange={this.onChange}
+                value={technologyMisc}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {correctClass.skills.useMagicDevice === true ||
+              characterSheet.stats.skills.useMagicDevice === true
+                ? "Yes"
+                : "-"}
+            </td>
+            <td>Use Magic Device</td>
+            <td>CHA</td>
+            <td>
+              {useMagicDevice}
+            </td>
+            <td>
+              {useMagicDeviceAbility}
+            </td>
+            <td>
+              <input
+                name="useMagicDeviceRanks"
+                type="number"
+                value={useMagicDeviceRanks}
+                onChange={this.onChange}
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                name="useMagicDeviceMisc"
+                onChange={this.onChange}
+                value={useMagicDeviceMisc}
               />
             </td>
           </tr>

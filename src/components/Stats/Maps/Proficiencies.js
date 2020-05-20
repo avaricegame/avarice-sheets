@@ -12,19 +12,26 @@ class LevelInfo extends React.Component {
   //     this.setState({ [e.target.name]: e.target.value });
   //   };
 
-  onSubmit = (e) => {
-    e.preventDefault();
-    const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
-  };
-
   render() {
-    const { characterSheet } = this.state;
+    
+    let {
+      skillsExplosives,
+
+        skillsUseMagicDevice,
+
+        skillsMedicine,
+ 
+        skillsTechnology,
+
+    } = this.props
+
+    console.log(skillsExplosives, "LOOK OVER HERE TOFR  THD SAJFLDSKFJ :LFH")
+
+    skillsExplosives = Math.floor(parseInt(skillsExplosives) / 5)
+    skillsMedicine = Math.floor(parseInt(skillsMedicine) / 5)
+    skillsTechnology = Math.floor(parseInt(skillsTechnology) / 5)
+    skillsUseMagicDevice = Math.floor(parseInt(skillsUseMagicDevice) / 5)
+
 
     return (
       <React.Fragment>
@@ -37,55 +44,25 @@ class LevelInfo extends React.Component {
           <tr>
             <td>Tech</td>
             <td>
-              {Math.ceil(
-                characterSheet[0].stats.skills.technologyMisc +
-                  (classes[0].skills.technology === false &&
-                  characterSheet[0].stats.skills.technology === false
-                    ? 0
-                    : intelligence * 0.25) +
-                  (characterSheet[0].stats.skills.technologyRanks * 1.25) / 3.5
-              )}
+              {skillsTechnology}
             </td>
           </tr>
           <tr>
             <td>Explosive</td>
             <td>
-              {Math.ceil(
-                characterSheet[0].stats.skills.explosivesMisc +
-                  (classes[0].skills.explosives === false &&
-                  characterSheet[0].stats.skills.explosives === false
-                    ? 0
-                    : intelligence * 0.25) +
-                  (characterSheet[0].stats.skills.explosivesRanks * 1.25) / 3.5
-              )}
+              {skillsExplosives}
             </td>
           </tr>
           <tr>
             <td>Magic</td>
             <td>
-              {Math.ceil(
-                characterSheet[0].stats.skills.useMagicDeviceMisc +
-                  (classes[0].skills.useMagicDevice === false &&
-                  characterSheet[0].stats.skills.useMagicDevice === false
-                    ? 0
-                    : charisma * 0.25) +
-                  (characterSheet[0].stats.skills.useMagicDeviceRanks * 1.25) /
-                    3.5
-              )}
+              {skillsUseMagicDevice}
             </td>
           </tr>
           <tr>
             <td>Poison</td>
             <td>
-              {Math.ceil(
-                characterSheet[0].stats.skills.spellcraftMisc +
-                  (classes[0].skills.spellcraft === false &&
-                  characterSheet[0].stats.skills.spellcraft === false
-                    ? 0
-                    : intelligence * 0.25) +
-                  (characterSheet[0].stats.skills.spellcraftRanks * 1.25) / 
-                  3.5
-              )}
+              {skillsMedicine}
             </td>
           </tr>
 </table>

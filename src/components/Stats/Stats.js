@@ -69,6 +69,14 @@ class Stats extends React.Component {
       equipmentStealth,
       equipmentRangedAcc,
       equipmentMeleeAcc,
+      skillsExplosives,
+      skillsTechnology,
+      skillsUseMagicDevice,
+      calculateSkillsMedicine,
+      calculateSkillsExplosives,
+      calculateSkillsTechnology,
+      calculateSkillsMagic,
+      skillsMedicine,
 
     } = this.props;
 
@@ -120,7 +128,15 @@ class Stats extends React.Component {
         <div class="heading-bar">
           <h2>Proficiencies</h2>
         </div>
-        <Proficiencies />
+        <Proficiencies
+        skillsExplosives={skillsExplosives}
+        
+        skillsUseMagicDevice={skillsUseMagicDevice}
+        
+        skillsMedicine={skillsMedicine}
+        
+        skillsTechnology={skillsTechnology}
+         />
       </div>
 
         {/****** BEGIN SKILLS SECTION ******/}
@@ -128,7 +144,16 @@ class Stats extends React.Component {
         <div class="heading-bar bgb--full-width">
           <h2>Skills</h2>
         </div>
-        <Skills characterSheet={characterSheet} classes={classes} phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} calculateSkillsStealth={calculateSkillsStealth} />
+        <Skills 
+        calculateSkillsExplosives={calculateSkillsExplosives}
+        skillsExplosives={skillsExplosives}
+        skillsUseMagicDevice={skillsUseMagicDevice}
+        calculateSkillsMagic={calculateSkillsMagic}
+        skillsMedicine={skillsMedicine}
+        calculateSkillsMedicine={calculateSkillsMedicine}
+        skillsTechnology={skillsTechnology}
+        calculateSkillsTechnology={calculateSkillsTechnology}
+        characterSheet={characterSheet} classes={classes} phyTotal={phyTotal} refTotal={refTotal} intTotal={intTotal} chaTotal={chaTotal} calculateSkillsStealth={calculateSkillsStealth} />
       </div>
 
       </React.Fragment>
