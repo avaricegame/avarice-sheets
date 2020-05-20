@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 // IMPORT FORMS
 import EditExcellenceChipsForm from "../Forms/EditExcellenceChipsForm";
@@ -21,36 +21,40 @@ class LevelInfo extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
   };
 
   render() {
-    const { characterSheet } = this.state;
+    let {
+      level,
+      setLevel,
+      excellenceChips,
+      editExcellenceChips,
+    } = this.props
 
     return (
       <React.Fragment>
-        <h4>Level</h4>
-        <EditLevelForm />
-        <h5>You are at level {/*characterSheet[0].stats.level*/}</h5>
-        <button>Quick Level Up</button>
-        <p>
-          You currently have <span>4</span> Rank Points and <span>2</span>{" "}
+        <h6>Level</h6>
+        
+        <h5>You are at level {level}</h5>
+        {/* <button>Quick Level Up</button> */}
+        <EditLevelForm 
+        setLevel={setLevel}
+        editExcellenceChips={editExcellenceChips}
+        />
+        <p style={{paddingBottom: "20px"}}>
+          You currently have <span>4</span> Rank Points and <span>2</span>
           Ability Scores Level Up points that you can use. Be sure to apply them
           to keep your character as buff and smart as possible!
         </p>
 
-        <h4>Excelence Chips</h4>
-        <EditExcellenceChipsForm />
+        <h6>Excelence Chips</h6>
+        
         <h5>
-          You have <span>{/*characterSheet[0].stats.excellenceChips*/}</span>{" "}
+          You have <span>{excellenceChips} </span>
           excelence chips
         </h5>
-        <button>Add an Excelence Chip</button>
+        <EditExcellenceChipsForm />
+        {/* <button>Add an Excelence Chip</button> */}
         <p>
           Want to earn an excellence chip? Do something epic and make sure the
           DM sees! Excellence Chips can be cashed in whenever you'd like for an

@@ -4,39 +4,44 @@ import Toggle from "../../Toggle/Toggle";
 class EditLevelForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      level: 1,
+    };
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const {} = this.state;
-
-    fetch("", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
-  };
+    onChange = (e) => {
+      console.log(e.target.value);
+      console.log(e.target.name);
+      this.setState({ [e.target.name]: e.target.value  });
+      
+    };
+    onSubmit = (e) => {
+      e.preventDefault();
+  this.props.setLevel(this.state.level)
+      fetch("", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({}),
+      });
+    };
 
   render() {
-    const {} = this.state;
-
+    const { level } = this.state;
+    let {
+      setLevel,
+      excellenceChips,
+      editExcellenceChips,
+    } = this.props
     return (
       <Toggle>
         {({ on, toggle }) => (
           <div>
             <button onClick={toggle}>Edit Level</button>
             {on && (
-              <form id="editLevelForm">
+              <form id="editLevelForm" onSubmit={this.onSubmit}>
               <fieldset>
                 <button>-</button>
-                <input type="number" value="4" />
+                <input type="number" onChange={this.onChange} name="level" value={level} />
                 <button>+</button>
     
                 <input type="submit" className="submit-button" value="Save Level" />

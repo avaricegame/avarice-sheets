@@ -80,6 +80,8 @@ class App extends Component {
       items: [],
       customAbilities: [],
       stats: [],
+      level: 1,
+      excellenceChips: 0,
       money: 0,
       phyTotal: 0,
       refTotal: 0,
@@ -430,6 +432,15 @@ calculateSkillsMedicine = ( x ) => {
   this.setState(Object.assign(this.state.skillsMedicine, { skillsMedicine: x }))
 }
 
+// EDITING THE LEVEL AND EXCELLENCE CHIPS AMOUNT
+setLevel = ( x ) => {
+  this.setState(Object.assign(this.state.level, { level: x }))
+}
+
+editExcellenceChips = ( x ) => {
+  this.setState(Object.assign(this.state.excellenceChips, { excellenceChips: x }))
+}
+
   render() {
     if (this.state.route === "signin") {
       return (
@@ -495,6 +506,11 @@ calculateSkillsMedicine = ( x ) => {
         ) : this.state.route === "stats" ? (
           <Stats
             characterSheet={this.state.characterSheet}
+            level={this.state.level}
+            setLevel={this.setLevel}
+            excellenceChips={this.state.excellenceChips}
+            editExcellenceChips={this.editExcellenceChips}
+
             races={races}
             classes={classes}
             armour={armour}
