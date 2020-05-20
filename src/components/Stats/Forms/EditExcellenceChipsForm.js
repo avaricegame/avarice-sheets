@@ -4,18 +4,23 @@ import Toggle from "../../Toggle/Toggle";
 class EditExcellenceChipsForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      excellenceChips: 0,
+    };
   }
 
-  //   onChange = (e) => {
-  //     console.log(e.target.value);
-  //     console.log(e.target.name);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
+    onChange = (e) => {
+      console.log(e.target.value);
+      console.log(e.target.name);
+      this.setState({ [e.target.name]: e.target.value });
+    };
 
   onSubmit = (e) => {
     e.preventDefault();
     const {} = this.state;
+
+    this.props.editExcellenceChips(this.state.excellenceChips)
+    this.setState({excellenceChips: ""})
 
     fetch("", {
       method: "post",
@@ -25,18 +30,20 @@ class EditExcellenceChipsForm extends React.Component {
   };
 
   render() {
-    const {} = this.state;
-
+    const { excellenceChips } = this.state;
+    let {
+      editExcellenceChips,
+    } = this.props
     return (
       <Toggle>
         {({ on, toggle }) => (
           <div>
             <button onClick={toggle}>Edit Excelence Chips</button>
             {on && (
-              <form id="editExcellenceChipsForm">
+              <form id="editExcellenceChipsForm" onSubmit={this.onSubmit}>
               <fieldset>
                 <button>-</button>
-                <input type="number" value="0" />
+                <input type="number" onChange={this.onChange} name="excellenceChips" value={excellenceChips} />
                 <button>+</button>
     
                 <input

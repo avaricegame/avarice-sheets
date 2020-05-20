@@ -18,6 +18,7 @@ class EditLevelForm extends React.Component {
     onSubmit = (e) => {
       e.preventDefault();
   this.props.setLevel(this.state.level)
+  this.setState({level: ""})
       fetch("", {
         method: "post",
         headers: { "Content-Type": "application/json" },

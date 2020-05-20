@@ -42,7 +42,7 @@ class LevelInfo extends React.Component {
         editExcellenceChips={editExcellenceChips}
         />
         <p style={{paddingBottom: "20px"}}>
-          You currently have <span>4</span> Rank Points and <span>2</span>
+          You currently have <strong>4</strong> Rank Points and <strong>2 </strong>
           Ability Scores Level Up points that you can use. Be sure to apply them
           to keep your character as buff and smart as possible!
         </p>
@@ -53,7 +53,9 @@ class LevelInfo extends React.Component {
           You have <span>{excellenceChips} </span>
           excelence chips
         </h5>
-        <EditExcellenceChipsForm />
+        <EditExcellenceChipsForm
+        editExcellenceChips={editExcellenceChips}
+        />
         {/* <button>Add an Excelence Chip</button> */}
         <p>
           Want to earn an excellence chip? Do something epic and make sure the
