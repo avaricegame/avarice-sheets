@@ -62,7 +62,7 @@ onNameChange = (event) => {
  
             <input 
             onClick={this.onSubmitSignIn}
-            className="submit-button" type="submit" value="| Register |" />
+            className="submit-button" type="submit" value="Register" />
 
 
               <p>Have an account? <span  onClick={() => onRouteChange('signin')} className="underline">Sign in.</span></p>            

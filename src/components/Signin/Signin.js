@@ -18,10 +18,10 @@ const Signin = ({ onRouteChange }) => {
  
             <input 
             onClick={() => onRouteChange('home')}
-            className="submit-button" type="submit" value="| Sign in |" />
+            className="submit-button" type="submit" value="Sign in" />
 
 
-              <p>Don't have an account? <span  onClick={() => onRouteChange('register')} className="underline">Register now to create a free account.</span></p>            
+              {/* <p>Don't have an account? <span  onClick={() => onRouteChange('register')} className="underline">Register now to create a free account.</span></p>             */}
   
         </div>
 

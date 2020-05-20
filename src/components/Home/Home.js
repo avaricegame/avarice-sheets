@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Home = ({ onRouteChange }) => {
+const Home = ({ onRouteChange, characterSheet }) => {
 
         return (
 
@@ -16,7 +16,7 @@ const Home = ({ onRouteChange }) => {
                                 </div>
                         </header>
                         <nav>
-                                <h2 className="welcome-heading">\\*** Welcome, Undefined ***//</h2>
+                                <h2 className="welcome-heading">Welcome, Guest</h2>
                         </nav>
                         <div className="secondary-header">
 
@@ -313,53 +313,23 @@ const Home = ({ onRouteChange }) => {
                                         </fieldset>
 
                                 </form>
-                                <div className="character-sheet-options-container">
+                               
+                              
+                                       <div className="character-sheet-options-container weapon-div">
+                                        <h6>Todd Bendy</h6>
+                                                
                                         <div className="character-sheet-option" onClick={() => onRouteChange('gameplay')} >
-                                                <h2>\\*** Gerald Ginnyton  ***//</h2>
-                                                <h2>|| The Creton of Death ||</h2>
-                                                <h2>Level: 4</h2>
-                                                <h2>Race: Lowca</h2>
-                                                <h2>Class: Survivalist</h2>
-                                                <h2>CHARID#497</h2>
-                                        </div></div>
-                                        <div className="character-sheet-options-container">
-                                        <div className="character-sheet-option" onClick={() => onRouteChange('gameplay')} >
-                                                <h2>\\*** Todd Bendy  ***//</h2>
-                                                <h2>|| Unassigned ||</h2>
+                                        <h2>ID#144</h2>
                                                 <h2>Level: 1</h2>
-                                                <h2>Race: Siede</h2>
-                                                <h2>Class: Heavy Weapons</h2>
-                                                <h2>CHARID#333</h2>
-                                        </div></div>
-                                        <div className="character-sheet-options-container">
-                                        <div className="character-sheet-option" onClick={() => onRouteChange('gameplay')} >
-                                                <h2>\\*** Willard Watkins  ***//</h2>
-                                                <h2>|| Campaign of Fire ||</h2>
-                                                <h2>Level: 4</h2>
                                                 <h2>Race: Bruttu</h2>
                                                 <h2>Class: Apa</h2>
-                                                <h2>CHARID#749</h2>
+                                                
                                         </div></div>
-                                        <div className="character-sheet-options-container">
-                                        <div className="character-sheet-option" onClick={() => onRouteChange('gameplay')} >
-                                                <h2>\\*** Porter Sockwell ***//</h2>
-                                                <h2>|| Blue Bunyons ||</h2>
-                                                <h2>Level: 15</h2>
-                                                <h2>Race: Sourit</h2>
-                                                <h2>Class: Temptress</h2>
-                                                <h2>CHARID#676</h2>
-                                        </div></div>
-                                        <div className="character-sheet-options-container">
-                                        <div className="character-sheet-option" onClick={() => onRouteChange('gameplay')} >
-                                                <h2>\\*** Sir Pallumdidi Dume ***//</h2>
-                                                <h2>|| Unassigned ||</h2>
-                                                <h2>Level: 1</h2>
-                                                <h2>Race: Guardian Angel</h2>
-                                                <h2>Class: Ziel</h2>
-                                                <h2>CHARID#213</h2>
-                                        </div>
+                         
+                                
+                                        
 
-                                </div>
+                       
                               
                         </div>
                 </div>

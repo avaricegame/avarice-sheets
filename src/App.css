@@ -1,8 +1,8 @@
 #createNewNoteForm {
   display: none; }
 
-.attack, .use-ability, .cast-spell, .pay-money, .sell-items {
-  display: none; }
+/* .attack, .use-ability, .cast-spell, .pay-money, .sell-items {
+  display: none; } */
 
 #createNewCharacterSheetForm {
   display: none;
@@ -50,8 +50,10 @@ transition: all .3s;
 }
 
 .header__h2--link {
-  color: whitesmoke;
+  background: none;
+  color: black;
   cursor: pointer;
+  padding: .5rem;
   transition: all .5s;
 }
 
@@ -59,7 +61,7 @@ transition: all .3s;
   background: whitesmoke;
   color: black;
   padding: 2rem;
-  border: 1px solid whitesmoke;
+  box-shadow: 0 0 10px rgb(156, 156, 156);
   
 }
 
@@ -323,34 +325,52 @@ font-weight: bold;
   }
 
   .h2-signin-header {
+    display: none;
+    color: black !important;
+    background: none;
     text-align: center;
-    color: #00C5ED !important;
     font-size: 5rem;
   }
 
   .signin-box label {
     font-size: 4rem !important;
+    font-weight: 100;
   }
 
   .signin-box input {
-    font-family: 'courier';
     font-size: 4rem;
     background: none;
     width: 100%;
     min-height: 50px;
-    color: #00C5ED;
-    border: 1px solid #00C5ED;
+    color: black;
+    border: 1px solid black;
+  }
+  
+  .signin-box:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 15px rgb(104, 104, 104);
+    z-index: 2;
   }
 
 .signin-box {
-  
-  color: #00C5ED;
-  border: 1px solid #00C5ED;
+  background: rgb(240, 240, 240);
+  color: black;
+  box-shadow: 0 0 10px rgb(156, 156, 156);
   text-transform: uppercase;
   font-size: 2rem;
   padding: 4rem;
 margin: 1rem auto;
-  max-width: 50%;
+
+
+  
+  transition: all .3s;
+}
+
+.signin-box .submit-button {
+ box-shadow: 0 0 10px rgb(156, 156, 156);
+font-weight: 100;
+background: black;
+color: whitesmoke;
 }
 
 .name-of-character-heading {
@@ -375,69 +395,76 @@ min-height: 120px;
 }
 
 .header-button {
-  font-family: "courier";
+  display: none;
+  max-width: 50%;
   background: none;
-  color: #00C5ED;
+  color: black;
   font-size: 2rem;
   text-transform: uppercase;
-  font-weight: 700;
   border: none !important;
   padding: 2rem;
   min-height: 40px;
   margin: 0;
-  transition: all .2s; }
+  transition: all .3s; }
 
   .header-button:hover {
-    border: 4px solid #00C5ED !important;
+    /* border: 4px solid #00C5ED !important; */
     background: none;
-    transform: translateY(-3px);
-    transform: translateX(4px);
+    transform: translateY(-1px);
     
-    color: rgb(98, 206, 48);
+ 
   }
 
-  .character-sheet-option:hover {
-    border: 4px solid #00C5ED;
-    
-  }
+  /* .character-sheet-option:hover {
+    /* border: 4px solid black; */
+    /* box-shadow: 0 0 15px rgb(104, 104, 104);
+  } */
 
   .character-sheet-option {
     background: none;
-  color: #00C5ED;
-  font-size: 1.8rem;
   text-transform: uppercase;
-  font-weight: 700;
-  padding: 3rem;
-  margin: 1rem;
-    min-height: 8rem;
     display: flex;
     justify-content: space-around;
     transition: all .8s;
   }
 
-  .character-sheet-options-container {
+  /* .character-sheet-options-container {
+    transform: translateY(-1px);
     height: 9rem;
     width: 90%;
     margin: 4rem auto;
-    border-left: 4px dashed #00C5ED;
-    border-right: 4px dashed #00C5ED;
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+  } */
+
+  .character-sheet-options-container h6 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .character-sheet-options-container h5 {
+    font-size: 2rem;
   }
 
 .character-sheet-option h2 {
+  margin: 2rem 1rem 1rem 1rem;
   font-weight: bold;
   font-size: 1.8rem;
+  background: none;
+  color: black;
 }
 
 .character-sheets-heading-div {
   display: flex;
-  justify-content: space-between;
-  border-bottom: 4px dashed #00C5ED;
-  border-top: 4px dashed #00C5ED;
+  justify-content: center;
+  border-bottom: 4px solid black;
+  border-top: 4px solid black;
   padding: 1rem;
 }
 
 .character-sheets-heading {
-  color: #00C5ED;
+  background: none;
+  color: black;
   padding: 2rem;
   font-weight: bold;
   font-size: 3.5rem;
@@ -445,15 +472,17 @@ min-height: 120px;
 }
 
 .heading-link {
+  background: none;
   font-weight: bold;
   font-size: 2rem;
-  color: #00C5ED;
+  color: black;
   padding: 2rem;
   transition: all .8s;
+  cursor: pointer;
 }
 
 .heading-link:hover {
-  border: 2px solid #00C5ED;
+  box-shadow: 0 0 10px rgb(156, 156, 156);
   
 }
  p {
@@ -465,10 +494,11 @@ min-height: 120px;
 }
 
 .welcome-heading {
+  background: none;
   font-weight: 700;
   font-size: 4rem;
   text-align: center;
-  color: #00C5ED;
+  color: black;
   /* color: rgb(98, 206, 48); */
 
 }

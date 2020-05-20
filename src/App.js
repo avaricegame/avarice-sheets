@@ -50,7 +50,8 @@ let characterSheet,
   customAbilities,
   spells,
   equipmentAbilities,
-  money
+  money,
+  characterSheetS
 
  let equipmentHp = 0
  let equipmentReflex = 0
@@ -473,6 +474,7 @@ editExcellenceChips = ( x ) => {
     }
     return (
       <div className="container">
+        <Particles className="particles" params={particlesOptions} />
         <Header
           isSignedin={this.isSignedin}
           onRouteChange={this.onRouteChange}
@@ -485,7 +487,11 @@ editExcellenceChips = ( x ) => {
             characterSheet={this.state.characterSheet}
             races={races}
             classes={classes}
+            customAbilities={customAbilities}
             armour={armour}
+            weapons={weapons}
+            spells={spells}
+            items={items}
           />
         ) : this.state.route === "inventory" ? (
           <Inventory
