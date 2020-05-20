@@ -325,15 +325,15 @@ font-weight: bold;
   }
 
   .h2-signin-header {
-    display: none;
     color: black !important;
     background: none;
     text-align: center;
     font-size: 5rem;
+    margin-bottom: 5rem;
   }
 
   .signin-box label {
-    font-size: 4rem !important;
+    font-size: 3rem !important;
     font-weight: 100;
   }
 
@@ -370,6 +370,7 @@ margin: 1rem auto;
  box-shadow: 0 0 10px rgb(156, 156, 156);
 font-weight: 100;
 background: black;
+margin-top: 5rem;
 color: whitesmoke;
 }
 

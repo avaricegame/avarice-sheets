@@ -79,16 +79,12 @@ class RaceDetails extends React.Component {
               <td><strong>Ability Scores:</strong></td>
             </tr>
           <tr>
-                  <td>Strength:</td>
-                  <td>{correctRace.abilities.strength}</td>
+                  <td>Physique:</td>
+                  <td>{correctRace.abilities.physique}</td>
                 </tr>
                 <tr>
-                  <td>Dexterity:</td>
-                  <td>{correctRace.abilities.dexterity}</td>
-                </tr>
-                <tr>
-                  <td>Constitution:</td>
-                  <td>{correctRace.abilities.constitution}</td>
+                  <td>Reflex:</td>
+                  <td>{correctRace.abilities.reflex}</td>
                 </tr>
                 <tr>
                   <td>Intelligence:</td>

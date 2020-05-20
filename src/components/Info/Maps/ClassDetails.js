@@ -48,16 +48,12 @@ class ClassDetails extends React.Component {
               <td><strong>Ability Scores:</strong></td>
             </tr>
           <tr>
-                  <td>Strength:</td>
-                  <td>{correctClass.abilityModifiers.strength}</td>
+                  <td>Physique:</td>
+                  <td>{correctClass.abilityModifiers.physique}</td>
                 </tr>
                 <tr>
-                  <td>Dexterity:</td>
-                  <td>{correctClass.abilityModifiers.dexterity}</td>
-                </tr>
-                <tr>
-                  <td>Constitution:</td>
-                  <td>{correctClass.abilityModifiers.constitution}</td>
+                  <td>Reflex:</td>
+                  <td>{correctClass.abilityModifiers.reflex}</td>
                 </tr>
                 <tr>
                   <td>Intelligence:</td>
