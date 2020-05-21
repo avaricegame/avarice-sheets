@@ -228,6 +228,8 @@ class Skills extends React.Component {
 
     return (
       <React.Fragment>
+        <div className="weapon-div">
+          <h6>Skills Table</h6>
         <table>
           <tr>
             <th>Competency</th>
@@ -461,6 +463,7 @@ class Skills extends React.Component {
             </td>
           </tr>
         </table>
+        </div>
       </React.Fragment>
     ); // END RETURN
   } // END RENDER

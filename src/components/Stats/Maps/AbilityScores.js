@@ -87,6 +87,8 @@ class AbilityScores extends React.Component {
 
     return (
       <React.Fragment>
+        <div className="weapon-div">
+        <h6>Ability Scores Table</h6>
         <table>
           <tr>
             <th>Ability</th>
@@ -251,6 +253,7 @@ class AbilityScores extends React.Component {
           </tr>
            
         </table>
+        </div>
       </React.Fragment>
     ); // END RETURN
   } // END RENDER

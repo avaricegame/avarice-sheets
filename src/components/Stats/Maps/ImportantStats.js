@@ -81,6 +81,8 @@ speedAbility = Math.ceil(parseInt(refTotal) * .10)
 
     return (
       <React.Fragment>
+        <div className="weapon-div">
+        <h6>Important Stats Table</h6>
         <table>
           <tr>
             <th>Stat</th>
@@ -263,6 +265,7 @@ speedAbility = Math.ceil(parseInt(refTotal) * .10)
             </td>
           </tr>
         </table>
+        </div>
       </React.Fragment>
     ); // END RETURN
   } // END RENDER

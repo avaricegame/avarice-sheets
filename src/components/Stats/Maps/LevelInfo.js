@@ -33,6 +33,7 @@ class LevelInfo extends React.Component {
 
     return (
       <React.Fragment>
+        <div className="weapon-div">
         <h6>Level</h6>
         
         <h5>You are at level {level}</h5>
@@ -46,7 +47,8 @@ class LevelInfo extends React.Component {
           Ability Scores Level Up points that you can use. Be sure to apply them
           to keep your character as buff and smart as possible!
         </p>
-
+</div>
+<div className="weapon-div">
         <h6>Excelence Chips</h6>
         
         <h5>
@@ -62,6 +64,7 @@ class LevelInfo extends React.Component {
           DM sees! Excellence Chips can be cashed in whenever you'd like for an
           immediate perfect roll. Use them wisely
         </p>
+        </div>
       </React.Fragment>
     ); // END RETURN
   } // END RENDER

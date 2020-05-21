@@ -35,6 +35,7 @@ class LevelInfo extends React.Component {
 
     return (
       <React.Fragment>
+        <div className="weapon-div">
         <h6>Ability Proficiencies</h6>
         <table>
           <tr>
@@ -66,9 +67,10 @@ class LevelInfo extends React.Component {
             </td>
           </tr>
 </table>
-
+</div>
+<div className="weapon-div">
         <h6>Weapon Proficiencies</h6>
-
+</div>
         {/* 
         <table>
           <tr>

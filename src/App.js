@@ -362,6 +362,7 @@ class App extends Component {
       armour: [...this.state.armour.filter((armour) => armour.id !== id)],
     });
     console.log("Deleted!!", this.state.armour);
+    
   };
 
   deleteItem = (id) => {

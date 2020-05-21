@@ -20,7 +20,6 @@ class EditExcellenceChipsForm extends React.Component {
     const {} = this.state;
 
     this.props.editExcellenceChips(this.state.excellenceChips)
-    this.setState({excellenceChips: ""})
 
     fetch("", {
       method: "post",
@@ -42,9 +41,8 @@ class EditExcellenceChipsForm extends React.Component {
             {on && (
               <form id="editExcellenceChipsForm" onSubmit={this.onSubmit}>
               <fieldset>
-                <button>-</button>
+              <h6 className="edit-h6">Edit Excellence Chips</h6>
                 <input type="number" onChange={this.onChange} name="excellenceChips" value={excellenceChips} />
-                <button>+</button>
     
                 <input
                   type="submit"

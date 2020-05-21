@@ -18,7 +18,6 @@ class EditLevelForm extends React.Component {
     onSubmit = (e) => {
       e.preventDefault();
   this.props.setLevel(this.state.level)
-  this.setState({level: ""})
       fetch("", {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -41,9 +40,8 @@ class EditLevelForm extends React.Component {
             {on && (
               <form id="editLevelForm" onSubmit={this.onSubmit}>
               <fieldset>
-                <button>-</button>
+              <h6 className="edit-h6">Edit Level</h6>
                 <input type="number" onChange={this.onChange} name="level" value={level} />
-                <button>+</button>
     
                 <input type="submit" className="submit-button" value="Save Level" />
               </fieldset>
