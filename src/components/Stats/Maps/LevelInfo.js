@@ -24,46 +24,40 @@ class LevelInfo extends React.Component {
   };
 
   render() {
-    let {
-      level,
-      setLevel,
-      excellenceChips,
-      editExcellenceChips,
-    } = this.props
+    let { level, setLevel, excellenceChips, editExcellenceChips } = this.props;
 
     return (
       <React.Fragment>
         <div className="weapon-div">
-        <h6>Level</h6>
-        
-        <h5>You are at level {level}</h5>
-        {/* <button>Quick Level Up</button> */}
-        <EditLevelForm 
-        setLevel={setLevel}
-        editExcellenceChips={editExcellenceChips}
-        />
-        <p style={{paddingBottom: "20px"}}>
-          You currently have <strong>4</strong> Rank Points and <strong>2 </strong>
-          Ability Scores Level Up points that you can use. Be sure to apply them
-          to keep your character as buff and smart as possible!
-        </p>
-</div>
-<div className="weapon-div">
-        <h6>Excelence Chips</h6>
-        
-        <h5>
-          You have <span>{excellenceChips} </span>
-          excelence chips
-        </h5>
-        <EditExcellenceChipsForm
-        editExcellenceChips={editExcellenceChips}
-        />
-        {/* <button>Add an Excelence Chip</button> */}
-        <p>
-          Want to earn an excellence chip? Do something epic and make sure the
-          DM sees! Excellence Chips can be cashed in whenever you'd like for an
-          immediate perfect roll. Use them wisely
-        </p>
+          <h6>Level</h6>
+
+          <h5>You are at level {level}</h5>
+          {/* <button>Quick Level Up</button> */}
+          <EditLevelForm
+            setLevel={setLevel}
+            editExcellenceChips={editExcellenceChips}
+          />
+          <p style={{ paddingBottom: "20px" }}>
+            You currently have <strong>4</strong> Rank Points and{" "}
+            <strong>2 </strong>
+            Ability Scores Level Up points that you can use. Be sure to apply
+            them to keep your character as buff and smart as possible!
+          </p>
+        </div>
+        <div className="weapon-div">
+          <h6>Excelence Chips</h6>
+
+          <h5>
+            You have <span>{excellenceChips} </span>
+            excelence chips
+          </h5>
+          <EditExcellenceChipsForm editExcellenceChips={editExcellenceChips} />
+          {/* <button>Add an Excelence Chip</button> */}
+          <p>
+            Want to earn an excellence chip? Do something epic and make sure the
+            DM sees! Excellence Chips can be cashed in whenever you'd like for
+            an immediate perfect roll. Use them wisely
+          </p>
         </div>
       </React.Fragment>
     ); // END RETURN
