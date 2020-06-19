@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import Axios from "axios"
 
 // IMPORT THE LAYOUT COMPONENTS
 import Header from "./components/Header/Header"
@@ -27,6 +28,8 @@ import uniqid from "uniqid"
 
 // IMPORT OTHER COMPONENTS
 import Error from "./components/Error/Error"
+
+Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
 
 // BEGIN FILE
 const particlesOptions = {
