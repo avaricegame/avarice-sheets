@@ -102,7 +102,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    fetch("http://localhost:2890")
+    fetch("https://backendforpaxgameplay.herokuapp.com")
       .then((response) => response.json())
       .then((response) => {
         characterSheet = response[0]
@@ -147,26 +147,26 @@ class App extends Component {
         console.log(equipmentStealth, "STEALTH")
       })
 
-    fetch("http://localhost:2890/races")
+    fetch("https://backendforpaxgameplay.herokuapp.com/races")
       .then((response) => response.json())
       .then((response) => {
         races = response
         console.log(races, "RACES ARRAY LOGGED HERE")
       })
-    fetch("http://localhost:2890/classes")
+    fetch("https://backendforpaxgameplay.herokuapp.com/classes")
       .then((response) => response.json())
       .then((response) => {
         classes = response
         console.log(classes, "CLASSES ARRAY LOGGED HERE")
       })
-    fetch("http://localhost:2890/spells")
+    fetch("https://backendforpaxgameplay.herokuapp.com/spells")
       .then((response) => response.json())
       .then((response) => {
         spells = response
         console.log(spells, "SPELLS ARRAY LOGGED HERE")
       })
 
-    fetch("http://localhost:2890/equipmentabilities")
+    fetch("https://backendforpaxgameplay.herokuapp.com/equipmentabilities")
       .then((response) => response.json())
       .then((response) => {
         equipmentAbilities = response
