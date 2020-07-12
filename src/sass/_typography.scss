@@ -1,0 +1,82 @@
+body {
+  font-size: 1.6rem;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+  text-transform: uppercase;
+  margin: 0.5rem 0;
+  padding: 0 0.5rem;
+}
+
+h1 {
+  font-size: 6rem;
+  padding: 1rem;
+  color: black;
+  /* text-align: center; */
+  letter-spacing: 0.2rem;
+}
+
+h2 {
+  margin: 0;
+  background: black;
+  color: whitesmoke;
+  /* text-align: center; */
+}
+
+h3 {
+  font-weight: bold;
+  color: black;
+  /* background: #f5bc2d;
+  background: #00139A; 
+  background: #f5f5df; */
+  margin-left: 0.5rem;
+}
+
+h4 {
+  font-weight: bold;
+  color: black;
+  background: #5d5de6;
+  background: rgb(224, 137, 22);
+  background: #00139a;
+  background: #ebb65d;
+}
+
+h5 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: black;
+  background: #f5bc2d;
+  background: rgb(219, 198, 219);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+h6 {
+  /* border-top-left-radius: 8px;
+  border-top-right-radius: 8px; */
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: whitesmoke;
+  background: black;
+  margin: -1rem -1rem 0 -1rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.edit-h6 {
+  background: rgb(141, 181, 189);
+  background: rgb(233, 200, 142);
+  background: black;
+  color: whitesmoke;
+  margin: 0 -0.5rem 2rem -0.5rem;
+  text-align: center;
+  cursor: auto;
+}

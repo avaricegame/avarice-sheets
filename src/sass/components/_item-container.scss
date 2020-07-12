@@ -1,0 +1,56 @@
+.weapon-div {
+  background: rgb(240, 240, 240);
+  /* border-radius: 8px; */
+
+  box-shadow: 0 0 10px rgb(156, 156, 156);
+  margin: 2rem 0;
+  padding: 1rem;
+
+  transition: all 0.3s;
+}
+
+.weapon-div:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 15px rgb(104, 104, 104);
+  z-index: 2;
+}
+
+.delete-button {
+  text-align: center;
+  margin-bottom: -1rem;
+  background: rgb(235, 118, 118);
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.gray {
+  cursor: not-allowed;
+  background: rgb(168, 168, 168);
+}
+.delete-button:hover {
+  box-shadow: 0 -1px 4px rgb(151, 151, 151);
+  background: red;
+  margin: 2rem -13px -10px -13px;
+}
+
+.gray:hover {
+  box-shadow: none;
+  background: rgb(168, 168, 168);
+  margin: 2rem -10px -10px -10px;
+}
+
+.header__h2--link {
+  background: none;
+  color: black;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.5s;
+}
+
+.header__h2--link:hover {
+  background: whitesmoke;
+  color: black;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgb(156, 156, 156);
+}
