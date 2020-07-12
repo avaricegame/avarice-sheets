@@ -1,5 +1,5 @@
 import React from "react"
-import Toggle from "../../../components/Toggle/Toggle"
+import Toggle from "../../components/nln/Toggle"
 
 class CustomItemForm extends React.Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import Toggle from "../../../components/Toggle/Toggle"
+import Toggle from "../../components/nln/Toggle"
 
 class EditExcellenceChipsForm extends React.Component {
   constructor(props) {

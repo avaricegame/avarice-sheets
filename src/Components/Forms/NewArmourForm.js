@@ -1,5 +1,5 @@
 import React from "react"
-import Toggle from "../../../../components/Toggle"
+import Toggle from "../../components/nln/Toggle"
 
 class NewArmourForm extends React.Component {
   constructor(props) {

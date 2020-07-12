@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import Toggle from "../Toggle"
+import Toggle from "../../components/nln/Toggle"
 
 class CharacterBackgroundForm extends React.Component {
   constructor(props) {

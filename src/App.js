@@ -5,14 +5,12 @@ import "./App.css"
 
 import uniqid from "uniqid"
 
-// my components
-import Header from "./components/Header/Header"
-import Home from "./components/Home/Home"
-import Navbar from "./components/Navbar/Navbar"
-import Footer from "./components/Footer/Footer"
-import Signin from "./components/Signin/Signin"
-import Register from "./components/Register/Register"
-import Error from "./components/Error/Error"
+// COMPONENTS
+import Home from "./components/Home"
+import HomeGuest from "./components/HomeGuest"
+import Profile from "./components/Profile"
+import CharacterSheet from "./components/CharacterSheet"
+import CampaignSheet from "./components/CampaignSheet"
 
 Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
 
@@ -27,7 +25,19 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/"></Route>
+        <Route path="/" exact>
+          <Home />
+          {/* <HomeGuest /> */}
+        </Route>
+        <Route path="/profile/:username">
+          <Profile />
+        </Route>
+        <Route path="/character/:id/gameplay">
+          <CharacterSheet />
+        </Route>
+        <Route path="/campaign/:id">
+          <CampaignSheet />
+        </Route>
       </Switch>
     </BrowserRouter>
   )
