@@ -23,3 +23,11 @@ body {
   left: 0;
   z-index: -1;
 }
+
+.fixing-link-settings {
+  text-decoration: none;
+  color: $color-black;
+  &:hover {
+    color: $color-black;
+  }
+}

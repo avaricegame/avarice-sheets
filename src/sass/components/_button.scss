@@ -25,10 +25,10 @@ button:active {
 }
 
 a {
-  color: #ebb65d;
+  color: $color-light-yellow;
 }
 a:hover {
-  color: #f5f5df;
+  color: darken($color-light-yellow, 20%);
 }
 
 button {
