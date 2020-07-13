@@ -1,52 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Carrois+Gothic&family=Carrois+Gothic+SC&display=swap");
+
+// font-family: 'Audiowide', cursive;
+// font-family: 'Carrois Gothic', sans-serif;
+// font-family: 'Carrois Gothic SC', sans-serif;
+
 body {
   font-size: 1.6rem;
-  font-family: sans-serif;
+  font-family: "Carrois Gothic", sans-serif;
   font-weight: 400;
 }
 
-h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
   font-weight: 300;
-  text-transform: uppercase;
-  margin: 0.5rem 0;
-  padding: 0 0.5rem;
-}
-
-h1 {
-  font-size: 6rem;
-  padding: 1rem;
-  color: black;
-  /* text-align: center; */
-  letter-spacing: 0.2rem;
-}
-
-h2 {
-  margin: 0;
-  background: black;
-  color: whitesmoke;
-  /* text-align: center; */
-}
-
-h3 {
-  font-weight: bold;
-  color: black;
-  /* background: #f5bc2d;
-  background: #00139A; 
-  background: #f5f5df; */
-  margin-left: 0.5rem;
-}
-
-h4 {
-  font-weight: bold;
-  color: black;
-  background: #5d5de6;
-  background: rgb(224, 137, 22);
-  background: #00139a;
-  background: #ebb65d;
+  font-family: "Carrois Gothic SC", sans-serif;
 }
 
 h5 {
