@@ -104,7 +104,7 @@ function Home() {
             <Link to="/campaign/123" class="fixing-link-settings">
               <div className="item-container">
                 <h3 className="item-container__heading">Welcoming Treaties</h3>
-                <h4 className="item-container__subheading">campid: #123abc</h4>
+                <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
                 <table>
                   <tr>
                     <td>Players:</td>
@@ -130,7 +130,7 @@ function Home() {
             <Link to="/campaign/123" class="fixing-link-settings">
               <div className="item-container">
                 <h3 className="item-container__heading">Hungry Hippoes</h3>
-                <h4 className="item-container__subheading">campid: #123abc</h4>
+                <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
                 <table>
                   <tr>
                     <td>Players:</td>
@@ -156,7 +156,7 @@ function Home() {
             <Link to="/campaign/123" class="fixing-link-settings">
               <div className="item-container">
                 <h3 className="item-container__heading">Capsizing Monkeys</h3>
-                <h4 className="item-container__subheading">campid: #123abc</h4>
+                <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
                 <table>
                   <tr>
                     <td>Players:</td>
