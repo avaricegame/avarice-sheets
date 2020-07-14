@@ -1,28 +1,37 @@
-.header-button {
-  display: none;
-  max-width: 50%;
-  background: none;
-  color: black;
-  font-size: 2rem;
-  text-transform: uppercase;
-  border: none !important;
-  padding: 2rem;
-  min-height: 40px;
-  margin: 0;
-  transition: all 0.3s;
+.header-bar {
+  &__profile-button {
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 3rem 4rem;
+    &--static {
+      position: absolute;
+    }
+  }
+  &__profile-img {
+    border-radius: 100%;
+    width: 5rem;
+    cursor: pointer;
+    box-shadow: 0 0 1.5rem $color-grey-light-2;
+    &:hover {
+      filter: brightness(0.6);
+    }
+  }
 }
 
-.header-button:hover {
-  /* border: 4px solid #00C5ED !important; */
-  background: none;
-  transform: translateY(-1px);
-}
-
-header {
-  color: black;
-  padding: 2rem;
-  width: 100%;
+.header {
+  background-image: url(../assets/temp-background.jpg);
+  background-size: cover;
   display: flex;
-  justify-content: space-between;
-  min-height: 120px;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid $color-grey-light-1;
+  min-height: 12rem;
+  &__logotype {
+    font-family: "Audiowide", cursive;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    font-size: 6rem;
+    color: $color-grey-dark-2;
+  }
 }

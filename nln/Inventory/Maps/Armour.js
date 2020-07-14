@@ -1,5 +1,5 @@
 import React from "react"
-import Toggle from "../../../../nln/Toggle"
+import Toggle from "../../../src/components/Toggle"
 
 class Armour extends React.Component {
   constructor(props) {

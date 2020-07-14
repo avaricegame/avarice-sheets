@@ -1,19 +1,19 @@
 import React, { useEffect } from "react"
 
-import CustomWeaponForm from "../../../Forms/CustomWeaponForm"
-import CustomItemForm from "../../../Forms/CustomItemForm"
-import CustomArmourForm from "../../../Forms/CustomArmourForm"
-import NewWeaponForm from "../../../Forms/NewWeaponForm"
-import NewItemForm from "../../../Forms/NewItemForm"
-import NewArmourForm from "../../../Forms/NewArmourForm"
-import AddSubtractMoneyForm from "../../../Forms/AddSubtractMoneyForm"
+// import CustomWeaponForm from "../../../Forms/CustomWeaponForm"
+// import CustomItemForm from "../../../Forms/CustomItemForm"
+// import CustomArmourForm from "../../../Forms/CustomArmourForm"
+// import NewWeaponForm from "../../../Forms/NewWeaponForm"
+// import NewItemForm from "../../../Forms/NewItemForm"
+// import NewArmourForm from "../../../Forms/NewArmourForm"
+// import AddSubtractMoneyForm from "../../../Forms/AddSubtractMoneyForm"
 
-// IMPORT ALL OF THE MAPPING COMPONENTS
-import LiquidatedWealth from "./Maps/LiquidatedWealth"
-import Weapons from "./Maps/Weapons"
-import Armour from "./Maps/Armour"
-import Items from "./Maps/Items"
-import Money from "./Maps/Money"
+// // IMPORT ALL OF THE MAPPING COMPONENTS
+// import LiquidatedWealth from "./Maps/LiquidatedWealth"
+// import Weapons from "./Maps/Weapons"
+// import Armour from "./Maps/Armour"
+// import Items from "./Maps/Items"
+// import Money from "./Maps/Money"
 
 function Inventory() {
   return (

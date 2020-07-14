@@ -1,14 +1,14 @@
 import React, { Component } from "react"
 
-// IMPORT ALL THE FORM COMPONENTS
-import CharacterDescriptionForm from "../../../Forms/CharacterDescriptionForm"
-import CharacterBackgroundForm from "../../../Forms/CharacterBackgroundForm"
+// // IMPORT ALL THE FORM COMPONENTS
+// import CharacterDescriptionForm from "../../../Forms/CharacterDescriptionForm"
+// import CharacterBackgroundForm from "../../../Forms/CharacterBackgroundForm"
 
-// IMPORT ALL OF THE MAPPING COMPONENTS
-import CharacterDescription from "./Maps/CharacterDescription"
-import CharacterBackground from "./Maps/CharacterBackground"
-import RaceDetails from "./Maps/RaceDetails"
-import ClassDetails from "./Maps/ClassDetails"
+// // IMPORT ALL OF THE MAPPING COMPONENTS
+// import CharacterDescription from "./Maps/CharacterDescription"
+// import CharacterBackground from "./Maps/CharacterBackground"
+// import RaceDetails from "./Maps/RaceDetails"
+// import ClassDetails from "./Maps/ClassDetails"
 
 // BEGIN CLASS
 

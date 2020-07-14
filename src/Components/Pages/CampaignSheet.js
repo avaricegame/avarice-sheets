@@ -2,37 +2,37 @@ import React, { useEffect } from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 // COMPONENTS
-import Header from "./Pages/Layout/Header"
-import Footer from "./Pages/Layout/Footer"
-import Gameplay from "./Pages/CharacterSheet/Gameplay/Gameplay"
-import Inventory from "./Pages/CharacterSheet/Inventory/Inventory"
-import Stats from "./Pages/CharacterSheet/Stats/Stats"
-import Abilities from "./Pages/CharacterSheet/Abilities/Abilities"
-import Info from "./Pages/CharacterSheet/Info/Info"
-import Notes from "./Pages/Notes"
-import Messages from "./Pages/Messages"
-import CharacterSheetNavigation from "./Pages/Layout/CharacterSheetNavigation"
+import Header from "../Header"
+import Footer from "../Footer"
+import Gameplay from "../CampaignSheet/Gameplay"
+import Players from "../CampaignSheet/Players"
+import Info from "../CampaignSheet/Info"
+import Planning from "../CampaignSheet/Planning"
+import Campaign from "../CampaignSheet/Campaign"
+import Notes from "../Notes"
+import Messages from "../Messages"
+import Navigation from "../CampaignSheet/Navigation"
 
 function CampaignSheet() {
   return (
     <BrowserRouter>
       <Header />
-      <CharacterSheetNavigation />
+      <Navigation />
       <Switch>
         <Route path="/character/:id/gameplay" exact>
           <Gameplay />
         </Route>
         <Route path="/character/:id/inventory" exact>
-          <Inventory />
+          <Players />
         </Route>
         <Route path="/character/:id/stats" exact>
-          <Stats />
+          <Info />
         </Route>
         <Route path="/character/:id/abilities" exact>
-          <Abilities />
+          <Planning />
         </Route>
         <Route path="/character/:id/info" exact>
-          <Info />
+          <Campaign />
         </Route>
         <Route path="/character/:id/messages" exact>
           <Messages />

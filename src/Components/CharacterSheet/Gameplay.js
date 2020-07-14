@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import Toggle from "../../../nln/Toggle"
+import Toggle from "../Toggle"
 
 function Gameplay() {
   return (

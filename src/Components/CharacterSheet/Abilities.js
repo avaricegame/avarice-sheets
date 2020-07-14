@@ -1,13 +1,13 @@
 import React from "react"
 
-// IMPORT ALL THE FORM COMPONENTS
-import CustomAbilitiesForm from "../../../Forms/CustomAbilitiesForm"
+// // IMPORT ALL THE FORM COMPONENTS
+// import CustomAbilitiesForm from "../../../Forms/CustomAbilitiesForm"
 
-// IMPORT ALL OF THE MAPPING COMPONENTS
-import RaceAbilities from "./Maps/RaceAbilities"
-import ClassAbilities from "./Maps/ClassAbilities"
-import Spells from "./Maps/Spells"
-import CustomAbilities from "./Maps/CustomAbilities"
+// // IMPORT ALL OF THE MAPPING COMPONENTS
+// import RaceAbilities from "./Maps/RaceAbilities"
+// import ClassAbilities from "./Maps/ClassAbilities"
+// import Spells from "./Maps/Spells"
+// import CustomAbilities from "./Maps/CustomAbilities"
 
 // BEGIN CLASS
 class Abilities extends React.Component {

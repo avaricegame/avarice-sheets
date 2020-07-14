@@ -2,22 +2,22 @@ import React, { useEffect } from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 // COMPONENTS
-import Header from "./Pages/Layout/Header"
-import Footer from "./Pages/Layout/Footer"
-import Gameplay from "./Pages/CharacterSheet/Gameplay/Gameplay"
-import Inventory from "./Pages/CharacterSheet/Inventory/Inventory"
-import Stats from "./Pages/CharacterSheet/Stats/Stats"
-import Abilities from "./Pages/CharacterSheet/Abilities/Abilities"
-import Info from "./Pages/CharacterSheet/Info/Info"
-import Notes from "./Pages/Notes"
-import Messages from "./Pages/Messages"
-import CharacterSheetNavigation from "./Pages/Layout/CharacterSheetNavigation"
+import Header from "../Header"
+import Footer from "../Footer"
+import Gameplay from "../CharacterSheet/Gameplay"
+import Inventory from "../CharacterSheet/Inventory"
+import Stats from "../CharacterSheet/Stats"
+import Abilities from "../CharacterSheet/Abilities"
+import Info from "../CharacterSheet/Info"
+import Notes from "../Notes"
+import Messages from "../Messages"
+import Navigation from "../CharacterSheet/Navigation"
 
 function CharacterSheet() {
   return (
     <BrowserRouter>
       <Header />
-      <CharacterSheetNavigation />
+      <Navigation />
       <Switch>
         <Route path="/character/:id/gameplay" exact>
           <Gameplay />

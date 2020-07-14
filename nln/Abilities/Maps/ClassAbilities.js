@@ -1,5 +1,5 @@
 import React from "react"
-import Toggle from "../../../../nln/Toggle"
+import Toggle from "../../../src/components/Toggle"
 
 let charactersClass
 let correctAbilities

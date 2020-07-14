@@ -1,11 +1,11 @@
 import React from "react"
 
-// IMPORT ALL OF THE MAPPING COMPONENTS
-import LevelInfo from "./Maps/LevelInfo"
-import ImportantStats from "./Maps/ImportantStats"
-import AbilityScores from "./Maps/AbilityScores"
-import Proficiencies from "./Maps/Proficiencies"
-import Skills from "./Maps/Skills"
+// // IMPORT ALL OF THE MAPPING COMPONENTS
+// import LevelInfo from "./Maps/LevelInfo"
+// import ImportantStats from "./Maps/ImportantStats"
+// import AbilityScores from "./Maps/AbilityScores"
+// import Proficiencies from "./Maps/Proficiencies"
+// import Skills from "./Maps/Skills"
 
 // BEGIN CLASS
 

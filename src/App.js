@@ -6,11 +6,11 @@ import "./App.scss"
 import uniqid from "uniqid"
 
 // COMPONENTS
-import Home from "./components/Home"
-import HomeGuest from "./components/HomeGuest"
-import Profile from "./components/Profile"
-import CharacterSheet from "./components/CharacterSheet"
-import CampaignSheet from "./components/CampaignSheet"
+import Home from "./components/Pages/Home"
+import HomeGuest from "./components/Pages/HomeGuest"
+import Profile from "./components/Pages/Profile"
+import CharacterSheet from "./components/Pages/CharacterSheet"
+import CampaignSheet from "./components/Pages/CampaignSheet"
 
 Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
 

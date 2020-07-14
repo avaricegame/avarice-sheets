@@ -5,7 +5,7 @@ function Header() {
     <>
       <div className="header-bar">
         <div className="header-bar__profile-button header-bar__profile-button--static">
-          <img src="/temp-user.jpg" alt="user profile photo" className="header-bar__profile-img" />
+          <img src="/assets/temp-user.jpg" alt="user profile photo" className="header-bar__profile-img" />
         </div>
       </div>
       <header className="header">

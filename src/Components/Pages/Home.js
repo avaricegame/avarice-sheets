@@ -6,7 +6,7 @@ function Home() {
     <>
       <div className="header-bar">
         <div className="header-bar__profile-button">
-          <img src="/temp-user.jpg" alt="user profile photo" className="header-bar__profile-img" />
+          <img src="/assets/temp-user.jpg" alt="user profile photo" className="header-bar__profile-img" />
         </div>
       </div>
       <header className="header">
