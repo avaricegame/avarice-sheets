@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 
 function Home() {
@@ -6,7 +6,7 @@ function Home() {
     <>
       <div className="header-bar">
         <div className="header-bar__profile-button">
-          <img src="/assets/temp-user.jpg" alt="user profile photo" className="header-bar__profile-img" />
+          <img src="/assets/temp-user.jpg" alt="user" className="header-bar__profile-img" />
         </div>
       </div>
       <header className="header">
@@ -17,81 +17,87 @@ function Home() {
           <h2 className="heading">Character Sheets</h2>
           <div className="sheets-container">
             <button>Create a New Character Sheet</button>
-            <Link to="/character/123/gameplay" class="fixing-link-settings">
+            <Link to="/character/123/gameplay" className="fixing-link-settings">
               <div className="item-container item-container--hover-highlight">
                 <h3 className="item-container__heading">William Wendford</h3>
                 <h4 className="item-container__subheading">charid: #123abc</h4>
                 <table>
-                  <tr>
-                    <td>Level:</td>
-                    <td>5</td>
-                  </tr>
-                  <tr>
-                    <td>Race:</td>
-                    <td>Bruttu</td>
-                  </tr>
-                  <tr>
-                    <td>Class:</td>
-                    <td>Apa</td>
-                  </tr>
-                  <tr>
-                    <td>Campaign:</td>
-                    <td>
-                      <em>"Welcoming Treaties"</em>
-                    </td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>Level:</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>Race:</td>
+                      <td>Bruttu</td>
+                    </tr>
+                    <tr>
+                      <td>Class:</td>
+                      <td>Apa</td>
+                    </tr>
+                    <tr>
+                      <td>Campaign:</td>
+                      <td>
+                        <em>"Welcoming Treaties"</em>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </Link>
-            <Link to="/character/123/gameplay" class="fixing-link-settings">
+            <Link to="/character/123/gameplay" className="fixing-link-settings">
               <div className="item-container">
                 <h3 className="item-container__heading">Todd Bendy</h3>
                 <h4 className="item-container__subheading">charid: #123abc</h4>
                 <table>
-                  <tr>
-                    <td>Level:</td>
-                    <td>5</td>
-                  </tr>
-                  <tr>
-                    <td>Race:</td>
-                    <td>Bruttu</td>
-                  </tr>
-                  <tr>
-                    <td>Class:</td>
-                    <td>Apa</td>
-                  </tr>
-                  <tr>
-                    <td>Campaign:</td>
-                    <td>
-                      <em>"Welcoming Treaties"</em>
-                    </td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>Level:</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>Race:</td>
+                      <td>Bruttu</td>
+                    </tr>
+                    <tr>
+                      <td>Class:</td>
+                      <td>Apa</td>
+                    </tr>
+                    <tr>
+                      <td>Campaign:</td>
+                      <td>
+                        <em>"Welcoming Treaties"</em>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </Link>
-            <Link to="/character/123/gameplay" class="fixing-link-settings">
+            <Link to="/character/123/gameplay" className="fixing-link-settings">
               <div className="item-container">
                 <h3 className="item-container__heading">Grape Muethers</h3>
                 <h4 className="item-container__subheading">charid: #123abc</h4>
                 <table>
-                  <tr>
-                    <td>Level:</td>
-                    <td>5</td>
-                  </tr>
-                  <tr>
-                    <td>Race:</td>
-                    <td>Bruttu</td>
-                  </tr>
-                  <tr>
-                    <td>Class:</td>
-                    <td>Apa</td>
-                  </tr>
-                  <tr>
-                    <td>Campaign:</td>
-                    <td>
-                      <em>"Welcoming Treaties"</em>
-                    </td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>Level:</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>Race:</td>
+                      <td>Bruttu</td>
+                    </tr>
+                    <tr>
+                      <td>Class:</td>
+                      <td>Apa</td>
+                    </tr>
+                    <tr>
+                      <td>Campaign:</td>
+                      <td>
+                        <em>"Welcoming Treaties"</em>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </Link>
@@ -101,81 +107,87 @@ function Home() {
           <h2 className="heading">Campaign Sheets</h2>
           <div className="sheets-container">
             <button>Create a New Campaign</button>
-            <Link to="/campaign/123" class="fixing-link-settings">
+            <Link to="/campaign/123" className="fixing-link-settings">
               <div className="item-container">
                 <h3 className="item-container__heading">Welcoming Treaties</h3>
                 <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
                 <table>
-                  <tr>
-                    <td>Players:</td>
-                    <td>Player 1, Player 2, Player 3</td>
-                  </tr>
-                  <tr>
-                    <td>Characters:</td>
-                    <td>Character 1, Character 2, Character 3</td>
-                  </tr>
-                  <tr>
-                    <td>Missions Served:</td>
-                    <td>5</td>
-                  </tr>
-                  <tr>
-                    <td>Current Mission:</td>
-                    <td>
-                      <em>"Finding Friends"</em>
-                    </td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>Players:</td>
+                      <td>Player 1, Player 2, Player 3</td>
+                    </tr>
+                    <tr>
+                      <td>Characters:</td>
+                      <td>Character 1, Character 2, Character 3</td>
+                    </tr>
+                    <tr>
+                      <td>Missions Served:</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>Current Mission:</td>
+                      <td>
+                        <em>"Finding Friends"</em>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </Link>
-            <Link to="/campaign/123" class="fixing-link-settings">
+            <Link to="/campaign/123" className="fixing-link-settings">
               <div className="item-container">
                 <h3 className="item-container__heading">Hungry Hippoes</h3>
                 <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
                 <table>
-                  <tr>
-                    <td>Players:</td>
-                    <td>Player 1, Player 2, Player 3</td>
-                  </tr>
-                  <tr>
-                    <td>Characters:</td>
-                    <td>Character 1, Character 2, Character 3</td>
-                  </tr>
-                  <tr>
-                    <td>Missions Served:</td>
-                    <td>5</td>
-                  </tr>
-                  <tr>
-                    <td>Current Mission:</td>
-                    <td>
-                      <em>"Finding Friends"</em>
-                    </td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>Players:</td>
+                      <td>Player 1, Player 2, Player 3</td>
+                    </tr>
+                    <tr>
+                      <td>Characters:</td>
+                      <td>Character 1, Character 2, Character 3</td>
+                    </tr>
+                    <tr>
+                      <td>Missions Served:</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>Current Mission:</td>
+                      <td>
+                        <em>"Finding Friends"</em>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </Link>
-            <Link to="/campaign/123" class="fixing-link-settings">
+            <Link to="/campaign/123" className="fixing-link-settings">
               <div className="item-container">
                 <h3 className="item-container__heading">Capsizing Monkeys</h3>
                 <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
                 <table>
-                  <tr>
-                    <td>Players:</td>
-                    <td>Player 1, Player 2, Player 3</td>
-                  </tr>
-                  <tr>
-                    <td>Characters:</td>
-                    <td>Character 1, Character 2, Character 3</td>
-                  </tr>
-                  <tr>
-                    <td>Missions Served:</td>
-                    <td>5</td>
-                  </tr>
-                  <tr>
-                    <td>Current Mission:</td>
-                    <td>
-                      <em>"Finding Friends"</em>
-                    </td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>Players:</td>
+                      <td>Player 1, Player 2, Player 3</td>
+                    </tr>
+                    <tr>
+                      <td>Characters:</td>
+                      <td>Character 1, Character 2, Character 3</td>
+                    </tr>
+                    <tr>
+                      <td>Missions Served:</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>Current Mission:</td>
+                      <td>
+                        <em>"Finding Friends"</em>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </Link>
@@ -184,7 +196,7 @@ function Home() {
       </div>
       <footer className="footer">
         <p className="footer__text">
-          &copy; 2020 by Avarice. All rights reserved. Application built by <a href="#">Talon Durrant</a>
+          &copy; 2020 by Avarice. All rights reserved. Application built by <a href="http://talondurrant.com">Talon Durrant</a>
         </p>
       </footer>
     </>

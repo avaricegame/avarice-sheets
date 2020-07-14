@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 
 function HomeGuest() {
   return <>Home when not logged in</>

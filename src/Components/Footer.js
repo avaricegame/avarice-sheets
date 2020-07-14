@@ -1,10 +1,10 @@
-import React, { useEffect } from "react"
+import React from "react"
 
 function Footer() {
   return (
     <footer className="footer">
       <p className="footer__text">
-        &copy; 2020 by Avarice. All rights reserved. Application built by <a href="#">Talon Durrant</a>
+        &copy; 2020 by Avarice. All rights reserved. Application built by <a href="http://talondurrant.com">Talon Durrant</a>
       </p>
     </footer>
   )

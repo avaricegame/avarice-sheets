@@ -1,11 +1,11 @@
-import React, { useEffect } from "react"
+import React from "react"
 
 function Header() {
   return (
     <>
       <div className="header-bar">
         <div className="header-bar__profile-button header-bar__profile-button--static">
-          <img src="/assets/temp-user.jpg" alt="user profile photo" className="header-bar__profile-img" />
+          <img src="/assets/temp-user.jpg" alt="user" className="header-bar__profile-img" />
         </div>
       </div>
       <header className="header">
