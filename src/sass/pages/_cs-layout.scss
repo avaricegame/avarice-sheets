@@ -1,0 +1,34 @@
+.secondary-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  &__heading {
+    text-transform: uppercase;
+    font-size: 5.5rem;
+    letter-spacing: 0.5rem;
+    font-family: "Carrois Gothic", sans-serif;
+    transform: translateY(-0.5rem);
+  }
+}
+
+.page-container {
+  width: 98%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.cw {
+  &__25 {
+    width: 25%;
+  }
+  &__50 {
+    width: 50%;
+  }
+  &__75 {
+    width: 75%;
+  }
+  &__100 {
+    width: 100%;
+  }
+}

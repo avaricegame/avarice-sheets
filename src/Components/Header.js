@@ -9,7 +9,7 @@ function Header() {
         </div>
       </div>
       <header className="header">
-        <h1 className="header__logotype">Camp/Char Name</h1>
+        <h1 className="header__logotype">Wayne Bradford</h1>
       </header>
     </>
   )

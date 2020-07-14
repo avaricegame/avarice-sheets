@@ -18,7 +18,7 @@ function Home() {
           <div className="sheets-container">
             <button>Create a New Character Sheet</button>
             <Link to="/character/123/gameplay" class="fixing-link-settings">
-              <div className="item-container">
+              <div className="item-container item-container--hover-highlight">
                 <h3 className="item-container__heading">William Wendford</h3>
                 <h4 className="item-container__subheading">charid: #123abc</h4>
                 <table>
