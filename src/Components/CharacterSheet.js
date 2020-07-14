@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 // COMPONENTS
 import Header from "./Pages/Layout/Header"
-import Navbar from "./Pages/Layout/CharacterSheetNavigation"
 import Footer from "./Pages/Layout/Footer"
 import Gameplay from "./Pages/CharacterSheet/Gameplay/Gameplay"
 import Inventory from "./Pages/CharacterSheet/Inventory/Inventory"

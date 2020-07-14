@@ -3,7 +3,10 @@
     position: fixed;
     right: 0;
     top: 0;
-    padding: 2rem 4rem;
+    padding: 3rem 4rem;
+    &--static {
+      position: absolute;
+    }
   }
   &__profile-img {
     border-radius: 100%;

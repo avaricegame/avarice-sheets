@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from "react"
 
-const Footer = () => {
-    return (
-<footer>
-                        <p>&copy; 2020 by Pax &bull; V.4.0.0 &bull; built by Talon Durrant</p>
-                </footer>
-    );
+function Footer() {
+  return (
+    <footer className="footer">
+      <p className="footer__text">
+        &copy; 2020 by Avarice. All rights reserved. Application built by <a href="#">Talon Durrant</a>
+      </p>
+    </footer>
+  )
 }
 
 export default Footer

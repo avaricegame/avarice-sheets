@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { NavLink } from "react-router-dom"
 
-function CharacterSheetNavigation() {
+function CampaignSheetNavigation() {
   return (
     <nav>
       <ul className="navigation">
@@ -9,16 +9,16 @@ function CharacterSheetNavigation() {
           <li>Gameplay</li>
         </NavLink>
         <NavLink to="/character/:id/inventory" activeClassName="active">
-          <li>Inventory</li>
+          <li>Players</li>
         </NavLink>
         <NavLink to="/character/:id/stats" activeClassName="active">
-          <li>Stats</li>
+          <li>Info</li>
         </NavLink>
         <NavLink to="/character/:id/abilities" activeClassName="active">
-          <li>Abilities</li>
+          <li>Campaign</li>
         </NavLink>
         <NavLink to="/character/:id/info" activeClassName="active">
-          <li>Info</li>
+          <li>Planning</li>
         </NavLink>
         <NavLink to="/character/:id/messages" activeClassName="active">
           <li>Messages</li>
@@ -31,4 +31,4 @@ function CharacterSheetNavigation() {
   )
 }
 
-export default CharacterSheetNavigation
+export default CampaignSheetNavigation
