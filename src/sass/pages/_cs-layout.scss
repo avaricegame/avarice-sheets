@@ -16,6 +16,7 @@
   width: 98%;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .cw {
@@ -25,7 +26,10 @@
   &__25 {
     width: 24%;
     margin: 0 auto;
-    padding: 0 1rem;
+  }
+  &__33 {
+    width: 32%;
+    margin: 0 auto;
   }
   &__50 {
     width: 49%;
