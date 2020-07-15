@@ -4,9 +4,9 @@
   margin: 1rem 0;
   padding: 1rem;
   transition: all 0.2s;
-  cursor: pointer;
   border: 2px solid transparent;
   &--hover-highlight {
+    cursor: pointer;
     &:hover {
       border: 2px solid $color-light-yellow;
     }
@@ -23,7 +23,7 @@
   &__heading {
     font-size: 2rem;
     letter-spacing: 0.1rem;
-    font-weight: bold;
+    text-transform: uppercase;
     color: $color-white;
     background-color: $color-grey-dark-2;
     padding: 1rem 2rem;
@@ -49,6 +49,20 @@
     &--blue {
       background-color: $color-light-blue;
     }
+  }
+  &__select-label {
+    font-size: 1.4rem;
+    padding: 2rem 1rem 0.2rem 0.8rem;
+    margin: 0;
+  }
+  &__select {
+    margin-bottom: 2rem;
+  }
+  &__money-amount {
+    padding: 1.5rem 2.5rem 1rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
   }
 }
 

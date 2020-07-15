@@ -1,27 +1,14 @@
-import React from 'react';
+import React from "react"
 
-
-const Messages = () => {
-    return (
-                <React.Fragment>
-                    
-                    <div className="secondary-header">
-                        <h1>Messages</h1>
-                </div>
-                <div className="messages bgb">
-                        <div className="heading-bar">
-                                <h2>Messages</h2>
-                        </div>
-                        <p>The messaging feature is currently under construction, but will be coming soon!</p>
-
-                       
-</div>
-
- </React.Fragment>
-        
-    );
+function Messages() {
+  return (
+    <>
+      <div className="secondary-header">
+        <h1 className="secondary-header__heading">Messages</h1>
+      </div>
+      <div className="page-container">{/* /////// CLOSE PAGE CONTAINER /////// */}</div>
+    </>
+  )
 }
 
-
-
-export default Messages;
+export default Messages
