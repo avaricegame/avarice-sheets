@@ -25,10 +25,10 @@ function App() {
         <Route path="/profile/:username">
           <Profile />
         </Route>
-        <Route path="/character/:id/gameplay">
+        <Route path="/character/:id/">
           <CharacterSheet />
         </Route>
-        <Route path="/campaign/:id">
+        <Route path="/campaign/:id/">
           <CampaignSheet />
         </Route>
       </Switch>

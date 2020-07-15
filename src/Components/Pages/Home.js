@@ -107,7 +107,7 @@ function Home() {
           <h2 className="heading">Campaign Sheets</h2>
           <div className="sheets-container">
             <button>Create a New Campaign</button>
-            <Link to="/campaign/123" className="fixing-link-settings">
+            <Link to="/campaign/123/gameplay" className="fixing-link-settings">
               <div className="item-container item-container--hover-highlight">
                 <h3 className="item-container__heading">Welcoming Treaties</h3>
                 <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
@@ -135,7 +135,7 @@ function Home() {
                 </table>
               </div>
             </Link>
-            <Link to="/campaign/123" className="fixing-link-settings">
+            <Link to="/campaign/123/gameplay" className="fixing-link-settings">
               <div className="item-container item-container--hover-highlight">
                 <h3 className="item-container__heading">Hungry Hippoes</h3>
                 <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
@@ -163,7 +163,7 @@ function Home() {
                 </table>
               </div>
             </Link>
-            <Link to="/campaign/123" className="fixing-link-settings">
+            <Link to="/campaign/123/gameplay" className="fixing-link-settings">
               <div className="item-container item-container--hover-highlight">
                 <h3 className="item-container__heading">Capsizing Monkeys</h3>
                 <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>

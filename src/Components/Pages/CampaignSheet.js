@@ -12,36 +12,65 @@ import Campaign from "../CampaignSheet/Campaign"
 import Notes from "../Notes"
 import Messages from "../Messages"
 import Navigation from "../CampaignSheet/Navigation"
+import Home from "../Pages/Home"
+import About from "../CampaignSheet/About"
 
 function CampaignSheet() {
   return (
     <BrowserRouter>
-      <Header />
-      <Navigation />
       <Switch>
-        <Route path="/character/:id/gameplay" exact>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/campaign/:id/about">
+          <Header />
+          <Navigation />
+          <About />
+          <Footer />
+        </Route>
+        <Route path="/campaign/:id/gameplay" exact>
+          <Header />
+          <Navigation />
           <Gameplay />
+          <Footer />
         </Route>
-        <Route path="/character/:id/inventory" exact>
+        <Route path="/campaign/:id/players" exact>
+          <Header />
+          <Navigation />
           <Players />
+          <Footer />
         </Route>
-        <Route path="/character/:id/stats" exact>
+        <Route path="/campaign/:id/info" exact>
+          <Header />
+          <Navigation />
           <Info />
+          <Footer />
         </Route>
-        <Route path="/character/:id/abilities" exact>
+        <Route path="/campaign/:id/planning" exact>
+          <Header />
+          <Navigation />
           <Planning />
+          <Footer />
         </Route>
-        <Route path="/character/:id/info" exact>
+        <Route path="/campaign/:id/campaign" exact>
+          <Header />
+          <Navigation />
           <Campaign />
+          <Footer />
         </Route>
-        <Route path="/character/:id/messages" exact>
+        <Route path="/campaign/:id/messages" exact>
+          <Header />
+          <Navigation />
           <Messages />
+          <Footer />
         </Route>
-        <Route path="/character/:id/notes" exact>
+        <Route path="/campaign/:id/notes" exact>
+          <Header />
+          <Navigation />
           <Notes />
+          <Footer />
         </Route>
       </Switch>
-      <Footer />
     </BrowserRouter>
   )
 }

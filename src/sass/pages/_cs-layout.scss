@@ -22,6 +22,9 @@
 .cw {
   &__container {
     padding: 2rem 1rem;
+    &--tree {
+      display: flex;
+    }
   }
   &__25 {
     width: 24%;
@@ -33,6 +36,10 @@
   }
   &__50 {
     width: 49%;
+    margin: 0 auto;
+  }
+  &__66 {
+    width: 65%;
     margin: 0 auto;
   }
   &__75 {
@@ -56,4 +63,14 @@
 
 .note-content {
   font-size: 1.8rem;
+}
+
+.edit-note-button {
+  width: 20rem;
+  float: right;
+  margin: 0;
+}
+
+.highlight {
+  color: $color-light-red;
 }

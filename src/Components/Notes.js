@@ -7,8 +7,6 @@ const Notes = ({ characterSheet }) => {
         <h1 className="secondary-header__heading">Notes</h1>
       </div>
       <div className="page-container">
-        {/* /////// CLOSE PAGE CONTAINER /////// */}
-
         <div className="cw__25">
           <h2 className="heading">Notes</h2>
           <div className="cw__container">
@@ -26,6 +24,7 @@ const Notes = ({ characterSheet }) => {
         <div className="cw__75">
           <h2 className="heading">Note Content</h2>
           <div className="cw__container">
+            <button className="edit-note-button">Edit Note</button>
             <h3 className="note-title">Note 1</h3>
             <hr className="horizontal-rule" />
             <div className="note-content">

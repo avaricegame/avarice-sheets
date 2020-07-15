@@ -2,6 +2,7 @@ import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 // COMPONENTS
+import Home from "../Pages/Home"
 import Header from "../Header"
 import Footer from "../Footer"
 import Gameplay from "../CharacterSheet/Gameplay"
@@ -12,36 +13,64 @@ import Info from "../CharacterSheet/Info"
 import Notes from "../Notes"
 import Messages from "../Messages"
 import Navigation from "../CharacterSheet/Navigation"
+import About from "../CharacterSheet/About"
 
 function CharacterSheet() {
   return (
     <BrowserRouter>
-      <Header />
-      <Navigation />
       <Switch>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/character/:id/about">
+          <Header />
+          <Navigation />
+          <About />
+          <Footer />
+        </Route>
         <Route path="/character/:id/gameplay" exact>
+          <Header />
+          <Navigation />
           <Gameplay />
+          <Footer />
         </Route>
         <Route path="/character/:id/inventory" exact>
+          <Header />
+          <Navigation />
           <Inventory />
+          <Footer />
         </Route>
         <Route path="/character/:id/stats" exact>
+          <Header />
+          <Navigation />
           <Stats />
+          <Footer />
         </Route>
         <Route path="/character/:id/abilities" exact>
+          <Header />
+          <Navigation />
           <Abilities />
+          <Footer />
         </Route>
         <Route path="/character/:id/info" exact>
+          <Header />
+          <Navigation />
           <Info />
+          <Footer />
         </Route>
         <Route path="/character/:id/messages" exact>
+          <Header />
+          <Navigation />
           <Messages />
+          <Footer />
         </Route>
         <Route path="/character/:id/notes" exact>
+          <Header />
+          <Navigation />
           <Notes />
+          <Footer />
         </Route>
       </Switch>
-      <Footer />
     </BrowserRouter>
   )
 }
