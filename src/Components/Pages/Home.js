@@ -5,9 +5,11 @@ function Home() {
   return (
     <>
       <div className="header-bar">
-        <div className="header-bar__profile-button">
-          <img src="/assets/temp-user.jpg" alt="user" className="header-bar__profile-img" />
-        </div>
+        <Link to="/profile/:username">
+          <div className="header-bar__profile-button">
+            <img src="/assets/temp-user.jpg" alt="user" className="header-bar__profile-img" />
+          </div>
+        </Link>
       </div>
       <header className="header">
         <h1 className="header__logotype">Avarice Sheets</h1>

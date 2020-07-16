@@ -22,7 +22,7 @@ function Header() {
         </Link> */}
       </div>
       <header className="header">
-        <h1 className="header__logotype">Wayne Bradford</h1>
+        <h1 className="header__logotype">Campaign Name</h1>
       </header>
     </>
   )

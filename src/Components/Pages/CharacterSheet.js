@@ -14,11 +14,19 @@ import Notes from "../Notes"
 import Messages from "../Messages"
 import Navigation from "../CharacterSheet/Navigation"
 import About from "../CharacterSheet/About"
+import CampaignSheet from "../Pages/CampaignSheet"
+import Profile from "../Pages/Profile"
 
 function CharacterSheet() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/campaign/:id/gameplay">
+          <CampaignSheet />
+        </Route>
+        <Route path="/profile/:username">
+          <Profile />
+        </Route>
         <Route path="/" exact>
           <Home />
         </Route>
