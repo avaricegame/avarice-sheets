@@ -27,7 +27,7 @@ function Abilities() {
                 </p>
               </div>
               <div className="item-container">
-                <h3 className="item-container__heading">Wilbo Wagons</h3>
+                <h3 className="item-container__heading">Wheelbo Wagons</h3>
                 <h4 className="item-container__terheading">Power I</h4>
                 <p>
                   <strong>Details: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
