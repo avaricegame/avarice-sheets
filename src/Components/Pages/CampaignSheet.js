@@ -2,7 +2,7 @@ import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 // COMPONENTS
-import Header from "../Header"
+import Header from "../CampaignSheet/Header"
 import Footer from "../Footer"
 import Gameplay from "../CampaignSheet/Gameplay"
 import Players from "../CampaignSheet/Players"

@@ -10,7 +10,7 @@ function Header() {
             <img src="/assets/temp-logo.png" alt="logo" className="header-bar__home-img" />
           </div>
         </Link>
-        <Link to="/character/123/about">
+        <Link to="/campaign/123/about">
           <div className="header-bar__about-button">
             <span className="header-bar__about-img">?</span>
           </div>
