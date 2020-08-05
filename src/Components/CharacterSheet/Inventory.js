@@ -1,6 +1,6 @@
 import React from "react"
 
-function Inventory() {
+function Inventory(props) {
   return (
     <>
       <div className="secondary-header">
@@ -142,7 +142,7 @@ function Inventory() {
             <div className="item-container">
               <h3 className="item-container__heading">Uni-Credits / Gold</h3>
               <h4 className="item-container__subheading">Current Savings</h4>
-              <p className="item-container__money-amount">30 Gold</p>
+              <p className="item-container__money-amount">{props.charSheet.gold} Gold</p>
             </div>
           </div>
         </div>
@@ -156,9 +156,9 @@ function Inventory() {
               <p className="item-container__select-label">Select a weapon to view the details</p>
               <select className="item-container__select">
                 <option></option>
-                <option>Weapon</option>
-                <option>WEapon</option>
-                <option>WEApon</option>
+                {props.charSheet.weapons.map((weapon) => {
+                  return <option key={weapon.id}>{weapon.name}</option>
+                })}
               </select>
             </div>
             <div className="item-container">

@@ -12,9 +12,12 @@ import Profile from "./Components/Pages/Profile"
 import CharacterSheet from "./Components/Pages/CharacterSheet"
 import CampaignSheet from "./Components/Pages/CampaignSheet"
 
-Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
+Axios.defaults.baseURL = "http://localhost:2890"
+//process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
 
 function App() {
+  let CSID = 146
+
   return (
     <BrowserRouter>
       <Switch>
@@ -26,7 +29,7 @@ function App() {
           <Profile />
         </Route>
         <Route path="/character/:id/">
-          <CharacterSheet />
+          <CharacterSheet CSID={CSID} />
         </Route>
         <Route path="/campaign/:id/">
           <CampaignSheet />

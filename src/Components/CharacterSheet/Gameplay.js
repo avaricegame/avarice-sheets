@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-function Gameplay() {
+function Gameplay(props) {
   return (
     <>
       <div className="secondary-header">
@@ -14,7 +14,7 @@ function Gameplay() {
             <div className="item-container">
               <h3 className="item-container__heading">Hit Points</h3>
               <h4 className="item-container__subheading">Max HP: 45</h4>
-              <h4 className="item-container__terheading">Current HP: 45</h4>
+              <h4 className="item-container__terheading">Current HP: {props.charSheet.currentHP}</h4>
               <button>Take Damage</button>
               <button>Heal HP</button>
             </div>
