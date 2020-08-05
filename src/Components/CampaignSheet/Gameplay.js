@@ -18,7 +18,7 @@ function Gameplay() {
             <button>Attack</button>
             <button>Use Ability</button>
             <button>Pay Money</button>
-            <button>Sell Items</button>
+            <button>Give Items</button>
             <button>Roll</button>
           </div>
         </div>

@@ -148,7 +148,7 @@ function Inventory() {
         </div>
 
         <div className="cw__25">
-          <h2 className="heading">S.U.R.O.I.S.</h2>
+          <h2 className="heading">S.U.R.O.N.I.S.</h2>
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Weapons</h3>
