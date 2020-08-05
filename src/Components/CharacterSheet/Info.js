@@ -1,7 +1,6 @@
 import React from "react"
 
 function Info(props) {
-  console.log(props.charSheet)
   return (
     <>
       <div className="secondary-header">

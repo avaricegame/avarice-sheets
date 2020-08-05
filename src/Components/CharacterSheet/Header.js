@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-function Header() {
+function Header(props) {
   return (
     <>
       <div className="header-bar">
@@ -22,7 +22,7 @@ function Header() {
         </Link> */}
       </div>
       <header className="header">
-        <h1 className="header__logotype">Character Name</h1>
+        <h1 className="header__logotype">{props.charSheet.characterName}</h1>
       </header>
     </>
   )

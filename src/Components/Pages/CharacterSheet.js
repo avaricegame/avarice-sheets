@@ -87,49 +87,49 @@ function CharacterSheet(props) {
             <Home />
           </Route>
           <Route path="/character/:id/about">
-            <Header />
+            <Header charSheet={charSheet} />
             <Navigation />
             <About />
             <Footer />
           </Route>
           <Route path="/character/:id/gameplay" exact>
-            <Header />
+            <Header charSheet={charSheet} />
             <Navigation />
             <Gameplay charSheet={charSheet} />
             <Footer />
           </Route>
           <Route path="/character/:id/inventory" exact>
-            <Header />
+            <Header charSheet={charSheet} />
             <Navigation />
             <Inventory charSheet={charSheet} />
             <Footer />
           </Route>
           <Route path="/character/:id/stats" exact>
-            <Header />
+            <Header charSheet={charSheet} />
             <Navigation />
             <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} />
             <Footer />
           </Route>
           <Route path="/character/:id/abilities" exact>
-            <Header />
+            <Header charSheet={charSheet} />
             <Navigation />
             <Abilities abilityTree={abilityTree} />
             <Footer />
           </Route>
           <Route path="/character/:id/info" exact>
-            <Header />
+            <Header charSheet={charSheet} />
             <Navigation />
             <Info charSheet={charSheet} theRace={theRace} theClass={theClass} />
             <Footer />
           </Route>
           <Route path="/character/:id/messages" exact>
-            <Header />
+            <Header charSheet={charSheet} />
             <Navigation />
             <Messages />
             <Footer />
           </Route>
           <Route path="/character/:id/notes" exact>
-            <Header />
+            <Header charSheet={charSheet} />
             <Navigation />
             <Notes charSheet={charSheet} />
             <Footer />
