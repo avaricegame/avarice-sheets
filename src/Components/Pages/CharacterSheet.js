@@ -24,6 +24,7 @@ function CharacterSheet(props) {
   const [theClass, setTheClass] = useState({})
   const [theRace, setTheRace] = useState({})
   const [abilityTree, setAbilityTree] = useState({})
+  const [abilityArray, setAbilityArray] = useState([])
 
   useEffect(() => {
     async function fetchCS() {
@@ -60,10 +61,38 @@ function CharacterSheet(props) {
     fetchCS()
   }, [props.CSID])
 
+  useEffect(() => {
+    if (!isLoading) {
+      let at = charSheet.levelUps[charSheet.levelUps.length - 1].abilityTree
+      at.map((column, index) => {
+        let corrColumn = `column${index + 1}`
+        let ability1 = abilityTree[corrColumn][column.one - 1]
+        let ability2 = abilityTree[corrColumn][column.two + (5 - 1)]
+        let ability3 = abilityTree[corrColumn][column.three + (10 - 1)]
+        let ability4 = abilityTree[corrColumn][column.four + (15 - 1)]
+        let arrToAppend = []
+        if (ability1 !== undefined) {
+          arrToAppend.push(ability1)
+        }
+        if (ability2.key === 2) {
+          arrToAppend.push(ability2)
+        }
+        if (ability3.key === 3) {
+          arrToAppend.push(ability3)
+        }
+        if (ability4.key === 4) {
+          arrToAppend.push(ability4)
+        }
+        setAbilityArray((prevAbilityArray) => prevAbilityArray.concat(arrToAppend))
+      })
+    }
+  }, [charSheet, abilityTree, isLoading])
+
   // console.log("Race: ", theRace)
   // console.log("Class: ", theClass)
   // console.log("Ability Tree: ", abilityTree)
   // console.log("Character Sheet: ", charSheet)
+  // console.log("Abilities:", abilityArray)
 
   // console.log(charSheet)
   // const testFunctionHandler = () => {
@@ -113,7 +142,7 @@ function CharacterSheet(props) {
           <Route path="/character/:id/abilities" exact>
             <Header charSheet={charSheet} />
             <Navigation />
-            <Abilities abilityTree={abilityTree} charSheet={charSheet} />
+            <Abilities abilityTree={abilityTree} charSheet={charSheet} abilityArray={abilityArray} />
             <Footer />
           </Route>
           <Route path="/character/:id/info" exact>

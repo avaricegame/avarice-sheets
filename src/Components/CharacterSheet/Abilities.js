@@ -211,13 +211,18 @@ function Abilities(props) {
                 </div>
               )
             })}
-            <div className="item-container">
-              <h3 className="item-container__heading">Chiminey Crickets</h3>
-              <h4 className="item-container__subheading">Power I</h4>
-              <p>
-                <strong>Details: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-              </p>
-            </div>
+            {props.abilityArray.map((ability, index) => {
+              return (
+                <div key={index} className="item-container">
+                  <h3 className="item-container__heading">{ability.name}</h3>
+                  <h4 className="item-container__subheading">Power {ability.power}</h4>
+                  <p>
+                    <strong>Details: </strong>
+                    {ability.details}
+                  </p>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
