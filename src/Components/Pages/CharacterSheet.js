@@ -25,6 +25,9 @@ function CharacterSheet(props) {
   const [theRace, setTheRace] = useState({})
   const [abilityTree, setAbilityTree] = useState({})
   const [abilityArray, setAbilityArray] = useState([])
+  const [equippedWeapons, setEquippedWeapons] = useState([])
+  const [equippedItems, setEquippedItems] = useState([])
+
   const [equipmentMod, setEquipmentMod] = useState([7, 7, 7, 7]) // one of these for each skill, in the same order as the skills array in level ups
   const [baseEquipmentMod, setBaseEquipmentMod] = useState([3, 3, 3, 3]) // one of these for each base stat, in the order they are planned to be
 
@@ -90,11 +93,28 @@ function CharacterSheet(props) {
     }
   }, [charSheet, abilityTree, isLoading])
 
+  useEffect(() => {
+    if (!isLoading) {
+      setEquippedItems(
+        charSheet.items.filter((item) => {
+          return item.equipped
+        })
+      )
+      setEquippedWeapons(
+        charSheet.weapons.filter((weapon) => {
+          return weapon.equipped
+        })
+      )
+    }
+  }, [charSheet, isLoading])
+
   // console.log("Race: ", theRace)
   // console.log("Class: ", theClass)
   // console.log("Ability Tree: ", abilityTree)
   // console.log("Character Sheet: ", charSheet)
   // console.log("Abilities:", abilityArray)
+  // console.log(equippedItems)
+  // console.log(equippedWeapons)
 
   // console.log(charSheet)
   // const testFunctionHandler = () => {
@@ -115,7 +135,7 @@ function CharacterSheet(props) {
             <Profile />
           </Route>
           <Route path="/" exact>
-            <Home />
+            <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} />
           </Route>
           <Route path="/character/:id/about">
             <Header charSheet={charSheet} />
@@ -132,7 +152,7 @@ function CharacterSheet(props) {
           <Route path="/character/:id/inventory" exact>
             <Header charSheet={charSheet} />
             <Navigation />
-            <Inventory charSheet={charSheet} />
+            <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} />
             <Footer />
           </Route>
           <Route path="/character/:id/stats" exact>

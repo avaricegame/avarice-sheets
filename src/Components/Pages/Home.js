@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-function Home() {
+function Home(props) {
   return (
     <>
       <div className="header-bar">
@@ -19,155 +19,48 @@ function Home() {
           <h2 className="heading">Character Sheets</h2>
           <div className="sheets-container">
             <button>Create a New Character Sheet</button>
-            <Link to="/character/123/gameplay" className="fixing-link-settings">
-              <div className="item-container item-container--hover-highlight">
-                <h3 className="item-container__heading">William Wendford</h3>
-                <h4 className="item-container__subheading">charid: #123abc</h4>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Level:</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <td>Race:</td>
-                      <td>Bruttu</td>
-                    </tr>
-                    <tr>
-                      <td>Class:</td>
-                      <td>Apa</td>
-                    </tr>
-                    <tr>
-                      <td>Campaign:</td>
-                      <td>
-                        <em>"Welcoming Treaties"</em>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </Link>
-            <Link to="/character/123/gameplay" className="fixing-link-settings">
-              <div className="item-container item-container--hover-highlight">
-                <h3 className="item-container__heading">Todd Bendy</h3>
-                <h4 className="item-container__subheading">charid: #123abc</h4>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Level:</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <td>Race:</td>
-                      <td>Bruttu</td>
-                    </tr>
-                    <tr>
-                      <td>Class:</td>
-                      <td>Apa</td>
-                    </tr>
-                    <tr>
-                      <td>Campaign:</td>
-                      <td>
-                        <em>"Welcoming Treaties"</em>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </Link>
-            <Link to="/character/123/gameplay" className="fixing-link-settings">
-              <div className="item-container item-container--hover-highlight">
-                <h3 className="item-container__heading">Grape Muethers</h3>
-                <h4 className="item-container__subheading">charid: #123abc</h4>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Level:</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <td>Race:</td>
-                      <td>Bruttu</td>
-                    </tr>
-                    <tr>
-                      <td>Class:</td>
-                      <td>Apa</td>
-                    </tr>
-                    <tr>
-                      <td>Campaign:</td>
-                      <td>
-                        <em>"Welcoming Treaties"</em>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </Link>
+            {props.characterSheetArray.map((cs) => {
+              return (
+                <Link to={`/character/${cs.charid}/gameplay`} key={cs.charid} className="fixing-link-settings">
+                  <div className="item-container item-container--hover-highlight">
+                    <h3 className="item-container__heading">{cs.characterName}</h3>
+                    <h4 className="item-container__subheading">charid: {cs.charid}</h4>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>Level:</td>
+                          <td>{cs.level}</td>
+                        </tr>
+                        <tr>
+                          <td>Race:</td>
+                          <td>{cs.raceName}</td>
+                        </tr>
+                        <tr>
+                          <td>Class:</td>
+                          <td>{cs.className}</td>
+                        </tr>
+                        <tr>
+                          <td>Campaign ID:</td>
+                          <td>
+                            <em>{cs.campaignID}</em>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </div>
         <div className="character-sheets">
           <h2 className="heading">Campaign Sheets</h2>
           <div className="sheets-container">
             <button>Create a New Campaign</button>
+
             <Link to="/campaign/123/gameplay" className="fixing-link-settings">
               <div className="item-container item-container--hover-highlight">
                 <h3 className="item-container__heading">Welcoming Treaties</h3>
-                <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Players:</td>
-                      <td>Player 1, Player 2, Player 3</td>
-                    </tr>
-                    <tr>
-                      <td>Characters:</td>
-                      <td>Character 1, Character 2, Character 3</td>
-                    </tr>
-                    <tr>
-                      <td>Missions Served:</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <td>Current Mission:</td>
-                      <td>
-                        <em>"Finding Friends"</em>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </Link>
-            <Link to="/campaign/123/gameplay" className="fixing-link-settings">
-              <div className="item-container item-container--hover-highlight">
-                <h3 className="item-container__heading">Hungry Hippoes</h3>
-                <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Players:</td>
-                      <td>Player 1, Player 2, Player 3</td>
-                    </tr>
-                    <tr>
-                      <td>Characters:</td>
-                      <td>Character 1, Character 2, Character 3</td>
-                    </tr>
-                    <tr>
-                      <td>Missions Served:</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <td>Current Mission:</td>
-                      <td>
-                        <em>"Finding Friends"</em>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </Link>
-            <Link to="/campaign/123/gameplay" className="fixing-link-settings">
-              <div className="item-container item-container--hover-highlight">
-                <h3 className="item-container__heading">Capsizing Monkeys</h3>
                 <h4 className="item-container__subheading item-container__subheading--blue">campid: #123abc</h4>
                 <table>
                   <tbody>

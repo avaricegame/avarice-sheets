@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Axios from "axios"
 import "./App.scss"
@@ -16,20 +16,36 @@ Axios.defaults.baseURL = "http://localhost:2890"
 //process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
 
 function App() {
-  let CSID = 146
+  let UID = 1
+  let CSID = "146"
+
+  const [characterSheetArray, setCharacterSheetArray] = useState([])
+
+  useEffect(() => {
+    async function fetchCS() {
+      // get all of the character sheets that match the current user id
+      const corrSheet = await Axios.get("/loadmanycs", {
+        params: {
+          UID: UID,
+        },
+      })
+      setCharacterSheetArray(corrSheet.data)
+    }
+    fetchCS()
+  }, [UID])
 
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          <Home />
+          <Home UID={UID} characterSheetArray={characterSheetArray} />
           {/* <HomeGuest /> */}
         </Route>
         <Route path="/profile/:username">
           <Profile />
         </Route>
         <Route path="/character/:id/">
-          <CharacterSheet CSID={CSID} />
+          <CharacterSheet CSID={CSID} characterSheetArray={characterSheetArray} />
         </Route>
         <Route path="/campaign/:id/">
           <CampaignSheet />

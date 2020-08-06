@@ -1,6 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 
 function Inventory(props) {
+  const [holstersUsed, setHolstersUsed] = useState(0)
+  const [slotsUsed, setSlotsUsed] = useState(0)
+
   return (
     <>
       <div className="secondary-header">
@@ -13,7 +16,7 @@ function Inventory(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Weapons</h3>
-              <h4 className="item-container__subheading">Holsters Used: 3 / 3</h4>
+              <h4 className="item-container__subheading">Holsters Used: {holstersUsed} / 3</h4>
               <table>
                 <thead>
                   <tr>
@@ -22,21 +25,21 @@ function Inventory(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>2</td>
-                    <td>Weapon 1</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Weapon 2</td>
-                  </tr>
+                  {props.equippedWeapons.map((weapon) => {
+                    return (
+                      <tr key={weapon.id}>
+                        <td>{weapon.holstersReq}</td>
+                        <td>{weapon.name}</td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             </div>
 
             <div className="item-container">
               <h3 className="item-container__heading">Items</h3>
-              <h4 className="item-container__terheading">Item Slots Used: 11 / 16</h4>
+              <h4 className="item-container__terheading">Item Slots Used: {slotsUsed} / 16</h4>
               <table>
                 <thead>
                   <tr>
@@ -45,22 +48,14 @@ function Inventory(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>4</td>
-                    <td>Item 1</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Item 2</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Item 3</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Item 4</td>
-                  </tr>
+                  {props.equippedItems.map((item) => {
+                    return (
+                      <tr key={item.id}>
+                        <td>{item.slotsReq}</td>
+                        <td>{item.name}</td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             </div>
@@ -138,7 +133,8 @@ function Inventory(props) {
         <div className="cw__25">
           <h2 className="heading">Money</h2>
           <div className="cw__container">
-            <button>Send and Recieve Money</button>
+            <button>Pay Money</button>
+            <button>Recieve Money</button>
             <div className="item-container">
               <h3 className="item-container__heading">Uni-Credits / Gold</h3>
               <h4 className="item-container__subheading">Current Savings</h4>
@@ -167,9 +163,9 @@ function Inventory(props) {
               <p className="item-container__select-label">Select a wearable to view the details</p>
               <select className="item-container__select">
                 <option></option>
-                <option>Wearable</option>
-                <option>Wearable</option>
-                <option>Wearable</option>
+                {props.charSheet.wearables.map((wearable) => {
+                  return <option key={wearable.id}>{wearable.name}</option>
+                })}
               </select>
             </div>
             <div className="item-container">
@@ -178,9 +174,9 @@ function Inventory(props) {
               <p className="item-container__select-label">Select an item to view the details</p>
               <select className="item-container__select">
                 <option></option>
-                <option>Item</option>
-                <option>Item</option>
-                <option>Item</option>
+                {props.charSheet.items.map((item) => {
+                  return <option key={item.id}>{item.name}</option>
+                })}
               </select>
             </div>
           </div>
