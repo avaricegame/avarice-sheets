@@ -12,8 +12,8 @@ import Profile from "./Components/Pages/Profile"
 import CharacterSheet from "./Components/Pages/CharacterSheet"
 import CampaignSheet from "./Components/Pages/CampaignSheet"
 
-Axios.defaults.baseURL = "http://localhost:2890"
-//process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
+Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
+// "http://localhost:2890"
 
 function App() {
   let UID = 1
