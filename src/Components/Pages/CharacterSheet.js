@@ -25,6 +25,8 @@ function CharacterSheet(props) {
   const [theRace, setTheRace] = useState({})
   const [abilityTree, setAbilityTree] = useState({})
   const [abilityArray, setAbilityArray] = useState([])
+  const [equipmentMod, setEquipmentMod] = useState([7, 7, 7, 7]) // one of these for each skill, in the same order as the skills array in level ups
+  const [baseEquipmentMod, setBaseEquipmentMod] = useState([3, 3, 3, 3]) // one of these for each base stat, in the order they are planned to be
 
   useEffect(() => {
     async function fetchCS() {
@@ -136,7 +138,7 @@ function CharacterSheet(props) {
           <Route path="/character/:id/stats" exact>
             <Header charSheet={charSheet} />
             <Navigation />
-            <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} />
+            <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} />
             <Footer />
           </Route>
           <Route path="/character/:id/abilities" exact>

@@ -35,6 +35,10 @@
     margin: 0 auto;
   }
   &__50 {
+    &--adjusted {
+      width: 47%;
+      margin: 0 auto;
+    }
     width: 49%;
     margin: 0 auto;
   }
@@ -47,6 +51,10 @@
     margin: 0 auto;
   }
   &__100 {
+    &--adjusted {
+      display: flex;
+      flex-wrap: wrap;
+    }
     width: 99%;
     margin: 0 auto;
   }
