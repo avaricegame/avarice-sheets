@@ -113,7 +113,7 @@ function CharacterSheet(props) {
           <Route path="/character/:id/abilities" exact>
             <Header charSheet={charSheet} />
             <Navigation />
-            <Abilities abilityTree={abilityTree} />
+            <Abilities abilityTree={abilityTree} charSheet={charSheet} />
             <Footer />
           </Route>
           <Route path="/character/:id/info" exact>
