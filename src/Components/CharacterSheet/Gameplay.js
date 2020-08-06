@@ -13,7 +13,7 @@ function Gameplay(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Hit Points</h3>
-              <h4 className="item-container__subheading">Max HP: 45</h4>
+              <h4 className="item-container__subheading">Max HP: {props.charSheet.level * 10 + 10}</h4>
               <h4 className="item-container__terheading">Current HP: {props.charSheet.currentHP}</h4>
               <button>Take Damage</button>
               <button>Heal HP</button>
