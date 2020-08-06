@@ -1,0 +1,19 @@
+table,
+th,
+td {
+  padding: 0.5rem 2rem;
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1rem;
+}
+
+th {
+  font-size: 1.4rem;
+}
+
+table input {
+  width: 50px;
+}

@@ -1,0 +1,34 @@
+.container {
+  width: 80%;
+  margin: 4rem auto;
+  display: flex;
+  transition: 1s all;
+}
+
+.sheets-container {
+  margin: 1rem 4rem;
+}
+
+.heading {
+  background-color: $color-grey-dark-2;
+  color: $color-white;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid $color-grey-light-3;
+}
+
+.campaign-sheets {
+  background-color: $color-white-light;
+  width: 50%;
+  transition: 1s all;
+  margin-right: 1rem;
+  border: 1px solid $color-grey-light-1;
+}
+
+.character-sheets {
+  background-color: $color-white-light;
+  width: 50%;
+  transition: 1s all;
+  border: 1px solid $color-grey-light-1;
+}

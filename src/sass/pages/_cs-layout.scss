@@ -1,0 +1,84 @@
+.secondary-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  &__heading {
+    text-transform: uppercase;
+    font-size: 5.5rem;
+    letter-spacing: 0.5rem;
+    font-family: "Carrois Gothic", sans-serif;
+    transform: translateY(-0.5rem);
+  }
+}
+
+.page-container {
+  width: 98%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cw {
+  &__container {
+    padding: 2rem 1rem;
+    &--tree {
+      display: flex;
+    }
+  }
+  &__25 {
+    width: 24%;
+    margin: 0 auto;
+  }
+  &__33 {
+    width: 32%;
+    margin: 0 auto;
+  }
+  &__50 {
+    &--adjusted {
+      width: 47%;
+      margin: 0 auto;
+    }
+    width: 49%;
+    margin: 0 auto;
+  }
+  &__66 {
+    width: 65%;
+    margin: 0 auto;
+  }
+  &__75 {
+    width: 74%;
+    margin: 0 auto;
+  }
+  &__100 {
+    &--adjusted {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    width: 99%;
+    margin: 0 auto;
+  }
+}
+
+.horizontal-rule {
+  color: $color-black;
+  margin: 2rem 0;
+}
+
+.note-title {
+  font-size: 3rem;
+}
+
+.note-content {
+  font-size: 1.8rem;
+}
+
+.edit-note-button {
+  width: 20rem;
+  float: right;
+  margin: 0;
+}
+
+.highlight {
+  color: $color-light-red;
+}
