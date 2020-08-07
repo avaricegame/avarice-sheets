@@ -11,6 +11,7 @@ import HomeGuest from "./Components/Pages/HomeGuest"
 import CharacterSheet from "./Components/Pages/CharacterSheet"
 import CampaignSheet from "./Components/Pages/CampaignSheet"
 import Profile from "./Components/Pages/Profile"
+import About from "./Components/Pages/About"
 
 // FUNCTIONAL COMPONENTS
 //import Popup from "./Components/Popup"
@@ -64,6 +65,9 @@ function App() {
           <Route path="/profile">
             <Profile />
           </Route>
+          <Route path="/about">
+            <About />
+          </Route>
           <Route path="/character/gameplay">
             <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />
           </Route>
@@ -83,6 +87,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile />
+          </Route>
+          <Route path="/about">
+            <About />
           </Route>
           <Route path="/character/gameplay">
             <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />

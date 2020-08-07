@@ -46,18 +46,18 @@ function HomeGuest(props) {
       </header>
       <main>
         <div className="hg__container">
-          <div className="hg__content">
+          <div className="hg__content hg__content--60">
             <h2 className="hg__heading">Welcome to Avarice Sheets</h2>
             <hr className="hg__hr" />
-            <h3 className="hg__bold">What is Avarice Sheets?</h3>
+            <h3>What is Avarice Sheets?</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h3 className="hg__bold">How do I get started?</h3>
+            <h3>How do I get started?</h3>
             <p>Ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h3 className="hg__bold">How can I contact you?</h3>
+            <h3>How can I contact you?</h3>
             <p>Dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
-          <div className="hg__form-div">
-            {props.hasAccount ? (
+          {props.hasAccount ? (
+            <div className="hg__form-div hg__form-div--login">
               <form className="hg__form" onSubmit={(e) => loginSubmitHandler(e)}>
                 <h2 className="hg__subheading">Login</h2>
                 <fieldset>
@@ -80,7 +80,9 @@ function HomeGuest(props) {
                   </label>
                 </fieldset>
               </form>
-            ) : (
+            </div>
+          ) : (
+            <div className="hg__form-div hg__form-div--register">
               <form className="hg__form" onSubmit={(e) => registerSubmitHandler(e)}>
                 <h2 className="hg__subheading">Register</h2>
                 <fieldset>
@@ -106,8 +108,8 @@ function HomeGuest(props) {
                   </label>
                 </fieldset>
               </form>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </main>
       <footer className="footer">
