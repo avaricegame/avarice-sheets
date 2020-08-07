@@ -142,7 +142,7 @@ function CharacterSheet(props) {
                 <CampaignSheet />
               </Route>
               <Route path="/profile">
-                <Profile />
+                <Profile loggedIn={props.loggedIn} loggedInHandler={props.loggedInHandler} CSIDHandler={props.CSIDHandler} UIDHandler={props.UIDHandler} />
               </Route>
               <Route path="/about">
                 <HomeAbout />
@@ -204,8 +204,8 @@ function CharacterSheet(props) {
       } else {
         return (
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
-            <h1>You are not authorized to view this character sheet.</h1>
-            <p>(this means that somehow, impossibly, you are attempting to load a character sheet that does not belong to you...hacker)</p>
+            <h1>You have been logged out.</h1>
+            <p>Please sign back in to view your character sheets.</p>
             <h1 style={{ marginTop: "6rem" }}>
               <Link to="/">Avarice Sheets</Link>
             </h1>

@@ -11,7 +11,7 @@ function HomeGuest(props) {
     e.preventDefault()
     console.log(e.target.emailUsername.value, e.target.password.value)
     // SEND FORM DATA TO SERVER AND GET BACK A PASS OR FAIL, PLUS THE UID
-    if (e.target.emailUsername.value !== "") {
+    if (e.target.emailUsername.value === "email@email.com") {
       props.UIDHandler("1")
       props.loggedInHandler(true)
     } else {
@@ -23,7 +23,7 @@ function HomeGuest(props) {
     e.preventDefault()
     console.log(e.target.email.value, e.target.username.value, e.target.password.value)
     // SEND FOR DATA TO SERVER AND GET BACK A SUCCESS OR FAIL, PLUS THE UID
-    if (e.target.email.value !== "") {
+    if (e.target.email.value === "email@email.com") {
       props.UIDHandler("1")
       props.accountHandler(true)
       props.loggedInHandler(true)

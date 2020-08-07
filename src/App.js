@@ -42,7 +42,9 @@ function App() {
       setLoggedIn(true)
       setHasAccount(true)
     } else {
-      // DO THE LOGOUT PROCEDURE HERE, SET VALUES AND CLEAR LOCAL STORAGE
+      localStorage.removeItem("loggedIn")
+      localStorage.removeItem("UID")
+      //localStorage.removeItem("CSID")
     }
   }
 
@@ -63,13 +65,13 @@ function App() {
             {/*<Popup />*/}
           </Route>
           <Route path="/profile">
-            <Profile />
+            <Profile loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} />
           </Route>
           <Route path="/about">
             <About />
           </Route>
           <Route path="/character">
-            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />
+            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} />
           </Route>
           <Route path="/campaign">
             <CampaignSheet />
@@ -86,7 +88,7 @@ function App() {
             {/*<Popup />*/}
           </Route>
           <Route path="/profile">
-            <Profile />
+            <Profile loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} />
           </Route>
           <Route path="/about">
             <About />
