@@ -220,7 +220,7 @@ function CharacterSheet(props) {
       }
       return (
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
-          <h1>Fetching your character sheet data...</h1>
+          <h1>fetching your character sheet data...</h1>
           <p>(this one is actually a loading page)</p>
         </div>
       )

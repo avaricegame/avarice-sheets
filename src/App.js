@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Axios from "axios"
 import "./App.scss"
@@ -22,18 +22,36 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("loggedIn")))
   const [UID, setUID] = useState(localStorage.getItem("UID"))
   const [CSID, setCSID] = useState(localStorage.getItem("CSID"))
+  const [hasAccount, setHasAccount] = useState(Boolean(localStorage.getItem("hasAccount")))
+
+  const UIDHandler = (id) => {
+    localStorage.setItem("UID", id)
+    setUID(id)
+  }
 
   const CSIDHandler = (id) => {
     localStorage.setItem("CSID", id)
     setCSID(id)
   }
 
-  useEffect(() => {
-    setLoggedIn(true)
-    localStorage.setItem("loggedIn", true)
-    setUID("1")
-    localStorage.setItem("UID", "1")
-  }, [])
+  const loggedInHandler = () => {
+    if (!loggedIn) {
+      localStorage.setItem("loggedIn", true)
+      localStorage.setItem("hasAccount", true)
+      setLoggedIn(true)
+      setHasAccount(true)
+    } else {
+      // DO THE LOGOUT PROCEDURE HERE, SET VALUES AND CLEAR LOCAL STORAGE
+    }
+  }
+
+  const accountHandler = () => {
+    if (hasAccount) {
+      setHasAccount(false)
+    } else {
+      setHasAccount(true)
+    }
+  }
 
   if (loggedIn && UID) {
     return (
@@ -60,7 +78,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact>
-            <HomeGuest UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />
+            <HomeGuest UIDHandler={UIDHandler} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} hasAccount={hasAccount} accountHandler={accountHandler} />
             {/*<Popup />*/}
           </Route>
           <Route path="/profile">

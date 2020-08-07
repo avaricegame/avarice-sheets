@@ -1,0 +1,100 @@
+.hg {
+  &__body {
+    background-color: $color-white;
+  }
+  &__container {
+    max-width: 80%;
+    min-height: 80vh;
+    margin: 6rem auto;
+    box-shadow: 0 0 1.5rem $color-grey-light-1;
+    display: flex;
+  }
+  &__content {
+    width: 60%;
+    min-height: 100%;
+    padding: 3rem 4rem;
+    background-color: $color-white;
+  }
+  &__hr {
+    margin: 2rem 0 3rem 0;
+    border-top: 1px solid $color-grey-light-1;
+    &--form {
+      margin: 2rem;
+      border-top: 1px solid $color-grey-light-1;
+    }
+  }
+  &__heading {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 4rem;
+  }
+  &__bold {
+    font-weight: bold;
+  }
+  &__form-div {
+    width: 40%;
+    min-height: 100%;
+    border-left: 0.5rem solid $color-light-blue;
+    background-color: $color-white;
+    margin: -2rem 0;
+    z-index: 1;
+  }
+  &__form {
+    box-shadow: none;
+    height: 100%;
+    &:hover {
+      box-shadow: none;
+      transform: translate(0);
+    }
+    fieldset {
+      margin: 3rem 1rem;
+      padding: 1rem 2rem;
+    }
+    legend {
+      margin-bottom: 2rem;
+    }
+    label input {
+      margin-left: 0;
+      padding: 0.5rem;
+    }
+  }
+  &__form-submit {
+    cursor: pointer;
+    background-color: $color-grey-dark-2;
+    color: $color-white;
+    padding: 1rem 1rem;
+    max-width: 92%;
+    margin: 4rem 1rem;
+    box-shadow: 0 0 1.5rem $color-grey-light-1;
+    transition: all 0.5s;
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 1.5rem darken($color-grey-light-1, 10%);
+      padding: 1.5rem 1rem;
+      font-size: 1.8rem;
+      z-index: 2;
+    }
+  }
+  &__subheading {
+    background-color: $color-black;
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 3rem;
+    padding: 1rem 3rem;
+    min-height: 4rem;
+  }
+  &__center {
+    text-align: center;
+  }
+  &__fake-link {
+    cursor: pointer;
+    font-size: 1.6rem;
+    min-height: 3rem;
+    padding: 2rem 1rem;
+    min-height: 3rem;
+    &:hover {
+      color: $color-light-yellow;
+      text-decoration: underline;
+    }
+  }
+}
