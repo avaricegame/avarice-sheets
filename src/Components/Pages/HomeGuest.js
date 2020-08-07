@@ -96,7 +96,7 @@ function HomeGuest(props) {
                   <label htmlFor="">
                     Password: <input value={password} name="password" type="password" />
                   </label>
-                  <input className="hg__form-submit" type="submit" value="Create My Account" />
+                  <input className="hg__form-submit" type="submit" value="Create Account" />
                 </fieldset>
                 <hr className="hg__hr--form" />
                 <fieldset>

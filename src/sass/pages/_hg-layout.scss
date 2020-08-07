@@ -1,16 +1,27 @@
 .hg {
   &__body {
     background-color: $color-white;
+    width: 100%;
   }
   &__container {
     max-width: 80%;
     margin: 6rem auto;
     box-shadow: 0 0 1.5rem $color-grey-light-1;
     display: flex;
+    @media only screen and (max-width: 900px) {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      flex-direction: column;
+      box-shadow: none;
+    }
   }
   &__content {
     padding: 3rem 4rem;
     background-color: $color-white;
+    @media only screen and (max-width: 900px) {
+      padding: 0;
+    }
     h3 {
       font-weight: bold;
     }
@@ -18,12 +29,24 @@
       width: 50%;
       margin: 0 1rem;
       border: 1px solid $color-grey-light-1;
+      @media only screen and (max-width: 900px) {
+        width: 99%;
+        margin: 0;
+        margin-bottom: 3rem;
+      }
     }
     &--60 {
       width: 60%;
+      @media only screen and (max-width: 900px) {
+        width: 99%;
+        padding: 2rem;
+      }
     }
     &--100 {
       width: 100%;
+      @media only screen and (max-width: 900px) {
+        padding: 2rem;
+      }
     }
     &--flex {
       display: flex;
@@ -31,6 +54,9 @@
   }
   &__flex-container {
     display: flex;
+    @media only screen and (max-width: 900px) {
+      flex-direction: column;
+    }
   }
   &__hr {
     margin: 2rem 0 3rem 0;
@@ -57,16 +83,28 @@
     background-color: $color-white;
     margin: -2rem 0;
     z-index: 1;
+    @media only screen and (max-width: 900px) {
+      width: 99%;
+      margin: 0;
+    }
     &--login {
       border-left: 0.5rem solid $color-dark-blue;
+      @media only screen and (max-width: 900px) {
+        border-left: none;
+      }
     }
     &--register {
       border-left: 0.5rem solid $color-dark-purple;
+      border-left: none;
     }
   }
   &__form {
     box-shadow: none;
     height: 100%;
+    @media only screen and (max-width: 900px) {
+      margin: 1rem auto;
+      width: 97%;
+    }
     &:hover {
       box-shadow: none;
       transform: translate(0);
@@ -74,6 +112,10 @@
     fieldset {
       margin: 3rem 1rem;
       padding: 1rem 2rem;
+      @media only screen and (max-width: 900px) {
+        margin: 3rem 0;
+        padding: 1rem;
+      }
     }
     legend {
       margin-bottom: 2rem;
@@ -92,12 +134,21 @@
     margin: 4rem 1rem;
     box-shadow: 0 0 1.5rem $color-grey-light-1;
     transition: all 0.5s;
+    @media only screen and (max-width: 900px) {
+      max-width: 100%;
+      margin: 4rem 0;
+      padding: 2rem 1rem;
+      font-size: 1.8rem;
+    }
     &:hover {
       transform: translateY(-1px);
       box-shadow: 0 0 1.5rem darken($color-grey-light-1, 10%);
       padding: 1.5rem 1rem;
       font-size: 1.8rem;
       z-index: 2;
+      @media only screen and (max-width: 900px) {
+        padding: 2rem 1rem;
+      }
     }
   }
   &__subheading {
