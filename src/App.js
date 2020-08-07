@@ -12,6 +12,9 @@ import Profile from "./Components/Pages/Profile"
 import CharacterSheet from "./Components/Pages/CharacterSheet"
 import CampaignSheet from "./Components/Pages/CampaignSheet"
 
+// FUNCTIONAL COMPONENTS
+import Popup from "./Components/Popup"
+
 Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
 // "http://localhost:2890"
 
@@ -35,23 +38,26 @@ function App() {
   }, [UID])
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact>
-          <Home UID={UID} characterSheetArray={characterSheetArray} />
-          {/* <HomeGuest /> */}
-        </Route>
-        <Route path="/profile/:username">
-          <Profile />
-        </Route>
-        <Route path="/character/:id/">
-          <CharacterSheet CSID={CSID} characterSheetArray={characterSheetArray} />
-        </Route>
-        <Route path="/campaign/:id/">
-          <CampaignSheet />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact>
+            <Home UID={UID} characterSheetArray={characterSheetArray} />
+            {/* <HomeGuest /> */}
+          </Route>
+          <Route path="/profile/:username">
+            <Profile />
+          </Route>
+          <Route path="/character/:id/">
+            <CharacterSheet CSID={CSID} characterSheetArray={characterSheetArray} />
+          </Route>
+          <Route path="/campaign/:id/">
+            <CampaignSheet />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+      {/* <Popup /> */}
+    </>
   )
 }
 
