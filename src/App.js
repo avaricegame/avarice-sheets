@@ -7,52 +7,75 @@ import "./App.scss"
 
 // COMPONENTS
 import Home from "./Components/Pages/Home"
-//import HomeGuest from "./Components/Pages/HomeGuest"
-import Profile from "./Components/Pages/Profile"
+import HomeGuest from "./Components/Pages/HomeGuest"
 import CharacterSheet from "./Components/Pages/CharacterSheet"
 import CampaignSheet from "./Components/Pages/CampaignSheet"
+import Profile from "./Components/Pages/Profile"
+
+// FUNCTIONAL COMPONENTS
+//import Popup from "./Components/Popup"
 
 Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
 // "http://localhost:2890"
 
 function App() {
-  let UID = 1
-  let CSID = "146"
+  const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("loggedIn")))
+  const [UID, setUID] = useState(localStorage.getItem("UID"))
+  const [CSID, setCSID] = useState(localStorage.getItem("CSID"))
 
-  const [characterSheetArray, setCharacterSheetArray] = useState([])
+  const CSIDHandler = (id) => {
+    localStorage.setItem("CSID", id)
+    setCSID(id)
+  }
 
   useEffect(() => {
-    async function fetchCS() {
-      // get all of the character sheets that match the current user id
-      const corrSheet = await Axios.get("/loadmanycs", {
-        params: {
-          UID: UID,
-        },
-      })
-      setCharacterSheetArray(corrSheet.data)
-    }
-    fetchCS()
-  }, [UID])
+    setLoggedIn(true)
+    localStorage.setItem("loggedIn", true)
+    setUID("1")
+    localStorage.setItem("UID", "1")
+  }, [])
 
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact>
-          <Home UID={UID} characterSheetArray={characterSheetArray} />
-          {/* <HomeGuest /> */}
-        </Route>
-        <Route path="/profile/:username">
-          <Profile />
-        </Route>
-        <Route path="/character/:id/">
-          <CharacterSheet CSID={CSID} characterSheetArray={characterSheetArray} />
-        </Route>
-        <Route path="/campaign/:id/">
-          <CampaignSheet />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  )
+  if (loggedIn && UID) {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact>
+            <Home UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />
+            {/*<Popup />*/}
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/character/gameplay">
+            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />
+          </Route>
+          <Route path="/campaign/gameplay">
+            <CampaignSheet />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    )
+  } else {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact>
+            <HomeGuest UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />
+            {/*<Popup />*/}
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/character/gameplay">
+            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />
+          </Route>
+          <Route path="/campaign/gameplay">
+            <CampaignSheet />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    )
+  }
 }
 
 export default App

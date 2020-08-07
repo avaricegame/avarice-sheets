@@ -4,6 +4,252 @@ function Inventory(props) {
   const [holstersUsed, setHolstersUsed] = useState(0)
   const [slotsUsed, setSlotsUsed] = useState(0)
 
+  const [currentWeapon, setCurrentWeapon] = useState("a")
+  const [currentWearable, setCurrentWearable] = useState("a")
+  const [currentItem, setCurrentItem] = useState("a")
+
+  const setWeaponHandler = (e) => {
+    if (e.target.value !== "a") {
+      setCurrentWeapon(props.charSheet.weapons[e.target.value])
+    } else {
+      setCurrentWeapon("a")
+    }
+  }
+  const setWearableHandler = (e) => {
+    if (e.target.value !== "a") {
+      setCurrentWearable(props.charSheet.wearables[e.target.value])
+    } else {
+      setCurrentWearable("a")
+    }
+  }
+  const setItemHandler = (e) => {
+    if (e.target.value !== "a") {
+      setCurrentItem(props.charSheet.items[e.target.value])
+    } else {
+      setCurrentItem("a")
+    }
+  }
+  const displayWeapon = () => {
+    if (currentWeapon !== "a") {
+      return (
+        <div className="current-weapon item-container">
+          <h3 className="item-container__heading">{currentWeapon.name}</h3>
+          <h4 className="item-container__subheading">{currentWeapon.rangedMelee}</h4>
+          <h4 style={{ cursor: "pointer" }} className="item-container__terheading">
+            {currentWeapon.equipped ? "Equipped" : "Not Equipped"}
+          </h4>
+          <p>
+            <strong>Description: </strong>
+            {currentWeapon.description}
+          </p>
+          <p>
+            <strong>Effects: </strong>
+            {currentWeapon.effects}
+          </p>
+          <p>
+            <strong>Requirements: </strong>
+            {currentWeapon.requirements}
+          </p>
+          <p>
+            <strong>Holsters Required: </strong>
+            {currentWeapon.holstersReq}
+          </p>
+          <p>
+            <strong>More Information:</strong>
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td>Damage:</td>
+                <td>{currentWeapon.damage}</td>
+              </tr>
+              <tr>
+                <td>Type:</td>
+                <td>{currentWeapon.type}</td>
+              </tr>
+              <tr>
+                <td>Proficiency:</td>
+                <td>{currentWeapon.proficiency}</td>
+              </tr>
+              <tr>
+                <td>Unique:</td>
+                <td>{currentWeapon.unique ? "Yes" : "No"}</td>
+              </tr>
+              <tr>
+                <td>Critical:</td>
+                <td>{currentWeapon.critical}</td>
+              </tr>
+              <tr>
+                <td>Range:</td>
+                <td>{currentWeapon.range}</td>
+              </tr>
+              <tr>
+                <td>Size:</td>
+                <td>{currentWeapon.size}</td>
+              </tr>
+              <tr>
+                <td>Value:</td>
+                <td>{currentWeapon.value} gold</td>
+              </tr>
+              <tr>
+                <td>Uses:</td>
+                <td>{currentWeapon.uses}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )
+    }
+  }
+  const displayWearable = () => {
+    if (currentWearable !== "a") {
+      return (
+        <div className="current-wearable item-container">
+          <h3 className="item-container__heading">{currentWearable.name}</h3>
+          <h4 className="item-container__subheading">Body Area: {currentWearable.bodyArea}</h4>
+          <h4 style={{ cursor: "pointer" }} className="item-container__terheading">
+            {currentWearable.equipped ? "Equipped" : "Not Equipped"}
+          </h4>
+          <p>
+            <strong>Description: </strong>
+            {currentWearable.description}
+          </p>
+          <p>
+            <strong>Effects: </strong>
+            {currentWearable.effects}
+          </p>
+          <p>
+            <strong>Requirements: </strong> {currentWearable.requirements}
+          </p>
+          <p>
+            <strong>Holsters Given: </strong>
+            {currentWearable.holsters}
+          </p>
+          <p>
+            <strong>Slots Given: </strong>
+            {currentWearable.slots}
+          </p>
+          <p>
+            <strong>Base Stat Modifiers:</strong>
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td>PHY:</td>
+                <td>{currentWearable.modifiers.PHY}</td>
+              </tr>
+              <tr>
+                <td>REF:</td>
+                <td>{currentWearable.modifiers.REF}</td>
+              </tr>
+              <tr>
+                <td>INT:</td>
+                <td>{currentWearable.modifiers.INT}</td>
+              </tr>
+              <tr>
+                <td>CHA:</td>
+                <td>{currentWearable.modifiers.CHA}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            <strong>Skill Modifiers:</strong>
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td>Skill 1:</td>
+                <td>{currentWearable.modifiers.skill1}</td>
+              </tr>
+              <tr>
+                <td>Skill 2:</td>
+                <td>{currentWearable.modifiers.skill2}</td>
+              </tr>
+              <tr>
+                <td>Skill 3:</td>
+                <td>{currentWearable.modifiers.skill3}</td>
+              </tr>
+              <tr>
+                <td>Skill 4:</td>
+                <td>{currentWearable.modifiers.skill4}</td>
+              </tr>
+              <tr>
+                <td>Skill 5:</td>
+                <td>{currentWearable.modifiers.skill5}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            <strong>More Information: </strong>
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td>Type:</td>
+                <td>{currentWearable.type}</td>
+              </tr>
+              <tr>
+                <td>Size:</td>
+                <td>{currentWearable.size}</td>
+              </tr>
+              <tr>
+                <td>Value:</td>
+                <td>{currentWearable.value}</td>
+              </tr>
+              <tr>
+                <td>Uses:</td>
+                <td>{currentWearable.uses}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )
+    }
+  }
+  const displayItem = () => {
+    if (currentItem !== "a") {
+      return (
+        <div className="item-container current-item">
+          <h3 className="item-container__heading">{currentItem.name}</h3>
+          <h4 className="item-container__subheading">{currentItem.name}</h4>
+          <h4 style={{ cursor: "pointer" }} className="item-container__terheading">
+            {currentItem.equipped ? "Equipped" : "Not Equipped"}
+          </h4>
+          <p>
+            <strong>Description: </strong>
+            {currentItem.description}
+          </p>
+          <p>
+            <strong>Effects: </strong>
+            {currentItem.effects}
+          </p>
+          <p>
+            <strong>Requirements: </strong>
+            {currentItem.requirements}
+          </p>
+          <p>
+            <strong>Slots Used: </strong>
+            {currentItem.slots}
+          </p>
+          <p>
+            <strong>More Information: </strong>
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td>Value: </td>
+                <td>{currentItem.value}</td>
+              </tr>
+              <tr>
+                <td>Uses: </td>
+                <td>{currentItem.uses}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )
+    }
+  }
   return (
     <>
       <div className="secondary-header">
@@ -44,7 +290,7 @@ function Inventory(props) {
                 <thead>
                   <tr>
                     <th>Holster Slots</th>
-                    <th>Weapon Name</th>
+                    <th>Item Name</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -148,36 +394,51 @@ function Inventory(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Weapons</h3>
-              <h4 className="item-container__subheading">Weapon Count: 4</h4>
+              <h4 className="item-container__subheading">Weapon Count: {props.charSheet.weapons.length}</h4>
               <p className="item-container__select-label">Select a weapon to view the details</p>
-              <select className="item-container__select">
-                <option></option>
-                {props.charSheet.weapons.map((weapon) => {
-                  return <option key={weapon.id}>{weapon.name}</option>
+              <select onChange={(e) => setWeaponHandler(e)} className="item-container__select">
+                <option value="a"></option>
+                {props.charSheet.weapons.map((weapon, index) => {
+                  return (
+                    <option value={index} key={weapon.id}>
+                      {weapon.name}
+                    </option>
+                  )
                 })}
               </select>
+              {displayWeapon()}
             </div>
             <div className="item-container">
               <h3 className="item-container__heading">Wearables</h3>
-              <h4 className="item-container__subheading">Wearable Count: 4</h4>
+              <h4 className="item-container__subheading">Wearable Count: {props.charSheet.wearables.length}</h4>
               <p className="item-container__select-label">Select a wearable to view the details</p>
-              <select className="item-container__select">
-                <option></option>
-                {props.charSheet.wearables.map((wearable) => {
-                  return <option key={wearable.id}>{wearable.name}</option>
+              <select onChange={(e) => setWearableHandler(e)} className="item-container__select">
+                <option value="a"></option>
+                {props.charSheet.wearables.map((wearable, index) => {
+                  return (
+                    <option value={index} key={wearable.id}>
+                      {wearable.name}
+                    </option>
+                  )
                 })}
               </select>
+              {displayWearable()}
             </div>
             <div className="item-container">
               <h3 className="item-container__heading">Items</h3>
-              <h4 className="item-container__subheading">Item Count: 4</h4>
+              <h4 className="item-container__subheading">Item Count: {props.charSheet.items.length}</h4>
               <p className="item-container__select-label">Select an item to view the details</p>
-              <select className="item-container__select">
-                <option></option>
-                {props.charSheet.items.map((item) => {
-                  return <option key={item.id}>{item.name}</option>
+              <select onChange={(e) => setItemHandler(e)} className="item-container__select">
+                <option value="a"></option>
+                {props.charSheet.items.map((item, index) => {
+                  return (
+                    <option value={index} key={item.id}>
+                      {item.name}
+                    </option>
+                  )
                 })}
               </select>
+              {displayItem()}
             </div>
           </div>
         </div>

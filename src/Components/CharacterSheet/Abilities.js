@@ -123,10 +123,11 @@ function Abilities(props) {
                   </div>
                 )
               }
+              return index
             })}
           </div>
 
-          {reversedLevelUpsArray.map((level) => {
+          {reversedLevelUpsArray.map((level, index) => {
             if (level.abilityTree[0].ability !== 0) {
               return (
                 <div key={level.level}>
@@ -192,6 +193,7 @@ function Abilities(props) {
                 </div>
               )
             }
+            return index
           })}
         </div>
 

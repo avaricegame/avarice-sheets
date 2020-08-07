@@ -5,25 +5,25 @@ function CampaignSheetNavigation() {
   return (
     <nav>
       <ul className="navigation">
-        <NavLink to="/campaign/:id/gameplay" activeClassName="active">
+        <NavLink to="/campaign/gameplay" activeClassName="active">
           <li>Gameplay</li>
         </NavLink>
-        <NavLink to="/campaign/:id/players" activeClassName="active">
+        <NavLink to="/campaign/players" activeClassName="active">
           <li>Players</li>
         </NavLink>
-        <NavLink to="/campaign/:id/info" activeClassName="active">
+        <NavLink to="/campaign/info" activeClassName="active">
           <li>Info</li>
         </NavLink>
-        <NavLink to="/campaign/:id/planning" activeClassName="active">
+        <NavLink to="/campaign/planning" activeClassName="active">
           <li>Campaign</li>
         </NavLink>
-        <NavLink to="/campaign/:id/campaign" activeClassName="active">
+        <NavLink to="/campaign/campaign" activeClassName="active">
           <li>Planning</li>
         </NavLink>
-        <NavLink to="/campaign/:id/messages" activeClassName="active">
+        <NavLink to="/campaign/messages" activeClassName="active">
           <li>Messages</li>
         </NavLink>
-        <NavLink to="/campaign/:id/notes" activeClassName="active">
+        <NavLink to="/campaign/notes" activeClassName="active">
           <li>Notes</li>
         </NavLink>
       </ul>

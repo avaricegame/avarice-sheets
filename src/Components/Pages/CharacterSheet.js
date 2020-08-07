@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
+import Axios from "axios"
 
 // COMPONENTS
 import Home from "../Pages/Home"
@@ -10,17 +11,16 @@ import Inventory from "../CharacterSheet/Inventory"
 import Stats from "../CharacterSheet/Stats"
 import Abilities from "../CharacterSheet/Abilities"
 import Info from "../CharacterSheet/Info"
-import Notes from "../Notes"
+import Notes from "../CharacterSheet/Notes"
 import Messages from "../Messages"
 import Navigation from "../CharacterSheet/Navigation"
 import About from "../CharacterSheet/About"
 import CampaignSheet from "../Pages/CampaignSheet"
 import Profile from "../Pages/Profile"
-import Axios from "axios"
 
 function CharacterSheet(props) {
   const [isLoading, setIsLoading] = useState(true)
-  const [charSheet, setCharSheet] = useState({})
+  const [charSheet, setCharSheet] = useState(0)
   const [theClass, setTheClass] = useState({})
   const [theRace, setTheRace] = useState({})
   const [abilityTree, setAbilityTree] = useState({})
@@ -32,38 +32,42 @@ function CharacterSheet(props) {
   const [baseEquipmentMod, setBaseEquipmentMod] = useState([3, 3, 3, 3]) // one of these for each base stat, in the order they are planned to be
 
   useEffect(() => {
-    async function fetchCS() {
-      // get the correct character sheet and set it as initial state
-      const corrSheet = await Axios.get("/loadonecs", {
-        params: {
-          charID: props.CSID,
-        },
-      })
-      setCharSheet(corrSheet.data[0])
-      // use correct character sheet to pull the correct race information and save it
-      const corrRace = await Axios.get("/loadrace", {
-        params: {
-          raceID: corrSheet.data[0].raceID,
-        },
-      })
-      setTheRace(corrRace.data[0])
-      // use correct character sheet to pull the correct class information and save it
-      const corrClass = await Axios.get("/loadclass", {
-        params: {
-          classID: corrSheet.data[0].classID,
-        },
-      })
-      setTheClass(corrClass.data[0])
-      // use correct class to pull the correct ability tree information and save it
-      const corrAbilityTree = await Axios.get("/loadabilitytree", {
-        params: {
-          abilityTreeID: corrClass.data[0].abilityTreeID,
-        },
-      })
-      setAbilityTree(corrAbilityTree.data[0])
-      setIsLoading(false)
+    if (props.CSID === undefined || props.CSID === null) {
+      console.log("Error loading character sheet resources.")
+    } else {
+      async function fetchCS() {
+        // get the correct character sheet and set it as initial state
+        const corrSheet = await Axios.get("/loadonecs", {
+          params: {
+            charID: props.CSID,
+          },
+        })
+        setCharSheet(corrSheet.data[0])
+        // use correct character sheet to pull the correct race information and save it
+        const corrRace = await Axios.get("/loadrace", {
+          params: {
+            raceID: corrSheet.data[0].raceID,
+          },
+        })
+        setTheRace(corrRace.data[0])
+        // use correct character sheet to pull the correct class information and save it
+        const corrClass = await Axios.get("/loadclass", {
+          params: {
+            classID: corrSheet.data[0].classID,
+          },
+        })
+        setTheClass(corrClass.data[0])
+        // use correct class to pull the correct ability tree information and save it
+        const corrAbilityTree = await Axios.get("/loadabilitytree", {
+          params: {
+            abilityTreeID: corrClass.data[0].abilityTreeID,
+          },
+        })
+        setAbilityTree(corrAbilityTree.data[0])
+        setIsLoading(false)
+      }
+      fetchCS()
     }
-    fetchCS()
   }, [props.CSID])
 
   useEffect(() => {
@@ -89,6 +93,7 @@ function CharacterSheet(props) {
           arrToAppend.push(ability4)
         }
         setAbilityArray((prevAbilityArray) => prevAbilityArray.concat(arrToAppend))
+        return index // to stop the error
       })
     }
   }, [charSheet, abilityTree, isLoading])
@@ -123,75 +128,110 @@ function CharacterSheet(props) {
   //     return prevCharSheet.concat()
   //   })
   // }
-
-  if (!isLoading) {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route path="/campaign/:id/gameplay">
-            <CampaignSheet />
-          </Route>
-          <Route path="/profile/:username">
-            <Profile />
-          </Route>
-          <Route path="/" exact>
-            <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} />
-          </Route>
-          <Route path="/character/:id/about">
-            <Header charSheet={charSheet} />
-            <Navigation />
-            <About />
-            <Footer />
-          </Route>
-          <Route path="/character/:id/gameplay" exact>
-            <Header charSheet={charSheet} />
-            <Navigation />
-            <Gameplay charSheet={charSheet} />
-            <Footer />
-          </Route>
-          <Route path="/character/:id/inventory" exact>
-            <Header charSheet={charSheet} />
-            <Navigation />
-            <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} />
-            <Footer />
-          </Route>
-          <Route path="/character/:id/stats" exact>
-            <Header charSheet={charSheet} />
-            <Navigation />
-            <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} />
-            <Footer />
-          </Route>
-          <Route path="/character/:id/abilities" exact>
-            <Header charSheet={charSheet} />
-            <Navigation />
-            <Abilities abilityTree={abilityTree} charSheet={charSheet} abilityArray={abilityArray} />
-            <Footer />
-          </Route>
-          <Route path="/character/:id/info" exact>
-            <Header charSheet={charSheet} />
-            <Navigation />
-            <Info charSheet={charSheet} theRace={theRace} theClass={theClass} />
-            <Footer />
-          </Route>
-          <Route path="/character/:id/messages" exact>
-            <Header charSheet={charSheet} />
-            <Navigation />
-            <Messages />
-            <Footer />
-          </Route>
-          <Route path="/character/:id/notes" exact>
-            <Header charSheet={charSheet} />
-            <Navigation />
-            <Notes charSheet={charSheet} />
-            <Footer />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    )
+  if (props.loggedIn) {
+    if (!isLoading) {
+      if (props.UID === charSheet.uid) {
+        return (
+          <BrowserRouter>
+            <Switch>
+              <Route path="/campaign/gameplay">
+                <CampaignSheet />
+              </Route>
+              <Route path="/profile">
+                <Profile />
+              </Route>
+              <Route path="/" exact>
+                <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} UID={props.UID} />
+              </Route>
+              <Route path="/character/about">
+                <Header charSheet={charSheet} />
+                <Navigation />
+                <About />
+                <Footer />
+              </Route>
+              <Route path="/character/gameplay" exact>
+                <Header charSheet={charSheet} />
+                <Navigation />
+                <Gameplay charSheet={charSheet} />
+                <Footer />
+              </Route>
+              <Route path="/character/inventory" exact>
+                <Header charSheet={charSheet} />
+                <Navigation />
+                <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} />
+                <Footer />
+              </Route>
+              <Route path="/character/stats" exact>
+                <Header charSheet={charSheet} />
+                <Navigation />
+                <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} />
+                <Footer />
+              </Route>
+              <Route path="/character/abilities" exact>
+                <Header charSheet={charSheet} />
+                <Navigation />
+                <Abilities abilityTree={abilityTree} charSheet={charSheet} abilityArray={abilityArray} />
+                <Footer />
+              </Route>
+              <Route path="/character/info" exact>
+                <Header charSheet={charSheet} />
+                <Navigation />
+                <Info charSheet={charSheet} theRace={theRace} theClass={theClass} />
+                <Footer />
+              </Route>
+              <Route path="/character/messages" exact>
+                <Header charSheet={charSheet} />
+                <Navigation />
+                <Messages />
+                <Footer />
+              </Route>
+              <Route path="/character/notes" exact>
+                <Header charSheet={charSheet} />
+                <Navigation />
+                <Notes charSheet={charSheet} />
+                <Footer />
+              </Route>
+            </Switch>
+          </BrowserRouter>
+        )
+      } else {
+        return (
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
+            <h1>You are not authorized to view this character sheet.</h1>
+            <p>(this means that somehow, impossibly, you are attempting to load a character sheet that does not belong to you...hacker)</p>
+            <h1 style={{ marginTop: "6rem" }}>
+              <Link to="/">Avarice Sheets</Link>
+            </h1>
+          </div>
+        )
+      }
+    } else {
+      if (props.CSID === undefined || props.CSID === null) {
+        return (
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
+            <h1>You are logged in, but have not chosen a character sheet to view.</h1>
+            <p>Note to self: Perhaps when a user logs in, automatically set the character sheet id to match their last played character to prevent this error.</p>
+            <p>(do this by having a property in the user object that is latestCSID and is set whenever they click on a character sheet on their homepage)</p>
+            <h1 style={{ marginTop: "6rem" }}>
+              <Link to="/">Avarice Sheets</Link>
+            </h1>
+          </div>
+        )
+      }
+      return (
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
+          <h1>Fetching your character sheet data...</h1>
+          <p>(this one is actually a loading page)</p>
+        </div>
+      )
+    }
   } else {
     return (
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh" }}>
-        <h1>Fetching Data...</h1>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
+        <h1>You are not logged in.</h1>
+        <h1 style={{ marginTop: "6rem" }}>
+          <Link to="/">Avarice Sheets</Link>
+        </h1>
       </div>
     )
   }
