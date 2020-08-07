@@ -49,6 +49,9 @@
     font-weight: bold;
     text-transform: uppercase;
     padding: 0.5rem 2rem;
+    &--lighter {
+      background-color: $color-grey-bg;
+    }
     &--blacked-out {
       background-color: $color-grey-dark-2;
     }

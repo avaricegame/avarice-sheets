@@ -68,10 +68,10 @@ function App() {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/character/gameplay">
+          <Route path="/character">
             <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />
           </Route>
-          <Route path="/campaign/gameplay">
+          <Route path="/campaign">
             <CampaignSheet />
           </Route>
         </Switch>

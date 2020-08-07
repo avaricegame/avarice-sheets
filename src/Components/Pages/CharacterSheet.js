@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
 import Axios from "axios"
 
 // COMPONENTS
-import Home from "../Pages/Home"
 import Header from "../CharacterSheet/Header"
 import Footer from "../Footer"
 import Gameplay from "../CharacterSheet/Gameplay"
@@ -15,8 +14,12 @@ import Notes from "../CharacterSheet/Notes"
 import Messages from "../Messages"
 import Navigation from "../CharacterSheet/Navigation"
 import About from "../CharacterSheet/About"
+
+// PAGES
+import Home from "../Pages/Home"
 import CampaignSheet from "../Pages/CampaignSheet"
 import Profile from "../Pages/Profile"
+import HomeAbout from "../Pages/About"
 
 function CharacterSheet(props) {
   const [isLoading, setIsLoading] = useState(true)
@@ -139,6 +142,9 @@ function CharacterSheet(props) {
               </Route>
               <Route path="/profile">
                 <Profile />
+              </Route>
+              <Route path="/about">
+                <HomeAbout />
               </Route>
               <Route path="/" exact>
                 <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} UID={props.UID} />
