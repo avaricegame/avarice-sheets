@@ -95,7 +95,9 @@
     }
     &--register {
       border-left: 0.5rem solid $color-dark-purple;
-      border-left: none;
+      @media only screen and (max-width: 900px) {
+        border-left: none;
+      }
     }
   }
   &__form {

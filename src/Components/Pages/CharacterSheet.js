@@ -14,7 +14,8 @@ import Notes from "../CharacterSheet/Notes"
 import Messages from "../Messages"
 import Navigation from "../CharacterSheet/Navigation"
 import About from "../CharacterSheet/About"
-
+// UTILITY
+import Loader from "../Loader"
 // PAGES
 import Home from "../Pages/Home"
 import CampaignSheet from "../Pages/CampaignSheet"
@@ -226,8 +227,7 @@ function CharacterSheet(props) {
       }
       return (
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
-          <h1>fetching your character sheet data...</h1>
-          <p>(this one is actually a loading page)</p>
+          <Loader />
         </div>
       )
     }

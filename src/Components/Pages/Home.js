@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import Axios from "axios"
 
+// COMPONENTS
+import Loader from "../Loader"
+
 function Home(props) {
   const [isLoading, setIsLoading] = useState(true)
   const [characterSheetArray, setCharacterSheetArray] = useState(0)
@@ -125,8 +128,7 @@ function Home(props) {
   } else {
     return (
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh" }}>
-        <h1>fetching your profile data...</h1>
-        <p>(this one is actually a loading page)</p>
+        <Loader />
       </div>
     )
   }
