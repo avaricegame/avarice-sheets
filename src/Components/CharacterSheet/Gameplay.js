@@ -2,6 +2,12 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 function Gameplay(props) {
+  const openHeal = () => {
+    props.healHandler(true)
+  }
+  const openTakeDamage = () => {
+    props.takeDamageHandler(true)
+  }
   return (
     <>
       <div className="secondary-header">
@@ -15,8 +21,8 @@ function Gameplay(props) {
               <h3 className="item-container__heading">Hit Points</h3>
               <h4 className="item-container__subheading">Max HP: {props.charSheet.level * 10 + 10}</h4>
               <h4 className="item-container__terheading">Current HP: {props.charSheet.currentHP}</h4>
-              <button>Take Damage</button>
-              <button>Heal HP</button>
+              <button onClick={openTakeDamage}>Take Damage</button>
+              <button onClick={openHeal}>Heal HP</button>
             </div>
           </div>
         </div>

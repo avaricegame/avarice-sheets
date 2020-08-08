@@ -16,6 +16,10 @@ import Navigation from "../CharacterSheet/Navigation"
 import About from "../CharacterSheet/About"
 // UTILITY
 import Loader from "../Loader"
+// FORMS
+import Heal from "../CharacterSheet/Forms/Heal"
+import TakeDamage from "../CharacterSheet/Forms/TakeDamage"
+import Popup from "../Popup"
 // PAGES
 import Home from "../Pages/Home"
 import CampaignSheet from "../Pages/CampaignSheet"
@@ -34,6 +38,15 @@ function CharacterSheet(props) {
 
   const [equipmentMod, setEquipmentMod] = useState([7, 7, 7, 7]) // one of these for each skill, in the same order as the skills array in level ups
   const [baseEquipmentMod, setBaseEquipmentMod] = useState([3, 3, 3, 3]) // one of these for each base stat, in the order they are planned to be
+
+  const [heal, setHeal] = useState(false)
+  const healHandler = (bool) => {
+    setHeal(bool)
+  }
+  const [takeDamage, setTakeDamage] = useState(false)
+  const takeDamageHandler = (bool) => {
+    setTakeDamage(bool)
+  }
 
   useEffect(() => {
     if (props.CSID === undefined || props.CSID === null) {
@@ -159,8 +172,10 @@ function CharacterSheet(props) {
               <Route path="/character/gameplay" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Gameplay charSheet={charSheet} />
+                <Gameplay charSheet={charSheet} healHandler={healHandler} takeDamageHandler={takeDamageHandler} />
                 <Footer />
+                {heal ? <Heal healHandler={healHandler} /> : ""}
+                {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} /> : ""}
               </Route>
               <Route path="/character/inventory" exact>
                 <Header charSheet={charSheet} />
