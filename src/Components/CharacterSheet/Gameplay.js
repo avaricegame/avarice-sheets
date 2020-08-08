@@ -1,7 +1,40 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
+// ACTION FORM COMPONENTS
+import Roll from "./Actions/Roll"
+import Attack from "./Actions/Attack"
+import UseAbility from "./Actions/UseAbility"
+import UseSkill from "./Actions/UseSkill"
+import PayMoney from "./Actions/PayMoney"
+import SellItems from "./Actions/SellItems"
+
 function Gameplay(props) {
+  const [roll, setRoll] = useState(false)
+  const rollHandler = (bool) => {
+    setRoll(bool)
+  }
+  const [attack, setAttack] = useState(false)
+  const attackHandler = (bool) => {
+    setAttack(bool)
+  }
+  const [useAbility, setUseAbility] = useState(false)
+  const useAbilityHandler = (bool) => {
+    setUseAbility(bool)
+  }
+  const [useSkill, setUseSkill] = useState(false)
+  const useSkillHandler = (bool) => {
+    setUseSkill(bool)
+  }
+  const [payMoney, setPayMoney] = useState(false)
+  const payMoneyHandler = (bool) => {
+    setPayMoney(bool)
+  }
+  const [sellItems, setSellItems] = useState(false)
+  const sellItemsHandler = (bool) => {
+    setSellItems(bool)
+  }
+
   const openHeal = () => {
     props.healHandler(true)
   }
@@ -29,13 +62,12 @@ function Gameplay(props) {
 
         <div className="cw__25">
           <h2 className="heading">Actions</h2>
-          <div className="cw__container">
-            <button>Attack</button>
-            <button>Use Ability</button>
-            <button>Pay Money</button>
-            <button>Sell Items</button>
-            <button>Roll</button>
-          </div>
+          <button>Attack</button>
+          <button>Use Ability</button>
+          <button>Use Skill</button>
+          <button>Pay Money</button>
+          <button>Sell Items</button>
+          <button onClick={rollHandler}>Roll Die</button>
         </div>
 
         <div className="cw__25">
@@ -109,6 +141,12 @@ function Gameplay(props) {
         </div>
         {/* /////// CLOSE PAGE CONTAINER /////// */}
       </div>
+      {roll ? <Roll rollHandler={rollHandler} /> : ""}
+      {attack ? <Attack attackHandler={attackHandler} /> : ""}
+      {useAbility ? <UseAbility useAbilityHandler={useAbilityHandler} /> : ""}
+      {useSkill ? <UseSkill useSkillHandler={useSkillHandler} /> : ""}
+      {payMoney ? <PayMoney payMoneyHandler={payMoneyHandler} CSID={props.CSID} /> : ""}
+      {sellItems ? <SellItems sellItemsHandler={sellItemsHandler} /> : ""}
     </>
   )
 }

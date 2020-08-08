@@ -14,6 +14,7 @@ import Profile from "./Components/Pages/Profile"
 import About from "./Components/Pages/About"
 
 // FUNCTIONAL COMPONENTS
+import NewCharacterSheet from "./Components/CharacterSheet/Forms/NewCharacterSheet"
 import Popup from "./Components/Popup"
 
 //Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
@@ -67,7 +68,7 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Home UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} />
-            {newCharacterSheet ? <Popup CSID={CSID} newCharacterSheetHandler={newCharacterSheetHandler} /> : ""}
+            {newCharacterSheet ? <NewCharacterSheet CSID={CSID} newCharacterSheetHandler={newCharacterSheetHandler} /> : ""}
           </Route>
           <Route path="/profile">
             <Profile loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} />

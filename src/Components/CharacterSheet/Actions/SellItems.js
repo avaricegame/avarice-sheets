@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import Axios from "axios"
 
-function TakeDamage(props) {
+function SellItems(props) {
   const [amount, setAmount] = useState()
   const close = () => {
-    props.takeDamageHandler(false)
+    props.useSellItemsHandler(false)
   }
   const onChangeHandler = (e) => {
     console.log(e.target.value)
@@ -12,28 +12,29 @@ function TakeDamage(props) {
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(e.target.amount.value)
-    Axios.post("/character/takedamage", {
-      amount: e.target.amount.value,
-      CSID: props.CSID,
-    })
-      .then(function (response) {
-        props.takeDamageHandler(false)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    console.log(amount)
+    // Axios.post("/character/UseSkill", {
+    //   amount: amount,
+    //   CSID: props.CSID,
+    // })
+    //   .then(function (response) {
+    //     props.payMoneyHandler(false)
+    //     setAmount("")
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error)
+    //   })
   }
   return (
     <div className="popup-bg">
       <div className="popup">
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
-            <h6 className="edit-h6">Take Damage</h6>
+            <h6 className="edit-h6">Pay Money</h6>
             <label>How Much?</label>
             <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
 
-            <input type="submit" className="submit-button" value="Take Damage" />
+            <input type="submit" className="submit-button" value={`submit`} />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">
@@ -44,4 +45,4 @@ function TakeDamage(props) {
   )
 }
 
-export default TakeDamage
+export default SellItems

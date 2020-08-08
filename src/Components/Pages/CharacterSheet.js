@@ -17,8 +17,23 @@ import About from "../CharacterSheet/About"
 // UTILITY
 import Loader from "../Loader"
 // FORMS
-import Heal from "../CharacterSheet/Forms/Heal"
+import HealHP from "../CharacterSheet/Forms/HealHP"
 import TakeDamage from "../CharacterSheet/Forms/TakeDamage"
+import PayMoney from "../CharacterSheet/Forms/PayMoney"
+import RecieveMoney from "../CharacterSheet/Forms/RecieveMoney"
+import NewWeapon from "../CharacterSheet/Forms/NewWeapon"
+import NewWearable from "../CharacterSheet/Forms/NewWearable"
+import NewItem from "../CharacterSheet/Forms/NewItem"
+import EditSuronis from "../CharacterSheet/Forms/EditSuronis"
+import LevelUp from "../CharacterSheet/Forms/LevelUp"
+import EditLevel from "../CharacterSheet/Forms/EditLevel"
+import NewAbility from "../CharacterSheet/Forms/NewAbility"
+import EditAbility from "../CharacterSheet/Forms/EditAbility"
+import NewCharacterLog from "../CharacterSheet/Forms/NewCharacterLog"
+import EditCharacterLog from "../CharacterSheet/Forms/EditCharacterLog"
+import NewNote from "../CharacterSheet/Forms/NewNote"
+import EditNote from "../CharacterSheet/Forms/EditNote"
+import NewCharacterSheet from "../CharacterSheet/Forms/NewCharacterSheet"
 import Popup from "../Popup"
 // PAGES
 import Home from "../Pages/Home"
@@ -220,8 +235,7 @@ function CharacterSheet(props) {
               </Route>
               <Route path="/" exact>
                 <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} UID={props.UID} newCharacterSheetHandler={props.newCharacterSheetHandler} />
-                {props.newCharacterSheet ? <Popup CSID={props.CSID} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
-                {props.newCharacterSheet ? <Popup CSID={props.CSID} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
+                {props.newCharacterSheet ? <NewCharacterSheet CSID={props.CSID} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
               </Route>
               <Route path="/character/about">
                 <Header charSheet={charSheet} />
@@ -232,9 +246,9 @@ function CharacterSheet(props) {
               <Route path="/character/gameplay" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Gameplay charSheet={charSheet} healHandler={healHandler} takeDamageHandler={takeDamageHandler} />
+                <Gameplay charSheet={charSheet} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} />
                 <Footer />
-                {heal ? <Heal healHandler={healHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}
+                {heal ? <HealHP healHandler={healHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}
                 {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}
               </Route>
               <Route path="/character/inventory" exact>
@@ -242,36 +256,36 @@ function CharacterSheet(props) {
                 <Navigation />
                 <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} newWeaponHandler={newWeaponHandler} newWearableHandler={newWearableHandler} newItemHandler={newItemHandler} editSuronisHandler={editSuronisHandler} />
                 <Footer />
-                {payMoney ? <Popup CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
-                {recieveMoney ? <Popup CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
-                {newWeapon ? <Popup CSID={props.CSID} newWeaponHandler={newWeaponHandler} /> : ""}
-                {newWearable ? <Popup CSID={props.CSID} newWearableHandler={newWearableHandler} /> : ""}
-                {newItem ? <Popup CSID={props.CSID} newItemHandler={newItemHandler} /> : ""}
-                {editSuronis ? <Popup CSID={props.CSID} editSuronisHandler={editSuronisHandler} /> : ""}
+                {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
+                {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
+                {newWeapon ? <NewWeapon CSID={props.CSID} newWeaponHandler={newWeaponHandler} /> : ""}
+                {newWearable ? <NewWearable CSID={props.CSID} newWearableHandler={newWearableHandler} /> : ""}
+                {newItem ? <NewItem CSID={props.CSID} newItemHandler={newItemHandler} /> : ""}
+                {editSuronis ? <EditSuronis CSID={props.CSID} editSuronisHandler={editSuronisHandler} /> : ""}
               </Route>
               <Route path="/character/stats" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
                 <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} levelUpHandler={levelUpHandler} editLevelHandler={editLevelHandler} />
                 <Footer />
-                {levelUp ? <Popup CSID={props.CSID} levelUp={levelUp} levelUpHandler={levelUpHandler} /> : ""}
-                {editLevel ? <Popup CSID={props.CSID} editLevel={editLevel} editLevelHandler={editLevelHandler} /> : ""}
+                {levelUp ? <LevelUp CSID={props.CSID} levelUp={levelUp} levelUpHandler={levelUpHandler} /> : ""}
+                {editLevel ? <EditLevel CSID={props.CSID} editLevel={editLevel} editLevelHandler={editLevelHandler} /> : ""}
               </Route>
               <Route path="/character/abilities" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
                 <Abilities abilityTree={abilityTree} charSheet={charSheet} abilityArray={abilityArray} newAbilityHandler={newAbilityHandler} editAbilityHandler={editAbilityHandler} />
                 <Footer />
-                {newAbility ? <Popup CSID={props.CSID} newAbilityHandler={newAbilityHandler} /> : ""}
-                {editAbility ? <Popup CSID={props.CSID} editAbilityHandler={editAbilityHandler} /> : ""}
+                {newAbility ? <NewAbility CSID={props.CSID} newAbilityHandler={newAbilityHandler} /> : ""}
+                {editAbility ? <EditAbility CSID={props.CSID} editAbilityHandler={editAbilityHandler} /> : ""}
               </Route>
               <Route path="/character/info" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
                 <Info charSheet={charSheet} theRace={theRace} theClass={theClass} newCharacterLogHandler={newCharacterLogHandler} editCharacterLogHandler={editCharacterLogHandler} />
                 <Footer />
-                {newCharacterLog ? <Popup CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} /> : ""}
-                {editCharacterLog ? <Popup CSID={props.CSID} editCharacterLogHandler={editCharacterLogHandler} /> : ""}
+                {newCharacterLog ? <NewCharacterLog CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} /> : ""}
+                {editCharacterLog ? <EditCharacterLog CSID={props.CSID} editCharacterLogHandler={editCharacterLogHandler} /> : ""}
               </Route>
               <Route path="/character/messages" exact>
                 <Header charSheet={charSheet} />
@@ -284,8 +298,8 @@ function CharacterSheet(props) {
                 <Navigation />
                 <Notes charSheet={charSheet} newNoteHandler={newNoteHandler} editNoteHandler={editNoteHandler} />
                 <Footer />
-                {newNote ? <Popup CSID={props.CSID} newNoteHandler={newNoteHandler} /> : ""}
-                {editNote ? <Popup CSID={props.CSID} editNoteHandler={editNoteHandler} /> : ""}
+                {newNote ? <NewNote CSID={props.CSID} newNoteHandler={newNoteHandler} /> : ""}
+                {editNote ? <EditNote CSID={props.CSID} editNoteHandler={editNoteHandler} /> : ""}
               </Route>
             </Switch>
           </BrowserRouter>
