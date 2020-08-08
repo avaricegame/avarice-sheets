@@ -9,7 +9,7 @@ function Heal(props) {
   const submitHandler = (e) => {
     e.preventDefault()
     console.log(e.target.amount.value)
-    Axios.post("/healhp", {
+    Axios.post("/character/healhp", {
       amount: amount,
     })
       .then(function (response) {
