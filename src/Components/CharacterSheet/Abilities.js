@@ -1,6 +1,13 @@
 import React from "react"
 
 function Abilities(props) {
+  const openNewAbility = () => {
+    props.newAbilityHandler(true)
+  }
+  const openEditAbility = () => {
+    props.editAbilityHandler(true)
+  }
+
   const reversedLevelUpsArray = props.charSheet.levelUps.map((level) => level).reverse()
   return (
     <>
@@ -200,7 +207,7 @@ function Abilities(props) {
         <div className="cw__25">
           <h2 className="heading">Your Abilities</h2>
           <div className="cw__container">
-            <button>Create New Character Ability</button>
+            <button onClick={openNewAbility}>Create New Character Ability</button>
             {props.charSheet.customAbilities.map((ability) => {
               return (
                 <div key={ability.id} className="item-container">

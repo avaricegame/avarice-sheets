@@ -14,16 +14,21 @@ import Profile from "./Components/Pages/Profile"
 import About from "./Components/Pages/About"
 
 // FUNCTIONAL COMPONENTS
-//import Popup from "./Components/Popup"
+import Popup from "./Components/Popup"
 
-Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
-//Axios.defaults.baseURL = "http://localhost:2890"
+//Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
+Axios.defaults.baseURL = "http://localhost:2890"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("loggedIn")))
   const [UID, setUID] = useState(localStorage.getItem("UID"))
   const [CSID, setCSID] = useState(localStorage.getItem("CSID"))
   const [hasAccount, setHasAccount] = useState(Boolean(localStorage.getItem("hasAccount")))
+
+  const [newCharacterSheet, setNewCharacterSheet] = useState(false)
+  const newCharacterSheetHandler = (bool) => {
+    setNewCharacterSheet(bool)
+  }
 
   const UIDHandler = (id) => {
     localStorage.setItem("UID", id)
@@ -61,8 +66,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact>
-            <Home UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />
-            {/*<Popup />*/}
+            <Home UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} />
+            {newCharacterSheet ? <Popup CSID={CSID} newCharacterSheetHandler={newCharacterSheetHandler} /> : ""}
           </Route>
           <Route path="/profile">
             <Profile loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} />
@@ -71,7 +76,7 @@ function App() {
             <About />
           </Route>
           <Route path="/character">
-            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} />
+            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} />
           </Route>
           <Route path="/campaign">
             <CampaignSheet />

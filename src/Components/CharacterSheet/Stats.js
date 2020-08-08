@@ -1,6 +1,13 @@
 import React from "react"
 
 function Stats(props) {
+  const openLevelUp = () => {
+    props.levelUpHandler(true)
+  }
+  const openEditLevel = () => {
+    props.editLevelHandler(true)
+  }
+
   function calcBaseStatTotal(num) {
     return props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[num] + props.baseEquipmentMod[num] + props.charSheet.baseStatsTempMod[num]
   }
@@ -80,8 +87,8 @@ function Stats(props) {
                 <div className="item-container">
                   <h3 className="item-container__heading">Level</h3>
                   <h4 className="item-container__subheading">You are at Level {props.charSheet.level}</h4>
-                  <button>Level Up</button>
-                  <button>Edit Level</button>
+                  <button onClick={openLevelUp}>Level Up</button>
+                  <button onClick={openEditLevel}>Edit Level</button>
                 </div>
                 <div className="item-container">
                   <h3 className="item-container__heading">Excellence Chips</h3>

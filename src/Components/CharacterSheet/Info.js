@@ -1,6 +1,12 @@
 import React from "react"
 
 function Info(props) {
+  const openNewCharacterLog = () => {
+    props.newCharacterLogHandler(true)
+  }
+  const editCharacterLog = () => {
+    props.editCharacterLogHandler(true)
+  }
   return (
     <>
       <div className="secondary-header">
@@ -10,7 +16,7 @@ function Info(props) {
         <div className="cw__33">
           <h2 className="heading">Campaign Information</h2>
           <div className="cw__container">
-            <button>Add a New Character Log</button>
+            <button onClick={openNewCharacterLog}>Add a New Character Log</button>
 
             <div className="item-container">
               <h3 className="item-container__heading">Character Log</h3>

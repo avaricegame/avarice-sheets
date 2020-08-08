@@ -1,6 +1,13 @@
 import React, { useState } from "react"
 
 function Notes(props) {
+  const openNewNote = () => {
+    props.newNoteHandler(true)
+  }
+  const openEditNote = () => {
+    props.editNoteHandler(true)
+  }
+
   const [noteIndex, setNoteIndex] = useState(0)
 
   const openNoteHandler = (index, e) => {
@@ -25,14 +32,16 @@ function Notes(props) {
               )
             })}
             <hr className="horizontal-rule" />
-            <button>Create New</button>
+            <button onClick={openNewNote}>Create New</button>
           </div>
         </div>
 
         <div className="cw__75">
           <h2 className="heading">Note Content</h2>
           <div className="cw__container">
-            <button className="edit-note-button">Edit Note</button>
+            <button className="edit-note-button" onClick={openEditNote}>
+              Edit Note
+            </button>
             <h3 className="note-title">{props.charSheet.notes[noteIndex].title}</h3>
             <hr className="horizontal-rule" />
             <div className="note-content">{props.charSheet.notes[noteIndex].content}</div>

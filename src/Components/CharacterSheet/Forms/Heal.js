@@ -6,14 +6,21 @@ function Heal(props) {
   const close = () => {
     props.healHandler(false)
   }
+  const onChangeHandler = (e) => {
+    console.log(e.target.value)
+    setAmount(e.target.value)
+  }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(e.target.amount.value)
+    console.log(amount)
     Axios.post("/character/healhp", {
       amount: amount,
+      CSID: props.CSID,
     })
       .then(function (response) {
+        props.updateCharSheet("currentHP", amount)
         props.healHandler(false)
+        setAmount("")
       })
       .catch(function (error) {
         console.log(error)
@@ -24,11 +31,11 @@ function Heal(props) {
       <div className="popup">
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
-            <h6 className="edit-h6">Heal</h6>
+            <h6 className="edit-h6">Heal HP</h6>
             <label>How Much?</label>
-            <input name="amount" value={amount} type="number" />
+            <input name="amount" value={amount} onChange={onChangeHandler} type="number" />
 
-            <input type="submit" className="submit-button" value="Heal" />
+            <input type="submit" className="submit-button" value="Heal HP" />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">

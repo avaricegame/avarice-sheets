@@ -1,6 +1,25 @@
 import React, { useState } from "react"
 
 function Inventory(props) {
+  const openPayMoney = () => {
+    props.payMoneyHandler(true)
+  }
+  const openRecieveMoney = () => {
+    props.recieveMoneyHandler(true)
+  }
+  const openNewWeapon = () => {
+    props.newWeaponHandler(true)
+  }
+  const openNewWearable = () => {
+    props.newWearableHandler(true)
+  }
+  const openNewItem = () => {
+    props.newItemHandler(true)
+  }
+  const openEditSuronis = () => {
+    props.editSuronisHandler(true)
+  }
+
   const [holstersUsed, setHolstersUsed] = useState(0)
   const [slotsUsed, setSlotsUsed] = useState(0)
 
@@ -379,8 +398,8 @@ function Inventory(props) {
         <div className="cw__25">
           <h2 className="heading">Money</h2>
           <div className="cw__container">
-            <button>Pay Money</button>
-            <button>Recieve Money</button>
+            <button onClick={openPayMoney}>Pay Money</button>
+            <button onClick={openRecieveMoney}>Recieve Money</button>
             <div className="item-container">
               <h3 className="item-container__heading">Uni-Credits / Gold</h3>
               <h4 className="item-container__subheading">Current Savings</h4>
@@ -446,10 +465,10 @@ function Inventory(props) {
         <div className="cw__25">
           <h2 className="heading">Add New</h2>
           <div className="cw__container">
-            <button>Add New Weapon</button>
-            <button>Add New Wearable</button>
-            <button>Add New Item</button>
-            <button>Edit Soronus Contents</button>
+            <button onClick={openNewWeapon}>Add New Weapon</button>
+            <button onClick={openNewWearable}>Add New Wearable</button>
+            <button onClick={openNewItem}>Add New Item</button>
+            <button onClick={openEditSuronis}>Edit Suronis Contents</button>
           </div>
         </div>
         {/* /////// CLOSE PAGE CONTAINER /////// */}
