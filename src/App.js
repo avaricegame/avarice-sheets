@@ -15,7 +15,6 @@ import About from "./Components/Pages/About"
 
 // FUNCTIONAL COMPONENTS
 import NewCharacterSheet from "./Components/CharacterSheet/Forms/NewCharacterSheet"
-import Popup from "./Components/Popup"
 
 //Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
 Axios.defaults.baseURL = "http://localhost:2890"

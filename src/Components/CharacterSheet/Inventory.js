@@ -20,8 +20,8 @@ function Inventory(props) {
     props.editSuronisHandler(true)
   }
 
-  const [holstersUsed, setHolstersUsed] = useState(0)
-  const [slotsUsed, setSlotsUsed] = useState(0)
+  const [holstersUsed] = useState(0)
+  const [slotsUsed] = useState(0)
 
   const [currentWeapon, setCurrentWeapon] = useState("a")
   const [currentWearable, setCurrentWearable] = useState("a")

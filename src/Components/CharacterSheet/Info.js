@@ -4,9 +4,9 @@ function Info(props) {
   const openNewCharacterLog = () => {
     props.newCharacterLogHandler(true)
   }
-  const editCharacterLog = () => {
-    props.editCharacterLogHandler(true)
-  }
+  // const openEditCharacterLog = () => {
+  //   props.editCharacterLogHandler(true)
+  // }
   return (
     <>
       <div className="secondary-header">

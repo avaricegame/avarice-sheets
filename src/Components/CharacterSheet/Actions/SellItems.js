@@ -1,10 +1,10 @@
 import React, { useState } from "react"
-import Axios from "axios"
+//import Axios from "axios"
 
 function SellItems(props) {
   const [amount, setAmount] = useState()
   const close = () => {
-    props.useSellItemsHandler(false)
+    props.sellItemsHandler(false)
   }
   const onChangeHandler = (e) => {
     console.log(e.target.value)
@@ -34,6 +34,38 @@ function SellItems(props) {
             <label>How Much?</label>
             <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
 
+            <div className="sell-items item-container">
+              <h6>Give Items</h6>
+              <h5>Which item are you giving?</h5>
+              <select>
+                <option>Choose Weapon</option>
+                <option>#1</option>
+                <option>#2</option>
+              </select>
+              <select>
+                <option>Choose Armour</option>
+                <option>#1</option>
+                <option>#2</option>
+              </select>
+              <select>
+                <option>Choose Items</option>
+                <option>#1</option>
+                <option>#2</option>
+              </select>
+
+              <h5>Who are you giving it to?</h5>
+              <select>
+                <option>Choose Player</option>
+                <option>DM</option>
+                <option>Player 1</option>
+                <option>Player 2</option>
+                <option>Player 3</option>
+              </select>
+
+              <button>
+                Give <span>(item)</span> to <span>(recipient)</span>
+              </button>
+            </div>
             <input type="submit" className="submit-button" value={`submit`} />
           </fieldset>
         </form>

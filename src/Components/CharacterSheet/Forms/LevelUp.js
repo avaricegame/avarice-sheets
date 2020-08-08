@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Axios from "axios"
+//import Axios from "axios"
 
 function LevelUp(props) {
   const [amount, setAmount] = useState()

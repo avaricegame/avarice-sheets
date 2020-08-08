@@ -4,9 +4,9 @@ function Abilities(props) {
   const openNewAbility = () => {
     props.newAbilityHandler(true)
   }
-  const openEditAbility = () => {
-    props.editAbilityHandler(true)
-  }
+  // const openEditAbility = () => {
+  //   props.editAbilityHandler(true)
+  // }
 
   const reversedLevelUpsArray = props.charSheet.levelUps.map((level) => level).reverse()
   return (

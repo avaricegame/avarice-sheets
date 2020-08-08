@@ -34,7 +34,6 @@ import EditCharacterLog from "../CharacterSheet/Forms/EditCharacterLog"
 import NewNote from "../CharacterSheet/Forms/NewNote"
 import EditNote from "../CharacterSheet/Forms/EditNote"
 import NewCharacterSheet from "../CharacterSheet/Forms/NewCharacterSheet"
-import Popup from "../Popup"
 // PAGES
 import Home from "../Pages/Home"
 import CampaignSheet from "../Pages/CampaignSheet"
@@ -51,8 +50,8 @@ function CharacterSheet(props) {
   const [equippedWeapons, setEquippedWeapons] = useState([])
   const [equippedItems, setEquippedItems] = useState([])
 
-  const [equipmentMod, setEquipmentMod] = useState([7, 7, 7, 7]) // one of these for each skill, in the same order as the skills array in level ups
-  const [baseEquipmentMod, setBaseEquipmentMod] = useState([3, 3, 3, 3]) // one of these for each base stat, in the order they are planned to be
+  const [equipmentMod] = useState([7, 7, 7, 7]) // one of these for each skill, in the same order as the skills array in level ups
+  const [baseEquipmentMod] = useState([3, 3, 3, 3]) // one of these for each base stat, in the order they are planned to be
 
   const updateCharSheet = (selector, value) => {
     // setCharSheet((prevCharSheet) => {

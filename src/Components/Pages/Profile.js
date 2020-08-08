@@ -1,9 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-// COMPONENTS
-import HomeGuest from "./HomeGuest"
-
 function Profile(props) {
   const signOutHandler = () => {
     //props.CSIDHandler(0)

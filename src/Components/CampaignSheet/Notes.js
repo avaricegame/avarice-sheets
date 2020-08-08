@@ -1,11 +1,11 @@
-import React, { useState } from "react"
+import React from "react"
 
 function Notes(props) {
-  const [noteIndex, setNoteIndex] = useState(0)
+  // const [noteIndex, setNoteIndex] = useState(0)
 
-  const openNoteHandler = (index, e) => {
-    setNoteIndex(index)
-  }
+  // const openNoteHandler = (index, e) => {
+  //   setNoteIndex(index)
+  // }
 
   return (
     <>

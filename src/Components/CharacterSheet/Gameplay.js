@@ -62,11 +62,11 @@ function Gameplay(props) {
 
         <div className="cw__25">
           <h2 className="heading">Actions</h2>
-          <button>Attack</button>
-          <button>Use Ability</button>
-          <button>Use Skill</button>
-          <button>Pay Money</button>
-          <button>Sell Items</button>
+          <button onClick={attackHandler}>Attack</button>
+          <button onClick={useAbilityHandler}>Use Ability</button>
+          <button onClick={useSkillHandler}>Use Skill</button>
+          <button onClick={payMoneyHandler}>Pay Money</button>
+          <button onClick={sellItemsHandler}>Sell Items</button>
           <button onClick={rollHandler}>Roll Die</button>
         </div>
 
