@@ -17,7 +17,7 @@ import About from "./Components/Pages/About"
 //import Popup from "./Components/Popup"
 
 Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
-// "http://localhost:2890"
+//Axios.defaults.baseURL = "http://localhost:2890"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("loggedIn")))

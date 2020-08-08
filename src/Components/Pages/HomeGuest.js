@@ -1,35 +1,55 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
+import Axios from "axios"
 
 function HomeGuest(props) {
   let [username] = useState()
   let [email] = useState()
   let [password] = useState()
-  let [emailUsername] = useState()
+
+  let [randomID, setRandomID] = useState(`${Math.random() * 10}`)
 
   const loginSubmitHandler = (e) => {
     e.preventDefault()
-    console.log(e.target.emailUsername.value, e.target.password.value)
+
+    console.log(e.target.email.value, e.target.password.value)
+
+    // Axios.post("/login", {
+    //   email: e.target.email.value,
+    //   password: e.target.password.value,
+    // }).then(function (response) {
+    //   console.log(response)
+    //   props.UIDHandler(response.data.id)
+    //   props.accountHandler(true)
+    //   props.loggedInHandler(true)
+    // })
+
     // SEND FORM DATA TO SERVER AND GET BACK A PASS OR FAIL, PLUS THE UID
-    if (e.target.emailUsername.value === "email@email.com") {
+    if (e.target.email.value === "imhungry") {
       props.UIDHandler("1")
       props.loggedInHandler(true)
-    } else {
-      props.UIDHandler(0)
     }
   }
 
   const registerSubmitHandler = (e) => {
     e.preventDefault()
     console.log(e.target.email.value, e.target.username.value, e.target.password.value)
-    // SEND FOR DATA TO SERVER AND GET BACK A SUCCESS OR FAIL, PLUS THE UID
-    if (e.target.email.value === "email@email.com") {
-      props.UIDHandler("1")
-      props.accountHandler(true)
-      props.loggedInHandler(true)
-    } else {
-      props.UIDHandler(0)
-    }
+
+    Axios.post("/register", {
+      username: e.target.username.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      id: randomID,
+    })
+      .then(function (response) {
+        props.UIDHandler(randomID)
+        setRandomID(`${Math.random() * 10}`)
+        props.accountHandler(true)
+        props.loggedInHandler(true)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 
   return (
@@ -63,10 +83,10 @@ function HomeGuest(props) {
                 <fieldset>
                   <legend>Please fill out the fields below to login.</legend>
                   <label htmlFor="email">
-                    Username or Email: <input value={emailUsername} name="emailUsername" type="text" />
+                    Email: <input value={email} name="email" type="text" />
                   </label>
                   <label htmlFor="password">
-                    Password: <input value={password} name="password" type="password" />
+                    Password: <input value={password} name="password" type="text" />
                   </label>
                   <input className="hg__form-submit" type="submit" value="Login" />
                 </fieldset>
@@ -94,7 +114,7 @@ function HomeGuest(props) {
                     Email: <input value={email} name="email" type="email" />
                   </label>
                   <label htmlFor="">
-                    Password: <input value={password} name="password" type="password" />
+                    Password: <input value={password} name="password" type="text" />
                   </label>
                   <input className="hg__form-submit" type="submit" value="Create Account" />
                 </fieldset>
