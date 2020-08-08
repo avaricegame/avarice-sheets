@@ -35,26 +35,23 @@ function Roll(props) {
 
   return (
     <div className="popup-bg">
-      <div className="popup" style={{ backgroundColor: "whitesmoke" }}>
-        <div className="cw__100" style={{ width: "95%", marginTop: "1rem" }}>
-          <h2 className="heading">Common Rolls</h2>
+      <div className="popup">
+        <div className="cw__100" style={{ backgroundColor: "whitesmoke", marginTop: ".5rem", marginBottom: ".5rem" }}>
+          <h2 className="heading">Roll Die</h2>
           <div className="cw__container">
-            <button onClick={twenty}>D20</button>
-            <button onClick={twelve}>D12</button>
-            <button onClick={ten}>D10</button>
-            <button onClick={eight}>D8</button>
-            <button onClick={six}>D6</button>
             <button onClick={four}>D4</button>
-          </div>
-          <h2 className="heading">Uncommon Rolls</h2>
-          <div className="cw__container">
+            <button onClick={six}>D6</button>
+            <button onClick={eight}>D8</button>
+            <button onClick={ten}>D10</button>
+            <button onClick={twelve}>D12</button>
+            <button onClick={twenty}>D20</button>
             <button onClick={sixty}>D60</button>
             <button onClick={hundred}>D100</button>
-            <button onClick={custom}>Roll a Custom Die</button>
+            <button onClick={custom}>Custom</button>
           </div>
         </div>
-        <div onClick={close} className="close-button">
-          Close Form
+        <div onClick={close} className="close-button" style={{ padding: "3rem 1rem", color: "whitesmoke" }}>
+          Close
         </div>
       </div>
     </div>

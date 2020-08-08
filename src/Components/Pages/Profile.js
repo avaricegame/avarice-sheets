@@ -27,11 +27,11 @@ function Profile(props) {
               &larr; BACK TO HOME
             </Link>
             <hr className="hg__hr" />
-            <h2 className="hg__heading hg__heading--center">Hi there, Username</h2>
+            <h2 className="hg__heading hg__heading--center">Hi there, imhungry</h2>
             <hr className="hg__hr" />
             <div className="hg__flex-container">
-              <div className="hg__content hg__content--50">
-                <h3 className="item-container__heading">Your Account Details</h3>
+              <div className="hg__content hg__content--50" style={{ height: "20rem" }}>
+                {/* <h3 className="item-container__heading">Your Account Details</h3>
                 <table>
                   <tbody>
                     <tr>
@@ -47,9 +47,9 @@ function Profile(props) {
                       <td>name</td>
                     </tr>
                   </tbody>
-                </table>
+                </table> */}
               </div>
-              <div className="hg__content hg__content--50">hi</div>
+              <div className="hg__content hg__content--50"></div>
             </div>
             <hr className="hg__hr" />
             <Link to="/">
