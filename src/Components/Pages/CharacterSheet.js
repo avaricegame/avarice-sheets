@@ -221,6 +221,7 @@ function CharacterSheet(props) {
               <Route path="/" exact>
                 <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} UID={props.UID} newCharacterSheetHandler={props.newCharacterSheetHandler} />
                 {props.newCharacterSheet ? <Popup CSID={props.CSID} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
+                {props.newCharacterSheet ? <Popup CSID={props.CSID} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
               </Route>
               <Route path="/character/about">
                 <Header charSheet={charSheet} />

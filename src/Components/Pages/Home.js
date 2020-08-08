@@ -6,6 +6,10 @@ import Axios from "axios"
 import Loader from "../Loader"
 
 function Home(props) {
+  const openNewCharacterSheet = () => {
+    props.newCharacterSheetHandler(true)
+  }
+
   const [isLoading, setIsLoading] = useState(true)
   const [characterSheetArray, setCharacterSheetArray] = useState(0)
 
@@ -44,7 +48,7 @@ function Home(props) {
           <div className="campaign-sheets">
             <h2 className="heading">Character Sheets</h2>
             <div className="sheets-container">
-              <button>Create a New Character Sheet</button>
+              <button onClick={openNewCharacterSheet}>Create a New Character Sheet</button>
               {characterSheetArray.map((cs) => {
                 return (
                   <Link onClick={(e, id) => clickHandler(e, cs.charid)} to={`/character/gameplay`} key={cs.charid} className="fixing-link-settings">

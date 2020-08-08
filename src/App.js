@@ -76,7 +76,7 @@ function App() {
             <About />
           </Route>
           <Route path="/character">
-            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} />
+            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} newCharacterSheet={newCharacterSheet} />
           </Route>
           <Route path="/campaign">
             <CampaignSheet />
