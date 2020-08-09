@@ -1,11 +1,43 @@
 import React from "react"
+import Axios from "axios"
 
 function Stats(props) {
   const openLevelUp = () => {
     props.levelUpHandler(true)
   }
   const openEditLevel = () => {
-    props.editLevelHandler(true)
+    //props.editLevelHandler(true)
+    if (window.confirm("Are you sure you want to remove your last level? This could result in a lot of abilities and level up points.")) {
+      Axios.post("/character/removelevel", {
+        CSID: props.CSID,
+        level: parseInt(props.charSheet.levelUps.length - 1),
+      })
+        .then(function (response) {
+          //console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }
+
+  const addEC = () => {
+    console.log("did it")
+    Axios.post("/character/addec", {
+      CSID: props.CSID,
+    })
+    // .then(function (response) {
+    //   //console.log(response)
+    // })
+    // .catch(function (error) {
+    //   console.log(error)
+    // })
+  }
+
+  const useEC = () => {
+    Axios.post("/character/useec", {
+      CSID: props.CSID,
+    })
   }
 
   function calcBaseStatTotal(num) {
@@ -27,13 +59,13 @@ function Stats(props) {
                   <h3 className="item-container__heading">Level</h3>
                   <h4 className="item-container__subheading">You are at Level {props.charSheet.level}</h4>
                   <button onClick={openLevelUp}>Level Up</button>
-                  <button onClick={openEditLevel}>Edit Level</button>
+                  <button onClick={openEditLevel}>Remove Level</button>
                 </div>
                 <div className="item-container">
                   <h3 className="item-container__heading">Excellence Chips</h3>
                   <h4 className="item-container__subheading">You have {props.charSheet.excellenceChips} Excellence Chips</h4>
-                  <button>Add Excellence Chip</button>
-                  <button>Use Excellence Chip</button>
+                  <button onClick={addEC}>Add Excellence Chip</button>
+                  <button onClick={useEC}>Use Excellence Chip</button>
                   <p>Want to earn an excellence chip? Do something epic and make sure the DM is watching! Excellence Chips can be cashed in whenever you'd like for an immediate perfect roll. Use them wisely.</p>
                 </div>
               </div>
@@ -43,8 +75,8 @@ function Stats(props) {
               <h2 className="heading">Proficiencies</h2>
               <div className="cw__container">
                 <div className="item-container">
-                  <h3 className="item-container__heading">Ability Proficiencies</h3>
-                  <h4 className="item-container__subheading">When Performing Ability Actions</h4>
+                  <h3 className="item-container__heading">Proficiencies</h3>
+                  <h4 className="item-container__subheading">When Performing Attack Actions</h4>
                   <table>
                     <thead>
                       <tr>
@@ -74,6 +106,7 @@ function Stats(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Base Stats Table</h3>
+              <h4 className="item-container__subheading">When Performing General Actions</h4>
               <table>
                 <thead>
                   <tr>
@@ -87,7 +120,10 @@ function Stats(props) {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Physique (PHY)</td>
+                    <td>
+                      Physique
+                      <br /> (PHY)
+                    </td>
                     <td>{calcBaseStatTotal(0)}</td>
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0]}</td>
                     <td>{props.baseEquipmentMod[0]}</td>
@@ -97,7 +133,10 @@ function Stats(props) {
                     <td>4</td>
                   </tr>
                   <tr>
-                    <td>Intelligence (INT)</td>
+                    <td>
+                      Intelligence
+                      <br /> (INT)
+                    </td>
                     <td>{calcBaseStatTotal(1)}</td>
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1]}</td>
                     <td>{props.baseEquipmentMod[0]}</td>
@@ -107,7 +146,10 @@ function Stats(props) {
                     <td>4</td>
                   </tr>
                   <tr>
-                    <td>Reflex (REF)</td>
+                    <td>
+                      Reflex
+                      <br /> (REF)
+                    </td>
                     <td>{calcBaseStatTotal(2)}</td>
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2]}</td>
                     <td>{props.baseEquipmentMod[0]}</td>
@@ -117,7 +159,10 @@ function Stats(props) {
                     <td>4</td>
                   </tr>
                   <tr>
-                    <td>Charisma (CHA)</td>
+                    <td>
+                      Charisma
+                      <br /> (CHA)
+                    </td>
                     <td>{calcBaseStatTotal(3)}</td>
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]}</td>
                     <td>{props.baseEquipmentMod[0]}</td>
@@ -134,11 +179,10 @@ function Stats(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Skills Table</h3>
-              <h4 className="item-container__subheading">You are Competent in 8 Skills</h4>
+              <h4 className="item-container__subheading">When Performing Skilled Actions</h4>
               <table>
                 <thead>
                   <tr>
-                    <th>Competent</th>
                     <th>Skill</th>
                     <th>Total</th>
                     <th>Natural Mod</th>
@@ -149,9 +193,6 @@ function Stats(props) {
                   {props.charSheet.levelUps[props.charSheet.levelUps.length - 1].skills.map((skill, index) => {
                     return (
                       <tr key={index}>
-                        <td>
-                          <input type="checkbox" />
-                        </td>
                         <td>{skill.name}</td>
                         <td>{skill.natMod + props.equipmentMod[index]}</td>
                         <td>{skill.natMod}</td>

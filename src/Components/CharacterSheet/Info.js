@@ -1,12 +1,27 @@
 import React from "react"
+import Axios from "axios"
 
 function Info(props) {
   const openNewCharacterLog = () => {
     props.newCharacterLogHandler(true)
   }
-  // const openEditCharacterLog = () => {
-  //   props.editCharacterLogHandler(true)
-  // }
+  const openEditCharacterLog = () => {
+    props.editCharacterLogHandler(true)
+  }
+  const deleteCharacterLog = (e, id) => {
+    if (window.confirm("Are you sure you want to delete this character log? This action cannot be undone.")) {
+      Axios.post("/character/deletecharacterlog", {
+        CSID: props.CSID,
+        id: id,
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }
   return (
     <>
       <div className="secondary-header">
@@ -18,18 +33,34 @@ function Info(props) {
           <div className="cw__container">
             <button onClick={openNewCharacterLog}>Add a New Character Log</button>
 
-            <div className="item-container">
-              <h3 className="item-container__heading">Character Log</h3>
-              {/* <h4 className="item-container__subheading">For: Fluttering Butterflies Campaign</h4> */}
-              <h4 className="item-container__subheading">For {props.charSheet.characterName}</h4>
+            <div className="item-container" style={{ display: "flex", flexDirection: "column-reverse" }}>
               {props.charSheet.characterLog.map((log) => {
                 return (
                   <p key={log.id}>
                     <strong>{log.title}: </strong>
                     {log.details}
+
+                    <p style={{ textAlign: "right", margin: "0", color: "darkgray" }}>
+                      <span onClick={openEditCharacterLog} className="hg__fake-link">
+                        EDIT
+                      </span>
+                      <span>|</span>
+                      <span
+                        onClick={(e, id) => {
+                          deleteCharacterLog(e, log.id)
+                        }}
+                        className="hg__fake-link"
+                      >
+                        DELETE
+                      </span>
+                    </p>
+                    <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
                   </p>
                 )
               })}
+              {/* <h4 className="item-container__subheading">For: Fluttering Butterflies Campaign</h4> */}
+              <h4 className="item-container__subheading">For {props.charSheet.characterName}</h4>
+              <h3 className="item-container__heading">Character Log</h3>
             </div>
 
             <div className="item-container">
@@ -90,6 +121,9 @@ function Info(props) {
                 <em>"{props.theClass.quote}"</em>
               </p>
               <p>{props.theClass.description}</p>
+              <p>
+                <strong>Skills: </strong>Skill 1, Skill 2, Skill 7, Skill 9
+              </p>
               <table>
                 <tbody>
                   <tr>
@@ -115,7 +149,7 @@ function Info(props) {
                   </tr>
                 </tbody>
               </table>
-              <table>
+              {/* <table>
                 <tbody>
                   <tr>
                     <td>
@@ -143,7 +177,7 @@ function Info(props) {
                     <td>{props.theClass.skills.skill5}</td>
                   </tr>
                 </tbody>
-              </table>
+              </table> */}
             </div>
             <div className="item-container">
               <h3 className="item-container__heading">Race Details and Information</h3>

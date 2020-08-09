@@ -253,7 +253,7 @@ function CharacterSheet(props) {
               <Route path="/character/inventory" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} newWeaponHandler={newWeaponHandler} newWearableHandler={newWearableHandler} newItemHandler={newItemHandler} editSuronisHandler={editSuronisHandler} />
+                <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} newWeaponHandler={newWeaponHandler} newWearableHandler={newWearableHandler} newItemHandler={newItemHandler} editSuronisHandler={editSuronisHandler} CSID={props.CSID} />
                 <Footer />
                 {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
                 {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
@@ -265,7 +265,7 @@ function CharacterSheet(props) {
               <Route path="/character/stats" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} levelUpHandler={levelUpHandler} editLevelHandler={editLevelHandler} />
+                <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} levelUpHandler={levelUpHandler} editLevelHandler={editLevelHandler} CSID={props.CSID} />
                 <Footer />
                 {levelUp ? <LevelUp CSID={props.CSID} levelUp={levelUp} levelUpHandler={levelUpHandler} /> : ""}
                 {editLevel ? <EditLevel CSID={props.CSID} editLevel={editLevel} editLevelHandler={editLevelHandler} /> : ""}
@@ -273,7 +273,7 @@ function CharacterSheet(props) {
               <Route path="/character/abilities" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Abilities abilityTree={abilityTree} charSheet={charSheet} abilityArray={abilityArray} newAbilityHandler={newAbilityHandler} editAbilityHandler={editAbilityHandler} />
+                <Abilities abilityTree={abilityTree} charSheet={charSheet} abilityArray={abilityArray} newAbilityHandler={newAbilityHandler} editAbilityHandler={editAbilityHandler} CSID={props.CSID} />
                 <Footer />
                 {newAbility ? <NewAbility CSID={props.CSID} newAbilityHandler={newAbilityHandler} /> : ""}
                 {editAbility ? <EditAbility CSID={props.CSID} editAbilityHandler={editAbilityHandler} /> : ""}
@@ -281,7 +281,7 @@ function CharacterSheet(props) {
               <Route path="/character/info" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Info charSheet={charSheet} theRace={theRace} theClass={theClass} newCharacterLogHandler={newCharacterLogHandler} editCharacterLogHandler={editCharacterLogHandler} />
+                <Info charSheet={charSheet} theRace={theRace} theClass={theClass} CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} editCharacterLogHandler={editCharacterLogHandler} />
                 <Footer />
                 {newCharacterLog ? <NewCharacterLog CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} /> : ""}
                 {editCharacterLog ? <EditCharacterLog CSID={props.CSID} editCharacterLogHandler={editCharacterLogHandler} /> : ""}
@@ -295,7 +295,7 @@ function CharacterSheet(props) {
               <Route path="/character/notes" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Notes charSheet={charSheet} newNoteHandler={newNoteHandler} editNoteHandler={editNoteHandler} />
+                <Notes charSheet={charSheet} CSID={props.CSID} newNoteHandler={newNoteHandler} editNoteHandler={editNoteHandler} />
                 <Footer />
                 {newNote ? <NewNote CSID={props.CSID} newNoteHandler={newNoteHandler} /> : ""}
                 {editNote ? <EditNote CSID={props.CSID} editNoteHandler={editNoteHandler} /> : ""}

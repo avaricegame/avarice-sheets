@@ -116,6 +116,14 @@ function Inventory(props) {
               </tr>
             </tbody>
           </table>
+          <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
+          <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
+            <span onClick={openEditSuronis} className="hg__fake-link">
+              EDIT
+            </span>
+            <span>|</span>
+            <span className="hg__fake-link">DELETE</span>
+          </p>
         </div>
       )
     }
@@ -221,6 +229,14 @@ function Inventory(props) {
               </tr>
             </tbody>
           </table>
+          <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
+          <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
+            <span onClick={openEditSuronis} className="hg__fake-link">
+              EDIT
+            </span>
+            <span>|</span>
+            <span className="hg__fake-link">DELETE</span>
+          </p>
         </div>
       )
     }
@@ -265,6 +281,14 @@ function Inventory(props) {
               </tr>
             </tbody>
           </table>
+          <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
+          <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
+            <span onClick={openEditSuronis} className="hg__fake-link">
+              EDIT
+            </span>
+            <span>|</span>
+            <span className="hg__fake-link">DELETE</span>
+          </p>
         </div>
       )
     }
@@ -468,7 +492,7 @@ function Inventory(props) {
             <button onClick={openNewWeapon}>Add New Weapon</button>
             <button onClick={openNewWearable}>Add New Wearable</button>
             <button onClick={openNewItem}>Add New Item</button>
-            <button onClick={openEditSuronis}>Edit Suronis Contents</button>
+            {/* <button onClick={openEditSuronis}>Edit Suronis Contents</button> */}
           </div>
         </div>
         {/* /////// CLOSE PAGE CONTAINER /////// */}

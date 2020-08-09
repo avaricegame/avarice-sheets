@@ -107,34 +107,34 @@ function Gameplay(props) {
         <div className="cw__25">
           <h2 className="heading">Quick Links</h2>
           <div className="cw__container">
-            <Link to="/character/123/inventory">
+            <Link to="/character/inventory">
               <button>Equip / Unequip Armour</button>
             </Link>
-            <Link to="/character/123/abilities">
+            <Link to="/character/abilities">
               <button>See My Abilities</button>
             </Link>
-            <Link to="/character/123/abilities">
+            <Link to="/character/abilities">
               <button>Character Information</button>
             </Link>
-            <Link to="/character/123/info">
+            <Link to="/character/info">
               <button>My Race and Class</button>
             </Link>
-            <Link to="/character/123/info">
+            <Link to="/character/info">
               <button>Campaign Info</button>
             </Link>
-            <Link to="/character/123/stats">
+            <Link to="/character/stats">
               <button>See My Stats</button>
             </Link>
-            <Link to="/character/123/stats">
+            <Link to="/character/stats">
               <button>Excellence Chips</button>
             </Link>
-            <Link to="/character/123/stats">
+            <Link to="/character/stats">
               <button>Level Up</button>
             </Link>
-            <Link to="/character/123/notes">
+            <Link to="/character/notes">
               <button>My Notes</button>
             </Link>
-            <Link to="/character/123/messages">
+            <Link to="/character/messages">
               <button>Messages</button>
             </Link>
           </div>
