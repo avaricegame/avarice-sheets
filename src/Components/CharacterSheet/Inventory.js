@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import Axios from "axios"
 
 function Inventory(props) {
   const openPayMoney = () => {
@@ -19,6 +20,51 @@ function Inventory(props) {
   const openEditSuronis = () => {
     props.editSuronisHandler(true)
   }
+  const deleteWeapon = (e, id) => {
+    if (window.confirm("Are you sure you want to delete this weapon? This action cannot be undone.")) {
+      Axios.post("/character/deleteweapon", {
+        CSID: props.CSID,
+        id: id,
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }
+  const deleteWearable = (e, id) => {
+    if (window.confirm("Are you sure you want to delete this wearable? This action cannot be undone.")) {
+      Axios.post("/character/deletewearable", {
+        CSID: props.CSID,
+        id: id,
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }
+  const deleteItem = (e, id) => {
+    if (window.confirm("Are you sure you want to delete this item? This action cannot be undone.")) {
+      Axios.post("/character/deleteitem", {
+        CSID: props.CSID,
+        id: id,
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }
+  const equipWeapon = (e, id) => {}
+  const equipWearable = (e, id) => {}
+  const equipItem = (e, id) => {}
 
   const [holstersUsed] = useState(0)
   const [slotsUsed] = useState(0)
@@ -118,11 +164,29 @@ function Inventory(props) {
           </table>
           <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
           <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
+            <span
+              onClick={(e, id) => {
+                equipWeapon(e, currentWeapon.id)
+              }}
+              className="hg__fake-link"
+            >
+              {currentWeapon.equipped ? "EQUIP THIS WEAPON" : "UNEQUIP THIS WEAPON"}
+            </span>
+          </p>
+          <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
+          <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
             <span onClick={openEditSuronis} className="hg__fake-link">
               EDIT
             </span>
             <span>|</span>
-            <span className="hg__fake-link">DELETE</span>
+            <span
+              onClick={(e, id) => {
+                deleteWeapon(e, currentWeapon.id)
+              }}
+              className="hg__fake-link"
+            >
+              DELETE
+            </span>
           </p>
         </div>
       )
@@ -231,11 +295,29 @@ function Inventory(props) {
           </table>
           <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
           <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
+            <span
+              onClick={(e, id) => {
+                equipWearable(e, currentWeapon.id)
+              }}
+              className="hg__fake-link"
+            >
+              {currentWearable.equipped ? "EQUIP THIS WEARABLE" : "UNEQUIP THIS WEARABLE"}
+            </span>
+          </p>
+          <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
+          <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
             <span onClick={openEditSuronis} className="hg__fake-link">
               EDIT
             </span>
             <span>|</span>
-            <span className="hg__fake-link">DELETE</span>
+            <span
+              onClick={(e, id) => {
+                deleteWearable(e, currentWearable.id)
+              }}
+              className="hg__fake-link"
+            >
+              DELETE
+            </span>
           </p>
         </div>
       )
@@ -283,11 +365,29 @@ function Inventory(props) {
           </table>
           <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
           <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
+            <span
+              onClick={(e, id) => {
+                equipItem(e, currentItem.id)
+              }}
+              className="hg__fake-link"
+            >
+              {currentWeapon.equipped ? "EQUIP THIS ITEM" : "UNEQUIP THIS ITEM"}
+            </span>
+          </p>
+          <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
+          <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
             <span onClick={openEditSuronis} className="hg__fake-link">
               EDIT
             </span>
             <span>|</span>
-            <span className="hg__fake-link">DELETE</span>
+            <span
+              onClick={(e, id) => {
+                deleteItem(e, currentItem.id)
+              }}
+              className="hg__fake-link"
+            >
+              DELETE
+            </span>
           </p>
         </div>
       )
