@@ -2,7 +2,7 @@ form input,
 form select,
 form option,
 form textarea {
-  font-family: sans-serif;
+  font-family: "Carrois Gothic", sans-serif;
 }
 
 form {
@@ -31,20 +31,21 @@ label {
 form input,
 textarea,
 select {
-  padding: 0.2rem;
+  padding: 1rem;
   border: none;
   box-shadow: 0 0 15px rgb(207, 207, 207);
   min-height: 30px;
   width: 95%;
   margin: 0.5rem;
-  font-weight: bold;
+  //font-weight: bold;
   font-size: 1.4rem;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 }
 
 form textarea {
   max-width: 95%;
-  padding: 0.2rem;
+  padding: 1rem;
+  line-height: 1.5;
   min-height: 80px;
 }
 
