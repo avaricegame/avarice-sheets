@@ -1,38 +1,45 @@
 import React, { useState } from "react"
-//import Axios from "axios"
+import Axios from "axios"
 
 function NewNote(props) {
-  const [amount, setAmount] = useState()
+  const [title, setTitle] = useState()
+  const [content, setContent] = useState()
   const close = () => {
     props.newNoteHandler(false)
   }
-  const onChangeHandler = (e) => {
+  const onTitleChangeHandler = (e) => {
     console.log(e.target.value)
-    setAmount(e.target.value)
+    setTitle(e.target.value)
+  }
+  const onContentChangeHandler = (e) => {
+    console.log(e.target.value)
+    setContent(e.target.value)
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(e.target.amount.value)
-    // Axios.post("/character/takedamage", {
-    //   amount: e.target.amount.value,
-    //   CSID: props.CSID,
-    // })
-    //   .then(function (response) {
-    //     props.newNoteHandler(false)
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   })
+    Axios.post("/character/newnote", {
+      id: Math.floor(Math.random() * 100000),
+      CSID: props.CSID,
+      title: title,
+      content: content,
+    })
+      .then(function (response) {
+        props.newNoteHandler(false)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   return (
     <div className="popup-bg">
       <div className="popup">
-        <form onSubmit={(e) => submitHandler(e)}>
+        <form style={{ minWidth: "70vw" }} onSubmit={(e) => submitHandler(e)}>
           <fieldset>
-            <h6 className="edit-h6">Form Title</h6>
-            <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
-
+            <h6 className="edit-h6">New Note</h6>
+            <label htmlFor="title">Title:</label>
+            <input name="title" value={title} onChange={(e) => onTitleChangeHandler(e)} type="text" />
+            <label htmlFor="content">Content:</label>
+            <textarea name="content" cols="50" rows="10" value={content} onChange={(e) => onContentChangeHandler(e)}></textarea>
             <input type="submit" className="submit-button" value="Submit" />
           </fieldset>
         </form>

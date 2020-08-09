@@ -1,55 +1,44 @@
 import React, { useState } from "react"
-//import Axios from "axios"
+import Axios from "axios"
 
 function NewAbility(props) {
-  const [amount, setAmount] = useState()
+  const [name, setName] = useState()
+  const [description, setDescription] = useState()
   const close = () => {
     props.newAbilityHandler(false)
   }
-  const onChangeHandler = (e) => {
-    console.log(e.target.value)
-    setAmount(e.target.value)
+  const onNameChangeHandler = (e) => {
+    setName(e.target.value)
+  }
+  const onDescriptionChangeHandler = (e) => {
+    setDescription(e.target.value)
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(e.target.amount.value)
-    // Axios.post("/character/takedamage", {
-    //   amount: e.target.amount.value,
-    //   CSID: props.CSID,
-    // })
-    //   .then(function (response) {
-    //     props.newNoteHandler(false)
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   })
+    Axios.post("/character/createability", {
+      id: Math.floor(Math.random() * 100000),
+      CSID: props.CSID,
+      name: name,
+      description: description,
+      power: "custom",
+    })
+      .then(function (response) {
+        props.newAbilityHandler(false)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   return (
     <div className="popup-bg">
       <div className="popup">
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
-            <h6 className="edit-h6">Form Title</h6>
-            <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
-            {/*
-             <form id="customAbilitiesForm" onSubmit={this.onSubmit}>
-                <fieldset>
-                  <h6 className="edit-h6">Custom Ability Form</h6>
-                  <label>Ability Name:</label>
-                  <input required name="name" value={name} onChange={this.onChange} type="text" />
-                  <label>Description:</label>
-                  <textarea required name="description" value={description} onChange={this.onChange}></textarea>
-                  <label>Publish?</label>
-                  <select required name="published" value={published} onChange={this.onChange}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                  <input type="submit" className="submit-button" value="Save New Ability" />
-                </fieldset>
-              </form>
-            */}
+            <h6 className="edit-h6">Create New Ability</h6>
+            <label htmlFor="name">Name:</label>
+            <input name="name" value={name} onChange={(e) => onNameChangeHandler(e)} type="text" />
+            <label htmlFor="content">Description:</label>
+            <textarea name="description" cols="50" rows="10" value={description} onChange={(e) => onDescriptionChangeHandler(e)}></textarea>
             <input type="submit" className="submit-button" value="Submit" />
           </fieldset>
         </form>
