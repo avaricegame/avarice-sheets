@@ -8,7 +8,9 @@ function UseAbility(props) {
   }
   const rollHandler = () => {
     let number = prompt("How many sided die? Please enter a positive, whole integer (e.g. 4)")
-    alert(`You rolled a ${Math.ceil(Math.random() * number)}!`)
+    if (number) {
+      alert(`You rolled a ${Math.ceil(Math.random() * number)}!`)
+    }
   }
   const setCurrentAbilityHandler = (e) => {
     if (e.target.value !== "a") {
