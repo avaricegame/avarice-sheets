@@ -1,15 +1,15 @@
-import React, { useState } from "react"
+import React from "react"
 //import Axios from "axios"
 
 function EditSuronis(props) {
-  const [amount, setAmount] = useState()
+  // const [amount, setAmount] = useState()
   const close = () => {
     props.editSuronisHandler(false)
   }
-  const onChangeHandler = (e) => {
-    console.log(e.target.value)
-    setAmount(e.target.value)
-  }
+  // const onChangeHandler = (e) => {
+  //   console.log(e.target.value)
+  //   setAmount(e.target.value)
+  // }
   const submitHandler = (e) => {
     e.preventDefault()
     console.log(e.target.amount.value)
@@ -30,9 +30,7 @@ function EditSuronis(props) {
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
             <h6 className="edit-h6">Form Title</h6>
-            <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
-
+            <label>this form is under construction</label>
             <input type="submit" className="submit-button" value="Submit" />
           </fieldset>
         </form>
