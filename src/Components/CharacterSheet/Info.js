@@ -136,11 +136,11 @@ function Info(props) {
                     <td>{props.theClass.baseStats[0]}</td>
                   </tr>
                   <tr>
-                    <td>Reflex:</td>
+                    <td>Intelligence:</td>
                     <td>{props.theClass.baseStats[1]}</td>
                   </tr>
                   <tr>
-                    <td>Intelligence:</td>
+                    <td>Reflex:</td>
                     <td>{props.theClass.baseStats[2]}</td>
                   </tr>
                   <tr>
@@ -199,11 +199,11 @@ function Info(props) {
                     <td>{props.theRace.baseStats[0]}</td>
                   </tr>
                   <tr>
-                    <td>Reflex:</td>
+                    <td>Intelligence:</td>
                     <td>{props.theRace.baseStats[1]}</td>
                   </tr>
                   <tr>
-                    <td>Intelligence:</td>
+                    <td>Reflex:</td>
                     <td>{props.theRace.baseStats[2]}</td>
                   </tr>
                   <tr>
