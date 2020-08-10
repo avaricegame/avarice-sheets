@@ -16,8 +16,8 @@ import About from "./Components/Pages/About"
 // FUNCTIONAL COMPONENTS
 import NewCharacterSheet from "./Components/CharacterSheet/Forms/NewCharacterSheet"
 
-Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
-//Axios.defaults.baseURL = "http://localhost:2890"
+//Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
+Axios.defaults.baseURL = "http://localhost:2890"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("loggedIn")))

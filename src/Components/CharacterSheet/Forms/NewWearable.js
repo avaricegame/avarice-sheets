@@ -17,8 +17,8 @@ function NewWearable(props) {
       modifiers: {
         armour: e.target.armour.value || 0,
         PHY: e.target.value.PHY || 0,
-        REF: e.target.value.REF || 0,
         INT: e.target.value.INT || 0,
+        REF: e.target.value.REF || 0,
         CHA: e.target.value.CHA || 0,
         skill1: e.target.value.skill1 || 0,
       },
