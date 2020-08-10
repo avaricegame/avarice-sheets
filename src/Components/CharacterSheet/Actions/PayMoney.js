@@ -32,7 +32,7 @@ function PayMoney(props) {
           <fieldset>
             <h6 className="edit-h6">Pay Money</h6>
             <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
+            <input required name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
 
             <input type="submit" className="submit-button" value={amount ? `Pay ${amount} Gold` : "Please Specify a Value"} />
           </fieldset>

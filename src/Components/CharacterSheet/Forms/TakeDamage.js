@@ -31,7 +31,7 @@ function TakeDamage(props) {
           <fieldset>
             <h6 className="edit-h6">Take Damage</h6>
             <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
+            <input required name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
 
             <input type="submit" className="submit-button" value={amount ? `Take ${amount} Damage` : "Please Specify a Value"} />
           </fieldset>

@@ -33,7 +33,7 @@ function Heal(props) {
           <fieldset>
             <h6 className="edit-h6">Heal HP</h6>
             <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
+            <input required name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
 
             <input type="submit" className="submit-button" value={amount ? `Heal ${amount} Hit Points` : "Please Specify a Value"} />
           </fieldset>
