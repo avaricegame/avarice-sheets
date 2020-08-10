@@ -245,7 +245,7 @@ function CharacterSheet(props) {
               <Route path="/character/gameplay" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Gameplay charSheet={charSheet} abilityArray={abilityArray} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} />
+                <Gameplay charSheet={charSheet} abilityArray={abilityArray} equipmentMod={equipmentMod} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} />
                 <Footer />
                 {heal ? <HealHP healHandler={healHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}
                 {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}

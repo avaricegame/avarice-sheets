@@ -144,7 +144,7 @@ function Gameplay(props) {
       {roll ? <Roll rollHandler={rollHandler} /> : ""}
       {attack ? <Attack attackHandler={attackHandler} charSheet={props.charSheet} /> : ""}
       {useAbility ? <UseAbility useAbilityHandler={useAbilityHandler} abilityArray={props.abilityArray} charSheet={props.charSheet} /> : ""}
-      {useSkill ? <UseSkill useSkillHandler={useSkillHandler} charSheet={props.charSheet} /> : ""}
+      {useSkill ? <UseSkill useSkillHandler={useSkillHandler} equipmentMod={props.equipmentMod} charSheet={props.charSheet} /> : ""}
       {payMoney ? <PayMoney payMoneyHandler={payMoneyHandler} CSID={props.CSID} /> : ""}
       {sellItems ? <SellItems sellItemsHandler={sellItemsHandler} CSID={props.CSID} charSheet={props.charSheet} /> : ""}
     </>
