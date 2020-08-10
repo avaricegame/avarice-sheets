@@ -12,8 +12,8 @@ function Attack(props) {
   }
   const setWeaponHandler = (e) => {
     if (e.target.value !== "a") {
-      setCurrentWeapon(props.charSheet.weapons[e.target.value])
-      setCurrentProficiencyHandler(props.charSheet.weapons[e.target.value])
+      setCurrentWeapon(props.equippedWeapons[e.target.value])
+      setCurrentProficiencyHandler(props.equippedWeapons[e.target.value])
     } else {
       setCurrentWeapon("a")
     }
@@ -112,7 +112,7 @@ function Attack(props) {
             <label>Select a Weapon to Attack With:</label>
             <select onChange={(e) => setWeaponHandler(e)} className="item-container__select">
               <option value="a"></option>
-              {props.charSheet.weapons.map((weapon, index) => {
+              {props.equippedWeapons.map((weapon, index) => {
                 return (
                   <option value={index} key={weapon.id}>
                     {weapon.name}
