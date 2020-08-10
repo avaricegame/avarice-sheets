@@ -40,7 +40,7 @@ function UseAbility(props) {
       <div className="popup" style={{ minWidth: "50vw" }}>
         <form>
           <fieldset>
-            <h6 className="edit-h6">Use Ability</h6>
+            <h6 className="edit-h6">Use an Ability</h6>
             <label>Select an Ability to view the details:</label>
             <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentAbilityHandler(e)}>
               <option value="a"></option>
