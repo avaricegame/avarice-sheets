@@ -8,6 +8,7 @@ import UseAbility from "./Actions/UseAbility"
 import UseSkill from "./Actions/UseSkill"
 import PayMoney from "./Actions/PayMoney"
 import SellItems from "./Actions/SellItems"
+import MakeCheck from "./Actions/MakeCheck"
 
 function Gameplay(props) {
   const [roll, setRoll] = useState(false)
@@ -34,7 +35,10 @@ function Gameplay(props) {
   const sellItemsHandler = (bool) => {
     setSellItems(bool)
   }
-
+  const [makeCheck, setMakeCheck] = useState(false)
+  const makeCheckHandler = (bool) => {
+    setMakeCheck(bool)
+  }
   const openHeal = () => {
     props.healHandler(true)
   }
@@ -63,6 +67,7 @@ function Gameplay(props) {
         <div className="cw__25">
           <h2 className="heading">Actions</h2>
           <button onClick={attackHandler}>Attack</button>
+          <button onClick={makeCheckHandler}>Make a Check</button>
           <button onClick={useAbilityHandler}>Use Ability</button>
           <button onClick={useSkillHandler}>Use Skill</button>
           <button onClick={payMoneyHandler}>Pay Money</button>
@@ -147,6 +152,7 @@ function Gameplay(props) {
       {useSkill ? <UseSkill useSkillHandler={useSkillHandler} equipmentMod={props.equipmentMod} charSheet={props.charSheet} /> : ""}
       {payMoney ? <PayMoney payMoneyHandler={payMoneyHandler} CSID={props.CSID} /> : ""}
       {sellItems ? <SellItems sellItemsHandler={sellItemsHandler} CSID={props.CSID} charSheet={props.charSheet} /> : ""}
+      {makeCheck ? <MakeCheck makeCheckHandler={makeCheckHandler} charSheet={props.charSheet} theRace={props.theRace} theClass={props.theClass} baseEquipmentMod={props.baseEquipmentMod} /> : ""}
     </>
   )
 }
