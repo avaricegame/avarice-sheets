@@ -15,11 +15,11 @@ function LevelUp(props) {
     if (e.target.baseStats.value === "PHY") {
       newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]]
     } else if (e.target.baseStats.value === "INT") {
-      newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]]
+      newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]]
     } else if (e.target.baseStats.value === "REF") {
-      newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]]
+      newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]]
     } else if (e.target.baseStats.value === "CHA") {
-      newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3] + 1]
+      newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3] + 1]
     }
     let newSkills
     if (e.target.skills.value === "Skill 1") {
