@@ -42,6 +42,13 @@ select {
   //text-transform: uppercase;
 }
 
+form input[type="radio"] {
+  width: 2rem;
+  display: inline-block;
+  box-shadow: none;
+  background-color: none;
+}
+
 form textarea {
   max-width: 95%;
   padding: 1rem;
