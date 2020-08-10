@@ -14,7 +14,14 @@ function NewWearable(props) {
       bodyArea: e.target.bodyArea.value,
       requirements: e.target.requirements.value,
       type: e.target.type.value,
-      modifiers: e.target.modifiers.value,
+      modifiers: {
+        armour: e.target.armour.value || 0,
+        PHY: e.target.value.PHY || 0,
+        REF: e.target.value.REF || 0,
+        INT: e.target.value.INT || 0,
+        CHA: e.target.value.CHA || 0,
+        skill1: e.target.value.skill1 || 0,
+      },
       size: e.target.size.value,
       value: e.target.value.value,
       slots: e.target.slots.value,
@@ -26,7 +33,7 @@ function NewWearable(props) {
     })
       .then(function (response) {
         console.log(response)
-        props.newWearableHAndler(false)
+        props.newWearableHandler(false)
       })
       .catch(function (error) {
         console.log(error)
@@ -34,71 +41,77 @@ function NewWearable(props) {
   }
   return (
     <div className="popup-bg">
-      <div className="popup">
+      <div className="popup" style={{ width: "50vw", overflowY: "scroll" }}>
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
             <h6 className="edit-h6">Add a New Wearable</h6>
-
-            {/*
-                           <form id="addNewArmourForm" onSubmit={this.onSubmit}>
-                <fieldset>
-                  <h6 className="edit-h6">Custom Armour Form</h6>
-                  <label>Body Area:</label>
-                  <select required name="bodyArea" value={bodyArea} onChange={this.onChange}>
-                    <option></option>
-                    <option>Head</option>
-                    <option>Hands</option>
-                    <option>Arms</option>
-                    <option>Torso</option>
-                    <option>Waist</option>
-                    <option>Feet</option>
-                    <option>Neck</option>
-                    <option>Shoulders</option>
-                    <option>Eyes</option>
-                    <option>Wrists</option>
-                    <option>Ring 1</option>
-                    <option>Ring 2</option>
-                  </select>
-                  <label>Armour Piece Name:</label>
-                  <input required name="name" value={name} onChange={this.onChange} type="text" />
-                  <label>Speed Mod:</label>
-                  <input name="speed" value={speed} onChange={this.onChange} type="number" />
-                  <label>Hit Points Mod:</label>
-                  <input name="hp" value={hp} onChange={this.onChange} type="number" />
-                  <label>Strength Mod:</label>
-                  <input name="strength" value={strength} onChange={this.onChange} type="number" />
-                  <label>Dexterity/Reflex Mod:</label>
-                  <input name="dexterityReflex" value={dexterityReflex} onChange={this.onChange} type="number" />
-                  <label>Constitution/Fortitude Mod:</label>
-                  <input name="constitutionFortitude" value={constitutionFortitude} onChange={this.onChange} type="number" />
-                  <label>Intelligence Mod:</label>
-                  <input name="intelligence" value={intelligence} onChange={this.onChange} type="number" />
-                  <label>Charisma Mod:</label>
-                  <input name="charisma" value={charisma} onChange={this.onChange} type="number" />
-                  <label>Perception Mod:</label>
-                  <input name="perception" value={perception} onChange={this.onChange} type="number" />
-                  <label>Stealth Mod:</label>
-                  <input name="stealth" value={stealth} onChange={this.onChange} type="number" />
-                  <label>Ranged Accuracy Mod:</label>
-                  <input name="rangedAccuracy" value={rangedAccuracy} onChange={this.onChange} type="number" />
-                  <label>Melee Accuracy Mod:</label>
-                  <input name="meleeAccuracy" value={meleeAccuracy} onChange={this.onChange} type="number" />
-                  <label>Description:</label>
-                  <textarea required name="description" value={description} onChange={this.onChange}></textarea>
-                  <label>Publish?</label>
-                  <select required name="published" value={published} onChange={this.onChange}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                  <input type="submit" className="submit-button" value="Save New Armour" />
-                </fieldset>
-              </form>
-            */}
-            <input type="submit" className="submit-button" value="Add New Weapon" />
+            <label htmlFor="name">Name:</label>
+            <input required type="text" name="name" />
+            <label htmlFor="bodyArea">Body Area:</label>
+            <select required name="bodyArea">
+              <option value=""></option>
+              <option value="base">Base</option>
+              <option value="head">Head</option>
+              <option value="face">Face</option>
+              <option value="neck">Neck</option>
+              <option value="torse">Torso</option>
+              <option value="back">Back</option>
+              <option value="arms">Arms</option>
+              <option value="wrists">Wrists</option>
+              <option value="hands">Hands</option>
+              <option value="waist">Waist</option>
+              <option value="legs">Legs</option>
+              <option value="ankles">Ankles</option>
+              <option value="feet">Feet</option>
+            </select>
+            <label htmlFor="description">Description:</label>
+            <textarea required name="description"></textarea>
+            <label htmlFor="holsters">Holsters Given:</label>
+            <input required type="number" name="holsters" />
+            <label htmlFor="slots">Slots Given:</label>
+            <input required type="number" name="slots" />
+            <label htmlFor="size">Size:</label>
+            <select required name="size">
+              <option value=""></option>
+              <option value="extra small">Extra Small</option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+              <option value="extra large">Extra Large</option>
+            </select>
+            <label htmlFor="type">Wearable Type:</label>
+            <select required name="type">
+              <option value=""></option>
+              <option value="normal">normal</option>
+              <option value="magic">magic</option>
+            </select>
+            <label htmlFor="value">Value in Gold:</label>
+            <input required type="number" name="value" />
+            <label htmlFor="uses">Uses Per Combat:</label>
+            <select required name="uses">
+              <option value=""></option>
+              <option value="unlimited">Unlimited</option>
+            </select>
+            <label htmlFor="armour">Armour Modifier:</label>
+            <input type="number" name="armour" />
+            <label htmlFor="REF">Reflex Modifier:</label>
+            <input type="number" name="REF" />
+            <label htmlFor="PHY">Physique Modifier:</label>
+            <input type="number" name="PHY" />
+            <label htmlFor="INT">Intelligence Modifier:</label>
+            <input type="number" name="INT" />
+            <label htmlFor="CHA">Charisma Modifier:</label>
+            <input type="number" name="CHA" />
+            <label htmlFor="skill1">Skill 1 Modifier:</label>
+            <input type="number" name="skill1" />
+            <label htmlFor="effects">Special Effects:</label>
+            <textarea name="effects" cols="30" rows="2"></textarea>
+            <label htmlFor="requirements">Requirements to Use Wearable:</label>
+            <textarea name="requirements" cols="30" rows="2"></textarea>
+            <input type="submit" className="submit-button" value="Add New Wearable" />
           </fieldset>
         </form>
-        <div onClick={close} className="close-button">
+        <div onClick={close} className="close-button" style={{ padding: "3rem 1rem" }}>
           Close Form
         </div>
       </div>

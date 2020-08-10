@@ -7,7 +7,7 @@ function NewWeapon(props) {
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    Axios.post("/character/newweapon", {
+    Axios.post("/character/addweapon", {
       id: Math.floor(Math.random() * 100000),
       CSID: props.CSID,
       name: e.target.name.value,
@@ -37,117 +37,100 @@ function NewWeapon(props) {
   }
   return (
     <div className="popup-bg">
-      <div className="popup">
+      <div className="popup" style={{ width: "50vw", overflowY: "scroll" }}>
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
             <h6 className="edit-h6">Add New Weapon</h6>
-            {/* <form id="addNewWeaponForm" onSubmit={this.onSubmit}>
-              <fieldset>
-                <h6 className="edit-h6">Custom Armour Form</h6>
-                <label>Weapon Name:</label>
-                <input required name="weaponName" type="text" value={weaponName} onChange={this.onChange} />
-                <label>Ranged or Melee?</label>
-                <select required name="rangedMelee" value={rangedMelee} onChange={this.onChange}>
-                  <option></option>
-                  <option>Ranged</option>
-                  <option>Melee</option>
-                </select>
-                <label>Range:</label>
-                <select required name="range" value={range} onChange={this.onChange}>
-                  <option></option>
-                  <option>0</option>
-                  <option>0-1</option>
-                  <option>1</option>
-                  <option>1-2</option>
-                  <option>2</option>
-                  <option>2-4</option>
-                  <option>1-5</option>
-                  <option>4-5</option>
-                  <option>2-7</option>
-                  <option>3-10</option>
-                </select>
-                <label>Weapon Type:</label>
-                <select required name="weaponType" value={weaponType} onChange={this.onChange}>
-                  <option></option>
-                  <option>Improvised</option>
-                  <option>Normal</option>
-                  <option>Unarmed</option>
-                  <option>Heavy</option>
-                  <option>Magic</option>
-                </select>
-                <label>Ability Bonus:</label>
-                <select required name="abilityBonus" value={abilityBonus} onChange={this.onChange}>
-                  <option></option>
-                  <option>PHY</option>
-                  <option>REF</option>
-                  <option>INT</option>
-                  <option>CHA</option>
-                  <option>PHY/REF</option>
-                  <option>PHY/INT</option>
-                  <option>PHY/CHA</option>
-                  <option>REF/INT</option>
-                  <option>REF/CHA</option>
-                  <option>INT/CHA</option>
-                  <option>BALANCED</option>
-                </select>
-                <label>Uses:</label>
-                <select required name="uses" value={uses} onChange={this.onChange}>
-                  <option></option>
-                  <option>Unlimited</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
-                  <option>13</option>
-                  <option>14</option>
-                  <option>15</option>
-                </select>
-                <label>Damage:</label>
-                <select required name="damage" value={damage} onChange={this.onChange}>
-                  <option></option>
-                  <option>D2</option>
-                  <option>D4</option>
-                  <option>D6</option>
-                  <option>D8</option>
-                  <option>D10</option>
-                  <option>D12</option>
-                  <option>D20</option>
-                  <option>D100</option>
-                </select>
-                <label>Critical:</label>
-                <select required name="critical" value={critical} onChange={this.onChange}>
-                  <option></option>
-                  <option>20</option>
-                  <option>19-20</option>
-                  <option>18-20</option>
-                  <option>17-20</option>
-                  <option>16-20</option>
-                  <option>15-20</option>
-                </select>
-                <label>Description:</label>
-                <textarea required name="description" value={description} onChange={this.onChange}></textarea>
-                <label>Publish?</label>
-                <select required name="published" value={published} onChange={this.onChange}>
-                  <option></option>
-                  <option>Yes</option>
-                  <option>No</option>
-                </select>
-                <input type="submit" className="submit-button" value="Save New Weapon" />
-              </fieldset>
-            </form> */}
-
+            <label htmlFor="name">Name:</label>
+            <input required name="name" type="text" />
+            <label htmlFor="rangedMelee">Ranged or Melee?</label>
+            <span style={{ display: "flex", alignItems: "center" }}>
+              <input type="radio" name="rangedMelee" value="ranged" /> Ranged
+            </span>
+            <span style={{ display: "flex", alignItems: "center" }}>
+              <input type="radio" name="rangedMelee" value="melee" /> Melee
+            </span>
+            <label htmlFor="description">Description:</label>
+            <textarea required name="description"></textarea>
+            <label htmlFor="holsterReq">Holsters Required:</label>
+            <input required type="number" name="holstersReq" />
+            <label htmlFor="damage">Damage:</label>
+            <select required name="damage">
+              <option value=""></option>
+              <option value="D4">D4</option>
+              <option value="D6">D6</option>
+              <option value="D8">D8</option>
+              <option value="D10">D10</option>
+              <option value="D12">D12</option>
+              <option value="D20">D20</option>
+              <option value="D100">D100</option>
+            </select>
+            <label htmlFor="range">Range:</label>
+            <select required name="range">
+              <option value=""></option>
+              <option value="0">0</option>
+              <option value="0-1">0-1</option>
+              <option value="1">1</option>
+              <option value="1-2">1-2</option>
+              <option value="2">2</option>
+              <option value="2-4">2-4</option>
+              <option value="1-5">1-5</option>
+              <option value="4-5">4-5</option>
+              <option value="2-7">2-7</option>
+              <option value="3-10">3-10</option>
+            </select>
+            <label htmlFor="unique">Unique?</label>
+            <span style={{ display: "flex", alignItems: "center" }}>
+              <input type="radio" name="unique" value={true} /> Yes
+            </span>
+            <span style={{ display: "flex", alignItems: "center" }}>
+              <input type="radio" name="unique" value={false} /> No
+            </span>
+            <label htmlFor="size">Size:</label>
+            <select required name="size">
+              <option value=""></option>
+              <option value="extra small">Extra Small</option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+              <option value="extra large">Extra Large</option>
+            </select>
+            <label htmlFor="proficiency">Proficiency:</label>
+            <select required name="proficiency">
+              <option value=""></option>
+              <option value="Proficiency 1">Proficiency 1</option>
+            </select>
+            <label htmlFor="critical">Critical:</label>
+            <select required name="critical">
+              <option value=""></option>
+              <option value="20">20</option>
+              <option value="19-20">19-20</option>
+              <option value="18-20">18-20</option>
+              <option value="17-20">17-20</option>
+              <option value="16-20">16-20</option>
+              <option value="15-20">15-20</option>
+            </select>
+            <label htmlFor="type">Weapon Type:</label>
+            <select required name="type">
+              <option value=""></option>
+              <option value="normal">normal</option>
+              <option value="magic">magic</option>
+            </select>
+            <label htmlFor="value">Value in Gold:</label>
+            <input required type="number" name="value" />
+            <label htmlFor="uses">Uses Per Combat:</label>
+            <select required name="uses">
+              <option value=""></option>
+              <option value="unlimited">Unlimited</option>
+            </select>
+            <label htmlFor="effects">Special Effects:</label>
+            <textarea name="effects" cols="30" rows="2"></textarea>
+            <label htmlFor="requirements">Requirements to Use Weapon:</label>
+            <textarea name="requirements" cols="30" rows="2"></textarea>
             <input type="submit" className="submit-button" value="Add New Weapon" />
           </fieldset>
         </form>
-        <div onClick={close} className="close-button">
+        <div onClick={close} className="close-button" style={{ padding: "3rem 1rem" }}>
           Close Form
         </div>
       </div>
