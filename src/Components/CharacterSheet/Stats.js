@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Axios from "axios"
 
 function Stats(props) {
@@ -24,7 +24,38 @@ function Stats(props) {
       alert("You cannot remove a level, because you are already at level 0")
     }
   }
-
+  const [PHY, setPHY] = useState(props.charSheet.baseStatsTempMod[0])
+  const [INT, setINT] = useState(props.charSheet.baseStatsTempMod[1])
+  const [REF, setREF] = useState(props.charSheet.baseStatsTempMod[2])
+  const [CHA, setCHA] = useState(props.charSheet.baseStatsTempMod[3])
+  const phyChangeHandler = (e) => {
+    setPHY(parseInt(e.target.value))
+    Axios.post("/character/editbasestat", {
+      CSID: props.CSID,
+      statsArray: [parseInt(e.target.value), INT, REF, CHA],
+    })
+  }
+  const intChangeHandler = (e) => {
+    setINT(parseInt(e.target.value))
+    Axios.post("/character/editbasestat", {
+      CSID: props.CSID,
+      statsArray: [PHY, parseInt(e.target.value), REF, CHA],
+    })
+  }
+  const refChangeHandler = (e) => {
+    setREF(parseInt(e.target.value))
+    Axios.post("/character/editbasestat", {
+      CSID: props.CSID,
+      statsArray: [PHY, INT, parseInt(e.target.value), CHA],
+    })
+  }
+  const chaChangeHandler = (e) => {
+    setCHA(parseInt(e.target.value))
+    Axios.post("/character/editbasestat", {
+      CSID: props.CSID,
+      statsArray: [PHY, INT, REF, parseInt(e.target.value)],
+    })
+  }
   const addEC = () => {
     console.log("did it")
     Axios.post("/character/addec", {
@@ -37,13 +68,11 @@ function Stats(props) {
     //   console.log(error)
     // })
   }
-
   const useEC = () => {
     Axios.post("/character/useec", {
       CSID: props.CSID,
     })
   }
-
   function calcBaseStatTotal(num) {
     return props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[num] + props.baseEquipmentMod[num] + props.charSheet.baseStatsTempMod[num] + props.theRace.baseStats[num] + props.theClass.baseStats[num]
   }
@@ -132,7 +161,14 @@ function Stats(props) {
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0]}</td>
                     <td>{props.baseEquipmentMod[0]}</td>
                     <td>
-                      <input type="number" value={props.charSheet.baseStatsTempMod[0]} />
+                      <input
+                        type="number"
+                        name="PHY"
+                        value={PHY}
+                        onChange={(e) => {
+                          phyChangeHandler(e)
+                        }}
+                      />
                     </td>
                     <td>{props.theRace.baseStats[0] + props.theClass.baseStats[0]}</td>
                   </tr>
@@ -145,7 +181,14 @@ function Stats(props) {
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1]}</td>
                     <td>{props.baseEquipmentMod[0]}</td>
                     <td>
-                      <input type="number" value={props.charSheet.baseStatsTempMod[1]} />
+                      <input
+                        type="number"
+                        name="INT"
+                        value={INT}
+                        onChange={(e) => {
+                          intChangeHandler(e)
+                        }}
+                      />
                     </td>
                     <td>{props.theRace.baseStats[1] + props.theClass.baseStats[1]}</td>
                   </tr>
@@ -158,7 +201,14 @@ function Stats(props) {
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2]}</td>
                     <td>{props.baseEquipmentMod[0]}</td>
                     <td>
-                      <input type="number" value={props.charSheet.baseStatsTempMod[2]} />
+                      <input
+                        type="number"
+                        name="REF"
+                        value={REF}
+                        onChange={(e) => {
+                          refChangeHandler(e)
+                        }}
+                      />
                     </td>
                     <td>{props.theRace.baseStats[2] + props.theClass.baseStats[2]}</td>
                   </tr>
@@ -171,7 +221,14 @@ function Stats(props) {
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]}</td>
                     <td>{props.baseEquipmentMod[0]}</td>
                     <td>
-                      <input type="number" value={props.charSheet.baseStatsTempMod[3]} />
+                      <input
+                        type="number"
+                        name="CHA"
+                        value={CHA}
+                        onChange={(e) => {
+                          chaChangeHandler(e)
+                        }}
+                      />
                     </td>
                     <td>{props.theRace.baseStats[3] + props.theClass.baseStats[3]}</td>
                   </tr>
