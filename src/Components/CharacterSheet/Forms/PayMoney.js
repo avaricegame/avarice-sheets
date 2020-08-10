@@ -7,23 +7,23 @@ function PayMoney(props) {
     props.payMoneyHandler(false)
   }
   const onChangeHandler = (e) => {
-    console.log(e.target.value)
     setAmount(e.target.value)
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(amount)
-    Axios.post("/character/paymoney", {
-      amount: amount,
-      CSID: props.CSID,
-    })
-      .then(function (response) {
-        props.payMoneyHandler(false)
-        setAmount("")
+    if (amount) {
+      Axios.post("/character/paymoney", {
+        amount: amount,
+        CSID: props.CSID,
       })
-      .catch(function (error) {
-        console.log(error)
-      })
+        .then(function (response) {
+          props.payMoneyHandler(false)
+          setAmount("")
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
   }
   return (
     <div className="popup-bg">
@@ -34,7 +34,7 @@ function PayMoney(props) {
             <label>How Much?</label>
             <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
 
-            <input type="submit" className="submit-button" value={`Pay ${amount} Gold`} />
+            <input type="submit" className="submit-button" value={amount ? `Pay ${amount} Gold` : "Please Specify a Value"} />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">

@@ -7,24 +7,24 @@ function Heal(props) {
     props.healHandler(false)
   }
   const onChangeHandler = (e) => {
-    console.log(e.target.value)
     setAmount(e.target.value)
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(amount)
-    Axios.post("/character/healhp", {
-      amount: amount,
-      CSID: props.CSID,
-    })
-      .then(function (response) {
-        //props.updateCharSheet("currentHP", amount)
-        props.healHandler(false)
-        setAmount("")
+    if (amount) {
+      Axios.post("/character/healhp", {
+        amount: amount,
+        CSID: props.CSID,
       })
-      .catch(function (error) {
-        console.log(error)
-      })
+        .then(function (response) {
+          //props.updateCharSheet("currentHP", amount)
+          props.healHandler(false)
+          setAmount("")
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
   }
   return (
     <div className="popup-bg">
@@ -35,7 +35,7 @@ function Heal(props) {
             <label>How Much?</label>
             <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
 
-            <input type="submit" className="submit-button" value="Heal HP" />
+            <input type="submit" className="submit-button" value={amount ? `Heal ${amount} Hit Points` : "Please Specify a Value"} />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">

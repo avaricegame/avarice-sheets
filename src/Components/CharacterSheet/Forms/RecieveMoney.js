@@ -7,23 +7,23 @@ function RecieveMoney(props) {
     props.recieveMoneyHandler(false)
   }
   const onChangeHandler = (e) => {
-    console.log(e.target.value)
     setAmount(e.target.value)
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(amount)
-    Axios.post("/character/recievemoney", {
-      amount: amount,
-      CSID: props.CSID,
-    })
-      .then(function (response) {
-        props.recieveMoneyHandler(false)
-        setAmount("")
+    if (amount) {
+      Axios.post("/character/recievemoney", {
+        amount: amount,
+        CSID: props.CSID,
       })
-      .catch(function (error) {
-        console.log(error)
-      })
+        .then(function (response) {
+          props.recieveMoneyHandler(false)
+          setAmount("")
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
   }
   return (
     <div className="popup-bg">
@@ -34,7 +34,7 @@ function RecieveMoney(props) {
             <label>How Much?</label>
             <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
 
-            <input type="submit" className="submit-button" value={`Recieve ${amount} Gold`} />
+            <input type="submit" className="submit-button" value={amount ? `Recieve ${amount} Gold` : "Please Specify a Value"} />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">
