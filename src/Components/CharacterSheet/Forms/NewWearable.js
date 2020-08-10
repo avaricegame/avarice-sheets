@@ -15,17 +15,17 @@ function NewWearable(props) {
       requirements: e.target.requirements.value,
       type: e.target.type.value,
       modifiers: {
-        armour: e.target.armour.value || 0,
-        PHY: e.target.value.PHY || 0,
-        INT: e.target.value.INT || 0,
-        REF: e.target.value.REF || 0,
-        CHA: e.target.value.CHA || 0,
-        skill1: e.target.value.skill1 || 0,
+        armour: parseInt(e.target.armour.value),
+        PHY: parseInt(e.target.PHY.value),
+        INT: parseInt(e.target.INT.value),
+        REF: parseInt(e.target.REF.value),
+        CHA: parseInt(e.target.CHA.value),
+        skill1: parseInt(e.target.skill1.value),
       },
       size: e.target.size.value,
-      value: e.target.value.value,
-      slots: e.target.slots.value,
-      holsters: e.target.holsters.value,
+      value: parseInt(e.target.value.value),
+      slots: parseInt(e.target.slots.value),
+      holsters: parseInt(e.target.holsters.value),
       uses: e.target.uses.value,
       effects: e.target.effects.value,
       description: e.target.description.value,
@@ -54,7 +54,7 @@ function NewWearable(props) {
               <option value="head">Head</option>
               <option value="face">Face</option>
               <option value="neck">Neck</option>
-              <option value="torse">Torso</option>
+              <option value="torso">Torso</option>
               <option value="back">Back</option>
               <option value="arms">Arms</option>
               <option value="wrists">Wrists</option>
@@ -82,8 +82,8 @@ function NewWearable(props) {
             <label htmlFor="type">Wearable Type:</label>
             <select required name="type">
               <option value=""></option>
-              <option value="normal">normal</option>
-              <option value="magic">magic</option>
+              <option value="normal">Normal</option>
+              <option value="magic">Magic</option>
             </select>
             <label htmlFor="value">Value in Gold:</label>
             <input required type="number" name="value" />
@@ -93,17 +93,17 @@ function NewWearable(props) {
               <option value="unlimited">Unlimited</option>
             </select>
             <label htmlFor="armour">Armour Modifier:</label>
-            <input type="number" name="armour" />
+            <input required type="number" name="armour" />
             <label htmlFor="REF">Reflex Modifier:</label>
-            <input type="number" name="REF" />
+            <input required type="number" name="REF" />
             <label htmlFor="PHY">Physique Modifier:</label>
-            <input type="number" name="PHY" />
+            <input required type="number" name="PHY" />
             <label htmlFor="INT">Intelligence Modifier:</label>
-            <input type="number" name="INT" />
+            <input required type="number" name="INT" />
             <label htmlFor="CHA">Charisma Modifier:</label>
-            <input type="number" name="CHA" />
+            <input required type="number" name="CHA" />
             <label htmlFor="skill1">Skill 1 Modifier:</label>
-            <input type="number" name="skill1" />
+            <input required type="number" name="skill1" />
             <label htmlFor="effects">Special Effects:</label>
             <textarea name="effects" cols="30" rows="2"></textarea>
             <label htmlFor="requirements">Requirements to Use Wearable:</label>
