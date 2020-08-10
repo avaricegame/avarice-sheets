@@ -68,3 +68,12 @@
     letter-spacing: 0.2rem;
   }
 }
+
+.click-here {
+  cursor: pointer;
+  color: $color-light-yellow;
+  &:hover {
+    text-decoration: underline;
+    color: darken($color-light-yellow, 5%);
+  }
+}

@@ -5,32 +5,32 @@ function Roll(props) {
     props.rollHandler(false)
   }
   const twenty = () => {
-    alert(`You rolled a ${Math.floor(Math.random() * 20)}!`)
+    alert(`You rolled a ${Math.ceil(Math.random() * 20)}!`)
   }
   const twelve = () => {
-    alert(`You rolled a ${Math.floor(Math.random() * 12)}!`)
+    alert(`You rolled a ${Math.ceil(Math.random() * 12)}!`)
   }
   const ten = () => {
-    alert(`You rolled a ${Math.floor(Math.random() * 10)}!`)
+    alert(`You rolled a ${Math.ceil(Math.random() * 10)}!`)
   }
   const eight = () => {
-    alert(`You rolled a ${Math.floor(Math.random() * 8)}!`)
+    alert(`You rolled a ${Math.ceil(Math.random() * 8)}!`)
   }
   const six = () => {
-    alert(`You rolled a ${Math.floor(Math.random() * 6)}!`)
+    alert(`You rolled a ${Math.ceil(Math.random() * 6)}!`)
   }
   const four = () => {
-    alert(`You rolled a ${Math.floor(Math.random() * 4)}!`)
+    alert(`You rolled a ${Math.ceil(Math.random() * 4)}!`)
   }
   const hundred = () => {
-    alert(`You rolled a ${Math.floor(Math.random() * 100)}!`)
+    alert(`You rolled a ${Math.ceil(Math.random() * 100)}!`)
   }
   const sixty = () => {
-    alert(`You rolled a ${Math.floor(Math.random() * 60)}!`)
+    alert(`You rolled a ${Math.ceil(Math.random() * 60)}!`)
   }
   const custom = () => {
     let number = prompt("How many sides?")
-    alert(`You rolled a ${Math.floor(Math.random() * number)}!`)
+    alert(`You rolled a ${Math.ceil(Math.random() * number)}!`)
   }
 
   return (

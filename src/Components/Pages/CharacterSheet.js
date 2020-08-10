@@ -179,7 +179,7 @@ function CharacterSheet(props) {
       let at = charSheet.levelUps[charSheet.levelUps.length - 1].abilityTree
       at.map((column, index) => {
         let corrColumn = `column${index + 1}`
-        let ability1 = abilityTree[corrColumn][column.one - 1]
+        let ability1 = abilityTree[corrColumn][column.one]
         let ability2 = abilityTree[corrColumn][column.two + (5 - 1)]
         let ability3 = abilityTree[corrColumn][column.three + (10 - 1)]
         let ability4 = abilityTree[corrColumn][column.four + (15 - 1)]
@@ -197,7 +197,7 @@ function CharacterSheet(props) {
           arrToAppend.push(ability4)
         }
         setAbilityArray((prevAbilityArray) => prevAbilityArray.concat(arrToAppend))
-        return index // to stop the error
+        return "" // to stop the error
       })
     }
   }, [charSheet, abilityTree, isLoading])
@@ -245,7 +245,7 @@ function CharacterSheet(props) {
               <Route path="/character/gameplay" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Gameplay charSheet={charSheet} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} />
+                <Gameplay charSheet={charSheet} abilityArray={abilityArray} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} />
                 <Footer />
                 {heal ? <HealHP healHandler={healHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}
                 {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}

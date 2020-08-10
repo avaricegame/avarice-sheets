@@ -1,70 +1,62 @@
 import React, { useState } from "react"
-//import Axios from "axios"
 
 function UseAbility(props) {
-  const [amount, setAmount] = useState()
+  const [currentAbility, setCurrentAbility] = useState("a")
+  const newArray = props.charSheet.customAbilities.concat(props.abilityArray)
   const close = () => {
     props.useAbilityHandler(false)
   }
-  const onChangeHandler = (e) => {
-    console.log(e.target.value)
-    setAmount(e.target.value)
+  const rollHandler = () => {
+    let number = prompt("How many sided die? Please enter a positive, whole integer (e.g. 4)")
+    alert(`You rolled a ${Math.ceil(Math.random() * number)}!`)
   }
-  const submitHandler = (e) => {
-    e.preventDefault()
-    console.log(amount)
-    // Axios.post("/character/UseAbility", {
-    //   amount: amount,
-    //   CSID: props.CSID,
-    // })
-    //   .then(function (response) {
-    //     props.payMoneyHandler(false)
-    //     setAmount("")
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   })
+  const setCurrentAbilityHandler = (e) => {
+    if (e.target.value !== "a") {
+      setCurrentAbility(newArray[e.target.value])
+    } else {
+      setCurrentAbility("a")
+    }
+  }
+  const displayAbility = (e) => {
+    if (currentAbility !== "a") {
+      return (
+        <div style={{ marginBottom: "2rem" }} key={currentAbility.id}>
+          <div className="item-container">
+            <h3 className="item-container__heading">{currentAbility.name}</h3>
+            <h4 className="item-container__subheading">{currentAbility.power === "custom" ? `${currentAbility.power} Ability` : `Power ${currentAbility.power}`}</h4>
+            <p>
+              <strong>Details: </strong>
+              {currentAbility.details || currentAbility.description}
+            </p>
+          </div>
+        </div>
+      )
+    }
   }
   return (
     <div className="popup-bg">
-      <div className="popup">
-        <form onSubmit={(e) => submitHandler(e)}>
+      <div className="popup" style={{ minWidth: "50vw" }}>
+        <form>
           <fieldset>
-            <h6 className="edit-h6">Pay Money</h6>
-            <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
-            <div className="use-ability item-container">
-              <h6>Use Ability</h6>
-              <h5>Which ability are you using?</h5>
-              <select>
-                <option>Choose Race Ability</option>
-                <option>#1</option>
-                <option>#2</option>
-              </select>
-              <select>
-                <option>Choose Class Ability</option>
-                <option>#1</option>
-                <option>#2</option>
-              </select>
-              <select>
-                <option>Choose Character Ability</option>
-                <option>#1</option>
-                <option>#2</option>
-              </select>
-
-              <h5>Roll the Die</h5>
-              <button>Roll</button>
-              <p>
-                You rolled: <span>7</span>
-              </p>
-              <p>
-                After Modifier: <span>12</span>
-              </p>
-              <h6>
-                Modifier(s) Used: <span>Climb</span>
-              </h6>
-            </div>
-            <input type="submit" className="submit-button" value={`submit`} />
+            <h6 className="edit-h6">Use Ability</h6>
+            <label>Select an Ability to view the details</label>
+            <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentAbilityHandler(e)}>
+              <option value="a"></option>
+              {newArray.map((ability, index) => {
+                return (
+                  <option value={index} key={index}>
+                    {ability.name}
+                  </option>
+                )
+              })}
+            </select>
+            <p style={{ marginBottom: "2rem" }}>
+              Then just... do what it says... If you need to roll,{" "}
+              <span className="click-here" onClick={rollHandler}>
+                click here.
+              </span>
+            </p>
+            {displayAbility()}
           </fieldset>
         </form>
         <div onClick={close} className="close-button">
