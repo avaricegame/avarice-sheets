@@ -9,6 +9,7 @@ import UseSkill from "./Actions/UseSkill"
 import PayMoney from "./Actions/PayMoney"
 import SellItems from "./Actions/SellItems"
 import MakeCheck from "./Actions/MakeCheck"
+import UseItem from "./Actions/UseItem"
 
 function Gameplay(props) {
   const [roll, setRoll] = useState(false)
@@ -39,6 +40,10 @@ function Gameplay(props) {
   const makeCheckHandler = (bool) => {
     setMakeCheck(bool)
   }
+  const [useItem, setUseItem] = useState(false)
+  const useItemHandler = (bool) => {
+    setUseItem(bool)
+  }
   const openHeal = () => {
     props.healHandler(true)
   }
@@ -56,7 +61,7 @@ function Gameplay(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Hit Points</h3>
-              <h4 className="item-container__subheading">Max HP: {props.charSheet.level * 10 + 10}</h4>
+              <h4 className="item-container__subheading">Max HP: {props.charSheet.level * 10 + 10 + parseInt(props.equipmentArmour)}</h4>
               <h4 className="item-container__terheading">Current HP: {props.charSheet.currentHP}</h4>
               <button onClick={openTakeDamage}>Take Damage</button>
               <button onClick={openHeal}>Heal HP</button>
@@ -68,6 +73,7 @@ function Gameplay(props) {
           <h2 className="heading">Actions</h2>
           <button onClick={attackHandler}>Attack</button>
           <button onClick={makeCheckHandler}>Make a Check</button>
+          <button onClick={useItemHandler}>Use an Item</button>
           <button onClick={useAbilityHandler}>Use Ability</button>
           <button onClick={useSkillHandler}>Use Skill</button>
           <button onClick={payMoneyHandler}>Pay Money</button>
@@ -147,12 +153,13 @@ function Gameplay(props) {
         {/* /////// CLOSE PAGE CONTAINER /////// */}
       </div>
       {roll ? <Roll rollHandler={rollHandler} /> : ""}
-      {attack ? <Attack attackHandler={attackHandler} charSheet={props.charSheet} /> : ""}
+      {attack ? <Attack attackHandler={attackHandler} charSheet={props.charSheet} equippedWeapons={props.equippedWeapons} /> : ""}
       {useAbility ? <UseAbility useAbilityHandler={useAbilityHandler} abilityArray={props.abilityArray} charSheet={props.charSheet} /> : ""}
       {useSkill ? <UseSkill useSkillHandler={useSkillHandler} equipmentMod={props.equipmentMod} charSheet={props.charSheet} /> : ""}
       {payMoney ? <PayMoney payMoneyHandler={payMoneyHandler} CSID={props.CSID} /> : ""}
       {sellItems ? <SellItems sellItemsHandler={sellItemsHandler} CSID={props.CSID} charSheet={props.charSheet} /> : ""}
       {makeCheck ? <MakeCheck makeCheckHandler={makeCheckHandler} charSheet={props.charSheet} theRace={props.theRace} theClass={props.theClass} baseEquipmentMod={props.baseEquipmentMod} /> : ""}
+      {useItem ? <UseItem equippedItems={props.equippedItems} useItemHandler={useItemHandler} /> : ""}
     </>
   )
 }
