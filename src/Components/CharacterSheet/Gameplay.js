@@ -66,7 +66,7 @@ function Gameplay(props) {
           <button onClick={useAbilityHandler}>Use Ability</button>
           <button onClick={useSkillHandler}>Use Skill</button>
           <button onClick={payMoneyHandler}>Pay Money</button>
-          <button onClick={sellItemsHandler}>Sell Items</button>
+          <button onClick={sellItemsHandler}>Sell Inventory Items</button>
           <button onClick={rollHandler}>Roll Die</button>
         </div>
 
@@ -146,7 +146,7 @@ function Gameplay(props) {
       {useAbility ? <UseAbility useAbilityHandler={useAbilityHandler} /> : ""}
       {useSkill ? <UseSkill useSkillHandler={useSkillHandler} /> : ""}
       {payMoney ? <PayMoney payMoneyHandler={payMoneyHandler} CSID={props.CSID} /> : ""}
-      {sellItems ? <SellItems sellItemsHandler={sellItemsHandler} /> : ""}
+      {sellItems ? <SellItems sellItemsHandler={sellItemsHandler} CSID={props.CSID} charSheet={props.charSheet} /> : ""}
     </>
   )
 }

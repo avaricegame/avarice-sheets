@@ -62,9 +62,87 @@ function Inventory(props) {
         })
     }
   }
-  const equipWeapon = (e, id) => {}
-  const equipWearable = (e, id) => {}
-  const equipItem = (e, id) => {}
+  const equipWeapon = (e, id, equipped) => {
+    if (equipped) {
+      Axios.post("/character/equipweapon", {
+        CSID: props.CSID,
+        id: id,
+        equipped: false,
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    } else {
+      Axios.post("/character/equipweapon", {
+        CSID: props.CSID,
+        id: id,
+        equipped: true,
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }
+  const equipWearable = (e, id, equipped) => {
+    if (equipped) {
+      Axios.post("/character/equipwearable", {
+        CSID: props.CSID,
+        id: id,
+        equipped: false,
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    } else {
+      Axios.post("/character/equipwearable", {
+        CSID: props.CSID,
+        id: id,
+        equipped: true,
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }
+  const equipItem = (e, id, equipped) => {
+    if (equipped) {
+      Axios.post("/character/equipitem", {
+        CSID: props.CSID,
+        id: id,
+        equipped: false,
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    } else {
+      Axios.post("/character/equipitem", {
+        CSID: props.CSID,
+        id: id,
+        equipped: true,
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }
 
   const [holstersUsed] = useState(0)
   const [slotsUsed] = useState(0)
@@ -166,11 +244,11 @@ function Inventory(props) {
           <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
             <span
               onClick={(e, id) => {
-                equipWeapon(e, currentWeapon.id)
+                equipWeapon(e, currentWeapon.id, currentWeapon.equipped)
               }}
               className="hg__fake-link"
             >
-              {currentWeapon.equipped ? "EQUIP THIS WEAPON" : "UNEQUIP THIS WEAPON"}
+              {currentWeapon.equipped ? "UNEQUIP THIS WEAPON" : "EQUIP THIS WEAPON"}
             </span>
           </p>
           <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
@@ -297,11 +375,11 @@ function Inventory(props) {
           <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
             <span
               onClick={(e, id) => {
-                equipWearable(e, currentWeapon.id)
+                equipWearable(e, currentWearable.id, currentWearable.equipped)
               }}
               className="hg__fake-link"
             >
-              {currentWearable.equipped ? "EQUIP THIS WEARABLE" : "UNEQUIP THIS WEARABLE"}
+              {currentWearable.equipped ? "UNEQUIP THIS WEARABLE" : "EQUIP THIS WEARABLE"}
             </span>
           </p>
           <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
@@ -367,11 +445,11 @@ function Inventory(props) {
           <p style={{ textAlign: "center", margin: "0", color: "darkgray" }}>
             <span
               onClick={(e, id) => {
-                equipItem(e, currentItem.id)
+                equipItem(e, currentItem.id, currentItem.equipped)
               }}
               className="hg__fake-link"
             >
-              {currentWeapon.equipped ? "EQUIP THIS ITEM" : "UNEQUIP THIS ITEM"}
+              {currentWeapon.equipped ? "UNEQUIP THIS ITEM" : "EQUIP THIS ITEM"}
             </span>
           </p>
           <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
@@ -552,22 +630,6 @@ function Inventory(props) {
               {displayWeapon()}
             </div>
             <div className="item-container">
-              <h3 className="item-container__heading">Wearables</h3>
-              <h4 className="item-container__subheading">Wearable Count: {props.charSheet.wearables.length}</h4>
-              <p className="item-container__select-label">Select a wearable to view the details</p>
-              <select onChange={(e) => setWearableHandler(e)} className="item-container__select">
-                <option value="a"></option>
-                {props.charSheet.wearables.map((wearable, index) => {
-                  return (
-                    <option value={index} key={wearable.id}>
-                      {wearable.name}
-                    </option>
-                  )
-                })}
-              </select>
-              {displayWearable()}
-            </div>
-            <div className="item-container">
               <h3 className="item-container__heading">Items</h3>
               <h4 className="item-container__subheading">Item Count: {props.charSheet.items.length}</h4>
               <p className="item-container__select-label">Select an item to view the details</p>
@@ -583,6 +645,22 @@ function Inventory(props) {
               </select>
               {displayItem()}
             </div>
+            <div className="item-container">
+              <h3 className="item-container__heading">Wearables</h3>
+              <h4 className="item-container__subheading">Wearable Count: {props.charSheet.wearables.length}</h4>
+              <p className="item-container__select-label">Select a wearable to view the details</p>
+              <select onChange={(e) => setWearableHandler(e)} className="item-container__select">
+                <option value="a"></option>
+                {props.charSheet.wearables.map((wearable, index) => {
+                  return (
+                    <option value={index} key={wearable.id}>
+                      {wearable.name}
+                    </option>
+                  )
+                })}
+              </select>
+              {displayWearable()}
+            </div>
           </div>
         </div>
 
@@ -590,8 +668,8 @@ function Inventory(props) {
           <h2 className="heading">Add New</h2>
           <div className="cw__container">
             <button onClick={openNewWeapon}>Add New Weapon</button>
-            <button onClick={openNewWearable}>Add New Wearable</button>
             <button onClick={openNewItem}>Add New Item</button>
+            <button onClick={openNewWearable}>Add New Wearable</button>
             {/* <button onClick={openEditSuronis}>Edit Suronis Contents</button> */}
           </div>
         </div>
