@@ -36,9 +36,9 @@ function NewAbility(props) {
           <fieldset>
             <h6 className="edit-h6">Create New Ability</h6>
             <label htmlFor="name">Name:</label>
-            <input name="name" value={name} onChange={(e) => onNameChangeHandler(e)} type="text" />
+            <input required name="name" value={name} onChange={(e) => onNameChangeHandler(e)} type="text" />
             <label htmlFor="content">Description:</label>
-            <textarea name="description" cols="50" rows="10" value={description} onChange={(e) => onDescriptionChangeHandler(e)}></textarea>
+            <textarea required name="description" cols="50" rows="10" value={description} onChange={(e) => onDescriptionChangeHandler(e)}></textarea>
             <input type="submit" className="submit-button" value="Submit" />
           </fieldset>
         </form>

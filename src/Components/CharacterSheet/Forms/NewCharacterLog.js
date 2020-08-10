@@ -35,9 +35,9 @@ function NewCharacterLog(props) {
           <fieldset>
             <h6 className="edit-h6">New Character Log</h6>
             <label htmlFor="title">Mission:</label>
-            <input name="title" value={title} onChange={(e) => onTitleChangeHandler(e)} type="text" />
+            <input required name="title" value={title} onChange={(e) => onTitleChangeHandler(e)} type="text" />
             <label htmlFor="details">Details:</label>
-            <textarea name="details" cols="50" rows="10" value={details} onChange={(e) => onDetailsChangeHandler(e)}></textarea>
+            <textarea required name="details" cols="50" rows="10" value={details} onChange={(e) => onDetailsChangeHandler(e)}></textarea>
             <input type="submit" className="submit-button" value="Submit" />
           </fieldset>
         </form>

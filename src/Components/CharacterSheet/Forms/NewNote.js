@@ -37,9 +37,9 @@ function NewNote(props) {
           <fieldset>
             <h6 className="edit-h6">New Note</h6>
             <label htmlFor="title">Title:</label>
-            <input name="title" value={title} onChange={(e) => onTitleChangeHandler(e)} type="text" />
+            <input required name="title" value={title} onChange={(e) => onTitleChangeHandler(e)} type="text" />
             <label htmlFor="content">Content:</label>
-            <textarea name="content" cols="50" rows="10" value={content} onChange={(e) => onContentChangeHandler(e)}></textarea>
+            <textarea required name="content" cols="50" rows="10" value={content} onChange={(e) => onContentChangeHandler(e)}></textarea>
             <input type="submit" className="submit-button" value="Submit" />
           </fieldset>
         </form>
