@@ -49,7 +49,7 @@ function Profile(props) {
                   </tbody>
                 </table> */}
               </div>
-              <div className="hg__content hg__content--50"></div>
+              <div className="hg__content hg__content--50" style={{ height: "20rem" }}></div>
             </div>
             <hr className="hg__hr" />
             <Link to="/">
