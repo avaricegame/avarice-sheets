@@ -1,37 +1,38 @@
-import React, { useState } from "react"
-//import Axios from "axios"
+import React from "react"
+import Axios from "axios"
 
 function NewCharacterSheet(props) {
-  const [amount, setAmount] = useState()
   const close = () => {
     props.newCharacterSheetHandler(false)
   }
-  const onChangeHandler = (e) => {
-    console.log(e.target.value)
-    setAmount(e.target.value)
-  }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(e.target.amount.value)
-    // Axios.post("/character/takedamage", {
-    //   amount: e.target.amount.value,
-    //   CSID: props.CSID,
-    // })
-    //   .then(function (response) {
-    //     props.newNoteHandler(false)
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   })
+    Axios.post("/createcs", {
+      charid: Math.floor(Math.random() * 929484721),
+      CSID: props.CSID,
+      userID: props.UID,
+      characterName: e.target.characterName.value,
+      className: e.target.className.value,
+      raceName: e.target.raceName.value,
+      classID: e.target.classID.value,
+      raceID: e.target.raceID.value,
+      characterDescription: e.target.characterDescription.value,
+      characterBackground: e.target.characterBackground.value,
+    })
+      .then(function (response) {
+        console.log(response)
+        props.newCharacterSheetHandler(false)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   return (
     <div className="popup-bg">
       <div className="popup">
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
-            <h6 className="edit-h6">Form Title</h6>
-            <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
+            <h6 className="edit-h6">Create a New Character Sheet</h6>
             {/*
 
 <form id="editCharacterBackgroundForm">
@@ -182,7 +183,7 @@ function NewCharacterSheet(props) {
             
             */}
 
-            <input type="submit" className="submit-button" value="Submit" />
+            <input type="submit" className="submit-button" value="Create New Character Sheet" />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">

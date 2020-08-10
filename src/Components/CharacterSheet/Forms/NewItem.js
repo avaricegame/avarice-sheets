@@ -1,56 +1,41 @@
-import React, { useState } from "react"
-//import Axios from "axios"
+import React from "react"
+import Axios from "axios"
 
 function NewItem(props) {
-  const [amount, setAmount] = useState()
   const close = () => {
     props.newItemHandler(false)
   }
-  const onChangeHandler = (e) => {
-    console.log(e.target.value)
-    setAmount(e.target.value)
-  }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(e.target.amount.value)
-    // Axios.post("/character/takedamage", {
-    //   amount: e.target.amount.value,
-    //   CSID: props.CSID,
-    // })
-    //   .then(function (response) {
-    //     props.newNoteHandler(false)
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   })
+    Axios.post("/character/additem", {
+      id: Math.floor(Math.random() * 100000),
+      CSID: props.CSID,
+      name: e.target.name.value,
+      type: e.target.type.value,
+      requirements: e.target.requirements.value,
+      slotsReq: e.target.slotsReq.value,
+      value: e.target.value.value,
+      uses: e.target.uses.value,
+      effects: e.target.effects.value,
+      description: e.target.description.value,
+      //equipped: e.target.equipped.value,
+    })
+      .then(function (response) {
+        console.log(response)
+        props.newItemHandler(false)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   return (
     <div className="popup-bg">
       <div className="popup">
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
-            <h6 className="edit-h6">Form Title</h6>
-            <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
-            {/*
-             <form id="addNewCustomItemForm" onSubmit={this.onSubmit}>
-                <fieldset>
-                  <h6 className="edit-h6">Custom Item Form</h6>
-                  <label>Item Name:</label>
-                  <input required name="itemName" value={itemName} onChange={this.onChange} type="text" />
-                  <label>Description:</label>
-                  <textarea required name="itemDescription" value={itemDescription} onChange={this.onChange}></textarea>
-                  <label>Publish?</label>
-                  <select required name="published" value={published} onChange={this.onChange}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                  <input type="submit" className="submit-button" value="Save New Item" />
-                </fieldset>
-              </form>
-            */}
-            <input type="submit" className="submit-button" value="Submit" />
+            <h6 className="edit-h6">Add a New Item</h6>
+
+            <input type="submit" className="submit-button" value="Add New Item" />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">

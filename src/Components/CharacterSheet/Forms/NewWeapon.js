@@ -1,29 +1,39 @@
-import React, { useState } from "react"
-//import Axios from "axios"
+import React from "react"
+import Axios from "axios"
 
 function NewWeapon(props) {
-  const [amount, setAmount] = useState()
   const close = () => {
     props.newWeaponHandler(false)
   }
-  const onChangeHandler = (e) => {
-    console.log(e.target.value)
-    setAmount(e.target.value)
-  }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(amount)
-    // Axios.post("/character/newweapon", {
-    //   amount: amount,
-    //   CSID: props.CSID,
-    // })
-    //   .then(function (response) {
-    //     props.newWeaponHandler(false)
-    //     setAmount("")
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   })
+    Axios.post("/character/newweapon", {
+      id: Math.floor(Math.random() * 100000),
+      CSID: props.CSID,
+      name: e.target.name.value,
+      damage: e.target.damage.value,
+      unique: e.target.unique.value,
+      type: e.target.type.value,
+      proficiency: e.target.proficiency.value,
+      requirements: e.target.requirements.value,
+      rangedMelee: e.target.rangedMelee.value,
+      critical: e.target.critical.value,
+      range: e.target.range.value,
+      size: e.target.size.value,
+      holstersReq: e.target.holstersReq.value,
+      value: e.target.value.value,
+      uses: e.target.uses.value,
+      description: e.target.description.value,
+      effects: e.target.effects.value,
+      //equipped: e.target.equipped.value,
+    })
+      .then(function (response) {
+        console.log(response)
+        props.newWeaponHandler(false)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   return (
     <div className="popup-bg">
@@ -133,10 +143,8 @@ function NewWeapon(props) {
                 <input type="submit" className="submit-button" value="Save New Weapon" />
               </fieldset>
             </form> */}
-            <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
 
-            <input type="submit" className="submit-button" value={`Add Weapon`} />
+            <input type="submit" className="submit-button" value="Add New Weapon" />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">

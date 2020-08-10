@@ -267,7 +267,7 @@ function CharacterSheet(props) {
                 <Navigation />
                 <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} levelUpHandler={levelUpHandler} editLevelHandler={editLevelHandler} CSID={props.CSID} />
                 <Footer />
-                {levelUp ? <LevelUp CSID={props.CSID} levelUp={levelUp} levelUpHandler={levelUpHandler} /> : ""}
+                {levelUp ? <LevelUp CSID={props.CSID} levelUp={levelUp} levelUpHandler={levelUpHandler} charSheet={props.charSheet} /> : ""}
                 {editLevel ? <EditLevel CSID={props.CSID} editLevel={editLevel} editLevelHandler={editLevelHandler} /> : ""}
               </Route>
               <Route path="/character/abilities" exact>

@@ -67,7 +67,7 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Home UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} />
-            {newCharacterSheet ? <NewCharacterSheet CSID={CSID} newCharacterSheetHandler={newCharacterSheetHandler} /> : ""}
+            {newCharacterSheet ? <NewCharacterSheet CSID={CSID} newCharacterSheetHandler={newCharacterSheetHandler} UID={UID} /> : ""}
           </Route>
           <Route path="/profile">
             <Profile loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} />

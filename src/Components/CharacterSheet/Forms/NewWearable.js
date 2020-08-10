@@ -1,37 +1,44 @@
-import React, { useState } from "react"
-//import Axios from "axios"
+import React from "react"
+import Axios from "axios"
 
 function NewWearable(props) {
-  const [amount, setAmount] = useState()
   const close = () => {
     props.newWearableHandler(false)
   }
-  const onChangeHandler = (e) => {
-    console.log(e.target.value)
-    setAmount(e.target.value)
-  }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(e.target.amount.value)
-    // Axios.post("/character/takedamage", {
-    //   amount: e.target.amount.value,
-    //   CSID: props.CSID,
-    // })
-    //   .then(function (response) {
-    //     props.newNoteHandler(false)
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   })
+    Axios.post("/character/addwearable", {
+      id: Math.floor(Math.random() * 100000),
+      CSID: props.CSID,
+      name: e.target.name.value,
+      bodyArea: e.target.bodyArea.value,
+      requirements: e.target.requirements.value,
+      type: e.target.type.value,
+      modifiers: e.target.modifiers.value,
+      size: e.target.size.value,
+      value: e.target.value.value,
+      slots: e.target.slots.value,
+      holsters: e.target.holsters.value,
+      uses: e.target.uses.value,
+      effects: e.target.effects.value,
+      description: e.target.description.value,
+      //equipped: e.target.equipped.value,
+    })
+      .then(function (response) {
+        console.log(response)
+        props.newWearableHAndler(false)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   return (
     <div className="popup-bg">
       <div className="popup">
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
-            <h6 className="edit-h6">Form Title</h6>
-            <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
+            <h6 className="edit-h6">Add a New Wearable</h6>
+
             {/*
                            <form id="addNewArmourForm" onSubmit={this.onSubmit}>
                 <fieldset>
@@ -88,7 +95,7 @@ function NewWearable(props) {
                 </fieldset>
               </form>
             */}
-            <input type="submit" className="submit-button" value="Submit" />
+            <input type="submit" className="submit-button" value="Add New Weapon" />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">

@@ -1,39 +1,36 @@
-import React, { useState } from "react"
-//import Axios from "axios"
+import React from "react"
+import Axios from "axios"
 
 function LevelUp(props) {
-  const [amount, setAmount] = useState()
   const close = () => {
     props.levelUpHandler(false)
   }
-  const onChangeHandler = (e) => {
-    console.log(e.target.value)
-    setAmount(e.target.value)
-  }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(e.target.amount.value)
-    // Axios.post("/character/takedamage", {
-    //   amount: e.target.amount.value,
-    //   CSID: props.CSID,
-    // })
-    //   .then(function (response) {
-    //     props.newNoteHandler(false)
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   })
+    Axios.post("/character/levelup", {
+      CSID: props.CSID,
+      level: props.charSheet.level + 1,
+      baseStats: e.target.baseStats.value,
+      skills: e.target.skills.value,
+      proficiency: e.target.proficiency.value,
+      abilityTree: e.target.abilityTree.value,
+    })
+      .then(function (response) {
+        console.log(response)
+        props.levelUpHandler(false)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   return (
     <div className="popup-bg">
       <div className="popup">
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
-            <h6 className="edit-h6">Form Title</h6>
-            <label>How Much?</label>
-            <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
+            <h6 className="edit-h6">Level Up</h6>
 
-            <input type="submit" className="submit-button" value="Submit" />
+            <input type="submit" className="submit-button" value="Level Up" />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">
