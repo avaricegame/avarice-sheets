@@ -115,7 +115,7 @@ function SellItems(props) {
   return (
     <div className="popup-bg">
       <div className="popup">
-        <form onSubmit={(e) => weaponSubmitHandler(e)}>
+        <form onSubmit={(e) => weaponSubmitHandler(e)} style={{ marginBottom: "-1rem" }}>
           <fieldset>
             <h6 className="edit-h6">Sell an Inventory Item</h6>
             <label>Sell a Weapon:</label>
@@ -132,7 +132,7 @@ function SellItems(props) {
             <input type="submit" className="submit-button" value={currentWeapon !== "a" ? `Sell ${currentWeapon.name} for ${currentWeapon.value} Gold` : "Please Choose a Weapon to Sell"} />
           </fieldset>
         </form>
-        <form onSubmit={(e) => itemSubmitHandler(e)}>
+        <form onSubmit={(e) => itemSubmitHandler(e)} style={{ marginBottom: "-1rem" }}>
           <fieldset>
             <label>Sell an Item:</label>
             <select onChange={(e) => onItemChangeHandler(e)}>
