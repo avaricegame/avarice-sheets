@@ -179,7 +179,7 @@ function CharacterSheet(props) {
       let at = charSheet.levelUps[charSheet.levelUps.length - 1].abilityTree
       at.map((column, index) => {
         let corrColumn = `column${index + 1}`
-        let ability1 = abilityTree[corrColumn][column.one]
+        let ability1 = abilityTree[corrColumn][column.one - 1]
         let ability2 = abilityTree[corrColumn][column.two + (5 - 1)]
         let ability3 = abilityTree[corrColumn][column.three + (10 - 1)]
         let ability4 = abilityTree[corrColumn][column.four + (15 - 1)]
