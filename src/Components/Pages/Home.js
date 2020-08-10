@@ -54,7 +54,7 @@ function Home(props) {
                   <Link onClick={(e, id) => clickHandler(e, cs.charid)} to={`/character/gameplay`} key={cs.charid} className="fixing-link-settings">
                     <div className="item-container item-container--hover-highlight">
                       <h3 className="item-container__heading">{cs.characterName}</h3>
-                      <h4 className="item-container__subheading">charid: {cs.charid}</h4>
+                      <h4 className="item-container__subheading">charid: #{cs.charid}</h4>
                       <table>
                         <tbody>
                           <tr>
