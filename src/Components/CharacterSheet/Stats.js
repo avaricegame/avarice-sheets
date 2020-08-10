@@ -45,7 +45,7 @@ function Stats(props) {
   }
 
   function calcBaseStatTotal(num) {
-    return props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[num] + props.baseEquipmentMod[num] + props.charSheet.baseStatsTempMod[num]
+    return props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[num] + props.baseEquipmentMod[num] + props.charSheet.baseStatsTempMod[num] + props.theRace.baseStats[num] + props.theClass.baseStats[num]
   }
 
   return (
@@ -134,7 +134,7 @@ function Stats(props) {
                     <td>
                       <input type="number" value={props.charSheet.baseStatsTempMod[0]} />
                     </td>
-                    <td>4</td>
+                    <td>{props.theRace.baseStats[0] + props.theClass.baseStats[0]}</td>
                   </tr>
                   <tr>
                     <td>
@@ -147,7 +147,7 @@ function Stats(props) {
                     <td>
                       <input type="number" value={props.charSheet.baseStatsTempMod[1]} />
                     </td>
-                    <td>4</td>
+                    <td>{props.theRace.baseStats[1] + props.theClass.baseStats[1]}</td>
                   </tr>
                   <tr>
                     <td>
@@ -160,7 +160,7 @@ function Stats(props) {
                     <td>
                       <input type="number" value={props.charSheet.baseStatsTempMod[2]} />
                     </td>
-                    <td>4</td>
+                    <td>{props.theRace.baseStats[2] + props.theClass.baseStats[2]}</td>
                   </tr>
                   <tr>
                     <td>
@@ -173,7 +173,7 @@ function Stats(props) {
                     <td>
                       <input type="number" value={props.charSheet.baseStatsTempMod[3]} />
                     </td>
-                    <td>4</td>
+                    <td>{props.theRace.baseStats[3] + props.theClass.baseStats[3]}</td>
                   </tr>
                 </tbody>
               </table>
