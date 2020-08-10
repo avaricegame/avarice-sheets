@@ -11,16 +11,27 @@ function NewCharacterSheet(props) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [raceArray, setRaceArray] = useState([])
   const [classArray, setClassArray] = useState([])
+
   useEffect(() => {
-    async function fetchData() {
-      const r = await Axios.get("/races")
-      const c = await Axios.get("/classes")
-      setRaceArray(r.data)
-      setClassArray(c.data)
-    }
-    fetchData()
-    setIsLoaded(true)
-  }, [classArray, raceArray])
+    Axios.get("/races")
+      .then(function (response) {
+        console.log(response)
+        setRaceArray(response.data)
+        Axios.get("/classes")
+          .then(function (response) {
+            console.log(response)
+            setClassArray(response.data)
+            setIsLoaded(true)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }, [])
+
   const [chosenRace, setChosenRace] = useState("a")
   const [chosenClass, setChosenClass] = useState("a")
   const raceSelectHandler = (e) => {
@@ -281,7 +292,7 @@ function NewCharacterSheet(props) {
                   <input required type="radio" name="gender" value="male" /> Male
                 </span>
                 <span style={{ display: "flex", alignItems: "center" }}>
-                  <input required type="radio" name="gender" value="female" /> Male
+                  <input required type="radio" name="gender" value="female" /> Female
                 </span>
                 <span style={{ display: "flex", alignItems: "center" }}>
                   <input required type="radio" name="gender" value="ambigious" /> Ambigious
