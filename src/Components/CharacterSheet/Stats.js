@@ -7,17 +7,21 @@ function Stats(props) {
   }
   const openEditLevel = () => {
     //props.editLevelHandler(true)
-    if (window.confirm("Are you sure you want to remove your last level? This could result in a lot of abilities and level up points.")) {
-      Axios.post("/character/removelevel", {
-        CSID: props.CSID,
-        level: parseInt(props.charSheet.levelUps.length - 1),
-      })
-        .then(function (response) {
-          //console.log(response)
+    if (props.charSheet.level !== 0) {
+      if (window.confirm("Are you sure you want to remove your last level? This could result in a lot of abilities and level up points.")) {
+        Axios.post("/character/removelevel", {
+          CSID: props.CSID,
+          level: parseInt(props.charSheet.levelUps.length - 1),
         })
-        .catch(function (error) {
-          console.log(error)
-        })
+          .then(function (response) {
+            //console.log(response)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
+    } else {
+      alert("You cannot remove a level, because you are already at level 0")
     }
   }
 
