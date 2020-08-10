@@ -39,7 +39,7 @@ function UseAbility(props) {
         <form>
           <fieldset>
             <h6 className="edit-h6">Use Ability</h6>
-            <label>Select an Ability to view the details</label>
+            <label>Select an Ability to view the details:</label>
             <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentAbilityHandler(e)}>
               <option value="a"></option>
               {newArray.map((ability, index) => {

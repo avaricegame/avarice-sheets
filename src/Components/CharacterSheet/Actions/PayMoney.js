@@ -34,7 +34,7 @@ function PayMoney(props) {
             <label>How Much?</label>
             <input name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
 
-            <input type="submit" className="submit-button" value={`Pay ${amount} Gold`} />
+            <input type="submit" className="submit-button" value={amount ? `Pay ${amount} Gold` : "Please Specify a Value"} />
           </fieldset>
         </form>
         <div onClick={close} className="close-button">
