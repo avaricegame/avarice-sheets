@@ -424,7 +424,7 @@ function Inventory(props) {
           </p>
           <p>
             <strong>Slots Used: </strong>
-            {currentItem.slots}
+            {currentItem.slotsReq}
           </p>
           <p>
             <strong>More Information: </strong>
@@ -487,7 +487,7 @@ function Inventory(props) {
               <table>
                 <thead>
                   <tr>
-                    <th>Holster Slots</th>
+                    <th>Holsters Needed</th>
                     <th>Weapon Name</th>
                   </tr>
                 </thead>
@@ -510,7 +510,7 @@ function Inventory(props) {
               <table>
                 <thead>
                   <tr>
-                    <th>Holster Slots</th>
+                    <th>Slots Needed</th>
                     <th>Item Name</th>
                   </tr>
                 </thead>
