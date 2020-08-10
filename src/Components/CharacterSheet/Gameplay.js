@@ -142,9 +142,9 @@ function Gameplay(props) {
         {/* /////// CLOSE PAGE CONTAINER /////// */}
       </div>
       {roll ? <Roll rollHandler={rollHandler} /> : ""}
-      {attack ? <Attack attackHandler={attackHandler} /> : ""}
+      {attack ? <Attack attackHandler={attackHandler} charSheet={props.charSheet} /> : ""}
       {useAbility ? <UseAbility useAbilityHandler={useAbilityHandler} abilityArray={props.abilityArray} charSheet={props.charSheet} /> : ""}
-      {useSkill ? <UseSkill useSkillHandler={useSkillHandler} /> : ""}
+      {useSkill ? <UseSkill useSkillHandler={useSkillHandler} charSheet={props.charSheet} /> : ""}
       {payMoney ? <PayMoney payMoneyHandler={payMoneyHandler} CSID={props.CSID} /> : ""}
       {sellItems ? <SellItems sellItemsHandler={sellItemsHandler} CSID={props.CSID} charSheet={props.charSheet} /> : ""}
     </>
