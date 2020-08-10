@@ -49,9 +49,16 @@ function CharacterSheet(props) {
   const [abilityArray, setAbilityArray] = useState([])
   const [equippedWeapons, setEquippedWeapons] = useState([])
   const [equippedItems, setEquippedItems] = useState([])
+  const [equippedWearables, setEquippedWearables] = useState([])
 
-  const [equipmentMod] = useState([7, 7, 7, 7]) // one of these for each skill, in the same order as the skills array in level ups
-  const [baseEquipmentMod] = useState([3, 3, 3, 3]) // one of these for each base stat, in the order they are planned to be
+  const [holstersUsed, setHolstersUsed] = useState()
+  const [slotsUsed, setSlotsUsed] = useState()
+  const [holstersAvailable, setHolstersAvailable] = useState()
+  const [slotsAvailable, setSlotsAvailable] = useState()
+
+  const [equipmentMod, setEquipmentMod] = useState([]) // one of these for each skill, in the same order as the skills array in level ups
+  const [baseEquipmentMod, setBaseEquipmentMod] = useState([]) // one of these for each base stat, in the order they are planned to be
+  const [equipmentArmour, setEquipmentArmour] = useState()
 
   const updateCharSheet = (selector, value) => {
     // setCharSheet((prevCharSheet) => {
@@ -211,8 +218,56 @@ function CharacterSheet(props) {
           return weapon.equipped
         })
       )
+      setEquippedWearables(
+        charSheet.wearables.filter((wearable) => {
+          return wearable.equipped
+        })
+      )
     }
   }, [charSheet, isLoading])
+  useEffect(() => {
+    console.log(equippedWeapons)
+
+    let a = equippedWeapons.reduce((total, num) => {
+      return num.holstersReq + total
+    }, 0)
+    setHolstersUsed(a)
+
+    let b = equippedItems.reduce((total, num) => {
+      return num.slotsReq + total
+    }, 0)
+    setSlotsUsed(b)
+
+    let c = equippedWearables.reduce((total, num) => {
+      return num.slots + total
+    }, 0)
+    setSlotsAvailable(c)
+    let d = equippedWearables.reduce((total, num) => {
+      return num.holsters + total
+    }, 0)
+    setHolstersAvailable(d)
+    let phy = equippedWearables.reduce((total, num) => {
+      return num.modifiers.PHY + total
+    }, 0)
+    let int = equippedWearables.reduce((total, num) => {
+      return num.modifiers.INT + total
+    }, 0)
+    let ref = equippedWearables.reduce((total, num) => {
+      return num.modifiers.REF + total
+    }, 0)
+    let cha = equippedWearables.reduce((total, num) => {
+      return num.modifiers.CHA + total
+    }, 0)
+    setBaseEquipmentMod([phy, int, ref, cha])
+    let skill1 = equippedWearables.reduce((total, num) => {
+      return num.modifiers.skill1 + total
+    }, 0)
+    setEquipmentMod([skill1])
+    let y = equippedWearables.reduce((total, num) => {
+      return num.modifiers.armour + total
+    }, 0)
+    setEquipmentArmour(y)
+  }, [equippedItems, equippedWeapons, equippedWearables])
   // ******************** BEGIN THE RENDERING ******************** //
   if (props.loggedIn) {
     if (!isLoading) {
@@ -242,7 +297,7 @@ function CharacterSheet(props) {
               <Route path="/character/gameplay" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Gameplay charSheet={charSheet} abilityArray={abilityArray} equipmentMod={equipmentMod} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} baseEquipmentMod={baseEquipmentMod} theRace={theRace} theClass={theClass} />
+                <Gameplay charSheet={charSheet} abilityArray={abilityArray} equipmentMod={equipmentMod} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} baseEquipmentMod={baseEquipmentMod} equipmentArmour={equipmentArmour} theRace={theRace} theClass={theClass} equippedWeapons={equippedWeapons} equippedItems={equippedItems} />
                 <Footer />
                 {heal ? <HealHP healHandler={healHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}
                 {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}
@@ -250,7 +305,7 @@ function CharacterSheet(props) {
               <Route path="/character/inventory" exact>
                 <Header charSheet={charSheet} />
                 <Navigation />
-                <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} newWeaponHandler={newWeaponHandler} newWearableHandler={newWearableHandler} newItemHandler={newItemHandler} editSuronisHandler={editSuronisHandler} CSID={props.CSID} />
+                <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} holstersUsed={holstersUsed} slotsUsed={slotsUsed} holstersAvailable={holstersAvailable} slotsAvailable={slotsAvailable} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} newWeaponHandler={newWeaponHandler} newWearableHandler={newWearableHandler} newItemHandler={newItemHandler} editSuronisHandler={editSuronisHandler} CSID={props.CSID} />
                 <Footer />
                 {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
                 {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
