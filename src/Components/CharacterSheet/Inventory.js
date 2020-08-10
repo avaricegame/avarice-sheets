@@ -144,9 +144,6 @@ function Inventory(props) {
     }
   }
 
-  const [holstersUsed] = useState(0)
-  const [slotsUsed] = useState(0)
-
   const [currentWeapon, setCurrentWeapon] = useState("a")
   const [currentWearable, setCurrentWearable] = useState("a")
   const [currentItem, setCurrentItem] = useState("a")
@@ -330,22 +327,6 @@ function Inventory(props) {
                 <td>Skill 1:</td>
                 <td>{currentWearable.modifiers.skill1}</td>
               </tr>
-              <tr>
-                <td>Skill 2:</td>
-                <td>{currentWearable.modifiers.skill2}</td>
-              </tr>
-              <tr>
-                <td>Skill 3:</td>
-                <td>{currentWearable.modifiers.skill3}</td>
-              </tr>
-              <tr>
-                <td>Skill 4:</td>
-                <td>{currentWearable.modifiers.skill4}</td>
-              </tr>
-              <tr>
-                <td>Skill 5:</td>
-                <td>{currentWearable.modifiers.skill5}</td>
-              </tr>
             </tbody>
           </table>
           <p>
@@ -449,7 +430,7 @@ function Inventory(props) {
               }}
               className="hg__fake-link"
             >
-              {currentWeapon.equipped ? "UNEQUIP THIS ITEM" : "EQUIP THIS ITEM"}
+              {currentItem.equipped ? "UNEQUIP THIS ITEM" : "EQUIP THIS ITEM"}
             </span>
           </p>
           <hr className="hg__hr" style={{ margin: "1rem 0", borderTop: "darkgray" }} />
@@ -483,7 +464,9 @@ function Inventory(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Weapons</h3>
-              <h4 className="item-container__subheading">Holsters Used: {holstersUsed} / 3</h4>
+              <h4 className="item-container__subheading">
+                Holsters Used: {props.holstersUsed} / {props.holstersAvailable}
+              </h4>
               <table>
                 <thead>
                   <tr>
@@ -506,7 +489,9 @@ function Inventory(props) {
 
             <div className="item-container">
               <h3 className="item-container__heading">Items</h3>
-              <h4 className="item-container__terheading">Item Slots Used: {slotsUsed} / 16</h4>
+              <h4 className="item-container__terheading">
+                Item Slots Used: {props.slotsUsed} / {props.slotsAvailable}
+              </h4>
               <table>
                 <thead>
                   <tr>
@@ -529,8 +514,8 @@ function Inventory(props) {
 
             <div className="item-container">
               <h3 className="item-container__heading">Wearables</h3>
-              <h4 className="item-container__subheading">Holster Count: 3</h4>
-              <h4 className="item-container__terheading">Item Slot Count: 16</h4>
+              <h4 className="item-container__subheading">Holster Count: {props.holstersAvailable}</h4>
+              <h4 className="item-container__terheading">Item Slot Count: {props.slotsAvailable}</h4>
               <table>
                 <thead>
                   <tr>

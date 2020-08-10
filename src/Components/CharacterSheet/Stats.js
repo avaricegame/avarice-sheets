@@ -179,7 +179,7 @@ function Stats(props) {
                     </td>
                     <td>{calcBaseStatTotal(1)}</td>
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1]}</td>
-                    <td>{props.baseEquipmentMod[0]}</td>
+                    <td>{props.baseEquipmentMod[1]}</td>
                     <td>
                       <input
                         type="number"
@@ -199,7 +199,7 @@ function Stats(props) {
                     </td>
                     <td>{calcBaseStatTotal(2)}</td>
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2]}</td>
-                    <td>{props.baseEquipmentMod[0]}</td>
+                    <td>{props.baseEquipmentMod[2]}</td>
                     <td>
                       <input
                         type="number"
@@ -219,7 +219,7 @@ function Stats(props) {
                     </td>
                     <td>{calcBaseStatTotal(3)}</td>
                     <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]}</td>
-                    <td>{props.baseEquipmentMod[0]}</td>
+                    <td>{props.baseEquipmentMod[3]}</td>
                     <td>
                       <input
                         type="number"
