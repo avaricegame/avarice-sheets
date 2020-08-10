@@ -29,7 +29,7 @@ function Roll(props) {
     alert(`You rolled a ${Math.ceil(Math.random() * 60)}!`)
   }
   const custom = () => {
-    let number = prompt("How many sides?")
+    let number = prompt("How many sided die? Please enter a positive, whole integer.")
     alert(`You rolled a ${Math.ceil(Math.random() * number)}!`)
   }
 
