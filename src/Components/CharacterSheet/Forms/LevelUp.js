@@ -250,6 +250,9 @@ function LevelUp(props) {
         <form onSubmit={(e) => submitHandler(e)}>
           <fieldset>
             <h6 className="edit-h6">Level Up</h6>
+            <h4 className="item-container__subheading" style={{ margin: "2.5rem auto" }}>
+              Base Stats
+            </h4>
             <label htmlFor="baseStats">Choose a Base Stat to Level Up:</label>
             <span style={{ display: "flex", alignItems: "center" }}>
               <input required type="radio" name="baseStats" value="PHY" /> Physique (PHY)
@@ -263,14 +266,23 @@ function LevelUp(props) {
             <span style={{ display: "flex", alignItems: "center" }}>
               <input required type="radio" name="baseStats" value="CHA" /> Charisma (CHA)
             </span>
+            <h4 className="item-container__subheading" style={{ margin: "2.5rem auto" }}>
+              Skills
+            </h4>
             <label htmlFor="skills">Choose a Skill to Level Up:</label>
             <span style={{ display: "flex", alignItems: "center" }}>
               <input required type="radio" name="skills" value="Skill 1" /> Skill 1
             </span>
+            <h4 className="item-container__subheading" style={{ margin: "2.5rem auto" }}>
+              Proficiencies
+            </h4>
             <label htmlFor="proficiency">Choose a Proficiency to Level Up:</label>
             <span style={{ display: "flex", alignItems: "center" }}>
               <input required type="radio" name="proficiency" value="Proficiency 1" /> Proficiency 1
             </span>
+            <h4 className="item-container__subheading" style={{ margin: "2.5rem auto" }}>
+              Abilities
+            </h4>
             <label htmlFor="abilityTree">Choose a New Ability:</label>
             <div className="cw__container cw__container--tree">
               {props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree.map((column, index) => {
