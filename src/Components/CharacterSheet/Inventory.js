@@ -524,7 +524,41 @@ function Inventory(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  {props.equippedWearables.map((wearable) => {
+                    // if (wearable.bodyArea === "base") {
+                    // } else if (wearable.bodyArea === "head") {
+
+                    // } else if (wearable.bodyArea === "face") {
+
+                    // } else if (wearable.bodyArea === "neck") {
+
+                    // } else if (wearable.bodyArea === "torso") {
+
+                    // } else if (wearable.bodyArea === "back") {
+
+                    // } else if (wearable.bodyArea === "arms") {
+
+                    // } else if (wearable.bodyArea === "wrists") {
+
+                    // } else if (wearable.bodyArea === "hands") {
+
+                    // } else if (wearable.bodyArea === "waist") {
+
+                    // } else if (wearable.bodyArea === "legs") {
+
+                    // } else if (wearable.bodyArea === "ankles") {
+
+                    // } else if (wearable.bodyArea === "feet") {
+
+                    // }
+                    return (
+                      <tr key={wearable.id}>
+                        <td>{wearable.bodyArea}</td>
+                        <td>{wearable.name}</td>
+                      </tr>
+                    )
+                  })}
+                  {/* <tr>
                     <td>Base</td>
                     <td>Wearable</td>
                   </tr>
@@ -575,7 +609,7 @@ function Inventory(props) {
                   <tr>
                     <td>Feet</td>
                     <td>Wearable</td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
             </div>
