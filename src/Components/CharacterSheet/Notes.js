@@ -107,7 +107,7 @@ function Notes(props) {
                 {charSheetState.charSheet.notes[noteIndex] ? charSheetState.charSheet.notes[noteIndex].title : ""}
               </h3>
               {/* <hr className="horizontal-rule" /> */}
-              <div style={{ marginBottom: "4rem" }} className="note-content">
+              <div style={{ marginBottom: "4rem", padding: "1rem 2rem" }} className="note-content">
                 {charSheetState.charSheet.notes[noteIndex] ? charSheetState.charSheet.notes[noteIndex].content : ""}
               </div>
 
