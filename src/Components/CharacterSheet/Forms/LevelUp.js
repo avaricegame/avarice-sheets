@@ -2,9 +2,11 @@ import React, { useState, useContext } from "react"
 import Axios from "axios"
 
 import DispatchContext from "../../../DispatchContext"
+import StateContext from "../../../StateContext"
 
 function LevelUp(props) {
   const charSheetDispatch = useContext(DispatchContext)
+  const charSheetState = useContext(StateContext)
   const [currentAbility, setCurrentAbility] = useState("a")
   const close = () => {
     props.levelUpHandler(false)
@@ -16,59 +18,59 @@ function LevelUp(props) {
     e.preventDefault()
     let newBaseStats
     if (e.target.baseStats.value === "PHY") {
-      newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]]
+      newBaseStats = [charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[0] + 1, charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[1], charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[2], charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[3]]
     } else if (e.target.baseStats.value === "INT") {
-      newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]]
+      newBaseStats = [charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[0], charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[1] + 1, charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[2], charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[3]]
     } else if (e.target.baseStats.value === "REF") {
-      newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2] + 1, props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]]
+      newBaseStats = [charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[0], charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[1], charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[2] + 1, charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[3]]
     } else if (e.target.baseStats.value === "CHA") {
-      newBaseStats = [props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2], props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3] + 1]
+      newBaseStats = [charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[0], charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[1], charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[2], charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[3] + 1]
     }
     let newSkills
     if (e.target.skills.value === "Skill 1") {
-      newSkills = [{ name: "Skill 1", natMod: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].skills[0].natMod + 1 }]
+      newSkills = [{ name: "Skill 1", natMod: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].skills[0].natMod + 1 }]
     }
     let newProficiencies
     if (e.target.proficiency.value === "Proficiency 1") {
-      newProficiencies = [{ name: "Proficiency 1", value: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].proficiency[0].value + 1 }]
+      newProficiencies = [{ name: "Proficiency 1", value: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].proficiency[0].value + 1 }]
     }
     let newAbilityTree
     let column1Copy = {
       column: 1,
-      points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].points,
-      one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].one,
-      two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].two,
-      three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].three,
-      four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].four,
+      points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].points,
+      one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].one,
+      two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].two,
+      three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].three,
+      four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].four,
       ability: 0,
     }
     let column2Copy = {
       column: 2,
-      points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].points,
-      one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].one,
-      two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].two,
-      three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].three,
-      four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].four,
+      points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].points,
+      one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].one,
+      two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].two,
+      three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].three,
+      four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].four,
       ability: 0,
     }
     let column3Copy = {
       column: 3,
-      points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].points,
-      one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].one,
-      two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].two,
-      three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].three,
-      four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].four,
+      points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].points,
+      one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].one,
+      two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].two,
+      three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].three,
+      four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].four,
       ability: 0,
     }
     if (e.target.ability.value === "011" || e.target.ability.value === "012" || e.target.ability.value === "013" || e.target.ability.value === "014" || e.target.ability.value === "015") {
       newAbilityTree = [
         {
           column: 1,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].one + 1,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].two,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].three,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].four,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].one + 1,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].two,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].three,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].four,
           ability: currentAbility,
         },
         column2Copy,
@@ -78,11 +80,11 @@ function LevelUp(props) {
       newAbilityTree = [
         {
           column: 1,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].one,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].two + 1,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].three,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].four,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].one,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].two + 1,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].three,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].four,
           ability: currentAbility,
         },
         column2Copy,
@@ -92,11 +94,11 @@ function LevelUp(props) {
       newAbilityTree = [
         {
           column: 1,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].one,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].two,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].three + 1,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].four,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].one,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].two,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].three + 1,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].four,
           ability: currentAbility,
         },
         column2Copy,
@@ -106,11 +108,11 @@ function LevelUp(props) {
       newAbilityTree = [
         {
           column: 1,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].one,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].two,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].three,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[0].four + 1,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].one,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].two,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].three,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[0].four + 1,
           ability: currentAbility,
         },
         column2Copy,
@@ -121,11 +123,11 @@ function LevelUp(props) {
         column1Copy,
         {
           column: 2,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].one + 1,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].two,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].three,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].four,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].one + 1,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].two,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].three,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].four,
           ability: currentAbility,
         },
         column3Copy,
@@ -135,11 +137,11 @@ function LevelUp(props) {
         column1Copy,
         {
           column: 2,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].one,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].two + 1,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].three,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].four,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].one,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].two + 1,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].three,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].four,
           ability: currentAbility,
         },
         column3Copy,
@@ -149,11 +151,11 @@ function LevelUp(props) {
         column1Copy,
         {
           column: 2,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].one,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].two,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].three + 1,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].four,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].one,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].two,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].three + 1,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].four,
           ability: currentAbility,
         },
         column3Copy,
@@ -163,11 +165,11 @@ function LevelUp(props) {
         column1Copy,
         {
           column: 2,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].one,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].two,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].three,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[1].four + 1,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].one,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].two,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].three,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[1].four + 1,
           ability: currentAbility,
         },
         column3Copy,
@@ -178,11 +180,11 @@ function LevelUp(props) {
         column2Copy,
         {
           column: 3,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].one + 1,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].two,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].three,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].four,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].one + 1,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].two,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].three,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].four,
           ability: currentAbility,
         },
       ]
@@ -192,11 +194,11 @@ function LevelUp(props) {
         column2Copy,
         {
           column: 3,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].one,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].two + 1,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].three,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].four,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].one,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].two + 1,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].three,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].four,
           ability: currentAbility,
         },
       ]
@@ -206,11 +208,11 @@ function LevelUp(props) {
         column2Copy,
         {
           column: 3,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].one,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].two,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].three + 1,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].four,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].one,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].two,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].three + 1,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].four,
           ability: currentAbility,
         },
       ]
@@ -220,11 +222,11 @@ function LevelUp(props) {
         column2Copy,
         {
           column: 3,
-          points: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].points + 1,
-          one: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].one,
-          two: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].two,
-          three: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].three,
-          four: props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree[2].four + 1,
+          points: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].points + 1,
+          one: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].one,
+          two: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].two,
+          three: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].three,
+          four: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree[2].four + 1,
           ability: currentAbility,
         },
       ]
@@ -232,7 +234,7 @@ function LevelUp(props) {
     if (newBaseStats && newSkills && newProficiencies && newAbilityTree) {
       Axios.post("/character/levelup", {
         CSID: props.CSID,
-        level: props.charSheet.level + 1,
+        level: charSheetState.charSheet.level + 1,
         baseStats: newBaseStats,
         skills: newSkills,
         proficiency: newProficiencies,
@@ -245,7 +247,7 @@ function LevelUp(props) {
             type: "levelUp",
             value: {
               CSID: props.CSID,
-              level: props.charSheet.level + 1,
+              level: charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].level + 1,
               baseStats: newBaseStats,
               skills: newSkills,
               proficiency: newProficiencies,
@@ -299,12 +301,12 @@ function LevelUp(props) {
             </h4>
             <label htmlFor="abilityTree">Choose a New Ability:</label>
             <div className="cw__container cw__container--tree">
-              {props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree.map((column, index) => {
+              {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree.map((column, index) => {
                 if (column.points <= 2) {
                   let corrColumn = `column${index + 1}`
                   let pointsOne = column.one
                   return (
-                    <div key={index}>
+                    <div key={index} style={{ display: "flex", alignItems: "flex-start" }}>
                       <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
                         <input
                           style={{ width: "3rem", cursor: "pointer" }}
@@ -334,14 +336,14 @@ function LevelUp(props) {
                   let pointsTwo = column.two + 5
 
                   return (
-                    <div key={index}>
+                    <div key={index} style={{ display: "flex", flexDirection: "column-reverse", alignItems: "flex-start" }}>
                       <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
                         <input
                           style={{ width: "3rem", cursor: "pointer" }}
                           required
                           type="radio"
                           name="ability"
-                          value={`${index}1${props.abilityTree[corrColumn][pointsTwo].power}`}
+                          value={`${index}2${props.abilityTree[corrColumn][pointsTwo].power}`}
                           onClick={(name, power, description) => {
                             setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsTwo].name, props.abilityTree[corrColumn][pointsTwo].power, props.abilityTree[corrColumn][pointsTwo].description || props.abilityTree[corrColumn][pointsTwo].details)
                           }}
@@ -385,14 +387,14 @@ function LevelUp(props) {
                   let pointsTwo = column.two + 5
                   let pointsThree = column.three + 10
                   return (
-                    <div key={index}>
+                    <div key={index} style={{ display: "flex", flexDirection: "column-reverse", alignItems: "flex-start" }}>
                       <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
                         <input
                           style={{ width: "3rem", cursor: "pointer" }}
                           required
                           type="radio"
                           name="ability"
-                          value={`${index}1${props.abilityTree[corrColumn][pointsThree].power}`}
+                          value={`${index}3${props.abilityTree[corrColumn][pointsThree].power}`}
                           onClick={(name, power, description) => {
                             setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsThree].name, props.abilityTree[corrColumn][pointsThree].power, props.abilityTree[corrColumn][pointsThree].description || props.abilityTree[corrColumn][pointsThree].details)
                           }}
@@ -413,7 +415,7 @@ function LevelUp(props) {
                           required
                           type="radio"
                           name="ability"
-                          value={`${index}1${props.abilityTree[corrColumn][pointsTwo].power}`}
+                          value={`${index}2${props.abilityTree[corrColumn][pointsTwo].power}`}
                           onClick={(name, power, description) => {
                             setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsTwo].name, props.abilityTree[corrColumn][pointsTwo].power, props.abilityTree[corrColumn][pointsTwo].description || props.abilityTree[corrColumn][pointsTwo].details)
                           }}
@@ -458,14 +460,14 @@ function LevelUp(props) {
                   let pointsThree = column.three + 10
                   let pointsFour = column.four + 15
                   return (
-                    <div key={index}>
+                    <div key={index} style={{ display: "flex", flexDirection: "column-reverse", alignItems: "flex-start" }}>
                       <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
                         <input
                           style={{ width: "3rem", cursor: "pointer" }}
                           required
                           type="radio"
                           name="ability"
-                          value={`${index}1${props.abilityTree[corrColumn][pointsFour].power}`}
+                          value={`${index}4${props.abilityTree[corrColumn][pointsFour].power}`}
                           onClick={(name, power, description) => {
                             setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsFour].name, props.abilityTree[corrColumn][pointsFour].power, props.abilityTree[corrColumn][pointsFour].description || props.abilityTree[corrColumn][pointsFour].details)
                           }}
@@ -486,7 +488,7 @@ function LevelUp(props) {
                           required
                           type="radio"
                           name="ability"
-                          value={`${index}1${props.abilityTree[corrColumn][pointsThree].power}`}
+                          value={`${index}3${props.abilityTree[corrColumn][pointsThree].power}`}
                           onClick={(name, power, description) => {
                             setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsThree].name, props.abilityTree[corrColumn][pointsThree].power, props.abilityTree[corrColumn][pointsThree].description || props.abilityTree[corrColumn][pointsThree].details)
                           }}
@@ -507,7 +509,7 @@ function LevelUp(props) {
                           required
                           type="radio"
                           name="ability"
-                          value={`${index}1${props.abilityTree[corrColumn][pointsTwo].power}`}
+                          value={`${index}2${props.abilityTree[corrColumn][pointsTwo].power}`}
                           onClick={(name, power, description) => {
                             setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsTwo].name, props.abilityTree[corrColumn][pointsTwo].power, props.abilityTree[corrColumn][pointsTwo].description || props.abilityTree[corrColumn][pointsTwo].details)
                           }}
