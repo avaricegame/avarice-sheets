@@ -7,9 +7,9 @@ import DispatchContext from "../../DispatchContext"
 function Inventory(props) {
   const charSheetState = useContext(StateContext)
   const charSheetDispatch = useContext(DispatchContext)
-  const [weaponSelect, setWeaponSelect] = useState("")
-  const [wearableSelect, setWearableSelect] = useState("")
-  const [itemSelect, setItemSelect] = useState("")
+  //const [weaponSelect, setWeaponSelect] = useState("")
+  //const [wearableSelect, setWearableSelect] = useState("")
+  //const [itemSelect, setItemSelect] = useState("")
   const openPayMoney = () => {
     props.payMoneyHandler(true)
   }
@@ -100,7 +100,6 @@ function Inventory(props) {
             value: id,
           })
           setCurrentWeapon("a")
-          setWeaponSelect("")
         })
         .catch(function (error) {
           console.log(error)
@@ -138,7 +137,7 @@ function Inventory(props) {
             value: id,
           })
           setCurrentWearable("a")
-          setWearableSelect("")
+          //setWearableSelect("")
         })
         .catch(function (error) {
           console.log(error)
@@ -176,7 +175,7 @@ function Inventory(props) {
             value: id,
           })
           setCurrentItem("a")
-          setWearableSelect("")
+          //setWearableSelect("")
         })
         .catch(function (error) {
           console.log(error)
@@ -208,28 +207,28 @@ function Inventory(props) {
   const setWeaponHandler = (e) => {
     if (e.target.value !== "a") {
       setCurrentWeapon(charSheetState.charSheet.weapons[e.target.value])
-      setWeaponSelect(charSheetState.charSheet.weapons[e.target.value].name)
+      //setWeaponSelect(charSheetState.charSheet.weapons[e.target.value].name)
     } else {
       setCurrentWeapon("a")
-      setWeaponSelect("")
+      // setWeaponSelect("")
     }
   }
   const setWearableHandler = (e) => {
     if (e.target.value !== "a") {
       setCurrentWearable(charSheetState.charSheet.wearables[e.target.value])
-      setWearableSelect(charSheetState.charSheet.wearables[e.target.value].name)
+      //setWearableSelect(charSheetState.charSheet.wearables[e.target.value].name)
     } else {
       setCurrentWearable("a")
-      setWearableSelect("")
+      //setWearableSelect("")
     }
   }
   const setItemHandler = (e) => {
     if (e.target.value !== "a") {
       setCurrentItem(charSheetState.charSheet.items[e.target.value])
-      setItemSelect(charSheetState.charSheet.wearables[e.target.value].name)
+      //setItemSelect(charSheetState.charSheet.wearables[e.target.value].name)
     } else {
       setCurrentItem("a")
-      setItemSelect("")
+      //setItemSelect("")
     }
   }
   const displayWeapon = () => {
@@ -276,7 +275,7 @@ function Inventory(props) {
               </tr>
               <tr>
                 <td>Unique:</td>
-                <td>{currentWeapon.unique ? "Yes" : "No"}</td>
+                <td>{currentWeapon.unique === true ? "Yes" : "No"}</td>
               </tr>
               <tr>
                 <td>Critical:</td>
@@ -357,6 +356,10 @@ function Inventory(props) {
           <p>
             <strong>Slots Given: </strong>
             {currentWearable.slots}
+          </p>
+          <p>
+            <strong>Armour Modifier: </strong>
+            {currentWearable.modifiers.armour}
           </p>
           <p>
             <strong>Base Stat Modifiers:</strong>
@@ -699,7 +702,7 @@ function Inventory(props) {
               <h3 className="item-container__heading">Weapons</h3>
               <h4 className="item-container__subheading">Weapon Count: {charSheetState.charSheet.weapons.length}</h4>
               <p className="item-container__select-label">Select a weapon to view the details</p>
-              <select onChange={(e) => setWeaponHandler(e)} value={weaponSelect} className="item-container__select">
+              <select onChange={(e) => setWeaponHandler(e)} className="item-container__select">
                 <option value="a"></option>
                 {charSheetState.charSheet.weapons.map((weapon, index) => {
                   return (
@@ -715,7 +718,7 @@ function Inventory(props) {
               <h3 className="item-container__heading">Items</h3>
               <h4 className="item-container__subheading">Item Count: {charSheetState.charSheet.items.length}</h4>
               <p className="item-container__select-label">Select an item to view the details</p>
-              <select onChange={(e) => setItemHandler(e)} value={itemSelect} className="item-container__select">
+              <select onChange={(e) => setItemHandler(e)} className="item-container__select">
                 <option value="a"></option>
                 {charSheetState.charSheet.items.map((item, index) => {
                   return (
@@ -731,7 +734,7 @@ function Inventory(props) {
               <h3 className="item-container__heading">Wearables</h3>
               <h4 className="item-container__subheading">Wearable Count: {charSheetState.charSheet.wearables.length}</h4>
               <p className="item-container__select-label">Select a wearable to view the details</p>
-              <select onChange={(e) => setWearableHandler(e)} value={wearableSelect} className="item-container__select">
+              <select onChange={(e) => setWearableHandler(e)} className="item-container__select">
                 <option value="a"></option>
                 {charSheetState.charSheet.wearables.map((wearable, index) => {
                   return (
