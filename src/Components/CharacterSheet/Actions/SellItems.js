@@ -2,9 +2,11 @@ import React, { useState, useContext } from "react"
 import Axios from "axios"
 
 import DispatchContext from "../../../DispatchContext"
+import StateContext from "../../../StateContext"
 
 function SellItems(props) {
   const charSheetDispatch = useContext(DispatchContext)
+  const charSheetState = useContext(StateContext)
   const [currentWeapon, setCurrentWeapon] = useState("a")
   const [currentWearable, setCurrentWearable] = useState("a")
   const [currentItem, setCurrentItem] = useState("a")
@@ -14,8 +16,6 @@ function SellItems(props) {
   const onWeaponChangeHandler = (e) => {
     if (e.target.value !== "a") {
       setCurrentWeapon(props.charSheet.weapons[e.target.value])
-      setCurrentWearable("a")
-      setCurrentItem("a")
     } else {
       setCurrentWeapon("a")
     }
@@ -82,6 +82,11 @@ function SellItems(props) {
             .then(function (response) {
               console.log(response)
               props.sellItemsHandler(false)
+              charSheetDispatch({
+                type: "deleteItem",
+                value: currentItem.id,
+              })
+              charSheetDispatch({ type: "recieveMoney", value: currentItem.value })
               setCurrentItem("a")
             })
             .catch(function (error) {
@@ -109,6 +114,11 @@ function SellItems(props) {
             .then(function (response) {
               console.log(response)
               props.sellItemsHandler(false)
+              charSheetDispatch({
+                type: "deleteWearable",
+                value: currentWearable.id,
+              })
+              charSheetDispatch({ type: "recieveMoney", value: currentWearable.value })
               setCurrentWearable("a")
             })
             .catch(function (error) {
@@ -129,7 +139,7 @@ function SellItems(props) {
             <label>Sell a Weapon:</label>
             <select onChange={(e) => onWeaponChangeHandler(e)}>
               <option value="a"></option>
-              {props.charSheet.weapons.map((weapon, index) => {
+              {charSheetState.charSheet.weapons.map((weapon, index) => {
                 return (
                   <option value={index} key={weapon.id}>
                     {weapon.name}
@@ -145,7 +155,7 @@ function SellItems(props) {
             <label>Sell an Item:</label>
             <select onChange={(e) => onItemChangeHandler(e)}>
               <option value="a"></option>
-              {props.charSheet.items.map((item, index) => {
+              {charSheetState.charSheet.items.map((item, index) => {
                 return (
                   <option value={index} key={item.id}>
                     {item.name}
@@ -161,7 +171,7 @@ function SellItems(props) {
             <label>Sell a Wearable:</label>
             <select onChange={(e) => onWearableChangeHandler(e)}>
               <option value="a"></option>
-              {props.charSheet.wearables.map((wearable, index) => {
+              {charSheetState.charSheet.wearables.map((wearable, index) => {
                 return (
                   <option value={index} key={wearable.id}>
                     {wearable.name}
