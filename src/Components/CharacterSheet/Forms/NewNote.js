@@ -1,7 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import DispatchContext from "../../../DispatchContext"
+
 function NewNote(props) {
+  const charSheetDispatch = useContext(DispatchContext)
   const [title, setTitle] = useState()
   const [content, setContent] = useState()
   const close = () => {
@@ -17,14 +20,24 @@ function NewNote(props) {
   }
   const submitHandler = (e) => {
     e.preventDefault()
+    const theID = Math.floor(Math.random() * 100000)
     Axios.post("/character/newnote", {
-      id: Math.floor(Math.random() * 100000),
+      id: theID,
       CSID: props.CSID,
       title: title,
       content: content,
     })
       .then(function (response) {
         props.newNoteHandler(false)
+        charSheetDispatch({
+          type: "addNewNote",
+          value: {
+            id: theID,
+            CSID: props.CSID,
+            title: title,
+            content: content,
+          },
+        })
       })
       .catch(function (error) {
         console.log(error)

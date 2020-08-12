@@ -1,7 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 
+import StateContext from "../../StateContext"
+
 function Header(props) {
+  const charSheetState = useContext(StateContext)
   return (
     <>
       <div className="header-bar">
@@ -22,7 +25,7 @@ function Header(props) {
         </Link> */}
       </div>
       <header className="header">
-        <h1 className="header__logotype">{props.charSheet.characterName}</h1>
+        <h1 className="header__logotype">{charSheetState.charSheet.characterName}</h1>
       </header>
     </>
   )

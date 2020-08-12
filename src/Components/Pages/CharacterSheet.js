@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
 import Axios from "axios"
+import { useImmerReducer } from "use-immer"
+
+// CONTEXT
+import StateContext from "../../StateContext"
+import DispatchContext from "../../DispatchContext"
 
 // COMPONENTS
 import Header from "../CharacterSheet/Header"
@@ -26,7 +31,6 @@ import NewWearable from "../CharacterSheet/Forms/NewWearable"
 import NewItem from "../CharacterSheet/Forms/NewItem"
 import EditSuronis from "../CharacterSheet/Forms/EditSuronis"
 import LevelUp from "../CharacterSheet/Forms/LevelUp"
-import EditLevel from "../CharacterSheet/Forms/EditLevel"
 import NewAbility from "../CharacterSheet/Forms/NewAbility"
 import EditAbility from "../CharacterSheet/Forms/EditAbility"
 import NewCharacterLog from "../CharacterSheet/Forms/NewCharacterLog"
@@ -41,6 +45,12 @@ import Profile from "../Pages/Profile"
 import HomeAbout from "../Pages/About"
 
 function CharacterSheet(props) {
+  // ******************** SET THE CHARACTER SHEET STATE ******************** //
+  const initialState = {
+    charSheet: 0,
+  }
+  const [state, dispatch] = useImmerReducer(charSheetReducer, initialState)
+  // ******************** SET THE REGULAR STATES ******************** //
   const [isLoading, setIsLoading] = useState(true)
   const [charSheet, setCharSheet] = useState(0)
   const [theClass, setTheClass] = useState({})
@@ -60,12 +70,152 @@ function CharacterSheet(props) {
   const [baseEquipmentMod, setBaseEquipmentMod] = useState([]) // one of these for each base stat, in the order they are planned to be
   const [equipmentArmour, setEquipmentArmour] = useState()
 
-  const updateCharSheet = (selector, value) => {
-    // setCharSheet((prevCharSheet) => {
-    //   let newcharSheet = Object.assign({}, prevCharSheet.charSheet)
-    //   charSheet[selector] = value
-    //   return { charSheet }
-    // })
+  function charSheetReducer(draft, action) {
+    switch (action.type) {
+      case "setCharSheet":
+        draft.charSheet = action.data
+        break
+      case "healHP":
+        draft.charSheet.currentHP = draft.charSheet.currentHP + parseInt(action.value)
+        break
+      case "takeDamage":
+        draft.charSheet.currentHP = draft.charSheet.currentHP - parseInt(action.value)
+        break
+      case "payMoney":
+        draft.charSheet.gold = draft.charSheet.gold - parseInt(action.value)
+        break
+      case "recieveMoney":
+        draft.charSheet.gold = draft.charSheet.gold + parseInt(action.value)
+        break
+      case "addNewWeapon":
+        draft.charSheet.weapons.push(action.value)
+        break
+      case "addNewItem":
+        draft.charSheet.items.push(action.value)
+        break
+      case "addNewWearable":
+        draft.charSheet.wearables.push(action.value)
+        break
+      case "deleteWeapon":
+        const weaponsindex = draft.charSheet.weapons.findIndex((weapon) => {
+          return weapon.id === action.value
+        })
+        if (weaponsindex > -1) {
+          draft.charSheet.weapons.splice(weaponsindex, 1)
+        }
+        break
+      case "deleteItem":
+        const itemsindex = draft.charSheet.items.findIndex((item) => {
+          return item.id === action.value
+        })
+        if (itemsindex > -1) {
+          draft.charSheet.items.splice(itemsindex, 1)
+        }
+        break
+      case "deleteWearable":
+        const wearablesindex = draft.charSheet.wearables.findIndex((wearable) => {
+          return wearable.id === action.value
+        })
+        if (wearablesindex > -1) {
+          draft.charSheet.wearables.splice(wearablesindex, 1)
+        }
+        break
+      case "removeLevel":
+        draft.charSheet.levelUps.pop()
+        draft.charSheet.level = draft.charSheet.level - 1
+        break
+      case "levelUp":
+        draft.charSheet.levelUps.push(action.value)
+        draft.charSheet.level = draft.charSheet.level + 1
+        break
+      case "addEC":
+        draft.charSheet.excellenceChips = draft.charSheet.excellenceChips + 1
+        break
+      case "useEC":
+        draft.charSheet.excellenceChips = draft.charSheet.excellenceChips - 1
+        break
+      case "updateBaseStatsTempMod":
+        draft.charSheet.baseStatsTempMod = action.value
+        break
+      case "addNewAbility":
+        draft.charSheet.customAbilities.push(action.value)
+        break
+      case "deleteAbility":
+        const customabilitiesindex = draft.charSheet.customAbilities.findIndex((ability) => {
+          return ability.id === action.value
+        })
+        if (customabilitiesindex > -1) {
+          draft.charSheet.customAbilities.splice(customabilitiesindex, 1)
+        }
+        break
+      case "addNewCharacterLog":
+        draft.charSheet.characterLog.push(action.value)
+        break
+      case "deleteCharacterLog":
+        const characterlogindex = draft.charSheet.characterLog.findIndex((log) => {
+          return log.id === action.value
+        })
+        if (characterlogindex > -1) {
+          draft.charSheet.characterLog.splice(characterlogindex, 1)
+        }
+        break
+      case "addNewNote":
+        draft.charSheet.notes.push(action.value)
+        break
+      case "deleteNote":
+        draft.charSheet.notes.splice(action.value, 1)
+        break
+      case "equipWeapon":
+        const weaponindex2 = draft.charSheet.weapons.findIndex((weapon) => {
+          return weapon.id === action.value
+        })
+        if (weaponindex2 > -1) {
+          draft.charSheet.weapons[weaponindex2].equipped = true
+        }
+        break
+      case "unequipWeapon":
+        const weaponindex3 = draft.charSheet.weapons.findIndex((weapon) => {
+          return weapon.id === action.value
+        })
+        if (weaponindex3 > -1) {
+          draft.charSheet.weapons[weaponindex3].equipped = false
+        }
+        break
+      case "equipItem":
+        const itemindex2 = draft.charSheet.items.findIndex((item) => {
+          return item.id === action.value
+        })
+        if (itemindex2 > -1) {
+          draft.charSheet.items[itemindex2].equipped = true
+        }
+        break
+      case "unequipItem":
+        const itemindex3 = draft.charSheet.items.findIndex((item) => {
+          return item.id === action.value
+        })
+        if (itemindex3 > -1) {
+          draft.charSheet.items[itemindex3].equipped = false
+        }
+        break
+      case "equipWearable":
+        const wearableindex2 = draft.charSheet.wearables.findIndex((wearable) => {
+          return wearable.id === action.value
+        })
+        if (wearableindex2 > -1) {
+          draft.charSheet.wearables[wearableindex2].equipped = true
+        }
+        break
+      case "unequipWearable":
+        const wearableindex3 = draft.charSheet.wearables.findIndex((wearable) => {
+          return wearable.id === action.value
+        })
+        if (wearableindex3 > -1) {
+          draft.charSheet.wearables[wearableindex3].equipped = false
+        }
+        break
+      default:
+        break
+    }
   }
 
   // ******************** OPENING FORMS CALLBACK FUNCTIONS ******************** //
@@ -109,10 +259,6 @@ function CharacterSheet(props) {
   const levelUpHandler = (bool) => {
     setLevelUp(bool)
   }
-  const [editLevel, setEditLevel] = useState(false)
-  const editLevelHandler = (bool) => {
-    setEditLevel(bool)
-  }
   // ABILITIES OPEN FORM CALLBACK FUNCTIONS
   const [newAbility, setNewAbility] = useState(false)
   const newAbilityHandler = (bool) => {
@@ -145,43 +291,49 @@ function CharacterSheet(props) {
     if (props.CSID === undefined || props.CSID === null) {
       console.log("Error loading character sheet resources.")
     } else {
-      async function fetchCS() {
-        // get the correct character sheet and set it as initial state
-        const corrSheet = await Axios.get("/loadonecs", {
-          params: {
-            charID: props.CSID,
-          },
+      Axios.get("/loadonecs", {
+        params: {
+          charID: props.CSID,
+        },
+      }).then(function (response) {
+        console.log(response)
+        setCharSheet(response.data[0])
+        dispatch({
+          type: "setCharSheet",
+          data: response.data[0],
         })
-        setCharSheet(corrSheet.data[0])
-        // use correct character sheet to pull the correct race information and save it
-        const corrRace = await Axios.get("/loadrace", {
-          params: {
-            raceID: corrSheet.data[0].raceID,
-          },
-        })
-        setTheRace(corrRace.data[0])
-        // use correct character sheet to pull the correct class information and save it
-        const corrClass = await Axios.get("/loadclass", {
-          params: {
-            classID: corrSheet.data[0].classID,
-          },
-        })
-        setTheClass(corrClass.data[0])
-        // use correct class to pull the correct ability tree information and save it
-        const corrAbilityTree = await Axios.get("/loadabilitytree", {
-          params: {
-            abilityTreeID: corrClass.data[0].abilityTreeID,
-          },
-        })
-        setAbilityTree(corrAbilityTree.data[0])
-        setIsLoading(false)
-      }
-      fetchCS()
+      })
     }
-  }, [props.CSID])
+  }, [props.CSID, dispatch])
+  useEffect(() => {
+    if (charSheet !== 0) {
+      Axios.get("/loadrace", {
+        params: {
+          raceID: charSheet.raceID,
+        },
+      }).then(function (response) {
+        setTheRace(response.data[0])
+        Axios.get("/loadclass", {
+          params: {
+            classID: charSheet.classID,
+          },
+        }).then(function (response) {
+          setTheClass(response.data[0])
+          Axios.get("/loadabilitytree", {
+            params: {
+              abilityTreeID: response.data[0].abilityTreeID,
+            },
+          }).then(function (response) {
+            setAbilityTree(response.data[0])
+            setIsLoading(false)
+          })
+        })
+      })
+    }
+  }, [charSheet])
   useEffect(() => {
     if (!isLoading) {
-      let at = charSheet.levelUps[charSheet.levelUps.length - 1].abilityTree
+      let at = state.charSheet.levelUps[state.charSheet.levelUps.length - 1].abilityTree
       at.map((column, index) => {
         let corrColumn = `column${index + 1}`
         let ability1 = abilityTree[corrColumn][column.one - 1]
@@ -201,33 +353,31 @@ function CharacterSheet(props) {
         if (ability4.key === 4) {
           arrToAppend.push(ability4)
         }
-        setAbilityArray((prevAbilityArray) => prevAbilityArray.concat(arrToAppend))
-        return "" // to stop the error
+        setAbilityArray(arrToAppend)
+        return ""
       })
     }
-  }, [charSheet, abilityTree, isLoading])
+  }, [state, abilityTree, isLoading])
   useEffect(() => {
     if (!isLoading) {
       setEquippedItems(
-        charSheet.items.filter((item) => {
+        state.charSheet.items.filter((item) => {
           return item.equipped
         })
       )
       setEquippedWeapons(
-        charSheet.weapons.filter((weapon) => {
+        state.charSheet.weapons.filter((weapon) => {
           return weapon.equipped
         })
       )
       setEquippedWearables(
-        charSheet.wearables.filter((wearable) => {
+        state.charSheet.wearables.filter((wearable) => {
           return wearable.equipped
         })
       )
     }
-  }, [charSheet, isLoading])
+  }, [state, isLoading])
   useEffect(() => {
-    console.log(equippedWeapons)
-
     let a = equippedWeapons.reduce((total, num) => {
       return num.holstersReq + total
     }, 0)
@@ -273,87 +423,90 @@ function CharacterSheet(props) {
     if (!isLoading) {
       if (props.UID === charSheet.uid) {
         return (
-          <BrowserRouter>
-            <Switch>
-              <Route path="/campaign/gameplay">
-                <CampaignSheet />
-              </Route>
-              <Route path="/profile">
-                <Profile loggedIn={props.loggedIn} loggedInHandler={props.loggedInHandler} CSIDHandler={props.CSIDHandler} UIDHandler={props.UIDHandler} />
-              </Route>
-              <Route path="/about">
-                <HomeAbout />
-              </Route>
-              <Route path="/" exact>
-                <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} UID={props.UID} newCharacterSheetHandler={props.newCharacterSheetHandler} />
-                {props.newCharacterSheet ? <NewCharacterSheet CSID={props.CSID} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
-              </Route>
-              <Route path="/character/about">
-                <Header charSheet={charSheet} />
-                <Navigation />
-                <About />
-                <Footer />
-              </Route>
-              <Route path="/character/gameplay" exact>
-                <Header charSheet={charSheet} />
-                <Navigation />
-                <Gameplay charSheet={charSheet} abilityArray={abilityArray} equipmentMod={equipmentMod} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} baseEquipmentMod={baseEquipmentMod} equipmentArmour={equipmentArmour} theRace={theRace} theClass={theClass} equippedWeapons={equippedWeapons} equippedItems={equippedItems} />
-                <Footer />
-                {heal ? <HealHP healHandler={healHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}
-                {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} updateCharSheet={updateCharSheet} /> : ""}
-              </Route>
-              <Route path="/character/inventory" exact>
-                <Header charSheet={charSheet} />
-                <Navigation />
-                <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} holstersUsed={holstersUsed} slotsUsed={slotsUsed} holstersAvailable={holstersAvailable} slotsAvailable={slotsAvailable} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} newWeaponHandler={newWeaponHandler} newWearableHandler={newWearableHandler} newItemHandler={newItemHandler} editSuronisHandler={editSuronisHandler} CSID={props.CSID} />
-                <Footer />
-                {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
-                {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
-                {newWeapon ? <NewWeapon CSID={props.CSID} newWeaponHandler={newWeaponHandler} /> : ""}
-                {newWearable ? <NewWearable CSID={props.CSID} newWearableHandler={newWearableHandler} /> : ""}
-                {newItem ? <NewItem CSID={props.CSID} newItemHandler={newItemHandler} /> : ""}
-                {editSuronis ? <EditSuronis CSID={props.CSID} editSuronisHandler={editSuronisHandler} /> : ""}
-              </Route>
-              <Route path="/character/stats" exact>
-                <Header charSheet={charSheet} />
-                <Navigation />
-                <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} levelUpHandler={levelUpHandler} editLevelHandler={editLevelHandler} CSID={props.CSID} />
-                <Footer />
-                {levelUp ? <LevelUp CSID={props.CSID} levelUp={levelUp} abilityTree={abilityTree} levelUpHandler={levelUpHandler} charSheet={charSheet} /> : ""}
-                {editLevel ? <EditLevel CSID={props.CSID} editLevel={editLevel} editLevelHandler={editLevelHandler} /> : ""}
-              </Route>
-              <Route path="/character/abilities" exact>
-                <Header charSheet={charSheet} />
-                <Navigation />
-                <Abilities abilityTree={abilityTree} charSheet={charSheet} abilityArray={abilityArray} newAbilityHandler={newAbilityHandler} editAbilityHandler={editAbilityHandler} CSID={props.CSID} />
-                <Footer />
-                {newAbility ? <NewAbility CSID={props.CSID} newAbilityHandler={newAbilityHandler} /> : ""}
-                {editAbility ? <EditAbility CSID={props.CSID} editAbilityHandler={editAbilityHandler} /> : ""}
-              </Route>
-              <Route path="/character/info" exact>
-                <Header charSheet={charSheet} />
-                <Navigation />
-                <Info charSheet={charSheet} theRace={theRace} theClass={theClass} CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} editCharacterLogHandler={editCharacterLogHandler} />
-                <Footer />
-                {newCharacterLog ? <NewCharacterLog CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} /> : ""}
-                {editCharacterLog ? <EditCharacterLog CSID={props.CSID} editCharacterLogHandler={editCharacterLogHandler} /> : ""}
-              </Route>
-              <Route path="/character/messages" exact>
-                <Header charSheet={charSheet} />
-                <Navigation />
-                <Messages />
-                <Footer />
-              </Route>
-              <Route path="/character/notes" exact>
-                <Header charSheet={charSheet} />
-                <Navigation />
-                <Notes charSheet={charSheet} CSID={props.CSID} newNoteHandler={newNoteHandler} editNoteHandler={editNoteHandler} />
-                <Footer />
-                {newNote ? <NewNote CSID={props.CSID} newNoteHandler={newNoteHandler} /> : ""}
-                {editNote ? <EditNote CSID={props.CSID} editNoteHandler={editNoteHandler} /> : ""}
-              </Route>
-            </Switch>
-          </BrowserRouter>
+          <StateContext.Provider value={state}>
+            <DispatchContext.Provider value={dispatch}>
+              <BrowserRouter>
+                <Switch>
+                  <Route path="/campaign/gameplay">
+                    <CampaignSheet />
+                  </Route>
+                  <Route path="/profile">
+                    <Profile loggedIn={props.loggedIn} loggedInHandler={props.loggedInHandler} CSIDHandler={props.CSIDHandler} UIDHandler={props.UIDHandler} />
+                  </Route>
+                  <Route path="/about">
+                    <HomeAbout />
+                  </Route>
+                  <Route path="/" exact>
+                    <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} UID={props.UID} newCharacterSheetHandler={props.newCharacterSheetHandler} />
+                    {props.newCharacterSheet ? <NewCharacterSheet CSID={props.CSID} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
+                  </Route>
+                  <Route path="/character/about">
+                    <Header charSheet={charSheet} />
+                    <Navigation />
+                    <About />
+                    <Footer />
+                  </Route>
+                  <Route path="/character/gameplay" exact>
+                    <Header charSheet={charSheet} />
+                    <Navigation />
+                    <Gameplay charSheet={charSheet} abilityArray={abilityArray} equipmentMod={equipmentMod} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} baseEquipmentMod={baseEquipmentMod} equipmentArmour={equipmentArmour} theRace={theRace} theClass={theClass} equippedWeapons={equippedWeapons} equippedItems={equippedItems} />
+                    <Footer />
+                    {heal ? <HealHP healHandler={healHandler} CSID={props.CSID} /> : ""}
+                    {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} /> : ""}
+                  </Route>
+                  <Route path="/character/inventory" exact>
+                    <Header charSheet={charSheet} />
+                    <Navigation />
+                    <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} holstersUsed={holstersUsed} slotsUsed={slotsUsed} holstersAvailable={holstersAvailable} slotsAvailable={slotsAvailable} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} newWeaponHandler={newWeaponHandler} newWearableHandler={newWearableHandler} newItemHandler={newItemHandler} editSuronisHandler={editSuronisHandler} CSID={props.CSID} />
+                    <Footer />
+                    {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
+                    {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
+                    {newWeapon ? <NewWeapon CSID={props.CSID} newWeaponHandler={newWeaponHandler} /> : ""}
+                    {newWearable ? <NewWearable CSID={props.CSID} newWearableHandler={newWearableHandler} /> : ""}
+                    {newItem ? <NewItem CSID={props.CSID} newItemHandler={newItemHandler} /> : ""}
+                    {editSuronis ? <EditSuronis CSID={props.CSID} editSuronisHandler={editSuronisHandler} /> : ""}
+                  </Route>
+                  <Route path="/character/stats" exact>
+                    <Header charSheet={charSheet} />
+                    <Navigation />
+                    <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} levelUpHandler={levelUpHandler} CSID={props.CSID} />
+                    <Footer />
+                    {levelUp ? <LevelUp CSID={props.CSID} levelUp={levelUp} abilityTree={abilityTree} levelUpHandler={levelUpHandler} charSheet={charSheet} /> : ""}
+                  </Route>
+                  <Route path="/character/abilities" exact>
+                    <Header charSheet={charSheet} />
+                    <Navigation />
+                    <Abilities abilityTree={abilityTree} charSheet={charSheet} abilityArray={abilityArray} newAbilityHandler={newAbilityHandler} editAbilityHandler={editAbilityHandler} CSID={props.CSID} />
+                    <Footer />
+                    {newAbility ? <NewAbility CSID={props.CSID} newAbilityHandler={newAbilityHandler} /> : ""}
+                    {editAbility ? <EditAbility CSID={props.CSID} editAbilityHandler={editAbilityHandler} /> : ""}
+                  </Route>
+                  <Route path="/character/info" exact>
+                    <Header charSheet={charSheet} />
+                    <Navigation />
+                    <Info charSheet={charSheet} theRace={theRace} theClass={theClass} CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} editCharacterLogHandler={editCharacterLogHandler} />
+                    <Footer />
+                    {newCharacterLog ? <NewCharacterLog CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} /> : ""}
+                    {editCharacterLog ? <EditCharacterLog CSID={props.CSID} editCharacterLogHandler={editCharacterLogHandler} /> : ""}
+                  </Route>
+                  <Route path="/character/messages" exact>
+                    <Header charSheet={charSheet} />
+                    <Navigation />
+                    <Messages />
+                    <Footer />
+                  </Route>
+                  <Route path="/character/notes" exact>
+                    <Header charSheet={charSheet} />
+                    <Navigation />
+                    <Notes charSheet={charSheet} CSID={props.CSID} newNoteHandler={newNoteHandler} editNoteHandler={editNoteHandler} />
+                    <Footer />
+                    {newNote ? <NewNote CSID={props.CSID} newNoteHandler={newNoteHandler} /> : ""}
+                    {editNote ? <EditNote CSID={props.CSID} editNoteHandler={editNoteHandler} /> : ""}
+                  </Route>
+                </Switch>
+              </BrowserRouter>
+            </DispatchContext.Provider>
+          </StateContext.Provider>
         )
       } else {
         return (

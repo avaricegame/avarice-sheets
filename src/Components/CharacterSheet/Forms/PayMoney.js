@@ -1,7 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import DispatchContext from "../../../DispatchContext"
+
 function PayMoney(props) {
+  const charSheetDispatch = useContext(DispatchContext)
   const [amount, setAmount] = useState()
   const close = () => {
     props.payMoneyHandler(false)
@@ -18,6 +21,7 @@ function PayMoney(props) {
       })
         .then(function (response) {
           props.payMoneyHandler(false)
+          charSheetDispatch({ type: "payMoney", value: amount })
           setAmount("")
         })
         .catch(function (error) {

@@ -1,7 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import DispatchContext from "../../../DispatchContext"
+
 function NewAbility(props) {
+  const charSheetDispatch = useContext(DispatchContext)
   const [name, setName] = useState()
   const [description, setDescription] = useState()
   const close = () => {
@@ -15,8 +18,9 @@ function NewAbility(props) {
   }
   const submitHandler = (e) => {
     e.preventDefault()
+    const theID = Math.floor(Math.random() * 100000)
     Axios.post("/character/createability", {
-      id: Math.floor(Math.random() * 100000),
+      id: theID,
       CSID: props.CSID,
       name: name,
       description: description,
@@ -24,6 +28,16 @@ function NewAbility(props) {
     })
       .then(function (response) {
         props.newAbilityHandler(false)
+        charSheetDispatch({
+          type: "addNewAbility",
+          value: {
+            id: theID,
+            CSID: props.CSID,
+            name: name,
+            description: description,
+            power: "custom",
+          },
+        })
       })
       .catch(function (error) {
         console.log(error)

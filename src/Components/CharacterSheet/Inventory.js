@@ -1,7 +1,15 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import StateContext from "../../StateContext"
+import DispatchContext from "../../DispatchContext"
+
 function Inventory(props) {
+  const charSheetState = useContext(StateContext)
+  const charSheetDispatch = useContext(DispatchContext)
+  const [weaponSelect, setWeaponSelect] = useState("")
+  const [wearableSelect, setWearableSelect] = useState("")
+  const [itemSelect, setItemSelect] = useState("")
   const openPayMoney = () => {
     props.payMoneyHandler(true)
   }
@@ -21,6 +29,7 @@ function Inventory(props) {
     props.editSuronisHandler(true)
   }
   const deleteWeapon = (e, id) => {
+    console.log(e)
     if (window.confirm("Are you sure you want to delete this weapon? This action cannot be undone.")) {
       Axios.post("/character/deleteweapon", {
         CSID: props.CSID,
@@ -28,6 +37,11 @@ function Inventory(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "deleteWeapon",
+            value: id,
+          })
+          setCurrentWeapon("a")
         })
         .catch(function (error) {
           console.log(error)
@@ -42,6 +56,11 @@ function Inventory(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "deleteWearable",
+            value: id,
+          })
+          setCurrentWearable("a")
         })
         .catch(function (error) {
           console.log(error)
@@ -56,6 +75,11 @@ function Inventory(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "deleteItem",
+            value: id,
+          })
+          setCurrentItem("a")
         })
         .catch(function (error) {
           console.log(error)
@@ -71,6 +95,12 @@ function Inventory(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "unequipWeapon",
+            value: id,
+          })
+          setCurrentWeapon("a")
+          setWeaponSelect("")
         })
         .catch(function (error) {
           console.log(error)
@@ -83,6 +113,11 @@ function Inventory(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "equipWeapon",
+            value: id,
+          })
+          setCurrentWeapon("a")
         })
         .catch(function (error) {
           console.log(error)
@@ -98,6 +133,12 @@ function Inventory(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "unequipWearable",
+            value: id,
+          })
+          setCurrentWearable("a")
+          setWearableSelect("")
         })
         .catch(function (error) {
           console.log(error)
@@ -110,6 +151,11 @@ function Inventory(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "equipWearable",
+            value: id,
+          })
+          setCurrentWearable("a")
         })
         .catch(function (error) {
           console.log(error)
@@ -125,6 +171,12 @@ function Inventory(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "unequipItem",
+            value: id,
+          })
+          setCurrentItem("a")
+          setWearableSelect("")
         })
         .catch(function (error) {
           console.log(error)
@@ -137,6 +189,11 @@ function Inventory(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "equipItem",
+            value: id,
+          })
+          setCurrentItem("a")
         })
         .catch(function (error) {
           console.log(error)
@@ -150,23 +207,29 @@ function Inventory(props) {
 
   const setWeaponHandler = (e) => {
     if (e.target.value !== "a") {
-      setCurrentWeapon(props.charSheet.weapons[e.target.value])
+      setCurrentWeapon(charSheetState.charSheet.weapons[e.target.value])
+      setWeaponSelect(charSheetState.charSheet.weapons[e.target.value].name)
     } else {
       setCurrentWeapon("a")
+      setWeaponSelect("")
     }
   }
   const setWearableHandler = (e) => {
     if (e.target.value !== "a") {
-      setCurrentWearable(props.charSheet.wearables[e.target.value])
+      setCurrentWearable(charSheetState.charSheet.wearables[e.target.value])
+      setWearableSelect(charSheetState.charSheet.wearables[e.target.value].name)
     } else {
       setCurrentWearable("a")
+      setWearableSelect("")
     }
   }
   const setItemHandler = (e) => {
     if (e.target.value !== "a") {
-      setCurrentItem(props.charSheet.items[e.target.value])
+      setCurrentItem(charSheetState.charSheet.items[e.target.value])
+      setItemSelect(charSheetState.charSheet.wearables[e.target.value].name)
     } else {
       setCurrentItem("a")
+      setItemSelect("")
     }
   }
   const displayWeapon = () => {
@@ -624,7 +687,7 @@ function Inventory(props) {
             <div className="item-container">
               <h3 className="item-container__heading">Uni-Credits / Gold</h3>
               <h4 className="item-container__subheading">Current Savings</h4>
-              <p className="item-container__money-amount">{props.charSheet.gold} Gold</p>
+              <p className="item-container__money-amount">{charSheetState.charSheet.gold} Gold</p>
             </div>
           </div>
         </div>
@@ -634,11 +697,11 @@ function Inventory(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Weapons</h3>
-              <h4 className="item-container__subheading">Weapon Count: {props.charSheet.weapons.length}</h4>
+              <h4 className="item-container__subheading">Weapon Count: {charSheetState.charSheet.weapons.length}</h4>
               <p className="item-container__select-label">Select a weapon to view the details</p>
-              <select onChange={(e) => setWeaponHandler(e)} className="item-container__select">
+              <select onChange={(e) => setWeaponHandler(e)} value={weaponSelect} className="item-container__select">
                 <option value="a"></option>
-                {props.charSheet.weapons.map((weapon, index) => {
+                {charSheetState.charSheet.weapons.map((weapon, index) => {
                   return (
                     <option value={index} key={weapon.id}>
                       {weapon.name}
@@ -650,11 +713,11 @@ function Inventory(props) {
             </div>
             <div className="item-container">
               <h3 className="item-container__heading">Items</h3>
-              <h4 className="item-container__subheading">Item Count: {props.charSheet.items.length}</h4>
+              <h4 className="item-container__subheading">Item Count: {charSheetState.charSheet.items.length}</h4>
               <p className="item-container__select-label">Select an item to view the details</p>
-              <select onChange={(e) => setItemHandler(e)} className="item-container__select">
+              <select onChange={(e) => setItemHandler(e)} value={itemSelect} className="item-container__select">
                 <option value="a"></option>
-                {props.charSheet.items.map((item, index) => {
+                {charSheetState.charSheet.items.map((item, index) => {
                   return (
                     <option value={index} key={item.id}>
                       {item.name}
@@ -666,11 +729,11 @@ function Inventory(props) {
             </div>
             <div className="item-container">
               <h3 className="item-container__heading">Wearables</h3>
-              <h4 className="item-container__subheading">Wearable Count: {props.charSheet.wearables.length}</h4>
+              <h4 className="item-container__subheading">Wearable Count: {charSheetState.charSheet.wearables.length}</h4>
               <p className="item-container__select-label">Select a wearable to view the details</p>
-              <select onChange={(e) => setWearableHandler(e)} className="item-container__select">
+              <select onChange={(e) => setWearableHandler(e)} value={wearableSelect} className="item-container__select">
                 <option value="a"></option>
-                {props.charSheet.wearables.map((wearable, index) => {
+                {charSheetState.charSheet.wearables.map((wearable, index) => {
                   return (
                     <option value={index} key={wearable.id}>
                       {wearable.name}

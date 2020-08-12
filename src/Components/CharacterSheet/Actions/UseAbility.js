@@ -1,8 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+
+import StateContext from "../../../StateContext"
 
 function UseAbility(props) {
+  const charSheetState = useContext(StateContext)
   const [currentAbility, setCurrentAbility] = useState("a")
-  const newArray = props.charSheet.customAbilities.concat(props.abilityArray)
+  const newArray = charSheetState.charSheet.customAbilities.concat(props.abilityArray)
   const close = () => {
     props.useAbilityHandler(false)
   }

@@ -1,7 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import DispatchContext from "../../../DispatchContext"
+
 function LevelUp(props) {
+  const charSheetDispatch = useContext(DispatchContext)
   const [currentAbility, setCurrentAbility] = useState("a")
   const close = () => {
     props.levelUpHandler(false)
@@ -238,6 +241,17 @@ function LevelUp(props) {
         .then(function (response) {
           console.log(response)
           props.levelUpHandler(false)
+          charSheetDispatch({
+            type: "levelUp",
+            value: {
+              CSID: props.CSID,
+              level: props.charSheet.level + 1,
+              baseStats: newBaseStats,
+              skills: newSkills,
+              proficiency: newProficiencies,
+              abilityTree: newAbilityTree,
+            },
+          })
         })
         .catch(function (error) {
           console.log(error)

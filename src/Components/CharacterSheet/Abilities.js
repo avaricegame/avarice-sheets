@@ -1,7 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import Axios from "axios"
 
+import StateContext from "../../StateContext"
+import DispatchContext from "../../DispatchContext"
+
 function Abilities(props) {
+  const charSheetState = useContext(StateContext)
+  const charSheetDispatch = useContext(DispatchContext)
   const openNewAbility = () => {
     props.newAbilityHandler(true)
   }
@@ -16,6 +21,10 @@ function Abilities(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "deleteAbility",
+            value: id,
+          })
         })
         .catch(function (error) {
           console.log(error)
@@ -23,8 +32,8 @@ function Abilities(props) {
     }
   }
 
-  const reversedLevelUpsArray = props.charSheet.levelUps.map((level) => level).reverse()
-  const reversedCustomAbilitiesArray = props.charSheet.customAbilities.map((ability) => ability).reverse()
+  const reversedLevelUpsArray = charSheetState.charSheet.levelUps.map((level) => level).reverse()
+  const reversedCustomAbilitiesArray = charSheetState.charSheet.customAbilities.map((ability) => ability).reverse()
   return (
     <>
       <div className="secondary-header">
@@ -42,7 +51,7 @@ function Abilities(props) {
 
           <h4 className="item-container__terheading">Options Upon Next Level Up</h4>
           <div className="cw__container cw__container--tree">
-            {props.charSheet.levelUps[props.charSheet.levelUps.length - 1].abilityTree.map((column, index) => {
+            {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree.map((column, index) => {
               if (column.points <= 2) {
                 let corrColumn = `column${index + 1}`
                 let pointsOne = column.one
