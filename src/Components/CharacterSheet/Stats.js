@@ -12,7 +12,7 @@ function Stats(props) {
   }
   const openEditLevel = () => {
     //props.editLevelHandler(true)
-    if (charSheetState.charSheet.level !== 0) {
+    if (charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].level !== 0) {
       if (window.confirm("Are you sure you want to remove your last level? This could result in a lot of abilities and level up points.")) {
         Axios.post("/character/removelevel", {
           CSID: props.CSID,
