@@ -23,7 +23,7 @@ function About() {
             <hr className="hg__hr" />
             <p>
               To learn more about Avarice, visit{" "}
-              <a href="https://talonmd.github.io/pax-templates/" rel="noopener noreferrer" target="_blank">
+              <a href="https://avarice-website.netlify.app/" rel="noopener noreferrer" target="_blank">
                 our official website.
               </a>
             </p>
