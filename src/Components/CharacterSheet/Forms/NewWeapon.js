@@ -140,8 +140,8 @@ function NewWeapon(props) {
             <label htmlFor="type">Weapon Type:</label>
             <select required name="type">
               <option value=""></option>
-              <option value="normal">normal</option>
-              <option value="magic">magic</option>
+              <option value="normal">Normal</option>
+              <option value="magic">Magic</option>
             </select>
             <label htmlFor="value">Value in Gold:</label>
             <input required type="number" name="value" />
