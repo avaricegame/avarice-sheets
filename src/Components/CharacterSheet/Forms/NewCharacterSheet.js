@@ -246,9 +246,10 @@ function NewCharacterSheet(props) {
             <fieldset>
               <h6 className="edit-h6">Create a New Character Sheet</h6>
               <label htmlFor="characterName">Character Name:</label>
-              <input type="text" name="characterName" />
+              <input required type="text" name="characterName" />
               <label htmlFor="race">Choose Your Race:</label>
               <select
+                required
                 name="race"
                 onChange={(e) => {
                   raceSelectHandler(e)
@@ -266,6 +267,7 @@ function NewCharacterSheet(props) {
               {displayRace()}
               <label htmlFor="class">Choose Your Class:</label>
               <select
+                required
                 name="class"
                 onChange={(e) => {
                   classSelectHandler(e)
@@ -286,7 +288,7 @@ function NewCharacterSheet(props) {
                   Character Description
                 </h4>
                 <label htmlFor="age">Approximate Age in Years:</label>
-                <input type="number" name="age" />
+                <input required type="number" name="age" />
                 <label htmlFor="gender">Gender:</label>
                 <span style={{ display: "flex", alignItems: "center" }}>
                   <input required type="radio" name="gender" value="male" /> Male
@@ -298,11 +300,11 @@ function NewCharacterSheet(props) {
                   <input required type="radio" name="gender" value="ambigious" /> Ambigious
                 </span>
                 <label htmlFor="weight">Approximate Weight in LBS:</label>
-                <input type="number" name="weight" />
+                <input required type="number" name="weight" />
                 <label htmlFor="height"> Approximate Height in FT:</label>
-                <input type="number" name="height" />
+                <input required type="number" name="height" />
                 <label htmlFor="skinTone">Skin Tone:</label>
-                <select name="skinTone">
+                <select required name="skinTone">
                   <option value=""></option>
                   <option value="brown">Brown</option>
                   <option value="white">White</option>
@@ -313,7 +315,7 @@ function NewCharacterSheet(props) {
                   <option value="other">Other</option>
                 </select>
                 <label htmlFor="hairLength">Hair Length:</label>
-                <select name="hairLength">
+                <select required name="hairLength">
                   <option value=""></option>
                   <option value="long">Long</option>
                   <option value="medium">Medium</option>
@@ -321,7 +323,7 @@ function NewCharacterSheet(props) {
                   <option value="bald">Bald</option>
                 </select>
                 <label htmlFor="hairColor">Hair Color:</label>
-                <select name="hairColor">
+                <select required name="hairColor">
                   <option value=""></option>
                   <option value="brown">Brown</option>
                   <option value="black">Black</option>
@@ -337,7 +339,7 @@ function NewCharacterSheet(props) {
                   <option value="other">Other</option>
                 </select>
                 <label htmlFor="eyeColor">Eye Color:</label>
-                <select name="eyeColor">
+                <select required name="eyeColor">
                   <option value=""></option>
                   <option value="amber">Amber</option>
                   <option value="blue">Blue</option>
@@ -360,23 +362,23 @@ function NewCharacterSheet(props) {
                   Character Background
                 </h4>
                 <label htmlFor="q1">Who were your parents? How were you raised? Do you have any close family?</label>
-                <textarea name="q1" cols="30" rows="2"></textarea>
+                <textarea required name="q1" cols="30" rows="2"></textarea>
                 <label htmlFor="q2">Where/From whom did you learn your skills?</label>
-                <textarea name="q2" cols="30" rows="2"></textarea>
+                <textarea required name="q2" cols="30" rows="2"></textarea>
                 <label htmlFor="q3">Name your 3 most important personal beliefs?</label>
-                <textarea name="q3" cols="30" rows="2"></textarea>
+                <textarea required name="q3" cols="30" rows="2"></textarea>
                 <label htmlFor="q4">Name 3 or more character flaws that are most likely to trouble you?</label>
-                <textarea name="q4" cols="30" rows="2"></textarea>
+                <textarea required name="q4" cols="30" rows="2"></textarea>
                 <label htmlFor="q5">What do you secretly fear even in times of easy-going peace? Why?</label>
-                <textarea name="q5" cols="30" rows="2"></textarea>
+                <textarea required name="q5" cols="30" rows="2"></textarea>
                 <label htmlFor="q6">Is this character a hero? Why or why not?</label>
-                <textarea name="q6" cols="30" rows="2"></textarea>
+                <textarea required name="q6" cols="30" rows="2"></textarea>
                 <label htmlFor="q7">What are your goals (both long and short term)?</label>
-                <textarea name="q7" cols="30" rows="2"></textarea>
+                <textarea required name="q7" cols="30" rows="2"></textarea>
                 <label htmlFor="q8">Is your character merciful? Why or why not?</label>
-                <textarea name="q8" cols="30" rows="2"></textarea>
+                <textarea required name="q8" cols="30" rows="2"></textarea>
                 <label htmlFor="q9">Why are you an adventurer?</label>
-                <textarea name="q9" cols="30" rows="2"></textarea>
+                <textarea required name="q9" cols="30" rows="2"></textarea>
               </fieldset>
               <input type="submit" className="submit-button" value="Create New Character Sheet" />
             </fieldset>
