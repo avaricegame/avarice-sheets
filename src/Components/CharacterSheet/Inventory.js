@@ -3,6 +3,7 @@ import Axios from "axios"
 
 import StateContext from "../../StateContext"
 import DispatchContext from "../../DispatchContext"
+import { useEffect } from "react"
 
 function Inventory(props) {
   const charSheetState = useContext(StateContext)
@@ -105,60 +106,651 @@ function Inventory(props) {
           console.log(error)
         })
     } else {
-      Axios.post("/character/equipweapon", {
-        CSID: props.CSID,
-        id: id,
-        equipped: true,
-      })
-        .then(function (response) {
-          console.log(response)
-          charSheetDispatch({
-            type: "equipWeapon",
-            value: id,
+      if (currentWeapon.holstersReq + props.holstersUsed > props.holstersAvailable) {
+        alert(`You do not have enough holsters available to equip ${currentWeapon.name}. If you would like to equip ${currentWeapon.name}, please unequip a different weapon to free up holsters.`)
+      } else {
+        Axios.post("/character/equipweapon", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWeapon",
+              value: id,
+            })
+            setCurrentWeapon("a")
           })
-          setCurrentWeapon("a")
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
     }
   }
   const equipWearable = (e, id, equipped) => {
     if (equipped) {
-      Axios.post("/character/equipwearable", {
-        CSID: props.CSID,
-        id: id,
-        equipped: false,
-      })
-        .then(function (response) {
-          console.log(response)
-          charSheetDispatch({
-            type: "unequipWearable",
-            value: id,
+      if (props.slotsAvailable - currentWearable.slots >= props.slotsUsed && props.holstersAvailable - currentWearable.holsters >= props.holstersUsed) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: false,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "unequipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+            //setWearableSelect("")
           })
-          setCurrentWearable("a")
-          //setWearableSelect("")
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else {
+        alert(`You cannot unequip ${currentWearable.name}, because it would remove holsters or slots that you are currently using. If you want to unequip ${currentWearable.name}, unequip enough weapons or items to do so.`)
+      }
     } else {
-      Axios.post("/character/equipwearable", {
-        CSID: props.CSID,
-        id: id,
-        equipped: true,
-      })
-        .then(function (response) {
-          console.log(response)
-          charSheetDispatch({
-            type: "equipWearable",
-            value: id,
+      if (currentWearable.bodyArea === "base" && base) {
+        if (window.confirm(`You already have ${base.name} equpped to your base. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
           })
-          setCurrentWearable("a")
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "base" && !base) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
         })
-        .catch(function (error) {
-          console.log(error)
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "head" && head) {
+        if (window.confirm(`You already have ${base.name} equpped to your head. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "head" && !head) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
         })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "face" && face) {
+        if (window.confirm(`You already have ${base.name} equpped to your face. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "face" && !face) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "neck" && neck) {
+        if (window.confirm(`You already have ${base.name} equpped to your neck. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "neck" && !neck) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "torso" && torso) {
+        if (window.confirm(`You already have ${base.name} equpped to your torso. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "torso" && !torso) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "back" && back) {
+        if (window.confirm(`You already have ${base.name} equpped to your back. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "back" && !back) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "arms" && arms) {
+        if (window.confirm(`You already have ${base.name} equpped to your arms. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "arms" && !arms) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "wrists" && wrists) {
+        if (window.confirm(`You already have ${base.name} equpped to your wrists. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "wrists" && !wrists) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "hands" && hands) {
+        if (window.confirm(`You already have ${base.name} equpped to your hands. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "hands" && !hands) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "waist" && waist) {
+        if (window.confirm(`You already have ${base.name} equpped to your waist. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "waist" && !waist) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "legs" && legs) {
+        if (window.confirm(`You already have ${base.name} equpped to your legs. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "legs" && !legs) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "ankles" && ankles) {
+        if (window.confirm(`You already have ${base.name} equpped to your ankles. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "ankles" && !ankles) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (currentWearable.bodyArea === "feet" && feet) {
+        if (window.confirm(`You already have ${base.name} equpped to your feet. Would you like to replace it with ${currentWearable.name}? Press 'Okay' to replace it, and 'Cancel' to quit.`)) {
+          Axios.post("/character/equipwearable", {
+            CSID: props.CSID,
+            id: base.id,
+            equipped: false,
+          })
+            .then(function (response) {
+              Axios.post("/character/equipwearable", {
+                CSID: props.CSID,
+                id: id,
+                equipped: true,
+              })
+              console.log(response)
+              charSheetDispatch({
+                type: "unequipWearable",
+                value: base.id,
+              })
+              charSheetDispatch({
+                type: "equipWearable",
+                value: id,
+              })
+              setCurrentWearable("a")
+              //setWearableSelect("")
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        }
+      } else if (currentWearable.bodyArea === "feet" && !feet) {
+        Axios.post("/character/equipwearable", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipWearable",
+              value: id,
+            })
+            setCurrentWearable("a")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
     }
   }
   const equipItem = (e, id, equipped) => {
@@ -181,22 +773,26 @@ function Inventory(props) {
           console.log(error)
         })
     } else {
-      Axios.post("/character/equipitem", {
-        CSID: props.CSID,
-        id: id,
-        equipped: true,
-      })
-        .then(function (response) {
-          console.log(response)
-          charSheetDispatch({
-            type: "equipItem",
-            value: id,
+      if (currentItem.slotsReq + props.slotsUsed > props.slotsAvailable) {
+        alert(`You do not have enough slots available to equip ${currentItem.name}. If you would like to equip ${currentItem.name}, please unequip a different item to free up slots.`)
+      } else {
+        Axios.post("/character/equipitem", {
+          CSID: props.CSID,
+          id: id,
+          equipped: true,
+        })
+          .then(function (response) {
+            console.log(response)
+            charSheetDispatch({
+              type: "equipItem",
+              value: id,
+            })
+            setCurrentItem("a")
           })
-          setCurrentItem("a")
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
     }
   }
 
@@ -518,6 +1114,85 @@ function Inventory(props) {
       )
     }
   }
+
+  const [base, setBase] = useState("a")
+  const [head, setHead] = useState("a")
+  const [face, setFace] = useState("a")
+  const [neck, setNeck] = useState("a")
+  const [torso, setTorso] = useState("a")
+  const [back, setBack] = useState("a")
+  const [arms, setArms] = useState("a")
+  const [wrists, setWrists] = useState("a")
+  const [hands, setHands] = useState("a")
+  const [waist, setWaist] = useState("a")
+  const [legs, setLegs] = useState("a")
+  const [ankles, setAnkles] = useState("a")
+  const [feet, setFeet] = useState("a")
+
+  useEffect(() => {
+    let b = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "base"
+    })
+    setBase(b[0])
+    let h = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "head"
+    })
+    setHead(h[0])
+    let f = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "face"
+    })
+    setFace(f[0])
+    let n = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "neck"
+    })
+    setNeck(n[0])
+    let t = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "torso"
+    })
+    setTorso(t[0])
+    let b2 = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "back"
+    })
+    setBack(b2[0])
+    let a = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "arms"
+    })
+    setArms(a[0])
+    let w = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "wrists"
+    })
+    setWrists(w[0])
+    let h2 = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "hands"
+    })
+    setHands(h2[0])
+    let w2 = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "waist"
+    })
+    setWaist(w2[0])
+    let l = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "legs"
+    })
+    setLegs(l[0])
+    let a2 = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "ankles"
+    })
+    setAnkles(a2[0])
+    let f2 = props.equippedWearables.filter((wearable) => {
+      return wearable.bodyArea === "feet"
+    })
+    setFeet(f2[0])
+  }, [props.equippedWearables])
+
+  //   {props.equippedWearables.map((wearable) => {
+  //   return (
+  //     <tr key={wearable.id}>
+  //       <td>{wearable.bodyArea}</td>
+  //       <td>{wearable.name}</td>
+  //     </tr>
+  //   )
+  // })}
+  console.log(head)
   return (
     <>
       <div className="secondary-header">
@@ -590,92 +1265,58 @@ function Inventory(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {props.equippedWearables.map((wearable) => {
-                    // if (wearable.bodyArea === "base") {
-                    // } else if (wearable.bodyArea === "head") {
-
-                    // } else if (wearable.bodyArea === "face") {
-
-                    // } else if (wearable.bodyArea === "neck") {
-
-                    // } else if (wearable.bodyArea === "torso") {
-
-                    // } else if (wearable.bodyArea === "back") {
-
-                    // } else if (wearable.bodyArea === "arms") {
-
-                    // } else if (wearable.bodyArea === "wrists") {
-
-                    // } else if (wearable.bodyArea === "hands") {
-
-                    // } else if (wearable.bodyArea === "waist") {
-
-                    // } else if (wearable.bodyArea === "legs") {
-
-                    // } else if (wearable.bodyArea === "ankles") {
-
-                    // } else if (wearable.bodyArea === "feet") {
-
-                    // }
-                    return (
-                      <tr key={wearable.id}>
-                        <td>{wearable.bodyArea}</td>
-                        <td>{wearable.name}</td>
-                      </tr>
-                    )
-                  })}
-                  {/* <tr>
+                  <tr>
                     <td>Base</td>
-                    <td>Wearable</td>
+                    <td>{base ? base.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Head</td>
-                    <td>Wearable</td>
+                    <td>{head ? head.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Face</td>
-                    <td>Wearable</td>
+                    <td>{face ? face.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Neck</td>
-                    <td>Wearable</td>
+                    <td>{neck ? neck.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Torso</td>
-                    <td>Wearable</td>
+                    <td>{torso ? torso.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Back</td>
-                    <td>Wearable</td>
+                    <td>{back ? back.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Arms</td>
-                    <td>Wearable</td>
+                    <td>{arms ? arms.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Wrists</td>
-                    <td>Wearable</td>
+                    <td>{wrists ? wrists.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Hands</td>
-                    <td>Wearable</td>
+                    <td>{hands ? hands.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Waist</td>
-                    <td>Wearable</td>
+                    <td>{waist ? waist.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Legs</td>
-                    <td>Wearable</td>
+                    <td>{legs ? legs.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Ankles</td>
-                    <td>Wearable</td>
+                    <td>{ankles ? ankles.name : ""}</td>
                   </tr>
                   <tr>
                     <td>Feet</td>
-                    <td>Wearable</td>
-                  </tr> */}
+                    <td>{feet ? feet.name : ""}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
