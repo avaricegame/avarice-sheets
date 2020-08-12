@@ -1,14 +1,18 @@
-import React from "react"
+import React, { useContext } from "react"
 import Axios from "axios"
 
+import DispatchContext from "../../../DispatchContext"
+
 function NewWeapon(props) {
+  const charSheetDispatch = useContext(DispatchContext)
   const close = () => {
     props.newWeaponHandler(false)
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    Axios.post("/character/addweapon", {
-      id: Math.floor(Math.random() * 100000),
+    let theID = Math.floor(Math.random() * 100000)
+    let weapon = {
+      id: theID,
       CSID: props.CSID,
       name: e.target.name.value,
       damage: e.target.damage.value,
@@ -25,11 +29,34 @@ function NewWeapon(props) {
       uses: e.target.uses.value,
       description: e.target.description.value,
       effects: e.target.effects.value,
-      //equipped: e.target.equipped.value,
+      equipped: false,
+    }
+    Axios.post("/character/addweapon", {
+      id: theID,
+      CSID: props.CSID,
+      name: e.target.name.value,
+      damage: e.target.damage.value,
+      unique: e.target.unique.value,
+      type: e.target.type.value,
+      proficiency: e.target.proficiency.value,
+      requirements: e.target.requirements.value,
+      rangedMelee: e.target.rangedMelee.value,
+      critical: e.target.critical.value,
+      range: e.target.range.value,
+      size: e.target.size.value,
+      holstersReq: parseInt(e.target.holstersReq.value),
+      value: parseInt(e.target.value.value),
+      uses: e.target.uses.value,
+      description: e.target.description.value,
+      effects: e.target.effects.value,
     })
       .then(function (response) {
         console.log(response)
         props.newWeaponHandler(false)
+        charSheetDispatch({
+          type: "addNewWeapon",
+          value: weapon,
+        })
       })
       .catch(function (error) {
         console.log(error)

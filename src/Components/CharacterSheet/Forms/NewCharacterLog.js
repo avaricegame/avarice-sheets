@@ -1,7 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import DispatchContext from "../../../DispatchContext"
+
 function NewCharacterLog(props) {
+  const charSheetDispatch = useContext(DispatchContext)
   const [title, setTitle] = useState()
   const [details, setDetails] = useState()
   const close = () => {
@@ -15,14 +18,24 @@ function NewCharacterLog(props) {
   }
   const submitHandler = (e) => {
     e.preventDefault()
+    const theID = Math.floor(Math.random() * 100000)
     Axios.post("/character/newcharacterlog", {
-      id: Math.floor(Math.random() * 100000),
+      id: theID,
       CSID: props.CSID,
       title: title,
       details: details,
     })
       .then(function (response) {
         props.newCharacterLogHandler(false)
+        charSheetDispatch({
+          type: "addNewCharacterLog",
+          value: {
+            id: theID,
+            CSID: props.CSID,
+            title: title,
+            details: details,
+          },
+        })
       })
       .catch(function (error) {
         console.log(error)

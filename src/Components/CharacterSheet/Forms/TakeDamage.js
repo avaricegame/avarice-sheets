@@ -1,7 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import DispatchContext from "../../../DispatchContext"
+
 function TakeDamage(props) {
+  const charSheetDispatch = useContext(DispatchContext)
   const [amount, setAmount] = useState()
   const close = () => {
     props.takeDamageHandler(false)
@@ -18,6 +21,7 @@ function TakeDamage(props) {
       })
         .then(function (response) {
           props.takeDamageHandler(false)
+          charSheetDispatch({ type: "takeDamage", value: amount })
         })
         .catch(function (error) {
           console.log(error)

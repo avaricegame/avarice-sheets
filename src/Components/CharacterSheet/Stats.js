@@ -1,20 +1,26 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import StateContext from "../../StateContext"
+import DispatchContext from "../../DispatchContext"
+
 function Stats(props) {
+  const charSheetState = useContext(StateContext)
+  const charSheetDispatch = useContext(DispatchContext)
   const openLevelUp = () => {
     props.levelUpHandler(true)
   }
   const openEditLevel = () => {
     //props.editLevelHandler(true)
-    if (props.charSheet.level !== 0) {
+    if (charSheetState.charSheet.level !== 0) {
       if (window.confirm("Are you sure you want to remove your last level? This could result in a lot of abilities and level up points.")) {
         Axios.post("/character/removelevel", {
           CSID: props.CSID,
-          level: parseInt(props.charSheet.levelUps.length - 1),
+          level: parseInt(charSheetState.charSheet.levelUps.length - 1),
         })
           .then(function (response) {
             //console.log(response)
+            charSheetDispatch({ type: "removeLevel" })
           })
           .catch(function (error) {
             console.log(error)
@@ -24,16 +30,23 @@ function Stats(props) {
       alert("You cannot remove a level, because you are already at level 0")
     }
   }
-  const [PHY, setPHY] = useState(props.charSheet.baseStatsTempMod[0])
-  const [INT, setINT] = useState(props.charSheet.baseStatsTempMod[1])
-  const [REF, setREF] = useState(props.charSheet.baseStatsTempMod[2])
-  const [CHA, setCHA] = useState(props.charSheet.baseStatsTempMod[3])
+  const [PHY, setPHY] = useState(charSheetState.charSheet.baseStatsTempMod[0])
+  const [INT, setINT] = useState(charSheetState.charSheet.baseStatsTempMod[1])
+  const [REF, setREF] = useState(charSheetState.charSheet.baseStatsTempMod[2])
+  const [CHA, setCHA] = useState(charSheetState.charSheet.baseStatsTempMod[3])
   const phyChangeHandler = (e) => {
     setPHY(parseInt(e.target.value))
     Axios.post("/character/editbasestat", {
       CSID: props.CSID,
       statsArray: [parseInt(e.target.value), INT, REF, CHA],
     })
+      .then(function (response) {
+        //console.log(response)
+        charSheetDispatch({ type: "updateBaseStatsTempMod", value: [PHY, INT, REF, CHA] })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   const intChangeHandler = (e) => {
     setINT(parseInt(e.target.value))
@@ -41,6 +54,13 @@ function Stats(props) {
       CSID: props.CSID,
       statsArray: [PHY, parseInt(e.target.value), REF, CHA],
     })
+      .then(function (response) {
+        //console.log(response)
+        charSheetDispatch({ type: "updateBaseStatsTempMod", value: [PHY, INT, REF, CHA] })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   const refChangeHandler = (e) => {
     setREF(parseInt(e.target.value))
@@ -48,6 +68,13 @@ function Stats(props) {
       CSID: props.CSID,
       statsArray: [PHY, INT, parseInt(e.target.value), CHA],
     })
+      .then(function (response) {
+        //console.log(response)
+        charSheetDispatch({ type: "updateBaseStatsTempMod", value: [PHY, INT, REF, CHA] })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   const chaChangeHandler = (e) => {
     setCHA(parseInt(e.target.value))
@@ -55,26 +82,40 @@ function Stats(props) {
       CSID: props.CSID,
       statsArray: [PHY, INT, REF, parseInt(e.target.value)],
     })
+      .then(function (response) {
+        //console.log(response)
+        charSheetDispatch({ type: "updateBaseStatsTempMod", value: [PHY, INT, REF, CHA] })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   const addEC = () => {
-    console.log("did it")
     Axios.post("/character/addec", {
       CSID: props.CSID,
     })
-    // .then(function (response) {
-    //   //console.log(response)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
+      .then(function (response) {
+        //console.log(response)
+        charSheetDispatch({ type: "addEC" })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   const useEC = () => {
     Axios.post("/character/useec", {
       CSID: props.CSID,
     })
+      .then(function (response) {
+        //console.log(response)
+        charSheetDispatch({ type: "useEC" })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   function calcBaseStatTotal(num) {
-    return props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[num] + props.baseEquipmentMod[num] + props.charSheet.baseStatsTempMod[num] + props.theRace.baseStats[num] + props.theClass.baseStats[num]
+    return charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[num] + props.baseEquipmentMod[num] + charSheetState.charSheet.baseStatsTempMod[num] + props.theRace.baseStats[num] + props.theClass.baseStats[num]
   }
 
   return (
@@ -90,13 +131,13 @@ function Stats(props) {
               <div className="cw__container">
                 <div className="item-container">
                   <h3 className="item-container__heading">Level</h3>
-                  <h4 className="item-container__subheading">You are at Level {props.charSheet.level}</h4>
+                  <h4 className="item-container__subheading">You are at Level {charSheetState.charSheet.level}</h4>
                   <button onClick={openLevelUp}>Level Up</button>
                   <button onClick={openEditLevel}>Remove Level</button>
                 </div>
                 <div className="item-container">
                   <h3 className="item-container__heading">Excellence Chips</h3>
-                  <h4 className="item-container__subheading">You have {props.charSheet.excellenceChips} Excellence Chips</h4>
+                  <h4 className="item-container__subheading">You have {charSheetState.charSheet.excellenceChips} Excellence Chips</h4>
                   <button onClick={addEC}>Add Excellence Chip</button>
                   <button onClick={useEC}>Use Excellence Chip</button>
                   <p>Want to earn an excellence chip? Do something epic and make sure the DM is watching! Excellence Chips can be cashed in whenever you'd like for an immediate perfect roll. Use them wisely.</p>
@@ -118,7 +159,7 @@ function Stats(props) {
                       </tr>
                     </thead>
                     <tbody>
-                      {props.charSheet.levelUps[props.charSheet.levelUps.length - 1].proficiency.map((prof, index) => {
+                      {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].proficiency.map((prof, index) => {
                         return (
                           <tr key={index}>
                             <td>{prof.name}</td>
@@ -158,7 +199,7 @@ function Stats(props) {
                       <br /> (PHY)
                     </td>
                     <td>{calcBaseStatTotal(0)}</td>
-                    <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[0]}</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[0]}</td>
                     <td>{props.baseEquipmentMod[0]}</td>
                     <td>
                       <input
@@ -178,7 +219,7 @@ function Stats(props) {
                       <br /> (INT)
                     </td>
                     <td>{calcBaseStatTotal(1)}</td>
-                    <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[1]}</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[1]}</td>
                     <td>{props.baseEquipmentMod[1]}</td>
                     <td>
                       <input
@@ -198,7 +239,7 @@ function Stats(props) {
                       <br /> (REF)
                     </td>
                     <td>{calcBaseStatTotal(2)}</td>
-                    <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[2]}</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[2]}</td>
                     <td>{props.baseEquipmentMod[2]}</td>
                     <td>
                       <input
@@ -218,7 +259,7 @@ function Stats(props) {
                       <br /> (CHA)
                     </td>
                     <td>{calcBaseStatTotal(3)}</td>
-                    <td>{props.charSheet.levelUps[props.charSheet.levelUps.length - 1].baseStats[3]}</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[3]}</td>
                     <td>{props.baseEquipmentMod[3]}</td>
                     <td>
                       <input
@@ -251,7 +292,7 @@ function Stats(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {props.charSheet.levelUps[props.charSheet.levelUps.length - 1].skills.map((skill, index) => {
+                  {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].skills.map((skill, index) => {
                     return (
                       <tr key={index}>
                         <td>{skill.name}</td>

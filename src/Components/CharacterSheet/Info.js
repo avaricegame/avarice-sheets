@@ -1,7 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import Axios from "axios"
 
+import StateContext from "../../StateContext"
+import DispatchContext from "../../DispatchContext"
+
 function Info(props) {
+  const charSheetState = useContext(StateContext)
+  const charSheetDispatch = useContext(DispatchContext)
   const openNewCharacterLog = () => {
     props.newCharacterLogHandler(true)
   }
@@ -16,6 +21,10 @@ function Info(props) {
       })
         .then(function (response) {
           console.log(response)
+          charSheetDispatch({
+            type: "deleteCharacterLog",
+            value: id,
+          })
         })
         .catch(function (error) {
           console.log(error)
@@ -34,7 +43,7 @@ function Info(props) {
             <button onClick={openNewCharacterLog}>Add a New Character Log</button>
 
             <div className="item-container" style={{ display: "flex", flexDirection: "column-reverse" }}>
-              {props.charSheet.characterLog.map((log) => {
+              {charSheetState.charSheet.characterLog.map((log) => {
                 return (
                   <p key={log.id}>
                     <strong>{log.title}: </strong>
@@ -59,7 +68,7 @@ function Info(props) {
                 )
               })}
               {/* <h4 className="item-container__subheading">For: Fluttering Butterflies Campaign</h4> */}
-              <h4 className="item-container__subheading">For {props.charSheet.characterName}</h4>
+              <h4 className="item-container__subheading">For {charSheetState.charSheet.characterName}</h4>
               <h3 className="item-container__heading">Character Log</h3>
             </div>
 
@@ -258,99 +267,99 @@ function Info(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Character Description</h3>
-              <h4 className="item-container__subheading">For {props.charSheet.characterName}</h4>
+              <h4 className="item-container__subheading">For {charSheetState.charSheet.characterName}</h4>
               <table>
                 <tbody>
                   <tr>
                     <td>Age:</td>
-                    <td>{props.charSheet.characterDescription.age} years old</td>
+                    <td>{charSheetState.charSheet.characterDescription.age} years old</td>
                   </tr>
                   <tr>
                     <td>Weight:</td>
-                    <td>{props.charSheet.characterDescription.weight} lbs.</td>
+                    <td>{charSheetState.charSheet.characterDescription.weight} lbs.</td>
                   </tr>
                   <tr>
                     <td>Height:</td>
-                    <td>{props.charSheet.characterDescription.height} ft.</td>
+                    <td>{charSheetState.charSheet.characterDescription.height} ft.</td>
                   </tr>
                   <tr>
                     <td>Gender:</td>
-                    <td>{props.charSheet.characterDescription.gender}</td>
+                    <td>{charSheetState.charSheet.characterDescription.gender}</td>
                   </tr>
                   <tr>
                     <td>Skin Tone:</td>
-                    <td>{props.charSheet.characterDescription.skinTone}</td>
+                    <td>{charSheetState.charSheet.characterDescription.skinTone}</td>
                   </tr>
                   <tr>
                     <td>Eye Color:</td>
-                    <td>{props.charSheet.characterDescription.eyeColor}</td>
+                    <td>{charSheetState.charSheet.characterDescription.eyeColor}</td>
                   </tr>
                   <tr>
                     <td>Hair Color:</td>
-                    <td>{props.charSheet.characterDescription.hairColor}</td>
+                    <td>{charSheetState.charSheet.characterDescription.hairColor}</td>
                   </tr>
                   <tr>
                     <td>Hair Length:</td>
-                    <td>{props.charSheet.characterDescription.hairLength}</td>
+                    <td>{charSheetState.charSheet.characterDescription.hairLength}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div className="item-container">
               <h3 className="item-container__heading">Character Background</h3>
-              <h4 className="item-container__subheading">For {props.charSheet.characterName}</h4>
+              <h4 className="item-container__subheading">For {charSheetState.charSheet.characterName}</h4>
               <p>
                 <strong>Who were your parents? How were you raised? Do you have any close family?</strong>
                 <br />
-                {props.charSheet.characterBackground.q1}
+                {charSheetState.charSheet.characterBackground.q1}
               </p>
 
               <p>
                 <strong>Where/From whom did you learn your skills?</strong>
                 <br />
-                {props.charSheet.characterBackground.q2}
+                {charSheetState.charSheet.characterBackground.q2}
               </p>
 
               <p>
                 <strong>Name your 3 most important personal beliefs:</strong>
                 <br />
-                {props.charSheet.characterBackground.q3}
+                {charSheetState.charSheet.characterBackground.q3}
               </p>
 
               <p>
                 <strong>Name 3 or more character flaws that are most likely to trouble you:</strong>
                 <br />
-                {props.charSheet.characterBackground.q4}
+                {charSheetState.charSheet.characterBackground.q4}
               </p>
 
               <p>
                 <strong>What do you secretly fear even in times of easy-going peace? Why?</strong>
                 <br />
-                {props.charSheet.characterBackground.q5}
+                {charSheetState.charSheet.characterBackground.q5}
               </p>
 
               <p>
-                <strong>Are you ({props.charSheet.characterName}) a hero? Why or why not?</strong>
+                <strong>Are you ({charSheetState.charSheet.characterName}) a hero? Why or why not?</strong>
                 <br />
-                {props.charSheet.characterBackground.q6}
+                {charSheetState.charSheet.characterBackground.q6}
               </p>
 
               <p>
                 <strong>What are your goals (both long and short term)?</strong>
                 <br />
-                {props.charSheet.characterBackground.q7}
+                {charSheetState.charSheet.characterBackground.q7}
               </p>
 
               <p>
-                <strong>Are you ({props.charSheet.characterName}) merciful? Why or why not?</strong>
+                <strong>Are you ({charSheetState.charSheet.characterName}) merciful? Why or why not?</strong>
                 <br />
-                {props.charSheet.characterBackground.q8}
+                {charSheetState.charSheet.characterBackground.q8}
               </p>
 
               <p>
                 <strong>Why are you an adventurer?</strong>
                 <br />
-                {props.charSheet.characterBackground.q9}
+                {charSheetState.charSheet.characterBackground.q9}
               </p>
             </div>
           </div>

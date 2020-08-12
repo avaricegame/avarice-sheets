@@ -1,7 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import DispatchContext from "../../../DispatchContext"
+
 function SellItems(props) {
+  const charSheetDispatch = useContext(DispatchContext)
   const [currentWeapon, setCurrentWeapon] = useState("a")
   const [currentWearable, setCurrentWearable] = useState("a")
   const [currentItem, setCurrentItem] = useState("a")
@@ -47,6 +50,11 @@ function SellItems(props) {
             .then(function (response) {
               console.log(response)
               props.sellItemsHandler(false)
+              charSheetDispatch({
+                type: "deleteWeapon",
+                value: currentWeapon.id,
+              })
+              charSheetDispatch({ type: "recieveMoney", value: currentWeapon.value })
               setCurrentWeapon("a")
             })
             .catch(function (error) {

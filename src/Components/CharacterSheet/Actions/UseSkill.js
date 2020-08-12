@@ -1,7 +1,9 @@
-import React, { useState } from "react"
-//import Axios from "axios"
+import React, { useState, useContext } from "react"
+
+import StateContext from "../../../StateContext"
 
 function UseSkill(props) {
+  const charSheetState = useContext(StateContext)
   const [currentSkill, setCurrentSkill] = useState("a")
   const [corrIndex, setCorrIndex] = useState()
   const close = () => {
@@ -10,7 +12,7 @@ function UseSkill(props) {
   const setCurrentSkillHandler = (e) => {
     if (e.target.value !== "a") {
       setCorrIndex(e.target.value)
-      setCurrentSkill(props.charSheet.levelUps[props.charSheet.levelUps.length - 1].skills[e.target.value])
+      setCurrentSkill(charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].skills[e.target.value])
     } else {
       setCurrentSkill("a")
     }
@@ -39,7 +41,7 @@ function UseSkill(props) {
             <label>Select a Skill:</label>
             <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentSkillHandler(e)}>
               <option value="a"></option>
-              {props.charSheet.levelUps[props.charSheet.levelUps.length - 1].skills.map((skill, index) => {
+              {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].skills.map((skill, index) => {
                 return (
                   <option value={index} key={index}>
                     {skill.name}

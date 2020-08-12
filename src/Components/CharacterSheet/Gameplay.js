@@ -1,5 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Link } from "react-router-dom"
+
+import StateContext from "../../StateContext"
 
 // ACTION FORM COMPONENTS
 import Roll from "./Actions/Roll"
@@ -12,6 +14,8 @@ import MakeCheck from "./Actions/MakeCheck"
 import UseItem from "./Actions/UseItem"
 
 function Gameplay(props) {
+  const charSheetState = useContext(StateContext)
+
   const [roll, setRoll] = useState(false)
   const rollHandler = (bool) => {
     setRoll(bool)
@@ -61,8 +65,8 @@ function Gameplay(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Hit Points</h3>
-              <h4 className="item-container__subheading">Max HP: {props.charSheet.level * 10 + 10 + parseInt(props.equipmentArmour)}</h4>
-              <h4 className="item-container__terheading">Current HP: {props.charSheet.currentHP}</h4>
+              <h4 className="item-container__subheading">Max HP: {charSheetState.charSheet.level * 10 + 10 + parseInt(props.equipmentArmour)}</h4>
+              <h4 className="item-container__terheading">Current HP: {charSheetState.charSheet.currentHP}</h4>
               <button onClick={openTakeDamage}>Take Damage</button>
               <button onClick={openHeal}>Heal HP</button>
             </div>

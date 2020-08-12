@@ -1,14 +1,31 @@
-import React from "react"
+import React, { useContext } from "react"
 import Axios from "axios"
 
+import DispatchContext from "../../../DispatchContext"
+
 function NewItem(props) {
+  const charSheetDispatch = useContext(DispatchContext)
   const close = () => {
     props.newItemHandler(false)
   }
   const submitHandler = (e) => {
     e.preventDefault()
+    let theID = Math.floor(Math.random() * 100000)
+    let item = {
+      id: theID,
+      CSID: props.CSID,
+      name: e.target.name.value,
+      type: e.target.type.value,
+      requirements: e.target.requirements.value,
+      slotsReq: parseInt(e.target.slotsReq.value),
+      value: parseInt(e.target.value.value),
+      uses: e.target.uses.value,
+      effects: e.target.effects.value,
+      description: e.target.description.value,
+      equipped: false,
+    }
     Axios.post("/character/additem", {
-      id: Math.floor(Math.random() * 100000),
+      id: theID,
       CSID: props.CSID,
       name: e.target.name.value,
       type: e.target.type.value,
@@ -23,6 +40,10 @@ function NewItem(props) {
       .then(function (response) {
         console.log(response)
         props.newItemHandler(false)
+        charSheetDispatch({
+          type: "addNewItem",
+          value: item,
+        })
       })
       .catch(function (error) {
         console.log(error)

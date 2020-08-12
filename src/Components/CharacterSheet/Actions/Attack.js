@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+
+import StateContext from "../../../StateContext"
 
 function Attack(props) {
+  const charSheetState = useContext(StateContext)
   const [currentWeapon, setCurrentWeapon] = useState("a")
   const [currentProficiency, setCurrentProficiency] = useState("a")
   const [proficiency1, setProficiency1] = useState()
   useEffect(() => {
-    setProficiency1(props.charSheet.levelUps[props.charSheet.levelUps.length - 1].proficiency[0].value)
-  }, [props.charSheet])
+    setProficiency1(charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].proficiency[0].value)
+  }, [charSheetState.charSheet])
   const close = () => {
     props.attackHandler(false)
   }
