@@ -414,7 +414,7 @@ function CharacterSheet(props) {
     }, 0)
     setEquipmentMod([skill1])
     let y = equippedWearables.reduce((total, num) => {
-      return num.modifiers.armour + total
+      return parseInt(num.modifiers.armour) + parseInt(total)
     }, 0)
     setEquipmentArmour(y)
   }, [equippedItems, equippedWeapons, equippedWearables])
@@ -449,10 +449,12 @@ function CharacterSheet(props) {
                   <Route path="/character/gameplay" exact>
                     <Header charSheet={charSheet} />
                     <Navigation />
-                    <Gameplay charSheet={charSheet} abilityArray={abilityArray} equipmentMod={equipmentMod} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} baseEquipmentMod={baseEquipmentMod} equipmentArmour={equipmentArmour} theRace={theRace} theClass={theClass} equippedWeapons={equippedWeapons} equippedItems={equippedItems} />
+                    <Gameplay charSheet={charSheet} abilityArray={abilityArray} equipmentMod={equipmentMod} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} baseEquipmentMod={baseEquipmentMod} equipmentArmour={equipmentArmour} theRace={theRace} theClass={theClass} equippedWeapons={equippedWeapons} equippedItems={equippedItems} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} />
                     <Footer />
                     {heal ? <HealHP healHandler={healHandler} CSID={props.CSID} /> : ""}
                     {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} /> : ""}
+                    {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
+                    {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
                   </Route>
                   <Route path="/character/inventory" exact>
                     <Header charSheet={charSheet} />
