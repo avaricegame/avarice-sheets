@@ -8,9 +8,6 @@ import { useEffect } from "react"
 function Inventory(props) {
   const charSheetState = useContext(StateContext)
   const charSheetDispatch = useContext(DispatchContext)
-  //const [weaponSelect, setWeaponSelect] = useState("")
-  //const [wearableSelect, setWearableSelect] = useState("")
-  //const [itemSelect, setItemSelect] = useState("")
   const openPayMoney = () => {
     props.payMoneyHandler(true)
   }
@@ -803,28 +800,22 @@ function Inventory(props) {
   const setWeaponHandler = (e) => {
     if (e.target.value !== "a") {
       setCurrentWeapon(charSheetState.charSheet.weapons[e.target.value])
-      //setWeaponSelect(charSheetState.charSheet.weapons[e.target.value].name)
     } else {
       setCurrentWeapon("a")
-      // setWeaponSelect("")
     }
   }
   const setWearableHandler = (e) => {
     if (e.target.value !== "a") {
       setCurrentWearable(charSheetState.charSheet.wearables[e.target.value])
-      //setWearableSelect(charSheetState.charSheet.wearables[e.target.value].name)
     } else {
       setCurrentWearable("a")
-      //setWearableSelect("")
     }
   }
   const setItemHandler = (e) => {
     if (e.target.value !== "a") {
       setCurrentItem(charSheetState.charSheet.items[e.target.value])
-      //setItemSelect(charSheetState.charSheet.wearables[e.target.value].name)
     } else {
       setCurrentItem("a")
-      //setItemSelect("")
     }
   }
   const displayWeapon = () => {
@@ -1183,16 +1174,6 @@ function Inventory(props) {
     })
     setFeet(f2[0])
   }, [props.equippedWearables])
-
-  //   {props.equippedWearables.map((wearable) => {
-  //   return (
-  //     <tr key={wearable.id}>
-  //       <td>{wearable.bodyArea}</td>
-  //       <td>{wearable.name}</td>
-  //     </tr>
-  //   )
-  // })}
-  console.log(head)
   return (
     <>
       <div className="secondary-header">
