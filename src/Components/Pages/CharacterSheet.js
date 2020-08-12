@@ -333,6 +333,7 @@ function CharacterSheet(props) {
   }, [charSheet])
   useEffect(() => {
     if (!isLoading) {
+      setAbilityArray([])
       let at = state.charSheet.levelUps[state.charSheet.levelUps.length - 1].abilityTree
       at.map((column, index) => {
         let corrColumn = `column${index + 1}`
@@ -353,7 +354,9 @@ function CharacterSheet(props) {
         if (ability4.key === 4) {
           arrToAppend.push(ability4)
         }
-        setAbilityArray(arrToAppend)
+        setAbilityArray((prevAbilityArray) => {
+          return prevAbilityArray.concat(arrToAppend)
+        })
         return ""
       })
     }
