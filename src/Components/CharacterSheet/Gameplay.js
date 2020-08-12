@@ -8,7 +8,7 @@ import Roll from "./Actions/Roll"
 import Attack from "./Actions/Attack"
 import UseAbility from "./Actions/UseAbility"
 import UseSkill from "./Actions/UseSkill"
-import PayMoney from "./Actions/PayMoney"
+//import PayMoney from "./Actions/PayMoney"
 import SellItems from "./Actions/SellItems"
 import MakeCheck from "./Actions/MakeCheck"
 import UseItem from "./Actions/UseItem"
@@ -32,10 +32,10 @@ function Gameplay(props) {
   const useSkillHandler = (bool) => {
     setUseSkill(bool)
   }
-  const [payMoney, setPayMoney] = useState(false)
-  const payMoneyHandler = (bool) => {
-    setPayMoney(bool)
-  }
+  // const [payMoney, setPayMoney] = useState(false)
+  // const payMoneyHandler = (bool) => {
+  //   setPayMoney(bool)
+  // }
   const [sellItems, setSellItems] = useState(false)
   const sellItemsHandler = (bool) => {
     setSellItems(bool)
@@ -54,6 +54,12 @@ function Gameplay(props) {
   const openTakeDamage = () => {
     props.takeDamageHandler(true)
   }
+  const openPayMoney = () => {
+    props.payMoneyHandler(true)
+  }
+  const openRecieveMoney = () => {
+    props.recieveMoneyHandler(true)
+  }
   return (
     <>
       <div className="secondary-header">
@@ -71,6 +77,16 @@ function Gameplay(props) {
               <button onClick={openHeal}>Heal HP</button>
             </div>
           </div>
+          <h2 className="heading">Money</h2>
+          <div className="cw__container">
+            <div className="item-container">
+              <h3 className="item-container__heading">Uni-Credits / Gold</h3>
+              <h4 className="item-container__terheading">Current Savings: {charSheetState.charSheet.gold} Gold</h4>
+              {/* <p className="item-container__money-amount">{charSheetState.charSheet.gold} Gold</p> */}
+              <button onClick={openPayMoney}>Pay Money</button>
+              <button onClick={openRecieveMoney}>Recieve Money</button>
+            </div>
+          </div>
         </div>
 
         <div className="cw__25">
@@ -80,7 +96,7 @@ function Gameplay(props) {
           <button onClick={useItemHandler}>Use an Item</button>
           <button onClick={useAbilityHandler}>Use Ability</button>
           <button onClick={useSkillHandler}>Use Skill</button>
-          <button onClick={payMoneyHandler}>Pay Money</button>
+          {/* <button onClick={payMoneyHandler}>Pay Money</button> */}
           <button onClick={sellItemsHandler}>Sell Inventory Items</button>
           <button onClick={rollHandler}>Roll Die</button>
         </div>
@@ -160,7 +176,7 @@ function Gameplay(props) {
       {attack ? <Attack attackHandler={attackHandler} charSheet={props.charSheet} equippedWeapons={props.equippedWeapons} /> : ""}
       {useAbility ? <UseAbility useAbilityHandler={useAbilityHandler} abilityArray={props.abilityArray} charSheet={props.charSheet} /> : ""}
       {useSkill ? <UseSkill useSkillHandler={useSkillHandler} equipmentMod={props.equipmentMod} charSheet={props.charSheet} /> : ""}
-      {payMoney ? <PayMoney payMoneyHandler={payMoneyHandler} CSID={props.CSID} /> : ""}
+      {/* {payMoney ? <PayMoney payMoneyHandler={payMoneyHandler} CSID={props.CSID} /> : ""} */}
       {sellItems ? <SellItems sellItemsHandler={sellItemsHandler} CSID={props.CSID} charSheet={props.charSheet} /> : ""}
       {makeCheck ? <MakeCheck makeCheckHandler={makeCheckHandler} charSheet={props.charSheet} theRace={props.theRace} theClass={props.theClass} baseEquipmentMod={props.baseEquipmentMod} /> : ""}
       {useItem ? <UseItem equippedItems={props.equippedItems} useItemHandler={useItemHandler} /> : ""}
