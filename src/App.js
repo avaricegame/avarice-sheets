@@ -29,6 +29,15 @@ function App() {
   const newCharacterSheetHandler = (bool) => {
     setNewCharacterSheet(bool)
   }
+  const [characterSheetArray, setCharacterSheetArray] = useState([])
+  const characterSheetArrayHandler = (theArray) => {
+    setCharacterSheetArray((prevCharacterSheetArray) => {
+      return prevCharacterSheetArray.concat(theArray)
+    })
+  }
+  const setCharacterSheetArrayHandler = (theArray) => {
+    setCharacterSheetArray(theArray)
+  }
 
   const UIDHandler = (id) => {
     localStorage.setItem("UID", id)
@@ -66,8 +75,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact>
-            <Home UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} />
-            {newCharacterSheet ? <NewCharacterSheet CSID={CSID} newCharacterSheetHandler={newCharacterSheetHandler} UID={UID} /> : ""}
+            <Home UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} characterSheetArray={characterSheetArray} setCharacterSheetArrayHandler={setCharacterSheetArrayHandler} />
+            {newCharacterSheet ? <NewCharacterSheet CSID={CSID} newCharacterSheetHandler={newCharacterSheetHandler} UID={UID} characterSheetArray={characterSheetArray} characterSheetArrayHandler={characterSheetArrayHandler} /> : ""}
           </Route>
           <Route path="/profile">
             <Profile loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} />
@@ -76,7 +85,7 @@ function App() {
             <About />
           </Route>
           <Route path="/character">
-            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} newCharacterSheet={newCharacterSheet} />
+            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} newCharacterSheet={newCharacterSheet} characterSheetArray={characterSheetArray} setCharacterSheetArrayHandler={setCharacterSheetArrayHandler} />
           </Route>
           <Route path="/campaign">
             <CampaignSheet />

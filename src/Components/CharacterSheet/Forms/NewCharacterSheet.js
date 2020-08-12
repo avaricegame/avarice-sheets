@@ -199,7 +199,7 @@ function NewCharacterSheet(props) {
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    Axios.post("/createcs", {
+    const newCS = {
       charid: String(Math.floor(Math.random() * 929484721)),
       CSID: props.CSID,
       userID: props.UID,
@@ -229,9 +229,13 @@ function NewCharacterSheet(props) {
         q8: e.target.q8.value,
         q9: e.target.q9.value,
       },
+    }
+    Axios.post("/createcs", {
+      newCS,
     })
       .then(function (response) {
         console.log(response)
+        props.characterSheetArrayHandler(newCS)
         props.newCharacterSheetHandler(false)
       })
       .catch(function (error) {

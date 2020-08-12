@@ -440,8 +440,8 @@ function CharacterSheet(props) {
                     <HomeAbout />
                   </Route>
                   <Route path="/" exact>
-                    <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} UID={props.UID} newCharacterSheetHandler={props.newCharacterSheetHandler} />
-                    {props.newCharacterSheet ? <NewCharacterSheet CSID={props.CSID} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
+                    <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} UID={props.UID} newCharacterSheetHandler={props.newCharacterSheetHandler} characterSheetArrayHandler={props.characterSheetArrayHandler} />
+                    {props.newCharacterSheet ? <NewCharacterSheet CSID={props.CSID} characterSheetArray={props.characterSheetArray} setCharacterSheetArrayHandler={props.setCharacterSheetArrayHandler} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
                   </Route>
                   <Route path="/character/about">
                     <Header charSheet={charSheet} />

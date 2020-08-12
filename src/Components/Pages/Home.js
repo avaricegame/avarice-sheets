@@ -11,25 +11,26 @@ function Home(props) {
   }
 
   const [isLoading, setIsLoading] = useState(true)
-  const [characterSheetArray, setCharacterSheetArray] = useState(0)
+
+  const setCharacterSheetArrayHandler = props.setCharacterSheetArrayHandler
 
   useEffect(() => {
-    async function fetchCS() {
-      // get all of the character sheets that match the current user id
-      const corrSheet = await Axios.get("/loadmanycs", {
-        params: {
-          UID: props.UID,
-        },
-      })
-      setCharacterSheetArray(corrSheet.data)
+    Axios.get("/loadmanycs", {
+      params: {
+        UID: props.UID,
+      },
+    }).then(function (response) {
+      console.log(response)
+      setCharacterSheetArrayHandler(response.data)
       setIsLoading(false)
-    }
-    fetchCS()
+    })
   }, [props.UID])
 
   const clickHandler = (e, id) => {
     props.CSIDHandler(id)
   }
+
+  let reversedCharacterSheetArray = props.characterSheetArray.map((cs) => cs).reverse()
 
   if (!isLoading) {
     return (
@@ -49,7 +50,7 @@ function Home(props) {
             <h2 className="heading">Character Sheets</h2>
             <div className="sheets-container">
               <button onClick={openNewCharacterSheet}>Create a New Character Sheet</button>
-              {characterSheetArray.map((cs) => {
+              {reversedCharacterSheetArray.map((cs) => {
                 return (
                   <Link onClick={(e, id) => clickHandler(e, cs.charid)} to={`/character/gameplay`} key={cs.charid} className="fixing-link-settings">
                     <div className="item-container item-container--hover-highlight">
