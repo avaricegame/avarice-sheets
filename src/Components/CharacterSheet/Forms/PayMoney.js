@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import PopupForm from "../../PopupForm"
+
 import DispatchContext from "../../../DispatchContext"
 
 function PayMoney(props) {
@@ -30,22 +32,13 @@ function PayMoney(props) {
     }
   }
   return (
-    <div className="popup-bg">
-      <div className="popup">
-        <form onSubmit={(e) => submitHandler(e)}>
-          <fieldset>
-            <h6 className="edit-h6">Pay Money</h6>
-            <label>How Much?</label>
-            <input required name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
-
-            <input type="submit" className="submit-button" value={amount ? `Pay ${amount} Gold` : "Please Specify a Value"} />
-          </fieldset>
-        </form>
-        <div onClick={close} className="close-button">
-          Close Form
-        </div>
-      </div>
-    </div>
+    <PopupForm formName="Pay Money" formOnSubmit={(e) => submitHandler(e)} formClose={close}>
+      <fieldset>
+        <label>How Much?</label>
+        <input required name="amount" value={amount} onChange={(e) => onChangeHandler(e)} type="number" />
+        <p>{amount ? `Pay ${amount} Gold` : "Please Specify a Value"}</p>
+      </fieldset>
+    </PopupForm>
   )
 }
 

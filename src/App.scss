@@ -1,6 +1,8 @@
-@import "./sass/variables";
-@import "./sass/base";
-@import "./sass/typography";
+// BASE
+@import "./sass/base/forms";
+@import "./sass/base/variables";
+@import "./sass/base/base";
+@import "./sass/base/typography";
 
 // PAGES
 @import "./sass/pages/home";
@@ -9,11 +11,14 @@
 
 // COMPONENTS
 @import "./sass/components/button";
-@import "./sass/components/popup";
+@import "./sass/components/PopupForm";
 @import "./sass/components/animated-loader";
 @import "./sass/components/item-container";
 @import "./sass/components/table";
-@import "./sass/components/form";
+
 @import "./sass/components/navigation";
 @import "./sass/components/footer";
 @import "./sass/components/header";
+
+// OTHER
+@import "./sass/junk";
