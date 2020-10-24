@@ -19,34 +19,42 @@ function Gameplay(props) {
   const [roll, setRoll] = useState(false)
   const rollHandler = (bool) => {
     setRoll(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [attack, setAttack] = useState(false)
   const attackHandler = (bool) => {
     setAttack(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [useAbility, setUseAbility] = useState(false)
   const useAbilityHandler = (bool) => {
     setUseAbility(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [useSkill, setUseSkill] = useState(false)
   const useSkillHandler = (bool) => {
     setUseSkill(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   // const [payMoney, setPayMoney] = useState(false)
   // const payMoneyHandler = (bool) => {
   //   setPayMoney(bool)
+  //   bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   // }
   const [sellItems, setSellItems] = useState(false)
   const sellItemsHandler = (bool) => {
     setSellItems(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [makeCheck, setMakeCheck] = useState(false)
   const makeCheckHandler = (bool) => {
     setMakeCheck(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [useItem, setUseItem] = useState(false)
   const useItemHandler = (bool) => {
     setUseItem(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const openHeal = () => {
     props.healHandler(true)
