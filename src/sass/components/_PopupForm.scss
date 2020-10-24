@@ -79,7 +79,8 @@
       box-shadow: 0 0 10px lighten($color-gray, 20%);
     }
     &:active {
-      transform: scale(0.98);
+      outline: none;
+      transform: scale(0.9);
       box-shadow: 0 0 10px lighten($color-gray, 15%);
     }
   }
@@ -90,6 +91,11 @@
     &:hover {
       background-color: $color-black;
       color: $color-white;
+    }
+    &:active {
+      outline: none;
+      transform: scale(0.9);
+      box-shadow: 0 0 10px lighten($color-gray, 15%);
     }
   }
 

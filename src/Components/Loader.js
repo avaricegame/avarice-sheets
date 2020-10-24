@@ -3,7 +3,7 @@ import React from "react"
 function Loader() {
   return (
     <>
-      <div className="lds-facebook">
+      <div className="animated-loader">
         <div></div>
         <div></div>
         <div></div>

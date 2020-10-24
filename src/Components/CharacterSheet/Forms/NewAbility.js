@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import PopupForm from "../../PopupForm"
+
 import DispatchContext from "../../../DispatchContext"
 
 function NewAbility(props) {
@@ -44,23 +46,14 @@ function NewAbility(props) {
       })
   }
   return (
-    <div className="popup-bg">
-      <div className="popup">
-        <form onSubmit={(e) => submitHandler(e)}>
-          <fieldset>
-            <h6 className="edit-h6">Create New Ability</h6>
-            <label htmlFor="name">Name:</label>
-            <input required name="name" value={name} onChange={(e) => onNameChangeHandler(e)} type="text" />
-            <label htmlFor="content">Description:</label>
-            <textarea required name="description" cols="50" rows="10" value={description} onChange={(e) => onDescriptionChangeHandler(e)}></textarea>
-            <input type="submit" className="submit-button" value="Submit" />
-          </fieldset>
-        </form>
-        <div onClick={close} className="close-button">
-          Close Form
-        </div>
-      </div>
-    </div>
+    <PopupForm formName="Create a New Ability" formOnSubmit={(e) => submitHandler(e)} formClose={close}>
+      <fieldset>
+        <label htmlFor="name">Ability Name:</label>
+        <input required name="name" value={name} onChange={(e) => onNameChangeHandler(e)} type="text" />
+        <label htmlFor="content">Description:</label>
+        <textarea required name="description" cols="50" rows="10" value={description} onChange={(e) => onDescriptionChangeHandler(e)}></textarea>
+      </fieldset>
+    </PopupForm>
   )
 }
 

@@ -20,7 +20,7 @@ label {
   font-weight: bold;
   font-size: 1.4rem;
   display: block;
-  margin: 1.5rem 0.5rem 0 0.75rem;
+  margin: 1.5rem 0.5rem 0 1rem;
 }
 
 form input,
@@ -30,8 +30,8 @@ select {
   border: none;
   box-shadow: 0 0 15px rgb(207, 207, 207);
   min-height: 30px;
-  width: 95%;
-  margin: 0.5rem;
+  width: 96%;
+  margin: 0.5rem 2.5%;
   font-size: 1.4rem;
 }
 
@@ -49,18 +49,28 @@ form input[type="submit"] {
   margin-right: 1.5rem;
 }
 
+.radio-input-container--extra-margin {
+  margin-left: 1.2rem;
+}
+
 form input[type="radio"] {
   width: 2rem;
+  margin-right: 0.5rem;
   box-shadow: none;
   background-color: none;
   cursor: pointer;
 }
 
 form textarea {
-  max-width: 95%;
+  max-width: 96%;
   padding: 1rem;
   line-height: 1.5;
   min-height: 80px;
+  resize: none;
+}
+
+form select {
+  cursor: pointer;
 }
 
 // styling for the level up form

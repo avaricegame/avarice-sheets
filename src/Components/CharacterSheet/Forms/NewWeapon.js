@@ -71,10 +71,10 @@ function NewWeapon(props) {
         <input required name="name" type="text" />
         <label htmlFor="rangedMelee">Ranged or Melee?</label>
         <div className="radio-list-container">
-          <span className="radio-input-container">
+          <span className="radio-input-container radio-input-container--extra-margin">
             <input type="radio" name="rangedMelee" value="ranged" /> Ranged
           </span>
-          <span className="radio-input-container">
+          <span className="radio-input-container radio-input-container--extra-margin">
             <input type="radio" name="rangedMelee" value="melee" /> Melee
           </span>
         </div>
@@ -109,10 +109,10 @@ function NewWeapon(props) {
         </select>
         <label htmlFor="unique">Unique?</label>
         <div className="radio-list-container">
-          <span className="radio-input-container">
+          <span className="radio-input-container radio-input-container--extra-margin">
             <input type="radio" name="unique" value={true} /> Yes
           </span>
-          <span className="radio-input-container">
+          <span className="radio-input-container radio-input-container--extra-margin">
             <input type="radio" name="unique" value={false} /> No
           </span>
         </div>

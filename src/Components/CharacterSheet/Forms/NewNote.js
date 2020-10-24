@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import PopupForm from "../../PopupForm"
+
 import DispatchContext from "../../../DispatchContext"
 
 function NewNote(props) {
@@ -44,23 +46,14 @@ function NewNote(props) {
       })
   }
   return (
-    <div className="popup-bg">
-      <div className="popup">
-        <form style={{ minWidth: "70vw" }} onSubmit={(e) => submitHandler(e)}>
-          <fieldset>
-            <h6 className="edit-h6">New Note</h6>
-            <label htmlFor="title">Title:</label>
-            <input required name="title" value={title} onChange={(e) => onTitleChangeHandler(e)} type="text" />
-            <label htmlFor="content">Content:</label>
-            <textarea required name="content" cols="50" rows="10" value={content} onChange={(e) => onContentChangeHandler(e)}></textarea>
-            <input type="submit" className="submit-button" value="Submit" />
-          </fieldset>
-        </form>
-        <div onClick={close} className="close-button">
-          Close Form
-        </div>
-      </div>
-    </div>
+    <PopupForm formName="New Note" formOnSubmit={(e) => submitHandler(e)} formClose={close}>
+      <fieldset>
+        <label htmlFor="title">Title:</label>
+        <input required name="title" value={title} onChange={(e) => onTitleChangeHandler(e)} type="text" />
+        <label htmlFor="content">Content:</label>
+        <textarea required name="content" cols="50" rows="20" value={content} onChange={(e) => onContentChangeHandler(e)}></textarea>
+      </fieldset>
+    </PopupForm>
   )
 }
 
