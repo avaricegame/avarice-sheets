@@ -107,28 +107,30 @@ function Gameplay(props) {
 
         <div className="cw__25">
           <h2 className="heading">Actions</h2>
-          <button className="button" onClick={attackHandler}>
-            Attack
-          </button>
-          <button className="button" onClick={makeCheckHandler}>
-            Make a Check
-          </button>
-          <button className="button" onClick={useItemHandler}>
-            Use an Item
-          </button>
-          <button className="button" onClick={useAbilityHandler}>
-            Use Ability
-          </button>
-          <button className="button" onClick={useSkillHandler}>
-            Use Skill
-          </button>
-          {/* <button className="button" onClick={payMoneyHandler}>Pay Money</button> */}
-          <button className="button" onClick={sellItemsHandler}>
-            Sell Inventory Items
-          </button>
-          <button className="button" onClick={rollHandler}>
-            Roll Die
-          </button>
+          <div className="cw__container">
+            <button className="button" onClick={attackHandler}>
+              Attack
+            </button>
+            <button className="button" onClick={makeCheckHandler}>
+              Make a Check
+            </button>
+            <button className="button" onClick={useItemHandler}>
+              Use an Item
+            </button>
+            <button className="button" onClick={useAbilityHandler}>
+              Use Ability
+            </button>
+            <button className="button" onClick={useSkillHandler}>
+              Use Skill
+            </button>
+            {/* <button className="button" onClick={payMoneyHandler}>Pay Money</button> */}
+            <button className="button" onClick={sellItemsHandler}>
+              Sell Inventory Items
+            </button>
+            <button className="button" onClick={rollHandler}>
+              Roll Die
+            </button>
+          </div>
         </div>
 
         <div className="cw__25">
