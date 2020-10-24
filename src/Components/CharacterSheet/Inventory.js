@@ -8,6 +8,9 @@ import { useEffect } from "react"
 function Inventory(props) {
   const charSheetState = useContext(StateContext)
   const charSheetDispatch = useContext(DispatchContext)
+
+  const flashMessageDispatch = useContext(DispatchContext)
+
   const openPayMoney = () => {
     props.payMoneyHandler(true)
   }
@@ -38,6 +41,10 @@ function Inventory(props) {
           charSheetDispatch({
             type: "deleteWeapon",
             value: id,
+          })
+          flashMessageDispatch({
+            type: "addNewFlashMessage",
+            value: `You have deleted ${currentWeapon.name}`,
           })
           setCurrentWeapon("a")
         })
