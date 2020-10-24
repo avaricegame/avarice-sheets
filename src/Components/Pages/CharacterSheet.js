@@ -224,68 +224,83 @@ function CharacterSheet(props) {
   const [heal, setHeal] = useState(false)
   const healHandler = (bool) => {
     setHeal(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [takeDamage, setTakeDamage] = useState(false)
   const takeDamageHandler = (bool) => {
     setTakeDamage(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   // INVENTORY OPEN FORM CALLBACK FUNCTIONS
   const [payMoney, setPayMoney] = useState(false)
   const payMoneyHandler = (bool) => {
     setPayMoney(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [recieveMoney, setRecieveMoney] = useState(false)
   const recieveMoneyHandler = (bool) => {
     setRecieveMoney(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [newWeapon, setNewWeapon] = useState(false)
   const newWeaponHandler = (bool) => {
     setNewWeapon(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [newWearable, setNewWearable] = useState(false)
   const newWearableHandler = (bool) => {
     setNewWearable(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [newItem, setNewItem] = useState(false)
   const newItemHandler = (bool) => {
     setNewItem(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [editSuronis, setEditSuronis] = useState(false)
   const editSuronisHandler = (bool) => {
     setEditSuronis(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   // STATS OPEN FORM CALLBACK FUNCTIONS
   // (dont need excellence chips or base stats function here)
   const [levelUp, setLevelUp] = useState(false)
   const levelUpHandler = (bool) => {
     setLevelUp(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   // ABILITIES OPEN FORM CALLBACK FUNCTIONS
   const [newAbility, setNewAbility] = useState(false)
   const newAbilityHandler = (bool) => {
     setNewAbility(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [editAbility, setEditAbility] = useState(false)
   const editAbilityHandler = (bool) => {
     setEditAbility(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   // INFO OPEN FORM CALLBACK FUNCTIONS
   const [newCharacterLog, setNewCharacterLog] = useState(false)
   const newCharacterLogHandler = (bool) => {
     setNewCharacterLog(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [editCharacterLog, setEditCharacterLog] = useState(false)
   const editCharacterLogHandler = (bool) => {
     setEditCharacterLog(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   // NOTES OPEN FORM CALLBACK FUNCTIONS
   const [newNote, setNewNote] = useState(false)
   const newNoteHandler = (bool) => {
     setNewNote(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [editNote, setEditNote] = useState(false)
   const editNoteHandler = (bool) => {
     setEditNote(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   // ******************** BEGIN ALL USE EFFECT LOGIC ******************** //
   useEffect(() => {
