@@ -62,3 +62,27 @@ form textarea {
   line-height: 1.5;
   min-height: 80px;
 }
+
+// styling for the level up form
+.abilities-title-on-level-up-form {
+  // font-size: 1.8rem;
+  text-transform: uppercase;
+  // font-weight: bold;
+  margin-left: 0.5rem;
+  background-color: $color-black;
+  color: $color-white;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.abilities-details-on-level-up-form {
+  margin-left: 3.5rem;
+  margin-right: 3.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 5px solid $color-dark-purple;
+  margin-bottom: 1rem;
+}
+
+.radio-input-container--levelup-form {
+  margin-left: 1rem;
+}

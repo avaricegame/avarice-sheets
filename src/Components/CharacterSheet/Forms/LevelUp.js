@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import PopupForm from "../../PopupForm"
+
 import DispatchContext from "../../../DispatchContext"
 import StateContext from "../../../StateContext"
 
@@ -261,303 +263,227 @@ function LevelUp(props) {
     }
   }
   return (
-    <div className="popup-bg">
-      <div className="popup" style={{ width: "70vw", overflowY: "scroll" }}>
-        <form onSubmit={(e) => submitHandler(e)}>
-          <fieldset>
-            <h6 className="edit-h6">Level Up</h6>
-            <h4 className="item-container__subheading" style={{ margin: "2.5rem auto" }}>
-              Base Stats
-            </h4>
-            <label htmlFor="baseStats">Choose a Base Stat to Level Up:</label>
-            <span style={{ display: "flex", alignItems: "center" }}>
-              <input required type="radio" name="baseStats" value="PHY" /> Physique (PHY)
-            </span>
-            <span style={{ display: "flex", alignItems: "center" }}>
-              <input required type="radio" name="baseStats" value="INT" /> Intelligence (INT)
-            </span>
-            <span style={{ display: "flex", alignItems: "center" }}>
-              <input required type="radio" name="baseStats" value="REF" /> Reflex (REF)
-            </span>
-            <span style={{ display: "flex", alignItems: "center" }}>
-              <input required type="radio" name="baseStats" value="CHA" /> Charisma (CHA)
-            </span>
-            <h4 className="item-container__subheading" style={{ margin: "2.5rem auto" }}>
-              Skills
-            </h4>
-            <label htmlFor="skills">Choose a Skill to Level Up:</label>
-            <span style={{ display: "flex", alignItems: "center" }}>
-              <input required type="radio" name="skills" value="Skill 1" /> Skill 1
-            </span>
-            <h4 className="item-container__subheading" style={{ margin: "2.5rem auto" }}>
-              Proficiencies
-            </h4>
-            <label htmlFor="proficiency">Choose a Proficiency to Level Up:</label>
-            <span style={{ display: "flex", alignItems: "center" }}>
-              <input required type="radio" name="proficiency" value="Proficiency 1" /> Proficiency 1
-            </span>
-            <h4 className="item-container__subheading" style={{ margin: "2.5rem auto" }}>
-              Abilities
-            </h4>
-            <label htmlFor="abilityTree">Choose a New Ability:</label>
-            <div className="cw__container cw__container--tree">
-              {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree.map((column, index) => {
-                if (column.points <= 2) {
-                  let corrColumn = `column${index + 1}`
-                  let pointsOne = column.one
-                  return (
-                    <div key={index} style={{ display: "flex", alignItems: "flex-start" }}>
-                      <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
-                        <input
-                          style={{ width: "3rem", cursor: "pointer" }}
-                          required
-                          type="radio"
-                          name="ability"
-                          value={`${index}1${props.abilityTree[corrColumn][pointsOne].power}`}
-                          onClick={(name, power, description) => {
-                            setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsOne].name, props.abilityTree[corrColumn][pointsOne].power, props.abilityTree[corrColumn][pointsOne].description || props.abilityTree[corrColumn][pointsOne].details)
-                          }}
-                        />
-                        <div className="item-container">
-                          <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsOne].name}</h3>
-                          <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsOne].power}</h4>
-                          <p>
-                            <strong>Details: </strong>
-                            {props.abilityTree[corrColumn][pointsOne].details}
-                          </p>
-                        </div>
-                      </span>
-                    </div>
-                  )
-                }
-                if (column.points >= 3 && column.points <= 5) {
-                  let corrColumn = `column${index + 1}`
-                  let pointsOne = column.one
-                  let pointsTwo = column.two + 5
+    <PopupForm formName="Level Up" formOnSubmit={(e) => submitHandler(e)} formClose={close}>
+      <fieldset>
+        <label htmlFor="baseStats">Choose a Base Stat to Level Up:</label>
+        <span className="radio-input-container radio-input-container--levelup-form">
+          <input required type="radio" name="baseStats" value="PHY" /> Physique (PHY)
+        </span>
+        <span className="radio-input-container radio-input-container--levelup-form">
+          <input required type="radio" name="baseStats" value="INT" /> Intelligence (INT)
+        </span>
+        <span className="radio-input-container radio-input-container--levelup-form">
+          <input required type="radio" name="baseStats" value="REF" /> Reflex (REF)
+        </span>
+        <span className="radio-input-container radio-input-container--levelup-form">
+          <input required type="radio" name="baseStats" value="CHA" /> Charisma (CHA)
+        </span>
+        <label htmlFor="skills">Choose a Skill to Level Up:</label>
+        <span className="radio-input-container radio-input-container--levelup-form">
+          <input required type="radio" name="skills" value="Skill 1" /> Skill 1
+        </span>
+        <label htmlFor="proficiency">Choose a Proficiency to Level Up:</label>
+        <span className="radio-input-container radio-input-container--levelup-form">
+          <input required type="radio" name="proficiency" value="Proficiency 1" /> Proficiency 1
+        </span>
+        <label htmlFor="abilityTree">Choose an Ability to Upgrade or Learn:</label>
+        <div className="cw__container">
+          {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree.map((column, index) => {
+            if (column.points <= 2) {
+              let corrColumn = `column${index + 1}`
+              let pointsOne = column.one
+              return (
+                <>
+                  <span key={index} className="radio-input-container">
+                    <input
+                      required
+                      type="radio"
+                      name="ability"
+                      value={`${index}1${props.abilityTree[corrColumn][pointsOne].power}`}
+                      onClick={(name, power, description) => {
+                        setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsOne].name, props.abilityTree[corrColumn][pointsOne].power, props.abilityTree[corrColumn][pointsOne].description || props.abilityTree[corrColumn][pointsOne].details)
+                      }}
+                    />
+                    <span class="abilities-title-on-level-up-form">
+                      {props.abilityTree[corrColumn][pointsOne].name} | Power {props.abilityTree[corrColumn][pointsOne].power}
+                    </span>
+                  </span>
+                  <p className="abilities-details-on-level-up-form">{props.abilityTree[corrColumn][pointsOne].details}</p>
+                </>
+              )
+            }
+            if (column.points >= 3 && column.points <= 5) {
+              let corrColumn = `column${index + 1}`
+              let pointsOne = column.one
+              let pointsTwo = column.two + 5
 
-                  return (
-                    <div key={index} style={{ display: "flex", flexDirection: "column-reverse", alignItems: "flex-start" }}>
-                      <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
-                        <input
-                          style={{ width: "3rem", cursor: "pointer" }}
-                          required
-                          type="radio"
-                          name="ability"
-                          value={`${index}2${props.abilityTree[corrColumn][pointsTwo].power}`}
-                          onClick={(name, power, description) => {
-                            setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsTwo].name, props.abilityTree[corrColumn][pointsTwo].power, props.abilityTree[corrColumn][pointsTwo].description || props.abilityTree[corrColumn][pointsTwo].details)
-                          }}
-                        />
-                        <div className="item-container">
-                          <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsTwo].name}</h3>
-                          <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsTwo].power}</h4>
-                          <p>
-                            <strong>Details: </strong>
-                            {props.abilityTree[corrColumn][pointsTwo].details}
-                          </p>
-                        </div>
-                      </span>
-                      <hr className="hg__hr" />
-                      <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
-                        <input
-                          style={{ width: "3rem", cursor: "pointer" }}
-                          required
-                          type="radio"
-                          name="ability"
-                          value={`${index}1${props.abilityTree[corrColumn][pointsOne].power}`}
-                          onClick={(name, power, description) => {
-                            setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsOne].name, props.abilityTree[corrColumn][pointsOne].power, props.abilityTree[corrColumn][pointsOne].description || props.abilityTree[corrColumn][pointsOne].details)
-                          }}
-                        />
-                        <div className="item-container">
-                          <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsOne].name}</h3>
-                          <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsOne].power}</h4>
-                          <p>
-                            <strong>Details: </strong>
-                            {props.abilityTree[corrColumn][pointsOne].details}
-                          </p>
-                        </div>
-                      </span>
-                    </div>
-                  )
-                }
-                if (column.points >= 6 && column.points <= 8) {
-                  let corrColumn = `column${index + 1}`
-                  let pointsOne = column.one
-                  let pointsTwo = column.two + 5
-                  let pointsThree = column.three + 10
-                  return (
-                    <div key={index} style={{ display: "flex", flexDirection: "column-reverse", alignItems: "flex-start" }}>
-                      <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
-                        <input
-                          style={{ width: "3rem", cursor: "pointer" }}
-                          required
-                          type="radio"
-                          name="ability"
-                          value={`${index}3${props.abilityTree[corrColumn][pointsThree].power}`}
-                          onClick={(name, power, description) => {
-                            setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsThree].name, props.abilityTree[corrColumn][pointsThree].power, props.abilityTree[corrColumn][pointsThree].description || props.abilityTree[corrColumn][pointsThree].details)
-                          }}
-                        />
-                        <div className="item-container">
-                          <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsThree].name}</h3>
-                          <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsThree].power}</h4>
-                          <p>
-                            <strong>Details: </strong>
-                            {props.abilityTree[corrColumn][pointsThree].details}
-                          </p>
-                        </div>
-                      </span>
-                      <hr className="hg__hr" />
-                      <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
-                        <input
-                          style={{ width: "3rem", cursor: "pointer" }}
-                          required
-                          type="radio"
-                          name="ability"
-                          value={`${index}2${props.abilityTree[corrColumn][pointsTwo].power}`}
-                          onClick={(name, power, description) => {
-                            setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsTwo].name, props.abilityTree[corrColumn][pointsTwo].power, props.abilityTree[corrColumn][pointsTwo].description || props.abilityTree[corrColumn][pointsTwo].details)
-                          }}
-                        />
-                        <div className="item-container">
-                          <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsTwo].name}</h3>
-                          <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsTwo].power}</h4>
-                          <p>
-                            <strong>Details: </strong>
-                            {props.abilityTree[corrColumn][pointsTwo].details}
-                          </p>
-                        </div>
-                      </span>
-                      <hr className="hg__hr" />
-                      <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
-                        <input
-                          style={{ width: "3rem", cursor: "pointer" }}
-                          required
-                          type="radio"
-                          name="ability"
-                          value={`${index}1${props.abilityTree[corrColumn][pointsOne].power}`}
-                          onClick={(name, power, description) => {
-                            setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsOne].name, props.abilityTree[corrColumn][pointsOne].power, props.abilityTree[corrColumn][pointsOne].description || props.abilityTree[corrColumn][pointsOne].details)
-                          }}
-                        />
-                        <div className="item-container">
-                          <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsOne].name}</h3>
-                          <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsOne].power}</h4>
-                          <p>
-                            <strong>Details: </strong>
-                            {props.abilityTree[corrColumn][pointsOne].details}
-                          </p>
-                        </div>
-                      </span>
-                    </div>
-                  )
-                }
-                if (column.points >= 9) {
-                  let corrColumn = `column${index + 1}`
-                  let pointsOne = column.one
-                  let pointsTwo = column.two + 5
-                  let pointsThree = column.three + 10
-                  let pointsFour = column.four + 15
-                  return (
-                    <div key={index} style={{ display: "flex", flexDirection: "column-reverse", alignItems: "flex-start" }}>
-                      <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
-                        <input
-                          style={{ width: "3rem", cursor: "pointer" }}
-                          required
-                          type="radio"
-                          name="ability"
-                          value={`${index}4${props.abilityTree[corrColumn][pointsFour].power}`}
-                          onClick={(name, power, description) => {
-                            setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsFour].name, props.abilityTree[corrColumn][pointsFour].power, props.abilityTree[corrColumn][pointsFour].description || props.abilityTree[corrColumn][pointsFour].details)
-                          }}
-                        />
-                        <div className="item-container">
-                          <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsFour].name}</h3>
-                          <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsFour].power}</h4>
-                          <p>
-                            <strong>Details: </strong>
-                            {props.abilityTree[corrColumn][pointsFour].details}
-                          </p>
-                        </div>
-                      </span>
-                      <hr className="hg__hr" />
-                      <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
-                        <input
-                          style={{ width: "3rem", cursor: "pointer" }}
-                          required
-                          type="radio"
-                          name="ability"
-                          value={`${index}3${props.abilityTree[corrColumn][pointsThree].power}`}
-                          onClick={(name, power, description) => {
-                            setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsThree].name, props.abilityTree[corrColumn][pointsThree].power, props.abilityTree[corrColumn][pointsThree].description || props.abilityTree[corrColumn][pointsThree].details)
-                          }}
-                        />
-                        <div className="item-container">
-                          <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsThree].name}</h3>
-                          <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsThree].power}</h4>
-                          <p>
-                            <strong>Details: </strong>
-                            {props.abilityTree[corrColumn][pointsThree].details}
-                          </p>
-                        </div>
-                      </span>
-                      <hr className="hg__hr" />
-                      <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
-                        <input
-                          style={{ width: "3rem", cursor: "pointer" }}
-                          required
-                          type="radio"
-                          name="ability"
-                          value={`${index}2${props.abilityTree[corrColumn][pointsTwo].power}`}
-                          onClick={(name, power, description) => {
-                            setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsTwo].name, props.abilityTree[corrColumn][pointsTwo].power, props.abilityTree[corrColumn][pointsTwo].description || props.abilityTree[corrColumn][pointsTwo].details)
-                          }}
-                        />
-                        <div className="item-container">
-                          <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsTwo].name}</h3>
-                          <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsTwo].power}</h4>
-                          <p>
-                            <strong>Details: </strong>
-                            {props.abilityTree[corrColumn][pointsTwo].details}
-                          </p>
-                        </div>
-                      </span>
-                      <hr className="hg__hr" />
-                      <span style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: ".5rem", marginLeft: ".5rem" }}>
-                        <input
-                          style={{ width: "3rem", cursor: "pointer" }}
-                          required
-                          type="radio"
-                          name="ability"
-                          value={`${index}1${props.abilityTree[corrColumn][pointsOne].power}`}
-                          onClick={(name, power, description) => {
-                            setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsOne].name, props.abilityTree[corrColumn][pointsOne].power, props.abilityTree[corrColumn][pointsOne].description || props.abilityTree[corrColumn][pointsOne].details)
-                          }}
-                        />
-                        <div className="item-container">
-                          <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsOne].name}</h3>
-                          <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsOne].power}</h4>
-                          <p>
-                            <strong>Details: </strong>
-                            {props.abilityTree[corrColumn][pointsOne].details}
-                          </p>
-                        </div>
-                      </span>
-                    </div>
-                  )
-                }
-                return ""
-              })}
-            </div>
-            <input type="submit" className="submit-button" value="Level Up" />
-          </fieldset>
-        </form>
-        <div onClick={close} className="close-button" style={{ padding: "3rem 1rem" }}>
-          Close Form
+              return (
+                <span key={index}>
+                  <span className="radio-input-container">
+                    <input
+                      required
+                      type="radio"
+                      name="ability"
+                      value={`${index}2${props.abilityTree[corrColumn][pointsTwo].power}`}
+                      onClick={(name, power, description) => {
+                        setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsTwo].name, props.abilityTree[corrColumn][pointsTwo].power, props.abilityTree[corrColumn][pointsTwo].description || props.abilityTree[corrColumn][pointsTwo].details)
+                      }}
+                    />
+                    <span className="abilities-title-on-level-up-form">
+                      {props.abilityTree[corrColumn][pointsTwo].name} | Power {props.abilityTree[corrColumn][pointsTwo].power}
+                    </span>
+                  </span>
+                  <p className="abilities-details-on-level-up-form">{props.abilityTree[corrColumn][pointsTwo].details}</p>
+
+                  <span className="radio-input-container">
+                    <input
+                      required
+                      type="radio"
+                      name="ability"
+                      value={`${index}1${props.abilityTree[corrColumn][pointsOne].power}`}
+                      onClick={(name, power, description) => {
+                        setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsOne].name, props.abilityTree[corrColumn][pointsOne].power, props.abilityTree[corrColumn][pointsOne].description || props.abilityTree[corrColumn][pointsOne].details)
+                      }}
+                    />
+                    <span class="abilities-title-on-level-up-form">
+                      {props.abilityTree[corrColumn][pointsOne].name} | Power {props.abilityTree[corrColumn][pointsOne].power}
+                    </span>
+                  </span>
+                  <p className="abilities-details-on-level-up-form">{props.abilityTree[corrColumn][pointsOne].details}</p>
+                </span>
+              )
+            }
+            if (column.points >= 6 && column.points <= 8) {
+              let corrColumn = `column${index + 1}`
+              let pointsOne = column.one
+              let pointsTwo = column.two + 5
+              let pointsThree = column.three + 10
+              return (
+                <span key={index}>
+                  <span className="radio-input-container">
+                    <input
+                      required
+                      type="radio"
+                      name="ability"
+                      value={`${index}3${props.abilityTree[corrColumn][pointsThree].power}`}
+                      onClick={(name, power, description) => {
+                        setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsThree].name, props.abilityTree[corrColumn][pointsThree].power, props.abilityTree[corrColumn][pointsThree].description || props.abilityTree[corrColumn][pointsThree].details)
+                      }}
+                    />
+                    <span class="abilities-title-on-level-up-form">
+                      {props.abilityTree[corrColumn][pointsThree].name} | Power {props.abilityTree[corrColumn][pointsThree].power}
+                    </span>
+                  </span>
+                  <p className="abilities-details-on-level-up-form">{props.abilityTree[corrColumn][pointsThree].details}</p>
+                  <span className="radio-input-container">
+                    <input
+                      required
+                      type="radio"
+                      name="ability"
+                      value={`${index}2${props.abilityTree[corrColumn][pointsTwo].power}`}
+                      onClick={(name, power, description) => {
+                        setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsTwo].name, props.abilityTree[corrColumn][pointsTwo].power, props.abilityTree[corrColumn][pointsTwo].description || props.abilityTree[corrColumn][pointsTwo].details)
+                      }}
+                    />
+                    <span class="abilities-title-on-level-up-form">
+                      {props.abilityTree[corrColumn][pointsTwo].name} | Power {props.abilityTree[corrColumn][pointsTwo].power}
+                    </span>
+                  </span>
+                  <p className="abilities-details-on-level-up-form">{props.abilityTree[corrColumn][pointsTwo].details}</p>
+                  <span className="radio-input-container">
+                    <input
+                      required
+                      type="radio"
+                      name="ability"
+                      value={`${index}1${props.abilityTree[corrColumn][pointsOne].power}`}
+                      onClick={(name, power, description) => {
+                        setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsOne].name, props.abilityTree[corrColumn][pointsOne].power, props.abilityTree[corrColumn][pointsOne].description || props.abilityTree[corrColumn][pointsOne].details)
+                      }}
+                    />
+                    <span class="abilities-title-on-level-up-form">
+                      {props.abilityTree[corrColumn][pointsOne].name} | Power {props.abilityTree[corrColumn][pointsOne].power}
+                    </span>
+                  </span>
+                  <p className="abilities-details-on-level-up-form">{props.abilityTree[corrColumn][pointsOne].details}</p>
+                </span>
+              )
+            }
+            if (column.points >= 9) {
+              let corrColumn = `column${index + 1}`
+              let pointsOne = column.one
+              let pointsTwo = column.two + 5
+              let pointsThree = column.three + 10
+              let pointsFour = column.four + 15
+              return (
+                <span key={index}>
+                  <span className="radio-input-container">
+                    <input
+                      required
+                      type="radio"
+                      name="ability"
+                      value={`${index}4${props.abilityTree[corrColumn][pointsFour].power}`}
+                      onClick={(name, power, description) => {
+                        setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsFour].name, props.abilityTree[corrColumn][pointsFour].power, props.abilityTree[corrColumn][pointsFour].description || props.abilityTree[corrColumn][pointsFour].details)
+                      }}
+                    />
+                    <span class="abilities-title-on-level-up-form">
+                      {props.abilityTree[corrColumn][pointsFour].name} | Power {props.abilityTree[corrColumn][pointsFour].power}
+                    </span>
+                  </span>
+                  <p className="abilities-details-on-level-up-form">{props.abilityTree[corrColumn][pointsFour].details}</p>
+                  <span className="radio-input-container">
+                    <input
+                      required
+                      type="radio"
+                      name="ability"
+                      value={`${index}3${props.abilityTree[corrColumn][pointsThree].power}`}
+                      onClick={(name, power, description) => {
+                        setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsThree].name, props.abilityTree[corrColumn][pointsThree].power, props.abilityTree[corrColumn][pointsThree].description || props.abilityTree[corrColumn][pointsThree].details)
+                      }}
+                    />
+                    <span class="abilities-title-on-level-up-form">
+                      {props.abilityTree[corrColumn][pointsThree].name} | Power {props.abilityTree[corrColumn][pointsThree].power}
+                    </span>
+                  </span>
+                  <p className="abilities-details-on-level-up-form">{props.abilityTree[corrColumn][pointsThree].details}</p>
+                  <span className="radio-input-container">
+                    <input
+                      required
+                      type="radio"
+                      name="ability"
+                      value={`${index}2${props.abilityTree[corrColumn][pointsTwo].power}`}
+                      onClick={(name, power, description) => {
+                        setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsTwo].name, props.abilityTree[corrColumn][pointsTwo].power, props.abilityTree[corrColumn][pointsTwo].description || props.abilityTree[corrColumn][pointsTwo].details)
+                      }}
+                    />
+                    <span class="abilities-title-on-level-up-form">
+                      {props.abilityTree[corrColumn][pointsTwo].name} | Power {props.abilityTree[corrColumn][pointsTwo].power}
+                    </span>
+                  </span>
+                  <p className="abilities-details-on-level-up-form">{props.abilityTree[corrColumn][pointsTwo].details}</p>
+                  <span className="radio-input-container">
+                    <input
+                      required
+                      type="radio"
+                      name="ability"
+                      value={`${index}1${props.abilityTree[corrColumn][pointsOne].power}`}
+                      onClick={(name, power, description) => {
+                        setCurrentAbilityHandler(props.abilityTree[corrColumn][pointsOne].name, props.abilityTree[corrColumn][pointsOne].power, props.abilityTree[corrColumn][pointsOne].description || props.abilityTree[corrColumn][pointsOne].details)
+                      }}
+                    />
+                    <span class="abilities-title-on-level-up-form">
+                      {props.abilityTree[corrColumn][pointsOne].name} | Power {props.abilityTree[corrColumn][pointsOne].power}
+                    </span>
+                  </span>
+                  <p className="abilities-details-on-level-up-form">{props.abilityTree[corrColumn][pointsOne].details}</p>
+                </span>
+              )
+            }
+            return ""
+          })}
         </div>
-      </div>
-    </div>
+      </fieldset>
+    </PopupForm>
   )
 }
 
