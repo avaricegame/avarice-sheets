@@ -49,7 +49,9 @@ function Notes(props) {
           <div className="cw__25">
             <h2 className="heading">Your Notes</h2>
             <div className="cw__container">
-              <button onClick={openNewNote}>Create New Note</button>
+              <button className="button" onClick={openNewNote}>
+                Create New Note
+              </button>
 
               {charSheetState.charSheet.notes.map((note, index) => {
                 return (
