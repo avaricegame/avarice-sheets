@@ -1,5 +1,7 @@
 import React from "react"
 
+import Popup from "../../Popup"
+
 function Roll(props) {
   const close = () => {
     props.rollHandler(false)
@@ -34,27 +36,37 @@ function Roll(props) {
   }
 
   return (
-    <div className="popup-bg">
-      <div className="popup">
-        <div className="cw__100" style={{ backgroundColor: "whitesmoke", marginTop: ".5rem", marginBottom: ".5rem" }}>
-          <h2 className="heading">Roll Die</h2>
-          <div className="cw__container">
-            <button onClick={four}>D4</button>
-            <button onClick={six}>D6</button>
-            <button onClick={eight}>D8</button>
-            <button onClick={ten}>D10</button>
-            <button onClick={twelve}>D12</button>
-            <button onClick={twenty}>D20</button>
-            <button onClick={sixty}>D60</button>
-            <button onClick={hundred}>D100</button>
-            <button onClick={custom}>Custom</button>
-          </div>
-        </div>
-        <div onClick={close} className="close-button" style={{ padding: "3rem 1rem", color: "whitesmoke" }}>
-          Close
-        </div>
+    <Popup popupName="Roll Die" popupClose={close}>
+      <div className="cw__container">
+        <button className="button" onClick={four}>
+          D4
+        </button>
+        <button className="button" onClick={six}>
+          D6
+        </button>
+        <button className="button" onClick={eight}>
+          D8
+        </button>
+        <button className="button" onClick={ten}>
+          D10
+        </button>
+        <button className="button" onClick={twelve}>
+          D12
+        </button>
+        <button className="button" onClick={twenty}>
+          D20
+        </button>
+        <button className="button" onClick={sixty}>
+          D60
+        </button>
+        <button className="button" onClick={hundred}>
+          D100
+        </button>
+        <button className="button" onClick={custom}>
+          Custom
+        </button>
       </div>
-    </div>
+    </Popup>
   )
 }
 

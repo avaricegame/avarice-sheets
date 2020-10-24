@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 
+import Popup from "../../Popup"
+
 function UseItem(props) {
   const [currentItem, setCurrentItem] = useState("a")
   const close = () => {
@@ -45,36 +47,31 @@ function UseItem(props) {
     }
   }
   return (
-    <div className="popup-bg">
-      <div className="popup" style={{ minWidth: "50vw" }}>
-        <form>
-          <fieldset>
-            <h6 className="edit-h6">Use an Item</h6>
-            <label>Select an Item to View the Details:</label>
-            <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentItemHandler(e)}>
-              <option value="a"></option>
-              {props.equippedItems.map((item, index) => {
-                return (
-                  <option value={index} key={index}>
-                    {item.name}
-                  </option>
-                )
-              })}
-            </select>
-            <p style={{ marginBottom: "2rem" }}>
-              Then just... do what it says... If you need to roll,{" "}
-              <span className="click-here" onClick={rollHandler}>
-                click here.
-              </span>
-            </p>
-            {displayItem()}
-          </fieldset>
-        </form>
-        <div onClick={close} className="close-button">
-          Close Form
-        </div>
-      </div>
-    </div>
+    <Popup popupName="Use an Item" popupClose={close}>
+      <form>
+        <fieldset>
+          <label>Select an Item to View the Details:</label>
+          <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentItemHandler(e)}>
+            <option value="a"></option>
+            {props.equippedItems.map((item, index) => {
+              return (
+                <option value={index} key={index}>
+                  {item.name}
+                </option>
+              )
+            })}
+          </select>
+          <p>Then just... do what it says...</p>
+          <p>
+            If you need to roll,{" "}
+            <span className="click-here" onClick={rollHandler}>
+              click here.
+            </span>
+          </p>
+          {displayItem()}
+        </fieldset>
+      </form>
+    </Popup>
   )
 }
 

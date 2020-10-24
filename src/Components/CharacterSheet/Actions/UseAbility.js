@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react"
 
+import Popup from "../../Popup"
+
 import StateContext from "../../../StateContext"
 
 function UseAbility(props) {
@@ -43,36 +45,31 @@ function UseAbility(props) {
     }
   }
   return (
-    <div className="popup-bg">
-      <div className="popup" style={{ minWidth: "50vw" }}>
-        <form>
-          <fieldset>
-            <h6 className="edit-h6">Use an Ability</h6>
-            <label>Select an Ability to view the details:</label>
-            <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentAbilityHandler(e)}>
-              <option value="a"></option>
-              {newArray.map((ability, index) => {
-                return (
-                  <option value={index} key={index}>
-                    {ability.name}
-                  </option>
-                )
-              })}
-            </select>
-            <p style={{ marginBottom: "2rem" }}>
-              Then just... do what it says... If you need to roll,{" "}
-              <span className="click-here" onClick={rollHandler}>
-                click here.
-              </span>
-            </p>
-            {displayAbility()}
-          </fieldset>
-        </form>
-        <div onClick={close} className="close-button">
-          Close Form
-        </div>
-      </div>
-    </div>
+    <Popup popupName="Use an Ability" popupClose={close}>
+      <form>
+        <fieldset>
+          <label>Select an Ability to view the details:</label>
+          <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentAbilityHandler(e)}>
+            <option value="a"></option>
+            {newArray.map((ability, index) => {
+              return (
+                <option value={index} key={index}>
+                  {ability.name}
+                </option>
+              )
+            })}
+          </select>
+          <p>Then just... do what it says... </p>
+          <p>
+            If you need to roll,{" "}
+            <span className="click-here" onClick={rollHandler}>
+              click here.
+            </span>
+          </p>
+          {displayAbility()}
+        </fieldset>
+      </form>
+    </Popup>
   )
 }
 

@@ -23,9 +23,20 @@
     overflow-y: hidden;
     padding-top: 5rem;
     padding-bottom: 6rem;
+    &--whitebg {
+      background-color: $color-white;
+    }
     @media only screen and (max-width: 900px) {
       width: 90%;
       margin-right: 3%;
+    }
+    @media only screen and (max-width: 500px) {
+      width: 100%;
+      margin: 0;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
     }
   }
 
@@ -87,6 +98,12 @@
       transform: scale(0.9);
       box-shadow: 0 0 10px lighten($color-gray, 15%);
     }
+    &--adjustwidth {
+      width: 95%;
+      font-size: 1.4rem !important;
+      padding: 0.5rem 1rem !important;
+      margin: 1rem 1.5rem 2.5% !important;
+    }
   }
 
   &__close-button {
@@ -100,6 +117,9 @@
       outline: none;
       transform: scale(0.9);
       box-shadow: 0 0 10px lighten($color-gray, 15%);
+    }
+    &--fullwidth {
+      width: 95%;
     }
   }
 

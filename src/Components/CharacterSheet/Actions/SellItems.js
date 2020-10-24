@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react"
 import Axios from "axios"
 
+import Popup from "../../Popup"
+
 import DispatchContext from "../../../DispatchContext"
 import StateContext from "../../../StateContext"
 
@@ -49,7 +51,7 @@ function SellItems(props) {
           })
             .then(function (response) {
               console.log(response)
-              props.sellItemsHandler(false)
+              //props.sellItemsHandler(false)
               charSheetDispatch({
                 type: "deleteWeapon",
                 value: currentWeapon.id,
@@ -81,7 +83,7 @@ function SellItems(props) {
           })
             .then(function (response) {
               console.log(response)
-              props.sellItemsHandler(false)
+              //props.sellItemsHandler(false)
               charSheetDispatch({
                 type: "deleteItem",
                 value: currentItem.id,
@@ -113,7 +115,7 @@ function SellItems(props) {
           })
             .then(function (response) {
               console.log(response)
-              props.sellItemsHandler(false)
+              //props.sellItemsHandler(false)
               charSheetDispatch({
                 type: "deleteWearable",
                 value: currentWearable.id,
@@ -131,11 +133,10 @@ function SellItems(props) {
     }
   }
   return (
-    <div className="popup-bg">
-      <div className="popup">
+    <Popup popupName="Sell Inventory Items" popupClose={close}>
+      <div>
         <form onSubmit={(e) => weaponSubmitHandler(e)} style={{ marginBottom: "-1rem" }}>
           <fieldset>
-            <h6 className="edit-h6">Sell an Inventory Item</h6>
             <label>Sell a Weapon:</label>
             <select onChange={(e) => onWeaponChangeHandler(e)}>
               <option value="a"></option>
@@ -147,7 +148,7 @@ function SellItems(props) {
                 )
               })}
             </select>
-            <input type="submit" className="submit-button" value={currentWeapon !== "a" ? `Sell ${currentWeapon.name} for ${currentWeapon.value} Gold` : "Please Choose a Weapon to Sell"} />
+            <input type="submit" className="popupform__submit-button popupform__submit-button--adjustwidth" value={currentWeapon !== "a" ? `Sell ${currentWeapon.name} for ${currentWeapon.value} Gold` : "Please Choose a Weapon to Sell"} />
           </fieldset>
         </form>
         <form onSubmit={(e) => itemSubmitHandler(e)} style={{ marginBottom: "-1rem" }}>
@@ -163,7 +164,7 @@ function SellItems(props) {
                 )
               })}
             </select>
-            <input type="submit" className="submit-button" value={currentItem !== "a" ? `Sell ${currentItem.name} for ${currentItem.value} Gold` : "Please Choose an Item to Sell"} />
+            <input type="submit" className="popupform__submit-button popupform__submit-button--adjustwidth" value={currentItem !== "a" ? `Sell ${currentItem.name} for ${currentItem.value} Gold` : "Please Choose an Item to Sell"} />
           </fieldset>
         </form>
         <form onSubmit={(e) => wearableSubmitHandler(e)}>
@@ -179,14 +180,11 @@ function SellItems(props) {
                 )
               })}
             </select>
-            <input type="submit" className="submit-button" value={currentWearable !== "a" ? `Sell ${currentWearable.name} for ${currentWearable.value} Gold` : "Please Choose a Wearable to Sell"} />
+            <input type="submit" className="popupform__submit-button popupform__submit-button--adjustwidth" value={currentWearable !== "a" ? `Sell ${currentWearable.name} for ${currentWearable.value} Gold` : "Please Choose a Wearable to Sell"} />
           </fieldset>
         </form>
-        <div onClick={close} className="close-button">
-          Close Form
-        </div>
       </div>
-    </div>
+    </Popup>
   )
 }
 

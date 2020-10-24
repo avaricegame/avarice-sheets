@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react"
 
+import PopupForm from "../../PopupForm"
+
 import StateContext from "../../../StateContext"
 
 function UseSkill(props) {
@@ -27,37 +29,31 @@ function UseSkill(props) {
     }
   }
   const submitHandler = (e) => {
+    e.preventDefault()
     if (currentSkill !== "a") {
       let num = Math.ceil(Math.random() * 20)
       window.confirm(`Your D20 roll for ${currentSkill.name} was ${num}. Your modifier value for ${currentSkill.name} is ${currentSkill.natMod + props.equipmentMod[corrIndex]}, so your adjusted roll is ${num + currentSkill.natMod + props.equipmentMod[corrIndex]}`)
+      close()
     }
   }
   return (
-    <div className="popup-bg">
-      <div className="popup">
-        <form>
-          <fieldset>
-            <h6 className="edit-h6">Use a Skill</h6>
-            <label>Select a Skill:</label>
-            <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentSkillHandler(e)}>
-              <option value="a"></option>
-              {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].skills.map((skill, index) => {
-                return (
-                  <option value={index} key={index}>
-                    {skill.name}
-                  </option>
-                )
-              })}
-            </select>
-            {displaySkill()}
-            <input onClick={(e) => submitHandler(e)} type="submit" className="submit-button" value={currentSkill !== "a" ? `Roll D20 For Performing ${currentSkill.name}` : "Please Select a Skill"} />
-          </fieldset>
-        </form>
-        <div onClick={close} className="close-button">
-          Close Form
-        </div>
-      </div>
-    </div>
+    <PopupForm formName="Use a Skill" formOnSubmit={(e) => submitHandler(e)} formClose={close}>
+      <fieldset>
+        <label>Select a Skill:</label>
+        <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentSkillHandler(e)}>
+          <option value="a"></option>
+          {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].skills.map((skill, index) => {
+            return (
+              <option value={index} key={index}>
+                {skill.name}
+              </option>
+            )
+          })}
+        </select>
+        {displaySkill()}
+        <p>{currentSkill !== "a" ? `Click 'Submit' to Roll a D20 For Performing ${currentSkill.name}` : "Please Select a Skill"}</p>
+      </fieldset>
+    </PopupForm>
   )
 }
 

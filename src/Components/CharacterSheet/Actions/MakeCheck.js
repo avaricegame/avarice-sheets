@@ -2,6 +2,8 @@ import React, { useContext } from "react"
 
 import StateContext from "../../../StateContext"
 
+import Popup from "../../Popup"
+
 function MakeCheck(props) {
   const charSheetState = useContext(StateContext)
   const close = () => {
@@ -29,22 +31,22 @@ function MakeCheck(props) {
   }
 
   return (
-    <div className="popup-bg">
-      <div className="popup">
-        <div className="cw__100" style={{ backgroundColor: "whitesmoke", marginTop: ".5rem", marginBottom: ".5rem" }}>
-          <h6 className="edit-h6">Make a Check</h6>
-          <div className="cw__container">
-            <button onClick={PHY}>Physique Check</button>
-            <button onClick={INT}>Intelligence Check</button>
-            <button onClick={REF}>Reflex Check</button>
-            <button onClick={CHA}>Charisma Check</button>
-          </div>
-        </div>
-        <div onClick={close} className="close-button" style={{ padding: "3rem 1rem", color: "whitesmoke" }}>
-          Close
-        </div>
+    <Popup popupName="Make a Check" popupClose={close}>
+      <div className="cw__container">
+        <button className="button" onClick={PHY}>
+          Physique Check
+        </button>
+        <button className="button" onClick={INT}>
+          Intelligence Check
+        </button>
+        <button className="button" onClick={REF}>
+          Reflex Check
+        </button>
+        <button className="button" onClick={CHA}>
+          Charisma Check
+        </button>
       </div>
-    </div>
+    </Popup>
   )
 }
 
