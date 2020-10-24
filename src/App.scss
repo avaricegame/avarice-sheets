@@ -3,6 +3,8 @@
 @import "./sass/base/base";
 @import "./sass/base/typography";
 @import "./sass/base/forms";
+@import "./sass/base/button";
+@import "./sass/base/tables";
 
 // PAGES
 @import "./sass/pages/home";
@@ -10,16 +12,13 @@
 @import "./sass/pages/cs-layout";
 
 // COMPONENTS
-@import "./sass/components/button";
 @import "./sass/components/PopupForm";
 @import "./sass/components/Loader";
 @import "./sass/components/FlashMessage";
 @import "./sass/components/item-container";
-@import "./sass/components/table";
-
-@import "./sass/components/navigation";
-@import "./sass/components/footer";
-@import "./sass/components/header";
+@import "./sass/components/Navigation";
+@import "./sass/components/Footer";
+@import "./sass/components/Header";
 
 // OTHER
 @import "./sass/junk";
