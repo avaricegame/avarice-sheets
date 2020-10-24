@@ -28,11 +28,12 @@ function App() {
   const [newCharacterSheet, setNewCharacterSheet] = useState(false)
   const newCharacterSheetHandler = (bool) => {
     setNewCharacterSheet(bool)
+    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
   const [characterSheetArray, setCharacterSheetArray] = useState([])
   const characterSheetArrayHandler = (theArray) => {
     setCharacterSheetArray((prevCharacterSheetArray) => {
-      return prevCharacterSheetArray.concat(theArray)
+      return prevCharacterSheetArray.push(theArray)
     })
   }
   const setCharacterSheetArrayHandler = (theArray) => {
