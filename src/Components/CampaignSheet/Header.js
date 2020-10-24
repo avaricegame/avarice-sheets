@@ -5,11 +5,11 @@ function Header() {
   return (
     <>
       <div className="header-bar">
-        <Link to="/">
+        <a href="/">
           <div className="header-bar__home-button">
             <img src="/assets/temp-logo.png" alt="logo" className="header-bar__home-img" />
           </div>
-        </Link>
+        </a>
         <Link to="/campaign/about">
           <div className="header-bar__about-button">
             <span className="header-bar__about-img">?</span>
