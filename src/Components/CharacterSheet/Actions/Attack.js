@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 
+import PopupForm from "../../PopupForm"
+
 import StateContext from "../../../StateContext"
 
 function Attack(props) {
@@ -107,38 +109,23 @@ function Attack(props) {
     }
   }
   return (
-    <div className="popup-bg">
-      <div className="popup" style={{ width: "60vw" }}>
-        <form>
-          <fieldset>
-            <h6 className="edit-h6">Attack</h6>
-            <label>Select a Weapon to Attack With:</label>
-            <select onChange={(e) => setWeaponHandler(e)} className="item-container__select">
-              <option value="a"></option>
-              {props.equippedWeapons.map((weapon, index) => {
-                return (
-                  <option value={index} key={weapon.id}>
-                    {weapon.name}
-                  </option>
-                )
-              })}
-            </select>
-            {displayWeapon()}
-            <input
-              onClick={(e) => {
-                onAttackSubmit(e)
-              }}
-              type="submit"
-              className="submit-button"
-              value={currentWeapon !== "a" ? `Attack With ${currentWeapon.name}` : "Please Choose a Weapon"}
-            />
-          </fieldset>
-        </form>
-        <div onClick={close} className="close-button">
-          Close Form
-        </div>
-      </div>
-    </div>
+    <PopupForm formName="Attack" formOnSubmit={(e) => onAttackSubmit(e)} formClose={close}>
+      <fieldset>
+        <label>Select a Weapon to Attack With:</label>
+        <select onChange={(e) => setWeaponHandler(e)} className="item-container__select">
+          <option value="a"></option>
+          {props.equippedWeapons.map((weapon, index) => {
+            return (
+              <option value={index} key={weapon.id}>
+                {weapon.name}
+              </option>
+            )
+          })}
+        </select>
+        {displayWeapon()}
+        <p>{currentWeapon !== "a" ? `You have chosen '${currentWeapon.name}.' Please press 'Submit' to attack.` : "Please Choose a Weapon"}</p>
+      </fieldset>
+    </PopupForm>
   )
 }
 
