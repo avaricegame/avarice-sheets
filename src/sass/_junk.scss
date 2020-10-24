@@ -40,3 +40,14 @@
     color: $color-black;
   }
 }
+
+.sign-out-button {
+  background-color: darkred;
+  width: 50%;
+  color: $color-white;
+  margin: 2rem 25% 3rem 25%;
+  transition: all 0.5s;
+  &:hover {
+    padding: 2rem 1rem;
+  }
+}

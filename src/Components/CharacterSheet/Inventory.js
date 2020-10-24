@@ -1307,8 +1307,12 @@ function Inventory(props) {
         <div className="cw__25">
           <h2 className="heading">Money</h2>
           <div className="cw__container">
-            <button onClick={openPayMoney}>Pay Money</button>
-            <button onClick={openRecieveMoney}>Recieve Money</button>
+            <button className="button" onClick={openPayMoney}>
+              Pay Money
+            </button>
+            <button className="button" onClick={openRecieveMoney}>
+              Recieve Money
+            </button>
             <div className="item-container">
               <h3 className="item-container__heading">Uni-Credits / Gold</h3>
               <h4 className="item-container__subheading">Current Savings</h4>
@@ -1354,7 +1358,7 @@ function Inventory(props) {
             </div>
             <div className="item-container">
               <h3 className="item-container__heading">Wearables</h3>
-              <h4 className="item-container__subheading">Wearable Count: {charSheetState.charSheet.wearables.length}</h4>
+              <h4 className="item-container__subheading">Wearables Count: {charSheetState.charSheet.wearables.length}</h4>
               <p className="item-container__select-label">Select a wearable to view the details</p>
               <select onChange={(e) => setWearableHandler(e)} className="item-container__select">
                 <option value="a"></option>
@@ -1368,15 +1372,32 @@ function Inventory(props) {
               </select>
               {displayWearable()}
             </div>
+            <div className="item-container">
+              <h3 className="item-container__heading">Things</h3>
+              <h4 className="item-container__subheading">Things Count: 0</h4>
+              <p className="item-container__select-label">Select a thing to view the details</p>
+              <select className="item-container__select">
+                <option value="a"></option>
+              </select>
+            </div>
           </div>
         </div>
 
         <div className="cw__25">
           <h2 className="heading">Add New</h2>
           <div className="cw__container">
-            <button onClick={openNewWeapon}>Add New Weapon</button>
-            <button onClick={openNewItem}>Add New Item</button>
-            <button onClick={openNewWearable}>Add New Wearable</button>
+            <button className="button" onClick={openNewWeapon}>
+              Add New Weapon
+            </button>
+            <button className="button" onClick={openNewItem}>
+              Add New Item
+            </button>
+            <button className="button" onClick={openNewWearable}>
+              Add New Wearable
+            </button>
+            <button className="button" onClick={openEditSuronis}>
+              Add New Thing
+            </button>
             {/* <button onClick={openEditSuronis}>Edit Suronis Contents</button> */}
           </div>
         </div>

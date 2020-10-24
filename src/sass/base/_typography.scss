@@ -23,3 +23,10 @@ h6 {
   font-weight: 300;
   font-family: "Carrois Gothic SC", sans-serif;
 }
+
+a {
+  color: $color-light-yellow;
+}
+a:hover {
+  color: darken($color-light-yellow, 20%);
+}

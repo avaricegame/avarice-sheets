@@ -286,7 +286,9 @@ function Abilities(props) {
         <div className="cw__25">
           <h2 className="heading">Your Abilities</h2>
           <div className="cw__container">
-            <button onClick={openNewAbility}>Create New Character Ability</button>
+            <button className="button" onClick={openNewAbility}>
+              Create New Character Ability
+            </button>
             {reversedCustomAbilitiesArray.map((ability) => {
               return (
                 <div key={ability.id} className="item-container">

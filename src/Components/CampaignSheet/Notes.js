@@ -25,7 +25,7 @@ function Notes(props) {
               )
             })} */}
             <hr className="horizontal-rule" />
-            <button>Create New</button>
+            <button className="button">Create New</button>
           </div>
         </div>
 

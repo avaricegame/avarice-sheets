@@ -132,14 +132,22 @@ function Stats(props) {
                 <div className="item-container">
                   <h3 className="item-container__heading">Level</h3>
                   <h4 className="item-container__subheading">You are at Level {charSheetState.charSheet.level}</h4>
-                  <button onClick={openLevelUp}>Level Up</button>
-                  <button onClick={openEditLevel}>Remove Level</button>
+                  <button className="button" onClick={openLevelUp}>
+                    Level Up
+                  </button>
+                  <button className="button" onClick={openEditLevel}>
+                    Remove Level
+                  </button>
                 </div>
                 <div className="item-container">
                   <h3 className="item-container__heading">Excellence Chips</h3>
                   <h4 className="item-container__subheading">You have {charSheetState.charSheet.excellenceChips} Excellence Chips</h4>
-                  <button onClick={addEC}>Add Excellence Chip</button>
-                  <button onClick={useEC}>Use Excellence Chip</button>
+                  <button className="button" onClick={addEC}>
+                    Add Excellence Chip
+                  </button>
+                  <button className="button" onClick={useEC}>
+                    Use Excellence Chip
+                  </button>
                   <p>Want to earn an excellence chip? Do something epic and make sure the DM is watching! Excellence Chips can be cashed in whenever you'd like for an immediate perfect roll. Use them wisely.</p>
                 </div>
               </div>

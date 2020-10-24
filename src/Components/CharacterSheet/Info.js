@@ -40,7 +40,9 @@ function Info(props) {
         <div className="cw__33">
           <h2 className="heading">Campaign Information</h2>
           <div className="cw__container">
-            <button onClick={openNewCharacterLog}>Add a New Character Log</button>
+            <button className="button" onClick={openNewCharacterLog}>
+              Add a New Character Log
+            </button>
 
             <div className="item-container" style={{ display: "flex", flexDirection: "column-reverse" }}>
               {charSheetState.charSheet.characterLog.map((log) => {
