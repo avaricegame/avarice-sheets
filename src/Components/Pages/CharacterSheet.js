@@ -19,6 +19,7 @@ import Notes from "../CharacterSheet/Notes"
 import Messages from "../Messages"
 import Navigation from "../CharacterSheet/Navigation"
 import About from "../CharacterSheet/About"
+import FlashMessage from "../FlashMessage"
 // UTILITY
 import Loader from "../Loader"
 // FORMS
@@ -432,22 +433,27 @@ function CharacterSheet(props) {
                 <Switch>
                   <Route path="/campaign/gameplay">
                     <CampaignSheet />
+                    <FlashMessage />
                   </Route>
                   <Route path="/profile">
                     <Profile loggedIn={props.loggedIn} loggedInHandler={props.loggedInHandler} CSIDHandler={props.CSIDHandler} UIDHandler={props.UIDHandler} />
+                    <FlashMessage />
                   </Route>
                   <Route path="/about">
                     <HomeAbout />
+                    <FlashMessage />
                   </Route>
                   <Route path="/" exact>
                     <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} UID={props.UID} newCharacterSheetHandler={props.newCharacterSheetHandler} characterSheetArrayHandler={props.characterSheetArrayHandler} />
                     {props.newCharacterSheet ? <NewCharacterSheet CSID={props.CSID} characterSheetArray={props.characterSheetArray} setCharacterSheetArrayHandler={props.setCharacterSheetArrayHandler} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
+                    <FlashMessage />
                   </Route>
                   <Route path="/character/about">
                     <Header charSheet={charSheet} />
                     <Navigation />
                     <About />
                     <Footer />
+                    <FlashMessage />
                   </Route>
                   <Route path="/character/gameplay" exact>
                     <Header charSheet={charSheet} />
@@ -458,6 +464,7 @@ function CharacterSheet(props) {
                     {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} /> : ""}
                     {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
                     {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
+                    <FlashMessage />
                   </Route>
                   <Route path="/character/inventory" exact>
                     <Header charSheet={charSheet} />
@@ -470,6 +477,7 @@ function CharacterSheet(props) {
                     {newWearable ? <NewWearable CSID={props.CSID} newWearableHandler={newWearableHandler} /> : ""}
                     {newItem ? <NewItem CSID={props.CSID} newItemHandler={newItemHandler} /> : ""}
                     {editSuronis ? <EditSuronis CSID={props.CSID} editSuronisHandler={editSuronisHandler} /> : ""}
+                    <FlashMessage />
                   </Route>
                   <Route path="/character/stats" exact>
                     <Header charSheet={charSheet} />
@@ -477,6 +485,7 @@ function CharacterSheet(props) {
                     <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} levelUpHandler={levelUpHandler} CSID={props.CSID} />
                     <Footer />
                     {levelUp ? <LevelUp CSID={props.CSID} levelUp={levelUp} abilityTree={abilityTree} levelUpHandler={levelUpHandler} charSheet={charSheet} /> : ""}
+                    <FlashMessage />
                   </Route>
                   <Route path="/character/abilities" exact>
                     <Header charSheet={charSheet} />
@@ -485,6 +494,7 @@ function CharacterSheet(props) {
                     <Footer />
                     {newAbility ? <NewAbility CSID={props.CSID} newAbilityHandler={newAbilityHandler} /> : ""}
                     {editAbility ? <EditAbility CSID={props.CSID} editAbilityHandler={editAbilityHandler} /> : ""}
+                    <FlashMessage />
                   </Route>
                   <Route path="/character/info" exact>
                     <Header charSheet={charSheet} />
@@ -493,12 +503,14 @@ function CharacterSheet(props) {
                     <Footer />
                     {newCharacterLog ? <NewCharacterLog CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} /> : ""}
                     {editCharacterLog ? <EditCharacterLog CSID={props.CSID} editCharacterLogHandler={editCharacterLogHandler} /> : ""}
+                    <FlashMessage />
                   </Route>
                   <Route path="/character/messages" exact>
                     <Header charSheet={charSheet} />
                     <Navigation />
                     <Messages />
                     <Footer />
+                    <FlashMessage />
                   </Route>
                   <Route path="/character/notes" exact>
                     <Header charSheet={charSheet} />
@@ -507,6 +519,7 @@ function CharacterSheet(props) {
                     <Footer />
                     {newNote ? <NewNote CSID={props.CSID} newNoteHandler={newNoteHandler} /> : ""}
                     {editNote ? <EditNote CSID={props.CSID} editNoteHandler={editNoteHandler} /> : ""}
+                    <FlashMessage />
                   </Route>
                 </Switch>
               </BrowserRouter>
