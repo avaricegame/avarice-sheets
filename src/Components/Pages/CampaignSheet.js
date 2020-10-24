@@ -12,24 +12,12 @@ import Campaign from "../CampaignSheet/Campaign"
 import Notes from "../CampaignSheet/Notes"
 import Messages from "../Messages"
 import Navigation from "../CampaignSheet/Navigation"
-import Home from "../Pages/Home"
 import About from "../CampaignSheet/About"
-import CharacterSheet from "../Pages/CharacterSheet"
-import Profile from "../Pages/Profile"
 
 function CampaignSheet() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/character/gameplay">
-          <CharacterSheet />
-        </Route>
-        <Route path="/profile/">
-          <Profile />
-        </Route>
-        <Route path="/" exact>
-          <Home />
-        </Route>
         <Route path="/campaign/about">
           <Header />
           <Navigation />

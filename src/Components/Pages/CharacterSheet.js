@@ -8,8 +8,11 @@ import StateContext from "../../StateContext"
 import DispatchContext from "../../DispatchContext"
 
 // COMPONENTS
-import Header from "../CharacterSheet/Header"
-import Footer from "../Footer"
+import CharacterSheetContainer from "../CharacterSheetContainer"
+import Loader from "../Loader"
+import Error from "../Error"
+
+// PAGES
 import Gameplay from "../CharacterSheet/Gameplay"
 import Inventory from "../CharacterSheet/Inventory"
 import Stats from "../CharacterSheet/Stats"
@@ -17,11 +20,8 @@ import Abilities from "../CharacterSheet/Abilities"
 import Info from "../CharacterSheet/Info"
 import Notes from "../CharacterSheet/Notes"
 import Messages from "../Messages"
-import Navigation from "../CharacterSheet/Navigation"
 import About from "../CharacterSheet/About"
-import FlashMessage from "../FlashMessage"
-// UTILITY
-import Loader from "../Loader"
+
 // FORMS
 import HealHP from "../CharacterSheet/Forms/HealHP"
 import TakeDamage from "../CharacterSheet/Forms/TakeDamage"
@@ -38,12 +38,6 @@ import NewCharacterLog from "../CharacterSheet/Forms/NewCharacterLog"
 import EditCharacterLog from "../CharacterSheet/Forms/EditCharacterLog"
 import NewNote from "../CharacterSheet/Forms/NewNote"
 import EditNote from "../CharacterSheet/Forms/EditNote"
-import NewCharacterSheet from "../CharacterSheet/Forms/NewCharacterSheet"
-// PAGES
-import Home from "../Pages/Home"
-import CampaignSheet from "../Pages/CampaignSheet"
-import Profile from "../Pages/Profile"
-import HomeAbout from "../Pages/About"
 
 function CharacterSheet(props) {
   // ******************** SET THE CHARACTER SHEET STATE ******************** //
@@ -219,7 +213,7 @@ function CharacterSheet(props) {
     }
   }
 
-  // ******************** OPENING FORMS CALLBACK FUNCTIONS ******************** //
+  // ******************** OPENING INDIVIDUAL FORMS CALLBACK FUNCTIONS ******************** //
   // GAMEPLAY OPEN FORM CALLBACK FUNCTIONS
   const [heal, setHeal] = useState(false)
   const healHandler = (bool) => {
@@ -302,6 +296,7 @@ function CharacterSheet(props) {
     setEditNote(bool)
     bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
+
   // ******************** BEGIN ALL USE EFFECT LOGIC ******************** //
   useEffect(() => {
     if (props.CSID === undefined || props.CSID === null) {
@@ -446,95 +441,74 @@ function CharacterSheet(props) {
             <DispatchContext.Provider value={dispatch}>
               <BrowserRouter>
                 <Switch>
-                  <Route path="/campaign/gameplay">
-                    <CampaignSheet />
-                    <FlashMessage />
-                  </Route>
-                  <Route path="/profile">
-                    <Profile loggedIn={props.loggedIn} loggedInHandler={props.loggedInHandler} CSIDHandler={props.CSIDHandler} UIDHandler={props.UIDHandler} />
-                    <FlashMessage />
-                  </Route>
-                  <Route path="/about">
-                    <HomeAbout />
-                    <FlashMessage />
-                  </Route>
-                  <Route path="/" exact>
-                    <Home characterSheetArray={props.characterSheetArray} CSIDHandler={props.CSIDHandler} CSID={props.CSID} UID={props.UID} newCharacterSheetHandler={props.newCharacterSheetHandler} characterSheetArrayHandler={props.characterSheetArrayHandler} />
-                    {props.newCharacterSheet ? <NewCharacterSheet CSID={props.CSID} characterSheetArray={props.characterSheetArray} setCharacterSheetArrayHandler={props.setCharacterSheetArrayHandler} newCharacterSheetHandler={props.newCharacterSheetHandler} /> : ""}
-                    <FlashMessage />
-                  </Route>
                   <Route path="/character/about">
-                    <Header charSheet={charSheet} />
-                    <Navigation />
-                    <About />
-                    <Footer />
-                    <FlashMessage />
+                    <CharacterSheetContainer charSheet={charSheet}>
+                      <About />
+                    </CharacterSheetContainer>
                   </Route>
                   <Route path="/character/gameplay" exact>
-                    <Header charSheet={charSheet} />
-                    <Navigation />
-                    <Gameplay charSheet={charSheet} abilityArray={abilityArray} equipmentMod={equipmentMod} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} baseEquipmentMod={baseEquipmentMod} equipmentArmour={equipmentArmour} theRace={theRace} theClass={theClass} equippedWeapons={equippedWeapons} equippedItems={equippedItems} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} />
-                    <Footer />
-                    {heal ? <HealHP healHandler={healHandler} CSID={props.CSID} /> : ""}
-                    {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} /> : ""}
-                    {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
-                    {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
-                    <FlashMessage />
+                    <CharacterSheetContainer charSheet={charSheet}>
+                      <Gameplay charSheet={charSheet} abilityArray={abilityArray} equipmentMod={equipmentMod} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} baseEquipmentMod={baseEquipmentMod} equipmentArmour={equipmentArmour} theRace={theRace} theClass={theClass} equippedWeapons={equippedWeapons} equippedItems={equippedItems} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} />
+                      {/* LOADING IN THE POPUP FORMS BASED ON THE STATE */}
+                      {heal ? <HealHP healHandler={healHandler} CSID={props.CSID} /> : ""}
+                      {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} /> : ""}
+                      {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
+                      {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
+                      {/* END LOADING IN POPUP FORMS */}
+                    </CharacterSheetContainer>
                   </Route>
                   <Route path="/character/inventory" exact>
-                    <Header charSheet={charSheet} />
-                    <Navigation />
-                    <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} holstersUsed={holstersUsed} slotsUsed={slotsUsed} holstersAvailable={holstersAvailable} slotsAvailable={slotsAvailable} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} newWeaponHandler={newWeaponHandler} newWearableHandler={newWearableHandler} newItemHandler={newItemHandler} editSuronisHandler={editSuronisHandler} CSID={props.CSID} />
-                    <Footer />
-                    {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
-                    {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
-                    {newWeapon ? <NewWeapon CSID={props.CSID} newWeaponHandler={newWeaponHandler} /> : ""}
-                    {newWearable ? <NewWearable CSID={props.CSID} newWearableHandler={newWearableHandler} /> : ""}
-                    {newItem ? <NewItem CSID={props.CSID} newItemHandler={newItemHandler} /> : ""}
-                    {editSuronis ? <EditSuronis CSID={props.CSID} editSuronisHandler={editSuronisHandler} /> : ""}
-                    <FlashMessage />
+                    <CharacterSheetContainer charSheet={charSheet}>
+                      <Inventory charSheet={charSheet} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} holstersUsed={holstersUsed} slotsUsed={slotsUsed} holstersAvailable={holstersAvailable} slotsAvailable={slotsAvailable} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} newWeaponHandler={newWeaponHandler} newWearableHandler={newWearableHandler} newItemHandler={newItemHandler} editSuronisHandler={editSuronisHandler} CSID={props.CSID} />
+                      {/* LOADING IN THE POPUP FORMS BASED ON THE STATE */}
+                      {payMoney ? <PayMoney CSID={props.CSID} payMoneyHandler={payMoneyHandler} /> : ""}
+                      {recieveMoney ? <RecieveMoney CSID={props.CSID} recieveMoneyHandler={recieveMoneyHandler} /> : ""}
+                      {newWeapon ? <NewWeapon CSID={props.CSID} newWeaponHandler={newWeaponHandler} /> : ""}
+                      {newWearable ? <NewWearable CSID={props.CSID} newWearableHandler={newWearableHandler} /> : ""}
+                      {newItem ? <NewItem CSID={props.CSID} newItemHandler={newItemHandler} /> : ""}
+                      {editSuronis ? <EditSuronis CSID={props.CSID} editSuronisHandler={editSuronisHandler} /> : ""}
+                      {/* END LOADING IN POPUP FORMS */}
+                    </CharacterSheetContainer>
                   </Route>
                   <Route path="/character/stats" exact>
-                    <Header charSheet={charSheet} />
-                    <Navigation />
-                    <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} levelUpHandler={levelUpHandler} CSID={props.CSID} />
-                    <Footer />
-                    {levelUp ? <LevelUp CSID={props.CSID} levelUp={levelUp} abilityTree={abilityTree} levelUpHandler={levelUpHandler} charSheet={charSheet} /> : ""}
-                    <FlashMessage />
+                    <CharacterSheetContainer charSheet={charSheet}>
+                      <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} levelUpHandler={levelUpHandler} CSID={props.CSID} />
+                      {/* LOADING IN THE POPUP FORMS BASED ON THE STATE */}
+                      {levelUp ? <LevelUp CSID={props.CSID} levelUp={levelUp} abilityTree={abilityTree} levelUpHandler={levelUpHandler} charSheet={charSheet} /> : ""}
+                      {/* END LOADING IN POPUP FORMS */}
+                    </CharacterSheetContainer>
                   </Route>
                   <Route path="/character/abilities" exact>
-                    <Header charSheet={charSheet} />
-                    <Navigation />
-                    <Abilities abilityTree={abilityTree} charSheet={charSheet} abilityArray={abilityArray} newAbilityHandler={newAbilityHandler} editAbilityHandler={editAbilityHandler} CSID={props.CSID} />
-                    <Footer />
-                    {newAbility ? <NewAbility CSID={props.CSID} newAbilityHandler={newAbilityHandler} /> : ""}
-                    {editAbility ? <EditAbility CSID={props.CSID} editAbilityHandler={editAbilityHandler} /> : ""}
-                    <FlashMessage />
+                    <CharacterSheetContainer charSheet={charSheet}>
+                      <Abilities abilityTree={abilityTree} charSheet={charSheet} abilityArray={abilityArray} newAbilityHandler={newAbilityHandler} editAbilityHandler={editAbilityHandler} CSID={props.CSID} />
+                      {/* LOADING IN THE POPUP FORMS BASED ON THE STATE */}
+                      {newAbility ? <NewAbility CSID={props.CSID} newAbilityHandler={newAbilityHandler} /> : ""}
+                      {editAbility ? <EditAbility CSID={props.CSID} editAbilityHandler={editAbilityHandler} /> : ""}
+                      {/* END LOADING IN POPUP FORMS */}
+                    </CharacterSheetContainer>
                   </Route>
                   <Route path="/character/info" exact>
-                    <Header charSheet={charSheet} />
-                    <Navigation />
-                    <Info charSheet={charSheet} theRace={theRace} theClass={theClass} CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} editCharacterLogHandler={editCharacterLogHandler} />
-                    <Footer />
-                    {newCharacterLog ? <NewCharacterLog CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} /> : ""}
-                    {editCharacterLog ? <EditCharacterLog CSID={props.CSID} editCharacterLogHandler={editCharacterLogHandler} /> : ""}
-                    <FlashMessage />
+                    <CharacterSheetContainer charSheet={charSheet}>
+                      <Info charSheet={charSheet} theRace={theRace} theClass={theClass} CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} editCharacterLogHandler={editCharacterLogHandler} />
+                      {/* LOADING IN THE POPUP FORMS BASED ON THE STATE */}
+                      {newCharacterLog ? <NewCharacterLog CSID={props.CSID} newCharacterLogHandler={newCharacterLogHandler} /> : ""}
+                      {editCharacterLog ? <EditCharacterLog CSID={props.CSID} editCharacterLogHandler={editCharacterLogHandler} /> : ""}
+                      {/* END LOADING IN POPUP FORMS */}
+                    </CharacterSheetContainer>
                   </Route>
                   <Route path="/character/messages" exact>
-                    <Header charSheet={charSheet} />
-                    <Navigation />
-                    <Messages />
-                    <Footer />
-                    <FlashMessage />
+                    <CharacterSheetContainer charSheet={charSheet}>
+                      <Messages />
+                    </CharacterSheetContainer>
                   </Route>
                   <Route path="/character/notes" exact>
-                    <Header charSheet={charSheet} />
-                    <Navigation />
-                    <Notes charSheet={charSheet} CSID={props.CSID} newNoteHandler={newNoteHandler} editNoteHandler={editNoteHandler} />
-                    <Footer />
-                    {newNote ? <NewNote CSID={props.CSID} newNoteHandler={newNoteHandler} /> : ""}
-                    {editNote ? <EditNote CSID={props.CSID} editNoteHandler={editNoteHandler} /> : ""}
-                    <FlashMessage />
+                    <CharacterSheetContainer charSheet={charSheet}>
+                      <Notes charSheet={charSheet} CSID={props.CSID} newNoteHandler={newNoteHandler} editNoteHandler={editNoteHandler} />
+                      {/* LOADING IN THE POPUP FORMS BASED ON THE STATE */}
+                      {newNote ? <NewNote CSID={props.CSID} newNoteHandler={newNoteHandler} /> : ""}
+                      {editNote ? <EditNote CSID={props.CSID} editNoteHandler={editNoteHandler} /> : ""}
+                      {/* END LOADING IN POPUP FORMS */}
+                    </CharacterSheetContainer>
                   </Route>
                 </Switch>
               </BrowserRouter>
@@ -542,44 +516,16 @@ function CharacterSheet(props) {
           </StateContext.Provider>
         )
       } else {
-        return (
-          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
-            <h1>You have been logged out.</h1>
-            <p>Please sign back in to view your character sheets.</p>
-            <h1 style={{ marginTop: "6rem" }}>
-              <Link to="/">Avarice Sheets</Link>
-            </h1>
-          </div>
-        )
+        return <Error />
       }
     } else {
       if (props.CSID === undefined || props.CSID === null) {
-        return (
-          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
-            <h1>You are logged in, but have not chosen a character sheet to view.</h1>
-            <p>Note to self: Perhaps when a user logs in, automatically set the character sheet id to match their last played character to prevent this error.</p>
-            <p>(do this by having a property in the user object that is latestCSID and is set whenever they click on a character sheet on their homepage)</p>
-            <h1 style={{ marginTop: "6rem" }}>
-              <Link to="/">Avarice Sheets</Link>
-            </h1>
-          </div>
-        )
+        return <Error />
       }
-      return (
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
-          <Loader />
-        </div>
-      )
+      return <Loader />
     }
   } else {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", padding: "6rem" }}>
-        <h1>You are not logged in.</h1>
-        <h1 style={{ marginTop: "6rem" }}>
-          <Link to="/">Avarice Sheets</Link>
-        </h1>
-      </div>
-    )
+    return <Error />
   }
 }
 

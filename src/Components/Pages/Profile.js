@@ -1,6 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
+import Error from "../Error"
+
 function Profile(props) {
   const signOutHandler = () => {
     //props.CSIDHandler(0)
@@ -70,7 +72,7 @@ function Profile(props) {
       </div>
     )
   } else {
-    return "hi"
+    return <Error />
   }
 }
 

@@ -49,7 +49,9 @@ function Home(props) {
           <div className="campaign-sheets">
             <h2 className="heading">Character Sheets</h2>
             <div className="sheets-container">
-              <button onClick={openNewCharacterSheet}>Create a New Character Sheet</button>
+              <button className="button" onClick={openNewCharacterSheet}>
+                Create a New Character Sheet
+              </button>
               {reversedCharacterSheetArray.map((cs) => {
                 return (
                   <Link onClick={(e, id) => clickHandler(e, cs.charid)} to={`/character/gameplay`} key={cs.charid} className="fixing-link-settings">
@@ -87,7 +89,7 @@ function Home(props) {
           <div className="character-sheets">
             <h2 className="heading">Campaign Sheets</h2>
             <div className="sheets-container">
-              <button>Create a New Campaign</button>
+              <button className="button">Create a New Campaign</button>
 
               <Link to="/campaign/gameplay" className="fixing-link-settings">
                 <div className="item-container item-container--hover-highlight">
@@ -131,11 +133,7 @@ function Home(props) {
       </>
     )
   } else {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh" }}>
-        <Loader />
-      </div>
-    )
+    return <Loader />
   }
 }
 
