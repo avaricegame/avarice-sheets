@@ -1,6 +1,8 @@
 import React from "react"
 //import Axios from "axios"
 
+import PopupForm from "../../PopupForm"
+
 function EditSuronis(props) {
   // const [amount, setAmount] = useState()
   const close = () => {
@@ -25,20 +27,11 @@ function EditSuronis(props) {
     //   })
   }
   return (
-    <div className="popup-bg">
-      <div className="popup">
-        <form onSubmit={(e) => submitHandler(e)}>
-          <fieldset>
-            <h6 className="edit-h6">Form Title</h6>
-            <label>this form is under construction</label>
-            <input type="submit" className="submit-button" value="Submit" />
-          </fieldset>
-        </form>
-        <div onClick={close} className="close-button">
-          Close Form
-        </div>
-      </div>
-    </div>
+    <PopupForm formName="Add a New Thing" formOnSubmit={(e) => submitHandler(e)} formClose={close}>
+      <fieldset>
+        <label>this form is under construction</label>
+      </fieldset>
+    </PopupForm>
   )
 }
 
