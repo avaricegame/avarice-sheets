@@ -28,7 +28,7 @@ textarea,
 select {
   padding: 1rem;
   border: none;
-  box-shadow: 0 0 15px rgb(207, 207, 207);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   min-height: 30px;
   width: 96%;
   margin: 0.5rem 2.5%;
@@ -75,9 +75,7 @@ form select {
 
 // styling for the level up form
 .abilities-title-on-level-up-form {
-  // font-size: 1.8rem;
   text-transform: uppercase;
-  // font-weight: bold;
   margin-left: 0.5rem;
   background-color: $color-black;
   color: $color-white;
