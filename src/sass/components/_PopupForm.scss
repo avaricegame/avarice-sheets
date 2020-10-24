@@ -23,6 +23,10 @@
     overflow-y: hidden;
     padding-top: 5rem;
     padding-bottom: 6rem;
+    @media only screen and (max-width: 900px) {
+      width: 90%;
+      margin-right: 3%;
+    }
   }
 
   // &__popup.activated {
@@ -48,7 +52,7 @@
     bottom: 0;
     left: 0;
     background-color: $color-white;
-    width: 400px;
+    width: 100%;
     padding: 1.5rem 0;
     border-top: 1px solid lighten($color-gray, 15%);
     display: flex;
