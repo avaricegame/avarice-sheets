@@ -132,63 +132,51 @@ function Info(props) {
                 <em>"{props.theClass.quote}"</em>
               </p>
               <p>{props.theClass.description}</p>
-              <p>
-                <strong>Skills: </strong>Skill 1, Skill 2, Skill 7, Skill 9
-              </p>
+              <p>Specializations:</p>
               <table>
                 <tbody>
                   <tr>
-                    <td>
-                      <strong>Base Stat Modifiers:</strong>
-                    </td>
+                    <td>Strength Physique:</td>
+                    <td>{props.theClass.specializations.phyStrength}</td>
                   </tr>
                   <tr>
-                    <td>Physique:</td>
-                    <td>{props.theClass.baseStats[0]}</td>
+                    <td>Constitution Physique:</td>
+                    <td>{props.theClass.specializations.phyHealth}</td>
                   </tr>
                   <tr>
-                    <td>Intelligence:</td>
-                    <td>{props.theClass.baseStats[1]}</td>
+                    <td>Academic Intelligence:</td>
+                    <td>{props.theClass.specializations.intIntelligence}</td>
                   </tr>
                   <tr>
-                    <td>Reflex:</td>
-                    <td>{props.theClass.baseStats[2]}</td>
+                    <td>Technical Intelligence:</td>
+                    <td>{props.theClass.specializations.intTechnology}</td>
                   </tr>
                   <tr>
-                    <td>Charisma:</td>
-                    <td>{props.theClass.baseStats[3]}</td>
+                    <td>Reflex Dexterity:</td>
+                    <td>{props.theClass.specializations.refDexterity}</td>
+                  </tr>
+                  <tr>
+                    <td>Speed Dexterity:</td>
+                    <td>{props.theClass.specializations.refReaction}</td>
+                  </tr>
+                  <tr>
+                    <td>Speech Charisma:</td>
+                    <td>{props.theClass.specializations.chaCharisma}</td>
+                  </tr>
+                  <tr>
+                    <td>Performance Charisma:</td>
+                    <td>{props.theClass.specializations.chaPerform}</td>
+                  </tr>
+                  <tr>
+                    <td>Ranged Combat:</td>
+                    <td>{props.theClass.specializations.comRanged}</td>
+                  </tr>
+                  <tr>
+                    <td>Melee Combat:</td>
+                    <td>{props.theClass.specializations.comMelee}</td>
                   </tr>
                 </tbody>
               </table>
-              {/* <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      <strong>Skills:</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Skill 1: </td>
-                    <td>{props.theClass.skills.skill1}</td>
-                  </tr>
-                  <tr>
-                    <td>Skill 2: </td>
-                    <td>{props.theClass.skills.skill2}</td>
-                  </tr>
-                  <tr>
-                    <td>Skill 3: </td>
-                    <td>{props.theClass.skills.skill3}</td>
-                  </tr>
-                  <tr>
-                    <td>Skill 4: </td>
-                    <td>{props.theClass.skills.skill4}</td>
-                  </tr>
-                  <tr>
-                    <td>Skill 5: </td>
-                    <td>{props.theClass.skills.skill5}</td>
-                  </tr>
-                </tbody>
-              </table> */}
             </div>
             <div className="item-container">
               <h3 className="item-container__heading">Race Details and Information</h3>
@@ -198,38 +186,9 @@ function Info(props) {
                 <em>"{props.theRace.quote}"</em>
               </p>
               <p>{props.theRace.description}</p>
+              <p>More Information:</p>
               <table>
                 <tbody>
-                  <tr>
-                    <td>
-                      <strong>Base Stat Modifiers:</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Physique:</td>
-                    <td>{props.theRace.baseStats[0]}</td>
-                  </tr>
-                  <tr>
-                    <td>Intelligence:</td>
-                    <td>{props.theRace.baseStats[1]}</td>
-                  </tr>
-                  <tr>
-                    <td>Reflex:</td>
-                    <td>{props.theRace.baseStats[2]}</td>
-                  </tr>
-                  <tr>
-                    <td>Charisma:</td>
-                    <td>{props.theRace.baseStats[3]}</td>
-                  </tr>
-                </tbody>
-              </table>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      <strong>More Information:</strong>
-                    </td>
-                  </tr>
                   <tr>
                     <td>Location:</td>
                     <td>{props.theRace.location}</td>
@@ -257,6 +216,51 @@ function Info(props) {
                   <tr>
                     <td>Enemies:</td>
                     <td>{props.theRace.enemies}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Specializations:</p>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Strength Physique:</td>
+                    <td>{props.theRace.specializations.phyStrength}</td>
+                  </tr>
+                  <tr>
+                    <td>Constitution Physique:</td>
+                    <td>{props.theRace.specializations.phyHealth}</td>
+                  </tr>
+                  <tr>
+                    <td>Academic Intelligence:</td>
+                    <td>{props.theRace.specializations.intIntelligence}</td>
+                  </tr>
+                  <tr>
+                    <td>Technical Intelligence:</td>
+                    <td>{props.theRace.specializations.intTechnology}</td>
+                  </tr>
+                  <tr>
+                    <td>Reflex Dexterity:</td>
+                    <td>{props.theRace.specializations.refDexterity}</td>
+                  </tr>
+                  <tr>
+                    <td>Speed Dexterity:</td>
+                    <td>{props.theRace.specializations.refReaction}</td>
+                  </tr>
+                  <tr>
+                    <td>Speech Charisma:</td>
+                    <td>{props.theRace.specializations.chaCharisma}</td>
+                  </tr>
+                  <tr>
+                    <td>Performance Charisma:</td>
+                    <td>{props.theRace.specializations.chaPerform}</td>
+                  </tr>
+                  <tr>
+                    <td>Ranged Combat:</td>
+                    <td>{props.theRace.specializations.comRanged}</td>
+                  </tr>
+                  <tr>
+                    <td>Melee Combat:</td>
+                    <td>{props.theRace.specializations.comMelee}</td>
                   </tr>
                 </tbody>
               </table>

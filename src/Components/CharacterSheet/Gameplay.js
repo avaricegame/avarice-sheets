@@ -118,11 +118,12 @@ function Gameplay(props) {
               Use an Item
             </button>
             <button className="button" onClick={useAbilityHandler}>
-              Use Ability
+              Use an Ability
             </button>
             <button className="button" onClick={useSkillHandler}>
-              Use Skill
+              Use a Thing
             </button>
+            <button className="button">Equip and Unequip</button>
             {/* <button className="button" onClick={payMoneyHandler}>Pay Money</button> */}
             <button className="button" onClick={sellItemsHandler}>
               Sell Inventory Items
@@ -168,38 +169,86 @@ function Gameplay(props) {
         </div>
 
         <div className="cw__25">
-          <h2 className="heading">Quick Links</h2>
+          <h2 className="heading">Energy Points</h2>
           <div className="cw__container">
-            <Link to="/character/inventory">
-              <button className="button">Equip / Unequip Armour</button>
-            </Link>
-            <Link to="/character/abilities">
-              <button className="button">See My Abilities</button>
-            </Link>
-            <Link to="/character/abilities">
-              <button className="button">Character Information</button>
-            </Link>
-            <Link to="/character/info">
-              <button className="button">My Race and Class</button>
-            </Link>
-            <Link to="/character/info">
-              <button className="button">Campaign Info</button>
-            </Link>
-            <Link to="/character/stats">
-              <button className="button">See My Stats</button>
-            </Link>
-            <Link to="/character/stats">
-              <button className="button">Excellence Chips</button>
-            </Link>
-            <Link to="/character/stats">
-              <button className="button">Level Up</button>
-            </Link>
-            <Link to="/character/notes">
-              <button className="button">My Notes</button>
-            </Link>
-            <Link to="/character/messages">
-              <button className="button">Messages</button>
-            </Link>
+            <button className="button">Take a Short Rest</button>
+            <button className="button">Take a Long Rest</button>
+            <div className="item-container">
+              <h3 className="item-container__heading">Energy Points</h3>
+              <h4 className="item-container__subheading">Physique</h4>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Strength</td>
+                    <td>o o o</td>
+                  </tr>
+                  <tr>
+                    <td>Constitution</td>
+                    <td>o o o o</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Intelligence</h4>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Academic</td>
+                    <td>o o o</td>
+                  </tr>
+                  <tr>
+                    <td>Technical</td>
+                    <td>o o o o o</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Dexterity</h4>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Reflex</td>
+                    <td>o o o o o o</td>
+                  </tr>
+                  <tr>
+                    <td>Speed</td>
+                    <td>o o o o o</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Charisma</h4>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Speech</td>
+                    <td>o o o</td>
+                  </tr>
+                  <tr>
+                    <td>Performance</td>
+                    <td>o o</td>
+                  </tr>
+                </tbody>
+              </table>
+              {/* <h4 className="item-container__subheading">Combat</h4>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Ranged</td>
+                    <td>o o o o o o</td>
+                  </tr>
+                  <tr>
+                    <td>Melee</td>
+                    <td>o o o o</td>
+                  </tr>
+                </tbody>
+              </table> */}
+            </div>
+            <p>What do Energy Points do?</p>
+            <p>Energy points keep track of your energy between rests during the campaign. You start of with 3 energy points per skill, but when a skill is upgraded you get an additionial energy point.</p>
+            <p>What uses an Energy Point?</p>
+            <p>Making a check for a skill (D20 roll) uses an Energy Point. Attacking with a ranged or melee weapon does not use a skill point.</p>
+            <p>What happens when I am out of Energy Points?</p>
+            <p>When you have used all your Energy Points, you can still make checks (D20 roll), but for each check beyond the last one you temporarily go down 1 skill level. Be careful! This makes it easy to fail.</p>
+            <p>How do I replenish my Energy Points?</p>
+            <p>Energy Points are replenshed during long rests and short rests. Long rests replenish all Energy Points, and short rests replenish half (rounded down).</p>
           </div>
         </div>
         {/* /////// CLOSE PAGE CONTAINER /////// */}

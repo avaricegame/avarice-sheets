@@ -30,66 +30,6 @@ function Stats(props) {
       alert("You cannot remove a level, because you are already at level 0")
     }
   }
-  const [PHY, setPHY] = useState(charSheetState.charSheet.baseStatsTempMod[0])
-  const [INT, setINT] = useState(charSheetState.charSheet.baseStatsTempMod[1])
-  const [REF, setREF] = useState(charSheetState.charSheet.baseStatsTempMod[2])
-  const [CHA, setCHA] = useState(charSheetState.charSheet.baseStatsTempMod[3])
-  const phyChangeHandler = (e) => {
-    setPHY(parseInt(e.target.value))
-    Axios.post("/character/editbasestat", {
-      CSID: props.CSID,
-      statsArray: [parseInt(e.target.value), INT, REF, CHA],
-    })
-      .then(function (response) {
-        //console.log(response)
-        charSheetDispatch({ type: "updateBaseStatsTempMod", value: [PHY, INT, REF, CHA] })
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
-  const intChangeHandler = (e) => {
-    setINT(parseInt(e.target.value))
-    Axios.post("/character/editbasestat", {
-      CSID: props.CSID,
-      statsArray: [PHY, parseInt(e.target.value), REF, CHA],
-    })
-      .then(function (response) {
-        //console.log(response)
-        charSheetDispatch({ type: "updateBaseStatsTempMod", value: [PHY, INT, REF, CHA] })
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
-  const refChangeHandler = (e) => {
-    setREF(parseInt(e.target.value))
-    Axios.post("/character/editbasestat", {
-      CSID: props.CSID,
-      statsArray: [PHY, INT, parseInt(e.target.value), CHA],
-    })
-      .then(function (response) {
-        //console.log(response)
-        charSheetDispatch({ type: "updateBaseStatsTempMod", value: [PHY, INT, REF, CHA] })
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
-  const chaChangeHandler = (e) => {
-    setCHA(parseInt(e.target.value))
-    Axios.post("/character/editbasestat", {
-      CSID: props.CSID,
-      statsArray: [PHY, INT, REF, parseInt(e.target.value)],
-    })
-      .then(function (response) {
-        //console.log(response)
-        charSheetDispatch({ type: "updateBaseStatsTempMod", value: [PHY, INT, REF, CHA] })
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
   const addEC = () => {
     Axios.post("/character/addec", {
       CSID: props.CSID,
@@ -114,9 +54,6 @@ function Stats(props) {
         console.log(error)
       })
   }
-  function calcBaseStatTotal(num) {
-    return charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[num] + props.baseEquipmentMod[num] + charSheetState.charSheet.baseStatsTempMod[num] + props.theRace.baseStats[num] + props.theClass.baseStats[num]
-  }
 
   return (
     <>
@@ -124,192 +61,425 @@ function Stats(props) {
         <h1 className="secondary-header__heading">Stats</h1>
       </div>
       <div className="page-container">
-        <div className="cw__50">
-          <div className="cw__100 cw__100--adjusted">
-            <div className="cw__50--adjusted">
-              <h2 className="heading">Levels and Experience</h2>
-              <div className="cw__container">
-                <div className="item-container">
-                  <h3 className="item-container__heading">Level</h3>
-                  <h4 className="item-container__subheading">You are at Level {charSheetState.charSheet.level}</h4>
-                  <button className="button" onClick={openLevelUp}>
-                    Level Up
-                  </button>
-                  <button className="button" onClick={openEditLevel}>
-                    Remove Level
-                  </button>
-                </div>
-                <div className="item-container">
-                  <h3 className="item-container__heading">Excellence Chips</h3>
-                  <h4 className="item-container__subheading">You have {charSheetState.charSheet.excellenceChips} Excellence Chips</h4>
-                  <button className="button" onClick={addEC}>
-                    Add Excellence Chip
-                  </button>
-                  <button className="button" onClick={useEC}>
-                    Use Excellence Chip
-                  </button>
-                  <p>Want to earn an excellence chip? Do something epic and make sure the DM is watching! Excellence Chips can be cashed in whenever you'd like for an immediate perfect roll. Use them wisely.</p>
-                </div>
-              </div>
+        <div className="cw__25">
+          <h2 className="heading">Levels and Experience</h2>
+          <div className="cw__container">
+            <div className="item-container">
+              <h3 className="item-container__heading">Level</h3>
+              <h4 className="item-container__subheading">You are at Level {charSheetState.charSheet.level}</h4>
+              <button className="button" onClick={openLevelUp}>
+                Level Up
+              </button>
+              <button className="button" onClick={openEditLevel}>
+                Remove Level
+              </button>
+              <p>How do I level up? You level up at the end of a mission (or whenever your DM tells you to). When you level up you get to choose a new ability to upgrade or learn from your ability tree.</p>
             </div>
-
-            <div className="cw__50--adjusted">
-              <h2 className="heading">Proficiencies</h2>
-              <div className="cw__container">
-                <div className="item-container">
-                  <h3 className="item-container__heading">Proficiencies</h3>
-                  <h4 className="item-container__subheading">When Performing Attack Actions</h4>
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Proficiency</th>
-                        <th>Value</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].proficiency.map((prof, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{prof.name}</td>
-                            <td>{prof.value}</td>
-                          </tr>
-                        )
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+            <div className="item-container">
+              <h3 className="item-container__heading">Excellence Chips</h3>
+              <h4 className="item-container__subheading">You have {charSheetState.charSheet.excellenceChips} Excellence Chips</h4>
+              <button className="button" onClick={addEC}>
+                Add Excellence Chip
+              </button>
+              <button className="button" onClick={useEC}>
+                Use Excellence Chip
+              </button>
+              <p>Want to earn an excellence chip? Do something epic and make sure the DM is watching! Excellence Chips can be cashed in whenever you'd like for an immediate perfect roll. Use them wisely.</p>
             </div>
           </div>
         </div>
 
-        <div className="cw__50">
-          <h2 className="heading">Base Stats</h2>
+        <div className="cw__25">
+          <h2 className="heading">Tokens</h2>
           <div className="cw__container">
             <div className="item-container">
-              <h3 className="item-container__heading">Base Stats Table</h3>
-              <h4 className="item-container__subheading">When Performing General Actions</h4>
-              <table>
+              <h3 className="item-container__heading">Skill Tokens</h3>
+              <h4 className="item-container__subheading">Physique</h4>
+              <table className="specializations-table">
                 <thead>
                   <tr>
-                    <th>Ability</th>
-                    <th>Total</th>
-                    <th>Level Ups</th>
-                    <th>Equipment Mod</th>
-                    <th>Temp Mod</th>
-                    <th>Race/Class Mod</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
+                    <td className="td--fixedwidth">Strength</td>
                     <td>
-                      Physique
-                      <br /> (PHY)
+                      <input type="checkbox" />
                     </td>
-                    <td>{calcBaseStatTotal(0)}</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[0]}</td>
-                    <td>{props.baseEquipmentMod[0]}</td>
                     <td>
-                      <input
-                        type="number"
-                        name="PHY"
-                        value={PHY}
-                        onChange={(e) => {
-                          phyChangeHandler(e)
-                        }}
-                      />
+                      <input type="checkbox" />
                     </td>
-                    <td>{props.theRace.baseStats[0] + props.theClass.baseStats[0]}</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <button>Level Up</button>
+                    </td>
                   </tr>
                   <tr>
+                    <td className="td--fixedwidth">Constitution</td>
                     <td>
-                      Intelligence
-                      <br /> (INT)
+                      <input type="checkbox" />
                     </td>
-                    <td>{calcBaseStatTotal(1)}</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[1]}</td>
-                    <td>{props.baseEquipmentMod[1]}</td>
                     <td>
-                      <input
-                        type="number"
-                        name="INT"
-                        value={INT}
-                        onChange={(e) => {
-                          intChangeHandler(e)
-                        }}
-                      />
+                      <input type="checkbox" />
                     </td>
-                    <td>{props.theRace.baseStats[1] + props.theClass.baseStats[1]}</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <button>Level Up</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Intelligence</h4>
+              <table className="specializations-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="td--fixedwidth">Academic</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <button>Level Up</button>
+                    </td>
                   </tr>
                   <tr>
+                    <td className="td--fixedwidth">Technical</td>
                     <td>
-                      Reflex
-                      <br /> (REF)
+                      <input type="checkbox" />
                     </td>
-                    <td>{calcBaseStatTotal(2)}</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[2]}</td>
-                    <td>{props.baseEquipmentMod[2]}</td>
                     <td>
-                      <input
-                        type="number"
-                        name="REF"
-                        value={REF}
-                        onChange={(e) => {
-                          refChangeHandler(e)
-                        }}
-                      />
+                      <input type="checkbox" />
                     </td>
-                    <td>{props.theRace.baseStats[2] + props.theClass.baseStats[2]}</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <button>Level Up</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Dexterity</h4>
+              <table className="specializations-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="td--fixedwidth">Reflex</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <button>Level Up</button>
+                    </td>
                   </tr>
                   <tr>
+                    <td className="td--fixedwidth">Speed</td>
                     <td>
-                      Charisma
-                      <br /> (CHA)
+                      <input type="checkbox" />
                     </td>
-                    <td>{calcBaseStatTotal(3)}</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].baseStats[3]}</td>
-                    <td>{props.baseEquipmentMod[3]}</td>
                     <td>
-                      <input
-                        type="number"
-                        name="CHA"
-                        value={CHA}
-                        onChange={(e) => {
-                          chaChangeHandler(e)
-                        }}
-                      />
+                      <input type="checkbox" />
                     </td>
-                    <td>{props.theRace.baseStats[3] + props.theClass.baseStats[3]}</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <button>Level Up</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Charisma</h4>
+              <table className="specializations-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="td--fixedwidth">Speech</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <button>Level Up</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="td--fixedwidth">Performance</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <button>Level Up</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Combat</h4>
+              <table className="specializations-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="td--fixedwidth">Ranged</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <button>Level Up</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="td--fixedwidth">Melee</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      <button>Level Up</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <p>What do the Skill Tokens do?</p>
+            <p>Earning skill tokens is how you level up a skill. If you earn three tokens, then you can level up the skill.</p>
+            <p>How do I earn Skill Tokens?</p>
+            <p>Skill tokens are earned when you successfuly pass a check (D20 roll) for the skills during a campaign.</p>
           </div>
+        </div>
+
+        <div className="cw__50">
           <h2 className="heading">Skills</h2>
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Skills Table</h3>
-              <h4 className="item-container__subheading">When Performing Skilled Actions</h4>
-              <table>
+              <h4 className="item-container__subheading">Physique</h4>
+              <table className="skills-table">
                 <thead>
-                  <tr>
-                    <th>Skill</th>
-                    <th>Total</th>
-                    <th>Natural Mod</th>
-                    <th>Equipment Mod</th>
-                  </tr>
+                  <th className="th--first">Skill</th>
+                  <th>Terrible</th>
+                  <th>Bad</th>
+                  <th>Normal</th>
+                  <th>Good</th>
+                  <th>Great</th>
+                  <th>Fantastic</th>
                 </thead>
                 <tbody>
-                  {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].skills.map((skill, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{skill.name}</td>
-                        <td>{skill.natMod + props.equipmentMod[index]}</td>
-                        <td>{skill.natMod}</td>
-                        <td>{props.equipmentMod[index]}</td>
-                      </tr>
-                    )
-                  })}
+                  <tr>
+                    <td className="td--fixedwidth">Strength</td>
+                    <td></td>
+                    <td></td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.phyStrength}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td className="td--fixedwidth">Constitution</td>
+                    <td></td>
+                    <td></td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.phyHealth}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Intelligence</h4>
+              <table className="skills-table">
+                <thead>
+                  <th className="th--first">Skill</th>
+                  <th>Terrible</th>
+                  <th>Bad</th>
+                  <th>Normal</th>
+                  <th>Good</th>
+                  <th>Great</th>
+                  <th>Fantastic</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="td--fixedwidth">Academic</td>
+                    <td></td>
+                    <td></td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.intIntelligence}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td className="td--fixedwidth">Technical</td>
+                    <td>Terrible</td>
+                    <td>Bad</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.intTechnology}</td>
+                    <td>Good</td>
+                    <td>Great</td>
+                    <td>Fantastic</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Dexterity</h4>
+              <table className="skills-table">
+                <thead>
+                  <th className="th--first">Skill</th>
+                  <th>Terrible</th>
+                  <th>Bad</th>
+                  <th>Normal</th>
+                  <th>Good</th>
+                  <th>Great</th>
+                  <th>Fantastic</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="td--fixedwidth">Reflex</td>
+                    <td>Terrible</td>
+                    <td>Bad</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.refDexterity}</td>
+                    <td>Good</td>
+                    <td>Great</td>
+                    <td>Fantastic</td>
+                  </tr>
+                  <tr>
+                    <td className="td--fixedwidth">Speed</td>
+                    <td>Terrible</td>
+                    <td>Bad</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.refReaction}</td>
+                    <td>Good</td>
+                    <td>Great</td>
+                    <td>Fantastic</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Charisma</h4>
+              <table className="skills-table">
+                <thead>
+                  <th className="th--first">Skill</th>
+                  <th>Terrible</th>
+                  <th>Bad</th>
+                  <th>Normal</th>
+                  <th>Good</th>
+                  <th>Great</th>
+                  <th>Fantastic</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="td--fixedwidth">Speech</td>
+                    <td>Terrible</td>
+                    <td>Bad</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.chaCharisma}</td>
+                    <td>Good</td>
+                    <td>Great</td>
+                    <td>Fantastic</td>
+                  </tr>
+                  <tr>
+                    <td className="td--fixedwidth">Performance</td>
+                    <td>Terrible</td>
+                    <td>Bad</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.chaPerform}</td>
+                    <td>Good</td>
+                    <td>Great</td>
+                    <td>Fantastic</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 className="item-container__subheading">Combat</h4>
+              <table className="skills-table">
+                <thead>
+                  <th className="th--first">Skill</th>
+                  <th>Terrible</th>
+                  <th>Bad</th>
+                  <th>Normal</th>
+                  <th>Good</th>
+                  <th>Great</th>
+                  <th>Fantastic</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="td--fixedwidth">Ranged</td>
+                    <td>Terrible</td>
+                    <td>Bad</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.comRanged}</td>
+                    <td>Good</td>
+                    <td>Great</td>
+                    <td>Fantastic</td>
+                  </tr>
+                  <tr>
+                    <td className="td--fixedwidth">Melee</td>
+                    <td>Terrible</td>
+                    <td>Bad</td>
+                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.comMelee}</td>
+                    <td>Good</td>
+                    <td>Great</td>
+                    <td>Fantastic</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

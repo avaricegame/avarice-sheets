@@ -61,8 +61,6 @@ function CharacterSheet(props) {
   const [holstersAvailable, setHolstersAvailable] = useState()
   const [slotsAvailable, setSlotsAvailable] = useState()
 
-  const [equipmentMod, setEquipmentMod] = useState([]) // one of these for each skill, in the same order as the skills array in level ups
-  const [baseEquipmentMod, setBaseEquipmentMod] = useState([]) // one of these for each base stat, in the order they are planned to be
   const [equipmentArmour, setEquipmentArmour] = useState()
 
   function charSheetReducer(draft, action) {
@@ -128,9 +126,6 @@ function CharacterSheet(props) {
         break
       case "useEC":
         draft.charSheet.excellenceChips = draft.charSheet.excellenceChips - 1
-        break
-      case "updateBaseStatsTempMod":
-        draft.charSheet.baseStatsTempMod = action.value
         break
       case "addNewAbility":
         draft.charSheet.customAbilities.push(action.value)
@@ -401,7 +396,6 @@ function CharacterSheet(props) {
       return num.slotsReq + total
     }, 0)
     setSlotsUsed(b)
-
     let c = equippedWearables.reduce((total, num) => {
       return num.slots + total
     }, 0)
@@ -410,23 +404,6 @@ function CharacterSheet(props) {
       return num.holsters + total
     }, 0)
     setHolstersAvailable(d)
-    let phy = equippedWearables.reduce((total, num) => {
-      return num.modifiers.PHY + total
-    }, 0)
-    let int = equippedWearables.reduce((total, num) => {
-      return num.modifiers.INT + total
-    }, 0)
-    let ref = equippedWearables.reduce((total, num) => {
-      return num.modifiers.REF + total
-    }, 0)
-    let cha = equippedWearables.reduce((total, num) => {
-      return num.modifiers.CHA + total
-    }, 0)
-    setBaseEquipmentMod([phy, int, ref, cha])
-    let skill1 = equippedWearables.reduce((total, num) => {
-      return num.modifiers.skill1 + total
-    }, 0)
-    setEquipmentMod([skill1])
     let y = equippedWearables.reduce((total, num) => {
       return parseInt(num.modifiers.armour) + parseInt(total)
     }, 0)
@@ -448,7 +425,7 @@ function CharacterSheet(props) {
                   </Route>
                   <Route path="/character/gameplay" exact>
                     <CharacterSheetContainer charSheet={charSheet}>
-                      <Gameplay charSheet={charSheet} abilityArray={abilityArray} equipmentMod={equipmentMod} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} baseEquipmentMod={baseEquipmentMod} equipmentArmour={equipmentArmour} theRace={theRace} theClass={theClass} equippedWeapons={equippedWeapons} equippedItems={equippedItems} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} />
+                      <Gameplay charSheet={charSheet} abilityArray={abilityArray} healHandler={healHandler} takeDamageHandler={takeDamageHandler} CSID={props.CSID} equipmentArmour={equipmentArmour} theRace={theRace} theClass={theClass} equippedWeapons={equippedWeapons} equippedItems={equippedItems} payMoneyHandler={payMoneyHandler} recieveMoneyHandler={recieveMoneyHandler} />
                       {/* LOADING IN THE POPUP FORMS BASED ON THE STATE */}
                       {heal ? <HealHP healHandler={healHandler} CSID={props.CSID} /> : ""}
                       {takeDamage ? <TakeDamage takeDamageHandler={takeDamageHandler} CSID={props.CSID} /> : ""}
@@ -472,7 +449,7 @@ function CharacterSheet(props) {
                   </Route>
                   <Route path="/character/stats" exact>
                     <CharacterSheetContainer charSheet={charSheet}>
-                      <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} equipmentMod={equipmentMod} baseEquipmentMod={baseEquipmentMod} levelUpHandler={levelUpHandler} CSID={props.CSID} />
+                      <Stats charSheet={charSheet} theRace={theRace} theClass={theClass} abilityTree={abilityTree} levelUpHandler={levelUpHandler} CSID={props.CSID} />
                       {/* LOADING IN THE POPUP FORMS BASED ON THE STATE */}
                       {levelUp ? <LevelUp CSID={props.CSID} levelUp={levelUp} abilityTree={abilityTree} levelUpHandler={levelUpHandler} charSheet={charSheet} /> : ""}
                       {/* END LOADING IN POPUP FORMS */}

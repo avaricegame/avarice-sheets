@@ -1405,6 +1405,7 @@ function Inventory(props) {
             <button className="button" onClick={openEditSuronis}>
               Add New Thing
             </button>
+            {/* <button className="button">Sell an Inventory Item</button> */}
             {/* <button onClick={openEditSuronis}>Edit Suronis Contents</button> */}
           </div>
         </div>

@@ -32,19 +32,31 @@ function MakeCheck(props) {
 
   return (
     <Popup popupName="Make a Check" popupClose={close}>
-      <div className="cw__container">
-        <button className="button" onClick={PHY}>
+      <div className="cw__container cw__container--popup">
+        <h3 className="item-container__subheading">Physique</h3>
+        {/* <button className="button" onClick={PHY}>
           Physique Check
-        </button>
-        <button className="button" onClick={INT}>
+        </button> */}
+        <button className="button">Strength</button>
+        <button className="button">Constitution</button>
+        <h3 className="item-container__subheading">Intelligence</h3>
+        {/* <button className="button" onClick={INT}>
           Intelligence Check
-        </button>
-        <button className="button" onClick={REF}>
+        </button> */}
+        <button className="button">Academic</button>
+        <button className="button">Technical</button>
+        <h3 className="item-container__subheading">Dexterity</h3>
+        {/* <button className="button" onClick={REF}>
           Reflex Check
-        </button>
-        <button className="button" onClick={CHA}>
+        </button> */}
+        <button className="button">Reflex</button>
+        <button className="button">Speed</button>
+        <h3 className="item-container__subheading">Charisma</h3>
+        {/* <button className="button" onClick={CHA}>
           Charisma Check
-        </button>
+        </button> */}
+        <button className="button">Speech</button>
+        <button className="button">Peformance</button>
       </div>
     </Popup>
   )
