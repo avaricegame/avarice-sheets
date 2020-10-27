@@ -112,7 +112,7 @@ function Gameplay(props) {
               Attack
             </button>
             <button className="button" onClick={makeCheckHandler}>
-              Make a Check
+              Make a Skill Check
             </button>
             <button className="button" onClick={useItemHandler}>
               Use an Item
@@ -125,12 +125,15 @@ function Gameplay(props) {
             </button>
             <button className="button">Equip and Unequip</button>
             {/* <button className="button" onClick={payMoneyHandler}>Pay Money</button> */}
-            <button className="button" onClick={sellItemsHandler}>
+            {/* <button className="button" onClick={sellItemsHandler}>
               Sell Inventory Items
-            </button>
+            </button> */}
+
             <button className="button" onClick={rollHandler}>
               Roll Die
             </button>
+            <button className="button">Take a Short Rest</button>
+            <button className="button">Take a Long Rest</button>
           </div>
         </div>
 
@@ -171,84 +174,122 @@ function Gameplay(props) {
         <div className="cw__25">
           <h2 className="heading">Energy Points</h2>
           <div className="cw__container">
-            <button className="button">Take a Short Rest</button>
-            <button className="button">Take a Long Rest</button>
-            <div className="item-container">
-              <h3 className="item-container__heading">Energy Points</h3>
-              <h4 className="item-container__subheading">Physique</h4>
-              <table>
+            {/* <button className="button">Take a Short Rest</button>
+            <button className="button">Take a Long Rest</button> */}
+            <div className="item-container item-container--overflowx">
+              <h3 className="item-container__heading">Energy Points Table</h3>
+              <h4 className="item-container__subheading item-container__terheading--adjusted">Used When You Make a Skill Check</h4>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Physique</h4>
+              <table className="energy-points-table">
                 <tbody>
                   <tr>
-                    <td>Strength</td>
-                    <td>o o o</td>
+                    <td className="td--fixedwidth">Strength</td>
+                    <td>
+                      <span className="energy-point"></span>
+                      <span className="energy-point used"></span>
+                      <span className="energy-point used"></span>
+                    </td>
                   </tr>
                   <tr>
-                    <td>Constitution</td>
-                    <td>o o o o</td>
+                    <td className="td--fixedwidth">Constitution</td>
+                    <td>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Intelligence</h4>
-              <table>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Intelligence</h4>
+              <table className="energy-points-table">
                 <tbody>
                   <tr>
-                    <td>Academic</td>
-                    <td>o o o</td>
+                    <td className="td--fixedwidth">Academic</td>
+                    <td>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                    </td>
                   </tr>
                   <tr>
-                    <td>Technical</td>
-                    <td>o o o o o</td>
+                    <td className="td--fixedwidth">Technical</td>
+                    <td>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Dexterity</h4>
-              <table>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Dexterity</h4>
+              <table className="energy-points-table">
                 <tbody>
                   <tr>
-                    <td>Reflex</td>
-                    <td>o o o o o o</td>
+                    <td className="td--fixedwidth">Reflex</td>
+                    <td>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                    </td>
                   </tr>
                   <tr>
-                    <td>Speed</td>
-                    <td>o o o o o</td>
+                    <td className="td--fixedwidth">Speed</td>
+                    <td>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Charisma</h4>
-              <table>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Charisma</h4>
+              <table className="energy-points-table">
                 <tbody>
                   <tr>
-                    <td>Speech</td>
-                    <td>o o o</td>
+                    <td className="td--fixedwidth">Speech</td>
+                    <td>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                    </td>
                   </tr>
                   <tr>
-                    <td>Performance</td>
-                    <td>o o</td>
+                    <td className="td--fixedwidth">Performance</td>
+                    <td>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-              {/* <h4 className="item-container__subheading">Combat</h4>
-              <table>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Combat</h4>
+              <table className="energy-points-table">
                 <tbody>
                   <tr>
-                    <td>Ranged</td>
-                    <td>o o o o o o</td>
+                    <td className="td--fixedwidth">Ranged</td>
+                    <td>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                    </td>
                   </tr>
                   <tr>
-                    <td>Melee</td>
-                    <td>o o o o</td>
+                    <td className="td--fixedwidth">Melee</td>
+                    <td>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                      <span className="energy-point"></span>
+                    </td>
                   </tr>
                 </tbody>
-              </table> */}
+              </table>
             </div>
-            <p>What do Energy Points do?</p>
-            <p>Energy points keep track of your energy between rests during the campaign. You start of with 3 energy points per skill, but when a skill is upgraded you get an additionial energy point.</p>
-            <p>What uses an Energy Point?</p>
-            <p>Making a check for a skill (D20 roll) uses an Energy Point. Attacking with a ranged or melee weapon does not use a skill point.</p>
-            <p>What happens when I am out of Energy Points?</p>
-            <p>When you have used all your Energy Points, you can still make checks (D20 roll), but for each check beyond the last one you temporarily go down 1 skill level. Be careful! This makes it easy to fail.</p>
-            <p>How do I replenish my Energy Points?</p>
-            <p>Energy Points are replenshed during long rests and short rests. Long rests replenish all Energy Points, and short rests replenish half (rounded down).</p>
           </div>
         </div>
         {/* /////// CLOSE PAGE CONTAINER /////// */}

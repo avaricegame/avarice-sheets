@@ -73,7 +73,7 @@ function Stats(props) {
               <button className="button" onClick={openEditLevel}>
                 Remove Level
               </button>
-              <p>How do I level up? You level up at the end of a mission (or whenever your DM tells you to). When you level up you get to choose a new ability to upgrade or learn from your ability tree.</p>
+              <p>When you level up you get to choose a new ability to upgrade or learn from your ability tree.</p>
             </div>
             <div className="item-container">
               <h3 className="item-container__heading">Excellence Chips</h3>
@@ -90,12 +90,14 @@ function Stats(props) {
         </div>
 
         <div className="cw__25">
-          <h2 className="heading">Tokens</h2>
+          <h2 className="heading">Skill Tokens</h2>
           <div className="cw__container">
-            <div className="item-container">
-              <h3 className="item-container__heading">Skill Tokens</h3>
-              <h4 className="item-container__subheading">Physique</h4>
-              <table className="specializations-table">
+            <div className="item-container item-container--overflowx">
+              <h3 className="item-container__heading">Skill Tokens Table</h3>
+              <h4 className="item-container__subheading item-container__terheading--adjusted">Earned by Succeeding on a Skill Check</h4>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Physique</h4>
+              <table className="skill-tokens-table">
                 <thead>
                   <tr>
                     <th></th>
@@ -108,37 +110,33 @@ function Stats(props) {
                   <tr>
                     <td className="td--fixedwidth">Strength</td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token filled"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token filled"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <button>Level Up</button>
+                      <div className="skill-token"></div>
                     </td>
                   </tr>
                   <tr>
                     <td className="td--fixedwidth">Constitution</td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <button>Level Up</button>
+                      <div className="skill-token"></div>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Intelligence</h4>
-              <table className="specializations-table">
+
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Intelligence</h4>
+              <table className="skill-tokens-table">
                 <thead>
                   <tr>
                     <th></th>
@@ -151,37 +149,33 @@ function Stats(props) {
                   <tr>
                     <td className="td--fixedwidth">Academic</td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <button>Level Up</button>
+                      <div className="skill-token"></div>
                     </td>
                   </tr>
                   <tr>
                     <td className="td--fixedwidth">Technical</td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <button>Level Up</button>
+                      <div className="skill-token"></div>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Dexterity</h4>
-              <table className="specializations-table">
+
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Dexterity</h4>
+              <table className="skill-tokens-table">
                 <thead>
                   <tr>
                     <th></th>
@@ -194,37 +188,33 @@ function Stats(props) {
                   <tr>
                     <td className="td--fixedwidth">Reflex</td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <button>Level Up</button>
+                      <div className="skill-token"></div>
                     </td>
                   </tr>
                   <tr>
                     <td className="td--fixedwidth">Speed</td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <button>Level Up</button>
+                      <div className="skill-token"></div>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Charisma</h4>
-              <table className="specializations-table">
+
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Charisma</h4>
+              <table className="skill-tokens-table">
                 <thead>
                   <tr>
                     <th></th>
@@ -237,37 +227,33 @@ function Stats(props) {
                   <tr>
                     <td className="td--fixedwidth">Speech</td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <button>Level Up</button>
+                      <div className="skill-token"></div>
                     </td>
                   </tr>
                   <tr>
                     <td className="td--fixedwidth">Performance</td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <button>Level Up</button>
+                      <div className="skill-token"></div>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Combat</h4>
-              <table className="specializations-table">
+
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Combat</h4>
+              <table className="skill-tokens-table">
                 <thead>
                   <tr>
                     <th></th>
@@ -280,49 +266,44 @@ function Stats(props) {
                   <tr>
                     <td className="td--fixedwidth">Ranged</td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <button>Level Up</button>
+                      <div className="skill-token"></div>
                     </td>
                   </tr>
                   <tr>
                     <td className="td--fixedwidth">Melee</td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
+                      <div className="skill-token"></div>
                     </td>
                     <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <button>Level Up</button>
+                      <div className="skill-token"></div>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p>What do the Skill Tokens do?</p>
-            <p>Earning skill tokens is how you level up a skill. If you earn three tokens, then you can level up the skill.</p>
-            <p>How do I earn Skill Tokens?</p>
-            <p>Skill tokens are earned when you successfuly pass a check (D20 roll) for the skills during a campaign.</p>
           </div>
         </div>
+
+        {/* {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.comMelee} */}
 
         <div className="cw__50">
           <h2 className="heading">Skills</h2>
           <div className="cw__container">
-            <div className="item-container">
+            <div className="item-container item-container--overflowx">
               <h3 className="item-container__heading">Skills Table</h3>
-              <h4 className="item-container__subheading">Physique</h4>
+              <h4 className="item-container__subheading item-container__terheading--adjusted">Upgraded by Earning Three Skill Tokens of One Kind</h4>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Physique</h4>
+
               <table className="skills-table">
                 <thead>
                   <th className="th--first">Skill</th>
@@ -336,25 +317,62 @@ function Stats(props) {
                 <tbody>
                   <tr>
                     <td className="td--fixedwidth">Strength</td>
-                    <td></td>
-                    <td></td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.phyStrength}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                      <span className="filled"></span>
+                      <div className="filled"></div>
+                    </td>
+                    <td>
+                      <span className="filled"></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div className="skills-table__last"></div>
+                    </td>
                   </tr>
                   <tr>
                     <td className="td--fixedwidth">Constitution</td>
-                    <td></td>
-                    <td></td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.phyHealth}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div className="skills-table__last"></div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Intelligence</h4>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Intelligence</h4>
               <table className="skills-table">
                 <thead>
                   <th className="th--first">Skill</th>
@@ -368,25 +386,62 @@ function Stats(props) {
                 <tbody>
                   <tr>
                     <td className="td--fixedwidth">Academic</td>
-                    <td></td>
-                    <td></td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.intIntelligence}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div className="skills-table__last"></div>
+                    </td>
                   </tr>
                   <tr>
                     <td className="td--fixedwidth">Technical</td>
-                    <td>Terrible</td>
-                    <td>Bad</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.intTechnology}</td>
-                    <td>Good</td>
-                    <td>Great</td>
-                    <td>Fantastic</td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div className="skills-table__last"></div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Dexterity</h4>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Dexterity</h4>
               <table className="skills-table">
                 <thead>
                   <th className="th--first">Skill</th>
@@ -400,25 +455,62 @@ function Stats(props) {
                 <tbody>
                   <tr>
                     <td className="td--fixedwidth">Reflex</td>
-                    <td>Terrible</td>
-                    <td>Bad</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.refDexterity}</td>
-                    <td>Good</td>
-                    <td>Great</td>
-                    <td>Fantastic</td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div className="skills-table__last"></div>
+                    </td>
                   </tr>
                   <tr>
                     <td className="td--fixedwidth">Speed</td>
-                    <td>Terrible</td>
-                    <td>Bad</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.refReaction}</td>
-                    <td>Good</td>
-                    <td>Great</td>
-                    <td>Fantastic</td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div className="skills-table__last"></div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Charisma</h4>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Charisma</h4>
               <table className="skills-table">
                 <thead>
                   <th className="th--first">Skill</th>
@@ -432,25 +524,62 @@ function Stats(props) {
                 <tbody>
                   <tr>
                     <td className="td--fixedwidth">Speech</td>
-                    <td>Terrible</td>
-                    <td>Bad</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.chaCharisma}</td>
-                    <td>Good</td>
-                    <td>Great</td>
-                    <td>Fantastic</td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div className="skills-table__last"></div>
+                    </td>
                   </tr>
                   <tr>
                     <td className="td--fixedwidth">Performance</td>
-                    <td>Terrible</td>
-                    <td>Bad</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.chaPerform}</td>
-                    <td>Good</td>
-                    <td>Great</td>
-                    <td>Fantastic</td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div className="skills-table__last"></div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-              <h4 className="item-container__subheading">Combat</h4>
+              <div className="item-container__line"></div>
+              <h4 className="item-container__subheading item-container__subheading--darker">Combat</h4>
               <table className="skills-table">
                 <thead>
                   <th className="th--first">Skill</th>
@@ -464,21 +593,57 @@ function Stats(props) {
                 <tbody>
                   <tr>
                     <td className="td--fixedwidth">Ranged</td>
-                    <td>Terrible</td>
-                    <td>Bad</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.comRanged}</td>
-                    <td>Good</td>
-                    <td>Great</td>
-                    <td>Fantastic</td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div className="skills-table__last"></div>
+                    </td>
                   </tr>
                   <tr>
                     <td className="td--fixedwidth">Melee</td>
-                    <td>Terrible</td>
-                    <td>Bad</td>
-                    <td>{charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].specializations.comMelee}</td>
-                    <td>Good</td>
-                    <td>Great</td>
-                    <td>Fantastic</td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div></div>
+                    </td>
+                    <td>
+                      <span></span>
+                      <div className="skills-table__last"></div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
