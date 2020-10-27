@@ -76,6 +76,7 @@ function Info(props) {
 
             <div className="item-container">
               <h3 className="item-container__heading">Master Log</h3>
+              <button className="button">Join a Campaign</button>
               {/* <h4 className="item-container__subheading">For: Fluttering Butterflies Campaign</h4>
               <p>
                 <strong>Mission III: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
@@ -91,6 +92,7 @@ function Info(props) {
 
           <div className="item-container">
             <h3 className="item-container__heading">Campaign Details</h3>
+            <button className="button">Join a Campaign</button>
             {/* <h4 className="item-container__subheading">For: Fluttering Butterflies Campaign</h4>
             <p>
               <strong>Background: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
