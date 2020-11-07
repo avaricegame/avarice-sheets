@@ -21,7 +21,7 @@ function About() {
             <h3 className="item-container__subheading">Attack</h3>
             <p>When you choose the Attack action you will be prompted to choose a weapon. Note that only equipped weapons appear in this list.</p>
             <p>
-              If you cannot find a weapon you know you have, go to the Inventory page and make sure it is equipped (note that equipping something takes one action during combat phases... <a>see all rules here</a>). After you choose your weapon, you may attack.
+              If you cannot find a weapon you know you have, go to the Inventory page and make sure it is equipped (note that equipping something takes one action during combat phases... <a href="/">see all rules here</a>). After you choose your weapon, you may attack.
             </p>
             <p>The success or failure of your D20 roll is dependent on your Ranged or Melee skills (depending on the weapon). Your proficiency is determined by the skill associated with your chosen weapons proficiency. Proficiencies multiply your damage done by their value.</p>
             <h3 className="item-container__subheading">Make a Skill Check</h3>
@@ -83,10 +83,10 @@ function About() {
             <h3 className="item-container__subheading item-container__subheading--lighter">Equipping Weapons, Items, and Wearables</h3>
             <p>There are two facets to equipping. Wearables is the first, and Weapons and Items is the second. The Wearables you have equipped have a certain amount of weapon holsters and items slots, which determine how many weapons and items you can have equipped.</p>
             <p>
-              Wearables are equipped to a body area, depending on the type of wearable it is (i.e. a helmet goes on your head). For <a href="#">more information on Wearables and body Areas</a> visit our website. Naturally, you can only have one wearable equipped to each body area available. Certain Wearables may require a certain level with a certain skill in order to be equipped as well.
+              Wearables are equipped to a body area, depending on the type of wearable it is (i.e. a helmet goes on your head). For <a href="/">more information on Wearables and body Areas</a> visit our website. Naturally, you can only have one wearable equipped to each body area available. Certain Wearables may require a certain level with a certain skill in order to be equipped as well.
             </p>
             <p>
-              Weapons and Items, as stated above, need Weapon holsters and Item slots, respectively, in order to be equipped. Certain weapons and items will take up certain numbers of holsters and slots, so that is something to watch out for. If you do not have enough holsters or slots, you cannot equip the weapon or item. You can still use it, but taking something out of your S.U.R.O.N.I.S. during a combat phase takes one entire action. Read more <a href="#">rules about equipment and inventory</a> on our site.
+              Weapons and Items, as stated above, need Weapon holsters and Item slots, respectively, in order to be equipped. Certain weapons and items will take up certain numbers of holsters and slots, so that is something to watch out for. If you do not have enough holsters or slots, you cannot equip the weapon or item. You can still use it, but taking something out of your S.U.R.O.N.I.S. during a combat phase takes one entire action. Read more <a href="/">rules about equipment and inventory</a> on our site.
             </p>
             <p></p>
 
@@ -99,7 +99,7 @@ function About() {
             <h3 className="item-container__subheading item-container__subheading--lighter">Weapons, Items, Wearables, and Things</h3>
             <p>Weapons are anything you use to attack with, and Wearables are anything that you would wear on your person. Those two are fairly straight forward. It is good to note the difference between Items and Things, though, as they are a bit less straightforward</p>
             <p>
-              Items are equipable and take up 'Item Slots.' They will have some form of unique ability or effect when you use them. (i.e. a Magic Coin, a Spell Book, etc. Things do not have special abilities and are not equippable. Some examples of what would qualify as Things is a messkit, survival kit, rope, a compass (unless it's a magic compass) and so on. Read more about <a href="#">the differences between Items and Things</a> on our website.
+              Items are equipable and take up 'Item Slots.' They will have some form of unique ability or effect when you use them. (i.e. a Magic Coin, a Spell Book, etc. Things do not have special abilities and are not equippable. Some examples of what would qualify as Things is a messkit, survival kit, rope, a compass (unless it's a magic compass) and so on. Read more about <a href="/">the differences between Items and Things</a> on our website.
             </p>
 
             <h3 className="item-container__subheading">Stats</h3>
@@ -113,10 +113,10 @@ function About() {
 
             <h3 className="item-container__subheading item-container__subheading--lighter">Skills and Skill Tokens</h3>
             <p>
-              There are 10 Skills in Avarice. Strength, Constitution, Academic Intelligence, Technical Intelligence, Reflex, Speed, Speech, Performance, Ranged Combat, and Melee Combat. Any 'action' or 'feat' that you want to accomplish would fall under one of these categories. See a list of <a href="#">what falls under each category</a> on our website.
+              There are 10 Skills in Avarice. Strength, Constitution, Academic Intelligence, Technical Intelligence, Reflex, Speed, Speech, Performance, Ranged Combat, and Melee Combat. Any 'action' or 'feat' that you want to accomplish would fall under one of these categories. See a list of <a href="/">what falls under each category</a> on our website.
             </p>
             <p>
-              Your skill level with each of the 10 skills is one of 6 options: Terrible, Bad, Normal, Good, Great, or Fantastic. Your level with the skill, along with whatever the difficulty of the action you are trying to make, determines what you need to roll in order to succeed. For example, if you were trying to lift a heavy boulder and had Normal strength, you would need to roll above a 15. See the chart on the right, or <a href="#">view the detailed chart</a> on our website.
+              Your skill level with each of the 10 skills is one of 6 options: Terrible, Bad, Normal, Good, Great, or Fantastic. Your level with the skill, along with whatever the difficulty of the action you are trying to make, determines what you need to roll in order to succeed. For example, if you were trying to lift a heavy boulder and had Normal strength, you would need to roll above a 15. See the chart on the right, or <a href="/">view the detailed chart</a> on our website.
             </p>
             <p>If you don't roll high enough, you fail, if you do roll high enough, you succeed (how well you succeed or bad you fail is up to your GM's discretion). If you succeed, you earn a Skill Token. Three Skill tokens in a particular skill will allow you to level up one step in that skill (i.e. from Bad to Normal).</p>
             <p>Using a Skill is called Making a Skill Check. Making a Skill Check uses one Energy Point. You start with three energy points and get an additional one each time you level up the skill. More about Energy Points and their use is written above under Gameplay and Energy Points.</p>
@@ -143,11 +143,7 @@ function About() {
 
             <h3 className="item-container__subheading">Notes</h3>
             <p>
-              On this page you can create, edit and delete notes. Your notes are for your own personal use to put down ideas, reminders, plans, or whatever comes to your mind. The Notes are formatted using Markdown, which is a lightweight Markup language, which is a fairly simple document annotation syntax.{" "}
-              <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">
-                Learn the syntax of markup
-              </a>
-              , and you will be able to have fine grain controll over your notes formatting.
+              On this page you can create, edit and delete notes. Your notes are for your own personal use to put down ideas, reminders, plans, or whatever comes to your mind. The Notes are formatted using Markdown, which is a lightweight Markup language, which is a fairly simple document annotation syntax. <a href="/">Learn the syntax of markup</a>, and you will be able to have fine grain controll over your notes formatting.
             </p>
           </div>
         </div>

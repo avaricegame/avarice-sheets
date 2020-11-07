@@ -34,7 +34,7 @@ function App() {
       username: localStorage.getItem("avariceUsername"),
     },
     currentPopupForm: "",
-    popupFormDisplayed: false,
+    popupFormVisible: false,
   }
 
   function appReducer(draft, action) {
@@ -53,14 +53,20 @@ function App() {
       case "flashMessage":
         draft.flashMessages.push(action.value)
         break
-      case "changeCurrentPopupForm":
+      case "changePopupForm":
         draft.currentPopupForm = action.data
         break
-      case "displayPopupForm":
-        draft.popupFormDisplayed = true
+      case "showPopupForm":
+        draft.popupFormVisible = true
+        break
+      case "hidePopupForm":
+        draft.popupFormVisible = false
         break
       case "displayFlashMessage":
         draft.flashMessagesDisplayed = true
+        break
+      default:
+        break
     }
   }
 
@@ -97,7 +103,7 @@ function App() {
               <CampaignSheet />
             </Route>
           </Switch>
-          {state.popupFormDisplayed ? <PopupForm /> : ""}
+          {state.popupFormVisible ? <PopupForm /> : ""}
           {state.flashMessagesDisplayed ? <FlashMessage /> : ""}
         </BrowserRouter>
       </DispatchContext.Provider>

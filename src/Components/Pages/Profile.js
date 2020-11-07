@@ -1,16 +1,16 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom"
+
+import StateContext from "../../StateContext"
+import DispatchContext from "../../DispatchContext"
 
 import Error from "../Error"
 
-function Profile(props) {
-  const signOutHandler = () => {
-    //props.CSIDHandler(0)
-    props.UIDHandler(0)
-    props.loggedInHandler(false)
-  }
+function Profile() {
+  const appState = useContext(StateContext)
+  const appDispatch = useContext(DispatchContext)
 
-  if (props.loggedIn) {
+  if (appState.loggedIn) {
     return (
       <div className="hg__body">
         <div className="header-bar">
@@ -29,7 +29,7 @@ function Profile(props) {
               &larr; BACK TO HOME
             </Link>
             <hr className="hg__hr" />
-            <h2 className="hg__heading hg__heading--center">Hi there, imhungry</h2>
+            <h2 className="hg__heading hg__heading--center">Hi there, {appState.user.username}</h2>
             <hr className="hg__hr" />
             <div className="hg__flex-container">
               <div className="hg__content hg__content--50" style={{ height: "20rem" }}>
@@ -55,7 +55,12 @@ function Profile(props) {
             </div>
             <hr className="hg__hr" />
             <Link to="/">
-              <button className="sign-out-button" onClick={signOutHandler}>
+              <button
+                className="sign-out-button"
+                onClick={() => {
+                  appDispatch({ type: "logout" })
+                }}
+              >
                 Sign Out
               </button>
             </Link>

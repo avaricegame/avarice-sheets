@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom"
-import Axios from "axios"
+//import Axios from "axios"
 
 // COMPONENTS
 import Loader from "../Loader"
@@ -10,9 +10,7 @@ import DispatchContext from "../../DispatchContext"
 
 function Home(props) {
   const appState = useContext(StateContext)
-  const openNewCharacterSheet = () => {
-    props.newCharacterSheetHandler(true)
-  }
+  const appDispatch = useContext(DispatchContext)
 
   // useEffect(() => {
   //   Axios.get("/loadmanycs", {
@@ -49,7 +47,13 @@ function Home(props) {
           <div className="campaign-sheets">
             <h2 className="heading">Character Sheets</h2>
             <div className="sheets-container">
-              <button className="button" onClick={openNewCharacterSheet}>
+              <button
+                className="button"
+                onClick={() => {
+                  appDispatch({ type: "showPopupForm" })
+                  appDispatch({ type: "changePopupForm", data: "newCharacterSheet" })
+                }}
+              >
                 Create a New Character Sheet
               </button>
               {reversedCharacterSheetArray.map((cs) => {
@@ -89,7 +93,15 @@ function Home(props) {
           <div className="character-sheets">
             <h2 className="heading">Campaign Sheets</h2>
             <div className="sheets-container">
-              <button className="button">Create a New Campaign</button>
+              <button
+                className="button"
+                onClick={() => {
+                  appDispatch({ type: "showPopupForm" })
+                  appDispatch({ type: "changePopupForm", data: "newCampaignSheet" })
+                }}
+              >
+                Create a New Campaign
+              </button>
 
               <Link to="/campaign/gameplay" className="fixing-link-settings">
                 <div className="item-container item-container--hover-highlight">
