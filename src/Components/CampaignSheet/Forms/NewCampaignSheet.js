@@ -14,7 +14,7 @@ function NewCampaignSheet() {
     <form className="popupform__form" onSubmit={formSubmit}>
       <h3 className="popupform__heading">New Campaign Sheet</h3>
 
-      <p>hello, this is the campaign sheet form.</p>
+      <label>New Campaign Sheet Form Under Construction</label>
 
       <div className="popupform__button-panel">
         <button
