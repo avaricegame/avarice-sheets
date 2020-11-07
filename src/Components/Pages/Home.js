@@ -1,38 +1,38 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import Axios from "axios"
 
 // COMPONENTS
 import Loader from "../Loader"
 
+import StateContext from "../../StateContext"
+import DispatchContext from "../../DispatchContext"
+
 function Home(props) {
+  const appState = useContext(StateContext)
   const openNewCharacterSheet = () => {
     props.newCharacterSheetHandler(true)
   }
 
-  const [isLoading, setIsLoading] = useState(true)
-
-  const setCharacterSheetArrayHandler = props.setCharacterSheetArrayHandler
-
-  useEffect(() => {
-    Axios.get("/loadmanycs", {
-      params: {
-        UID: props.UID,
-      },
-    }).then(function (response) {
-      console.log(response)
-      setCharacterSheetArrayHandler(response.data)
-      setIsLoading(false)
-    })
-  }, [props.UID])
+  // useEffect(() => {
+  //   Axios.get("/loadmanycs", {
+  //     params: {
+  //       UID: props.UID,
+  //     },
+  //   }).then(function (response) {
+  //     console.log(response)
+  //     setCharacterSheetArrayHandler(response.data)
+  //     setIsLoading(false)
+  //   })
+  // }, [props.UID])
 
   const clickHandler = (e, id) => {
     props.CSIDHandler(id)
   }
 
-  let reversedCharacterSheetArray = props.characterSheetArray.map((cs) => cs).reverse()
+  let reversedCharacterSheetArray = []
 
-  if (!isLoading) {
+  if (!appState.isLoading) {
     return (
       <>
         <div className="header-bar">

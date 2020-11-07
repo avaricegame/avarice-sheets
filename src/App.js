@@ -1,9 +1,15 @@
-import React, { useState } from "react"
+// PACKAGES
+import React, { useEffect } from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { useImmerReducer } from "use-immer"
 import Axios from "axios"
+
+// CSS
 import "./App.scss"
 
-//import uniqid from "uniqid"
+// CONTEXT
+import StateContext from "./StateContext"
+import DispatchContext from "./DispatchContext"
 
 // COMPONENTS
 import Home from "./Components/Pages/Home"
@@ -12,112 +18,91 @@ import CharacterSheet from "./Components/Pages/CharacterSheet"
 import CampaignSheet from "./Components/Pages/CampaignSheet"
 import Profile from "./Components/Pages/Profile"
 import About from "./Components/Pages/About"
+import PopupForm from "./Components/PopupForm"
+import FlashMessage from "./Components/FlashMessage"
 
-// FUNCTIONAL COMPONENTS
-import NewCharacterSheet from "./Components/CharacterSheet/Forms/NewCharacterSheet"
-
-Axios.defaults.baseURL = process.env.BACKENDURL || "https://backendforpaxgameplay.herokuapp.com"
-//Axios.defaults.baseURL = "http://localhost:2890"
+Axios.defaults.baseURL = "http://localhost:2890"
+//Axios.defaults.baseURL = "https://backendforpaxgameplay.herokuapp.com"
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("loggedIn")))
-  const [UID, setUID] = useState(localStorage.getItem("UID"))
-  const [CSID, setCSID] = useState(localStorage.getItem("CSID"))
-  const [hasAccount, setHasAccount] = useState(Boolean(localStorage.getItem("hasAccount")))
-
-  const [newCharacterSheet, setNewCharacterSheet] = useState(false)
-  const newCharacterSheetHandler = (bool) => {
-    setNewCharacterSheet(bool)
-    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
-  }
-  const [characterSheetArray, setCharacterSheetArray] = useState([])
-  const characterSheetArrayHandler = (theArray) => {
-    setCharacterSheetArray((prevCharacterSheetArray) => {
-      return prevCharacterSheetArray.push(theArray)
-    })
-  }
-  const setCharacterSheetArrayHandler = (theArray) => {
-    setCharacterSheetArray(theArray)
+  const initialState = {
+    loggedIn: Boolean(localStorage.getItem("avariceApiToken")),
+    flashMessages: [],
+    flashMessagesDisplayed: false,
+    user: {
+      token: localStorage.getItem("avariceApiToken"),
+      username: localStorage.getItem("avariceUsername"),
+    },
+    currentPopupForm: "",
+    popupFormDisplayed: false,
   }
 
-  const UIDHandler = (id) => {
-    localStorage.setItem("UID", id)
-    setUID(id)
-  }
-
-  const CSIDHandler = (id) => {
-    localStorage.setItem("CSID", id)
-    setCSID(id)
-  }
-
-  const loggedInHandler = () => {
-    if (!loggedIn) {
-      localStorage.setItem("loggedIn", true)
-      localStorage.setItem("hasAccount", true)
-      setLoggedIn(true)
-      setHasAccount(true)
-    } else {
-      localStorage.removeItem("loggedIn")
-      localStorage.removeItem("UID")
-      //localStorage.removeItem("CSID")
+  function appReducer(draft, action) {
+    switch (action.type) {
+      case "login":
+        draft.loggedIn = true
+        draft.user = action.data
+        break
+      case "logout":
+        draft.loggedIn = false
+        break
+      case "register":
+        draft.loggedIn = true
+        draft.user = action.data
+        break
+      case "flashMessage":
+        draft.flashMessages.push(action.value)
+        break
+      case "changeCurrentPopupForm":
+        draft.currentPopupForm = action.data
+        break
+      case "displayPopupForm":
+        draft.popupFormDisplayed = true
+        break
+      case "displayFlashMessage":
+        draft.flashMessagesDisplayed = true
     }
   }
 
-  const accountHandler = () => {
-    if (hasAccount) {
-      setHasAccount(false)
-    } else {
-      setHasAccount(true)
-    }
-  }
+  const [state, dispatch] = useImmerReducer(appReducer, initialState)
 
-  if (loggedIn && UID) {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact>
-            <Home UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} characterSheetArray={characterSheetArray} setCharacterSheetArrayHandler={setCharacterSheetArrayHandler} />
-            {newCharacterSheet ? <NewCharacterSheet CSID={CSID} newCharacterSheetHandler={newCharacterSheetHandler} UID={UID} characterSheetArray={characterSheetArray} characterSheetArrayHandler={characterSheetArrayHandler} /> : ""}
-          </Route>
-          <Route path="/profile">
-            <Profile loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/character">
-            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} newCharacterSheetHandler={newCharacterSheetHandler} newCharacterSheet={newCharacterSheet} characterSheetArray={characterSheetArray} setCharacterSheetArrayHandler={setCharacterSheetArrayHandler} />
-          </Route>
-          <Route path="/campaign">
-            <CampaignSheet />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    )
-  } else {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact>
-            <HomeGuest UIDHandler={UIDHandler} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} hasAccount={hasAccount} accountHandler={accountHandler} />
-            {/*<Popup />*/}
-          </Route>
-          <Route path="/profile">
-            <Profile loggedIn={loggedIn} loggedInHandler={loggedInHandler} CSIDHandler={CSIDHandler} UIDHandler={UIDHandler} />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/character/gameplay">
-            <CharacterSheet CSID={CSID} UID={UID} loggedIn={loggedIn} CSIDHandler={CSIDHandler} />
-          </Route>
-          <Route path="/campaign/gameplay">
-            <CampaignSheet />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    )
-  }
+  useEffect(() => {
+    if (state.loggedIn) {
+      localStorage.setItem("avariceApiToken", state.user.token)
+      localStorage.setItem("avariceUsername", state.user.username)
+    } else {
+      localStorage.removeItem("avariceApiToken")
+      localStorage.removeItem("avariceUsername")
+    }
+  }, [state.loggedIn])
+
+  return (
+    <StateContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" exact>
+              {state.loggedIn ? <Home /> : <HomeGuest />}
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/character">
+              <CharacterSheet />
+            </Route>
+            <Route path="/campaign">
+              <CampaignSheet />
+            </Route>
+          </Switch>
+          {state.popupFormDisplayed ? <PopupForm /> : ""}
+          {state.flashMessagesDisplayed ? <FlashMessage /> : ""}
+        </BrowserRouter>
+      </DispatchContext.Provider>
+    </StateContext.Provider>
+  )
 }
 
 export default App

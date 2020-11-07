@@ -1,55 +1,52 @@
-import React, { useState } from "react"
+// PACKAGES
+import React, { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import Axios from "axios"
 
-function HomeGuest(props) {
-  let [username] = useState()
-  let [email] = useState()
-  let [password] = useState()
+// CONTEXT
+import DispatchContext from "../../DispatchContext"
 
-  let [randomID, setRandomID] = useState(`${Math.random() * 10}`)
+function HomeGuest() {
+  const appDispatch = useContext(DispatchContext)
 
-  const loginSubmitHandler = (e) => {
+  let [username, setUsername] = useState()
+  let [email, setEmail] = useState()
+  let [password, setPassword] = useState()
+
+  let [hasAccount, setHasAccount] = useState(false)
+
+  async function loginSubmitHandler(e) {
     e.preventDefault()
-
-    console.log(e.target.email.value, e.target.password.value)
-
-    // Axios.post("/login", {
-    //   email: e.target.email.value,
-    //   password: e.target.password.value,
-    // }).then(function (response) {
-    //   console.log(response)
-    //   props.UIDHandler(response.data.id)
-    //   props.accountHandler(true)
-    //   props.loggedInHandler(true)
-    // })
-
-    // SEND FORM DATA TO SERVER AND GET BACK A PASS OR FAIL, PLUS THE UID
-    if (e.target.email.value === "imhungry") {
-      props.UIDHandler("1")
-      props.loggedInHandler(true)
+    try {
+      const response = await Axios.post("/login", { email, password })
+      if (response.data.token) {
+        // log in app dispatch
+        appDispatch({ type: "login", data: response.data })
+        appDispatch({ type: "flashMessage", value: "You have successfully registered." })
+        console.log("logging from HomeGuest line 29", response.data)
+      } else {
+        console.log(response.data)
+      }
+    } catch (error) {
+      console.log("There was a problem " + error)
     }
   }
 
-  const registerSubmitHandler = (e) => {
+  async function registerSubmitHandler(e) {
     e.preventDefault()
-    console.log(e.target.email.value, e.target.username.value, e.target.password.value)
-
-    Axios.post("/register", {
-      username: e.target.username.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-      id: randomID,
-    })
-      .then(function (response) {
-        props.UIDHandler(randomID)
-        setRandomID(`${Math.random() * 10}`)
-        props.accountHandler(true)
-        props.loggedInHandler(true)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    try {
+      const response = await Axios.post("/register", { username, email, password })
+      if (response.data.token) {
+        // log in app dispatch
+        appDispatch({ type: "register", data: response.data })
+        appDispatch({ type: "flashMessage", value: "You have successfully registered." })
+        console.log("logging from HomeGuest line 46", response.data)
+      } else {
+        console.log(response.data)
+      }
+    } catch (error) {
+      console.log("There was a problem" + error)
+    }
   }
 
   return (
@@ -76,17 +73,17 @@ function HomeGuest(props) {
             <h3>How can I contact you?</h3>
             <p>Dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
-          {props.hasAccount ? (
+          {hasAccount ? (
             <div className="hg__form-div hg__form-div--login">
-              <form className="hg__form" onSubmit={(e) => loginSubmitHandler(e)}>
+              <form className="hg__form" onSubmit={loginSubmitHandler}>
                 <h2 className="hg__subheading">Login</h2>
                 <fieldset>
                   <legend>Please fill out the fields below to login.</legend>
                   <label htmlFor="email">
-                    Email: <input value={email} name="email" type="text" />
+                    Email: <input onChange={(e) => setEmail(e.target.value)} name="email" type="text" />
                   </label>
                   <label htmlFor="password">
-                    Password: <input value={password} name="password" type="text" />
+                    Password: <input onChange={(e) => setPassword(e.target.value)} name="password" type="password" />
                   </label>
                   <input className="hg__form-submit" type="submit" value="Login" />
                 </fieldset>
@@ -95,7 +92,7 @@ function HomeGuest(props) {
                   <label className="hg__center" htmlFor="">
                     Don't have an account?
                   </label>
-                  <label onClick={props.accountHandler} className="hg__fake-link hg__center" htmlFor="">
+                  <label onClick={() => setHasAccount(false)} className="hg__fake-link hg__center" htmlFor="">
                     <span className="">Create an Account</span>
                   </label>
                 </fieldset>
@@ -103,18 +100,18 @@ function HomeGuest(props) {
             </div>
           ) : (
             <div className="hg__form-div hg__form-div--register">
-              <form className="hg__form" onSubmit={(e) => registerSubmitHandler(e)}>
+              <form className="hg__form" onSubmit={registerSubmitHandler}>
                 <h2 className="hg__subheading">Register</h2>
                 <fieldset>
                   <legend>Please fill out the fields below to register for an account.</legend>
                   <label htmlFor="">
-                    Username: <input value={username} name="username" type="text" />
+                    Username: <input onChange={(e) => setUsername(e.target.value)} name="username" type="text" />
                   </label>
                   <label htmlFor="">
-                    Email: <input value={email} name="email" type="email" />
+                    Email: <input onChange={(e) => setEmail(e.target.value)} name="email" type="email" />
                   </label>
                   <label htmlFor="">
-                    Password: <input value={password} name="password" type="text" />
+                    Password: <input onChange={(e) => setPassword(e.target.value)} name="password" type="password" />
                   </label>
                   <input className="hg__form-submit" type="submit" value="Create Account" />
                 </fieldset>
@@ -123,7 +120,7 @@ function HomeGuest(props) {
                   <label className="hg__center" htmlFor="">
                     Already have an account?
                   </label>
-                  <label onClick={props.accountHandler} className="hg__fake-link hg__center" htmlFor="">
+                  <label onClick={() => setHasAccount(true)} className="hg__fake-link hg__center" htmlFor="">
                     <span className="">Sign in</span>
                   </label>
                 </fieldset>
