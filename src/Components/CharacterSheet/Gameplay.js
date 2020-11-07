@@ -15,6 +15,9 @@ import UseItem from "./Actions/UseItem"
 function Gameplay(props) {
   const charSheetState = useContext(StateContext)
 
+  console.log(props.armourModifier)
+  console.log(charSheetState.charSheet.levelUps)
+
   const [roll, setRoll] = useState(false)
   const rollHandler = (bool) => {
     setRoll(bool)
@@ -78,7 +81,7 @@ function Gameplay(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Hit Points</h3>
-              <h4 className="item-container__subheading">Max HP: {charSheetState.charSheet.level * 10 + 10 + parseInt(props.equipmentArmour)}</h4>
+              <h4 className="item-container__subheading">Max HP: {parseInt(charSheetState.charSheet.levelUps) * 10 + 10 + parseInt(props.armourModifier)}</h4>
               <h4 className="item-container__terheading">Current HP: {charSheetState.charSheet.currentHP}</h4>
               <button className="button" onClick={openTakeDamage}>
                 Take Damage

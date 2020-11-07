@@ -4,6 +4,22 @@ import StateContext from "../StateContext"
 // forms
 import NewCharacterSheet from "./CharacterSheet/Forms/NewCharacterSheet"
 import NewCampaignSheet from "./CampaignSheet/Forms/NewCampaignSheet"
+// character sheet forms
+import HealHP from "./CharacterSheet/Forms/HealHP"
+import TakeDamage from "./CharacterSheet/Forms/TakeDamage"
+import PayMoney from "./CharacterSheet/Forms/PayMoney"
+import RecieveMoney from "./CharacterSheet/Forms/RecieveMoney"
+import NewWeapon from "./CharacterSheet/Forms/NewWeapon"
+import NewWearable from "./CharacterSheet/Forms/NewWearable"
+import NewItem from "./CharacterSheet/Forms/NewItem"
+import NewThing from "./CharacterSheet/Forms/NewThing"
+import LevelUp from "./CharacterSheet/Forms/LevelUp"
+import NewAbility from "./CharacterSheet/Forms/NewAbility"
+import EditAbility from "./CharacterSheet/Forms/EditAbility"
+import NewCharacterLog from "./CharacterSheet/Forms/NewCharacterLog"
+import EditCharacterLog from "./CharacterSheet/Forms/EditCharacterLog"
+import NewNote from "./CharacterSheet/Forms/NewNote"
+import EditNote from "./CharacterSheet/Forms/EditNote"
 
 function PopupForm() {
   const appState = useContext(StateContext)
@@ -13,6 +29,21 @@ function PopupForm() {
         <div className="popupform__popup">
           {appState.currentPopupForm === "newCampaignSheet" ? <NewCampaignSheet /> : ""}
           {appState.currentPopupForm === "newCharacterSheet" ? <NewCharacterSheet /> : ""}
+          {appState.currentPopupForm === "healHP" ? <HealHP /> : ""}
+          {appState.currentPopupForm === "takeDamage" ? <TakeDamage /> : ""}
+          {appState.currentPopupForm === "payMoney" ? <PayMoney /> : ""}
+          {appState.currentPopupForm === "recieveMoney" ? <RecieveMoney /> : ""}
+          {appState.currentPopupForm === "newWeapon" ? <NewWeapon /> : ""}
+          {appState.currentPopupForm === "newWearable" ? <NewWearable /> : ""}
+          {appState.currentPopupForm === "newItem" ? <NewItem /> : ""}
+          {appState.currentPopupForm === "newThing" ? <NewThing /> : ""}
+          {appState.currentPopupForm === "levelUp" ? <LevelUp /> : ""}
+          {appState.currentPopupForm === "newAbility" ? <NewAbility /> : ""}
+          {appState.currentPopupForm === "editAbility" ? <EditAbility /> : ""}
+          {appState.currentPopupForm === "newCharacterLog" ? <NewCharacterLog /> : ""}
+          {appState.currentPopupForm === "editCharacterLog" ? <EditCharacterLog /> : ""}
+          {appState.currentPopupForm === "newNote" ? <NewNote /> : ""}
+          {appState.currentPopupForm === "editNote" ? <EditNote /> : ""}
         </div>
       </div>
     </>

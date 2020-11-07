@@ -12,23 +12,12 @@ function Home(props) {
   const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
 
-  // useEffect(() => {
-  //   Axios.get("/loadmanycs", {
-  //     params: {
-  //       UID: props.UID,
-  //     },
-  //   }).then(function (response) {
-  //     console.log(response)
-  //     setCharacterSheetArrayHandler(response.data)
-  //     setIsLoading(false)
-  //   })
-  // }, [props.UID])
-
-  const clickHandler = (e, id) => {
-    props.CSIDHandler(id)
+  const charSheetClickHandler = (charSheetID) => {
+    console.log(charSheetID)
+    appDispatch({ type: "setCharSheetID", value: charSheetID })
   }
 
-  let reversedCharacterSheetArray = []
+  let reversedCharacterSheetArray = appState.charSheetArray.map((charsheet) => charsheet).reverse()
 
   if (!appState.isLoading) {
     return (
@@ -56,30 +45,30 @@ function Home(props) {
               >
                 Create a New Character Sheet
               </button>
-              {reversedCharacterSheetArray.map((cs) => {
+              {reversedCharacterSheetArray.map((charSheet) => {
                 return (
-                  <Link onClick={(e, id) => clickHandler(e, cs.charid)} to={`/character/gameplay`} key={cs.charid} className="fixing-link-settings">
+                  <Link onClick={() => charSheetClickHandler(charSheet._id)} to={`/character/gameplay`} key={charSheet._id} className="fixing-link-settings">
                     <div className="item-container item-container--hover-highlight">
-                      <h3 className="item-container__heading">{cs.characterName}</h3>
-                      <h4 className="item-container__subheading">charid: #{cs.charid}</h4>
+                      <h3 className="item-container__heading">{charSheet.characterName}</h3>
+                      <h4 className="item-container__subheading">ID: #{charSheet._id}</h4>
                       <table>
                         <tbody>
                           <tr>
                             <td>Level:</td>
-                            <td>{cs.level}</td>
+                            <td>{charSheet.level}</td>
                           </tr>
                           <tr>
                             <td>Race:</td>
-                            <td>{cs.raceName}</td>
+                            <td>{charSheet.raceName}</td>
                           </tr>
                           <tr>
                             <td>Class:</td>
-                            <td>{cs.className}</td>
+                            <td>{charSheet.className}</td>
                           </tr>
                           <tr>
                             <td>Campaign ID:</td>
                             <td>
-                              <em>{cs.campaignID}</em>
+                              <em>{charSheet.campaignID}</em>
                             </td>
                           </tr>
                         </tbody>

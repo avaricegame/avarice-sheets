@@ -1,5 +1,5 @@
 // PACKAGES
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { useImmerReducer } from "use-immer"
 import Axios from "axios"
@@ -18,6 +18,7 @@ import CharacterSheet from "./Components/Pages/CharacterSheet"
 import CampaignSheet from "./Components/Pages/CampaignSheet"
 import Profile from "./Components/Pages/Profile"
 import About from "./Components/Pages/About"
+import Loader from "./Components/Loader"
 import PopupForm from "./Components/PopupForm"
 import FlashMessage from "./Components/FlashMessage"
 
@@ -35,6 +36,8 @@ function App() {
     },
     currentPopupForm: "",
     popupFormVisible: false,
+    charSheetID: localStorage.getItem("charSheetID"),
+    charSheetArray: [],
   }
 
   function appReducer(draft, action) {
@@ -65,6 +68,14 @@ function App() {
       case "displayFlashMessage":
         draft.flashMessagesDisplayed = true
         break
+      case "setCharSheetID":
+        draft.charSheetID = action.value
+        localStorage.removeItem("charSheetID")
+        localStorage.setItem("charSheetID", action.value)
+        break
+      case "setCharSheetArray":
+        draft.charSheetArray = action.data
+        break
       default:
         break
     }
@@ -79,8 +90,34 @@ function App() {
     } else {
       localStorage.removeItem("avariceApiToken")
       localStorage.removeItem("avariceUsername")
+      localStorage.removeItem("charSheetID")
     }
-  }, [state.loggedIn])
+  }, [state.loggedIn, state.user.token, state.user.username])
+
+  // make sure the app loads while pulling up the character sheet array
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    if (state.loggedIn) {
+      // make the call to grab ALL the charsheets for the current user
+      Axios.post(`/character/all`, {
+        token: state.user.token,
+        username: state.user.username,
+      })
+        .then(function (response) {
+          console.log(response)
+          // dispatch to set the array of charsheetes
+          dispatch({
+            type: "setCharSheetArray",
+            data: response.data,
+          })
+          setIsLoading(false)
+        })
+        .catch(function (e) {
+          console.log(e)
+        })
+    }
+  }, [state.loggedIn, dispatch, state.user.token, state.user.username])
 
   return (
     <StateContext.Provider value={state}>
@@ -88,7 +125,7 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact>
-              {state.loggedIn ? <Home /> : <HomeGuest />}
+              {state.loggedIn ? <Home isLoading={isLoading} /> : <HomeGuest />}
             </Route>
             <Route path="/profile">
               <Profile />
