@@ -11,13 +11,14 @@ import "./App.scss"
 import StateContext from "./StateContext"
 import DispatchContext from "./DispatchContext"
 
-// COMPONENTS
+// pages
 import Home from "./Components/Pages/Home"
 import HomeGuest from "./Components/Pages/HomeGuest"
 import CharacterSheet from "./Components/Pages/CharacterSheet"
 import CampaignSheet from "./Components/Pages/CampaignSheet"
 import Profile from "./Components/Pages/Profile"
 import About from "./Components/Pages/About"
+// components
 import Loader from "./Components/Loader"
 import PopupForm from "./Components/PopupForm"
 import FlashMessage from "./Components/FlashMessage"
@@ -26,10 +27,10 @@ Axios.defaults.baseURL = "http://localhost:2890"
 //Axios.defaults.baseURL = "https://backendforpaxgameplay.herokuapp.com"
 
 function App() {
+  // set inital state of entire app
   const initialState = {
     loggedIn: Boolean(localStorage.getItem("avariceApiToken")),
     flashMessages: [],
-    flashMessagesDisplayed: false,
     user: {
       token: localStorage.getItem("avariceApiToken"),
       username: localStorage.getItem("avariceUsername"),
@@ -40,6 +41,7 @@ function App() {
     charSheetArray: [],
   }
 
+  // reducer function for appwide state
   function appReducer(draft, action) {
     switch (action.type) {
       case "login":
@@ -65,9 +67,6 @@ function App() {
       case "hidePopupForm":
         draft.popupFormVisible = false
         break
-      case "displayFlashMessage":
-        draft.flashMessagesDisplayed = true
-        break
       case "setCharSheetID":
         draft.charSheetID = action.value
         localStorage.removeItem("charSheetID")
@@ -81,8 +80,11 @@ function App() {
     }
   }
 
+  // set appwide state and dispatch
   const [state, dispatch] = useImmerReducer(appReducer, initialState)
 
+  // set the token and username in local storage if logged in
+  // otherwise, delete them and the current charSheetID
   useEffect(() => {
     if (state.loggedIn) {
       localStorage.setItem("avariceApiToken", state.user.token)
@@ -141,7 +143,7 @@ function App() {
             </Route>
           </Switch>
           {state.popupFormVisible ? <PopupForm /> : ""}
-          {state.flashMessagesDisplayed ? <FlashMessage /> : ""}
+          <FlashMessage />
         </BrowserRouter>
       </DispatchContext.Provider>
     </StateContext.Provider>

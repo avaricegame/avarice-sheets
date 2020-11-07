@@ -420,8 +420,8 @@ function CharacterSheet(props) {
                   </Route>
                 </Switch>
               </CharacterSheetContainer>
-              {appState.popupFormVisible ? <PopupForm /> : ""}
-              {appState.flashMessagesDisplayed ? <FlashMessage /> : ""}
+              {/* {appState.popupFormVisible ? <PopupForm /> : ""}
+              {appState.flashMessageVisible ? <FlashMessage /> : ""} */}
             </BrowserRouter>
           </DispatchContext.Provider>
         </StateContext.Provider>

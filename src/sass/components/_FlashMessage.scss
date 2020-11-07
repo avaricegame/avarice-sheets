@@ -1,34 +1,74 @@
-.flash-message {
-  position: sticky;
-  bottom: 10px;
-  left: 10px;
-  max-width: 50rem;
-  min-height: 5rem;
-  opacity: 0.85;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.floating-alert {
   display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 0;
+  z-index: 999;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  -moz-animation: floatingAlert ease-in 5s forwards;
+  -webkit-animation: floatingAlert ease-in 5s forwards;
+  -o-animation: floatingAlert ease-in 5s forwards;
+  animation: floatingAlert ease-in 5s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
 
-  &__message {
-    color: $color-white;
-    //display: inline-block;
+.floating-alerts .floating-alert:last-of-type {
+  display: block;
+}
+
+@keyframes floatingAlert {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) scale(1.2);
   }
 
-  &__close-button {
-    cursor: pointer;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  9% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
   }
 
-  &__dismiss {
-    font-size: 5rem;
-    line-height: 0;
-    color: lighten($color-gray, 25%);
-    &:hover {
-      color: lighten($color-gray, 50%);
-    }
+  91% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+
+@-webkit-keyframes floatingAlert {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) scale(1.2);
+  }
+
+  9% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+  }
+
+  91% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) scale(1.2);
   }
 }

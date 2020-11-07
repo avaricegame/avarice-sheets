@@ -1,19 +1,21 @@
-import React from "react"
+import React, { useContext } from "react"
 
-function FlashMessage(props) {
-  // let color = props.color
-  let color = "successPurple"
-  let bColor = ""
+import StateContext from "../StateContext"
 
-  // SET THE BACKGROUND OF THE FLASH MESSAGE DEPENDING ON WHAT IS SENT THORUGH PROPS
-  color === "error" ? (bColor = "rgb(168, 26, 26)") : color === "successPurple" ? (bColor = "rgb(105, 10, 105)") : color === "successBlue" ? (bColor = "rgb(6, 109, 156)") : (bColor = "rgb(0, 0, 0)")
+function FlashMessage() {
+  const appState = useContext(StateContext)
 
   return (
-    <div className="flash-message" id="flash-message" style={{ backgroundColor: bColor }}>
-      <p className="flash-message__message">Lorem ipsum dolor sit amet consectetur, adipisicing elit obcaecati.</p>
-      <div className="flash-message__close-button">
-        <p className="flash-message__dismiss">&times;</p>
-      </div>
+    <div className="floating-alerts">
+      {appState.flashMessages
+        ? appState.flashMessages.map((message, index) => {
+            return (
+              <div className="floating-alert" key={index}>
+                {message}
+              </div>
+            )
+          })
+        : ""}
     </div>
   )
 }

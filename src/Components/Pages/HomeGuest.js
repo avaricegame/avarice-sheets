@@ -7,14 +7,18 @@ import Axios from "axios"
 import DispatchContext from "../../DispatchContext"
 
 function HomeGuest() {
+  // bring in app-wide dispatch
   const appDispatch = useContext(DispatchContext)
 
+  // values for form fields as state
   let [username, setUsername] = useState()
   let [email, setEmail] = useState()
   let [password, setPassword] = useState()
 
-  let [hasAccount, setHasAccount] = useState(false)
+  // determines whether to show login or register screen
+  let [hasAccount, setHasAccount] = useState(Boolean(localStorage.getItem("hasAccount")))
 
+  // on login, send request to server and alert a flash message if succeeded
   async function loginSubmitHandler(e) {
     e.preventDefault()
     try {
@@ -22,16 +26,16 @@ function HomeGuest() {
       if (response.data.token) {
         // log in app dispatch
         appDispatch({ type: "login", data: response.data })
-        appDispatch({ type: "flashMessage", value: "You have successfully registered." })
-        console.log("logging from HomeGuest line 29", response.data)
+        appDispatch({ type: "flashMessage", value: "You have successfully logged in." })
       } else {
-        console.log(response.data)
+        appDispatch({ type: "flashMessage", value: response.data })
       }
     } catch (error) {
       console.log("There was a problem " + error)
     }
   }
 
+  // on register, send request to server and alert flash message if succeeded
   async function registerSubmitHandler(e) {
     e.preventDefault()
     try {
@@ -40,9 +44,8 @@ function HomeGuest() {
         // log in app dispatch
         appDispatch({ type: "register", data: response.data })
         appDispatch({ type: "flashMessage", value: "You have successfully registered." })
-        console.log("logging from HomeGuest line 46", response.data)
       } else {
-        console.log(response.data)
+        appDispatch({ type: "flashMessage", value: response.data })
       }
     } catch (error) {
       console.log("There was a problem" + error)
@@ -92,7 +95,14 @@ function HomeGuest() {
                   <label className="hg__center" htmlFor="">
                     Don't have an account?
                   </label>
-                  <label onClick={() => setHasAccount(false)} className="hg__fake-link hg__center" htmlFor="">
+                  <label
+                    onClick={() => {
+                      setHasAccount(false)
+                      localStorage.removeItem("hasAccount")
+                    }}
+                    className="hg__fake-link hg__center"
+                    htmlFor=""
+                  >
                     <span className="">Create an Account</span>
                   </label>
                 </fieldset>
@@ -120,7 +130,14 @@ function HomeGuest() {
                   <label className="hg__center" htmlFor="">
                     Already have an account?
                   </label>
-                  <label onClick={() => setHasAccount(true)} className="hg__fake-link hg__center" htmlFor="">
+                  <label
+                    onClick={() => {
+                      setHasAccount(true)
+                      localStorage.setItem("hasAccount", true)
+                    }}
+                    className="hg__fake-link hg__center"
+                    htmlFor=""
+                  >
                     <span className="">Sign in</span>
                   </label>
                 </fieldset>

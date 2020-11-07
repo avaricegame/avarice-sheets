@@ -59,6 +59,7 @@ function Profile() {
                 className="sign-out-button"
                 onClick={() => {
                   appDispatch({ type: "logout" })
+                  appDispatch({ type: "flashMessage", value: "You have successfully logged out." })
                 }}
               >
                 Sign Out
