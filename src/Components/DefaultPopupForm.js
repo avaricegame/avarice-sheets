@@ -13,6 +13,12 @@ function NewCharacterLog() {
       <h3 className="popupform__heading">Default Popup Form</h3>
 
       <label>No form has been assigned to this button.</label>
+
+      {/* onClick={() => {
+                  charSheetDispatch({ type: "showPopupForm" })
+                  charSheetDispatch({ type: "changePopupForm", data: "newNote" })
+                }} */}
+
       <div className="popupform__button-panel">
         <button
           onClick={() => {
