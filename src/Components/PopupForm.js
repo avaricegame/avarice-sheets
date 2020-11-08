@@ -20,6 +20,8 @@ import NewCharacterLog from "./CharacterSheet/Forms/NewCharacterLog"
 import EditCharacterLog from "./CharacterSheet/Forms/EditCharacterLog"
 import NewNote from "./CharacterSheet/Forms/NewNote"
 import EditNote from "./CharacterSheet/Forms/EditNote"
+// default
+import DefaultPopupForm from "./DefaultPopupForm"
 
 function PopupForm() {
   const appState = useContext(StateContext)
@@ -27,6 +29,7 @@ function PopupForm() {
     <>
       <div className="popupform__background">
         <div className="popupform__popup">
+          {appState.currentPopupForm === "" ? <DefaultPopupForm /> : ""}
           {appState.currentPopupForm === "newCampaignSheet" ? <NewCampaignSheet /> : ""}
           {appState.currentPopupForm === "newCharacterSheet" ? <NewCharacterSheet /> : ""}
           {appState.currentPopupForm === "healHP" ? <HealHP /> : ""}
