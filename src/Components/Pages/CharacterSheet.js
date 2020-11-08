@@ -80,9 +80,11 @@ function CharacterSheet() {
         break
       case "showPopupForm":
         draft.popupFormVisible = true
+        document.body.style.overflow = "hidden"
         break
       case "hidePopupForm":
         draft.popupFormVisible = false
+        document.body.style.overflow = "unset"
         break
       case "healHP":
         draft.charSheet.currentHP = draft.charSheet.currentHP + parseInt(action.value)
@@ -408,7 +410,7 @@ function CharacterSheet() {
   }, [equippedItems, equippedWeapons, equippedWearables])
 
   ///////////////////////////////////////////////////////////////////////// BEGIN RENDERING THE PAGES
-  if (appState.loggedIn) {
+  if (appState.loggedIn && appState.charSheetID) {
     if (!charSheetIsLoading && !classIsLoading && !raceIsLoading) {
       return (
         <StateContext.Provider value={charSheetState}>

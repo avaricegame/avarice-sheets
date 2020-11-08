@@ -63,9 +63,11 @@ function App() {
         break
       case "showPopupForm":
         draft.popupFormVisible = true
+        document.body.style.overflow = "hidden"
         break
       case "hidePopupForm":
         draft.popupFormVisible = false
+        document.body.style.overflow = "unset"
         break
       case "setCharSheetID":
         draft.charSheetID = action.value
