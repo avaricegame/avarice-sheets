@@ -16,7 +16,7 @@ function LevelUp(props) {
   const setCurrentAbilityHandler = (name, power, description) => {
     setCurrentAbility({ name: name, power: power, description: description })
   }
-  const submitHandler = (e) => {
+  function formSubmit(e) {
     e.preventDefault()
     let newBaseStats
     if (e.target.baseStats.value === "PHY") {
@@ -263,7 +263,9 @@ function LevelUp(props) {
     }
   }
   return (
-    <PopupForm formName="Level Up" formOnSubmit={(e) => submitHandler(e)} formClose={close}>
+    <form className="popupform__form" onSubmit={formSubmit}>
+      <h3 className="popupform__heading">Level Up</h3>
+
       <fieldset>
         <label htmlFor="baseStats">Choose a Base Stat to Level Up:</label>
         <span className="radio-input-container radio-input-container--levelup-form">
@@ -288,7 +290,7 @@ function LevelUp(props) {
         </span>
         <label htmlFor="abilityTree">Choose an Ability to Upgrade or Learn:</label>
         <div className="cw__container">
-          {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree.map((column, index) => {
+          {/* {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree.map((column, index) => {
             if (column.points <= 2) {
               let corrColumn = `column${index + 1}`
               let pointsOne = column.one
@@ -480,10 +482,21 @@ function LevelUp(props) {
               )
             }
             return ""
-          })}
+          })} */}
         </div>
       </fieldset>
-    </PopupForm>
+      <div className="popupform__button-panel">
+        <button
+          onClick={() => {
+            charSheetDispatch({ type: "hidePopupForm" })
+          }}
+          className="popupform__close-button"
+        >
+          Cancel
+        </button>
+        <input type="submit" className="popupform__submit-button" value="Submit" />
+      </div>
+    </form>
   )
 }
 

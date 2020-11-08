@@ -7,9 +7,7 @@ import DispatchContext from "../../DispatchContext"
 function Stats(props) {
   const charSheetState = useContext(StateContext)
   const charSheetDispatch = useContext(DispatchContext)
-  const openLevelUp = () => {
-    props.levelUpHandler(true)
-  }
+
   const openEditLevel = () => {
     //props.editLevelHandler(true)
     if (charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].level !== 0) {
@@ -67,7 +65,13 @@ function Stats(props) {
             <div className="item-container">
               <h3 className="item-container__heading">Level</h3>
               <h4 className="item-container__subheading">You are at Level {charSheetState.charSheet.level}</h4>
-              <button className="button" onClick={openLevelUp}>
+              <button
+                className="button"
+                onClick={() => {
+                  charSheetDispatch({ type: "showPopupForm" })
+                  charSheetDispatch({ type: "changePopupForm", data: "levelUp" })
+                }}
+              >
                 Level Up
               </button>
               <button className="button" onClick={openEditLevel}>
