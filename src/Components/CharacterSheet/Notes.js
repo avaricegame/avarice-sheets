@@ -7,37 +7,32 @@ import DispatchContext from "../../DispatchContext"
 function Notes(props) {
   const charSheetState = useContext(StateContext)
   const charSheetDispatch = useContext(DispatchContext)
-  const openNewNote = () => {
-    props.newNoteHandler(true)
-  }
-  const openEditNote = () => {
-    props.editNoteHandler(true)
-  }
 
   const [noteIndex, setNoteIndex] = useState("a")
 
   const openNoteHandler = (index, e) => {
     setNoteIndex(index)
   }
+
   const deleteNote = () => {
-    if (window.confirm("Are you sure you want to delete this note? This action cannot be undone.")) {
-      Axios.post("/character/deletenote", {
-        CSID: props.CSID,
-        id: charSheetState.charSheet.notes[noteIndex].id,
-      })
-        .then(function (response) {
-          console.log(response)
-          charSheetDispatch({
-            type: "deleteNote",
-            value: noteIndex,
-          })
-          console.log(noteIndex)
-          setNoteIndex("a")
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
+    // if (window.confirm("Are you sure you want to delete this note? This action cannot be undone.")) {
+    //   Axios.post("/character/deletenote", {
+    //     CSID: props.CSID,
+    //     id: charSheetState.charSheet.notes[noteIndex].id,
+    //   })
+    //     .then(function (response) {
+    //       console.log(response)
+    //       charSheetDispatch({
+    //         type: "deleteNote",
+    //         value: noteIndex,
+    //       })
+    //       console.log(noteIndex)
+    //       setNoteIndex("a")
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error)
+    //     })
+    // }
   }
   if (noteIndex === "a") {
     return (
@@ -49,7 +44,13 @@ function Notes(props) {
           <div className="cw__25">
             <h2 className="heading">Your Notes</h2>
             <div className="cw__container">
-              <button className="button" onClick={openNewNote}>
+              <button
+                className="button"
+                onClick={() => {
+                  charSheetDispatch({ type: "showPopupForm" })
+                  charSheetDispatch({ type: "changePopupForm", data: "newNote" })
+                }}
+              >
                 Create New Note
               </button>
 
@@ -89,7 +90,13 @@ function Notes(props) {
           <div className="cw__25">
             <h2 className="heading">Your Notes</h2>
             <div className="cw__container">
-              <button className="button" onClick={openNewNote}>
+              <button
+                className="button"
+                onClick={() => {
+                  charSheetDispatch({ type: "showPopupForm" })
+                  charSheetDispatch({ type: "changePopupForm", data: "newNote" })
+                }}
+              >
                 Create New Note
               </button>
 
@@ -116,7 +123,13 @@ function Notes(props) {
               </div>
 
               <p style={{ textAlign: "right", margin: "0", color: "darkgray" }}>
-                <span onClick={openEditNote} className="hg__fake-link">
+                <span
+                  onClick={() => {
+                    charSheetDispatch({ type: "showPopupForm" })
+                    charSheetDispatch({ type: "changePopupForm", data: "editNote" })
+                  }}
+                  className="hg__fake-link"
+                >
                   EDIT
                 </span>
                 <span>|</span>
