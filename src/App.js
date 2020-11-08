@@ -23,8 +23,8 @@ import Loader from "./Components/Loader"
 import PopupForm from "./Components/PopupForm"
 import FlashMessage from "./Components/FlashMessage"
 
-//Axios.defaults.baseURL = "http://localhost:2890"
-Axios.defaults.baseURL = "https://backendforpaxgameplay.herokuapp.com"
+Axios.defaults.baseURL = "http://localhost:2890"
+//Axios.defaults.baseURL = "https://backendforpaxgameplay.herokuapp.com"
 
 function App() {
   // set inital state of entire app

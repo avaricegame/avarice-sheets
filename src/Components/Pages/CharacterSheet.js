@@ -24,7 +24,7 @@ import Notes from "../CharacterSheet/Notes"
 import Messages from "../Messages"
 import About from "../CharacterSheet/About"
 
-function CharacterSheet(props) {
+function CharacterSheet() {
   // bring in my app-wide state and dispatch from App.js
   const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
@@ -52,6 +52,9 @@ function CharacterSheet(props) {
     slotsUsed: 0,
     slotsAvailable: 0,
     wearableArmourBonus: 0,
+    currentPopupForm: "",
+    popupFormVisible: false,
+    flashMessages: [],
   }
 
   // create a second context and dispatch -- this one for the character sheet itself
@@ -62,6 +65,24 @@ function CharacterSheet(props) {
     switch (action.type) {
       case "setCharSheet":
         draft.charSheet = action.data
+        break
+      case "setRace":
+        draft.theRace = action.data
+        break
+      case "setClass":
+        draft.theClass = action.data
+        break
+      case "flashMessage":
+        draft.flashMessages.push(action.value)
+        break
+      case "changePopupForm":
+        draft.currentPopupForm = action.data
+        break
+      case "showPopupForm":
+        draft.popupFormVisible = true
+        break
+      case "hidePopupForm":
+        draft.popupFormVisible = false
         break
       case "healHP":
         draft.charSheet.currentHP = draft.charSheet.currentHP + parseInt(action.value)
@@ -206,9 +227,6 @@ function CharacterSheet(props) {
   }
 
   // ******************** BEGIN ALL USE EFFECT LOGIC ******************** //
-
-  const [theClass, setTheClass] = useState({})
-  const [theRace, setTheRace] = useState({})
   const [abilityTree, setAbilityTree] = useState({})
 
   // pull in character sheet data by the character sheet id from app state
@@ -234,33 +252,37 @@ function CharacterSheet(props) {
     }
   }, [appState.charSheetID, charSheetDispatch])
 
-  // once character sheet data is loaded, pull in specific race and class data
-  // useEffect(() => {
-  //   if (!charSheetIsLoading) {
-  //     Axios.get("/loadrace", {
-  //       params: {
-  //         raceID: charSheet.raceID,
-  //       },
-  //     }).then(function (response) {
-  //       setTheRace(response.data[0])
-  //       Axios.get("/loadclass", {
-  //         params: {
-  //           classID: charSheet.classID,
-  //         },
-  //       }).then(function (response) {
-  //         setTheClass(response.data[0])
-  //         Axios.get("/loadabilitytree", {
-  //           params: {
-  //             abilityTreeID: response.data[0].abilityTreeID,
-  //           },
-  //         }).then(function (response) {
-  //           setAbilityTree(response.data[0])
-  //           setIsLoading(false)
-  //         })
-  //       })
-  //     })
-  //   }
-  // }, [charSheetState.charSheet, charSheetIsLoading])
+  //once character sheet data is loaded, pull in specific race and class data
+  useEffect(() => {
+    // get specific race data
+    if (!charSheetIsLoading) {
+      Axios.post("/character/race", {
+        token: appState.user.token,
+        raceid: charSheetState.charSheet.raceID,
+      })
+        .then(function (response) {
+          charSheetDispatch({ type: "setRace", data: response.data })
+          setRaceIsLoading(false)
+        })
+        .catch(function (e) {
+          console.log(e)
+        })
+    }
+    // get specific class data
+    if (!charSheetIsLoading) {
+      Axios.post("/character/class", {
+        token: appState.user.token,
+        classid: charSheetState.charSheet.classID,
+      })
+        .then(function (response) {
+          charSheetDispatch({ type: "setClass", data: response.data })
+          setClassIsLoading(false)
+        })
+        .catch(function (e) {
+          console.log(e)
+        })
+    }
+  }, [charSheetState.charSheet, charSheetIsLoading])
 
   // once class (and race) data is loaded, pull in the ability tree information
   // useEffect(() => {
@@ -387,7 +409,7 @@ function CharacterSheet(props) {
 
   ///////////////////////////////////////////////////////////////////////// BEGIN RENDERING THE PAGES
   if (appState.loggedIn) {
-    if (1) {
+    if (!charSheetIsLoading && !classIsLoading && !raceIsLoading) {
       return (
         <StateContext.Provider value={charSheetState}>
           <DispatchContext.Provider value={charSheetDispatch}>
@@ -420,8 +442,7 @@ function CharacterSheet(props) {
                   </Route>
                 </Switch>
               </CharacterSheetContainer>
-              {/* {appState.popupFormVisible ? <PopupForm /> : ""}
-              {appState.flashMessageVisible ? <FlashMessage /> : ""} */}
+              {charSheetState.popupFormVisible ? <PopupForm /> : ""}
             </BrowserRouter>
           </DispatchContext.Provider>
         </StateContext.Provider>

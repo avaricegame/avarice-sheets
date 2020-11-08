@@ -4,33 +4,30 @@ import Axios from "axios"
 import StateContext from "../../StateContext"
 import DispatchContext from "../../DispatchContext"
 
-function Info(props) {
+function Info() {
   const charSheetState = useContext(StateContext)
   const charSheetDispatch = useContext(DispatchContext)
-  const openNewCharacterLog = () => {
-    props.newCharacterLogHandler(true)
-  }
-  const openEditCharacterLog = () => {
-    props.editCharacterLogHandler(true)
-  }
+
+  console.log(charSheetState)
   const deleteCharacterLog = (e, id) => {
-    if (window.confirm("Are you sure you want to delete this character log? This action cannot be undone.")) {
-      Axios.post("/character/deletecharacterlog", {
-        CSID: props.CSID,
-        id: id,
-      })
-        .then(function (response) {
-          console.log(response)
-          charSheetDispatch({
-            type: "deleteCharacterLog",
-            value: id,
-          })
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
+    // if (window.confirm("Are you sure you want to delete this character log? This action cannot be undone.")) {
+    //   Axios.post("/character/deletecharacterlog", {
+    //     CSID: props.CSID,
+    //     id: id,
+    //   })
+    //     .then(function (response) {
+    //       console.log(response)
+    //       charSheetDispatch({
+    //         type: "deleteCharacterLog",
+    //         value: id,
+    //       })
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error)
+    //     })
+    // }
   }
+
   return (
     <>
       <div className="secondary-header">
@@ -40,7 +37,13 @@ function Info(props) {
         <div className="cw__33">
           <h2 className="heading">Campaign Information</h2>
           <div className="cw__container">
-            <button className="button" onClick={openNewCharacterLog}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "newCharacterLog" })
+              }}
+            >
               Add a New Character Log
             </button>
 
@@ -52,7 +55,13 @@ function Info(props) {
                     {log.details}
 
                     <p style={{ textAlign: "right", margin: "0", color: "darkgray" }}>
-                      <span onClick={openEditCharacterLog} className="hg__fake-link">
+                      <span
+                        onClick={() => {
+                          charSheetDispatch({ type: "showPopupForm" })
+                          charSheetDispatch({ type: "changePopupForm", data: "editCharacterLog" })
+                        }}
+                        className="hg__fake-link"
+                      >
                         EDIT
                       </span>
                       <span>|</span>
@@ -76,7 +85,15 @@ function Info(props) {
 
             <div className="item-container">
               <h3 className="item-container__heading">Master Log</h3>
-              <button className="button">Join a Campaign</button>
+              <button
+                className="button"
+                onClick={() => {
+                  charSheetDispatch({ type: "showPopupForm" })
+                  charSheetDispatch({ type: "changePopupForm", data: "" })
+                }}
+              >
+                Join a Campaign
+              </button>
               {/* <h4 className="item-container__subheading">For: Fluttering Butterflies Campaign</h4>
               <p>
                 <strong>Mission III: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
@@ -92,7 +109,15 @@ function Info(props) {
 
           <div className="item-container">
             <h3 className="item-container__heading">Campaign Details</h3>
-            <button className="button">Join a Campaign</button>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "" })
+              }}
+            >
+              Join a Campaign
+            </button>
             {/* <h4 className="item-container__subheading">For: Fluttering Butterflies Campaign</h4>
             <p>
               <strong>Background: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
@@ -128,144 +153,144 @@ function Info(props) {
           <div className="cw__container">
             <div className="item-container">
               <h3 className="item-container__heading">Class Details and Information</h3>
-              <h4 className="item-container__subheading">Class Name: {props.theClass.name}</h4>
-              <h4 className="item-container__terheading">Common Name: {props.theClass.commonName}</h4>
+              <h4 className="item-container__subheading">Class Name: {charSheetState.theClass.name}</h4>
+              <h4 className="item-container__terheading">Common Name: {charSheetState.theClass.commonName}</h4>
               <p>
-                <em>"{props.theClass.quote}"</em>
+                <em>"{charSheetState.theClass.quote}"</em>
               </p>
-              <p>{props.theClass.description}</p>
+              <p>{charSheetState.theClass.description}</p>
               <p>Specializations:</p>
-              <table>
+              {/* <table>
                 <tbody>
                   <tr>
                     <td>Strength Physique:</td>
-                    <td>{props.theClass.specializations.phyStrength}</td>
+                    <td>{charSheetState.theClass.specializations.phyStrength}</td>
                   </tr>
                   <tr>
                     <td>Constitution Physique:</td>
-                    <td>{props.theClass.specializations.phyHealth}</td>
+                    <td>{charSheetState.theClass.specializations.phyHealth}</td>
                   </tr>
                   <tr>
                     <td>Academic Intelligence:</td>
-                    <td>{props.theClass.specializations.intIntelligence}</td>
+                    <td>{charSheetState.theClass.specializations.intIntelligence}</td>
                   </tr>
                   <tr>
                     <td>Technical Intelligence:</td>
-                    <td>{props.theClass.specializations.intTechnology}</td>
+                    <td>{charSheetState.theClass.specializations.intTechnology}</td>
                   </tr>
                   <tr>
                     <td>Reflex Dexterity:</td>
-                    <td>{props.theClass.specializations.refDexterity}</td>
+                    <td>{charSheetState.theClass.specializations.refDexterity}</td>
                   </tr>
                   <tr>
                     <td>Speed Dexterity:</td>
-                    <td>{props.theClass.specializations.refReaction}</td>
+                    <td>{charSheetState.theClass.specializations.refReaction}</td>
                   </tr>
                   <tr>
                     <td>Speech Charisma:</td>
-                    <td>{props.theClass.specializations.chaCharisma}</td>
+                    <td>{charSheetState.theClass.specializations.chaCharisma}</td>
                   </tr>
                   <tr>
                     <td>Performance Charisma:</td>
-                    <td>{props.theClass.specializations.chaPerform}</td>
+                    <td>{charSheetState.theClass.specializations.chaPerform}</td>
                   </tr>
                   <tr>
                     <td>Ranged Combat:</td>
-                    <td>{props.theClass.specializations.comRanged}</td>
+                    <td>{charSheetState.theClass.specializations.comRanged}</td>
                   </tr>
                   <tr>
                     <td>Melee Combat:</td>
-                    <td>{props.theClass.specializations.comMelee}</td>
+                    <td>{charSheetState.theClass.specializations.comMelee}</td>
                   </tr>
                 </tbody>
-              </table>
+              </table> */}
             </div>
             <div className="item-container">
               <h3 className="item-container__heading">Race Details and Information</h3>
-              <h4 className="item-container__subheading">Race Name: {props.theRace.name}</h4>
-              <h4 className="item-container__terheading">Common Name: {props.theRace.commonName}</h4>
+              <h4 className="item-container__subheading">Race Name: {charSheetState.theRace.name}</h4>
+              <h4 className="item-container__terheading">Common Name: {charSheetState.theRace.commonName}</h4>
               <p>
-                <em>"{props.theRace.quote}"</em>
+                <em>"{charSheetState.theRace.quote}"</em>
               </p>
-              <p>{props.theRace.description}</p>
+              <p>{charSheetState.theRace.description}</p>
               <p>More Information:</p>
               <table>
                 <tbody>
                   <tr>
                     <td>Location:</td>
-                    <td>{props.theRace.location}</td>
+                    <td>{charSheetState.theRace.location}</td>
                   </tr>
                   <tr>
                     <td>Climate:</td>
-                    <td>{props.theRace.climate}</td>
+                    <td>{charSheetState.theRace.climate}</td>
                   </tr>
                   <tr>
                     <td>Size:</td>
-                    <td>{props.theRace.size}</td>
+                    <td>{charSheetState.theRace.size}</td>
                   </tr>
                   <tr>
                     <td>Lifespan:</td>
-                    <td>{props.theRace.lifespan}</td>
+                    <td>{charSheetState.theRace.lifespan}</td>
                   </tr>
                   <tr>
                     <td>Personality:</td>
-                    <td>{props.theRace.personality}</td>
+                    <td>{charSheetState.theRace.personality}</td>
                   </tr>
                   <tr>
                     <td>Friends:</td>
-                    <td>{props.theRace.friends}</td>
+                    <td>{charSheetState.theRace.friends}</td>
                   </tr>
                   <tr>
                     <td>Enemies:</td>
-                    <td>{props.theRace.enemies}</td>
+                    <td>{charSheetState.theRace.enemies}</td>
                   </tr>
                 </tbody>
               </table>
               <p>Specializations:</p>
-              <table>
+              {/* <table>
                 <tbody>
                   <tr>
                     <td>Strength Physique:</td>
-                    <td>{props.theRace.specializations.phyStrength}</td>
+                    <td>{charSheetState.theRace.specializations.phyStrength}</td>
                   </tr>
                   <tr>
                     <td>Constitution Physique:</td>
-                    <td>{props.theRace.specializations.phyHealth}</td>
+                    <td>{charSheetState.theRace.specializations.phyHealth}</td>
                   </tr>
                   <tr>
                     <td>Academic Intelligence:</td>
-                    <td>{props.theRace.specializations.intIntelligence}</td>
+                    <td>{charSheetState.theRace.specializations.intIntelligence}</td>
                   </tr>
                   <tr>
                     <td>Technical Intelligence:</td>
-                    <td>{props.theRace.specializations.intTechnology}</td>
+                    <td>{charSheetState.theRace.specializations.intTechnology}</td>
                   </tr>
                   <tr>
                     <td>Reflex Dexterity:</td>
-                    <td>{props.theRace.specializations.refDexterity}</td>
+                    <td>{charSheetState.theRace.specializations.refDexterity}</td>
                   </tr>
                   <tr>
                     <td>Speed Dexterity:</td>
-                    <td>{props.theRace.specializations.refReaction}</td>
+                    <td>{charSheetState.theRace.specializations.refReaction}</td>
                   </tr>
                   <tr>
                     <td>Speech Charisma:</td>
-                    <td>{props.theRace.specializations.chaCharisma}</td>
+                    <td>{charSheetState.theRace.specializations.chaCharisma}</td>
                   </tr>
                   <tr>
                     <td>Performance Charisma:</td>
-                    <td>{props.theRace.specializations.chaPerform}</td>
+                    <td>{charSheetState.theRace.specializations.chaPerform}</td>
                   </tr>
                   <tr>
                     <td>Ranged Combat:</td>
-                    <td>{props.theRace.specializations.comRanged}</td>
+                    <td>{charSheetState.theRace.specializations.comRanged}</td>
                   </tr>
                   <tr>
                     <td>Melee Combat:</td>
-                    <td>{props.theRace.specializations.comMelee}</td>
+                    <td>{charSheetState.theRace.specializations.comMelee}</td>
                   </tr>
                 </tbody>
-              </table>
+              </table> */}
             </div>
           </div>
         </div>
