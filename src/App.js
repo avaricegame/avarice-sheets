@@ -1,6 +1,6 @@
 // PACKAGES
 import React, { useEffect, useState } from "react"
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
 import { useImmerReducer } from "use-immer"
 import Axios from "axios"
 
@@ -17,7 +17,10 @@ import HomeGuest from "./Components/Pages/HomeGuest"
 import CharacterSheet from "./Components/Pages/CharacterSheet"
 import CampaignSheet from "./Components/Pages/CampaignSheet"
 import Profile from "./Components/Pages/Profile"
-import About from "./Components/Pages/About"
+// info pages
+import About from "./Components/Pages/Information/About"
+import Terms from "./Components/Pages/Information/Terms"
+import Privacy from "./Components/Pages/Information/Privacy"
 // components
 import PopupForm from "./Components/PopupForm"
 import FlashMessage from "./Components/FlashMessage"
@@ -128,6 +131,12 @@ function App() {
             </Route>
             <Route path="/about">
               <About />
+            </Route>
+            <Route path="/terms">
+              <Terms />
+            </Route>
+            <Route path="/privacy">
+              <Privacy />
             </Route>
             <Route path="/character/:charid">
               <CharacterSheet />
