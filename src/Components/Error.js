@@ -1,17 +1,19 @@
 import React from "react"
+import { useEffect } from "react"
+import { useHistory } from "react-router-dom"
+import Loader from "./Loader"
 
 function Error() {
-  return (
-    <div className="fullpage-container">
-      <h1>Oops...</h1>
-      <p></p>
-      <h2>something went wrong</h2>
-      <p></p>
-      <h3>
-        <a href="/">AVARICE SHEETS HOME</a>
-      </h3>
-    </div>
-  )
+  const history = useHistory()
+
+  useEffect(() => {
+    setTimeout(() => {
+      history.push("/")
+      window.location.reload()
+    }, 2000)
+  }, [])
+
+  return <Loader />
 }
 
 export default Error

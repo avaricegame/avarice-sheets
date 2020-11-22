@@ -17,6 +17,7 @@ import HomeGuest from "./Components/Pages/HomeGuest"
 import CharacterSheet from "./Components/Pages/CharacterSheet"
 import CampaignSheet from "./Components/Pages/CampaignSheet"
 import Profile from "./Components/Pages/Profile"
+import Error from "./Components/Error"
 // info pages
 import About from "./Components/Pages/Information/About"
 import Terms from "./Components/Pages/Information/Terms"
@@ -143,6 +144,9 @@ function App() {
             </Route>
             <Route path="/campaign">
               <CampaignSheet />
+            </Route>
+            <Route path="/">
+              <Error />
             </Route>
           </Switch>
           {state.popupFormVisible ? <PopupForm /> : ""}
