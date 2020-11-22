@@ -8,8 +8,9 @@ import Loader from "../Loader"
 import StateContext from "../../StateContext"
 import DispatchContext from "../../DispatchContext"
 import EditDelete from "../EditDelete"
+import Footer from "../Footer"
 
-function Home(props) {
+function Home() {
   const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
 
@@ -70,7 +71,7 @@ function Home(props) {
                         </tbody>
                       </table>
                     </Link>
-                    <EditDelete />
+                    <EditDelete id={charSheet._id} type="charsheet" />
                   </div>
                 )
               })}
@@ -89,8 +90,8 @@ function Home(props) {
                 Create a New Campaign
               </button>
 
-              <Link to="/campaign/gameplay" className="fixing-link-settings">
-                <div className="item-container item-container--hover-highlight">
+              <div className="item-container item-container--hover-highlight">
+                <Link to="/" className="fixing-link-settings">
                   <h3 className="item-container__heading">Campaign Name</h3>
                   <h4 className="item-container__subheading item-container__subheading--blue">campid: #exampleid</h4>
                   <table>
@@ -115,19 +116,13 @@ function Home(props) {
                       </tr>
                     </tbody>
                   </table>
-                </div>
-              </Link>
+                </Link>
+                <EditDelete />
+              </div>
             </div>
           </div>
         </div>
-        <footer className="footer">
-          <p className="footer__text">
-            &copy; 2020 by Avarice. All rights reserved. Application built by{" "}
-            <a href="https://talonmd.github.io/talondurrant/" target="_blank" rel="noopener noreferrer">
-              Talon Durrant
-            </a>
-          </p>
-        </footer>
+        <Footer />
       </>
     )
   } else {

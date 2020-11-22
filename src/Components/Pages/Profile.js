@@ -5,6 +5,7 @@ import StateContext from "../../StateContext"
 import DispatchContext from "../../DispatchContext"
 
 import Error from "../Error"
+import Footer from "../Footer"
 
 function Profile() {
   const appState = useContext(StateContext)
@@ -67,14 +68,7 @@ function Profile() {
             </Link>
           </div>
         </div>
-        <footer className="footer">
-          <p className="footer__text">
-            &copy; 2020 by Avarice. All rights reserved. Application built by{" "}
-            <a href="https://talonmd.github.io/talondurrant/" target="_blank" rel="noopener noreferrer">
-              Talon Durrant
-            </a>
-          </p>
-        </footer>
+        <Footer />
       </div>
     )
   } else {
