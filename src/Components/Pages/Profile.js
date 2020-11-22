@@ -56,7 +56,7 @@ function Profile() {
             <hr className="hg__hr" />
             <Link to="/">
               <button
-                className="sign-out-button"
+                className="button sign-out-button"
                 onClick={() => {
                   appDispatch({ type: "logout" })
                   appDispatch({ type: "flashMessage", value: "You have successfully logged out." })

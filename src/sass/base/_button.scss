@@ -26,3 +26,17 @@
     outline: 0;
   }
 }
+
+.sign-out-button {
+  background-color: darkred;
+  width: 50%;
+  color: $color-white;
+  margin: 2rem 25% 3rem 25%;
+  transition: all 0.5s;
+  &:hover {
+    background-color: $color-white;
+    border: 1px solid darkred;
+    color: darkred;
+    box-shadow: none;
+  }
+}
