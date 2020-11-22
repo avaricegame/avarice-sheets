@@ -19,7 +19,6 @@ import CampaignSheet from "./Components/Pages/CampaignSheet"
 import Profile from "./Components/Pages/Profile"
 import About from "./Components/Pages/About"
 // components
-import Loader from "./Components/Loader"
 import PopupForm from "./Components/PopupForm"
 import FlashMessage from "./Components/FlashMessage"
 

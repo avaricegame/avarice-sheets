@@ -7,6 +7,7 @@ import Loader from "../Loader"
 
 import StateContext from "../../StateContext"
 import DispatchContext from "../../DispatchContext"
+import EditDelete from "../EditDelete"
 
 function Home(props) {
   const appState = useContext(StateContext)
@@ -42,15 +43,15 @@ function Home(props) {
               </button>
               {reversedCharacterSheetArray.map((charSheet) => {
                 return (
-                  <Link to={`/character/${charSheet._id}/gameplay`} key={charSheet._id} className="fixing-link-settings">
-                    <div className="item-container item-container--hover-highlight">
+                  <div className="item-container item-container--hover-highlight" key={charSheet._id}>
+                    <Link to={`/character/${charSheet._id}/gameplay`} className="fixing-link-settings">
                       <h3 className="item-container__heading">{charSheet.characterName}</h3>
                       <h4 className="item-container__subheading">ID: #{charSheet._id}</h4>
                       <table>
                         <tbody>
                           <tr>
                             <td>Level:</td>
-                            <td>{charSheet.level}</td>
+                            <td>{charSheet.levelUps[charSheet.levelUps.length - 1].level}</td>
                           </tr>
                           <tr>
                             <td>Race:</td>
@@ -68,8 +69,9 @@ function Home(props) {
                           </tr>
                         </tbody>
                       </table>
-                    </div>
-                  </Link>
+                    </Link>
+                    <EditDelete />
+                  </div>
                 )
               })}
             </div>

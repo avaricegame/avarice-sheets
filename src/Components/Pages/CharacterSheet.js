@@ -12,7 +12,6 @@ import CharacterSheetContainer from "../CharacterSheetContainer"
 import Loader from "../Loader"
 import Error from "../Error"
 import PopupForm from "../PopupForm"
-import FlashMessage from "../FlashMessage"
 
 // PAGES
 import Gameplay from "../CharacterSheet/Gameplay"
@@ -27,7 +26,6 @@ import About from "../CharacterSheet/About"
 function CharacterSheet() {
   // bring in my app-wide state and dispatch from App.js
   const appState = useContext(StateContext)
-  const appDispatch = useContext(DispatchContext)
 
   // pull in charid from url params
   const { charid } = useParams()
