@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { BrowserRouter, Switch, Route, useParams } from "react-router-dom"
+import { BrowserRouter, Switch, Route, useParams, useHistory, Redirect } from "react-router-dom"
 import Axios from "axios"
 import { useImmerReducer } from "use-immer"
 
@@ -27,12 +27,15 @@ function CharacterSheet() {
   // bring in my app-wide state and dispatch from App.js
   const appState = useContext(StateContext)
 
+  const history = useHistory()
+
   // pull in charid from url params
   const { charid } = useParams()
 
   // need to load in: character sheet, the appropriate race and class, and the appropriate ability tree
   // all put together on the backend
   const [charSheetIsLoading, setCharSheetIsLoading] = useState(true)
+  const [charSheetFound, setCharSheetFound] = useState(false)
 
   // create object to set charSheet initial state
   /* [TO DO] look into setting up my state I am loading on this page and passing down as props in the charSheetState instead */
@@ -238,11 +241,11 @@ function CharacterSheet() {
           type: "setCharSheet",
           data: response.data,
         })
+        setCharSheetFound(true)
         setCharSheetIsLoading(false)
       })
       .catch(function (e) {
         console.log(e)
-        setCharSheetIsLoading("not found")
       })
     console.log("USE EFFECT FOR FETCHING AND SETTING CHAR SHEET DATA JUST RAN")
   }, [charid, charSheetDispatch, appState.user.token])
@@ -361,50 +364,57 @@ function CharacterSheet() {
   ///////////////////////////////////////////////////////////////////////// BEGIN RENDERING THE PAGES
   if (appState.loggedIn) {
     if (!charSheetIsLoading) {
-      return (
-        <StateContext.Provider value={charSheetState}>
-          <DispatchContext.Provider value={charSheetDispatch}>
-            <BrowserRouter>
-              <CharacterSheetContainer charid={charid}>
-                <Switch>
-                  <Route path="/character/about">
-                    <About />
-                  </Route>
-                  <Route path="/character/:charid/gameplay" exact>
-                    <Gameplay armourModifier={armourModifier} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} />
-                  </Route>
-                  <Route path="/character/:charid/inventory" exact>
-                    <Inventory holstersUsed={holstersUsed} slotsUsed={slotsUsed} holstersAvailable={holstersAvailable} slotsAvailable={slotsAvailable} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} />
-                  </Route>
-                  <Route path="/character/:charid/stats" exact>
-                    <Stats />
-                  </Route>
-                  <Route path="/character/:charid/abilities" exact>
-                    <Abilities abilityArray={abilityArray} />
-                  </Route>
-                  <Route path="/character/:charid/info" exact>
-                    <Info />
-                  </Route>
-                  <Route path="/character/:charid/messages" exact>
-                    <Messages />
-                  </Route>
-                  <Route path="/character/:charid/notes" exact>
-                    <Notes />
-                  </Route>
-                </Switch>
-              </CharacterSheetContainer>
-              {charSheetState.popupFormVisible ? <PopupForm /> : ""}
-            </BrowserRouter>
-          </DispatchContext.Provider>
-        </StateContext.Provider>
-      )
-    } else if (charSheetIsLoading === "not found") {
-      return "char sheet not found"
+      if (charSheetState.charSheet.isOwner) {
+        return (
+          <StateContext.Provider value={charSheetState}>
+            <DispatchContext.Provider value={charSheetDispatch}>
+              <BrowserRouter>
+                <CharacterSheetContainer charid={charid}>
+                  <Switch>
+                    <Route path="/character/:charid/about">
+                      <About />
+                    </Route>
+                    <Route path="/character/:charid/gameplay" exact>
+                      <Gameplay armourModifier={armourModifier} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} />
+                    </Route>
+                    <Route path="/character/:charid/inventory" exact>
+                      <Inventory holstersUsed={holstersUsed} slotsUsed={slotsUsed} holstersAvailable={holstersAvailable} slotsAvailable={slotsAvailable} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} />
+                    </Route>
+                    <Route path="/character/:charid/stats" exact>
+                      <Stats appState={appState} />
+                    </Route>
+                    <Route path="/character/:charid/abilities" exact>
+                      <Abilities abilityArray={abilityArray} />
+                    </Route>
+                    <Route path="/character/:charid/info" exact>
+                      <Info />
+                    </Route>
+                    <Route path="/character/:charid/messages" exact>
+                      <Messages />
+                    </Route>
+                    <Route path="/character/:charid/notes" exact>
+                      <Notes />
+                    </Route>
+                    <Redirect to={`/character/${charSheetState.charSheet._id}/gameplay`} />
+                  </Switch>
+                </CharacterSheetContainer>
+                {charSheetState.popupFormVisible ? <PopupForm /> : ""}
+              </BrowserRouter>
+            </DispatchContext.Provider>
+          </StateContext.Provider>
+        )
+      } else {
+        // history.push("/")
+        // window.location.reload()
+        return <Error />
+      }
     } else {
       return <Loader />
     }
   } else {
-    return <Error />
+    history.push("/")
+    window.location.reload()
+    return ""
   }
 }
 
