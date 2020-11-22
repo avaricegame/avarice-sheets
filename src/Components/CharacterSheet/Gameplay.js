@@ -15,9 +15,6 @@ import UseItem from "./Actions/UseItem"
 function Gameplay(props) {
   const charSheetState = useContext(StateContext)
 
-  console.log(props.armourModifier)
-  console.log(charSheetState.charSheet.levelUps)
-
   const [roll, setRoll] = useState(false)
   const rollHandler = (bool) => {
     setRoll(bool)

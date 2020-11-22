@@ -10,7 +10,7 @@ function CharacterSheetContainer(props) {
   return (
     <>
       <Header charSheet={props.charSheet} />
-      <Navigation />
+      <Navigation charid={props.charid} />
       {props.children}
       <Footer />
       <FlashMessage />

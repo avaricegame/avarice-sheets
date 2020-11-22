@@ -35,6 +35,7 @@ function Abilities(props) {
   const reversedLevelUpsArray = charSheetState.charSheet.levelUps.map((level) => level).reverse()
   const reversedCustomAbilitiesArray = charSheetState.charSheet.customAbilities.map((ability) => ability).reverse()
   const reversedAbilityArray = props.abilityArray.map((ability) => ability).reverse()
+
   return (
     <>
       <div className="secondary-header">
@@ -52,18 +53,18 @@ function Abilities(props) {
 
           <h4 className="item-container__terheading">Options Upon Next Level Up</h4>
           <div className="cw__container cw__container--tree">
-            {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree.map((column, index) => {
+            {charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree.columns.map((column, index) => {
               if (column.points <= 2) {
                 let corrColumn = `column${index + 1}`
                 let pointsOne = column.one
                 return (
                   <div key={index} className="cw__33" style={{ display: "flex", alignItems: "flex-start" }}>
                     <div className="item-container">
-                      <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsOne].name}</h3>
-                      <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsOne].power}</h4>
+                      <h3 className="item-container__heading">{charSheetState.charSheet.abilityTree[corrColumn][pointsOne].name}</h3>
+                      <h4 className="item-container__terheading">Power {charSheetState.charSheet.abilityTree[corrColumn][pointsOne].power}</h4>
                       <p>
                         <strong>Details: </strong>
-                        {props.abilityTree[corrColumn][pointsOne].details}
+                        {charSheetState.charSheet.abilityTree[corrColumn][pointsOne].details}
                       </p>
                     </div>
                   </div>
@@ -78,19 +79,19 @@ function Abilities(props) {
                   <div key={index} className="cw__33" style={{ display: "flex", alignItems: "flex-start" }}>
                     <div style={{ display: "flex", flexDirection: "column-reverse" }}>
                       <div className="item-container">
-                        <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsTwo].name}</h3>
-                        <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsTwo].power}</h4>
+                        <h3 className="item-container__heading">{charSheetState.charSheet.abilityTree[corrColumn][pointsTwo].name}</h3>
+                        <h4 className="item-container__terheading">Power {charSheetState.charSheet.abilityTree[corrColumn][pointsTwo].power}</h4>
                         <p>
                           <strong>Details: </strong>
-                          {props.abilityTree[corrColumn][pointsTwo].details}
+                          {charSheetState.charSheet.abilityTree[corrColumn][pointsTwo].details}
                         </p>
                       </div>
                       <div className="item-container">
-                        <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsOne].name}</h3>
-                        <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsOne].power}</h4>
+                        <h3 className="item-container__heading">{charSheetState.charSheet.abilityTree[corrColumn][pointsOne].name}</h3>
+                        <h4 className="item-container__terheading">Power {charSheetState.charSheet.abilityTree[corrColumn][pointsOne].power}</h4>
                         <p>
                           <strong>Details: </strong>
-                          {props.abilityTree[corrColumn][pointsOne].details}
+                          {charSheetState.charSheet.abilityTree[corrColumn][pointsOne].details}
                         </p>
                       </div>
                     </div>
@@ -106,27 +107,27 @@ function Abilities(props) {
                   <div key={index} className="cw__33" style={{ display: "flex", alignItems: "flex-start" }}>
                     <div style={{ display: "flex", flexDirection: "column-reverse" }}>
                       <div className="item-container">
-                        <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsThree].name}</h3>
-                        <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsThree].power}</h4>
+                        <h3 className="item-container__heading">{charSheetState.charSheet.abilityTree[corrColumn][pointsThree].name}</h3>
+                        <h4 className="item-container__terheading">Power {charSheetState.charSheet.abilityTree[corrColumn][pointsThree].power}</h4>
                         <p>
                           <strong>Details: </strong>
-                          {props.abilityTree[corrColumn][pointsThree].details}
+                          {charSheetState.charSheet.abilityTree[corrColumn][pointsThree].details}
                         </p>
                       </div>
                       <div className="item-container">
-                        <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsTwo].name}</h3>
-                        <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsTwo].power}</h4>
+                        <h3 className="item-container__heading">{charSheetState.charSheet.abilityTree[corrColumn][pointsTwo].name}</h3>
+                        <h4 className="item-container__terheading">Power {charSheetState.charSheet.abilityTree[corrColumn][pointsTwo].power}</h4>
                         <p>
                           <strong>Details: </strong>
-                          {props.abilityTree[corrColumn][pointsTwo].details}
+                          {charSheetState.charSheet.abilityTree[corrColumn][pointsTwo].details}
                         </p>
                       </div>
                       <div className="item-container">
-                        <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsOne].name}</h3>
-                        <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsOne].power}</h4>
+                        <h3 className="item-container__heading">{charSheetState.charSheet.abilityTree[corrColumn][pointsOne].name}</h3>
+                        <h4 className="item-container__terheading">Power {charSheetState.charSheet.abilityTree[corrColumn][pointsOne].power}</h4>
                         <p>
                           <strong>Details: </strong>
-                          {props.abilityTree[corrColumn][pointsOne].details}
+                          {charSheetState.charSheet.abilityTree[corrColumn][pointsOne].details}
                         </p>
                       </div>
                     </div>
@@ -143,35 +144,35 @@ function Abilities(props) {
                   <div key={index} className="cw__33" style={{ display: "flex", alignItems: "flex-start" }}>
                     <div style={{ display: "flex", flexDirection: "column-reverse" }}>
                       <div className="item-container">
-                        <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsFour].name}</h3>
-                        <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsFour].power}</h4>
+                        <h3 className="item-container__heading">{charSheetState.charSheet.abilityTree[corrColumn][pointsFour].name}</h3>
+                        <h4 className="item-container__terheading">Power {charSheetState.charSheet.abilityTree[corrColumn][pointsFour].power}</h4>
                         <p>
                           <strong>Details: </strong>
-                          {props.abilityTree[corrColumn][pointsFour].details}
+                          {charSheetState.charSheet.abilityTree[corrColumn][pointsFour].details}
                         </p>
                       </div>
                       <div className="item-container">
-                        <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsThree].name}</h3>
-                        <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsThree].power}</h4>
+                        <h3 className="item-container__heading">{charSheetState.charSheet.abilityTree[corrColumn][pointsThree].name}</h3>
+                        <h4 className="item-container__terheading">Power {charSheetState.charSheet.abilityTree[corrColumn][pointsThree].power}</h4>
                         <p>
                           <strong>Details: </strong>
-                          {props.abilityTree[corrColumn][pointsThree].details}
+                          {charSheetState.charSheet.abilityTree[corrColumn][pointsThree].details}
                         </p>
                       </div>
                       <div className="item-container">
-                        <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsTwo].name}</h3>
-                        <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsTwo].power}</h4>
+                        <h3 className="item-container__heading">{charSheetState.charSheet.abilityTree[corrColumn][pointsTwo].name}</h3>
+                        <h4 className="item-container__terheading">Power {charSheetState.charSheet.abilityTree[corrColumn][pointsTwo].power}</h4>
                         <p>
                           <strong>Details: </strong>
-                          {props.abilityTree[corrColumn][pointsTwo].details}
+                          {charSheetState.charSheet.abilityTree[corrColumn][pointsTwo].details}
                         </p>
                       </div>
                       <div className="item-container">
-                        <h3 className="item-container__heading">{props.abilityTree[corrColumn][pointsOne].name}</h3>
-                        <h4 className="item-container__terheading">Power {props.abilityTree[corrColumn][pointsOne].power}</h4>
+                        <h3 className="item-container__heading">{charSheetState.charSheet.abilityTree[corrColumn][pointsOne].name}</h3>
+                        <h4 className="item-container__terheading">Power {charSheetState.charSheet.abilityTree[corrColumn][pointsOne].power}</h4>
                         <p>
                           <strong>Details: </strong>
-                          {props.abilityTree[corrColumn][pointsOne].details}
+                          {charSheetState.charSheet.abilityTree[corrColumn][pointsOne].details}
                         </p>
                       </div>
                     </div>
@@ -182,104 +183,33 @@ function Abilities(props) {
             })}
           </div>
 
-          {reversedLevelUpsArray.map((level, index) => {
-            if (level.level === 0) {
-              return (
-                <div key={level.level}>
-                  <h4 className="item-container__subheading">Level {level.level}</h4>
-                  <div className="cw__container cw__container--tree">
-                    <div className="cw__33">
-                      <div className="item-container">
-                        <h3 className="item-container__heading">{level.abilityTree[0].ability.name}</h3>
-                        <h4 className="item-container__subheading">Race Ability {/*level.abilityTree[0].ability.power*/}</h4>
-                        <p>
-                          <strong>Details: </strong>
-                          {level.abilityTree[0].ability.description}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="cw__33">
-                      <div className="item-container">
-                        <h3 className="item-container__heading">{level.abilityTree[2].ability.name}</h3>
-                        <h4 className="item-container__subheading">Race Ability {/*level.abilityTree[2].ability.power*/}</h4>
-                        <p>
-                          <strong>Details: </strong>
-                          {level.abilityTree[2].ability.description}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="cw__33"></div>
-                  </div>
+          {/* loop through the level ups array to find all the abilities that have already been chosen */}
+          {reversedLevelUpsArray.map((level) => {
+            return (
+              <div key={level.level}>
+                <h4 className="item-container__subheading">Level {level.level}</h4>
+                <div className="cw__container cw__container--tree">
+                  {level.abilityTree.columns.forEach((column) => {
+                    if (column.ability) {
+                      return (
+                        <div className="cw__33" key={column.column}>
+                          <div className="item-container">
+                            <h3 className="item-container__heading">{column.ability.name}</h3>
+                            <h4 className="item-container__subheading">{level.level === 0 ? "Race Ability" : `Power ${column.ability.power}`}</h4>
+                            <p>
+                              <strong>Details: </strong>
+                              {column.ability.description}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    } else {
+                      return ""
+                    }
+                  })}
                 </div>
-              )
-            }
-
-            if (level.abilityTree[0].ability !== 0) {
-              return (
-                <div key={level.level}>
-                  <h4 className="item-container__subheading">Level {level.level}</h4>
-                  <div className="cw__container cw__container--tree">
-                    <div className="cw__33">
-                      <div className="item-container">
-                        <h3 className="item-container__heading">{level.abilityTree[0].ability.name}</h3>
-                        <h4 className="item-container__subheading">Power {level.abilityTree[0].ability.power}</h4>
-                        <p>
-                          <strong>Details: </strong>
-                          {level.abilityTree[0].ability.description}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="cw__33"></div>
-                    <div className="cw__33"></div>
-                  </div>
-                </div>
-              )
-            }
-
-            if (level.abilityTree[1].ability !== 0) {
-              return (
-                <div key={level.level}>
-                  <h4 className="item-container__subheading">Level {level.level}</h4>
-                  <div className="cw__container cw__container--tree">
-                    <div className="cw__33"></div>
-                    <div className="cw__33">
-                      <div className="item-container">
-                        <h3 className="item-container__heading">{level.abilityTree[1].ability.name}</h3>
-                        <h4 className="item-container__subheading">Power {level.abilityTree[1].ability.power}</h4>
-                        <p>
-                          <strong>Details: </strong>
-                          {level.abilityTree[1].ability.description}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="cw__33"></div>
-                  </div>
-                </div>
-              )
-            }
-
-            if (level.abilityTree[2].ability !== 0) {
-              return (
-                <div key={level.level}>
-                  <h4 className="item-container__subheading">Level {level.level}</h4>
-                  <div className="cw__container cw__container--tree">
-                    <div className="cw__33"></div>
-                    <div className="cw__33"></div>
-                    <div className="cw__33">
-                      <div className="item-container">
-                        <h3 className="item-container__heading">{level.abilityTree[2].ability.name}</h3>
-                        <h4 className="item-container__subheading">Power {level.abilityTree[2].ability.power}</h4>
-                        <p>
-                          <strong>Details: </strong>
-                          {level.abilityTree[2].ability.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )
-            }
-            return index
+              </div>
+            )
           })}
         </div>
 
@@ -289,6 +219,7 @@ function Abilities(props) {
             <button className="button" onClick={openNewAbility}>
               Create New Character Ability
             </button>
+            {/* display all custom abilities */}
             {reversedCustomAbilitiesArray.map((ability) => {
               return (
                 <div key={ability.id} className="item-container">
@@ -316,6 +247,7 @@ function Abilities(props) {
                 </div>
               )
             })}
+            {/* display all abilites by most recent power (filtered in CharacterSheet.js) */}
             {reversedAbilityArray.map((ability, index) => {
               return (
                 <div key={index} className="item-container">
@@ -328,7 +260,8 @@ function Abilities(props) {
                 </div>
               )
             })}
-            {charSheetState.charSheet.levelUps[0].abilityTree.map((column, index) => {
+            {/* display the starting race abilities */}
+            {charSheetState.charSheet.levelUps[0].abilityTree.columns.map((column, index) => {
               if (column.ability !== 0) {
                 return (
                   <div key={index} className="item-container">

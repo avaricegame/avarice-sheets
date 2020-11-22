@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route, useParams } from "react-router-dom"
 import Axios from "axios"
 import { useImmerReducer } from "use-immer"
 
@@ -29,20 +29,17 @@ function CharacterSheet() {
   const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
 
+  // pull in charid from url params
+  const { charid } = useParams()
+
   // need to load in: character sheet, the appropriate race and class, and the appropriate ability tree
-  // i dont want any use effects to run until the data is loaded
+  // all put together on the backend
   const [charSheetIsLoading, setCharSheetIsLoading] = useState(true)
-  const [raceIsLoading, setRaceIsLoading] = useState(true)
-  const [classIsLoading, setClassIsLoading] = useState(true)
-  const [abilityTreeIsLoading, setAbilityTreeIsLoading] = useState(true)
 
   // create object to set charSheet initial state
   /* [TO DO] look into setting up my state I am loading on this page and passing down as props in the charSheetState instead */
   const initialState = {
     charSheet: {},
-    theClass: {},
-    theRace: {},
-    abilityTree: {},
     allAbilitiesArray: [],
     equippedWeapons: [],
     equippedWearables: [],
@@ -229,119 +226,72 @@ function CharacterSheet() {
   }
 
   // ******************** BEGIN ALL USE EFFECT LOGIC ******************** //
-  const [abilityTree, setAbilityTree] = useState({})
 
   // pull in character sheet data by the character sheet id from app state
   useEffect(() => {
-    if (appState.charSheetID === undefined || appState.charSheetID === null) {
-      console.log("Error loading character sheet resources.")
-    } else {
-      Axios.post(`/character/one`, {
-        token: appState.user.token,
-        sheetid: appState.charSheetID,
+    Axios.get(`/character/${charid}`, {
+      headers: {
+        Authorization: "Bearer " + appState.user.token,
+      },
+    })
+      .then(function (response) {
+        console.log(response.data)
+        charSheetDispatch({
+          type: "setCharSheet",
+          data: response.data,
+        })
+        setCharSheetIsLoading(false)
       })
-        .then(function (response) {
-          console.log(response)
-          charSheetDispatch({
-            type: "setCharSheet",
-            data: response.data,
-          })
-          setCharSheetIsLoading(false)
-        })
-        .catch(function (e) {
-          console.log(e)
-        })
-    }
-  }, [appState.charSheetID, charSheetDispatch])
-
-  //once character sheet data is loaded, pull in specific race and class data
-  useEffect(() => {
-    // get specific race data
-    if (!charSheetIsLoading) {
-      Axios.post("/character/race", {
-        token: appState.user.token,
-        raceid: charSheetState.charSheet.raceID,
+      .catch(function (e) {
+        console.log(e)
+        setCharSheetIsLoading("not found")
       })
-        .then(function (response) {
-          charSheetDispatch({ type: "setRace", data: response.data })
-          setRaceIsLoading(false)
-        })
-        .catch(function (e) {
-          console.log(e)
-        })
-    }
-    // get specific class data
-    if (!charSheetIsLoading) {
-      Axios.post("/character/class", {
-        token: appState.user.token,
-        classid: charSheetState.charSheet.classID,
-      })
-        .then(function (response) {
-          charSheetDispatch({ type: "setClass", data: response.data })
-          setClassIsLoading(false)
-        })
-        .catch(function (e) {
-          console.log(e)
-        })
-    }
-  }, [charSheetState.charSheet, charSheetIsLoading])
-
-  // once class (and race) data is loaded, pull in the ability tree information
-  // useEffect(() => {
-  //   if (!raceIsLoading && !classIsLoading) {
-  //         Axios.get("/loadabilitytree", {
-  //           params: {
-  //             abilityTreeID: response.data[0].abilityTreeID,
-  //           },
-  //         }).then(function (response) {
-  //           setAbilityTree(response.data[0])
-  //           setIsLoading(false)
-  //         })
-  //       }
-  // }, [charSheetState.abilityTree, raceIsLoading, classIsLoading])
+    console.log("USE EFFECT FOR FETCHING AND SETTING CHAR SHEET DATA JUST RAN")
+  }, [charid, charSheetDispatch, appState.user.token])
 
   ///////////////////////////////////////////////////////////////////////// INVENTORY EQUIPMENT, HOLSTERS, SLOTS, AND ARMOUR
   // set the variables in state
   const [abilityArray, setAbilityArray] = useState([])
 
   // map through the ability tree and level settings to create an array of the current usable abilities
-  // useEffect(() => {
-  //   if (!charSheetIsLoading && !abilityTreeIsLoading) {
-  //     // clear the ability array
-  //     setAbilityArray([])
-  //     // set at var to contain the most recent level up object, then map it
-  //     let at = charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree
-  //     at.map((column, index) => {
-  //       // LOGIC FOR DETERMINING USABLE ABILITIES //
-  //       /* [TO DO] rewrite how this data is getting calculated */
-  //       let corrColumn = `column${index + 1}`
-  //       let ability1 = charSheetState.abilityTree[corrColumn][column.one - 1]
-  //       let ability2 = charSheetState.abilityTree[corrColumn][column.two + (5 - 1)]
-  //       let ability3 = charSheetState.abilityTree[corrColumn][column.three + (10 - 1)]
-  //       let ability4 = charSheetState.abilityTree[corrColumn][column.four + (15 - 1)]
-  //       // creating temp empty array to push abilities onto
-  //       let arrToAppend = []
-  //       if (ability1 !== undefined) {
-  //         arrToAppend.push(ability1)
-  //       }
-  //       if (ability2.key === 2) {
-  //         arrToAppend.push(ability2)
-  //       }
-  //       if (ability3.key === 3) {
-  //         arrToAppend.push(ability3)
-  //       }
-  //       if (ability4.key === 4) {
-  //         arrToAppend.push(ability4)
-  //       }
-  //       // END LOGIC FOR DETERMINING USABLE ABILITIES //
-  //       // concat the three temp arrays together -- once for each time through the loop
-  //       setAbilityArray((prevAbilityArray) => {
-  //         return prevAbilityArray.concat(arrToAppend)
-  //       })
-  //       return ""
-  //     })
-  //   }
-  // }, [charSheetState.charSheet, charSheetState.abilityTree, charSheetIsLoading, abilityTreeIsLoading])
+  useEffect(() => {
+    if (!charSheetIsLoading && charSheetState.charSheet.levelUps) {
+      // clear the ability array
+      setAbilityArray([])
+      // set at var to contain the most recent level up object, then map it
+      let tree = charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].abilityTree.columns
+      tree.map((column, index) => {
+        // LOGIC FOR DETERMINING USABLE ABILITIES //
+        /* [TO DO] rewrite how this data is getting calculated */
+        let corrColumn = `column${index + 1}`
+        let ability1 = charSheetState.charSheet.abilityTree[corrColumn][column.one - 1]
+        let ability2 = charSheetState.charSheet.abilityTree[corrColumn][column.two + (5 - 1)]
+        let ability3 = charSheetState.charSheet.abilityTree[corrColumn][column.three + (10 - 1)]
+        let ability4 = charSheetState.charSheet.abilityTree[corrColumn][column.four + (15 - 1)]
+        // creating temp empty array to push abilities onto
+        let arrToAppend = []
+        if (ability1 !== undefined) {
+          arrToAppend.push(ability1)
+        }
+        if (ability2.key === 2) {
+          arrToAppend.push(ability2)
+        }
+        if (ability3.key === 3) {
+          arrToAppend.push(ability3)
+        }
+        if (ability4.key === 4) {
+          arrToAppend.push(ability4)
+        }
+        // END LOGIC FOR DETERMINING USABLE ABILITIES //
+        // concat the three temp arrays together -- once for each time through the loop
+        setAbilityArray((prevAbilityArray) => {
+          return prevAbilityArray.concat(arrToAppend)
+        })
+        return ""
+      })
+    }
+    console.log("useeffect for setting ability array just ran")
+  }, [charSheetState.charSheet.levelUps, charSheetState.charSheet.abilityTree, charSheetIsLoading])
 
   ///////////////////////////////////////////////////////////////////////// INVENTORY EQUIPMENT, HOLSTERS, SLOTS, AND ARMOUR
   // set the variables in state
@@ -356,7 +306,7 @@ function CharacterSheet() {
 
   // filter through the inventory items to create equipped arrays
   useEffect(() => {
-    if (!charSheetIsLoading) {
+    if (charSheetState.charSheet.items && charSheetState.charSheet.weapons && charSheetState.charSheet.wearables) {
       setEquippedItems(
         charSheetState.charSheet.items.filter((item) => {
           return item.equipped
@@ -373,6 +323,7 @@ function CharacterSheet() {
         })
       )
     }
+    console.log("useeffect for setting equipped inventory just ran")
   }, [charSheetState.charSheet, charSheetIsLoading])
 
   // reduce the equipped inventory arrays to determine holster and slot values
@@ -405,41 +356,41 @@ function CharacterSheet() {
     let armourMod = equippedWearables.reduce((total, num) => {
       return parseInt(num.modifiers.armour) + parseInt(total)
     }, 0)
-    console.log(armourMod)
     setArmourModifier(armourMod)
+    console.log("useeffect for setting holster and slots just ran")
   }, [equippedItems, equippedWeapons, equippedWearables])
 
   ///////////////////////////////////////////////////////////////////////// BEGIN RENDERING THE PAGES
-  if (appState.loggedIn && appState.charSheetID) {
-    if (!charSheetIsLoading && !classIsLoading && !raceIsLoading) {
+  if (appState.loggedIn) {
+    if (!charSheetIsLoading) {
       return (
         <StateContext.Provider value={charSheetState}>
           <DispatchContext.Provider value={charSheetDispatch}>
             <BrowserRouter>
-              <CharacterSheetContainer>
+              <CharacterSheetContainer charid={charid}>
                 <Switch>
                   <Route path="/character/about">
                     <About />
                   </Route>
-                  <Route path="/character/gameplay" exact>
+                  <Route path="/character/:charid/gameplay" exact>
                     <Gameplay armourModifier={armourModifier} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} />
                   </Route>
-                  <Route path="/character/inventory" exact>
+                  <Route path="/character/:charid/inventory" exact>
                     <Inventory holstersUsed={holstersUsed} slotsUsed={slotsUsed} holstersAvailable={holstersAvailable} slotsAvailable={slotsAvailable} equippedItems={equippedItems} equippedWeapons={equippedWeapons} equippedWearables={equippedWearables} />
                   </Route>
-                  <Route path="/character/stats" exact>
+                  <Route path="/character/:charid/stats" exact>
                     <Stats />
                   </Route>
-                  <Route path="/character/abilities" exact>
-                    <Abilities />
+                  <Route path="/character/:charid/abilities" exact>
+                    <Abilities abilityArray={abilityArray} />
                   </Route>
-                  <Route path="/character/info" exact>
+                  <Route path="/character/:charid/info" exact>
                     <Info />
                   </Route>
-                  <Route path="/character/messages" exact>
+                  <Route path="/character/:charid/messages" exact>
                     <Messages />
                   </Route>
-                  <Route path="/character/notes" exact>
+                  <Route path="/character/:charid/notes" exact>
                     <Notes />
                   </Route>
                 </Switch>
@@ -449,6 +400,8 @@ function CharacterSheet() {
           </DispatchContext.Provider>
         </StateContext.Provider>
       )
+    } else if (charSheetIsLoading === "not found") {
+      return "char sheet not found"
     } else {
       return <Loader />
     }

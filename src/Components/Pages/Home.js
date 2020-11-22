@@ -12,11 +12,6 @@ function Home(props) {
   const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
 
-  const charSheetClickHandler = (charSheetID) => {
-    console.log(charSheetID)
-    appDispatch({ type: "setCharSheetID", value: charSheetID })
-  }
-
   let reversedCharacterSheetArray = appState.charSheetArray.map((charsheet) => charsheet).reverse()
 
   if (!appState.isLoading) {
@@ -47,7 +42,7 @@ function Home(props) {
               </button>
               {reversedCharacterSheetArray.map((charSheet) => {
                 return (
-                  <Link onClick={() => charSheetClickHandler(charSheet._id)} to={`/character/gameplay`} key={charSheet._id} className="fixing-link-settings">
+                  <Link to={`/character/${charSheet._id}/gameplay`} key={charSheet._id} className="fixing-link-settings">
                     <div className="item-container item-container--hover-highlight">
                       <h3 className="item-container__heading">{charSheet.characterName}</h3>
                       <h4 className="item-container__subheading">ID: #{charSheet._id}</h4>

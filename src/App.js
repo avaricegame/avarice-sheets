@@ -37,7 +37,6 @@ function App() {
     },
     currentPopupForm: "",
     popupFormVisible: false,
-    charSheetID: localStorage.getItem("charSheetID"),
     charSheetArray: [],
   }
 
@@ -69,11 +68,6 @@ function App() {
         draft.popupFormVisible = false
         document.body.style.overflow = "unset"
         break
-      case "setCharSheetID":
-        draft.charSheetID = action.value
-        localStorage.removeItem("charSheetID")
-        localStorage.setItem("charSheetID", action.value)
-        break
       case "setCharSheetArray":
         draft.charSheetArray = action.data
         break
@@ -94,7 +88,6 @@ function App() {
     } else {
       localStorage.removeItem("avariceApiToken")
       localStorage.removeItem("avariceUsername")
-      localStorage.removeItem("charSheetID")
     }
   }, [state.loggedIn, state.user.token, state.user.username])
 
@@ -104,12 +97,12 @@ function App() {
   useEffect(() => {
     if (state.loggedIn) {
       // make the call to grab ALL the charsheets for the current user
-      Axios.post(`/character/all`, {
-        token: state.user.token,
-        username: state.user.username,
+      Axios.get(`/home`, {
+        headers: {
+          Authorization: "Bearer " + state.user.token,
+        },
       })
         .then(function (response) {
-          console.log(response)
           // dispatch to set the array of charsheetes
           dispatch({
             type: "setCharSheetArray",
@@ -137,7 +130,7 @@ function App() {
             <Route path="/about">
               <About />
             </Route>
-            <Route path="/character">
+            <Route path="/character/:charid">
               <CharacterSheet />
             </Route>
             <Route path="/campaign">
