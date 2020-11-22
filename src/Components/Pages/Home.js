@@ -90,7 +90,7 @@ function Home() {
                 Create a New Campaign
               </button>
 
-              <div className="item-container item-container--hover-highlight">
+              {/* <div className="item-container item-container--hover-highlight">
                 <Link to="/" className="fixing-link-settings">
                   <h3 className="item-container__heading">Campaign Name</h3>
                   <h4 className="item-container__subheading item-container__subheading--blue">campid: #exampleid</h4>
@@ -118,7 +118,7 @@ function Home() {
                   </table>
                 </Link>
                 <EditDelete />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
