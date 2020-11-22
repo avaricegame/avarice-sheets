@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import StateContext from "../../StateContext"
 
-function Header(props) {
+function Header() {
   const charSheetState = useContext(StateContext)
   return (
     <>
@@ -13,7 +13,7 @@ function Header(props) {
             <img src="/assets/temp-logo.png" alt="logo" className="header-bar__home-img" />
           </div>
         </a>
-        <Link to="/character/about">
+        <Link to={`/character/${charSheetState.charSheet._id}/about`}>
           <div className="header-bar__about-button">
             <span className="header-bar__about-img">?</span>
           </div>
