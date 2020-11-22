@@ -4,6 +4,9 @@ import Axios from "axios"
 import StateContext from "../../StateContext"
 import DispatchContext from "../../DispatchContext"
 
+import ViewRace from "../CharacterSheet/Views/ViewRace"
+import ViewClass from "../CharacterSheet/Views/ViewClass"
+
 function Info() {
   const charSheetState = useContext(StateContext)
   const charSheetDispatch = useContext(DispatchContext)
@@ -151,147 +154,8 @@ function Info() {
         <div className="cw__33">
           <h2 className="heading">Race and Class Information</h2>
           <div className="cw__container">
-            <div className="item-container">
-              <h3 className="item-container__heading">Class Details and Information</h3>
-              <h4 className="item-container__subheading">Class Name: {charSheetState.theClass.name}</h4>
-              <h4 className="item-container__terheading">Common Name: {charSheetState.theClass.commonName}</h4>
-              <p>
-                <em>"{charSheetState.theClass.quote}"</em>
-              </p>
-              <p>{charSheetState.theClass.description}</p>
-              <p>Specializations:</p>
-              {/* <table>
-                <tbody>
-                  <tr>
-                    <td>Strength Physique:</td>
-                    <td>{charSheetState.theClass.specializations.phyStrength}</td>
-                  </tr>
-                  <tr>
-                    <td>Constitution Physique:</td>
-                    <td>{charSheetState.theClass.specializations.phyHealth}</td>
-                  </tr>
-                  <tr>
-                    <td>Academic Intelligence:</td>
-                    <td>{charSheetState.theClass.specializations.intIntelligence}</td>
-                  </tr>
-                  <tr>
-                    <td>Technical Intelligence:</td>
-                    <td>{charSheetState.theClass.specializations.intTechnology}</td>
-                  </tr>
-                  <tr>
-                    <td>Reflex Dexterity:</td>
-                    <td>{charSheetState.theClass.specializations.refDexterity}</td>
-                  </tr>
-                  <tr>
-                    <td>Speed Dexterity:</td>
-                    <td>{charSheetState.theClass.specializations.refReaction}</td>
-                  </tr>
-                  <tr>
-                    <td>Speech Charisma:</td>
-                    <td>{charSheetState.theClass.specializations.chaCharisma}</td>
-                  </tr>
-                  <tr>
-                    <td>Performance Charisma:</td>
-                    <td>{charSheetState.theClass.specializations.chaPerform}</td>
-                  </tr>
-                  <tr>
-                    <td>Ranged Combat:</td>
-                    <td>{charSheetState.theClass.specializations.comRanged}</td>
-                  </tr>
-                  <tr>
-                    <td>Melee Combat:</td>
-                    <td>{charSheetState.theClass.specializations.comMelee}</td>
-                  </tr>
-                </tbody>
-              </table> */}
-            </div>
-            <div className="item-container">
-              <h3 className="item-container__heading">Race Details and Information</h3>
-              <h4 className="item-container__subheading">Race Name: {charSheetState.theRace.name}</h4>
-              <h4 className="item-container__terheading">Common Name: {charSheetState.theRace.commonName}</h4>
-              <p>
-                <em>"{charSheetState.theRace.quote}"</em>
-              </p>
-              <p>{charSheetState.theRace.description}</p>
-              <p>More Information:</p>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>Location:</td>
-                    <td>{charSheetState.theRace.location}</td>
-                  </tr>
-                  <tr>
-                    <td>Climate:</td>
-                    <td>{charSheetState.theRace.climate}</td>
-                  </tr>
-                  <tr>
-                    <td>Size:</td>
-                    <td>{charSheetState.theRace.size}</td>
-                  </tr>
-                  <tr>
-                    <td>Lifespan:</td>
-                    <td>{charSheetState.theRace.lifespan}</td>
-                  </tr>
-                  <tr>
-                    <td>Personality:</td>
-                    <td>{charSheetState.theRace.personality}</td>
-                  </tr>
-                  <tr>
-                    <td>Friends:</td>
-                    <td>{charSheetState.theRace.friends}</td>
-                  </tr>
-                  <tr>
-                    <td>Enemies:</td>
-                    <td>{charSheetState.theRace.enemies}</td>
-                  </tr>
-                </tbody>
-              </table>
-              <p>Specializations:</p>
-              {/* <table>
-                <tbody>
-                  <tr>
-                    <td>Strength Physique:</td>
-                    <td>{charSheetState.theRace.specializations.phyStrength}</td>
-                  </tr>
-                  <tr>
-                    <td>Constitution Physique:</td>
-                    <td>{charSheetState.theRace.specializations.phyHealth}</td>
-                  </tr>
-                  <tr>
-                    <td>Academic Intelligence:</td>
-                    <td>{charSheetState.theRace.specializations.intIntelligence}</td>
-                  </tr>
-                  <tr>
-                    <td>Technical Intelligence:</td>
-                    <td>{charSheetState.theRace.specializations.intTechnology}</td>
-                  </tr>
-                  <tr>
-                    <td>Reflex Dexterity:</td>
-                    <td>{charSheetState.theRace.specializations.refDexterity}</td>
-                  </tr>
-                  <tr>
-                    <td>Speed Dexterity:</td>
-                    <td>{charSheetState.theRace.specializations.refReaction}</td>
-                  </tr>
-                  <tr>
-                    <td>Speech Charisma:</td>
-                    <td>{charSheetState.theRace.specializations.chaCharisma}</td>
-                  </tr>
-                  <tr>
-                    <td>Performance Charisma:</td>
-                    <td>{charSheetState.theRace.specializations.chaPerform}</td>
-                  </tr>
-                  <tr>
-                    <td>Ranged Combat:</td>
-                    <td>{charSheetState.theRace.specializations.comRanged}</td>
-                  </tr>
-                  <tr>
-                    <td>Melee Combat:</td>
-                    <td>{charSheetState.theRace.specializations.comMelee}</td>
-                  </tr>
-                </tbody>
-              </table> */}
-            </div>
+            <ViewClass data={charSheetState.charSheet.class} />
+            <ViewRace data={charSheetState.charSheet.race} />
           </div>
         </div>
 
