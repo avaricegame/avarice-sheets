@@ -1,12 +1,19 @@
 import React, { useContext } from "react"
 import Axios from "axios"
+import { useParams } from "react-router-dom"
 
 import StateContext from "../../StateContext"
 import DispatchContext from "../../DispatchContext"
 
 function Stats(props) {
+  const { charid } = useParams()
+
+  console.log(props.appState)
+
   const charSheetState = useContext(StateContext)
   const charSheetDispatch = useContext(DispatchContext)
+
+  console.log(charSheetState)
 
   const openEditLevel = () => {
     //props.editLevelHandler(true)
@@ -29,9 +36,19 @@ function Stats(props) {
     }
   }
   const addEC = () => {
-    Axios.post("/character/addec", {
-      CSID: props.CSID,
-    })
+    Axios.patch(
+      `/character/${charid}/incrementitem`,
+      {
+        property: "addEC",
+        amount: 1,
+        add: true,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + props.appState.user.token,
+        },
+      }
+    )
       .then(function (response) {
         //console.log(response)
         charSheetDispatch({ type: "addEC" })
