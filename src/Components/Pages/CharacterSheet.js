@@ -404,14 +404,17 @@ function CharacterSheet() {
           </StateContext.Provider>
         )
       } else {
-        // history.push("/")
-        // window.location.reload()
+        // character sheet doesn't exist
+        // or the user is not the owner
+        // or the url does not point to anything
         return <Error />
       }
     } else {
+      // character sheet is loading
       return <Loader />
     }
   } else {
+    // user is not logged in
     history.push("/")
     window.location.reload()
     return ""
