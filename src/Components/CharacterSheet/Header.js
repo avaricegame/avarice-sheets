@@ -10,7 +10,7 @@ function Header() {
       <div className="header-bar">
         <a href="/">
           <div className="header-bar__home-button">
-            <img src="/assets/temp-logo.png" alt="logo" className="header-bar__home-img" />
+            <img src="/assets/temp-logo-light.png" alt="logo" className="header-bar__home-img" />
           </div>
         </a>
         <Link to={`/character/${charSheetState.charSheet._id}/about`}>
@@ -24,7 +24,7 @@ function Header() {
           </div>
         </Link> */}
       </div>
-      <header className="header">
+      <header className="header header--purple">
         <h1 className="header__logotype">{charSheetState.charSheet.characterName}</h1>
       </header>
     </>
