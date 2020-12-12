@@ -39,7 +39,7 @@ function Stats(props) {
     Axios.patch(
       `/character/${charid}/incrementitem`,
       {
-        property: "addEC",
+        property: "excellenceChips",
         amount: 1,
         add: true,
       },
@@ -58,8 +58,10 @@ function Stats(props) {
       })
   }
   const useEC = () => {
-    Axios.post("/character/useec", {
-      CSID: props.CSID,
+    Axios.post(`/character/${charid}useec`, {
+      property: "excellenceChips",
+      amount: 1,
+      add: false,
     })
       .then(function (response) {
         //console.log(response)
