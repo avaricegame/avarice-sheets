@@ -1,18 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 //import Axios from "axios"
 
-import PopupForm from "../../PopupForm"
+import DispatchContext from "../../../DispatchContext"
 
-function EditSuronis(props) {
-  // const [amount, setAmount] = useState()
-  const close = () => {
-    props.editSuronisHandler(false)
-  }
-  // const onChangeHandler = (e) => {
-  //   console.log(e.target.value)
-  //   setAmount(e.target.value)
-  // }
-  const submitHandler = (e) => {
+function NewThing() {
+  const appDispatch = useContext(DispatchContext)
+
+  const formSubmit = (e) => {
     e.preventDefault()
     console.log(e.target.amount.value)
     // Axios.post("/character/takedamage", {
@@ -27,12 +21,24 @@ function EditSuronis(props) {
     //   })
   }
   return (
-    <PopupForm formName="Add a New Thing" formOnSubmit={(e) => submitHandler(e)} formClose={close}>
+    <form className="popupform__form" onSubmit={formSubmit}>
+      <h3 className="popupform__heading">Add a New Thing</h3>
       <fieldset>
         <label>this form is under construction</label>
       </fieldset>
-    </PopupForm>
+      <div className="popupform__button-panel">
+        <button
+          onClick={() => {
+            appDispatch({ type: "hidePopupForm" })
+          }}
+          className="popupform__close-button"
+        >
+          Cancel
+        </button>
+        <input type="submit" className="popupform__submit-button" value="Submit" />
+      </div>
+    </form>
   )
 }
 
-export default EditSuronis
+export default NewThing

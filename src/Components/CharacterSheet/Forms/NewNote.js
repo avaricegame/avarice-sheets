@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react"
 import Axios from "axios"
 
-import PopupForm from "../../PopupForm"
-
 import DispatchContext from "../../../DispatchContext"
 
 function NewNote(props) {
   const appDispatch = useContext(DispatchContext)
+
   const [title, setTitle] = useState()
   const [content, setContent] = useState()
 

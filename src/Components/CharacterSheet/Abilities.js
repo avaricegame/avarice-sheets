@@ -216,7 +216,13 @@ function Abilities(props) {
         <div className="cw__25">
           <h2 className="heading">Your Abilities</h2>
           <div className="cw__container">
-            <button className="button" onClick={openNewAbility}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "newAbility" })
+              }}
+            >
               Create New Character Ability
             </button>
             {/* display all custom abilities */}

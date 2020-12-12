@@ -5,6 +5,7 @@ import DispatchContext from "../../../DispatchContext"
 
 function NewCharacterLog() {
   const appDispatch = useContext(DispatchContext)
+
   const [title, setTitle] = useState()
   const [details, setDetails] = useState()
 
@@ -14,6 +15,7 @@ function NewCharacterLog() {
   const onDetailsChangeHandler = (e) => {
     setDetails(e.target.value)
   }
+
   function formSubmit(e) {
     e.preventDefault()
     // const theID = Math.floor(Math.random() * 100000)

@@ -1,58 +1,56 @@
 import React, { useContext } from "react"
 import Axios from "axios"
 
-import PopupForm from "../../PopupForm"
-
 import DispatchContext from "../../../DispatchContext"
 
 function NewItem(props) {
-  const charSheetDispatch = useContext(DispatchContext)
-  const close = () => {
-    props.newItemHandler(false)
-  }
-  const submitHandler = (e) => {
+  const appDispatch = useContext(DispatchContext)
+
+  const formSubmit = (e) => {
     e.preventDefault()
-    let theID = Math.floor(Math.random() * 100000)
-    let item = {
-      id: theID,
-      CSID: props.CSID,
-      name: e.target.name.value,
-      type: e.target.type.value,
-      requirements: e.target.requirements.value,
-      slotsReq: parseInt(e.target.slotsReq.value),
-      value: parseInt(e.target.value.value),
-      uses: e.target.uses.value,
-      effects: e.target.effects.value,
-      description: e.target.description.value,
-      equipped: false,
-    }
-    Axios.post("/character/additem", {
-      id: theID,
-      CSID: props.CSID,
-      name: e.target.name.value,
-      type: e.target.type.value,
-      requirements: e.target.requirements.value,
-      slotsReq: parseInt(e.target.slotsReq.value),
-      value: parseInt(e.target.value.value),
-      uses: e.target.uses.value,
-      effects: e.target.effects.value,
-      description: e.target.description.value,
-      //equipped: e.target.equipped.value,
-    })
-      .then(function (response) {
-        console.log(response)
-        props.newItemHandler(false)
-        charSheetDispatch({
-          type: "addNewItem",
-          value: item,
-        })
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+
+    // let theID = Math.floor(Math.random() * 100000)
+    // let item = {
+    //   id: theID,
+    //   CSID: props.CSID,
+    //   name: e.target.name.value,
+    //   type: e.target.type.value,
+    //   requirements: e.target.requirements.value,
+    //   slotsReq: parseInt(e.target.slotsReq.value),
+    //   value: parseInt(e.target.value.value),
+    //   uses: e.target.uses.value,
+    //   effects: e.target.effects.value,
+    //   description: e.target.description.value,
+    //   equipped: false,
+    // }
+    // Axios.post("/character/additem", {
+    //   id: theID,
+    //   CSID: props.CSID,
+    //   name: e.target.name.value,
+    //   type: e.target.type.value,
+    //   requirements: e.target.requirements.value,
+    //   slotsReq: parseInt(e.target.slotsReq.value),
+    //   value: parseInt(e.target.value.value),
+    //   uses: e.target.uses.value,
+    //   effects: e.target.effects.value,
+    //   description: e.target.description.value,
+    //   //equipped: e.target.equipped.value,
+    // })
+    //   .then(function (response) {
+    //     console.log(response)
+    //     props.newItemHandler(false)
+    //     charSheetDispatch({
+    //       type: "addNewItem",
+    //       value: item,
+    //     })
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error)
+    //   })
   }
   return (
-    <PopupForm formName="Add a New Item" formOnSubmit={(e) => submitHandler(e)} formClose={close}>
+    <form className="popupform__form" onSubmit={formSubmit}>
+      <h3 className="popupform__heading">Add a New Item</h3>
       <fieldset>
         <label htmlFor="name">Item Name:</label>
         <input type="text" name="name" required />
@@ -78,7 +76,18 @@ function NewItem(props) {
         <label htmlFor="requirements">Requirements to Use Item:</label>
         <textarea name="requirements" cols="30" rows="2"></textarea>
       </fieldset>
-    </PopupForm>
+      <div className="popupform__button-panel">
+        <button
+          onClick={() => {
+            appDispatch({ type: "hidePopupForm" })
+          }}
+          className="popupform__close-button"
+        >
+          Cancel
+        </button>
+        <input type="submit" className="popupform__submit-button" value="Submit" />
+      </div>
+    </form>
   )
 }
 

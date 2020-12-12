@@ -11,21 +11,6 @@ function Inventory(props) {
 
   const flashMessageDispatch = useContext(DispatchContext)
 
-  const openPayMoney = () => {
-    props.payMoneyHandler(true)
-  }
-  const openRecieveMoney = () => {
-    props.recieveMoneyHandler(true)
-  }
-  const openNewWeapon = () => {
-    props.newWeaponHandler(true)
-  }
-  const openNewWearable = () => {
-    props.newWearableHandler(true)
-  }
-  const openNewItem = () => {
-    props.newItemHandler(true)
-  }
   const openEditSuronis = () => {
     props.editSuronisHandler(true)
   }
@@ -1314,10 +1299,22 @@ function Inventory(props) {
         <div className="cw__25">
           <h2 className="heading">Money</h2>
           <div className="cw__container">
-            <button className="button" onClick={openPayMoney}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "payMoney" })
+              }}
+            >
               Pay Money
             </button>
-            <button className="button" onClick={openRecieveMoney}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "recieveMoney" })
+              }}
+            >
               Recieve Money
             </button>
             <div className="item-container">
@@ -1393,16 +1390,40 @@ function Inventory(props) {
         <div className="cw__25">
           <h2 className="heading">Add New</h2>
           <div className="cw__container">
-            <button className="button" onClick={openNewWeapon}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "newWeapon" })
+              }}
+            >
               Add New Weapon
             </button>
-            <button className="button" onClick={openNewItem}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "newItem" })
+              }}
+            >
               Add New Item
             </button>
-            <button className="button" onClick={openNewWearable}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "newWearable" })
+              }}
+            >
               Add New Wearable
             </button>
-            <button className="button" onClick={openEditSuronis}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "newThing" })
+              }}
+            >
               Add New Thing
             </button>
             {/* <button className="button">Sell an Inventory Item</button> */}

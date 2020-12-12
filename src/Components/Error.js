@@ -11,7 +11,7 @@ function Error() {
       history.push("/")
       window.location.reload()
     }, 2000)
-  }, [])
+  }, [history])
 
   return <Loader />
 }

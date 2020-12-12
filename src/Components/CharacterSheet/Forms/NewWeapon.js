@@ -1,71 +1,68 @@
 import React, { useContext } from "react"
 import Axios from "axios"
 
-import PopupForm from "../../PopupForm"
-
 import DispatchContext from "../../../DispatchContext"
 
-function NewWeapon(props) {
-  const charSheetDispatch = useContext(DispatchContext)
-  const close = () => {
-    props.newWeaponHandler(false)
-  }
-  const submitHandler = (e) => {
+function NewWeapon() {
+  const appDispatch = useContext(DispatchContext)
+
+  const formSubmit = (e) => {
     e.preventDefault()
-    let theID = Math.floor(Math.random() * 100000)
-    let weapon = {
-      id: theID,
-      CSID: props.CSID,
-      name: e.target.name.value,
-      damage: e.target.damage.value,
-      unique: e.target.unique.value,
-      type: e.target.type.value,
-      proficiency: e.target.proficiency.value,
-      requirements: e.target.requirements.value,
-      rangedMelee: e.target.rangedMelee.value,
-      critical: e.target.critical.value,
-      range: e.target.range.value,
-      size: e.target.size.value,
-      holstersReq: parseInt(e.target.holstersReq.value),
-      value: parseInt(e.target.value.value),
-      uses: e.target.uses.value,
-      description: e.target.description.value,
-      effects: e.target.effects.value,
-      equipped: false,
-    }
-    Axios.post("/character/addweapon", {
-      id: theID,
-      CSID: props.CSID,
-      name: e.target.name.value,
-      damage: e.target.damage.value,
-      unique: e.target.unique.value,
-      type: e.target.type.value,
-      proficiency: e.target.proficiency.value,
-      requirements: e.target.requirements.value,
-      rangedMelee: e.target.rangedMelee.value,
-      critical: e.target.critical.value,
-      range: e.target.range.value,
-      size: e.target.size.value,
-      holstersReq: parseInt(e.target.holstersReq.value),
-      value: parseInt(e.target.value.value),
-      uses: e.target.uses.value,
-      description: e.target.description.value,
-      effects: e.target.effects.value,
-    })
-      .then(function (response) {
-        console.log(response)
-        props.newWeaponHandler(false)
-        charSheetDispatch({
-          type: "addNewWeapon",
-          value: weapon,
-        })
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    // let theID = Math.floor(Math.random() * 100000)
+    // let weapon = {
+    //   id: theID,
+    //   CSID: props.CSID,
+    //   name: e.target.name.value,
+    //   damage: e.target.damage.value,
+    //   unique: e.target.unique.value,
+    //   type: e.target.type.value,
+    //   proficiency: e.target.proficiency.value,
+    //   requirements: e.target.requirements.value,
+    //   rangedMelee: e.target.rangedMelee.value,
+    //   critical: e.target.critical.value,
+    //   range: e.target.range.value,
+    //   size: e.target.size.value,
+    //   holstersReq: parseInt(e.target.holstersReq.value),
+    //   value: parseInt(e.target.value.value),
+    //   uses: e.target.uses.value,
+    //   description: e.target.description.value,
+    //   effects: e.target.effects.value,
+    //   equipped: false,
+    // }
+    // Axios.post("/character/addweapon", {
+    //   id: theID,
+    //   CSID: props.CSID,
+    //   name: e.target.name.value,
+    //   damage: e.target.damage.value,
+    //   unique: e.target.unique.value,
+    //   type: e.target.type.value,
+    //   proficiency: e.target.proficiency.value,
+    //   requirements: e.target.requirements.value,
+    //   rangedMelee: e.target.rangedMelee.value,
+    //   critical: e.target.critical.value,
+    //   range: e.target.range.value,
+    //   size: e.target.size.value,
+    //   holstersReq: parseInt(e.target.holstersReq.value),
+    //   value: parseInt(e.target.value.value),
+    //   uses: e.target.uses.value,
+    //   description: e.target.description.value,
+    //   effects: e.target.effects.value,
+    // })
+    //   .then(function (response) {
+    //     console.log(response)
+    //     props.newWeaponHandler(false)
+    //     charSheetDispatch({
+    //       type: "addNewWeapon",
+    //       value: weapon,
+    //     })
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error)
+    //   })
   }
   return (
-    <PopupForm formName="Add a New Weapon" formOnSubmit={(e) => submitHandler(e)} formClose={close}>
+    <form className="popupform__form" onSubmit={formSubmit}>
+      <h3 className="popupform__heading">Add a New Weapon</h3>
       <fieldset>
         <label htmlFor="name">Weapon Name:</label>
         <input required name="name" type="text" />
@@ -158,7 +155,18 @@ function NewWeapon(props) {
         <label htmlFor="requirements">Requirements to Use Weapon:</label>
         <textarea name="requirements" cols="30" rows="2"></textarea>
       </fieldset>
-    </PopupForm>
+      <div className="popupform__button-panel">
+        <button
+          onClick={() => {
+            appDispatch({ type: "hidePopupForm" })
+          }}
+          className="popupform__close-button"
+        >
+          Cancel
+        </button>
+        <input type="submit" className="popupform__submit-button" value="Submit" />
+      </div>
+    </form>
   )
 }
 

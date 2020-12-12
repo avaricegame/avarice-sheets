@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react"
 
 import StateContext from "../../StateContext"
+import DispatchContext from "../../DispatchContext"
 
 // ACTION FORM COMPONENTS
 import Roll from "./Actions/Roll"
@@ -14,6 +15,7 @@ import UseItem from "./Actions/UseItem"
 
 function Gameplay(props) {
   const charSheetState = useContext(StateContext)
+  const charSheetDispatch = useContext(DispatchContext)
 
   const [roll, setRoll] = useState(false)
   const rollHandler = (bool) => {
@@ -55,18 +57,6 @@ function Gameplay(props) {
     setUseItem(bool)
     bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
   }
-  const openHeal = () => {
-    props.healHandler(true)
-  }
-  const openTakeDamage = () => {
-    props.takeDamageHandler(true)
-  }
-  const openPayMoney = () => {
-    props.payMoneyHandler(true)
-  }
-  const openRecieveMoney = () => {
-    props.recieveMoneyHandler(true)
-  }
   return (
     <>
       <div className="secondary-header">
@@ -80,10 +70,22 @@ function Gameplay(props) {
               <h3 className="item-container__heading">Hit Points</h3>
               <h4 className="item-container__subheading">Max HP: {parseInt(charSheetState.charSheet.levelUps) * 10 + 10 + parseInt(props.armourModifier)}</h4>
               <h4 className="item-container__terheading">Current HP: {charSheetState.charSheet.currentHP}</h4>
-              <button className="button" onClick={openTakeDamage}>
+              <button
+                className="button"
+                onClick={() => {
+                  charSheetDispatch({ type: "showPopupForm" })
+                  charSheetDispatch({ type: "changePopupForm", data: "takeDamage" })
+                }}
+              >
                 Take Damage
               </button>
-              <button className="button" onClick={openHeal}>
+              <button
+                className="button"
+                onClick={() => {
+                  charSheetDispatch({ type: "showPopupForm" })
+                  charSheetDispatch({ type: "changePopupForm", data: "healHP" })
+                }}
+              >
                 Heal HP
               </button>
             </div>
@@ -94,10 +96,22 @@ function Gameplay(props) {
               <h3 className="item-container__heading">Uni-Credits / Gold</h3>
               <h4 className="item-container__terheading">Current Savings: {charSheetState.charSheet.gold} Gold</h4>
               {/* <p className="item-container__money-amount">{charSheetState.charSheet.gold} Gold</p> */}
-              <button className="button" onClick={openPayMoney}>
+              <button
+                className="button"
+                onClick={() => {
+                  charSheetDispatch({ type: "showPopupForm" })
+                  charSheetDispatch({ type: "changePopupForm", data: "payMoney" })
+                }}
+              >
                 Pay Money
               </button>
-              <button className="button" onClick={openRecieveMoney}>
+              <button
+                className="button"
+                onClick={() => {
+                  charSheetDispatch({ type: "showPopupForm" })
+                  charSheetDispatch({ type: "changePopupForm", data: "recieveMoney" })
+                }}
+              >
                 Recieve Money
               </button>
             </div>
