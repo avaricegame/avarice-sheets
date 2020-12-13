@@ -21,7 +21,7 @@ function Profile() {
             </div>
           </Link>
         </div>
-        <header className="header">
+        <header className={`header ${Math.floor(Math.random() * 2) ? "header--purple" : "header--blue"}`}>
           <h1 className="header__logotype">Avarice Sheets</h1>
         </header>
         <div className="hg__container">
