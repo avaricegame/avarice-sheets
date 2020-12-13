@@ -1,15 +1,14 @@
 import React from "react"
-import { Link } from "react-router-dom"
 
 function Footer() {
   return (
     <footer className="footer">
       <p className="footer__text">
-        <Link to="/about">About</Link>
+        <a href="/about">About</a>
         {"   "}|{"   "}
-        <Link to="/terms">Terms</Link>
+        <a href="/terms">Terms</a>
         {"   "}|{"   "}
-        <Link to="/privacy">Privacy</Link>
+        <a href="/privacy">Privacy</a>
       </p>
       <p className="footer__text">
         &copy; {new Date().getFullYear()} by{" "}
