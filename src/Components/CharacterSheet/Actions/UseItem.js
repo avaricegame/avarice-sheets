@@ -1,12 +1,10 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 
-import Popup from "../../Popup"
+import DispatchContext from "../../../DispatchContext"
 
 function UseItem(props) {
+  const appDispatch = useContext(DispatchContext)
   const [currentItem, setCurrentItem] = useState("a")
-  const close = () => {
-    props.useItemHandler(false)
-  }
   const rollHandler = () => {
     let number = prompt("How many sided die? Please enter a positive, whole integer (e.g. 4)")
     if (number) {
@@ -47,19 +45,20 @@ function UseItem(props) {
     }
   }
   return (
-    <Popup popupName="Use an Item" popupClose={close}>
-      <form>
-        <fieldset>
-          <label>Select an Item to View the Details:</label>
+    <div className="popupform__background">
+      <div className="popupform__popup popupform__popup--whitebg">
+        <h3 className="popupform__heading">Use an Item</h3>
+        <div className="cw__container cw__container--popup">
+          <p>Select an Item to View the Details:</p>
           <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentItemHandler(e)}>
             <option value="a"></option>
-            {props.equippedItems.map((item, index) => {
+            {/* {props.equippedItems.map((item, index) => {
               return (
                 <option value={index} key={index}>
                   {item.name}
                 </option>
               )
-            })}
+            })} */}
           </select>
           <p>Then just... do what it says...</p>
           <p>
@@ -69,9 +68,19 @@ function UseItem(props) {
             </span>
           </p>
           {displayItem()}
-        </fieldset>
-      </form>
-    </Popup>
+        </div>
+        <div className="popupform__button-panel">
+          <button
+            onClick={() => {
+              appDispatch({ type: "hidePopupForm" })
+            }}
+            className="popupform__close-button popupform__close-button--fullwidth"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }
 

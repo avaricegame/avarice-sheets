@@ -1,20 +1,18 @@
 import React, { useState, useEffect, useContext } from "react"
 
-import PopupForm from "../../PopupForm"
-
 import StateContext from "../../../StateContext"
+import DispatchContext from "../../../DispatchContext"
 
 function Attack(props) {
   const charSheetState = useContext(StateContext)
+  const appDispatch = useContext(DispatchContext)
+
   const [currentWeapon, setCurrentWeapon] = useState("a")
   const [currentProficiency, setCurrentProficiency] = useState("a")
   const [proficiency1, setProficiency1] = useState()
-  useEffect(() => {
-    setProficiency1(charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].proficiency[0].value)
-  }, [charSheetState.charSheet])
-  const close = () => {
-    props.attackHandler(false)
-  }
+  // useEffect(() => {
+  //   setProficiency1(charSheetState.charSheet.levelUps[charSheetState.charSheet.levelUps.length - 1].proficiency[0].value)
+  // }, [charSheetState.charSheet])
   const setWeaponHandler = (e) => {
     if (e.target.value !== "a") {
       setCurrentWeapon(props.equippedWeapons[e.target.value])
@@ -109,23 +107,35 @@ function Attack(props) {
     }
   }
   return (
-    <PopupForm formName="Attack" formOnSubmit={(e) => onAttackSubmit(e)} formClose={close}>
+    <form className="popupform__form" onSubmit={onAttackSubmit}>
+      <h3 className="popupform__heading">Attack</h3>
       <fieldset>
         <label>Select a Weapon to Attack With:</label>
         <select onChange={(e) => setWeaponHandler(e)} className="item-container__select">
           <option value="a"></option>
-          {props.equippedWeapons.map((weapon, index) => {
+          {/* {props.equippedWeapons.map((weapon, index) => {
             return (
               <option value={index} key={weapon.id}>
                 {weapon.name}
               </option>
             )
-          })}
+          })} */}
         </select>
         {displayWeapon()}
         <p>{currentWeapon !== "a" ? `You have chosen '${currentWeapon.name}.' Please press 'Submit' to attack.` : "Please Choose a Weapon"}</p>
       </fieldset>
-    </PopupForm>
+      <div className="popupform__button-panel">
+        <button
+          onClick={() => {
+            appDispatch({ type: "hidePopupForm" })
+          }}
+          className="popupform__close-button"
+        >
+          Cancel
+        </button>
+        <input type="submit" className="popupform__submit-button" value="Submit" />
+      </div>
+    </form>
   )
 }
 

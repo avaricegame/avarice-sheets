@@ -1,62 +1,15 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
+import { Link } from "react-router-dom"
 
 import StateContext from "../../StateContext"
 import DispatchContext from "../../DispatchContext"
-
-// ACTION FORM COMPONENTS
-import Roll from "./Actions/Roll"
-import Attack from "./Actions/Attack"
-import UseAbility from "./Actions/UseAbility"
-import UseSkill from "./Actions/UseSkill"
-//import PayMoney from "./Actions/PayMoney"
-import SellItems from "./Actions/SellItems"
-import MakeCheck from "./Actions/MakeCheck"
-import UseItem from "./Actions/UseItem"
 
 function Gameplay(props) {
   const charSheetState = useContext(StateContext)
   const charSheetDispatch = useContext(DispatchContext)
 
-  const [roll, setRoll] = useState(false)
-  const rollHandler = (bool) => {
-    setRoll(bool)
-    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
-  }
-  const [attack, setAttack] = useState(false)
-  const attackHandler = (bool) => {
-    setAttack(bool)
-    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
-  }
-  const [useAbility, setUseAbility] = useState(false)
-  const useAbilityHandler = (bool) => {
-    setUseAbility(bool)
-    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
-  }
-  const [useSkill, setUseSkill] = useState(false)
-  const useSkillHandler = (bool) => {
-    setUseSkill(bool)
-    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
-  }
-  // const [payMoney, setPayMoney] = useState(false)
-  // const payMoneyHandler = (bool) => {
-  //   setPayMoney(bool)
-  //   bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
-  // }
-  const [sellItems, setSellItems] = useState(false)
-  const sellItemsHandler = (bool) => {
-    setSellItems(bool)
-    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
-  }
-  const [makeCheck, setMakeCheck] = useState(false)
-  const makeCheckHandler = (bool) => {
-    setMakeCheck(bool)
-    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
-  }
-  const [useItem, setUseItem] = useState(false)
-  const useItemHandler = (bool) => {
-    setUseItem(bool)
-    bool ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset")
-  }
+  console.log(charSheetState)
+
   return (
     <>
       <div className="secondary-header">
@@ -95,7 +48,6 @@ function Gameplay(props) {
             <div className="item-container">
               <h3 className="item-container__heading">Uni-Credits / Gold</h3>
               <h4 className="item-container__terheading">Current Savings: {charSheetState.charSheet.gold} Gold</h4>
-              {/* <p className="item-container__money-amount">{charSheetState.charSheet.gold} Gold</p> */}
               <button
                 className="button"
                 onClick={() => {
@@ -121,32 +73,72 @@ function Gameplay(props) {
         <div className="cw__25">
           <h2 className="heading">Actions</h2>
           <div className="cw__container">
-            <button className="button" onClick={attackHandler}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "attack" })
+              }}
+            >
               Attack
             </button>
-            <button className="button" onClick={makeCheckHandler}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "roll" })
+              }}
+            >
+              Roll Dice
+            </button>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "makeSkillCheck" })
+              }}
+            >
               Make a Skill Check
             </button>
-            <button className="button" onClick={useItemHandler}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "useItem" })
+              }}
+            >
               Use an Item
             </button>
-            <button className="button" onClick={useAbilityHandler}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "useAbility" })
+              }}
+            >
               Use an Ability
             </button>
-            <button className="button" onClick={useSkillHandler}>
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "useThing" })
+              }}
+            >
               Use a Thing
             </button>
-            <button className="button">Equip and Unequip</button>
-            {/* <button className="button" onClick={payMoneyHandler}>Pay Money</button> */}
-            {/* <button className="button" onClick={sellItemsHandler}>
-              Sell Inventory Items
-            </button> */}
-
-            <button className="button" onClick={rollHandler}>
-              Roll Die
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "rest" })
+              }}
+            >
+              Take a Rest
             </button>
-            <button className="button">Take a Short Rest</button>
-            <button className="button">Take a Long Rest</button>
+            <Link to={`/character/${charSheetState.charSheet._id}/inventory`}>
+              <button className="button">Equip and Unequip</button>
+            </Link>
           </div>
         </div>
 
@@ -187,8 +179,6 @@ function Gameplay(props) {
         <div className="cw__25">
           <h2 className="heading">Energy Points</h2>
           <div className="cw__container">
-            {/* <button className="button">Take a Short Rest</button>
-            <button className="button">Take a Long Rest</button> */}
             <div className="item-container item-container--overflowx">
               <h3 className="item-container__heading">Energy Points Table</h3>
               <h4 className="item-container__subheading item-container__terheading--adjusted">Used When You Make a Skill Check</h4>
@@ -307,14 +297,6 @@ function Gameplay(props) {
         </div>
         {/* /////// CLOSE PAGE CONTAINER /////// */}
       </div>
-      {roll ? <Roll rollHandler={rollHandler} /> : ""}
-      {attack ? <Attack attackHandler={attackHandler} charSheet={props.charSheet} equippedWeapons={props.equippedWeapons} /> : ""}
-      {useAbility ? <UseAbility useAbilityHandler={useAbilityHandler} abilityArray={props.abilityArray} charSheet={props.charSheet} /> : ""}
-      {useSkill ? <UseSkill useSkillHandler={useSkillHandler} equipmentMod={props.equipmentMod} charSheet={props.charSheet} /> : ""}
-      {/* {payMoney ? <PayMoney payMoneyHandler={payMoneyHandler} CSID={props.CSID} /> : ""} */}
-      {sellItems ? <SellItems sellItemsHandler={sellItemsHandler} CSID={props.CSID} charSheet={props.charSheet} /> : ""}
-      {makeCheck ? <MakeCheck makeCheckHandler={makeCheckHandler} charSheet={props.charSheet} theRace={props.theRace} theClass={props.theClass} baseEquipmentMod={props.baseEquipmentMod} /> : ""}
-      {useItem ? <UseItem equippedItems={props.equippedItems} useItemHandler={useItemHandler} /> : ""}
     </>
   )
 }

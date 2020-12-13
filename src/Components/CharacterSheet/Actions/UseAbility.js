@@ -1,20 +1,18 @@
 import React, { useState, useContext } from "react"
 
-import Popup from "../../Popup"
+import DispatchContext from "../../../DispatchContext"
 
 import StateContext from "../../../StateContext"
 
 function UseAbility(props) {
+  const appDispatch = useContext(DispatchContext)
   const charSheetState = useContext(StateContext)
   const [currentAbility, setCurrentAbility] = useState("a")
-  const startingAbilities = charSheetState.charSheet.levelUps[0].abilityTree.map((column) => {
-    return column.ability ? column.ability : ""
-  })
-  startingAbilities.splice(1, 1)
-  const newArray = charSheetState.charSheet.customAbilities.concat(props.abilityArray).concat(startingAbilities)
-  const close = () => {
-    props.useAbilityHandler(false)
-  }
+  // const startingAbilities = charSheetState.charSheet.levelUps[0].abilityTree.map((column) => {
+  //   return column.ability ? column.ability : ""
+  // })
+  // startingAbilities.splice(1, 1)
+  // const newArray = charSheetState.charSheet.customAbilities.concat(props.abilityArray).concat(startingAbilities)
   const rollHandler = () => {
     let number = prompt("How many sided die? Please enter a positive, whole integer (e.g. 4)")
     if (number) {
@@ -22,11 +20,11 @@ function UseAbility(props) {
     }
   }
   const setCurrentAbilityHandler = (e) => {
-    if (e.target.value !== "a") {
-      setCurrentAbility(newArray[e.target.value])
-    } else {
-      setCurrentAbility("a")
-    }
+    // if (e.target.value !== "a") {
+    //   setCurrentAbility(newArray[e.target.value])
+    // } else {
+    //   setCurrentAbility("a")
+    // }
   }
   const displayAbility = (e) => {
     if (currentAbility !== "a") {
@@ -45,19 +43,20 @@ function UseAbility(props) {
     }
   }
   return (
-    <Popup popupName="Use an Ability" popupClose={close}>
-      <form>
-        <fieldset>
-          <label>Select an Ability to view the details:</label>
+    <div className="popupform__background">
+      <div className="popupform__popup popupform__popup--whitebg">
+        <h3 className="popupform__heading">Use an Ability</h3>
+        <div className="cw__container cw__container--popup">
+          <p>Select an Ability to View the Details:</p>
           <select style={{ marginBottom: "1rem" }} onChange={(e) => setCurrentAbilityHandler(e)}>
             <option value="a"></option>
-            {newArray.map((ability, index) => {
+            {/* {newArray.map((ability, index) => {
               return (
                 <option value={index} key={index}>
                   {ability.name}
                 </option>
               )
-            })}
+            })} */}
           </select>
           <p>Then just... do what it says... </p>
           <p>
@@ -67,9 +66,19 @@ function UseAbility(props) {
             </span>
           </p>
           {displayAbility()}
-        </fieldset>
-      </form>
-    </Popup>
+        </div>
+        <div className="popupform__button-panel">
+          <button
+            onClick={() => {
+              appDispatch({ type: "hidePopupForm" })
+            }}
+            className="popupform__close-button popupform__close-button--fullwidth"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }
 

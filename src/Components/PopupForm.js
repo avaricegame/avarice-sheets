@@ -20,6 +20,15 @@ import NewCharacterLog from "./CharacterSheet/Forms/NewCharacterLog"
 import EditCharacterLog from "./CharacterSheet/Forms/EditCharacterLog"
 import NewNote from "./CharacterSheet/Forms/NewNote"
 import EditNote from "./CharacterSheet/Forms/EditNote"
+// actions
+import Attack from "./CharacterSheet/Actions/Attack"
+import MakeCheck from "./CharacterSheet/Actions/MakeCheck"
+import UseItem from "./CharacterSheet/Actions/UseItem"
+import UseAbility from "./CharacterSheet/Actions/UseAbility"
+import UseThing from "./CharacterSheet/Actions/UseThing"
+import Roll from "./CharacterSheet/Actions/Roll"
+import Rest from "./CharacterSheet/Actions/Rest"
+
 // default
 import DefaultPopupForm from "./DefaultPopupForm"
 
@@ -47,6 +56,13 @@ function PopupForm() {
           {appState.currentPopupForm === "editCharacterLog" ? <EditCharacterLog /> : ""}
           {appState.currentPopupForm === "newNote" ? <NewNote /> : ""}
           {appState.currentPopupForm === "editNote" ? <EditNote /> : ""}
+          {appState.currentPopupForm === "attack" ? <Attack /> : ""}
+          {appState.currentPopupForm === "makeSkillCheck" ? <MakeCheck /> : ""}
+          {appState.currentPopupForm === "useItem" ? <UseItem /> : ""}
+          {appState.currentPopupForm === "useAbility" ? <UseAbility /> : ""}
+          {appState.currentPopupForm === "useThing" ? <UseThing /> : ""}
+          {appState.currentPopupForm === "roll" ? <Roll /> : ""}
+          {appState.currentPopupForm === "rest" ? <Rest /> : ""}
         </div>
       </div>
     </>
