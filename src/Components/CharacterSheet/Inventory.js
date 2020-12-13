@@ -1426,7 +1426,15 @@ function Inventory(props) {
             >
               Add New Thing
             </button>
-            {/* <button className="button">Sell an Inventory Item</button> */}
+            <button
+              className="button"
+              onClick={() => {
+                charSheetDispatch({ type: "showPopupForm" })
+                charSheetDispatch({ type: "changePopupForm", data: "" })
+              }}
+            >
+              Sell Something
+            </button>
             {/* <button onClick={openEditSuronis}>Edit Suronis Contents</button> */}
           </div>
         </div>
