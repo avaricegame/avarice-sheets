@@ -13,6 +13,7 @@ import NewWeapon from "./CharacterSheet/Forms/NewWeapon"
 import NewWearable from "./CharacterSheet/Forms/NewWearable"
 import NewItem from "./CharacterSheet/Forms/NewItem"
 import NewThing from "./CharacterSheet/Forms/NewThing"
+import SellSomething from "./CharacterSheet/Forms/SellSomething"
 import LevelUp from "./CharacterSheet/Forms/LevelUp"
 import NewAbility from "./CharacterSheet/Forms/NewAbility"
 import EditAbility from "./CharacterSheet/Forms/EditAbility"
@@ -49,6 +50,7 @@ function PopupForm() {
           {appState.currentPopupForm === "newWearable" ? <NewWearable /> : ""}
           {appState.currentPopupForm === "newItem" ? <NewItem /> : ""}
           {appState.currentPopupForm === "newThing" ? <NewThing /> : ""}
+          {appState.currentPopupForm === "sellSomething" ? <SellSomething /> : ""}
           {appState.currentPopupForm === "levelUp" ? <LevelUp /> : ""}
           {appState.currentPopupForm === "newAbility" ? <NewAbility /> : ""}
           {appState.currentPopupForm === "editAbility" ? <EditAbility /> : ""}

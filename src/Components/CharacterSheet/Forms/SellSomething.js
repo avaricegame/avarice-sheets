@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react"
 import Axios from "axios"
 
-import Popup from "../../Popup"
-
 import DispatchContext from "../../../DispatchContext"
 import StateContext from "../../../StateContext"
 
@@ -12,9 +10,11 @@ function SellItems(props) {
   const [currentWeapon, setCurrentWeapon] = useState("a")
   const [currentWearable, setCurrentWearable] = useState("a")
   const [currentItem, setCurrentItem] = useState("a")
-  const close = () => {
-    props.sellItemsHandler(false)
+
+  const formSubmit = (e) => {
+    e.preventDefault()
   }
+
   const onWeaponChangeHandler = (e) => {
     if (e.target.value !== "a") {
       setCurrentWeapon(props.charSheet.weapons[e.target.value])
@@ -133,7 +133,8 @@ function SellItems(props) {
     }
   }
   return (
-    <Popup popupName="Sell Inventory Items" popupClose={close}>
+    <form className="popupform__form" onSubmit={formSubmit}>
+      <h3 className="popupform__heading">Sell Something</h3>
       <div>
         <form onSubmit={(e) => weaponSubmitHandler(e)} style={{ marginBottom: "-1rem" }}>
           <fieldset>
@@ -183,8 +184,35 @@ function SellItems(props) {
             <input type="submit" className="popupform__submit-button popupform__submit-button--adjustwidth" value={currentWearable !== "a" ? `Sell ${currentWearable.name} for ${currentWearable.value} Gold` : "Please Choose a Wearable to Sell"} />
           </fieldset>
         </form>
+        <form onSubmit={(e) => wearableSubmitHandler(e)}>
+          <fieldset>
+            <label>Sell a Thing:</label>
+            <select onChange={(e) => onWearableChangeHandler(e)}>
+              <option value="a"></option>
+              {charSheetState.charSheet.wearables.map((wearable, index) => {
+                return (
+                  <option value={index} key={wearable.id}>
+                    {wearable.name}
+                  </option>
+                )
+              })}
+            </select>
+            <input type="submit" className="popupform__submit-button popupform__submit-button--adjustwidth" value={currentWearable !== "a" ? `Sell ${currentWearable.name} for ${currentWearable.value} Gold` : "Please Choose a Thing to Sell"} />
+          </fieldset>
+        </form>
       </div>
-    </Popup>
+      <div className="popupform__button-panel">
+        <button
+          onClick={() => {
+            charSheetDispatch({ type: "hidePopupForm" })
+          }}
+          className="popupform__close-button"
+        >
+          Cancel
+        </button>
+        <input type="submit" className="popupform__submit-button" value="Submit" />
+      </div>
+    </form>
   )
 }
 

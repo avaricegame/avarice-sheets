@@ -1430,7 +1430,7 @@ function Inventory(props) {
               className="button"
               onClick={() => {
                 charSheetDispatch({ type: "showPopupForm" })
-                charSheetDispatch({ type: "changePopupForm", data: "" })
+                charSheetDispatch({ type: "changePopupForm", data: "sellSomething" })
               }}
             >
               Sell Something
