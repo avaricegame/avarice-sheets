@@ -1,0 +1,40 @@
+@import "../../sass/variables";
+
+.card-container {
+  background-color: $color-white-light;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  margin: 1rem 0;
+  padding: 1rem;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+  overflow: hidden;
+  &--overflowx {
+    @media only screen and (max-width: 1000px) {
+      overflow-x: scroll;
+    }
+  }
+  &__heading {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: $color-white;
+    background-color: $color-grey-dark-2;
+    padding: 1rem 2rem;
+    margin: -1rem -0.95rem 1rem -1rem;
+  }
+  &__subheading {
+    color: $color-black;
+    background-color: $color-light-purple;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.5rem 2rem;
+  }
+  &__terheading {
+    margin: 0.3rem 0;
+    color: $color-black;
+    background-color: $color-pale-yellow;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.5rem 2rem;
+  }
+}
