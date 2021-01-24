@@ -21,6 +21,7 @@ export const CustomButtonContainer = styled.button`
   font-size: 1.8rem;
   width: 100%;
   text-transform: uppercase;
+  border: none;
   border: 1px solid lighten($color-gray, 40%);
   padding: 5px;
   min-height: 40px;
