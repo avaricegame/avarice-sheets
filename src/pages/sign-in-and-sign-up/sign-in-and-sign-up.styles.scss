@@ -1,0 +1,16 @@
+@import "../../sass/variables";
+
+.sign-in-and-sign-up {
+  min-width: 50vw;
+  min-height: 80vh;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  box-shadow: $box-shadow;
+  background-color: $main-background-color;
+
+  padding: 2rem;
+}
