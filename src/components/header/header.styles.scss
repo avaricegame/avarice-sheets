@@ -1,0 +1,67 @@
+@import "../../sass/variables";
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 12rem;
+  border-bottom: 1px solid $color-grey-light-1;
+  background-image: url("../../assets/yellow-banner.png");
+  background-size: cover;
+  background-position: bottom;
+
+  &--purple {
+    background-image: url("../../assets/purple-banner.png");
+  }
+  &--blue {
+    background-image: url("../../assets/blue-banner.png");
+  }
+
+  &__logotype {
+    font-family: "Audiowide", cursive;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    font-size: 6rem;
+    text-align: center;
+    color: darken($color-white, 10%);
+    @media only screen and (max-width: 1000px) {
+      font-size: 5rem;
+      letter-spacing: 0.3rem;
+    }
+    @media only screen and (max-width: 850px) {
+      max-width: 70%;
+      padding-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    @media only screen and (max-width: 600px) {
+      max-width: 80%;
+      font-size: 4rem;
+    }
+    @media only screen and (max-width: 400px) {
+      max-width: 70%;
+      font-size: 3rem;
+    }
+  }
+
+  &__profile {
+    position: fixed;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 2rem 4rem;
+
+    &-image {
+      border-radius: 100%;
+      width: 6rem;
+      cursor: pointer;
+      &:hover {
+        filter: brightness(0.6);
+      }
+    }
+
+    @media only screen and (max-width: 900px) {
+      padding: 2rem;
+    }
+  }
+}
