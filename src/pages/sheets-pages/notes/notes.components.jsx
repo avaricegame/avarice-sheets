@@ -10,11 +10,11 @@ import {
 import { default as Card } from "../../../components/card-container/card-container.component"
 import { default as Button } from "../../../components/custom-button/custom-button.component"
 
-class InfoPage extends React.Component {
+class NotesPage extends React.Component {
   render() {
     return (
       <>
-        <SheetsHeading heading="Info" />
+        <SheetsHeading heading="Notes" />
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Your Notes">
@@ -66,4 +66,4 @@ class InfoPage extends React.Component {
   }
 }
 
-export default InfoPage
+export default NotesPage
