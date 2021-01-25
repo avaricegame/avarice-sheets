@@ -2,10 +2,16 @@ import React from "react"
 
 import "./sheets-page-container-column.styles.scss"
 
-export const SheetsPageContainerColumnSection = ({ children, heading }) => (
+export const SheetsPageContainerColumnSection = ({ children, heading, flex }) => (
   <>
     <h2 className="heading">{heading}</h2>
-    <div className="sheets-page-container-column__section">{children}</div>
+    <div
+      className={`sheets-page-container-column__section ${
+        flex ? "sheets-page-container-column__section--flex" : ""
+      }`}
+    >
+      {children}
+    </div>
   </>
 )
 
