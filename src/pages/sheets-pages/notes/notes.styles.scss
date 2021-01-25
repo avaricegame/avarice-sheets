@@ -1,0 +1,38 @@
+$note-border: rgb(218, 218, 218);
+$background-color: rgb(245, 245, 245);
+$text-color: rgb(117, 117, 117);
+
+.editable-note-content {
+  border: 1px solid black;
+  padding: 3rem 2rem;
+  min-height: 40vh;
+}
+
+.note-excerpt {
+  cursor: pointer;
+  border-top: 1px solid $note-border;
+  border-bottom: 1px solid $note-border;
+  color: $text-color;
+  padding: 1rem 2rem;
+  transition: all 0.4s;
+
+  &--active {
+    color: black;
+    background-color: $background-color;
+    font-weight: 600;
+  }
+
+  &:hover {
+    background-color: lighten($background-color, 2%);
+    color: black;
+  }
+
+  &:first-of-type {
+    border-top: 2px solid $note-border;
+    margin-top: 2rem;
+  }
+
+  &:last-of-type {
+    border-bottom: 2px solid $note-border;
+  }
+}
