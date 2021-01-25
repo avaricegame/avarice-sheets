@@ -52,8 +52,7 @@ class InfoPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Campaign Information">
-              <Card heading="Campaign Details" terheading="Current Savings: 123 LC">
-                <h4 className="item-container__subheading">For Campaign Name</h4>
+              <Card heading="Campaign Details" subheading="For Campaign Name">
                 <p>
                   <strong>Background: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing
                   elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
