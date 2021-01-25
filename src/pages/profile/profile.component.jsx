@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-import Header from "../../components/header/header.component"
+import MainHeader from "../../components/header/main-header.component"
 import Footer from "../../components/footer/footer.component"
 
 import CustomButton from "../../components/custom-button/custom-button.component"
@@ -10,7 +10,7 @@ import "./profile.styles.scss"
 
 const ProfilePage = () => (
   <>
-    <Header />
+    <MainHeader />
     <div className="container">
       <div className="campaign-sheets">
         <h2 className="heading">Profile</h2>
