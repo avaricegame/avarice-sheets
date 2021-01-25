@@ -5,7 +5,7 @@ import SheetsHeading from "../../components/sheets-heading/sheets-heading.compon
 
 import "./sheets-page-not-found.styles.scss"
 
-class Gameplay extends React.Component {
+class SheetsPageNotFound extends React.Component {
   render() {
     return (
       <>
@@ -22,4 +22,4 @@ class Gameplay extends React.Component {
   }
 }
 
-export default Gameplay
+export default SheetsPageNotFound
