@@ -1,9 +1,10 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 import MainHeader from "../../components/header/main-header.component"
 import Footer from "../../components/footer/footer.component"
 
-import "./page-not-found.styles.scss"
+import "./main-page-not-found.styles.scss"
 
 class PageNotFound extends React.Component {
   render() {
@@ -12,11 +13,13 @@ class PageNotFound extends React.Component {
         <MainHeader />
         <div className="container">
           {/* <h1>Page not found</h1> */}
-          <img
-            className="page-not-found-image"
-            src="https://i.imgur.com/A040Lxr.png"
-            alt="not found"
-          />
+          <Link to="/" className="main-page-not-found-link">
+            <img
+              className="main-page-not-found-image"
+              src="https://i.imgur.com/A040Lxr.png"
+              alt="not found"
+            />
+          </Link>
         </div>
         <Footer />
       </>

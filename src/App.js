@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom"
 import "./App.scss"
 
 import ErrorBoundary from "./components/error-boundary/error-boundary.component"
-import PageNotFound from "./pages/page-not-found/page-not-found.component"
+import MainPageNotFound from "./pages/main-page-not-found/main-page-not-found.component"
 
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
 import HomePage from "./pages/homepage/homepage.component"
@@ -34,7 +34,7 @@ function App() {
           <Route exact path="/profile" component={ProfilePage} />
           <Route path="/character" component={CharacterSheetPage} />
           <Route path="/campaign" component={CampaignSheetPage} />
-          <Route path="/" component={PageNotFound} />
+          <Route path="/" component={MainPageNotFound} />
         </ErrorBoundary>
       </Switch>
     </>
