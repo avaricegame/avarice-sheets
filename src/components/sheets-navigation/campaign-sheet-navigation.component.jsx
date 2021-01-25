@@ -18,8 +18,8 @@ const CampaignSheetNavigation = () => (
       <NavLink to="/campaign/campaign" activeClassName="active">
         <li>Campaign</li>
       </NavLink>
-      <NavLink to="/campaign/planning" activeClassName="active">
-        <li>Planning</li>
+      <NavLink to="/campaign/database" activeClassName="active">
+        <li>Database</li>
       </NavLink>
       <NavLink to="/campaign/messages" activeClassName="active">
         <li>Messages</li>
