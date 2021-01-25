@@ -17,18 +17,48 @@ class PlayersPage extends React.Component {
         <SheetsHeading heading="Players" />
         <SheetsPageContainer>
           <Column width={25}>
-            <Section heading="Hit Points">
-              <Card heading="Player 1" subheading="Max HP: 34" terheading="Current HP: 20"></Card>
-              <Card heading="Player 2" subheading="Max HP: 34" terheading="Current HP: 20"></Card>
-              <Card heading="Player 3" subheading="Max HP: 34" terheading="Current HP: 20"></Card>
+            <Section heading="Player Overview">
+              <Card heading="Player 1"></Card>
+              <Card heading="Player 2"></Card>
+              <Card heading="Player 3"></Card>
             </Section>
           </Column>
 
           <Column width={25}>
-            <Section heading="Money">
-              <Card heading="Player 1" terheading="Current Savings: 123 LC"></Card>
-              <Card heading="Player 2" terheading="Current Savings: 123 LC"></Card>
-              <Card heading="Player 3" terheading="Current Savings: 123 LC"></Card>
+            <Section heading="Highlighted Stats">
+              <Card heading="Player 1" subheading="Character Name">
+                <p>
+                  <strong>Max HP: </strong>34
+                </p>
+                <p>
+                  <strong>Current HP: </strong>20
+                </p>
+                <p>
+                  <strong>Current Savings: </strong>123 LC
+                </p>
+              </Card>
+              <Card heading="Player 2" subheading="Character Name">
+                <p>
+                  <strong>Max HP: </strong>34
+                </p>
+                <p>
+                  <strong>Current HP: </strong>20
+                </p>
+                <p>
+                  <strong>Current Savings: </strong>123 LC
+                </p>
+              </Card>
+              <Card heading="Player 3" subheading="Character Name">
+                <p>
+                  <strong>Max HP: </strong>34
+                </p>
+                <p>
+                  <strong>Current HP: </strong>20
+                </p>
+                <p>
+                  <strong>Current Savings: </strong>123 LC
+                </p>
+              </Card>
             </Section>
           </Column>
 
