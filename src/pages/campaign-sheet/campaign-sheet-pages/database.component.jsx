@@ -16,21 +16,28 @@ class DatabasePage extends React.Component {
       <>
         <SheetsHeading heading="Database" />
         <SheetsPageContainer>
-          <Column width={33}>
+          <Column width={25}>
             <Section heading="Inventory Item">
               <Button>Generate New Inventory Item</Button>
               <Card heading="Inventory Item Name">inventory item details</Card>
             </Section>
           </Column>
 
-          <Column width={33}>
+          <Column width={25}>
             <Section heading="NPCS">
               <Button>Generate New NPC</Button>
               <Card heading="NPC Name">npc info</Card>
             </Section>
           </Column>
 
-          <Column width={33}>
+          <Column width={25}>
+            <Section heading="Enemies">
+              <Button>Generate New Enemy</Button>
+              <Card heading="Enemy Name">enemy info</Card>
+            </Section>
+          </Column>
+
+          <Column width={25}>
             <Section heading="Environment">
               <Button>Generate New Environment</Button>
               <Card heading="Environment Name">environment thing</Card>
