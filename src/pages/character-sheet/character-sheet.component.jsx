@@ -9,7 +9,7 @@ import CharacterGameplayPage from "./character-sheet-pages/character-gameplay.co
 import InventoryPage from "./character-sheet-pages/inventory.component"
 import StatsPage from "./character-sheet-pages/stats.component"
 import AbilitiesPage from "./character-sheet-pages/abilities.component"
-import CharacterInfoPage from "./character-sheet-pages/character-info.component"
+import InfoPage from "./character-sheet-pages/info.component"
 import MessagesPage from "../sheets-pages/messages/messages.component"
 import NotesPage from "../sheets-pages/notes/notes.components"
 
@@ -32,7 +32,7 @@ class CharacterSheetPage extends React.Component {
           <Route exact path={`${match.path}/inventory`} component={InventoryPage} />
           <Route exact path={`${match.path}/stats`} component={StatsPage} />
           <Route exact path={`${match.path}/abilities`} component={AbilitiesPage} />
-          <Route exact path={`${match.path}/info`} component={CharacterInfoPage} />
+          <Route exact path={`${match.path}/info`} component={InfoPage} />
           <Route exact path={`${match.path}/messages`} component={MessagesPage} />
           <Route exact path={`${match.path}/notes`} component={NotesPage} />
 
