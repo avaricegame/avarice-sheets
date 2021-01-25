@@ -1,0 +1,15 @@
+.main-page-container {
+  width: 80%;
+  margin: 4rem auto;
+  display: flex;
+  justify-content: center;
+  transition: 1s all;
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+    margin: 2rem auto;
+    width: 90%;
+  }
+  @media only screen and (max-width: 600px) {
+    width: 95%;
+  }
+}

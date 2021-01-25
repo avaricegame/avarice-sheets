@@ -1,9 +1,19 @@
+@import "../../sass/variables";
+
 .sheets-page-container-column {
   &__section {
     padding: 2rem 1rem;
     &--flex {
       display: flex;
     }
+  }
+  &__heading {
+    background-color: $color-grey-dark-2;
+    color: $color-white;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid $color-grey-light-3;
   }
   &__25 {
     width: 24%;
