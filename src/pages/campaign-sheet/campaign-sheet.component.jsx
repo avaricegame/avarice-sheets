@@ -7,7 +7,7 @@ import Footer from "../../components/footer/footer.component"
 
 import CampaignGameplay from "./campaign-sheet-pages/campaign-gameplay.component"
 import PlayersPage from "./campaign-sheet-pages/players.component"
-import InteractiblesPage from "./campaign-sheet-pages/interactibles.component"
+import InteractablesPage from "./campaign-sheet-pages/interactables.component"
 import CampaignPage from "./campaign-sheet-pages/campaign.component"
 import DatabasePage from "./campaign-sheet-pages/database.component"
 import MessagesPage from "../sheets-pages/messages/messages.component"
@@ -30,7 +30,7 @@ class CampaignSheetPage extends React.Component {
           />
           <Route exact path={`${match.path}/gameplay`} component={CampaignGameplay} />
           <Route exact path={`${match.path}/players`} component={PlayersPage} />
-          <Route exact path={`${match.path}/interactibles`} component={InteractiblesPage} />
+          <Route exact path={`${match.path}/interactables`} component={InteractablesPage} />
           <Route exact path={`${match.path}/campaign`} component={CampaignPage} />
           <Route exact path={`${match.path}/database`} component={DatabasePage} />
           <Route exact path={`${match.path}/messages`} component={MessagesPage} />

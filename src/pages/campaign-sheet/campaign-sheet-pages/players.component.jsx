@@ -26,7 +26,7 @@ class PlayersPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Highlighted Stats">
-              <Card heading="Player 1" subheading="Character Name">
+              <Card blue heading="Player 1" subheading="Character Name">
                 <p>
                   <strong>Max HP: </strong>34
                 </p>
@@ -37,7 +37,7 @@ class PlayersPage extends React.Component {
                   <strong>Current Savings: </strong>123 LC
                 </p>
               </Card>
-              <Card heading="Player 2" subheading="Character Name">
+              <Card blue heading="Player 2" subheading="Character Name">
                 <p>
                   <strong>Max HP: </strong>34
                 </p>
@@ -48,7 +48,7 @@ class PlayersPage extends React.Component {
                   <strong>Current Savings: </strong>123 LC
                 </p>
               </Card>
-              <Card heading="Player 3" subheading="Character Name">
+              <Card blue heading="Player 3" subheading="Character Name">
                 <p>
                   <strong>Max HP: </strong>34
                 </p>

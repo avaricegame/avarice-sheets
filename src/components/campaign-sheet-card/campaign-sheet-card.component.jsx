@@ -3,7 +3,7 @@ import React from "react"
 import CardContainer from "../card-container/card-container.component"
 
 const CampaignSheetCard = () => (
-  <CardContainer heading="Campaign Name" subheading="ID#12345">
+  <CardContainer blue heading="Campaign Name" subheading="ID#12345">
     <table>
       <tbody>
         <tr>

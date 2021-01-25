@@ -19,7 +19,7 @@ class CampaignPage extends React.Component {
           <Column width={25}>
             <Section heading="Details">
               <Button>Edit Campaign Details</Button>
-              <Card heading="Campaign Details" terheading="For Campaign Name">
+              <Card blue heading="Campaign Details" terheading="For Campaign Name">
                 <p>
                   <strong>Background: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing
                   elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -55,7 +55,7 @@ class CampaignPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Active Mission">
-              <Card heading="Mission III" subheading="Mar 3, 2021">
+              <Card blue heading="Mission III" subheading="Mar 3, 2021">
                 mission information
               </Card>
             </Section>
@@ -63,15 +63,15 @@ class CampaignPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Future Missions">
-              <Card heading="Mission IV" subheading="planned">
+              <Card blue heading="Mission IV" subheading="planned">
                 mission information
               </Card>
             </Section>
             <Section heading="Completed Missions">
-              <Card heading="Mission II" subheading="Mar 3, 2021">
+              <Card blue heading="Mission II" subheading="Mar 3, 2021">
                 mission information
               </Card>
-              <Card heading="Mission I" subheading="Feb 11, 2021">
+              <Card blue heading="Mission I" subheading="Feb 11, 2021">
                 mission information
               </Card>
             </Section>
@@ -80,7 +80,7 @@ class CampaignPage extends React.Component {
           <Column width={25}>
             <Section heading="Mission Logs">
               <Button>Add a New Captain's Log</Button>
-              <Card heading="Captain's Logs" subheading="For Campaign Name">
+              <Card blue heading="Captain's Logs" subheading="For Campaign Name">
                 <p>
                   <strong>Log II: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Rerum ratione illum recusandae, omnis enim, quae porro doloribus fugiat reiciendis
