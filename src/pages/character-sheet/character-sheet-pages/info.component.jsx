@@ -88,17 +88,6 @@ class InfoPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Race and Class Information">
-              <Card heading="Race Info">
-                <p>race</p>
-              </Card>
-              <Card heading="Class Info">
-                <p>class</p>
-              </Card>
-            </Section>
-          </Column>
-
-          <Column width={25}>
-            <Section heading="Character Information">
               <Card heading="Character Description" subheading="For Character Name">
                 <table>
                   <tbody>
@@ -137,6 +126,17 @@ class InfoPage extends React.Component {
                   </tbody>
                 </table>
               </Card>
+              <Card heading="Race Info">
+                <p>race</p>
+              </Card>
+              <Card heading="Class Info">
+                <p>class</p>
+              </Card>
+            </Section>
+          </Column>
+
+          <Column width={25}>
+            <Section heading="Character Information">
               <Card heading="Character Background" subheading="For Character Name">
                 <p>
                   <strong>
