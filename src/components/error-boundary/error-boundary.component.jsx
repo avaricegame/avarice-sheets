@@ -1,6 +1,9 @@
 import React from "react"
 
-import { ErrorImageOverlay, ErrorImageContainer, ErrorImageText } from "./error-boundary.styles"
+import MainHeader from "../header/main-header.component"
+import Footer from "../footer/footer.component"
+
+import { ErrorImageDiv, ErrorImageContainer, ErrorImageText } from "./error-boundary.styles"
 
 class ErrorBoundary extends React.Component {
   constructor() {
@@ -24,10 +27,17 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasErrored) {
       return (
-        <ErrorImageOverlay>
-          <ErrorImageContainer imageUrl="https://i.imgur.com/yW2W9SC.png" />
-          <ErrorImageText>Sorry this page is broken</ErrorImageText>
-        </ErrorImageOverlay>
+        <>
+          <MainHeader />
+          <ErrorImageDiv>
+            <ErrorImageContainer imageUrl="https://i.imgur.com/g3hgqe8.png" />
+            <ErrorImageText>
+              This page doesn't seem to
+              <br /> be working right now
+            </ErrorImageText>
+          </ErrorImageDiv>
+          <Footer />
+        </>
       )
     }
 
