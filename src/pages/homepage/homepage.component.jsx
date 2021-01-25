@@ -2,6 +2,8 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 import MainHeader from "../../components/header/main-header.component"
+import MainPageContainer from "../../components/main-page-container/main-page-container.component"
+import { default as Column } from "../../components/main-page-container-column/main-page-container-column.component"
 import Footer from "../../components/footer/footer.component"
 
 import CharacterSheetCard from "../../components/character-sheet-card/character-sheet-card.component"
@@ -16,30 +18,33 @@ class HomePage extends React.Component {
     return (
       <>
         <MainHeader />
-        <div className="container">
-          <div className="campaign-sheets">
-            <h2 className="heading">Character Sheets</h2>
-            <div className="sheets-container">
-              <CustomButton>Create a New Character Sheet</CustomButton>
-              <Link className="sheets-card-link" to="/character">
-                <CharacterSheetCard />
-              </Link>
+        <MainPageContainer>
+          <Column heading="Character Sheets">
+            <CustomButton>Create a New Character Sheet</CustomButton>
+            <Link className="sheets-card-link" to="/character">
               <CharacterSheetCard />
+            </Link>
+            <Link className="sheets-card-link" to="/character">
               <CharacterSheetCard />
-            </div>
-          </div>
-          <div className="character-sheets">
-            <h2 className="heading">Campaign Sheets</h2>
-            <div className="sheets-container">
-              <CustomButton>Create a New Campaign Sheet</CustomButton>
-              <Link className="sheets-card-link" to="/campaign">
-                <CampaignSheetCard />
-              </Link>
+            </Link>
+            <Link className="sheets-card-link" to="/character">
+              <CharacterSheetCard />
+            </Link>
+          </Column>
+
+          <Column heading="Campaign Sheets">
+            <CustomButton>Create a New Campaign Sheet</CustomButton>
+            <Link className="sheets-card-link" to="/campaign">
               <CampaignSheetCard />
+            </Link>
+            <Link className="sheets-card-link" to="/campaign">
               <CampaignSheetCard />
-            </div>
-          </div>
-        </div>
+            </Link>
+            <Link className="sheets-card-link" to="/campaign">
+              <CampaignSheetCard />
+            </Link>
+          </Column>
+        </MainPageContainer>
         <Footer />
       </>
     )
