@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import "./header.styles.scss"
 
-const Header = () => (
+const MainHeader = () => (
   <header className={`header ${Math.floor(Math.random() * 2) ? "header--purple" : "header--blue"}`}>
     <h1 className="header__logotype">Avarice Sheets</h1>
     <Link to="/profile">
@@ -14,4 +14,4 @@ const Header = () => (
   </header>
 )
 
-export default Header
+export default MainHeader
