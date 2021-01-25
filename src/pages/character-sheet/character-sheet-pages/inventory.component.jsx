@@ -152,6 +152,7 @@ class InventoryPage extends React.Component {
                 })} */}
                 </select>
                 {/* {displayWeapon()} */}
+                <Card heading="Weapon Name">Weapon</Card>
               </Card>
 
               <Card heading="Items" subheading="Item Count: 4">
@@ -167,6 +168,7 @@ class InventoryPage extends React.Component {
                 })} */}
                 </select>
                 {/* {displayWeapon()} */}
+                <Card heading="Item Name">Item</Card>
               </Card>
 
               <Card heading="Wearables" subheading="Wearables Count: 4">
@@ -184,6 +186,7 @@ class InventoryPage extends React.Component {
                 })} */}
                 </select>
                 {/* {displayWeapon()} */}
+                <Card heading="Wearable Name">Wearable</Card>
               </Card>
 
               <Card heading="Things" subheading="Things Count: 4">
@@ -199,6 +202,7 @@ class InventoryPage extends React.Component {
                 })} */}
                 </select>
                 {/* {displayWeapon()} */}
+                <Card heading="Thing Name">Thing</Card>
               </Card>
             </Section>
           </Column>

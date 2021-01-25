@@ -124,7 +124,7 @@ class AbilitiesPage extends React.Component {
           <Column width={25}>
             <Section heading="Your Abilities">
               <Button>Create New Character Ability</Button>
-              <Card heading="Ability Name" subheading="Level V Ability">
+              <Card heading="Ability Name" subheading="Level V">
                 <p>
                   <strong>Details: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Quo corporis modi enim incidunt ea voluptate, a repellat ipsam dicta eligendi at?
