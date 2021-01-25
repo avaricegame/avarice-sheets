@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom"
 import "./App.scss"
 
 import ErrorBoundary from "./components/error-boundary/error-boundary.component"
+import NewCharacterSheet from "./components/forms/new-character-sheet"
 
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
 import HomePage from "./pages/homepage/homepage.component"
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+      <NewCharacterSheet />
       <Switch>
         <ErrorBoundary>
           <Route

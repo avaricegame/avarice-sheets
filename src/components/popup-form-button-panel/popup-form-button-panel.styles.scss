@@ -1,0 +1,69 @@
+@import "../../sass/variables";
+
+.popupform {
+  &__button-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: $color-white;
+    width: 100%;
+    padding: 1.5rem 0;
+    border-top: 1px solid lighten($color-gray, 15%);
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__submit-button,
+  &__close-button {
+    cursor: pointer;
+    font-family: "Carrois Gothic", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    padding: 1rem 2rem;
+    border: 0;
+    border-radius: 0;
+    border: 2px solid $color-black;
+    transition: all 0.4s ease-in-out;
+  }
+
+  &__submit-button {
+    background-color: $color-black;
+    color: $color-white;
+    width: 65%;
+    &:hover {
+      background-color: $color-white;
+      color: $color-black;
+      box-shadow: 0 0 10px lighten($color-gray, 20%);
+    }
+    &:active {
+      outline: none;
+      transform: scale(0.9);
+      box-shadow: 0 0 10px lighten($color-gray, 15%);
+    }
+    &--adjustwidth {
+      width: 95%;
+      font-size: 1.4rem !important;
+      padding: 0.5rem 1rem !important;
+      margin: 1rem 1.5rem 2.5% !important;
+    }
+  }
+
+  &__close-button {
+    background-color: $color-white;
+    color: $color-black;
+    width: 25%;
+    &:hover {
+      background-color: $color-black;
+      color: $color-white;
+    }
+    &:active {
+      outline: none;
+      transform: scale(0.9);
+      box-shadow: 0 0 10px lighten($color-gray, 15%);
+    }
+    &--fullwidth {
+      width: 95%;
+    }
+  }
+}
