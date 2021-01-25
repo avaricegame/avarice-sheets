@@ -9,7 +9,7 @@ import CampaignGameplay from "./campaign-sheet-pages/campaign-gameplay.component
 import PlayersPage from "./campaign-sheet-pages/players.component"
 import InteractiblesPage from "./campaign-sheet-pages/interactibles.component"
 import CampaignPage from "./campaign-sheet-pages/campaign.component"
-import PlanningPage from "./campaign-sheet-pages/planning.component"
+import DatabasePage from "./campaign-sheet-pages/database.component"
 import MessagesPage from "../sheets-pages/messages/messages.component"
 import NotesPage from "../sheets-pages/notes/notes.components"
 
@@ -32,7 +32,7 @@ class CampaignSheetPage extends React.Component {
           <Route exact path={`${match.path}/players`} component={PlayersPage} />
           <Route exact path={`${match.path}/interactibles`} component={InteractiblesPage} />
           <Route exact path={`${match.path}/campaign`} component={CampaignPage} />
-          <Route exact path={`${match.path}/planning`} component={PlanningPage} />
+          <Route exact path={`${match.path}/database`} component={DatabasePage} />
           <Route exact path={`${match.path}/messages`} component={MessagesPage} />
           <Route exact path={`${match.path}/notes`} component={NotesPage} />
 
