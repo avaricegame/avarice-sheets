@@ -9,8 +9,13 @@ const formButtonStyles = css`
   color: white;
 `
 
+const signOutButtonStyles = css`
+  background-color: darkred;
+  color: white;
+`
+
 const getButtonStyles = (props) => {
-  return props.formButton ? formButtonStyles : buttonStyles
+  return props.formButton ? formButtonStyles : props.signOut ? signOutButtonStyles : buttonStyles
 }
 
 export const CustomButtonContainer = styled.button`
