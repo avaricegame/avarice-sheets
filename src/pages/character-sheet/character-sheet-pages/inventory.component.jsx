@@ -18,108 +18,115 @@ class InventoryPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Equipped">
-              <Card heading="Weapons" subheading="Holsters Used: 2 / 6">
+              <Card heading="Weapons" subheading="Weapons Equipped: 2 / 2">
                 <table>
                   <thead>
                     <tr>
-                      <th>Holsters Needed</th>
                       <th>Weapon Name</th>
+                      <th>Type</th>
+                      <th>Proficiency</th>
+                      <th>Damage</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {props.equippedWeapons.map((weapon) => {
-                    return (
-                      <tr key={weapon.id}>
-                        <td>{weapon.holstersReq}</td>
-                        <td>{weapon.name}</td>
-                      </tr>
-                    )
-                  })} */}
+                    <tr>
+                      <td>Weapon Name</td>
+                      <td>Ranged</td>
+                      <td>Speed</td>
+                      <td>D6</td>
+                    </tr>
+                    <tr>
+                      <td>Weapon Name</td>
+                      <td>Melee</td>
+                      <td>Reflex</td>
+                      <td>D4</td>
+                    </tr>
                   </tbody>
                 </table>
               </Card>
 
-              <Card heading="Items" terheading="Item Slots Used: 12 / 24">
+              <Card heading="Items" subheading="Item's Equipped: 3 / 3">
                 <table>
                   <thead>
                     <tr>
-                      <th>Slots Needed</th>
                       <th>Item Name</th>
+                      <th>Category</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {props.equippedItems.map((item) => {
-                    return (
-                      <tr key={item.id}>
-                        <td>{item.slotsReq}</td>
-                        <td>{item.name}</td>
-                      </tr>
-                    )
-                  })} */}
+                    <tr>
+                      <td>Item Name</td>
+                      <td>Leptics</td>
+                    </tr>
+                    <tr>
+                      <td>Item Name</td>
+                      <td>Health Pack</td>
+                    </tr>
+                    <tr>
+                      <td>Item Name</td>
+                      <td>Food</td>
+                    </tr>
                   </tbody>
                 </table>
               </Card>
 
-              <Card heading="Wearables" subheading="Holster Count: 24" terheading="Slot Count: 24">
+              <Card heading="Wearables" subheading="Armour Value: 24">
                 <table>
                   <thead>
                     <tr>
                       <th>Body Area</th>
                       <th>Wearable Equipped</th>
+                      <th>Armour Value</th>
+                      <th>Augments?</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Base</td>
-                      <td>name</td>
-                    </tr>
-                    <tr>
                       <td>Head</td>
                       <td>name</td>
+                      <td>2</td>
+                      <td>-</td>
                     </tr>
                     <tr>
                       <td>Face</td>
                       <td>name</td>
+                      <td>2</td>
+                      <td>speech</td>
                     </tr>
-                    <tr>
-                      <td>Neck</td>
-                      <td>name</td>
-                    </tr>
+
                     <tr>
                       <td>Torso</td>
                       <td>name</td>
+                      <td>2</td>
+                      <td>-</td>
                     </tr>
-                    <tr>
-                      <td>Back</td>
-                      <td>name</td>
-                    </tr>
+
                     <tr>
                       <td>Arms</td>
                       <td>name</td>
+                      <td>2</td>
+                      <td>strength</td>
                     </tr>
-                    <tr>
-                      <td>Wrists</td>
-                      <td>name</td>
-                    </tr>
+
                     <tr>
                       <td>Hands</td>
                       <td>name</td>
+                      <td>2</td>
+                      <td>-</td>
                     </tr>
-                    <tr>
-                      <td>Waist</td>
-                      <td>name</td>
-                    </tr>
+
                     <tr>
                       <td>Legs</td>
                       <td>name</td>
+                      <td>2</td>
+                      <td>-</td>
                     </tr>
-                    <tr>
-                      <td>Ankles</td>
-                      <td>name</td>
-                    </tr>
+
                     <tr>
                       <td>Feet</td>
                       <td>name</td>
+                      <td>2</td>
+                      <td>speed</td>
                     </tr>
                   </tbody>
                 </table>
@@ -130,7 +137,6 @@ class InventoryPage extends React.Component {
           <Column width={25}>
             <Section heading="Money">
               <Card heading="Life Credits" terheading="Current Savings: 123 LC">
-                <p className="item-container__money-amount">123 LC</p>
                 <Button>Pay Money</Button>
                 <Button>Recieve Money</Button>
               </Card>
@@ -139,71 +145,17 @@ class InventoryPage extends React.Component {
 
           <Column width={25}>
             <Section heading="S.U.R.O.N.I.S.">
-              <Card heading="Weapons" subheading="Weapon Count: 4">
-                <p className="item-container__select-label">Select a weapon to view the details</p>
-                <select className="item-container__select">
-                  <option value="a"></option>
-                  {/* {charSheetState.charSheet.weapons.map((weapon, index) => {
-                  return (
-                    <option value={index} key={weapon.id}>
-                      {weapon.name}
-                    </option>
-                  )
-                })} */}
+              <Card heading="See my:">
+                <select>
+                  <option value="entire-inventory">Entire Inventory (12)</option>
+                  <option value="weapons">Weapons (4)</option>
+                  <option value="items">Items (4)</option>
+                  <option value="wearables">Wearables (4)</option>
                 </select>
-                {/* {displayWeapon()} */}
-                <Card heading="Weapon Name">Weapon</Card>
               </Card>
-
-              <Card heading="Items" subheading="Item Count: 4">
-                <p className="item-container__select-label">Select an item to view the details</p>
-                <select className="item-container__select">
-                  <option value="a"></option>
-                  {/* {charSheetState.charSheet.weapons.map((weapon, index) => {
-                  return (
-                    <option value={index} key={weapon.id}>
-                      {weapon.name}
-                    </option>
-                  )
-                })} */}
-                </select>
-                {/* {displayWeapon()} */}
-                <Card heading="Item Name">Item</Card>
-              </Card>
-
-              <Card heading="Wearables" subheading="Wearables Count: 4">
-                <p className="item-container__select-label">
-                  Select a wearable to view the details
-                </p>
-                <select className="item-container__select">
-                  <option value="a"></option>
-                  {/* {charSheetState.charSheet.weapons.map((weapon, index) => {
-                  return (
-                    <option value={index} key={weapon.id}>
-                      {weapon.name}
-                    </option>
-                  )
-                })} */}
-                </select>
-                {/* {displayWeapon()} */}
-                <Card heading="Wearable Name">Wearable</Card>
-              </Card>
-
-              <Card heading="Things" subheading="Things Count: 4">
-                <p className="item-container__select-label">Select a thing to view the details</p>
-                <select className="item-container__select">
-                  <option value="a"></option>
-                  {/* {charSheetState.charSheet.weapons.map((weapon, index) => {
-                  return (
-                    <option value={index} key={weapon.id}>
-                      {weapon.name}
-                    </option>
-                  )
-                })} */}
-                </select>
-                {/* {displayWeapon()} */}
-                <Card heading="Thing Name">Thing</Card>
-              </Card>
+              <Card heading="Weapon Name">{/* {displayWeapon()} */}</Card>
+              <Card heading="Item Name">{/* {displayWeapon()} */}</Card>
+              <Card heading="Wearable Name">{/* {displayWeapon()} */}</Card>
             </Section>
           </Column>
 
@@ -212,7 +164,6 @@ class InventoryPage extends React.Component {
               <Button>Add New Weapon</Button>
               <Button>Add New Item</Button>
               <Button>Add New Wearable</Button>
-              <Button>Add New Thing</Button>
               <Button>Sell Something</Button>
             </Section>
           </Column>
