@@ -26,16 +26,6 @@ class StatsPage extends React.Component {
                   ability tree.
                 </p>
               </Card>
-
-              <Card heading="Excellence Chips" subheading="You have 2 Excellence Chips">
-                <Button>Add Excellence Chip</Button>
-                <Button>Use Excellence Chip</Button>
-                <p>
-                  Want to earn an excellence chip? Do something epic and make sure the DM is
-                  watching! Excellence Chips can be cashed in whenever you'd like for an immediate
-                  perfect roll. Use them wisely.
-                </p>
-              </Card>
             </Section>
           </Column>
 
