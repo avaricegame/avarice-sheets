@@ -18,7 +18,11 @@ class CharacterGameplayPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Hit Points">
-              <Card heading="Hit Points" subheading="Max HP: 34" terheading="Current HP: 20">
+              <Card
+                heading="Hit Points Max: 48"
+                subheading="Armour Value: 7"
+                terheading="Current Hit Points: 34"
+              >
                 <Button>Take Damage</Button>
                 <Button>Heal HP</Button>
               </Card>
@@ -34,46 +38,17 @@ class CharacterGameplayPage extends React.Component {
           <Column width={25}>
             <Section heading="Actions">
               <Button>Attack</Button>
-              <Button>Roll Dice</Button>
-              <Button>Make a Skill Check</Button>
+              <Button>Make a Check</Button>
               <Button>Use an Item</Button>
               <Button>Use an Ability</Button>
-              <Button>Use a Thing</Button>
+              <Button>Equip / Unequip</Button>
               <Button>Take a Rest</Button>
+              <Button>Roll Dice</Button>
             </Section>
           </Column>
 
           <Column width={25}>
-            <Section heading="Notifcations">
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Attacked</em> with WEAPON and rolled 17
-              </p>
-              <p>
-                <strong>Player 2: </strong>
-                <em className="highlight">Used Ability</em> ABILITY and rolled 17
-              </p>
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Paid Money</em> 30 GOLD to PLAYER 2
-              </p>
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Sold Item</em> WEAPON / WEARABLE / ITEM
-              </p>
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Rolled D20</em> and got 17
-              </p>
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Leveled Up</em> to level 5
-              </p>
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Added Excelence Chip</em>
-              </p>
-            </Section>
+            <Section heading="Stats Overview"></Section>
           </Column>
 
           <Column width={25}>
