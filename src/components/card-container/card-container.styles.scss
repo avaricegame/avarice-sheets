@@ -8,6 +8,10 @@
   transition: all 0.2s;
   border: 2px solid transparent;
   overflow: hidden;
+  &--flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
   &--overflowx {
     @media only screen and (max-width: 1000px) {
       overflow-x: scroll;
