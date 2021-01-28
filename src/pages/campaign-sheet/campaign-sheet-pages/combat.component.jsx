@@ -7,10 +7,7 @@ import {
   SheetsPageContainerColumnSection as Section,
 } from "../../../components/sheets-page-container-column/sheets-page-container-column.component"
 
-import {
-  default as Card,
-  Terheading,
-} from "../../../components/card-container/card-container.component"
+import { default as Card } from "../../../components/card-container/card-container.component"
 import { default as Button } from "../../../components/custom-button/custom-button.component"
 
 class InteractablesPage extends React.Component {
