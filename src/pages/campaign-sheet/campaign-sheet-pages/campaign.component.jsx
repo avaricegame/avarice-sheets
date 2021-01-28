@@ -54,10 +54,25 @@ class CampaignPage extends React.Component {
           </Column>
 
           <Column width={25}>
-            <Section heading="Active Mission">
-              <Card blue heading="Mission III" subheading="Mar 3, 2021">
-                mission information
+            <Section heading="Campaign Logs">
+              <Button>Add a New Captain's Log</Button>
+              <Card blue heading="Captain's Logs" subheading="For Campaign Name">
+                <p>
+                  <strong>Log II: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Rerum ratione illum recusandae, omnis enim, quae porro doloribus fugiat reiciendis
+                  totam et iusto, mollitia exercitationem animi aspernatur. Id facere alias
+                  voluptatibus.
+                </p>
+                <p>
+                  <strong>Log I: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Rerum ratione illum recusandae, omnis enim, quae porro doloribus fugiat reiciendis
+                  totam et iusto, mollitia exercitationem animi aspernatur. Id facere alias
+                  voluptatibus.
+                </p>
               </Card>
+              <p>
+                Note: All characters who have joined your campaign will see your Captain's Logs.
+              </p>
             </Section>
           </Column>
 
@@ -78,9 +93,9 @@ class CampaignPage extends React.Component {
           </Column>
 
           <Column width={25}>
-            <Section heading="Mission Logs">
-              <Button>Add a New Captain's Log</Button>
-              <Card blue heading="Captain's Logs" subheading="For Campaign Name">
+            <Section heading="Personal Logs">
+              <Button>Add a New Personal Log</Button>
+              <Card blue heading="Personal Mission Logs" subheading="For Campaign Name">
                 <p>
                   <strong>Log II: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Rerum ratione illum recusandae, omnis enim, quae porro doloribus fugiat reiciendis
@@ -94,9 +109,7 @@ class CampaignPage extends React.Component {
                   voluptatibus.
                 </p>
               </Card>
-              <p>
-                Note: All characters who have joined your campaign will see your Captain's Logs.
-              </p>
+              <p>Note: ONLY YOU can see these logs.</p>
             </Section>
           </Column>
         </SheetsPageContainer>
