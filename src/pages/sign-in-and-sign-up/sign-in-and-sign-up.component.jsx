@@ -42,7 +42,9 @@ class SignInAndSignUpPage extends React.Component {
           )}
         </div>
         <div className="sign-in-and-sign-up__footer">
-          <Link className="sign-in-and-sign-up__footer-text">What is Avarice Sheets?</Link>
+          <Link to="/about" className="sign-in-and-sign-up__footer-text">
+            What is Avarice Sheets?
+          </Link>
         </div>
       </div>
     )
