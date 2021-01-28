@@ -22,16 +22,10 @@ export const fetchCharSheetListFailure = (errorMessage) => ({
 export const fetchCharSheetListStartAsync = (currentUsersID) => {
   return (dispatch) => {
     const CHAR_SHEETS = require("../json/character-sheets.json")
-    //const CAMP_SHEETS = require("../../redux/json/campaign-sheets.json")
-    console.log(CHAR_SHEETS)
+
     const usersCharSheets = CHAR_SHEETS.filter(
       (charSheet) => charSheet.creatorID === currentUsersID
     )
-
-    console.log(usersCharSheets)
-    // const usersCampSheets = CAMP_SHEETS.filter(
-    //   (campSheet) => campSheet.creatorID === currentUser.id
-    // )
 
     dispatch(fetchCharSheetListSuccess(usersCharSheets))
   }

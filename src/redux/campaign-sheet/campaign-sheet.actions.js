@@ -1,4 +1,3 @@
-import campSheetReducer from "./campaign-sheet.reducer"
 import CampSheetActionTypes from "./campaign-sheet.types"
 
 export const setCurrentCampSheet = (campSheet) => ({
@@ -19,3 +18,15 @@ export const fetchCampSheetListFailure = (errorMessage) => ({
   type: CampSheetActionTypes.FETCH_CAMP_SHEET_LIST_FAILURE,
   payload: errorMessage,
 })
+
+export const fetchCampSheetListStartAsync = (currentUsersID) => {
+  return (dispatch) => {
+    const CAMP_SHEETS = require("../../redux/json/campaign-sheets.json")
+
+    const usersCampSheets = CAMP_SHEETS.filter(
+      (campSheet) => campSheet.creatorID === currentUsersID
+    )
+
+    dispatch(fetchCampSheetListSuccess(usersCampSheets))
+  }
+}

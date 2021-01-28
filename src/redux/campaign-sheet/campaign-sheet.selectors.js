@@ -17,7 +17,7 @@ export const selectIsCampSheetListFetching = createSelector(
   (campSheet) => campSheet.isListFetching
 )
 
-export const selectIsCampListLoaded = createSelector(
+export const selectIsCampSheetListLoaded = createSelector(
   [selectCampSheet],
   (campSheet) => !!campSheet.campSheetList
 )
