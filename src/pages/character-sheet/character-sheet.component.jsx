@@ -1,5 +1,5 @@
 import React from "react"
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom"
 
 import SheetsHeader from "../../components/headers/sheets-header.component"
 import CharacterSheetNavigation from "../../components/sheets-navigation/character-sheet-navigation.component"
@@ -16,6 +16,10 @@ import NotesPage from "../sheets-pages/notes/notes.components"
 import SheetsPageNotFound from "../sheets-page-not-found/sheets-page-not-found.component"
 
 class CharacterSheetPage extends React.Component {
+  componentDidMount() {
+    console.log(this.props.match)
+  }
+
   render() {
     const { match } = this.props
     return (
@@ -23,15 +27,20 @@ class CharacterSheetPage extends React.Component {
         <SheetsHeader character name="Character Name" />
         <CharacterSheetNavigation />
         <Switch>
-          <Route exact path={`${match.path}/:charid/gameplay`} component={CharacterGameplayPage} />
-          <Route exact path={`${match.path}/:charid/inventory`} component={InventoryPage} />
-          <Route exact path={`${match.path}/:charid/stats`} component={StatsPage} />
-          <Route exact path={`${match.path}/:charid/abilities`} component={AbilitiesPage} />
-          <Route exact path={`${match.path}/:charid/info`} component={InfoPage} />
-          <Route exact path={`${match.path}/:charid/messages`} component={MessagesPage} />
-          <Route exact path={`${match.path}/:charid/notes`} component={NotesPage} />
+          <Route
+            exact
+            path={`${match.path}`}
+            render={() => <Redirect to={`${match.path}/gameplay`} />}
+          />
+          <Route exact path={`${match.path}/gameplay`} component={CharacterGameplayPage} />
+          <Route exact path={`${match.path}/inventory`} component={InventoryPage} />
+          <Route exact path={`${match.path}/stats`} component={StatsPage} />
+          <Route exact path={`${match.path}/abilities`} component={AbilitiesPage} />
+          <Route exact path={`${match.path}/info`} component={InfoPage} />
+          <Route exact path={`${match.path}/messages`} component={MessagesPage} />
+          <Route exact path={`${match.path}/notes`} component={NotesPage} />
 
-          <Route path={`${match.path}/:charid`} component={SheetsPageNotFound} />
+          <Route path={`${match.path}`} component={SheetsPageNotFound} />
         </Switch>
         <Footer />
       </>

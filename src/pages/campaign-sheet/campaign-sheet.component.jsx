@@ -1,5 +1,5 @@
 import React from "react"
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom"
 
 import SheetsHeader from "../../components/headers/sheets-header.component"
 import CampaignSheetNavigation from "../../components/sheets-navigation/campaign-sheet-navigation.component"
@@ -23,13 +23,18 @@ class CampaignSheetPage extends React.Component {
         <SheetsHeader campaign name="Campaign Name" />
         <CampaignSheetNavigation />
         <Switch>
-          <Route exact path={`${match.path}/:campid/gameplay`} component={CampaignGameplay} />
-          <Route exact path={`${match.path}/:campid/combat`} component={CombatPage} />
-          <Route exact path={`${match.path}/:campid/players`} component={PlayersPage} />
-          <Route exact path={`${match.path}/:campid/campaign`} component={CampaignPage} />
-          <Route exact path={`${match.path}/:campid/planning`} component={PlanningPage} />
-          <Route exact path={`${match.path}/:campid/messages`} component={MessagesPage} />
-          <Route exact path={`${match.path}/:campid/notes`} component={NotesPage} />
+          <Route
+            exact
+            path={`${match.path}`}
+            render={() => <Redirect to={`${match.path}/gameplay`} />}
+          />
+          <Route exact path={`${match.path}/gameplay`} component={CampaignGameplay} />
+          <Route exact path={`${match.path}/combat`} component={CombatPage} />
+          <Route exact path={`${match.path}/players`} component={PlayersPage} />
+          <Route exact path={`${match.path}/campaign`} component={CampaignPage} />
+          <Route exact path={`${match.path}/planning`} component={PlanningPage} />
+          <Route exact path={`${match.path}/messages`} component={MessagesPage} />
+          <Route exact path={`${match.path}/notes`} component={NotesPage} />
 
           <Route path={`${match.path}`} component={SheetsPageNotFound} />
         </Switch>

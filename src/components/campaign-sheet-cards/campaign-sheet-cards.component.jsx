@@ -22,7 +22,7 @@ const CampaignSheetCards = ({ campSheetList }) => (
     {campSheetList.map((campSheet) => {
       const { campaignName, _id, playersNames, charactersNames, missions } = campSheet
       return (
-        <Link className="sheets-card-link" to={`/campaign/${_id}/gameplay`} key={_id}>
+        <Link className="sheets-card-link" to={`/campaign/${_id}`} key={_id}>
           <CardContainer blue heading={campaignName} subheading={`ID#${_id}`}>
             <table>
               <tbody>

@@ -40,8 +40,8 @@ class App extends React.Component {
               render={() => (currentUser ? <HomePage /> : <SignInAndSignUpPage />)}
             />
             <Route exact path="/profile" component={ProfilePage} />
-            <Route path="/character" component={CharacterSheetPage} />
-            <Route path="/campaign" component={CampaignSheetPage} />
+            <Route path="/character/:charid" component={CharacterSheetPage} />
+            <Route path="/campaign/:campid" component={CampaignSheetPage} />
             <Route path="/not-found" component={MainPageNotFound} />
           </ErrorBoundary>
         </Switch>
