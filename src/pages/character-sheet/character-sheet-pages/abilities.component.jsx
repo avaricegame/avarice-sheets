@@ -7,7 +7,12 @@ import {
   SheetsPageContainerColumnSection as Section,
 } from "../../../components/sheets-page-container-column/sheets-page-container-column.component"
 
-import { default as Card } from "../../../components/card-container/card-container.component"
+import {
+  default as Card,
+  InteriorCardContainerFlex as InteriorCard,
+  Subheading,
+  CardContainerContentContainer as InteriorCardContent,
+} from "../../../components/card-container/card-container.component"
 import { default as Button } from "../../../components/custom-button/custom-button.component"
 
 class AbilitiesPage extends React.Component {
@@ -16,19 +21,10 @@ class AbilitiesPage extends React.Component {
       <>
         <SheetsHeading heading="Abilities" />
         <SheetsPageContainer>
-          <Column width={75}>
-            <Section heading="Abilities Tree">
-              <p>
-                <strong>How does the Abilities Tree work?</strong> <br />
-                Each time you level up, you will be asked to choose one ability between three
-                separate options. The choices will include new abilities as well as ability
-                power-ups. Each ability can be leveled up to Power V.
-              </p>
-            </Section>
-
-            <Section heading="Options on Next Level Up" flex>
-              <Column width={33}>
-                <Card heading="Ability Name" subheading="Power V">
+          <Column width={100}>
+            <Section heading="Abilities Loadout (Your Current Equipped Abilities)" flex>
+              <Column width={25}>
+                <Card heading="Base Class Ability" subheading="Starting Class Ability">
                   <p>
                     <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur adipisicing
                     elit. Tempora libero consequuntur, rem explicabo animi eaque cum labore mollitia
@@ -37,16 +33,8 @@ class AbilitiesPage extends React.Component {
                   </p>
                 </Card>
               </Column>
-              <Column width={33}>
-                <Card heading="Ability Name" subheading="Power V">
-                  <p>
-                    <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur adipisicing
-                    elit. Tempora libero consequuntur, rem explicabo animi eaque cum labore mollitia
-                    accusantium. Ut pariatur dolorum temporibus necessitatibus quis aliquid
-                    laboriosam dolorem harum fuga!
-                  </p>
-                </Card>
-                <Card heading="Ability Name" subheading="Power V">
+              <Column width={25}>
+                <Card heading="Class Ability 1" subheading="Augmentation Type">
                   <p>
                     <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur adipisicing
                     elit. Tempora libero consequuntur, rem explicabo animi eaque cum labore mollitia
@@ -55,8 +43,8 @@ class AbilitiesPage extends React.Component {
                   </p>
                 </Card>
               </Column>
-              <Column width={33}>
-                <Card heading="Ability Name" subheading="Power V">
+              <Column width={25}>
+                <Card heading="Class Ability 2" subheading="Augmentation Type">
                   <p>
                     <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur adipisicing
                     elit. Tempora libero consequuntur, rem explicabo animi eaque cum labore mollitia
@@ -65,11 +53,8 @@ class AbilitiesPage extends React.Component {
                   </p>
                 </Card>
               </Column>
-            </Section>
-
-            <Section heading="Level 2" flex>
-              <Column width={33}>
-                <Card heading="Ability Name" subheading="Power V">
+              <Column width={25}>
+                <Card heading="Class Ability 3" subheading="Augmentation Type">
                   <p>
                     <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur adipisicing
                     elit. Tempora libero consequuntur, rem explicabo animi eaque cum labore mollitia
@@ -78,15 +63,8 @@ class AbilitiesPage extends React.Component {
                   </p>
                 </Card>
               </Column>
-              <Column width={33}></Column>
-              <Column width={33}></Column>
-            </Section>
-
-            <Section heading="Level 1" flex>
-              <Column width={33}></Column>
-              <Column width={33}></Column>
-              <Column width={33}>
-                <Card heading="Ability Name" subheading="Power V">
+              <Column width={25}>
+                <Card heading="Class Ability 4" subheading="Augmentation Type">
                   <p>
                     <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur adipisicing
                     elit. Tempora libero consequuntur, rem explicabo animi eaque cum labore mollitia
@@ -95,11 +73,8 @@ class AbilitiesPage extends React.Component {
                   </p>
                 </Card>
               </Column>
-            </Section>
-
-            <Section heading="Starting Abilities" flex>
-              <Column width={50}>
-                <Card heading="Ability Name" subheading="Power V">
+              <Column width={25}>
+                <Card heading="Class Ability 5" subheading="Augmentation Type">
                   <p>
                     <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur adipisicing
                     elit. Tempora libero consequuntur, rem explicabo animi eaque cum labore mollitia
@@ -108,8 +83,8 @@ class AbilitiesPage extends React.Component {
                   </p>
                 </Card>
               </Column>
-              <Column width={50}>
-                <Card heading="Ability Name" subheading="Power V">
+              <Column width={25}>
+                <Card heading="Weapon Ability 1" subheading="Weapon Ability">
                   <p>
                     <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur adipisicing
                     elit. Tempora libero consequuntur, rem explicabo animi eaque cum labore mollitia
@@ -121,15 +96,103 @@ class AbilitiesPage extends React.Component {
             </Section>
           </Column>
 
-          <Column width={25}>
-            <Section heading="Your Abilities">
-              <Button>Create New Character Ability</Button>
-              <Card heading="Ability Name" subheading="Level V">
-                <p>
-                  <strong>Details: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quo corporis modi enim incidunt ea voluptate, a repellat ipsam dicta eligendi at?
-                  Optio sapiente molestiae, illo neque facere nisi explicabo fugit?
-                </p>
+          <Column width={100}>
+            <Section heading="Your Class Abilities Library">
+              <Card heading="Ability Name" flex>
+                <InteriorCard>
+                  <Column width={25}>
+                    <Subheading>Standard</Subheading>
+                    <InteriorCardContent>
+                      <p>
+                        <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Tempora libero consequuntur, rem explicabo animi eaque cum
+                        labore mollitia accusantium. Ut pariatur dolorum temporibus necessitatibus
+                        quis aliquid laboriosam dolorem harum fuga!
+                      </p>
+                    </InteriorCardContent>
+                  </Column>
+                  <Column width={25}>
+                    <Subheading>Base Augmentation</Subheading>
+                    <InteriorCardContent>
+                      <p>
+                        <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Tempora libero consequuntur, rem explicabo animi eaque cum
+                        labore mollitia accusantium. Ut pariatur dolorum temporibus necessitatibus
+                        quis aliquid laboriosam dolorem harum fuga!
+                      </p>
+                    </InteriorCardContent>
+                  </Column>
+                  <Column width={25}>
+                    <Subheading>Augmentation #1</Subheading>
+                    <InteriorCardContent>
+                      <p>
+                        <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Tempora libero consequuntur, rem explicabo animi eaque cum
+                        labore mollitia accusantium. Ut pariatur dolorum temporibus necessitatibus
+                        quis aliquid laboriosam dolorem harum fuga!
+                      </p>
+                    </InteriorCardContent>
+                  </Column>
+                  <Column width={25}>
+                    <Subheading>Augmentation #2</Subheading>
+                    <InteriorCardContent>
+                      <p>
+                        <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Tempora libero consequuntur, rem explicabo animi eaque cum
+                        labore mollitia accusantium. Ut pariatur dolorum temporibus necessitatibus
+                        quis aliquid laboriosam dolorem harum fuga!
+                      </p>
+                    </InteriorCardContent>
+                  </Column>
+                </InteriorCard>
+              </Card>
+              <Card heading="Ability Name" flex>
+                <InteriorCard>
+                  <Column width={25}>
+                    <Subheading>Standard</Subheading>
+                    <InteriorCardContent>
+                      <p>
+                        <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Tempora libero consequuntur, rem explicabo animi eaque cum
+                        labore mollitia accusantium. Ut pariatur dolorum temporibus necessitatibus
+                        quis aliquid laboriosam dolorem harum fuga!
+                      </p>
+                    </InteriorCardContent>
+                  </Column>
+                  <Column width={25}>
+                    <Subheading>Base Augmentation</Subheading>
+                    <InteriorCardContent>
+                      <p>
+                        <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Tempora libero consequuntur, rem explicabo animi eaque cum
+                        labore mollitia accusantium. Ut pariatur dolorum temporibus necessitatibus
+                        quis aliquid laboriosam dolorem harum fuga!
+                      </p>
+                    </InteriorCardContent>
+                  </Column>
+                  <Column width={25}>
+                    <Subheading>Augmentation #1</Subheading>
+                    <InteriorCardContent>
+                      <p>
+                        <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Tempora libero consequuntur, rem explicabo animi eaque cum
+                        labore mollitia accusantium. Ut pariatur dolorum temporibus necessitatibus
+                        quis aliquid laboriosam dolorem harum fuga!
+                      </p>
+                    </InteriorCardContent>
+                  </Column>
+                  <Column width={25}>
+                    <Subheading>Augmentation #2</Subheading>
+                    <InteriorCardContent>
+                      <p>
+                        <strong>Details: </strong>Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Tempora libero consequuntur, rem explicabo animi eaque cum
+                        labore mollitia accusantium. Ut pariatur dolorum temporibus necessitatibus
+                        quis aliquid laboriosam dolorem harum fuga!
+                      </p>
+                    </InteriorCardContent>
+                  </Column>
+                </InteriorCard>
               </Card>
             </Section>
           </Column>
