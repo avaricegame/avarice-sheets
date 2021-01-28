@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-import MainHeader from "../../components/header/main-header.component"
+import MainHeader from "../../components/headers/main-header.component"
 import Footer from "../../components/footer/footer.component"
 
 import "./main-page-not-found.styles.scss"

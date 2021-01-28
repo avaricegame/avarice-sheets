@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 
-import MainHeader from "../../components/header/main-header.component"
+import MainHeader from "../../components/headers/main-header.component"
 import MainPageContainer from "../../components/main-page-container/main-page-container.component"
 import { default as Column } from "../../components/main-page-container-column/main-page-container-column.component"
 import Footer from "../../components/footer/footer.component"

@@ -1,7 +1,7 @@
 import React from "react"
 import { Switch, Route, Redirect } from "react-router-dom"
 
-import SheetsHeader from "../../components/header/sheets-header.component"
+import SheetsHeader from "../../components/headers/sheets-header.component"
 import CampaignSheetNavigation from "../../components/sheets-navigation/campaign-sheet-navigation.component"
 import Footer from "../../components/footer/footer.component"
 
