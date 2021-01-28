@@ -13,7 +13,6 @@ import {
   Subheading,
   CardContainerContentContainer as InteriorCardContent,
 } from "../../../components/card-container/card-container.component"
-import { default as Button } from "../../../components/custom-button/custom-button.component"
 
 class AbilitiesPage extends React.Component {
   render() {
