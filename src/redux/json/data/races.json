@@ -1,0 +1,71 @@
+[
+  {
+    "name": "Lowca",
+    "_id": "1",
+    "imageUrl": "",
+    "quote": "Skills to pay the bills.",
+    "size": "Medium",
+    "sizeValueMod": 0,
+    "basicInfo": [
+      {
+        "descriptor": "Location",
+        "description": "Castles located in the Great Frozen Ursen Territory, Vadasz peninsula, and the desert Badlands."
+      },
+      {
+        "descriptor": "Climate",
+        "description": "Cold, Damp, and Hot"
+      },
+      {
+        "descriptor": "Lifespan",
+        "description": "Immortal"
+      }
+    ],
+    "description": "There are three castles littered around Avarce; one resides deep in the Great Frozen Ursen Territory, one in the middle of the Desert Badlands, and one at the End of the Vadasz peninsula. These castles house some of the most skilled bipedal creatures on the planet. These castles are the homes and training grounds of the Lowca.\nLowca are essentially the perfect mercenary. They have no sense of moral superiority and are willing to take on any task, provided the person hiring them have the credits. They are extremely quick and smart, with an ability to think on their feet that rivals any other race. However, they cannot die by natural causes and throw themselves into situations that always mean certain death. "
+  },
+  {
+    "name": "Lowca II",
+    "_id": "2",
+    "imageUrl": "",
+    "quote": "Skills to pay the bills.",
+    "size": "Medium",
+    "sizeValueMod": 0,
+    "basicInfo": [
+      {
+        "descriptor": "Location",
+        "description": "Castles located in the Great Frozen Ursen Territory, Vadasz peninsula, and the desert Badlands."
+      },
+      {
+        "descriptor": "Climate",
+        "description": "Cold, Damp, and Hot"
+      },
+      {
+        "descriptor": "Lifespan",
+        "description": "Immortal"
+      }
+    ],
+    "description": "There are three castles littered around Avarce; one resides deep in the Great Frozen Ursen Territory, one in the middle of the Desert Badlands, and one at the End of the Vadasz peninsula. These castles house some of the most skilled bipedal creatures on the planet. These castles are the homes and training grounds of the Lowca.\nLowca are essentially the perfect mercenary. They have no sense of moral superiority and are willing to take on any task, provided the person hiring them have the credits. They are extremely quick and smart, with an ability to think on their feet that rivals any other race. However, they cannot die by natural causes and throw themselves into situations that always mean certain death. "
+  },
+  {
+    "name": "Lowca III",
+    "_id": "3",
+    "imageUrl": "",
+    "quote": "Skills to pay the bills.",
+    "size": "Medium",
+    "sizeValueMod": 0,
+    "basicInfo": [
+      {
+        "descriptor": "Location",
+        "description": "Castles located in the Great Frozen Ursen Territory, Vadasz peninsula, and the desert Badlands."
+      },
+      {
+        "descriptor": "Climate",
+        "description": "Cold, Damp, and Hot"
+      },
+      {
+        "descriptor": "Lifespan",
+        "description": "Immortal"
+      }
+    ],
+    "description": "There are three castles littered around Avarce; one resides deep in the Great Frozen Ursen Territory, one in the middle of the Desert Badlands, and one at the End of the Vadasz peninsula. These castles house some of the most skilled bipedal creatures on the planet. These castles are the homes and training grounds of the Lowca.\nLowca are essentially the perfect mercenary. They have no sense of moral superiority and are willing to take on any task, provided the person hiring them have the credits. They are extremely quick and smart, with an ability to think on their feet that rivals any other race. However, they cannot die by natural causes and throw themselves into situations that always mean certain death. "
+  }
+]

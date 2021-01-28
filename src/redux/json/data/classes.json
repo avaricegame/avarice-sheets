@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Fawn",
+    "_id": "1",
+    "type": "Support",
+    "imgurl": "",
+    "quote": "I'm very down to Earth.",
+    "abilityDocID": 1,
+    "description": "Here is a description example, but I don't want to actually think of anything to write so I am just filling it with filler text and it is very fullfilling to me.",
+    "stats": {
+      "strength": 1,
+      "constitution": 3,
+      "reflex": 2,
+      "speed": 1,
+      "speech": 2,
+      "performance": 2,
+      "technical": 3,
+      "practical": 3,
+      "ranged": 2,
+      "melee": 2
+    }
+  },
+  {
+    "name": "Fawn II",
+    "_id": "2",
+    "type": "Support",
+    "imgurl": "",
+    "quote": "I'm very down to Earth.",
+    "abilityDocID": 1,
+    "description": "Here is a description example, but I don't want to actually think of anything to write so I am just filling it with filler text and it is very fullfilling to me.",
+    "stats": {
+      "strength": 1,
+      "constitution": 3,
+      "reflex": 2,
+      "speed": 1,
+      "speech": 2,
+      "performance": 2,
+      "technical": 3,
+      "practical": 3,
+      "ranged": 2,
+      "melee": 2
+    }
+  },
+  {
+    "name": "Fawn III",
+    "_id": "3",
+    "type": "Support",
+    "imgurl": "",
+    "quote": "I'm very down to Earth.",
+    "abilityDocID": 1,
+    "description": "Here is a description example, but I don't want to actually think of anything to write so I am just filling it with filler text and it is very fullfilling to me.",
+    "stats": {
+      "strength": 1,
+      "constitution": 3,
+      "reflex": 2,
+      "speed": 1,
+      "speech": 2,
+      "performance": 2,
+      "technical": 3,
+      "practical": 3,
+      "ranged": 2,
+      "melee": 2
+    }
+  }
+]
