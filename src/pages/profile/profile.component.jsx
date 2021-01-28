@@ -1,5 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import { createStructuredSelector } from "reselect"
 
 import MainHeader from "../../components/header/main-header.component"
 import MainPageContainer from "../../components/main-page-container/main-page-container.component"
@@ -9,9 +11,11 @@ import Footer from "../../components/footer/footer.component"
 import CardContainer from "../../components/card-container/card-container.component"
 import CustomButton from "../../components/custom-button/custom-button.component"
 
+import { selectCurrentUser } from "../../redux/user/user.selectors"
+
 import "./profile.styles.scss"
 
-const ProfilePage = () => (
+const ProfilePage = ({ user }) => (
   <>
     <MainHeader />
     <MainPageContainer>
@@ -19,7 +23,7 @@ const ProfilePage = () => (
         <hr className="profile-page-hr" />
         <Link to="/">&larr; BACK TO HOME</Link>
         <hr className="profile-page-hr" />
-        <h2 className="profile-page-greeting">Hello there, displayName</h2>
+        <h2 className="profile-page-greeting">Hello there, {user.firstName}</h2>
 
         <hr className="profile-page-hr" />
         <CardContainer heading="Your Profile Details">
@@ -27,15 +31,15 @@ const ProfilePage = () => (
             <tbody>
               <tr>
                 <td>Name:</td>
-                <td>name</td>
+                <td>{user.firstName + " " + user.lastName}</td>
               </tr>
               <tr>
                 <td>Username:</td>
-                <td>name</td>
+                <td>{user.username}</td>
               </tr>
               <tr>
                 <td>Email:</td>
-                <td>name</td>
+                <td>{user.email}</td>
               </tr>
             </tbody>
           </table>
@@ -52,4 +56,8 @@ const ProfilePage = () => (
   </>
 )
 
-export default ProfilePage
+const mapStateToProps = createStructuredSelector({
+  user: selectCurrentUser,
+})
+
+export default connect(mapStateToProps)(ProfilePage)
