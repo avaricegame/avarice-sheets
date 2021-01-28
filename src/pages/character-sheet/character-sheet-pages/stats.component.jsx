@@ -258,13 +258,15 @@ class StatsPage extends React.Component {
 
                 <table className="skills-table">
                   <thead>
-                    <th className="th--first">Skill</th>
-                    <th>Terrible</th>
-                    <th>Bad</th>
-                    <th>Normal</th>
-                    <th>Good</th>
-                    <th>Great</th>
-                    <th>Fantastic</th>
+                    <tr>
+                      <th className="th--first">Skill</th>
+                      <th>Terrible</th>
+                      <th>Bad</th>
+                      <th>Normal</th>
+                      <th>Good</th>
+                      <th>Great</th>
+                      <th>Fantastic</th>
+                    </tr>
                   </thead>
                   <tbody>
                     <tr>
@@ -329,13 +331,15 @@ class StatsPage extends React.Component {
                 </h4>
                 <table className="skills-table">
                   <thead>
-                    <th className="th--first">Skill</th>
-                    <th>Terrible</th>
-                    <th>Bad</th>
-                    <th>Normal</th>
-                    <th>Good</th>
-                    <th>Great</th>
-                    <th>Fantastic</th>
+                    <tr>
+                      <th className="th--first">Skill</th>
+                      <th>Terrible</th>
+                      <th>Bad</th>
+                      <th>Normal</th>
+                      <th>Good</th>
+                      <th>Great</th>
+                      <th>Fantastic</th>
+                    </tr>
                   </thead>
                   <tbody>
                     <tr>
@@ -400,13 +404,15 @@ class StatsPage extends React.Component {
                 </h4>
                 <table className="skills-table">
                   <thead>
-                    <th className="th--first">Skill</th>
-                    <th>Terrible</th>
-                    <th>Bad</th>
-                    <th>Normal</th>
-                    <th>Good</th>
-                    <th>Great</th>
-                    <th>Fantastic</th>
+                    <tr>
+                      <th className="th--first">Skill</th>
+                      <th>Terrible</th>
+                      <th>Bad</th>
+                      <th>Normal</th>
+                      <th>Good</th>
+                      <th>Great</th>
+                      <th>Fantastic</th>
+                    </tr>
                   </thead>
                   <tbody>
                     <tr>
@@ -471,13 +477,15 @@ class StatsPage extends React.Component {
                 </h4>
                 <table className="skills-table">
                   <thead>
-                    <th className="th--first">Skill</th>
-                    <th>Terrible</th>
-                    <th>Bad</th>
-                    <th>Normal</th>
-                    <th>Good</th>
-                    <th>Great</th>
-                    <th>Fantastic</th>
+                    <tr>
+                      <th className="th--first">Skill</th>
+                      <th>Terrible</th>
+                      <th>Bad</th>
+                      <th>Normal</th>
+                      <th>Good</th>
+                      <th>Great</th>
+                      <th>Fantastic</th>
+                    </tr>
                   </thead>
                   <tbody>
                     <tr>
@@ -542,13 +550,15 @@ class StatsPage extends React.Component {
                 </h4>
                 <table className="skills-table">
                   <thead>
-                    <th className="th--first">Skill</th>
-                    <th>Terrible</th>
-                    <th>Bad</th>
-                    <th>Normal</th>
-                    <th>Good</th>
-                    <th>Great</th>
-                    <th>Fantastic</th>
+                    <tr>
+                      <th className="th--first">Skill</th>
+                      <th>Terrible</th>
+                      <th>Bad</th>
+                      <th>Normal</th>
+                      <th>Good</th>
+                      <th>Great</th>
+                      <th>Fantastic</th>
+                    </tr>
                   </thead>
                   <tbody>
                     <tr>
