@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import { ReactComponent as AvariceLogo } from "../../assets/avarice-logo-light.svg"
 
-import "./header.styles.scss"
+import "./headers.styles.scss"
 
 const SheetsHeader = ({ name, character, campaign }) => (
   <header className={`header ${character ? "header--purple" : campaign ? "header--blue" : ""}`}>

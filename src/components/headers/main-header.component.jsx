@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-import "./header.styles.scss"
+import "./headers.styles.scss"
 
 const MainHeader = () => (
   <header className={`header ${Math.floor(Math.random() * 2) ? "header--purple" : "header--blue"}`}>

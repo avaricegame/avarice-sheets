@@ -1,6 +1,6 @@
 import React from "react"
 
-import MainHeader from "../header/main-header.component"
+import MainHeader from "../headers/main-header.component"
 import Footer from "../footer/footer.component"
 
 import { ErrorImageDiv, ErrorImageContainer, ErrorImageText } from "./error-boundary.styles"
