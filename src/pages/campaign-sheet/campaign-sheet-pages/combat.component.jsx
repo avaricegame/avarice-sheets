@@ -22,6 +22,7 @@ class InteractablesPage extends React.Component {
           <Column width={25}>
             <Section heading="Players">
               <Card
+                blue
                 heading="Player Name"
                 subheading="Hit Points: 23"
                 terheading="Armour Value: 7"
@@ -58,6 +59,7 @@ class InteractablesPage extends React.Component {
           <Column width={25}>
             <Section heading="Enemies">
               <Card
+                blue
                 heading="Enemy Name"
                 subheading="Hit Points: 23"
                 terheading="Armour Value: 7"
@@ -94,6 +96,7 @@ class InteractablesPage extends React.Component {
           <Column width={25}>
             <Section heading="Friends">
               <Card
+                blue
                 heading="Friend Name"
                 subheading="Hit Points: 23"
                 terheading="Armour Value: 7"
