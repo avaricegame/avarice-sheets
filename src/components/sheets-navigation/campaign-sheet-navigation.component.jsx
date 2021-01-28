@@ -9,17 +9,17 @@ const CampaignSheetNavigation = () => (
       <NavLink to="/campaign/gameplay" activeClassName="active">
         <li>Gameplay</li>
       </NavLink>
+      <NavLink to="/campaign/combat" activeClassName="active">
+        <li>Combat</li>
+      </NavLink>
       <NavLink to="/campaign/players" activeClassName="active">
         <li>Players</li>
-      </NavLink>
-      <NavLink to="/campaign/interactables" activeClassName="active">
-        <li>Interactables</li>
       </NavLink>
       <NavLink to="/campaign/campaign" activeClassName="active">
         <li>Campaign</li>
       </NavLink>
-      <NavLink to="/campaign/database" activeClassName="active">
-        <li>Database</li>
+      <NavLink to="/campaign/planning" activeClassName="active">
+        <li>Planning</li>
       </NavLink>
       <NavLink to="/campaign/messages" activeClassName="active">
         <li>Messages</li>

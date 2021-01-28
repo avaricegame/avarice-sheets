@@ -6,10 +6,10 @@ import CampaignSheetNavigation from "../../components/sheets-navigation/campaign
 import Footer from "../../components/footer/footer.component"
 
 import CampaignGameplay from "./campaign-sheet-pages/campaign-gameplay.component"
+import CombatPage from "./campaign-sheet-pages/combat.component"
 import PlayersPage from "./campaign-sheet-pages/players.component"
-import InteractablesPage from "./campaign-sheet-pages/interactables.component"
 import CampaignPage from "./campaign-sheet-pages/campaign.component"
-import DatabasePage from "./campaign-sheet-pages/database.component"
+import PlanningPage from "./campaign-sheet-pages/planning.component"
 import MessagesPage from "../sheets-pages/messages/messages.component"
 import NotesPage from "../sheets-pages/notes/notes.components"
 
@@ -29,10 +29,10 @@ class CampaignSheetPage extends React.Component {
             render={() => <Redirect to={`${match.path}/gameplay`} />}
           />
           <Route exact path={`${match.path}/gameplay`} component={CampaignGameplay} />
+          <Route exact path={`${match.path}/combat`} component={CombatPage} />
           <Route exact path={`${match.path}/players`} component={PlayersPage} />
-          <Route exact path={`${match.path}/interactables`} component={InteractablesPage} />
           <Route exact path={`${match.path}/campaign`} component={CampaignPage} />
-          <Route exact path={`${match.path}/database`} component={DatabasePage} />
+          <Route exact path={`${match.path}/planning`} component={PlanningPage} />
           <Route exact path={`${match.path}/messages`} component={MessagesPage} />
           <Route exact path={`${match.path}/notes`} component={NotesPage} />
 
