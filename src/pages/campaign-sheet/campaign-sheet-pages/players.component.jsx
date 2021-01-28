@@ -40,7 +40,7 @@ class PlayersPage extends React.Component {
                     </InteriorCardContent>
                     <Button>View Character Sheet</Button>
                   </Column>
-                  <Column width={25}>
+                  <Column width={50}>
                     <Subheading blue>Abilities</Subheading>
                     <InteriorCardContent>
                       <table>
@@ -50,6 +50,7 @@ class PlayersPage extends React.Component {
                             <th>Stat</th>
                             <th>Difficulty Level</th>
                             <th>From Equipment?</th>
+                            <th>Description</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -58,36 +59,62 @@ class PlayersPage extends React.Component {
                             <td>Constitution</td>
                             <td>hard</td>
                             <td></td>
+                            <td>
+                              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui iusto
+                              quibusdam nisi... see more
+                            </td>
                           </tr>
                           <tr>
                             <td>Ability 1</td>
                             <td>Constitution</td>
                             <td>hard</td>
                             <td></td>
+                            <td>
+                              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui iusto
+                              quibusdam nisi... see more
+                            </td>
                           </tr>
                           <tr>
                             <td>Ability 1</td>
                             <td>Constitution</td>
                             <td>hard</td>
                             <td></td>
+                            <td>
+                              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui iusto
+                              quibusdam nisi... see more
+                            </td>
                           </tr>
                           <tr>
                             <td>Ability 1</td>
                             <td>Constitution</td>
                             <td>hard</td>
                             <td></td>
+                            <td>
+                              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui iusto
+                              quibusdam nisi... see more
+                            </td>
                           </tr>
                           <tr>
                             <td>Ability 1</td>
                             <td>Constitution</td>
                             <td>hard</td>
                             <td>Weapon Name</td>
+                            <td>
+                              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui iusto
+                              quibusdam nisi... see more
+                            </td>
                           </tr>
                           <tr>
                             <td>Ability 1</td>
                             <td>Constitution</td>
                             <td>hard</td>
                             <td></td>
+                            <td>
+                              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui iusto
+                              quibusdam nisi nesciunt tempore laudantium quae, facilis atque
+                              sapiente ducimus eveniet alias obcaecati eligendi? Accusamus officiis
+                              corporis adipisci mollitia impedit.
+                            </td>
                           </tr>
                         </tbody>
                       </table>
@@ -125,8 +152,7 @@ class PlayersPage extends React.Component {
                         </tbody>
                       </table>
                     </InteriorCardContent>
-                  </Column>
-                  <Column width={25}>
+
                     <Subheading blue>Items</Subheading>
                     <InteriorCardContent>
                       <table>
@@ -156,6 +182,7 @@ class PlayersPage extends React.Component {
                         </tbody>
                       </table>
                     </InteriorCardContent>
+                    <Button>Open Players S.U.R.O.N.I.S</Button>
                   </Column>
                 </InteriorCard>
               </Card>
