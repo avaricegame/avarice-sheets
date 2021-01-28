@@ -37,6 +37,7 @@ class PlayersPage extends React.Component {
                         <li>Dodge Value: 12</li>
                         <li>Life Credits: 100</li>
                       </ul>
+                      Energy points, success points here
                     </InteriorCardContent>
                     <Button>View Character Sheet</Button>
                   </Column>

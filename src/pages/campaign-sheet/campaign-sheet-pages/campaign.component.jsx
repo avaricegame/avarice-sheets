@@ -79,15 +79,23 @@ class CampaignPage extends React.Component {
           <Column width={25}>
             <Section heading="Future Missions">
               <Card blue heading="Mission IV" subheading="planned">
-                mission information
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus numquam
+                  doloremque nam quo illo tenetur corporis quia repellendus sapiente dolores dolorem
+                  vel debitis laboriosam consequatur architecto perferendis odio, ex
+                  alias.Asperiores quidem iure perspiciatis inventore, vitae suscipit pariatur
+                  praesentium molestias soluta neque architecto, quas voluptatum laborum sint nulla
+                  cumque provident, quisquam corrupti voluptates ut voluptate laboriosam aperiam?
+                  Iste, fugiat quam!
+                </p>
               </Card>
             </Section>
             <Section heading="Completed Missions">
               <Card blue heading="Mission II" subheading="Mar 3, 2021">
-                mission information
+                expand information
               </Card>
               <Card blue heading="Mission I" subheading="Feb 11, 2021">
-                mission information
+                expand information
               </Card>
             </Section>
           </Column>
