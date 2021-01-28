@@ -18,80 +18,75 @@ class CampaignGameplay extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Actions">
-              <Button>Action</Button>
-              <Button>Action</Button>
-              <Button>Action</Button>
-              <Button>Action</Button>
-              <Button>Action</Button>
+              <Button>Start Combat</Button>
+              <Button>Perform a Check</Button>
+              <Button>Dispense Damage</Button>
+              <Button>Give or Take Money</Button>
+              <Button>Buy or Sell Items</Button>
+              <Button>Give or Take Items</Button>
+              <Button>Rest Party</Button>
+              <Button>Level Up Party</Button>
+            </Section>
+          </Column>
+
+          <Column width={50}>
+            <Section heading="Current Mission">
+              <Card heading="Date: Mission Name">mission notes and plans</Card>
             </Section>
           </Column>
 
           <Column width={25}>
-            <Section heading="Active Mission"></Section>
-          </Column>
-
-          <Column width={25}>
-            <Section heading="Notifications">
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Attacked</em> with WEAPON and rolled 17
-              </p>
-              <p>
-                <strong>Player 2: </strong>
-                <em className="highlight">Used Ability</em> ABILITY and rolled 17
-              </p>
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Paid Money</em> 30 GOLD to PLAYER 2
-              </p>
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Sold Item</em> WEAPON / WEARABLE / ITEM
-              </p>
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Rolled D20</em> and got 17
-              </p>
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Leveled Up</em> to level 5
-              </p>
-              <p>
-                <strong>Player 1: </strong>
-                <em className="highlight">Added Excelence Chip</em>
-              </p>
-            </Section>
-          </Column>
-
-          <Column width={25}>
-            <Section heading="Memos">
-              <Button>New Memo</Button>
-              <hr />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ipsa nemo
-                quisquam minus.
-              </p>
-              <hr />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ipsa nemo
-                quisquam minus.
-              </p>
-              <hr />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ipsa nemo
-                quisquam minus.
-              </p>
-              <hr />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ipsa nemo
-                quisquam minus.
-              </p>
-              <hr />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ipsa nemo
-                quisquam minus.
-              </p>
-              <hr />
+            <Section heading="Mission Interactables">
+              <Button>Create Interactable</Button>
+              <Card heading="Interactable Name" subheading="NPC" blue>
+                npc info diplomacy:
+                <select>
+                  <option>Friend</option>
+                  <option>Enemy</option>
+                  <option>Neutral</option>
+                </select>
+                status:
+                <select>
+                  <option>Active</option>
+                  <option>Inactive</option>
+                  <option>Dead</option>
+                </select>
+              </Card>
+              <Card heading="Interactable Name" subheading="NPC" blue>
+                npc info
+              </Card>
+              <Card heading="Interactable Name" subheading="Environment" blue>
+                environment info
+              </Card>
+              <Card heading="Interactable Name" subheading="Inventory" blue>
+                inventory item info
+              </Card>
+              <Card heading="Inactive">
+                <p>
+                  <strong>Name of it: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing
+                  elit... <span>see more</span>
+                </p>
+                <p>
+                  <strong>Name of it: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing
+                  elit Lorem ipsum dolor sit amet consectetur adipisicing elit. At cum neque
+                  architecto praesentium veniam? Officia quaerat aperiam neque et. Rem eum id quam.
+                  Provident nam voluptatem repellat exercitationem optio quidem.
+                  <br />
+                  <span>ACTIVATE</span>
+                </p>
+                <p>
+                  <strong>Name of it: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing
+                  elit... <span>see more</span>
+                </p>
+                <p>
+                  <strong>Name of it: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing
+                  elit... <span>see more</span>
+                </p>
+                <p>
+                  <strong>Name of it: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing
+                  elit... <span>see more</span>
+                </p>
+              </Card>
             </Section>
           </Column>
         </SheetsPageContainer>
