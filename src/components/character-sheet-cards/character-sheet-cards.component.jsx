@@ -12,7 +12,7 @@ const CharacterSheetCards = ({ charSheetList }) => (
     {charSheetList.map((charSheet) => {
       const { _id, level, raceName, className, campaignID, characterName } = charSheet
       return (
-        <Link className="sheets-card-link" to={`/character/${_id}`} key={_id}>
+        <Link className="sheets-card-link" to={`/character/${_id}/gameplay`} key={_id}>
           <CardContainer heading={characterName} subheading={`ID#${_id}`}>
             <table>
               <tbody>
