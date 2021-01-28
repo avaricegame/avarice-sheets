@@ -1,13 +1,14 @@
 @import "../../sass/variables";
 
 .card-container {
-  background-color: $color-white-light;
+  background-color: $main-background-color-light;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   margin: 1rem 0;
   padding: 1rem;
   transition: all 0.2s;
   border: 2px solid transparent;
   overflow: hidden;
+
   &--flex {
     display: flex;
     flex-wrap: wrap;
@@ -21,25 +22,25 @@
     font-size: 2rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
-    color: $color-white;
-    background-color: $color-grey-dark-2;
+    color: $main-text-color-light;
+    background-color: $main-background-color-dark;
     padding: 1rem 2rem;
     margin: -1rem -0.95rem 1rem -1rem;
   }
   &__subheading {
-    color: $color-black;
-    background-color: $color-light-purple;
+    color: $main-text-color-dark;
+    background-color: $color-purple;
     font-weight: bold;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
     &--blue {
-      background-color: $color-light-blue;
+      background-color: $color-blue;
     }
   }
   &__terheading {
     margin: 0.3rem 0;
-    color: $color-black;
-    background-color: $color-pale-yellow;
+    color: $main-text-color-dark;
+    background-color: $color-yellow;
     font-weight: bold;
     text-transform: uppercase;
     padding: 0.5rem 1rem;

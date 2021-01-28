@@ -1,25 +1,70 @@
+// standard colors
 $color-white: whitesmoke;
-$color-white-dark: #d3d3d3;
-$color-white-light: white;
 $color-black: black;
 $color-grey: gray;
 $color-gray: gray;
-$color-grey-light-1: rgb(209, 209, 209);
-$color-grey-light-2: rgb(134, 134, 134);
-$color-grey-light-3: rgb(124, 124, 124);
-$color-grey-dark-1: #292929;
-$color-grey-dark-2: #060606;
-$color-light-blue: #bbeeee;
-$color-dark-blue: #67b3b3;
-$color-grey-bg: #f3f3f2;
-$color-light-purple: rgb(224, 188, 224);
-$color-dark-purple: rgb(185, 122, 185);
-$color-light-yellow: #ebb65d;
-$color-light-red: rgb(255, 0, 0);
-$color-pale-yellow: #f1dbb3;
 
+// accent colors
+$color-blue: #bbeeee;
+$color-purple: rgb(224, 188, 224);
+$color-yellow: #f1dbb3;
+$color-red: darkred;
+
+// app variables
 $app-background-color: #f8f8f8;
-$main-background-color-light: whitesmoke;
-$main-background-color-dark: black;
+$app-text-color: #060606;
+
+// for all horizontal rules and borders used like one
+$hr-color: rgb(209, 209, 209);
+
+// main variables
+$main-background-color-light: white;
+$main-text-color-dark: #060606;
+$main-background-color-dark: #060606;
+$main-text-color-light: white;
 $link-color: #be8f3e;
+
+// app wide box shadow
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+// component specific variables
+$footer-text-color: rgb(134, 134, 134);
+
+// custom button variables
+$custom-button-background-color: $main-background-color-light;
+$custom-button-border: 1px solid lighten($color-gray, 40%);
+
+//
+//
+
+// *************** DARK MODE VARIABLES *************** //
+// // accent colors
+// $color-blue: #6777779c;
+// $color-purple: rgba(141, 117, 141, 0.479);
+// $color-yellow: #887e6988;
+// $color-red: darkred;
+
+// // app variables
+// $app-background-color: #3d3a44;
+// $app-text-color: rgb(189, 189, 189);
+
+// // for all horizontal rules and borders used like one
+// $hr-color: rgb(83, 83, 83);
+
+// // main variables
+// $main-background-color-light: #3f3d44;
+// $main-text-color-dark: white;
+// $main-background-color-dark: rgb(42, 38, 44);
+// $main-text-color-light: white;
+// $link-color: #be8f3e;
+
+// // app wide box shadow
+// $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+// // component specific variables
+// $footer-text-color: rgb(185, 185, 185);
+
+// // custom button variables
+// $custom-button-background-color: #3f3d44;
+// $custom-button-border: 1px solid darken($color-gray, 10%);
+// *************** END DARK MODE VARIABLES *************** //

@@ -5,10 +5,10 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: $color-white;
+    background-color: $main-background-color-light;
     width: 100%;
     padding: 1.5rem 0;
-    border-top: 1px solid lighten($color-gray, 15%);
+    border-top: 1px solid $hr-color;
     display: flex;
     justify-content: space-around;
   }
@@ -23,17 +23,17 @@
     padding: 1rem 2rem;
     border: 0;
     border-radius: 0;
-    border: 2px solid $color-black;
+    border: 2px solid $main-background-color-dark;
     transition: all 0.4s ease-in-out;
   }
 
   &__submit-button {
-    background-color: $color-black;
-    color: $color-white;
+    background-color: $main-background-color-dark;
+    color: $main-text-color-light;
     width: 65%;
     &:hover {
-      background-color: $color-white;
-      color: $color-black;
+      background-color: $main-background-color-light;
+      color: $main-text-color-dark;
       box-shadow: 0 0 10px lighten($color-gray, 20%);
     }
     &:active {
@@ -50,12 +50,12 @@
   }
 
   &__close-button {
-    background-color: $color-white;
-    color: $color-black;
+    background-color: $main-background-color-light;
+    color: $main-text-color-dark;
     width: 25%;
     &:hover {
-      background-color: $color-black;
-      color: $color-white;
+      background-color: $main-background-color-dark;
+      color: $main-text-color-light;
     }
     &:active {
       outline: none;

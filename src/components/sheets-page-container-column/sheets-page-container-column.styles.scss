@@ -9,12 +9,12 @@
     }
   }
   &__heading {
-    background-color: $color-grey-dark-2;
-    color: $color-white;
+    background-color: $main-background-color-dark;
+    color: $main-text-color-light;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
     text-align: center;
-    border-bottom: 1px solid $color-grey-light-3;
+    border-bottom: 1px solid $hr-color;
   }
   &__25 {
     width: 24%;

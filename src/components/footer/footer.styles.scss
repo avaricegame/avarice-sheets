@@ -2,18 +2,17 @@
 
 .footer {
   text-align: center;
-  color: $color-grey-light-2;
+  color: $footer-text-color;
   font-size: 1.4rem;
   padding: 2rem;
   margin: 0 3rem;
   margin-top: 5rem;
-  border-top: 1px solid $color-grey-light-1;
+  border-top: 1px solid $hr-color;
 
   a {
     color: inherit;
-
     &:hover {
-      color: $color-light-yellow;
+      color: $link-color;
     }
   }
 }

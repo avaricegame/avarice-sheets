@@ -30,7 +30,7 @@ textarea,
 select {
   padding: 1rem;
   border: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: $box-shadow;
   min-height: 30px;
   width: 96%;
   margin: 0.5rem 2.5%;
@@ -73,26 +73,4 @@ form textarea {
 
 form select {
   cursor: pointer;
-}
-
-// styling for the level up form
-.abilities-title-on-level-up-form {
-  text-transform: uppercase;
-  margin-left: 0.5rem;
-  background-color: $color-black;
-  color: $color-white;
-  padding: 0.5rem;
-  width: 100%;
-}
-
-.abilities-details-on-level-up-form {
-  margin-left: 3.5rem;
-  margin-right: 3.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 5px solid $color-dark-purple;
-  margin-bottom: 1rem;
-}
-
-.radio-input-container--levelup-form {
-  margin-left: 1rem;
 }

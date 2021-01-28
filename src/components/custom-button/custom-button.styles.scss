@@ -1,24 +1,6 @@
-import styled, { css } from "styled-components"
+@import "../../sass/variables";
 
-const buttonStyles = css`
-  background-color: white;
-`
-
-const formButtonStyles = css`
-  background-color: black;
-  color: white;
-`
-
-const signOutButtonStyles = css`
-  background-color: darkred;
-  color: white;
-`
-
-const getButtonStyles = (props) => {
-  return props.formButton ? formButtonStyles : props.signOut ? signOutButtonStyles : buttonStyles
-}
-
-export const CustomButtonContainer = styled.button`
+.custom-button {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   cursor: pointer;
   font-family: "Carrois Gothic SC", sans-serif;
@@ -27,13 +9,17 @@ export const CustomButtonContainer = styled.button`
   width: 100%;
   text-transform: uppercase;
   border: none;
-  border: 1px solid lighten($color-gray, 40%);
+  border: $custom-button-border;
   padding: 5px;
   min-height: 40px;
   margin: 1rem 1rem 1rem 0;
   transition: all 0.2s;
   -webkit-appearance: none;
   border-radius: 0;
+
+  background-color: $custom-button-background-color;
+  color: $main-text-color-dark;
+
   &:hover {
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.28), 0 2px 2px rgba(0, 0, 0, 0.3);
   }
@@ -44,5 +30,14 @@ export const CustomButtonContainer = styled.button`
   &:focus {
     outline: 0;
   }
-  ${getButtonStyles}
-`
+
+  &--form-button {
+    background-color: $main-background-color-dark;
+    color: $main-text-color-light;
+  }
+
+  &--sign-out-button {
+    background-color: $color-red;
+    color: $main-text-color-light;
+  }
+}

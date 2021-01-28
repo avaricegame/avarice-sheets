@@ -1,3 +1,5 @@
+@import "../../sass/variables";
+
 .sheets-secondary-header {
   display: flex;
   justify-content: center;
@@ -10,5 +12,6 @@
     letter-spacing: 0.5rem;
     font-family: "Carrois Gothic", sans-serif;
     transform: translateY(-0.5rem);
+    color: $main-text-color-dark;
   }
 }

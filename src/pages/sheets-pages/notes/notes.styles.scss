@@ -1,6 +1,8 @@
-$note-border: rgb(218, 218, 218);
-$background-color: rgb(245, 245, 245);
-$text-color: rgb(117, 117, 117);
+@import "../../../sass/variables";
+
+$note-border: $hr-color;
+$background-color: lighten($main-background-color-light, 10%);
+$text-color: $color-gray;
 
 .editable-note-content {
   padding: 1rem 0.5rem;

@@ -7,7 +7,7 @@
   align-items: center;
 
   min-height: 12rem;
-  border-bottom: 1px solid $color-grey-light-1;
+  border-bottom: 1px solid $hr-color;
   background-image: url("../../assets/yellow-banner.png");
   background-size: cover;
   background-position: bottom;
@@ -109,8 +109,8 @@
       border: 4px solid darken($color-white, 10%);
       transition: all 0.4s;
       &:hover {
-        color: $color-light-yellow;
-        border: 4px solid $color-light-yellow;
+        color: $link-color;
+        border: 4px solid $link-color;
         transform: scale(1.5);
       }
     }
