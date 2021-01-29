@@ -1,4 +1,6 @@
 import React from "react"
+import { connect } from "react-redux"
+import { createStructuredSelector } from "reselect"
 
 import SheetsHeading from "../../components/sheets-heading/sheets-heading.component"
 import SheetsPageContainer from "../../components/sheets-page-container/sheets-page-container.component"
@@ -10,15 +12,18 @@ import {
 import { default as Card } from "../../components/card-container/card-container.component"
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
+import { selectLevel } from "../../redux/character-sheet/character-sheet.selectors"
+
 class StatsPage extends React.Component {
   render() {
+    const { level } = this.props
     return (
       <>
         <SheetsHeading heading="Stats" />
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Levels and Experience">
-              <Card heading="Level" subheading="You are at level 4">
+              <Card heading="Level" subheading={`You are at level ${level}`}>
                 <Button>Level Up</Button>
                 <Button>Remove Level</Button>
                 <p>
@@ -626,4 +631,8 @@ class StatsPage extends React.Component {
   }
 }
 
-export default StatsPage
+const mapStateToProps = createStructuredSelector({
+  level: selectLevel,
+})
+
+export default connect(mapStateToProps)(StatsPage)
