@@ -1,34 +1,34 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, withRouter } from "react-router-dom"
 
 import "./sheets-navigation.styles.scss"
 
-const CampaignSheetNavigation = () => (
+const CampaignSheetNavigation = ({ match }) => (
   <nav>
     <ul className="sheet-navigation">
-      <NavLink to="/campaign/gameplay" activeClassName="active">
+      <NavLink to={`${match.url}/gameplay`} activeClassName="active">
         <li>Gameplay</li>
       </NavLink>
-      <NavLink to="/campaign/combat" activeClassName="active">
+      <NavLink to={`"${match.url}/combat`} activeClassName="active">
         <li>Combat</li>
       </NavLink>
-      <NavLink to="/campaign/players" activeClassName="active">
+      <NavLink to={`${match.url}/players`} activeClassName="active">
         <li>Players</li>
       </NavLink>
-      <NavLink to="/campaign/campaign" activeClassName="active">
+      <NavLink to={`${match.url}/campaign`} activeClassName="active">
         <li>Campaign</li>
       </NavLink>
-      <NavLink to="/campaign/planning" activeClassName="active">
+      <NavLink to={`${match.url}/planning`} activeClassName="active">
         <li>Planning</li>
       </NavLink>
-      <NavLink to="/campaign/messages" activeClassName="active">
+      <NavLink to={`${match.url}/messages`} activeClassName="active">
         <li>Messages</li>
       </NavLink>
-      <NavLink to="/campaign/notes" activeClassName="active">
+      <NavLink to={`${match.url}/notes`} activeClassName="active">
         <li>Notes</li>
       </NavLink>
     </ul>
   </nav>
 )
 
-export default CampaignSheetNavigation
+export default withRouter(CampaignSheetNavigation)
