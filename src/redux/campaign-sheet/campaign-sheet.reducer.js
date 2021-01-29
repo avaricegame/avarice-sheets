@@ -4,7 +4,10 @@ const INITIAL_STATE = {
   currentCampSheet: null,
   campSheetList: null,
   isListFetching: false,
+  isCampSheetFetching: false,
   errorMessage: undefined,
+  doesCampaignSheetExist: true,
+  doesUserHavePermission: true,
 }
 
 const campSheetReducer = (state = INITIAL_STATE, action) => {
@@ -31,6 +34,35 @@ const campSheetReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isListFetching: false,
         errorMessage: action.payload,
+      }
+    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_START:
+      return {
+        ...state,
+        isCampSheetFetching: true,
+      }
+    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_SUCCESS:
+      return {
+        ...state,
+        isCampSheetFetching: false,
+        errorMessage: undefined,
+        doesCampaignSheetExist: true,
+        doesUserHavePermission: true,
+        currentCampSheet: action.payload,
+      }
+    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_FAILURE_NONE_FOUND:
+      console.log(action.payload)
+      return {
+        ...state,
+        isCampSheetFetching: false,
+        errorMessage: action.payload,
+        doesCampaignSheetExist: false,
+      }
+    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_FAILURE_NO_PERMISSION:
+      return {
+        ...state,
+        isCampSheetFetching: false,
+        errorMessage: action.payload,
+        doesUserHavePermission: false,
       }
     default:
       return state

@@ -64,7 +64,7 @@ export const fetchCurrentCharSheetByIDStartAsync = (charSheetIDParam, currentUse
       (campSheetID) => campSheetID === currentCharSheet.campaignID
     )
 
-    const isUserOwner = Boolean(currentCharSheet.creatorID === currentUser.id)
+    const isUserOwner = Boolean(currentCharSheet.creatorID === currentUser._id)
     const doesUserHavePermission = Boolean(isCurrentUserTheCC.length)
 
     if (isUserOwner || doesUserHavePermission) {

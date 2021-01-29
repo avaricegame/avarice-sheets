@@ -21,3 +21,8 @@ export const selectIsCampSheetListLoaded = createSelector(
   [selectCampSheet],
   (campSheet) => !!campSheet.campSheetList
 )
+
+export const selectIsCurrentCampSheetLoaded = createSelector(
+  [selectCampSheet],
+  (campSheet) => !!campSheet.currentCampSheet
+)
