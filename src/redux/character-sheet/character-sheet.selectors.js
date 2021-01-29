@@ -32,3 +32,23 @@ export const selectNotes = createSelector(
   [selectCurrentCharSheet],
   (currentCharSheet) => currentCharSheet.notes
 )
+
+export const selectCharacterBackground = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.characterBackground
+)
+
+export const selectCharacterDescription = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.characterDescription
+)
+
+export const selectCharacterLog = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.characterLog
+)
+
+export const selectCharacterName = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.characterName
+)
