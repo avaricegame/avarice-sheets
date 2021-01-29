@@ -6,8 +6,8 @@ const INITIAL_STATE = {
   isListFetching: false,
   isCharSheetFetching: false,
   errorMessage: undefined,
-  doesCharacterSheetExist: null,
-  doesUserHavePermission: null,
+  doesCharacterSheetExist: true,
+  doesUserHavePermission: true,
 }
 
 const charSheetReducer = (state = INITIAL_STATE, action) => {

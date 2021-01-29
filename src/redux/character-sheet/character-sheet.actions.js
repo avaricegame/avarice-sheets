@@ -51,8 +51,6 @@ export const fetchCurrentCharSheetByIDStartAsync = (charSheetIDParam, currentUse
 
     const requestedCharSheet = CHAR_SHEETS.filter((charSheet) => charSheet._id === charSheetIDParam)
 
-    console.log(requestedCharSheet)
-
     if (!requestedCharSheet.length) {
       return dispatch(
         fetchCurrentCharSheetByIDFailureNoneFound("There is no Character Sheet with that ID.")
@@ -61,13 +59,21 @@ export const fetchCurrentCharSheetByIDStartAsync = (charSheetIDParam, currentUse
 
     const currentCharSheet = requestedCharSheet[0]
 
-    const isUserCC = currentUser.campaignSheets.filter(
+    // returns the id of the campaign, IF the current user owns the campaign that this character sheet is attatched to
+    const isCurrentUserTheCC = currentUser.campaignSheets.filter(
       (campSheetID) => campSheetID === currentCharSheet.campaignID
     )
 
     const isUserOwner = Boolean(currentCharSheet.creatorID === currentUser.id)
 
-    if (isUserOwner || isUserCC.length) {
+    if (isUserOwner || isCurrentUserTheCC.length) {
+      if (isCurrentUserTheCC.length) {
+        console.log(
+          "You are able to view this Character Sheet because you own the Campaign that it is attached to."
+        )
+      } else {
+        console.log("You are able to view this Character Sheet because you are the owner.")
+      }
       return dispatch(fetchCurrentCharSheetByIDSuccess(currentCharSheet))
     }
 
