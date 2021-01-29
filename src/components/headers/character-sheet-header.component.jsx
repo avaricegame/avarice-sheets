@@ -9,8 +9,8 @@ import { selectCurrentCharSheet } from "../../redux/character-sheet/character-sh
 
 import "./headers.styles.scss"
 
-const SheetsHeader = ({ currentCharSheet: { characterName }, character, campaign, match }) => (
-  <header className={`header ${character ? "header--purple" : campaign ? "header--blue" : ""}`}>
+const CharacterSheetHeader = ({ currentCharSheet: { characterName }, match }) => (
+  <header className={`header header--purple`}>
     <Link to="/">
       <div className="header__home-button">
         <AvariceLogo className="header__home-button-logo" />
@@ -29,4 +29,4 @@ const mapStateToProps = createStructuredSelector({
   currentCharSheet: selectCurrentCharSheet,
 })
 
-export default connect(mapStateToProps)(withRouter(SheetsHeader))
+export default connect(mapStateToProps)(withRouter(CharacterSheetHeader))
