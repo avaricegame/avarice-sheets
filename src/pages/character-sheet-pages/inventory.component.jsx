@@ -107,7 +107,7 @@ class InventoryPage extends React.Component {
                   </thead>
                   <tbody>
                     {newEquippedWearables.map(({ name, bodyArea, armourValue, augments }) => (
-                      <tr>
+                      <tr key={bodyArea}>
                         <td>{bodyArea}</td>
                         <td>{name}</td>
                         <td>{armourValue}</td>

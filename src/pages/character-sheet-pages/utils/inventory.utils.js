@@ -89,8 +89,6 @@ export const restructureEquippedWearables = (equippedWearables) => {
     }
   })
 
-  console.log(newEquippedWearables)
-
   const { head, face, torso, arms, hands, legs, feet } = newEquippedWearables
 
   return [head, face, torso, arms, hands, legs, feet]
