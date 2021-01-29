@@ -12,7 +12,7 @@ import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up
 import HomePage from "./pages/homepage/homepage.component"
 import ProfilePage from "./pages/profile/profile.component"
 import { default as CharacterSheetPage } from "./pages/character-sheet/character-sheet.container"
-import CampaignSheetPage from "./pages/campaign-sheet/campaign-sheet.component"
+import { default as CampaignSheetPage } from "./pages/campaign-sheet/campaign-sheet.container"
 
 import { fetchCurrentUserStartAsync } from "./redux/user/user.actions"
 import { selectCurrentUser } from "./redux/user/user.selectors"
