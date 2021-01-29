@@ -24,233 +24,243 @@
       "abilities": [
         {
           "name": "WATAH YA GONNA DO 'BOUT IT",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may use an action to condense up to a gallon of water and anything contained within it to fit into a baseball sized and weighted ball of ice. When this ball makes impact with another force or with a flame, the water is immediately expelled in its full glory and mass.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You can condense up to 5 gallons of water within your ice ball",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may use an action to condense up to a gallon of water and anything contained within it to fit into a baseball sized and weighted ball of ice. When this ball makes impact with another force or with a flame, the water is immediately expelled in its full glory and mass.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You can touch an unoccupied adjacent space. When you do, you cause 5 foot deep pit to be instantly dug out of the ground. The dirt consumed is condensed into a baseball sized ball. When that ball touches fire or makes impact with something else, the earth is released, leaving a 5 foot tall pillar of earth in the nearest unoccupied space.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may instead throw a single seed. When the seed touches the ground, a 5 foot tree instantly grows in its place. If said tree can produce food, it produces 2 full servings of said food.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You can condense up to 5 gallons of water within your ice ball",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You can touch an unoccupied adjacent space. When you do, you cause 5 foot deep pit to be instantly dug out of the ground. The dirt consumed is condensed into a baseball sized ball. When that ball touches fire or makes impact with something else, the earth is released, leaving a 5 foot tall pillar of earth in the nearest unoccupied space.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may instead throw a single seed. When the seed touches the ground, a 5 foot tree instantly grows in its place. If said tree can produce food, it produces 2 full servings of said food.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "WHY'RE YA GONNA DO 'BOUT IT",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may enhance up to 5 gallons of water. The next time a creature touches this water they are instantly healed 4d6 damage. If the water is consumed, it heals 4d8 damage.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Your water heals 4d10 damage. If consumed, it heals 4d12 damage.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may enhance up to 5 gallons of water. The next time a creature touches this water they are instantly healed 4d6 damage. If the water is consumed, it heals 4d8 damage.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You may enchant a rock or stone. The next time a creature touches this stone, they take half damage from their next received attack. Each creature can only have one of these active at a time.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You send out vines from your wrists to touch a creature up to 2 spaces away. That creature's next attack is made with advantage.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Your water heals 4d10 damage. If consumed, it heals 4d12 damage.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You may enchant a rock or stone. The next time a creature touches this stone, they take half damage from their next received attack. Each creature can only have one of these active at a time.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You send out vines from your wrists to touch a creature up to 2 spaces away. That creature's next attack is made with advantage.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "The Need For Speed",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Using an action, you may increase the potential velocity and distance of any water based projectile within 2 spaces of you by 2 spaces per action until the end of your following turn. Objects gain +1 proficiency for every SPA gained.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may increase the velocity and distance by 4 SPA",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Using an action, you may increase the potential velocity and distance of any water based projectile within 2 spaces of you by 2 spaces per action until the end of your following turn. Objects gain +1 proficiency for every SPA gained.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You may increase the velocity of any earth based projectile",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may increase the velocity of any nature based projectile.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may increase the velocity and distance by 4 SPA",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You may increase the velocity of any earth based projectile",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may increase the velocity of any nature based projectile.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "Flavor Your Water",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Using a bonus action, you may use jets of water to propell yourself 3 spaces in a single direction.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You can propell yourself 5 spaces instead",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Using a bonus action, you may use jets of water to propell yourself 3 spaces in a single direction.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You sink into the ground, popping up on an unoccupied space of your choice in a 3 space radius of your location. You may then use this ability to return to your original location at any time this turn as a free action.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may use an action to walk into a tree. You then exit any tree that is your size or bigger as long as it is within eyesight.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You can propell yourself 5 spaces instead",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You sink into the ground, popping up on an unoccupied space of your choice in a 3 space radius of your location. You may then use this ability to return to your original location at any time this turn as a free action.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may use an action to walk into a tree. You then exit any tree that is your size or bigger as long as it is within eyesight.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "Cool Your Jets",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Using an action, you may shoot a jet of water towards a target that is within 2 spaces of your location. On hit, that target freezes and pins target's feet in place. For the following turn, target cannot move unless they pass an impossible STR check.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Effects last an additional turn",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Using an action, you may shoot a jet of water towards a target that is within 2 spaces of your location. On hit, that target freezes and pins target's feet in place. For the following turn, target cannot move unless they pass an impossible STR check.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You may cause them to be encapsulated in stone. While the effects last, target cannot perform any actions on their turn.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may cause thorned vines to wrap around their ankles. While the effects last, whenever the target recieves damage they receive an additional half damage whenever they take damage from the vines.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Effects last an additional turn",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You may cause them to be encapsulated in stone. While the effects last, target cannot perform any actions on their turn.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may cause thorned vines to wrap around their ankles. While the effects last, whenever the target recieves damage they receive an additional half damage whenever they take damage from the vines.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         }
       ]
     },
@@ -498,233 +508,243 @@
       "abilities": [
         {
           "name": "WATAH YA GONNA DO 'BOUT IT",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may use an action to condense up to a gallon of water and anything contained within it to fit into a baseball sized and weighted ball of ice. When this ball makes impact with another force or with a flame, the water is immediately expelled in its full glory and mass.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You can condense up to 5 gallons of water within your ice ball",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may use an action to condense up to a gallon of water and anything contained within it to fit into a baseball sized and weighted ball of ice. When this ball makes impact with another force or with a flame, the water is immediately expelled in its full glory and mass.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You can touch an unoccupied adjacent space. When you do, you cause 5 foot deep pit to be instantly dug out of the ground. The dirt consumed is condensed into a baseball sized ball. When that ball touches fire or makes impact with something else, the earth is released, leaving a 5 foot tall pillar of earth in the nearest unoccupied space.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may instead throw a single seed. When the seed touches the ground, a 5 foot tree instantly grows in its place. If said tree can produce food, it produces 2 full servings of said food.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You can condense up to 5 gallons of water within your ice ball",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You can touch an unoccupied adjacent space. When you do, you cause 5 foot deep pit to be instantly dug out of the ground. The dirt consumed is condensed into a baseball sized ball. When that ball touches fire or makes impact with something else, the earth is released, leaving a 5 foot tall pillar of earth in the nearest unoccupied space.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may instead throw a single seed. When the seed touches the ground, a 5 foot tree instantly grows in its place. If said tree can produce food, it produces 2 full servings of said food.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "WHY'RE YA GONNA DO 'BOUT IT",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may enhance up to 5 gallons of water. The next time a creature touches this water they are instantly healed 4d6 damage. If the water is consumed, it heals 4d8 damage.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Your water heals 4d10 damage. If consumed, it heals 4d12 damage.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may enhance up to 5 gallons of water. The next time a creature touches this water they are instantly healed 4d6 damage. If the water is consumed, it heals 4d8 damage.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You may enchant a rock or stone. The next time a creature touches this stone, they take half damage from their next received attack. Each creature can only have one of these active at a time.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You send out vines from your wrists to touch a creature up to 2 spaces away. That creature's next attack is made with advantage.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Your water heals 4d10 damage. If consumed, it heals 4d12 damage.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You may enchant a rock or stone. The next time a creature touches this stone, they take half damage from their next received attack. Each creature can only have one of these active at a time.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You send out vines from your wrists to touch a creature up to 2 spaces away. That creature's next attack is made with advantage.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "The Need For Speed",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Using an action, you may increase the potential velocity and distance of any water based projectile within 2 spaces of you by 2 spaces per action until the end of your following turn. Objects gain +1 proficiency for every SPA gained.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may increase the velocity and distance by 4 SPA",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Using an action, you may increase the potential velocity and distance of any water based projectile within 2 spaces of you by 2 spaces per action until the end of your following turn. Objects gain +1 proficiency for every SPA gained.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You may increase the velocity of any earth based projectile",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may increase the velocity of any nature based projectile.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may increase the velocity and distance by 4 SPA",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You may increase the velocity of any earth based projectile",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may increase the velocity of any nature based projectile.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "Flavor Your Water",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Using a bonus action, you may use jets of water to propell yourself 3 spaces in a single direction.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You can propell yourself 5 spaces instead",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Using a bonus action, you may use jets of water to propell yourself 3 spaces in a single direction.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You sink into the ground, popping up on an unoccupied space of your choice in a 3 space radius of your location. You may then use this ability to return to your original location at any time this turn as a free action.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may use an action to walk into a tree. You then exit any tree that is your size or bigger as long as it is within eyesight.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You can propell yourself 5 spaces instead",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You sink into the ground, popping up on an unoccupied space of your choice in a 3 space radius of your location. You may then use this ability to return to your original location at any time this turn as a free action.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may use an action to walk into a tree. You then exit any tree that is your size or bigger as long as it is within eyesight.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "Cool Your Jets",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Using an action, you may shoot a jet of water towards a target that is within 2 spaces of your location. On hit, that target freezes and pins target's feet in place. For the following turn, target cannot move unless they pass an impossible STR check.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Effects last an additional turn",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Using an action, you may shoot a jet of water towards a target that is within 2 spaces of your location. On hit, that target freezes and pins target's feet in place. For the following turn, target cannot move unless they pass an impossible STR check.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You may cause them to be encapsulated in stone. While the effects last, target cannot perform any actions on their turn.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may cause thorned vines to wrap around their ankles. While the effects last, whenever the target recieves damage they receive an additional half damage whenever they take damage from the vines.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Effects last an additional turn",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You may cause them to be encapsulated in stone. While the effects last, target cannot perform any actions on their turn.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may cause thorned vines to wrap around their ankles. While the effects last, whenever the target recieves damage they receive an additional half damage whenever they take damage from the vines.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         }
       ]
     },
@@ -963,6 +983,7 @@
       "augmentationTypes": ["standard", "base", "earth", "nature"],
       "startingAbility": {
         "name": "Feral",
+        "type": "Base Class Ability",
         "associatedStat": "constitution",
         "difficulty": 1,
         "description": "When below half health, your attacks deal double damage."
@@ -970,233 +991,243 @@
       "abilities": [
         {
           "name": "WATAH YA GONNA DO 'BOUT IT",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may use an action to condense up to a gallon of water and anything contained within it to fit into a baseball sized and weighted ball of ice. When this ball makes impact with another force or with a flame, the water is immediately expelled in its full glory and mass.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You can condense up to 5 gallons of water within your ice ball",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may use an action to condense up to a gallon of water and anything contained within it to fit into a baseball sized and weighted ball of ice. When this ball makes impact with another force or with a flame, the water is immediately expelled in its full glory and mass.",
+              "equipped": false,
+              "unlocked": true
             },
-            "difficulty": 1,
-            "description": "You can touch an unoccupied adjacent space. When you do, you cause 5 foot deep pit to be instantly dug out of the ground. The dirt consumed is condensed into a baseball sized ball. When that ball touches fire or makes impact with something else, the earth is released, leaving a 5 foot tall pillar of earth in the nearest unoccupied space.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may instead throw a single seed. When the seed touches the ground, a 5 foot tree instantly grows in its place. If said tree can produce food, it produces 2 full servings of said food.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You can condense up to 5 gallons of water within your ice ball",
+              "equipped": true,
+              "unlocked": true
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You can touch an unoccupied adjacent space. When you do, you cause 5 foot deep pit to be instantly dug out of the ground. The dirt consumed is condensed into a baseball sized ball. When that ball touches fire or makes impact with something else, the earth is released, leaving a 5 foot tall pillar of earth in the nearest unoccupied space.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may instead throw a single seed. When the seed touches the ground, a 5 foot tree instantly grows in its place. If said tree can produce food, it produces 2 full servings of said food.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "WHY'RE YA GONNA DO 'BOUT IT",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may enhance up to 5 gallons of water. The next time a creature touches this water they are instantly healed 4d6 damage. If the water is consumed, it heals 4d8 damage.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Your water heals 4d10 damage. If consumed, it heals 4d12 damage.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may enhance up to 5 gallons of water. The next time a creature touches this water they are instantly healed 4d6 damage. If the water is consumed, it heals 4d8 damage.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You may enchant a rock or stone. The next time a creature touches this stone, they take half damage from their next received attack. Each creature can only have one of these active at a time.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You send out vines from your wrists to touch a creature up to 2 spaces away. That creature's next attack is made with advantage.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Your water heals 4d10 damage. If consumed, it heals 4d12 damage.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You may enchant a rock or stone. The next time a creature touches this stone, they take half damage from their next received attack. Each creature can only have one of these active at a time.",
+              "equipped": false,
+              "unlocked": true
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You send out vines from your wrists to touch a creature up to 2 spaces away. That creature's next attack is made with advantage.",
+              "equipped": true,
+              "unlocked": true
+            }
+          ]
         },
         {
           "name": "The Need For Speed",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Using an action, you may increase the potential velocity and distance of any water based projectile within 2 spaces of you by 2 spaces per action until the end of your following turn. Objects gain +1 proficiency for every SPA gained.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may increase the velocity and distance by 4 SPA",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Using an action, you may increase the potential velocity and distance of any water based projectile within 2 spaces of you by 2 spaces per action until the end of your following turn. Objects gain +1 proficiency for every SPA gained.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You may increase the velocity of any earth based projectile",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may increase the velocity of any nature based projectile.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may increase the velocity and distance by 4 SPA",
+              "equipped": true,
+              "unlocked": true
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You may increase the velocity of any earth based projectile",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may increase the velocity of any nature based projectile.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "Flavor Your Water",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Using a bonus action, you may use jets of water to propell yourself 3 spaces in a single direction.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You can propell yourself 5 spaces instead",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Using a bonus action, you may use jets of water to propell yourself 3 spaces in a single direction.",
+              "equipped": true,
+              "unlocked": true
             },
-            "difficulty": 1,
-            "description": "You sink into the ground, popping up on an unoccupied space of your choice in a 3 space radius of your location. You may then use this ability to return to your original location at any time this turn as a free action.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may use an action to walk into a tree. You then exit any tree that is your size or bigger as long as it is within eyesight.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You can propell yourself 5 spaces instead",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You sink into the ground, popping up on an unoccupied space of your choice in a 3 space radius of your location. You may then use this ability to return to your original location at any time this turn as a free action.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may use an action to walk into a tree. You then exit any tree that is your size or bigger as long as it is within eyesight.",
+              "equipped": false,
+              "unlocked": false
+            }
+          ]
         },
         {
           "name": "Cool Your Jets",
-          "standard": {
-            "type": "standard",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Using an action, you may shoot a jet of water towards a target that is within 2 spaces of your location. On hit, that target freezes and pins target's feet in place. For the following turn, target cannot move unless they pass an impossible STR check.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "base": {
-            "type": "base",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "Effects last an additional turn",
-            "equipped": false,
-            "unlocked": false
-          },
-          "thermal": {
-            "type": "earth",
-            "associatedStat": "n/a",
-            "effects": {
-              "roll": {
-                "die": 20
-              },
-              "heal": {
-                "amount": 30
-              }
+          "types": [
+            {
+              "type": "standard",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Using an action, you may shoot a jet of water towards a target that is within 2 spaces of your location. On hit, that target freezes and pins target's feet in place. For the following turn, target cannot move unless they pass an impossible STR check.",
+              "equipped": false,
+              "unlocked": false
             },
-            "difficulty": 1,
-            "description": "You may cause them to be encapsulated in stone. While the effects last, target cannot perform any actions on their turn.",
-            "equipped": false,
-            "unlocked": false
-          },
-          "electricity": {
-            "type": "nature",
-            "associatedStat": "n/a",
-            "effects": {},
-            "difficulty": 1,
-            "description": "You may cause thorned vines to wrap around their ankles. While the effects last, whenever the target recieves damage they receive an additional half damage whenever they take damage from the vines.",
-            "equipped": false,
-            "unlocked": false
-          }
+            {
+              "type": "base",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "Effects last an additional turn",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "earth",
+              "associatedStat": "n/a",
+              "effects": {
+                "roll": {
+                  "die": 20
+                },
+                "heal": {
+                  "amount": 30
+                }
+              },
+              "difficulty": 1,
+              "description": "You may cause them to be encapsulated in stone. While the effects last, target cannot perform any actions on their turn.",
+              "equipped": false,
+              "unlocked": false
+            },
+            {
+              "type": "nature",
+              "associatedStat": "n/a",
+              "effects": {},
+              "difficulty": 1,
+              "description": "You may cause thorned vines to wrap around their ankles. While the effects last, whenever the target recieves damage they receive an additional half damage whenever they take damage from the vines.",
+              "equipped": true,
+              "unlocked": true
+            }
+          ]
         }
       ]
     },
@@ -1359,28 +1390,44 @@
     "weapons": [
       {
         "name": "Assassin's Wrist Mounted Gun",
+        "id": "1",
         "damage": "D6",
         "proficiency": "constitution",
         "rangedMelee": "Ranged",
         "critical": "17-20",
         "range": "3-10",
         "size": "small",
-        "equipped": false,
+        "equipped": true,
         "description": "A concealed gun favored by assassins. The gun springs open and can fire up to 5 silenced shots. Illegal in most cities and will raise eyebrows in others.",
         "abilities": [
           {
             "name": "Hidden Weapon",
             "associatedStat": "n/a",
+            "type": "Weapon Ability",
             "effects": {},
             "difficulty": 1,
             "description": "If someone is searching for weapons on your body, they need to pass a DC 20 investigation check to find this weapon."
           }
         ]
+      },
+      {
+        "name": "Assassin's Wrist Mounted Gun II",
+        "damage": "D6",
+        "id": "2",
+        "proficiency": "constitution",
+        "rangedMelee": "Ranged",
+        "critical": "17-20",
+        "range": "3-10",
+        "size": "small",
+        "equipped": true,
+        "description": "A concealed gun favored by assassins. The gun springs open and can fire up to 5 silenced shots. Illegal in most cities and will raise eyebrows in others.",
+        "abilities": []
       }
     ],
     "wearables": [
       {
         "name": "A Bucket of Disguise",
+        "id": "1",
         "equipped": false,
         "bodyArea": "Head",
         "description": "The wearer of the bucket truly believes that they are invisible. It is highly sought after, but there is an interesting quality that only someone who wears it discovers. The wearer begins to hear thoughts that are not their own.",
@@ -1400,6 +1447,36 @@
           {
             "name": "Walaloo",
             "associatedStat": "n/a",
+            "type": "Wearable Ability",
+            "effects": {},
+            "difficulty": 1,
+            "description": "You will probably run into things."
+          }
+        ]
+      },
+      {
+        "name": "A Bucket of Disguise",
+        "id": "2",
+        "equipped": true,
+        "bodyArea": "Head",
+        "description": "The wearer of the bucket truly believes that they are invisible. It is highly sought after, but there is an interesting quality that only someone who wears it discovers. The wearer begins to hear thoughts that are not their own.",
+        "statModifiers": {
+          "strength": 0,
+          "constitution": 0,
+          "reflex": 0,
+          "speed": 0,
+          "speech": 0,
+          "performance": 0,
+          "technical": 0,
+          "practical": 1,
+          "ranged": 0,
+          "melee": -1
+        },
+        "abilities": [
+          {
+            "name": "Walaloo",
+            "associatedStat": "n/a",
+            "type": "Wearable Ability",
             "effects": {},
             "difficulty": 1,
             "description": "You will probably run into things."
@@ -1410,7 +1487,16 @@
     "items": [
       {
         "name": "All or Nothing Coin",
+        "id": "1",
         "equipped": false,
+        "uses": 1,
+        "effects": {},
+        "description": "Once per day, instead of rolling a d20, you can flip a coin. Heads = critical hit; Tails = critical fail."
+      },
+      {
+        "name": "All or Nothing Coin",
+        "id": "2",
+        "equipped": true,
         "uses": 1,
         "effects": {},
         "description": "Once per day, instead of rolling a d20, you can flip a coin. Heads = critical hit; Tails = critical fail."

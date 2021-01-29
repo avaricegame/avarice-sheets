@@ -52,3 +52,23 @@ export const selectCharacterName = createSelector(
   [selectCurrentCharSheet],
   (currentCharSheet) => currentCharSheet.characterName
 )
+
+export const selectAbilities = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.abilities
+)
+
+export const selectWeapons = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.weapons
+)
+
+export const selectWearables = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.wearables
+)
+
+export const selectItems = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.items
+)
