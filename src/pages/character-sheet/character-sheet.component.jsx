@@ -13,7 +13,7 @@ import StatsPage from "../character-sheet-pages/stats.component"
 import AbilitiesPage from "../character-sheet-pages/abilities.component"
 import InfoPage from "../character-sheet-pages/info.component"
 import MessagesPage from "../sheets-pages/messages/messages.component"
-import NotesPage from "../sheets-pages/notes/notes.components"
+import CharacterNotesPage from "../character-sheet-pages/character-notes.component"
 
 import SheetsPageNotFound from "../sheets-page-not-found/sheets-page-not-found.component"
 
@@ -44,7 +44,7 @@ class CharacterSheetPage extends React.Component {
           <Route exact path={`${match.url}/abilities`} component={AbilitiesPage} />
           <Route exact path={`${match.url}/info`} component={InfoPage} />
           <Route exact path={`${match.url}/messages`} component={MessagesPage} />
-          <Route exact path={`${match.url}/notes`} component={NotesPage} />
+          <Route exact path={`${match.url}/notes`} component={CharacterNotesPage} />
 
           <Route path={`${match.url}`} component={SheetsPageNotFound} />
         </Switch>
