@@ -23,11 +23,11 @@ class HomePage extends React.Component {
     const {
       fetchCharSheetListStartAsync,
       fetchCampSheetListStartAsync,
-      currentUser: { id },
+      currentUser: { _id },
     } = this.props
 
-    fetchCharSheetListStartAsync(id)
-    fetchCampSheetListStartAsync(id)
+    fetchCharSheetListStartAsync(_id)
+    fetchCampSheetListStartAsync(_id)
   }
 
   render() {
