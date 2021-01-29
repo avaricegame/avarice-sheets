@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 
-import { default as SheetsHeader } from "../../components/headers/sheets-header.container"
+import { default as CharacterSheetHeader } from "../../components/headers/character-sheet-header.container"
 import CharacterSheetNavigation from "../../components/sheets-navigation/character-sheet-navigation.component"
 import Footer from "../../components/footer/footer.component"
 
@@ -30,7 +30,7 @@ class CharacterSheetPage extends React.Component {
     const { match } = this.props
     return (
       <>
-        <SheetsHeader character />
+        <CharacterSheetHeader />
         <CharacterSheetNavigation />
         <Switch>
           <Route
@@ -59,8 +59,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCurrentCharSheetByIDStartAsync: (currentCharSheetID, currentUser) =>
-    dispatch(fetchCurrentCharSheetByIDStartAsync(currentCharSheetID, currentUser)),
+  fetchCurrentCharSheetByIDStartAsync: (charSheetIDParam, currentUser) =>
+    dispatch(fetchCurrentCharSheetByIDStartAsync(charSheetIDParam, currentUser)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterSheetPage)
