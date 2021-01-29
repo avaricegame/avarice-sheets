@@ -7,7 +7,7 @@
     "playersNames": ["Peter", "Gary", "Bill"],
     "charactersNames": ["Dovid", "Gary", "Will"],
     "playersIDS": ["1", "2", "3"],
-    "characterSheetsIDS": ["1", "3"],
+    "characterSheetsIDS": ["3"],
     "npcs": [
       {
         "name": "William Bar",
@@ -379,7 +379,7 @@
     "campaignName": "To Infinity and Freon II",
     "_id": "2",
     "background": "This is a campaign that you won't be able to survive, but you will have a blast doing it. I have a lot of evil plans that I will enact on you. Here is some more filler text.",
-    "creatorID": "1",
+    "creatorID": "2",
     "playersNames": ["Peter", "Gary", "Bill"],
     "charactersNames": ["Dovid", "Gary", "Will"],
     "playerIDS": ["1", "2", "3"],
@@ -755,7 +755,7 @@
     "campaignName": "To Infinity and Freon III",
     "_id": "3",
     "background": "This is a campaign that you won't be able to survive, but you will have a blast doing it. I have a lot of evil plans that I will enact on you. Here is some more filler text.",
-    "creatorID": "1",
+    "creatorID": "3",
     "playersNames": ["Peter", "Gary", "Bill"],
     "charactersNames": ["Dovid", "Gary", "Will"],
     "playerIDS": ["1", "2", "3"],
