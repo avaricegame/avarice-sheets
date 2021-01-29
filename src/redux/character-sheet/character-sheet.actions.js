@@ -1,10 +1,5 @@
 import CharSheetActionTypes from "./character-sheet.types"
 
-export const setCurrentCharSheet = (charSheet) => ({
-  type: CharSheetActionTypes.SET_CURRENT_CHAR_SHEET,
-  payload: charSheet,
-})
-
 export const fetchCharSheetListStart = () => ({
   type: CharSheetActionTypes.FETCH_CHAR_SHEET_LIST_START,
 })
@@ -28,5 +23,58 @@ export const fetchCharSheetListStartAsync = (currentUsersID) => {
     )
 
     dispatch(fetchCharSheetListSuccess(usersCharSheets))
+  }
+}
+
+export const fetchCurrentCharSheetByIDStart = () => ({
+  type: CharSheetActionTypes.FETCH_CURRENT_CHAR_SHEET_BY_ID_START,
+})
+
+export const fetchCurrentCharSheetByIDSuccess = (currentCharSheet) => ({
+  type: CharSheetActionTypes.FETCH_CURRENT_CHAR_SHEET_BY_ID_SUCCESS,
+  payload: currentCharSheet,
+})
+
+export const fetchCurrentCharSheetByIDFailureNoneFound = (errorMessage) => ({
+  type: CharSheetActionTypes.FETCH_CURRENT_CHAR_SHEET_BY_ID_FAILURE_NONE_FOUND,
+  payload: errorMessage,
+})
+
+export const fetchCurrentCharSheetByIDFailureNoPermission = (errorMessage) => ({
+  type: CharSheetActionTypes.FETCH_CURRENT_CHAR_SHEET_BY_ID_FAILURE_NO_PERMISSION,
+  payload: errorMessage,
+})
+
+export const fetchCurrentCharSheetByIDStartAsync = (charSheetIDParam, currentUser) => {
+  return (dispatch) => {
+    const CHAR_SHEETS = require("../json/character-sheets.json")
+
+    const requestedCharSheet = CHAR_SHEETS.filter((charSheet) => charSheet._id === charSheetIDParam)
+
+    console.log(requestedCharSheet)
+
+    if (!requestedCharSheet.length) {
+      return dispatch(
+        fetchCurrentCharSheetByIDFailureNoneFound("There is no Character Sheet with that ID.")
+      )
+    }
+
+    const currentCharSheet = requestedCharSheet[0]
+
+    const isUserCC = currentUser.campaignSheets.filter(
+      (campSheetID) => campSheetID === currentCharSheet.campaignID
+    )
+
+    const isUserOwner = Boolean(currentCharSheet.creatorID === currentUser.id)
+
+    if (isUserOwner || isUserCC.length) {
+      return dispatch(fetchCurrentCharSheetByIDSuccess(currentCharSheet))
+    }
+
+    return dispatch(
+      fetchCurrentCharSheetByIDFailureNoPermission(
+        "You do not have permission to view this Character Sheet"
+      )
+    )
   }
 }

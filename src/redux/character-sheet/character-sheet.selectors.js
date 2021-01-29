@@ -21,3 +21,8 @@ export const selectIsCharSheetListLoaded = createSelector(
   [selectCharSheet],
   (charSheet) => !!charSheet.charSheetList
 )
+
+export const selectIsCurrentCharSheetLoaded = createSelector(
+  [selectCharSheet],
+  (charSheet) => !!charSheet.currentCharSheet
+)

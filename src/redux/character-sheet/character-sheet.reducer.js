@@ -4,7 +4,10 @@ const INITIAL_STATE = {
   currentCharSheet: null,
   charSheetList: null,
   isListFetching: false,
+  isCharSheetFetching: false,
   errorMessage: undefined,
+  doesCharacterSheetExist: null,
+  doesUserHavePermission: null,
 }
 
 const charSheetReducer = (state = INITIAL_STATE, action) => {
@@ -31,6 +34,35 @@ const charSheetReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         errorMessage: action.payload,
+      }
+    case CharSheetActionTypes.FETCH_CURRENT_CHAR_SHEET_BY_ID_START:
+      return {
+        ...state,
+        isCharSheetFetching: true,
+      }
+    case CharSheetActionTypes.FETCH_CURRENT_CHAR_SHEET_BY_ID_SUCCESS:
+      return {
+        ...state,
+        isCharSheetFetching: false,
+        errorMessage: undefined,
+        doesCharacterSheetExist: true,
+        doesUserHavePermission: true,
+        currentCharSheet: action.payload,
+      }
+    case CharSheetActionTypes.FETCH_CURRENT_CHAR_SHEET_BY_ID_FAILURE_NONE_FOUND:
+      console.log(action.payload)
+      return {
+        ...state,
+        isCharSheetFetching: false,
+        errorMessage: action.payload,
+        doesCharacterSheetExist: false,
+      }
+    case CharSheetActionTypes.FETCH_CHAR_SHEET_LIST_FAILURE_NO_PERMISSION:
+      return {
+        ...state,
+        isCharSheetFetching: false,
+        errorMessage: action.payload,
+        doesUserHavePermission: false,
       }
     default:
       return state

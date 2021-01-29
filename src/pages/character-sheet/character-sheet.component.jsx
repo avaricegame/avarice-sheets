@@ -1,7 +1,9 @@
 import React from "react"
 import { Switch, Route, Redirect } from "react-router-dom"
+import { connect } from "react-redux"
+import { createStructuredSelector } from "reselect"
 
-import SheetsHeader from "../../components/headers/sheets-header.component"
+import { default as SheetsHeader } from "../../components/headers/sheets-header.container"
 import CharacterSheetNavigation from "../../components/sheets-navigation/character-sheet-navigation.component"
 import Footer from "../../components/footer/footer.component"
 
@@ -15,32 +17,36 @@ import NotesPage from "../sheets-pages/notes/notes.components"
 
 import SheetsPageNotFound from "../sheets-page-not-found/sheets-page-not-found.component"
 
+import { selectCurrentUser } from "../../redux/user/user.selectors"
+import { fetchCurrentCharSheetByIDStartAsync } from "../../redux/character-sheet/character-sheet.actions"
+
 class CharacterSheetPage extends React.Component {
   componentDidMount() {
-    console.log(this.props.match)
+    const { fetchCurrentCharSheetByIDStartAsync, match, currentUser } = this.props
+    fetchCurrentCharSheetByIDStartAsync(match.params.charid, currentUser)
   }
 
   render() {
     const { match } = this.props
     return (
       <>
-        <SheetsHeader character name="Character Name" />
+        <SheetsHeader character />
         <CharacterSheetNavigation />
         <Switch>
           <Route
             exact
-            path={`${match.path}`}
-            render={() => <Redirect to={`${match.path}/gameplay`} />}
+            path={`${match.url}`}
+            render={() => <Redirect to={`${match.url}/gameplay`} />}
           />
-          <Route exact path={`${match.path}/gameplay`} component={CharacterGameplayPage} />
-          <Route exact path={`${match.path}/inventory`} component={InventoryPage} />
-          <Route exact path={`${match.path}/stats`} component={StatsPage} />
-          <Route exact path={`${match.path}/abilities`} component={AbilitiesPage} />
-          <Route exact path={`${match.path}/info`} component={InfoPage} />
-          <Route exact path={`${match.path}/messages`} component={MessagesPage} />
-          <Route exact path={`${match.path}/notes`} component={NotesPage} />
+          <Route exact path={`${match.url}/gameplay`} component={CharacterGameplayPage} />
+          <Route exact path={`${match.url}/inventory`} component={InventoryPage} />
+          <Route exact path={`${match.url}/stats`} component={StatsPage} />
+          <Route exact path={`${match.url}/abilities`} component={AbilitiesPage} />
+          <Route exact path={`${match.url}/info`} component={InfoPage} />
+          <Route exact path={`${match.url}/messages`} component={MessagesPage} />
+          <Route exact path={`${match.url}/notes`} component={NotesPage} />
 
-          <Route path={`${match.path}`} component={SheetsPageNotFound} />
+          <Route path={`${match.url}`} component={SheetsPageNotFound} />
         </Switch>
         <Footer />
       </>
@@ -48,4 +54,13 @@ class CharacterSheetPage extends React.Component {
   }
 }
 
-export default CharacterSheetPage
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchCurrentCharSheetByIDStartAsync: (currentCharSheetID, currentUser) =>
+    dispatch(fetchCurrentCharSheetByIDStartAsync(currentCharSheetID, currentUser)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CharacterSheetPage)
