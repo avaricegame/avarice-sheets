@@ -26,6 +26,11 @@ const DisplayWeapons = ({ weapons }) => (
           key={id}
         >
           <table>
+            <thead>
+              <tr>
+                <th>Weapon Stats:</th>
+              </tr>
+            </thead>
             <tbody>
               <tr>
                 <td>Type:</td>
