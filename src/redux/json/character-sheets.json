@@ -1374,6 +1374,20 @@
         "successPoints": 2
       },
       {
+        "category": "Charisma",
+        "name": "Speech",
+        "proficiencyPoints": 2,
+        "energyPoints": 2,
+        "successPoints": 2
+      },
+      {
+        "category": "Charisma",
+        "name": "Perform",
+        "proficiencyPoints": 2,
+        "energyPoints": 2,
+        "successPoints": 2
+      },
+      {
         "category": "Combat",
         "name": "Ranged",
         "proficiencyPoints": 2,

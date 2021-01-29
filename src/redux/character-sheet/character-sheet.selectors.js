@@ -87,3 +87,8 @@ export const selectLifeCredits = createSelector(
   [selectCurrentCharSheet],
   (currentCharSheet) => currentCharSheet.lifeCredits
 )
+
+export const selectCurrentHP = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.currentHP
+)

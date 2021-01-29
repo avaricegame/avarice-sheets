@@ -1,4 +1,6 @@
 import React from "react"
+import { connect } from "react-redux"
+import { createStructuredSelector } from "reselect"
 
 import SheetsHeading from "../../components/sheets-heading/sheets-heading.component"
 import SheetsPageContainer from "../../components/sheets-page-container/sheets-page-container.component"
@@ -10,8 +12,32 @@ import {
 import { default as Card } from "../../components/card-container/card-container.component"
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
+import {
+  selectCurrentHP,
+  selectLifeCredits,
+  selectWearables,
+  selectLevel,
+  selectStats,
+} from "../../redux/character-sheet/character-sheet.selectors"
+
+// util functions
+import {
+  findEquippedInventoryItems,
+  calculateArmourValueFromEquippedWearables,
+} from "./utils/inventory.utils"
+import { calculateMaxHPValue, calculateDodgeValue } from "./utils/gameplay.utils"
+import { findStatProficiencyValue } from "./utils/stats.utils"
+
 class CharacterGameplayPage extends React.Component {
   render() {
+    const { currentHP, lifeCredits, wearables, level, stats } = this.props
+    let equippedWearables = findEquippedInventoryItems(wearables)
+    let armourValue = calculateArmourValueFromEquippedWearables(equippedWearables)
+    const constitutionProficiencyValue = findStatProficiencyValue(stats, "constitution")
+    let maxHP = calculateMaxHPValue(level, constitutionProficiencyValue)
+    const reflexProficiencyValue = findStatProficiencyValue(stats, "reflex")
+    let dodgeValue = calculateDodgeValue(reflexProficiencyValue, "small")
+
     return (
       <>
         <SheetsHeading heading="Gameplay" />
@@ -19,16 +45,17 @@ class CharacterGameplayPage extends React.Component {
           <Column width={25}>
             <Section heading="Hit Points">
               <Card
-                heading="Hit Points Max: 48"
-                subheading="Armour Value: 7"
-                terheading="Current Hit Points: 34"
+                heading={`Hit Points Max: ${maxHP}`}
+                subheading={`Armour Value: ${armourValue}`}
+                subheading2={`Dodge Value: ${dodgeValue}`}
+                terheading={`Current Hit Points: ${currentHP}`}
               >
                 <Button>Take Damage</Button>
                 <Button>Heal HP</Button>
               </Card>
             </Section>
             <Section heading="Money">
-              <Card heading="Life Credits" terheading="Current Savings: 123 LC">
+              <Card heading="Life Credits" terheading={`Current Savings: ${lifeCredits} LC`}>
                 <Button>Pay Money</Button>
                 <Button>Recieve Money</Button>
               </Card>
@@ -187,4 +214,12 @@ class CharacterGameplayPage extends React.Component {
   }
 }
 
-export default CharacterGameplayPage
+const mapStateToProps = createStructuredSelector({
+  currentHP: selectCurrentHP,
+  lifeCredits: selectLifeCredits,
+  wearables: selectWearables,
+  level: selectLevel,
+  stats: selectStats,
+})
+
+export default connect(mapStateToProps)(CharacterGameplayPage)
