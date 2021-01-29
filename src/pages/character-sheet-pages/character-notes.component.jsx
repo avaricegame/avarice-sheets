@@ -11,10 +11,13 @@ import {
 
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
+import { selectNotes } from "../../redux/character-sheet/character-sheet.selectors"
+
 import "../sheets-pages/notes/notes.styles.scss"
 
 class CharacterNotesPage extends React.Component {
   render() {
+    const { notes } = this.props
     return (
       <>
         <SheetsHeading heading="Notes" />
@@ -22,22 +25,24 @@ class CharacterNotesPage extends React.Component {
           <Column width={25}>
             <Section heading="Your Notes">
               <Button>Create a New Note</Button>
-              <div className="note-excerpt note-excerpt--active">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit...</p>
-              </div>
-              <div className="note-excerpt">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit...</p>
-              </div>
-              <div className="note-excerpt">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit...</p>
-              </div>
+              {notes.map((note, index) => {
+                return (
+                  <div
+                    className={`note-excerpt ${index === 0 ? "note-excerpt--active" : ""}`}
+                    key={note.id}
+                    data-noteid={note.id}
+                  >
+                    <p>{note.content}</p>
+                  </div>
+                )
+              })}
             </Section>
           </Column>
 
           <Column width={75}>
             <Section heading="Note Content">
               <p className="editable-note-content" contentEditable>
-                Click anywhere in the box and begin typing to write your note...
+                {notes[0].content}
               </p>
               <Button formButton>Save Note</Button>
             </Section>
@@ -48,4 +53,8 @@ class CharacterNotesPage extends React.Component {
   }
 }
 
-export default CharacterNotesPage
+const mapStateToProps = createStructuredSelector({
+  notes: selectNotes,
+})
+
+export default connect(mapStateToProps)(CharacterNotesPage)

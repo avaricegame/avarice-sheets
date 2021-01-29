@@ -26,3 +26,9 @@ export const selectIsCurrentCampSheetLoaded = createSelector(
   [selectCampSheet],
   (campSheet) => !!campSheet.currentCampSheet
 )
+
+// selectors for individual pages of the campaign sheet
+export const selectNotes = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.notes
+)

@@ -26,3 +26,9 @@ export const selectIsCurrentCharSheetLoaded = createSelector(
   [selectCharSheet],
   (charSheet) => !!charSheet.currentCharSheet
 )
+
+// selectors for individual pages of the character sheet
+export const selectNotes = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.notes
+)
