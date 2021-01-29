@@ -1,18 +1,22 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import { createStructuredSelector } from "reselect"
 
 import { ReactComponent as AvariceLogo } from "../../assets/avarice-logo-light.svg"
 
+import { selectCurrentCharSheet } from "../../redux/character-sheet/character-sheet.selectors"
+
 import "./headers.styles.scss"
 
-const SheetsHeader = ({ name, character, campaign }) => (
+const SheetsHeader = ({ currentCharSheet: { characterName }, character, campaign }) => (
   <header className={`header ${character ? "header--purple" : campaign ? "header--blue" : ""}`}>
     <Link to="/">
       <div className="header__home-button">
         <AvariceLogo className="header__home-button-logo" />
       </div>
     </Link>
-    <h1 className="header__logotype">{name}</h1>
+    <h1 className="header__logotype">{characterName}</h1>
     <Link to={`/${campaign ? "campaign" : "character"}/about`}>
       <div className="header__about-button">
         <span className="header__about-button-span">?</span>
@@ -21,4 +25,8 @@ const SheetsHeader = ({ name, character, campaign }) => (
   </header>
 )
 
-export default SheetsHeader
+const mapStateToProps = createStructuredSelector({
+  currentCharSheet: selectCurrentCharSheet,
+})
+
+export default connect(mapStateToProps)(SheetsHeader)
