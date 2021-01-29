@@ -11,21 +11,16 @@ import MainPageNotFound from "./pages/main-page-not-found/main-page-not-found.co
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
 import HomePage from "./pages/homepage/homepage.component"
 import ProfilePage from "./pages/profile/profile.component"
-import CharacterSheetPage from "./pages/character-sheet/character-sheet.component"
+import { default as CharacterSheetPage } from "./pages/character-sheet/character-sheet.container"
 import CampaignSheetPage from "./pages/campaign-sheet/campaign-sheet.component"
 
-import { setCurrentUser } from "./redux/user/user.actions"
+import { fetchCurrentUserStartAsync } from "./redux/user/user.actions"
 import { selectCurrentUser } from "./redux/user/user.selectors"
 
 class App extends React.Component {
   componentDidMount() {
-    const { setCurrentUser } = this.props
-    const USERS = require("./redux/json/users.json")
-
-    setCurrentUser({
-      id: USERS[0]._id,
-      ...USERS[0],
-    })
+    const { fetchCurrentUserStartAsync } = this.props
+    fetchCurrentUserStartAsync("peter@peter.com", "password")
   }
 
   render() {
@@ -55,7 +50,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  fetchCurrentUserStartAsync: (userNameOrEmail, userPassword) =>
+    dispatch(fetchCurrentUserStartAsync(userNameOrEmail, userPassword)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
