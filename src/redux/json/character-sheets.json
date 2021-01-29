@@ -984,6 +984,7 @@
       "startingAbility": {
         "name": "Feral",
         "type": "Base Class Ability",
+        "effects": {},
         "associatedStat": "constitution",
         "difficulty": 1,
         "description": "When below half health, your attacks deal double damage."
