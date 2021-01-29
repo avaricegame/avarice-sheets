@@ -72,3 +72,18 @@ export const selectItems = createSelector(
   [selectCurrentCharSheet],
   (currentCharSheet) => currentCharSheet.items
 )
+
+export const selectLevel = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.level
+)
+
+export const selectStats = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.stats
+)
+
+export const selectLifeCredits = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.lifeCredits
+)

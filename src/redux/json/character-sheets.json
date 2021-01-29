@@ -1429,20 +1429,51 @@
         "name": "A Bucket of Disguise",
         "id": "1",
         "equipped": false,
+        "armourValue": 7,
         "bodyArea": "Head",
         "description": "The wearer of the bucket truly believes that they are invisible. It is highly sought after, but there is an interesting quality that only someone who wears it discovers. The wearer begins to hear thoughts that are not their own.",
-        "statModifiers": {
-          "strength": 0,
-          "constitution": 0,
-          "reflex": 0,
-          "speed": 0,
-          "speech": 0,
-          "performance": 0,
-          "technical": 0,
-          "practical": 1,
-          "ranged": 0,
-          "melee": -1
-        },
+        "statModifiers": [
+          {
+            "modifier": "strength",
+            "value": 0
+          },
+          {
+            "modifier": "constitution",
+            "value": 0
+          },
+          {
+            "modifier": "reflex",
+            "value": 0
+          },
+          {
+            "modifier": "speed",
+            "value": 0
+          },
+          {
+            "modifier": "speech",
+            "value": 0
+          },
+          {
+            "modifier": "performance",
+            "value": 0
+          },
+          {
+            "modifier": "technical",
+            "value": 0
+          },
+          {
+            "modifier": "practical",
+            "value": 1
+          },
+          {
+            "modifier": "ranged",
+            "value": 0
+          },
+          {
+            "modifier": "melee",
+            "value": -1
+          }
+        ],
         "abilities": [
           {
             "name": "Walaloo",
@@ -1458,20 +1489,51 @@
         "name": "A Bucket of Disguise",
         "id": "2",
         "equipped": true,
+        "armourValue": 3,
         "bodyArea": "Head",
         "description": "The wearer of the bucket truly believes that they are invisible. It is highly sought after, but there is an interesting quality that only someone who wears it discovers. The wearer begins to hear thoughts that are not their own.",
-        "statModifiers": {
-          "strength": 0,
-          "constitution": 0,
-          "reflex": 0,
-          "speed": 0,
-          "speech": 0,
-          "performance": 0,
-          "technical": 0,
-          "practical": 1,
-          "ranged": 0,
-          "melee": -1
-        },
+        "statModifiers": [
+          {
+            "modifier": "strength",
+            "value": 0
+          },
+          {
+            "modifier": "constitution",
+            "value": 0
+          },
+          {
+            "modifier": "reflex",
+            "value": 0
+          },
+          {
+            "modifier": "speed",
+            "value": 0
+          },
+          {
+            "modifier": "speech",
+            "value": 0
+          },
+          {
+            "modifier": "performance",
+            "value": 0
+          },
+          {
+            "modifier": "technical",
+            "value": 0
+          },
+          {
+            "modifier": "practical",
+            "value": 1
+          },
+          {
+            "modifier": "ranged",
+            "value": 0
+          },
+          {
+            "modifier": "melee",
+            "value": -1
+          }
+        ],
         "abilities": [
           {
             "name": "Walaloo",
@@ -1489,13 +1551,24 @@
         "name": "All or Nothing Coin",
         "id": "1",
         "equipped": false,
+        "category": "Leptics",
         "uses": 1,
         "effects": {},
         "description": "Once per day, instead of rolling a d20, you can flip a coin. Heads = critical hit; Tails = critical fail."
       },
       {
-        "name": "All or Nothing Coin",
+        "name": "All or Nothing Coin II",
         "id": "2",
+        "category": "Health Pack",
+        "equipped": true,
+        "uses": 1,
+        "effects": {},
+        "description": "Once per day, instead of rolling a d20, you can flip a coin. Heads = critical hit; Tails = critical fail."
+      },
+      {
+        "name": "All or Nothing Coin II",
+        "id": "3",
+        "category": "Food",
         "equipped": true,
         "uses": 1,
         "effects": {},

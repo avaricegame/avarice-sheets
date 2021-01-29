@@ -1,4 +1,6 @@
 import React from "react"
+import { connect } from "react-redux"
+import { createStructuredSelector } from "reselect"
 
 import SheetsHeading from "../../components/sheets-heading/sheets-heading.component"
 import SheetsPageContainer from "../../components/sheets-page-container/sheets-page-container.component"
@@ -10,15 +12,46 @@ import {
 import { default as Card } from "../../components/card-container/card-container.component"
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
+import {
+  selectLifeCredits,
+  selectWeapons,
+  selectWearables,
+  selectItems,
+} from "../../redux/character-sheet/character-sheet.selectors"
+
+// display components
+import DisplayWeapons from "../../components/character-sheet-components/display-weapons/display-weapons.component"
+import DisplayItems from "../../components/character-sheet-components/display-items/display-items.component"
+import DisplayWearables from "../../components/character-sheet-components/display-wearables/display-wearables.component"
+
+// util functions
+import {
+  findEquippedInventoryItems,
+  calculateArmourValueFromEquippedWearables,
+  restructureEquippedWearables,
+} from "./utils/inventory.utils"
+
 class InventoryPage extends React.Component {
   render() {
+    const { lifeCredits, weapons, wearables, items } = this.props
+
+    let entireInventory = [...weapons, ...wearables, ...items]
+    let equippedWeapons = findEquippedInventoryItems(weapons)
+    let equippedWearables = findEquippedInventoryItems(wearables)
+    let equippedItems = findEquippedInventoryItems(items)
+    let armourValue = calculateArmourValueFromEquippedWearables(equippedWearables)
+    let newEquippedWearables = restructureEquippedWearables(equippedWearables)
+
     return (
       <>
         <SheetsHeading heading="Inventory" />
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Equipped">
-              <Card heading="Weapons" subheading="Weapons Equipped: 2 / 2">
+              <Card
+                heading="Weapons"
+                subheading={`Weapons Equipped: ${equippedWeapons.length} / 2`}
+              >
                 <table>
                   <thead>
                     <tr>
@@ -29,105 +62,58 @@ class InventoryPage extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Weapon Name</td>
-                      <td>Ranged</td>
-                      <td>Speed</td>
-                      <td>D6</td>
-                    </tr>
-                    <tr>
-                      <td>Weapon Name</td>
-                      <td>Melee</td>
-                      <td>Reflex</td>
-                      <td>D4</td>
-                    </tr>
+                    {equippedWeapons.map(({ name, rangedMelee, proficiency, damage, id }) => (
+                      <tr key={id}>
+                        <td>{name}</td>
+                        <td>{rangedMelee}</td>
+                        <td>{proficiency}</td>
+                        <td>{damage}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </Card>
 
-              <Card heading="Items" subheading="Item's Equipped: 3 / 3">
+              <Card heading="Items" subheading={`Item's Equipped: ${equippedItems.length} / 3`}>
                 <table>
                   <thead>
                     <tr>
                       <th>Item Name</th>
                       <th>Category</th>
+                      <th>Uses</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Item Name</td>
-                      <td>Leptics</td>
-                    </tr>
-                    <tr>
-                      <td>Item Name</td>
-                      <td>Health Pack</td>
-                    </tr>
-                    <tr>
-                      <td>Item Name</td>
-                      <td>Food</td>
-                    </tr>
+                    {equippedItems.map(({ name, category, uses, id }) => (
+                      <tr key={id}>
+                        <td>{name}</td>
+                        <td>{category}</td>
+                        <td>{uses}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </Card>
 
-              <Card heading="Wearables" subheading="Armour Value: 24">
+              <Card heading="Wearables" subheading={`Armour Value: ${armourValue}`}>
                 <table>
                   <thead>
                     <tr>
                       <th>Body Area</th>
                       <th>Wearable Equipped</th>
                       <th>Armour Value</th>
-                      <th>Augments?</th>
+                      <th>Augments</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Head</td>
-                      <td>name</td>
-                      <td>2</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>Face</td>
-                      <td>name</td>
-                      <td>2</td>
-                      <td>speech</td>
-                    </tr>
-
-                    <tr>
-                      <td>Torso</td>
-                      <td>name</td>
-                      <td>2</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>Arms</td>
-                      <td>name</td>
-                      <td>2</td>
-                      <td>strength</td>
-                    </tr>
-
-                    <tr>
-                      <td>Hands</td>
-                      <td>name</td>
-                      <td>2</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>Legs</td>
-                      <td>name</td>
-                      <td>2</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>Feet</td>
-                      <td>name</td>
-                      <td>2</td>
-                      <td>speed</td>
-                    </tr>
+                    {newEquippedWearables.map(({ name, bodyArea, armourValue, augments }) => (
+                      <tr>
+                        <td>{bodyArea}</td>
+                        <td>{name}</td>
+                        <td>{armourValue}</td>
+                        <td>{augments ? "Yes" : "-"}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </Card>
@@ -136,7 +122,7 @@ class InventoryPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Money">
-              <Card heading="Life Credits" terheading="Current Savings: 123 LC">
+              <Card heading="Life Credits" terheading={`Current Savings: ${lifeCredits} LC`}>
                 <Button>Pay Money</Button>
                 <Button>Recieve Money</Button>
               </Card>
@@ -147,15 +133,17 @@ class InventoryPage extends React.Component {
             <Section heading="S.U.R.O.N.I.S.">
               <Card heading="See my:">
                 <select>
-                  <option value="entire-inventory">Entire Inventory (12)</option>
-                  <option value="weapons">Weapons (4)</option>
-                  <option value="items">Items (4)</option>
-                  <option value="wearables">Wearables (4)</option>
+                  <option value="entire-inventory">
+                    Entire Inventory ({entireInventory.length})
+                  </option>
+                  <option value="weapons">Weapons ({weapons.length})</option>
+                  <option value="items">Items ({items.length})</option>
+                  <option value="wearables">Wearables ({wearables.length})</option>
                 </select>
               </Card>
-              <Card heading="Weapon Name">{/* {displayWeapon()} */}</Card>
-              <Card heading="Item Name">{/* {displayWeapon()} */}</Card>
-              <Card heading="Wearable Name">{/* {displayWeapon()} */}</Card>
+              <DisplayWeapons weapons={weapons} />
+              <DisplayItems items={items} />
+              <DisplayWearables wearables={wearables} />
             </Section>
           </Column>
 
@@ -173,4 +161,11 @@ class InventoryPage extends React.Component {
   }
 }
 
-export default InventoryPage
+const mapStateToProps = createStructuredSelector({
+  lifeCredits: selectLifeCredits,
+  weapons: selectWeapons,
+  wearables: selectWearables,
+  items: selectItems,
+})
+
+export default connect(mapStateToProps)(InventoryPage)
