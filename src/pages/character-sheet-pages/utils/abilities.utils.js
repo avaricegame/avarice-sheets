@@ -1,4 +1,4 @@
-import { findAllEquippedInventoryItems } from "./inventory.utils"
+import { findEquippedInventoryItems } from "./inventory.utils"
 
 export const findAllEquippedAbilities = (
   abilitiesArray,
@@ -14,8 +14,8 @@ export const findAllEquippedAbilities = (
     equippedAbilities.push(equipped[0])
   })
 
-  const equippedWeapons = findAllEquippedInventoryItems(weaponsArray)
-  const equippedWearables = findAllEquippedInventoryItems(wearablesArray)
+  const equippedWeapons = findEquippedInventoryItems(weaponsArray)
+  const equippedWearables = findEquippedInventoryItems(wearablesArray)
 
   const equipment = equippedWeapons.concat(equippedWearables)
 
