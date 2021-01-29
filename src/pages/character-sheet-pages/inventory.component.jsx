@@ -1,14 +1,14 @@
 import React from "react"
 
-import SheetsHeading from "../../../components/sheets-heading/sheets-heading.component"
-import SheetsPageContainer from "../../../components/sheets-page-container/sheets-page-container.component"
+import SheetsHeading from "../../components/sheets-heading/sheets-heading.component"
+import SheetsPageContainer from "../../components/sheets-page-container/sheets-page-container.component"
 import {
   default as Column,
   SheetsPageContainerColumnSection as Section,
-} from "../../../components/sheets-page-container-column/sheets-page-container-column.component"
+} from "../../components/sheets-page-container-column/sheets-page-container-column.component"
 
-import { default as Card } from "../../../components/card-container/card-container.component"
-import { default as Button } from "../../../components/custom-button/custom-button.component"
+import { default as Card } from "../../components/card-container/card-container.component"
+import { default as Button } from "../../components/custom-button/custom-button.component"
 
 class InventoryPage extends React.Component {
   render() {

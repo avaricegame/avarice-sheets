@@ -7,11 +7,11 @@ import { default as CampaignSheetHeader } from "../../components/headers/campaig
 import CampaignSheetNavigation from "../../components/sheets-navigation/campaign-sheet-navigation.component"
 import Footer from "../../components/footer/footer.component"
 
-import CampaignGameplayPage from "./campaign-sheet-pages/campaign-gameplay.component"
-import CombatPage from "./campaign-sheet-pages/combat.component"
-import PlayersPage from "./campaign-sheet-pages/players.component"
-import CampaignPage from "./campaign-sheet-pages/campaign.component"
-import PlanningPage from "./campaign-sheet-pages/planning.component"
+import CampaignGameplayPage from "../campaign-sheet-pages/campaign-gameplay.component"
+import CombatPage from "../campaign-sheet-pages/combat.component"
+import PlayersPage from "../campaign-sheet-pages/players.component"
+import CampaignPage from "../campaign-sheet-pages/campaign.component"
+import PlanningPage from "../campaign-sheet-pages/planning.component"
 import MessagesPage from "../sheets-pages/messages/messages.component"
 import NotesPage from "../sheets-pages/notes/notes.components"
 

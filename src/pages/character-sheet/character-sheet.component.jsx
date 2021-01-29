@@ -7,11 +7,11 @@ import { default as CharacterSheetHeader } from "../../components/headers/charac
 import CharacterSheetNavigation from "../../components/sheets-navigation/character-sheet-navigation.component"
 import Footer from "../../components/footer/footer.component"
 
-import CharacterGameplayPage from "./character-sheet-pages/character-gameplay.component"
-import InventoryPage from "./character-sheet-pages/inventory.component"
-import StatsPage from "./character-sheet-pages/stats.component"
-import AbilitiesPage from "./character-sheet-pages/abilities.component"
-import InfoPage from "./character-sheet-pages/info.component"
+import CharacterGameplayPage from "../character-sheet-pages/character-gameplay.component"
+import InventoryPage from "../character-sheet-pages/inventory.component"
+import StatsPage from "../character-sheet-pages/stats.component"
+import AbilitiesPage from "../character-sheet-pages/abilities.component"
+import InfoPage from "../character-sheet-pages/info.component"
 import MessagesPage from "../sheets-pages/messages/messages.component"
 import NotesPage from "../sheets-pages/notes/notes.components"
 
