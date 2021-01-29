@@ -65,9 +65,10 @@ export const fetchCurrentCharSheetByIDStartAsync = (charSheetIDParam, currentUse
     )
 
     const isUserOwner = Boolean(currentCharSheet.creatorID === currentUser.id)
+    const doesUserHavePermission = Boolean(isCurrentUserTheCC.length)
 
-    if (isUserOwner || isCurrentUserTheCC.length) {
-      if (isCurrentUserTheCC.length) {
+    if (isUserOwner || doesUserHavePermission) {
+      if (doesUserHavePermission) {
         console.log(
           "You are able to view this Character Sheet because you own the Campaign that it is attached to."
         )
@@ -75,12 +76,12 @@ export const fetchCurrentCharSheetByIDStartAsync = (charSheetIDParam, currentUse
         console.log("You are able to view this Character Sheet because you are the owner.")
       }
       return dispatch(fetchCurrentCharSheetByIDSuccess(currentCharSheet))
-    }
-
-    return dispatch(
-      fetchCurrentCharSheetByIDFailureNoPermission(
-        "You do not have permission to view this Character Sheet"
+    } else {
+      return dispatch(
+        fetchCurrentCharSheetByIDFailureNoPermission(
+          "You do not have permission to view this Character Sheet"
+        )
       )
-    )
+    }
   }
 }

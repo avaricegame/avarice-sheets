@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 
@@ -9,7 +9,7 @@ import { selectCurrentCharSheet } from "../../redux/character-sheet/character-sh
 
 import "./headers.styles.scss"
 
-const SheetsHeader = ({ currentCharSheet: { characterName }, character, campaign }) => (
+const SheetsHeader = ({ currentCharSheet: { characterName }, character, campaign, match }) => (
   <header className={`header ${character ? "header--purple" : campaign ? "header--blue" : ""}`}>
     <Link to="/">
       <div className="header__home-button">
@@ -17,7 +17,7 @@ const SheetsHeader = ({ currentCharSheet: { characterName }, character, campaign
       </div>
     </Link>
     <h1 className="header__logotype">{characterName}</h1>
-    <Link to={`/${campaign ? "campaign" : "character"}/about`}>
+    <Link to={`${match.url}/about`}>
       <div className="header__about-button">
         <span className="header__about-button-span">?</span>
       </div>
@@ -29,4 +29,4 @@ const mapStateToProps = createStructuredSelector({
   currentCharSheet: selectCurrentCharSheet,
 })
 
-export default connect(mapStateToProps)(SheetsHeader)
+export default connect(mapStateToProps)(withRouter(SheetsHeader))

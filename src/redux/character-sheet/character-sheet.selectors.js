@@ -27,12 +27,12 @@ export const selectIsCurrentCharSheetLoaded = createSelector(
   (charSheet) => !!charSheet.currentCharSheet
 )
 
-export const selectDoesCharSheetExist = createSelector(
-  [selectCharSheet],
-  (charSheet) => charSheet.doesCharacterSheetExist
-)
+// export const selectDoesCharSheetExist = createSelector(
+//   [selectCharSheet],
+//   (charSheet) => charSheet.doesCharacterSheetExist
+// )
 
-export const selectDoesUserHavePermission = createSelector(
-  [selectCharSheet],
-  (charSheet) => charSheet.doesUserHavePermission
-)
+// export const selectDoesUserHavePermission = createSelector(
+//   [selectCharSheet],
+//   (charSheet) => charSheet.doesUserHavePermission
+// )
