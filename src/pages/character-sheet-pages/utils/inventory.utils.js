@@ -87,6 +87,7 @@ export const restructureEquippedWearables = (equippedWearables) => {
       default:
         break
     }
+    return null
   })
 
   const { head, face, torso, arms, hands, legs, feet } = newEquippedWearables

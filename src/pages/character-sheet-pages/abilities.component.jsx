@@ -35,7 +35,6 @@ class AbilitiesPage extends React.Component {
       weapons,
       wearables
     )
-    console.log(equippedAbilities)
     return (
       <>
         <SheetsHeading heading="Abilities" />
