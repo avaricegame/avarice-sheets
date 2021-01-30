@@ -17,9 +17,25 @@ import {
   selectInventoryItems,
   selectNPCS,
   selectMissions,
+  selectCampaignName,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 class PlanningPage extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {}
+  }
+
+  componentDidMount() {
+    const { campaignName } = this.props
+    document.title = `Planning | ${campaignName} | Avarice Sheets`
+    this.setState({})
+  }
+
+  componentWillUnmount() {
+    this.setState({})
+  }
   render() {
     return (
       <>
@@ -122,6 +138,7 @@ const mapStateToProps = createStructuredSelector({
   inventoryItems: selectInventoryItems,
   npcs: selectNPCS,
   missions: selectMissions,
+  campaignName: selectCampaignName,
 })
 
 export default connect(mapStateToProps)(PlanningPage)

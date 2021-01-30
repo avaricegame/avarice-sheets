@@ -42,7 +42,8 @@ class CampaignPage extends React.Component {
   }
 
   componentDidMount() {
-    const { missions } = this.props
+    const { missions, campaignName } = this.props
+    document.title = `Campaign | ${campaignName} | Avarice Sheets`
     this.setState({
       futureMissions: getOnlyFutureMissions(missions),
       completedMissions: getOnlyCompletedMissions(missions),

@@ -12,7 +12,10 @@ import {
 import { default as Card } from "../../components/card-container/card-container.component"
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
-import { selectMissions } from "../../redux/campaign-sheet/campaign-sheet.selectors"
+import {
+  selectCampaignName,
+  selectMissions,
+} from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 // util functions
 import { getCurrentMission } from "./utils/campaign.utils"
@@ -27,7 +30,8 @@ class CampaignGameplay extends React.Component {
   }
 
   componentDidMount() {
-    const { missions } = this.props
+    const { missions, campaignName } = this.props
+    document.title = `Gameplay | ${campaignName} | Avarice Sheets`
     this.setState({
       currentMission: getCurrentMission(missions),
     })
@@ -128,6 +132,7 @@ class CampaignGameplay extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   missions: selectMissions,
+  campaignName: selectCampaignName,
 })
 
 export default connect(mapStateToProps)(CampaignGameplay)

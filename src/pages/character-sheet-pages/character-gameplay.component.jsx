@@ -13,6 +13,7 @@ import { default as Card } from "../../components/card-container/card-container.
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
 import {
+  selectCharacterName,
   selectCurrentHP,
   selectLifeCredits,
   selectWearables,
@@ -51,8 +52,8 @@ class CharacterGameplayPage extends React.Component {
   }
 
   componentDidMount() {
-    const { wearables, level, stats, classInfo, raceInfo } = this.props
-
+    const { wearables, level, stats, classInfo, raceInfo, characterName } = this.props
+    document.title = `Gameplay | ${characterName} | Avarice Sheets`
     this.setState({
       armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
       maxHP: calculateMaxHPValue(level, findStatProficiencyValue(stats, "constitution")),
@@ -150,6 +151,7 @@ const mapStateToProps = createStructuredSelector({
   stats: selectStats,
   classInfo: selectClassInfo,
   raceInfo: selectRaceInfo,
+  characterName: selectCharacterName,
 })
 
 export default connect(mapStateToProps)(CharacterGameplayPage)

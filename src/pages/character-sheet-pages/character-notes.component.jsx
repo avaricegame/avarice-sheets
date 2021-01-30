@@ -11,11 +11,27 @@ import {
 
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
-import { selectNotes } from "../../redux/character-sheet/character-sheet.selectors"
+import {
+  selectCharacterName,
+  selectNotes,
+} from "../../redux/character-sheet/character-sheet.selectors"
 
 import "../sheets-pages/notes/notes.styles.scss"
 
 class CharacterNotesPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+
+  componentDidMount() {
+    const { characterName } = this.props
+    document.title = `Notes | ${characterName} | Avarice Sheets`
+  }
+
+  componentWillUnmount() {
+    this.setState({})
+  }
   render() {
     const { notes } = this.props
     return (
@@ -55,6 +71,7 @@ class CharacterNotesPage extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   notes: selectNotes,
+  characterName: selectCharacterName,
 })
 
 export default connect(mapStateToProps)(CharacterNotesPage)

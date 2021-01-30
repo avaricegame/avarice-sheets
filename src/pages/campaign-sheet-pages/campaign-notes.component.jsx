@@ -11,11 +11,29 @@ import {
 
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
-import { selectNotes } from "../../redux/campaign-sheet/campaign-sheet.selectors"
+import {
+  selectCampaignName,
+  selectNotes,
+} from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 import "../sheets-pages/notes/notes.styles.scss"
 
 class CampaignNotesPage extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {}
+  }
+
+  componentDidMount() {
+    const { campaignName } = this.props
+    document.title = `Notes | ${campaignName} | Avarice Sheets`
+    this.setState({})
+  }
+
+  componentWillUnmount() {
+    this.setState({})
+  }
   render() {
     const { notes } = this.props
     return (
@@ -55,6 +73,7 @@ class CampaignNotesPage extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   notes: selectNotes,
+  campaignName: selectCampaignName,
 })
 
 export default connect(mapStateToProps)(CampaignNotesPage)

@@ -10,6 +10,7 @@ import {
 } from "../../components/sheets-page-container-column/sheets-page-container-column.component"
 
 import {
+  selectCharacterName,
   selectAbilities,
   selectWeapons,
   selectWearables,
@@ -36,8 +37,9 @@ class AbilitiesPage extends React.Component {
       abilities: { abilities, startingAbility },
       weapons,
       wearables,
+      characterName,
     } = this.props
-
+    document.title = `Abilities | ${characterName} | Avarice Sheets`
     this.setState({
       equippedAbilities: findAllEquippedAbilities(abilities, startingAbility, weapons, wearables),
     })
@@ -85,6 +87,7 @@ const mapStateToProps = createStructuredSelector({
   abilities: selectAbilities,
   weapons: selectWeapons,
   wearables: selectWearables,
+  characterName: selectCharacterName,
 })
 
 export default connect(mapStateToProps)(AbilitiesPage)

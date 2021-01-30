@@ -12,9 +12,29 @@ import {
 import { default as Card } from "../../components/card-container/card-container.component"
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
-import { selectNPCS, selectPlayers } from "../../redux/campaign-sheet/campaign-sheet.selectors"
+import {
+  selectCampaignName,
+  selectNPCS,
+  selectPlayers,
+} from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 class InteractablesPage extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {}
+  }
+
+  componentDidMount() {
+    const { campaignName } = this.props
+    document.title = `Combat | ${campaignName} | Avarice Sheets`
+    this.setState({})
+  }
+
+  componentWillUnmount() {
+    this.setState({})
+  }
+
   render() {
     return (
       <>
@@ -149,6 +169,7 @@ class InteractablesPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   npcs: selectNPCS,
   players: selectPlayers,
+  campaignName: selectCampaignName,
 })
 
 export default connect(mapStateToProps)(InteractablesPage)

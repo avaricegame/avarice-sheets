@@ -13,6 +13,7 @@ import { default as Card } from "../../components/card-container/card-container.
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
 import {
+  selectCharacterName,
   selectLevel,
   selectStats,
   selectWearables,
@@ -37,8 +38,8 @@ class StatsPage extends React.Component {
   }
 
   componentDidMount() {
-    const { stats, wearables, classInfo } = this.props
-
+    const { stats, wearables, classInfo, characterName } = this.props
+    document.title = `Stats | ${characterName} | Avarice Sheets`
     this.setState({
       transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
         stats,
@@ -111,6 +112,7 @@ const mapStateToProps = createStructuredSelector({
   stats: selectStats,
   wearables: selectWearables,
   classInfo: selectClassInfo,
+  characterName: selectCharacterName,
 })
 
 export default connect(mapStateToProps)(StatsPage)

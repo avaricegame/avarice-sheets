@@ -28,6 +28,21 @@ import DisplayCampaignInfo from "../../components/shared-sheets-components/displ
 import { default as Log } from "../../components/shared-sheets-components/display-log/display-log.component"
 
 class InfoPage extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {}
+  }
+
+  componentDidMount() {
+    const { characterName } = this.props
+    document.title = `Info | ${characterName} | Avarice Sheets`
+    this.setState({})
+  }
+
+  componentWillUnmount() {
+    this.setState({})
+  }
   render() {
     const {
       characterBackground,

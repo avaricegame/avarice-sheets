@@ -13,6 +13,7 @@ import { default as Card } from "../../components/card-container/card-container.
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
 import {
+  selectCharacterName,
   selectLifeCredits,
   selectWeapons,
   selectWearables,
@@ -48,7 +49,8 @@ class InventoryPage extends React.Component {
   }
 
   componentDidMount() {
-    const { weapons, wearables, items } = this.props
+    const { weapons, wearables, items, characterName } = this.props
+    document.title = `Inventory | ${characterName} | Avarice Sheets`
     this.setState({
       entireInventory: [...weapons, ...wearables, ...items],
       equippedWeapons: findEquippedInventoryItems(weapons),
@@ -165,6 +167,7 @@ const mapStateToProps = createStructuredSelector({
   weapons: selectWeapons,
   wearables: selectWearables,
   items: selectItems,
+  characterName: selectCharacterName,
 })
 
 export default connect(mapStateToProps)(InventoryPage)
