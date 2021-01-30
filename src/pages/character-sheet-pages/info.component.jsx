@@ -136,7 +136,9 @@ class InfoPage extends React.Component {
                     {classInfo.stats.map(({ modifier, value }) =>
                       value ? (
                         <tr key={modifier}>
-                          <td>{modifier}:</td>
+                          <td>
+                            <span className="uppercase">{modifier}</span>
+                          </td>
                           <td>{value}</td>
                         </tr>
                       ) : null

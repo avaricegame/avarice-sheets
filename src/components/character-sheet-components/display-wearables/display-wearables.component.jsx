@@ -37,7 +37,9 @@ const DisplayWearables = ({ wearables }) => (
                 if (value !== 0) {
                   return (
                     <tr key={modifier}>
-                      <td>{modifier}:</td>
+                      <td>
+                        <span className="uppercase">{modifier}</span>
+                      </td>
                       <td>{value}</td>
                     </tr>
                   )
