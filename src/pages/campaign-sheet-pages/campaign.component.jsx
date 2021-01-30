@@ -1,4 +1,6 @@
 import React from "react"
+import { connect } from "react-redux"
+import { createStructuredSelector } from "reselect"
 
 import SheetsHeading from "../../components/sheets-heading/sheets-heading.component"
 import SheetsPageContainer from "../../components/sheets-page-container/sheets-page-container.component"
@@ -10,8 +12,63 @@ import {
 import { default as Card } from "../../components/card-container/card-container.component"
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
+import {
+  selectPersonalLog,
+  selectMissions,
+  selectCaptainsLog,
+  selectCampaignName,
+  selectBackground,
+  selectCampaignID,
+  selectPlayersNames,
+  selectCharactersNames,
+} from "../../redux/campaign-sheet/campaign-sheet.selectors"
+
+// util functions
+import { getOnlyFutureMissions, getOnlyCompletedMissions } from "./utils/campaign.utils"
+
+// display components
+import DisplayCampaignInfo from "../../components/shared-sheets-components/display-campaign-info/display-campaign-info.component"
+import { default as Log } from "../../components/shared-sheets-components/display-log/display-log.component"
+import MissionCard from "../../components/campaign-sheet-components/mission-card/mission-card.component"
+
 class CampaignPage extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      futureMissions: [],
+      completedMissions: [],
+    }
+  }
+
+  componentDidMount() {
+    const { missions } = this.props
+    this.setState({
+      futureMissions: getOnlyFutureMissions(missions),
+      completedMissions: getOnlyCompletedMissions(missions),
+    })
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      futureMissions: [],
+      completedMissions: [],
+    })
+  }
+
   render() {
+    const {
+      personalLog,
+      missions,
+      captainsLog,
+      campaignName,
+      campaignBackground,
+      campaignID,
+      playersNames,
+      charactersNames,
+    } = this.props
+    const { futureMissions, completedMissions } = this.state
+    console.log(futureMissions)
     return (
       <>
         <SheetsHeading heading="Campaign" />
@@ -19,36 +76,18 @@ class CampaignPage extends React.Component {
           <Column width={25}>
             <Section heading="Details">
               <Button>Edit Campaign Details</Button>
-              <Card blue heading="Campaign Details" terheading="For Campaign Name">
-                <p>
-                  <strong>Background: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                  ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-                </p>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Campaign Name:</td>
-                      <td>Fluttering Butterflies</td>
-                    </tr>
-                    <tr>
-                      <td>Campaign ID:</td>
-                      <td>#123ABC</td>
-                    </tr>
-                    <tr>
-                      <td>Players:</td>
-                      <td>Player 1, Player 2, Player 3</td>
-                    </tr>
-                    <tr>
-                      <td>Characters:</td>
-                      <td>Character 1, Character 2, Character 3</td>
-                    </tr>
-                    <tr>
-                      <td>Missions Served:</td>
-                      <td>3</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <Card
+                blue
+                heading="Campaign Details"
+                subheading={`For ${campaignName}`}
+                terheading={`ID#${campaignID}`}
+              >
+                <DisplayCampaignInfo
+                  playersNames={playersNames}
+                  charactersNames={charactersNames}
+                  missions={missions}
+                  background={campaignBackground}
+                />
               </Card>
             </Section>
           </Column>
@@ -56,68 +95,39 @@ class CampaignPage extends React.Component {
           <Column width={25}>
             <Section heading="Campaign Logs">
               <Button>Add a New Captain's Log</Button>
-              <Card blue heading="Captain's Logs" subheading="For Campaign Name">
-                <p>
-                  <strong>Log II: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Rerum ratione illum recusandae, omnis enim, quae porro doloribus fugiat reiciendis
-                  totam et iusto, mollitia exercitationem animi aspernatur. Id facere alias
-                  voluptatibus.
-                </p>
-                <p>
-                  <strong>Log I: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Rerum ratione illum recusandae, omnis enim, quae porro doloribus fugiat reiciendis
-                  totam et iusto, mollitia exercitationem animi aspernatur. Id facere alias
-                  voluptatibus.
-                </p>
+              <Card blue heading="Captain's Logs" subheading={`For ${campaignName}`}>
+                {captainsLog.map(({ id, title, details }) => (
+                  <Log id={id} title={title} details={details} key={id} />
+                ))}
               </Card>
               <p>
-                Note: All characters who have joined your campaign will see your Captain's Logs.
+                * Note: All characters who have joined your campaign will see your Captain's Logs.
               </p>
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Future Missions">
-              <Card blue heading="Mission IV" subheading="planned">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus numquam
-                  doloremque nam quo illo tenetur corporis quia repellendus sapiente dolores dolorem
-                  vel debitis laboriosam consequatur architecto perferendis odio, ex
-                  alias.Asperiores quidem iure perspiciatis inventore, vitae suscipit pariatur
-                  praesentium molestias soluta neque architecto, quas voluptatum laborum sint nulla
-                  cumque provident, quisquam corrupti voluptates ut voluptate laboriosam aperiam?
-                  Iste, fugiat quam!
-                </p>
-              </Card>
+              {futureMissions.map((mission) => (
+                <MissionCard mission={mission} key={mission.id} />
+              ))}
             </Section>
             <Section heading="Completed Missions">
-              <Card blue heading="Mission II" subheading="Mar 3, 2021">
-                expand information
-              </Card>
-              <Card blue heading="Mission I" subheading="Feb 11, 2021">
-                expand information
-              </Card>
+              {completedMissions.map((mission) => (
+                <MissionCard mission={mission} key={mission.id} />
+              ))}
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Personal Logs">
               <Button>Add a New Personal Log</Button>
-              <Card blue heading="Personal Mission Logs" subheading="For Campaign Name">
-                <p>
-                  <strong>Log II: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Rerum ratione illum recusandae, omnis enim, quae porro doloribus fugiat reiciendis
-                  totam et iusto, mollitia exercitationem animi aspernatur. Id facere alias
-                  voluptatibus.
-                </p>
-                <p>
-                  <strong>Log I: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Rerum ratione illum recusandae, omnis enim, quae porro doloribus fugiat reiciendis
-                  totam et iusto, mollitia exercitationem animi aspernatur. Id facere alias
-                  voluptatibus.
-                </p>
+              <Card blue heading="Personal Mission Logs" subheading={`For ${campaignName}`}>
+                {personalLog.map(({ id, title, details }) => (
+                  <Log id={id} title={title} details={details} key={id} />
+                ))}
               </Card>
-              <p>Note: ONLY YOU can see these logs.</p>
+              <p>* Note: ONLY YOU can see these logs.</p>
             </Section>
           </Column>
         </SheetsPageContainer>
@@ -126,4 +136,15 @@ class CampaignPage extends React.Component {
   }
 }
 
-export default CampaignPage
+const mapStateToProps = createStructuredSelector({
+  personalLog: selectPersonalLog,
+  missions: selectMissions,
+  captainsLog: selectCaptainsLog,
+  campaignName: selectCampaignName,
+  campaignBackground: selectBackground,
+  campaignID: selectCampaignID,
+  playersNames: selectPlayersNames,
+  charactersNames: selectCharactersNames,
+})
+
+export default connect(mapStateToProps)(CampaignPage)
