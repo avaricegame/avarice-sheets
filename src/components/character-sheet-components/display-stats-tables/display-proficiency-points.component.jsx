@@ -3,7 +3,6 @@ import React from "react"
 import "./display-stats-tables.styles.scss"
 
 const DisplayProficiencyPoints = ({ transformedCalculatedStatValues }) => {
-  console.log(transformedCalculatedStatValues)
   return (
     <table className="stats-table">
       <thead>
