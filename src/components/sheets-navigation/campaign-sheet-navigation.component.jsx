@@ -9,7 +9,7 @@ const CampaignSheetNavigation = ({ match }) => (
       <NavLink to={`${match.url}/gameplay`} activeClassName="active">
         <li>Gameplay</li>
       </NavLink>
-      <NavLink to={`"${match.url}/combat`} activeClassName="active">
+      <NavLink to={`${match.url}/combat`} activeClassName="active">
         <li>Combat</li>
       </NavLink>
       <NavLink to={`${match.url}/players`} activeClassName="active">
