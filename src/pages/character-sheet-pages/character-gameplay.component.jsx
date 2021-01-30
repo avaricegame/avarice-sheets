@@ -28,6 +28,10 @@ import {
 import { calculateMaxHPValue, calculateDodgeValue } from "./utils/gameplay.utils"
 import { findStatProficiencyValue } from "./utils/stats.utils"
 
+// display components
+import DisplayEnergyPoints from "../../components/character-sheet-components/display-stats-tables/display-energy-points.component"
+import DisplayStatsOverview from "../../components/character-sheet-components/display-stats-tables/display-stats-overview.component"
+
 class CharacterGameplayPage extends React.Component {
   render() {
     const { currentHP, lifeCredits, wearables, level, stats } = this.props
@@ -75,137 +79,21 @@ class CharacterGameplayPage extends React.Component {
           </Column>
 
           <Column width={25}>
-            <Section heading="Stats Overview"></Section>
+            <Section heading="Stats Overview">
+              <Card
+                heading="Stats Overview Table"
+                subheading="More Stats can be seen on Stats Page"
+              >
+                <DisplayStatsOverview stats={stats} />
+              </Card>
+            </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Energy Points">
-              <div className="item-container item-container--overflowx">
-                <h3 className="item-container__heading">Energy Points Table</h3>
-                <h4 className="item-container__subheading item-container__terheading--adjusted">
-                  Used When You Make a Skill Check
-                </h4>
-                <div className="item-container__line"></div>
-                <h4 className="item-container__subheading item-container__subheading--darker">
-                  Physique
-                </h4>
-                <table className="energy-points-table">
-                  <tbody>
-                    <tr>
-                      <td className="td--fixedwidth">Strength</td>
-                      <td>
-                        <span className="energy-point"></span>
-                        <span className="energy-point used"></span>
-                        <span className="energy-point used"></span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="td--fixedwidth">Constitution</td>
-                      <td>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className="item-container__line"></div>
-                <h4 className="item-container__subheading item-container__subheading--darker">
-                  Intelligence
-                </h4>
-                <table className="energy-points-table">
-                  <tbody>
-                    <tr>
-                      <td className="td--fixedwidth">Academic</td>
-                      <td>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="td--fixedwidth">Technical</td>
-                      <td>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className="item-container__line"></div>
-                <h4 className="item-container__subheading item-container__subheading--darker">
-                  Dexterity
-                </h4>
-                <table className="energy-points-table">
-                  <tbody>
-                    <tr>
-                      <td className="td--fixedwidth">Reflex</td>
-                      <td>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="td--fixedwidth">Speed</td>
-                      <td>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className="item-container__line"></div>
-                <h4 className="item-container__subheading item-container__subheading--darker">
-                  Charisma
-                </h4>
-                <table className="energy-points-table">
-                  <tbody>
-                    <tr>
-                      <td className="td--fixedwidth">Speech</td>
-                      <td>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="td--fixedwidth">Performance</td>
-                      <td>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className="item-container__line"></div>
-                <h4 className="item-container__subheading item-container__subheading--darker">
-                  Combat
-                </h4>
-                <table className="energy-points-table">
-                  <tbody>
-                    <tr>
-                      <td className="td--fixedwidth">Ranged</td>
-                      <td>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="td--fixedwidth">Melee</td>
-                      <td>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                        <span className="energy-point"></span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <Card heading="Energy Points Table" subheading="Used When You Make a Stat Check">
+                <DisplayEnergyPoints stats={stats} />
+              </Card>
             </Section>
           </Column>
         </SheetsPageContainer>

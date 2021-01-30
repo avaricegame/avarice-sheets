@@ -1,0 +1,25 @@
+@import "../../../sass/variables";
+
+.stats-table {
+  margin-bottom: 2rem;
+  .td--fixedwidth {
+    vertical-align: middle;
+    width: 14rem;
+  }
+  td {
+    padding: 0.5rem 0 1rem 0;
+  }
+  .point {
+    display: block;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 2px solid lighten($color-gray, 35%);
+    border-radius: 100%;
+  }
+  .point.yellow {
+    border: 2px solid $color-yellow;
+    background-color: lighten($color-yellow, 10%);
+  }
+  // .point.greu {
+  // }
+}

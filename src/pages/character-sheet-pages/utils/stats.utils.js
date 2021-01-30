@@ -38,3 +38,7 @@ export const findStatProficiencyValue = (stats, statName) => {
 
   return proficiencyValue
 }
+
+export const calculateActualStatValues = (stats, equippedWearables, classStats) => {
+  return stats
+}
