@@ -11,6 +11,7 @@ const AbilityCardInColumn = ({ ability }) => {
   return (
     <Column width={25}>
       <Card
+        fullHeight
         heading={name}
         subheading={type}
         terheading={`${equipmentName ? `for ${equipmentName}` : ""}`}

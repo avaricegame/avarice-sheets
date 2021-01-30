@@ -16,7 +16,7 @@ export const SheetsPageContainerColumnSection = ({ children, heading, flex }) =>
 )
 
 const SheetsPageContainerColumn = ({ children, width }) => (
-  <div className={`sheets-page-container-column__${width}`}>{children}</div>
+  <div className={`sheets-page-container-column__${width} `}>{children}</div>
 )
 
 export default SheetsPageContainerColumn

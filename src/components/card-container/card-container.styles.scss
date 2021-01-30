@@ -8,7 +8,9 @@
   transition: all 0.2s;
   border: 2px solid transparent;
   overflow: hidden;
-
+  &--full-height {
+    min-height: 95%;
+  }
   &--flex {
     display: flex;
     flex-wrap: wrap;

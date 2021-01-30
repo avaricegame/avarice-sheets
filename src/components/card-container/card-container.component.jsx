@@ -34,8 +34,9 @@ const CardContainer = ({
   quatheading,
   blue,
   purpleTerheading,
+  fullHeight,
 }) => (
-  <div className={`card-container`}>
+  <div className={`card-container ${fullHeight ? "card-container--full-height" : ""}`}>
     <h3 className="card-container__heading">{heading}</h3>
     {subheading ? <Subheading blue={blue}>{subheading}</Subheading> : null}
     {terheading ? <Terheading purpleTerheading={purpleTerheading}>{terheading}</Terheading> : null}
