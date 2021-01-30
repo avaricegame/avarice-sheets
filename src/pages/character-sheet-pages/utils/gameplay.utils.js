@@ -14,7 +14,7 @@ export const calculateDodgeValue = (reflexStat, raceSize) => {
     huge: -10,
   }
 
-  const dodgeValue = reflexStat * 2 + mapRaceSizeToValue[raceSize]
+  const dodgeValue = reflexStat * 2 + mapRaceSizeToValue[raceSize.toLowerCase()]
 
   return dodgeValue
 }
