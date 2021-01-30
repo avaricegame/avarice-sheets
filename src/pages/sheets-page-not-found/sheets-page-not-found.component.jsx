@@ -6,6 +6,9 @@ import SheetsHeading from "../../components/sheets-heading/sheets-heading.compon
 import "./sheets-page-not-found.styles.scss"
 
 class SheetsPageNotFound extends React.Component {
+  componentDidMount() {
+    document.title = `Page Not Found | Avarice Sheets`
+  }
   render() {
     return (
       <>

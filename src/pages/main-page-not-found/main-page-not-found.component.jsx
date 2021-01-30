@@ -7,6 +7,9 @@ import Footer from "../../components/footer/footer.component"
 import "./main-page-not-found.styles.scss"
 
 class PageNotFound extends React.Component {
+  componentDidMount() {
+    document.title = `Page Not Found | Avarice Sheets`
+  }
   render() {
     return (
       <>

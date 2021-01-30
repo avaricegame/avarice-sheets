@@ -25,7 +25,7 @@ class HomePage extends React.Component {
       fetchCampSheetListStartAsync,
       currentUser: { _id },
     } = this.props
-
+    document.title = `Home | Avarice Sheets`
     fetchCharSheetListStartAsync(_id)
     fetchCampSheetListStartAsync(_id)
   }
