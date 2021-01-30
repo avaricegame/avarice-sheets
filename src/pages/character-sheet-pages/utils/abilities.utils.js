@@ -1,5 +1,8 @@
 import { findEquippedInventoryItems } from "./inventory.utils"
 
+// this pulls together all the equipped abilities from the various
+// sources, the starting ability, the equipped abilities from the class
+// tree, and the abilities given from the equipped inventory items
 export const findAllEquippedAbilities = (
   abilitiesArray,
   startingAbilityObj,
@@ -34,6 +37,8 @@ const filterInventoryItemsToFindItemsWithAbilities = (array) => {
   return array.filter((inventoryItem) => inventoryItem.abilities.length)
 }
 
+// this loops through an array of equipment and creates a new array of just
+// the abilities that are attached to said equipment, if any
 const extractJustTheAbilitiesFromEquipment = (equipmentArray) => {
   let abilitiesArray = []
   equipmentArray.map((equipment) =>

@@ -1,8 +1,10 @@
+// this calulates the max hp for the character
 export const calculateMaxHPValue = (level, constitutionStat) => {
   const maxHP = constitutionStat * level + 5
   return maxHP
 }
 
+// this maps the race size to a number, then calculates the dodge value
 export const calculateDodgeValue = (reflexStat, raceSize) => {
   const mapRaceSizeToValue = {
     tiny: 10,
