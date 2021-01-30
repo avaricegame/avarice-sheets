@@ -1,3 +1,6 @@
+// this lets me easily get a proficiency value from the stats
+// without having to go digging around in the stats object on
+// any particular page
 export const findStatProficiencyValue = (stats, statName) => {
   let proficiencyValue
 
@@ -23,7 +26,7 @@ export const findStatProficiencyValue = (stats, statName) => {
     case "SPEECH":
       proficiencyValue = stats[6].proficiencyPoints
       break
-    case "PERFORMANCE":
+    case "PERFORM":
       proficiencyValue = stats[7].proficiencyPoints
       break
     case "RANGED":
@@ -39,6 +42,67 @@ export const findStatProficiencyValue = (stats, statName) => {
   return proficiencyValue
 }
 
+// this takes the stat values from the three sources: stats, equipped wearables
+// stats, and the class stats, and combines them all into one data source that
+// i can use to display on the app
 export const calculateActualStatValues = (stats, equippedWearables, classStats) => {
+  stats.forEach((statObj) => transformStatValuesObjects(statObj))
+
+  const equippedWearablesStats = equippedWearables.map((wearable) => wearable.statModifiers)
+
+  equippedWearablesStats.forEach((wearablesArray) => {
+    wearablesArray.forEach((statObj) => transformEquippedWearablesStatValuesObjects(statObj))
+  })
+
+  combineTheArrays(stats, equippedWearablesStats)
+
   return stats
+}
+
+// the stat object proficiency values are stored as numbers
+// so this takes those objects, and adds a new array to them
+// the new array has the same number of items as the number
+// value of the proficiency, and those items are all the
+// bool, false
+const transformStatValuesObjects = (statValueObject) => {
+  let newArray = []
+  statValueObject.newProficiencyPoints = statValueObject.proficiencyPoints
+
+  while (statValueObject.newProficiencyPoints > 0) {
+    newArray.push(false)
+    statValueObject.newProficiencyPoints -= 1
+  }
+
+  statValueObject.newProficiencyPoints = newArray
+}
+
+// the stat object proficiency values are stored as numbers
+// so this takes those objects, and adds a new array to them
+// the new array has the same number of items as the number
+// value of the proficiency, and those items are all the
+// bool, true, to let me know they are from wearables
+const transformEquippedWearablesStatValuesObjects = (wearableStatValueObject) => {
+  let newArray = []
+  wearableStatValueObject.newValue = wearableStatValueObject.value
+
+  while (wearableStatValueObject.newValue > 0) {
+    newArray.push(true)
+    wearableStatValueObject.newValue -= 1
+  }
+
+  wearableStatValueObject.newValue = newArray
+}
+
+// this takes the wearableStats array of arrays and loops through it,
+// then finds the associated array from the main stats array, and
+// adds the extra stats to that array
+const combineTheArrays = (stats, wearableStats) => {
+  wearableStats.forEach((statsArray) => {
+    statsArray.forEach((statsObj) => {
+      const objToAddTo = stats.find(
+        (obj) => obj.name.toUpperCase() === statsObj.modifier.toUpperCase()
+      )
+      objToAddTo.newProficiencyPoints = [...objToAddTo.newProficiencyPoints, ...statsObj.newValue]
+    })
+  })
 }
