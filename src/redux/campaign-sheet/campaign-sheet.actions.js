@@ -107,6 +107,47 @@ export const fetchCharSheetsOfPlayersStartAsync = (currentCampSheet) => {
     // add the array of players character sheets to the main current campaign sheet object
     currentCampSheet.players = playersCharSheets
 
+    return dispatch(fetchRaceAndClassOfPlayersCharSheets(currentCampSheet))
+  }
+}
+
+export const fetchRaceAndClassOfPlayersCharSheets = (currentCampSheet) => {
+  return (dispatch) => {
+    currentCampSheet.players.forEach((playersCharSheet) => {
+      const { classID, raceID } = playersCharSheet
+
+      const CLASSES = require("../json/data/classes.json")
+      const RACES = require("../json/data/races.json")
+
+      // fetch the right class
+      const requestedClass = CLASSES.filter((theClass) => theClass._id === classID)
+      if (!requestedClass.length) {
+        return dispatch(
+          fetchCharSheetsOfPlayersFailure(
+            "Could not fetch a Class with the provided ID for Character Sheet " +
+              playersCharSheet._id +
+              "."
+          )
+        )
+      }
+
+      playersCharSheet.classInfo = requestedClass[0]
+
+      // fetch the right race
+      const requestedRace = RACES.filter((theRace) => theRace._id === raceID)
+      if (!requestedRace.length) {
+        return dispatch(
+          fetchCharSheetsOfPlayersFailure(
+            "Could not fetch a Race with the provided ID for Character Sheet " +
+              playersCharSheet._id +
+              "."
+          )
+        )
+      }
+
+      playersCharSheet.raceInfo = requestedRace[0]
+    })
+
     return dispatch(fetchCurrentCampSheetByIDSuccess(currentCampSheet))
   }
 }
