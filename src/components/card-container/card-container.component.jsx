@@ -12,8 +12,14 @@ export const Subheading = ({ children, blue }) => (
   </h4>
 )
 
-export const Terheading = ({ children }) => (
-  <h4 className="card-container__terheading">{children}</h4>
+export const Terheading = ({ children, purpleTerheading }) => (
+  <h4
+    className={`card-container__terheading ${
+      purpleTerheading ? "card-container__terheading--purple" : ""
+    }`}
+  >
+    {children}
+  </h4>
 )
 
 export const CardContainerContentContainer = ({ children }) => (
@@ -24,16 +30,15 @@ const CardContainer = ({
   children,
   heading,
   subheading,
-  subheading2,
   terheading,
   quatheading,
   blue,
+  purpleTerheading,
 }) => (
   <div className={`card-container`}>
     <h3 className="card-container__heading">{heading}</h3>
     {subheading ? <Subheading blue={blue}>{subheading}</Subheading> : null}
-    {subheading2 ? <Subheading blue={blue}>{subheading2}</Subheading> : null}
-    {terheading ? <Terheading>{terheading}</Terheading> : null}
+    {terheading ? <Terheading purpleTerheading={purpleTerheading}>{terheading}</Terheading> : null}
     {quatheading ? <Terheading>{quatheading}</Terheading> : null}
     <CardContainerContentContainer>{children}</CardContainerContentContainer>
     {/* <EditDelete type="charsheet" /> */}

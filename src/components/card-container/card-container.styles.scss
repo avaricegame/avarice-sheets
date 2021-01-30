@@ -44,6 +44,9 @@
     font-weight: bold;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
+    &--purple {
+      background-color: $color-purple;
+    }
   }
   &__content {
     padding: 1rem;

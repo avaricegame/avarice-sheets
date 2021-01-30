@@ -86,8 +86,9 @@ class CharacterGameplayPage extends React.Component {
               <Card
                 heading={`Hit Points Max: ${maxHP}`}
                 subheading={`Armour Value: ${armourValue}`}
-                subheading2={`Dodge Value: ${dodgeValue}`}
-                terheading={`Current Hit Points: ${currentHP}`}
+                terheading={`Dodge Value: ${dodgeValue}`}
+                quatheading={`Current Hit Points: ${currentHP}`}
+                purpleTerheading
               >
                 <Button>Take Damage</Button>
                 <Button>Heal HP</Button>
