@@ -68,7 +68,7 @@ export const fetchCurrentCampSheetByIDStartAsync = (campSheetIDParam, currentUse
 
     if (isUserOwner) {
       console.log("You are able to view this Campaign Sheet because you are the owner.")
-      return dispatch(fetchCurrentCampSheetByIDSuccess(currentCampSheet))
+      return dispatch(fetchCharSheetsOfPlayersStartAsync(currentCampSheet))
     } else {
       return dispatch(
         fetchCurrentCampSheetByIDFailureNoPermission(
@@ -76,5 +76,37 @@ export const fetchCurrentCampSheetByIDStartAsync = (campSheetIDParam, currentUse
         )
       )
     }
+  }
+}
+
+// fetching all the character sheet information for the sheets who've joined the campaign
+export const fetchCharSheetsOfPlayersFailure = (errorMessage) => ({
+  type: CampSheetActionTypes.FETCH_CHAR_SHEETS_OF_PLAYERS_FAILURE,
+  payload: errorMessage,
+})
+
+export const fetchCharSheetsOfPlayersStartAsync = (currentCampSheet) => {
+  return (dispatch) => {
+    const { playersIDS } = currentCampSheet
+
+    const CHARACTER_SHEETS = require("../json/character-sheets.json")
+
+    let playersCharSheets = []
+
+    playersIDS.forEach((playerID) => {
+      // find all the character sheets from the playersIDS array and add them to playersCharSheets
+      let charSheet = CHARACTER_SHEETS.filter((charSheet) => charSheet._id === playerID)
+      if (!charSheet.length) {
+        return dispatch(
+          fetchCharSheetsOfPlayersFailure("Could not fetch a Character Sheet with the provided ID.")
+        )
+      }
+      playersCharSheets = [...playersCharSheets, charSheet[0]]
+    })
+
+    // add the array of players character sheets to the main current campaign sheet object
+    currentCampSheet.players = playersCharSheets
+
+    return dispatch(fetchCurrentCampSheetByIDSuccess(currentCampSheet))
   }
 }

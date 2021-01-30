@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   errorMessage: undefined,
   doesCampaignSheetExist: true,
   doesUserHavePermission: true,
+  arePlayersCharSheetsLoaded: true,
 }
 
 const campSheetReducer = (state = INITIAL_STATE, action) => {
@@ -47,6 +48,7 @@ const campSheetReducer = (state = INITIAL_STATE, action) => {
         errorMessage: undefined,
         doesCampaignSheetExist: true,
         doesUserHavePermission: true,
+        arePlayersCharSheetsLoaded: true,
         currentCampSheet: action.payload,
       }
     case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_FAILURE_NONE_FOUND:
@@ -58,11 +60,20 @@ const campSheetReducer = (state = INITIAL_STATE, action) => {
         doesCampaignSheetExist: false,
       }
     case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_FAILURE_NO_PERMISSION:
+      console.log(action.payload)
       return {
         ...state,
         isCampSheetFetching: false,
         errorMessage: action.payload,
         doesUserHavePermission: false,
+      }
+    case CampSheetActionTypes.FETCH_CHAR_SHEETS_OF_PLAYERS_FAILURE:
+      console.log(action.payload)
+      return {
+        ...state,
+        isCampSheetFetching: false,
+        errorMessage: action.payload,
+        arePlayersCharSheetsLoaded: false,
       }
     default:
       return state

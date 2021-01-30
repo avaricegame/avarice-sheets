@@ -32,3 +32,63 @@ export const selectNotes = createSelector(
   [selectCurrentCampSheet],
   (currentCampSheet) => currentCampSheet.notes
 )
+
+export const selectEnvironment = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.environment
+)
+
+export const selectInventoryItems = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.inventoryItems
+)
+
+export const selectNPCS = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.npcs
+)
+
+export const selectMissions = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.missions
+)
+
+export const selectPersonalLog = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.personalLog
+)
+
+export const selectCaptainsLog = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.captainsLog
+)
+
+export const selectBackground = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.background
+)
+
+export const selectCampaignID = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet._id
+)
+
+export const selectPlayersNames = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.playersNames
+)
+
+export const selectCharactersNames = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.charactersNames
+)
+
+export const selectCampaignName = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.campaignName
+)
+
+export const selectPlayers = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.players
+)
