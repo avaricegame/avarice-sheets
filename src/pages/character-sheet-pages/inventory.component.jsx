@@ -23,6 +23,8 @@ import {
 import DisplayWeapons from "../../components/character-sheet-components/display-weapons/display-weapons.component"
 import DisplayItems from "../../components/character-sheet-components/display-items/display-items.component"
 import DisplayWearables from "../../components/character-sheet-components/display-wearables/display-wearables.component"
+import DisplayEquippedWeapons from "../../components/shared-sheets-components/display-equipped-weapons/display-equipped-weapons.component"
+import DisplayEquippedItems from "../../components/shared-sheets-components/display-equipped-items/display-equipped-items.component"
 
 // util functions
 import {
@@ -88,42 +90,11 @@ class InventoryPage extends React.Component {
                 heading="Weapons"
                 subheading={`Weapons Equipped: ${equippedWeapons.length} / 2`}
               >
-                {equippedWeapons.map(({ name, rangedMelee, proficiencyCode, damage, id }) => (
-                  <div key={id}>
-                    <p>
-                      <strong>{name}: </strong>
-                    </p>
-                    <ul>
-                      <li>
-                        <em>Type:</em> {rangedMelee}
-                      </li>
-                      <li>
-                        <em>Damage:</em> {damage}
-                      </li>
-                      <li>
-                        <em>Proficiency:</em> {proficiencyCode}
-                      </li>
-                    </ul>
-                  </div>
-                ))}
+                <DisplayEquippedWeapons equippedWeapons={equippedWeapons} />
               </Card>
 
               <Card heading="Items" subheading={`Item's Equipped: ${equippedItems.length} / 3`}>
-                {equippedItems.map(({ name, category, uses, id }) => (
-                  <div key={id}>
-                    <p>
-                      <strong>{name}: </strong>
-                    </p>
-                    <ul>
-                      <li>
-                        <em>Uses:</em> {uses}
-                      </li>
-                      <li>
-                        <em>Category:</em> {category}
-                      </li>
-                    </ul>
-                  </div>
-                ))}
+                <DisplayEquippedItems equippedItems={equippedItems} />
               </Card>
 
               <Card heading="Wearables" subheading={`Armour Value: ${armourValue}`}>
