@@ -42,6 +42,8 @@ export const findStatProficiencyValue = (stats, statName) => {
   return proficiencyValue
 }
 
+export const calculateActualStatValues = (stats, equippedWearables, classStats) => {}
+
 // this takes the stat values from the three sources: stats, equipped wearables
 // stats, and the class stats, and combines them all into one data source that
 // i can use to display on the app
@@ -76,6 +78,7 @@ const transformStatValuesObjects = (statValueObject) => {
 
   while (statValueObject.newProficiencyPoints > 0) {
     newArray.push(false)
+    statValueObject.proficiencyValue += 1
     statValueObject.newProficiencyPoints -= 1
   }
 
@@ -93,6 +96,7 @@ const transformEquippedWearablesStatValuesObjects = (wearableStatValueObject) =>
 
   while (wearableStatValueObject.newValue > 0) {
     newArray.push("A")
+    wearableStatValueObject.value += 1
     wearableStatValueObject.newValue -= 1
   }
 
@@ -110,6 +114,7 @@ const transformClassesStatValuesObjects = (classesStatValueObject) => {
 
   while (classesStatValueObject.newValue > 0) {
     newArray.push("C")
+    classesStatValueObject.value += 1
     classesStatValueObject.newValue -= 1
   }
 
@@ -126,6 +131,7 @@ const addInEquippedWearablesStats = (stats, wearableStats) => {
         (obj) => obj.name.toUpperCase() === statsObj.modifier.toUpperCase()
       )
       objToAddTo.newProficiencyPoints = [...objToAddTo.newProficiencyPoints, ...statsObj.newValue]
+      objToAddTo.proficiencyPoints = objToAddTo.proficiencyPoints + statsObj.value
     })
   })
 }
@@ -138,5 +144,6 @@ const addInClassesStats = (stats, classStats) => {
       (obj) => obj.name.toUpperCase() === statsObj.modifier.toUpperCase()
     )
     objToAddTo.newProficiencyPoints = [...statsObj.newValue, ...objToAddTo.newProficiencyPoints]
+    objToAddTo.proficiencyPoints = objToAddTo.proficiencyPoints + statsObj.value
   })
 }
