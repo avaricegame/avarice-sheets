@@ -136,6 +136,7 @@ export const fetchAdditionalCharSheetInfoStartAsync = (currentCharSheet) => {
       charactersNames,
       missions,
       background,
+      captainsLog,
     } = requestedCampaign[0]
 
     const campaignInfoToShare = {
@@ -146,6 +147,7 @@ export const fetchAdditionalCharSheetInfoStartAsync = (currentCharSheet) => {
       charactersNames,
       missions,
       background,
+      captainsLog,
     }
 
     currentCharSheet.campaignInfo = campaignInfoToShare
