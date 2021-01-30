@@ -68,7 +68,6 @@ class CampaignPage extends React.Component {
       charactersNames,
     } = this.props
     const { futureMissions, completedMissions } = this.state
-    console.log(futureMissions)
     return (
       <>
         <SheetsHeading heading="Campaign" />
