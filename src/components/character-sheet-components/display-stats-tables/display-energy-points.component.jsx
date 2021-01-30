@@ -2,7 +2,7 @@ import React from "react"
 
 import "./display-stats-tables.styles.scss"
 
-const DisplayEnergyPoints = ({ stats }) => (
+const DisplayEnergyPoints = ({ transformedCalculatedStatValues }) => (
   <>
     <table className="stats-table">
       <thead>
@@ -14,12 +14,16 @@ const DisplayEnergyPoints = ({ stats }) => (
         </tr>
       </thead>
       <tbody>
-        {stats.map(({ name, energyPoints, proficiencyPoints }) => (
+        {transformedCalculatedStatValues.map(({ name, energyPoints, proficiencyPoints }) => (
           <tr key={name}>
-            <td className="td--fixedwidth left">{name}</td>
+            <td className="left">{name}</td>
 
             <td>
-              <div className="point green">
+              <div
+                className={`point ${
+                  energyPoints >= proficiencyPoints ? "green" : energyPoints <= 0 ? "red" : "yellow"
+                }`}
+              >
                 <span>{energyPoints}</span>
               </div>
             </td>

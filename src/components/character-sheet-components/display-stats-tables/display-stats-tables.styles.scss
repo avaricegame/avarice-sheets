@@ -35,7 +35,7 @@
   }
   .point.gray {
     border: 2px solid lighten($color-gray, 20%);
-    color: darken($color-gray, 50%);
+    color: darken($color-gray, 5%);
     background-color: lighten($color-gray, 40%);
   }
   .point.yellow {
@@ -43,7 +43,7 @@
     color: darken($color-yellow, 50%);
     background-color: lighten($color-yellow, 10%);
   }
-  .point.yellow-prof {
+  .point.yellow-and-text {
     border: 2px solid $color-yellow;
     color: darken($color-yellow, 20%);
     background-color: lighten($color-yellow, 10%);
@@ -52,6 +52,11 @@
     border: 2px solid $color-purple;
     color: darken($color-purple, 50%);
     background-color: lighten($color-purple, 10%);
+  }
+  .point.blue {
+    border: 2px solid $color-blue;
+    color: darken($color-blue, 50%);
+    background-color: lighten($color-blue, 10%);
   }
   .point.red {
     border: 2px solid $color-red;

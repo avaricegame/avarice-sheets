@@ -26,7 +26,7 @@ const DisplaySuccessPoints = ({ transformedCalculatedStatValues }) => (
                   className={`point ${
                     successPoints >= proficiencyPoints
                       ? "green"
-                      : successPoints == 0
+                      : successPoints === 0
                       ? "red"
                       : "yellow"
                   }`}
