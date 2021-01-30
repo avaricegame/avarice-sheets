@@ -125,84 +125,72 @@ class PlayerCard extends React.Component {
     } = this.state
 
     return (
-      <Card heading={characterName} flex>
+      <Card heading={playerName} flex>
         <InteriorCard>
           <Column width={25}>
             <Subheading blue>Overview</Subheading>
             <InteriorCardContent>
+              <p>
+                <strong>{characterName}</strong>
+              </p>
               <ul>
-                <li>Player Name: {playerName}</li>
-                <li>Race: {raceName}</li>
-                <li>Class: {className}</li>
                 <li>
-                  Hit Points: {currentHP} / {maxHP}
+                  <em>Race:</em> {raceName}
                 </li>
-                <li>Armour Value: {armourValue}</li>
-                <li>Dodge Value: {dodgeValue}</li>
-                <li>Life Credits: {lifeCredits}</li>
+                <li>
+                  <em>Class:</em> {className}
+                </li>
+                <li>
+                  <em>Hit Points:</em> {currentHP} / {maxHP}
+                </li>
+                <li>
+                  <em>Armour Value:</em> {armourValue}
+                </li>
+                <li>
+                  <em>Dodge Value:</em> {dodgeValue}
+                </li>
+                <li>
+                  <em>Life Credits:</em> {lifeCredits}
+                </li>
               </ul>
-              {calculatedTransformedStats.map(
-                ({ name, proficiencyPoints, energyPoints, successPoints }) => {
-                  return (
-                    <div key={name}>
-                      <p>
-                        <strong>{name}</strong>
-                      </p>
-                      <table>
-                        <tbody>
-                          <tr>
-                            <td>Proficiency:</td>
-                            <td>
-                              <Point blue>{proficiencyPoints}</Point>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Energy Points:</td>
-                            <td>
-                              <Point blue>{energyPoints}</Point>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Success Points:</td>
-                            <td>
-                              <Point blue>{successPoints}</Point>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  )
-                }
-              )}
             </InteriorCardContent>
-            <Button>View Character Sheet</Button>
-          </Column>
-          <Column width={50}>
-            <Subheading blue>Equipped Abilities</Subheading>
+            <Subheading blue>Stats Overview</Subheading>
             <InteriorCardContent>
               <table>
                 <thead>
                   <tr>
-                    <th>Name</th>
                     <th>Stat</th>
-                    <th>Difficulty Level</th>
-                    <th>Type</th>
-                    <th>Description</th>
+                    <th>Proficiency</th>
+                    <th>Energy</th>
+                    <th>Success</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {equippedAbilities.map((ability, index) => (
-                    <tr key={index}>
-                      <td>{ability.name}</td>
-                      <td>{ability.associatedStat}</td>
-                      <td>{ability.difficulty}</td>
-                      <td>{ability.type}</td>
-                      <td>{ability.description}</td>
-                    </tr>
-                  ))}
+                  {calculatedTransformedStats.map(
+                    ({ name, proficiencyPoints, energyPoints, successPoints }) => {
+                      return (
+                        <tr key={name}>
+                          <td>{name}</td>
+                          <td>
+                            <Point blue>{proficiencyPoints}</Point>
+                          </td>
+
+                          <td>
+                            <Point blue>{energyPoints}</Point>
+                          </td>
+
+                          <td>
+                            <Point blue>{successPoints}</Point>
+                          </td>
+                        </tr>
+                      )
+                    }
+                  )}
                 </tbody>
               </table>
             </InteriorCardContent>
+
+            <Button>View Character Sheet</Button>
           </Column>
 
           <Column width={25}>
@@ -216,6 +204,38 @@ class PlayerCard extends React.Component {
               <DisplayEquippedItems equippedItems={equippedItems} />
             </InteriorCardContent>
             <Button>Open Players S.U.R.O.N.I.S</Button>
+          </Column>
+
+          <Column width={50}>
+            <Subheading blue>Equipped Abilities</Subheading>
+            <InteriorCardContent>
+              {equippedAbilities.map(
+                ({ name, associatedStat, difficulty, type, description }, index) => (
+                  <div key={index}>
+                    <p>
+                      <strong>{name}</strong>
+                    </p>
+                    <ul>
+                      <li>
+                        <em>Type: </em>
+                        {type}
+                      </li>
+                      <li>
+                        <em>Associated Stat:</em> {associatedStat}
+                      </li>
+                      <li>
+                        <em>Difficulty: </em>
+                        {difficulty}
+                      </li>
+                      <li>
+                        <em>Details: </em>
+                        {description}
+                      </li>
+                    </ul>
+                  </div>
+                )
+              )}
+            </InteriorCardContent>
           </Column>
         </InteriorCard>
       </Card>
