@@ -40,10 +40,10 @@ const DisplayProficiencyPoints = ({ transformedCalculatedStatValues }) => {
                   </div>
                 </td>
               )}
-              {newProficiencyPoints.map((bool, index) => (
+              {newProficiencyPoints.map((letter, index) => (
                 <td key={index}>
-                  <div className={`point yellow-prof`}>
-                    <span>{bool === "C" ? "C" : bool === "A" ? "A" : ""}</span>
+                  <div className={`point ${letter === "X" ? "gray" : "yellow-and-text"}`}>
+                    <span>{letter === "X" ? "A" : letter ? letter : ""}</span>
                   </div>
                 </td>
               ))}

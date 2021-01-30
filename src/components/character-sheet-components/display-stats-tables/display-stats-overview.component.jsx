@@ -2,7 +2,7 @@ import React from "react"
 
 import "./display-stats-tables.styles.scss"
 
-const DisplayStatsOverview = ({ stats }) => (
+const DisplayStatsOverview = ({ transformedCalculatedStatValues }) => (
   <>
     <table className="stats-table">
       <thead>
@@ -13,7 +13,7 @@ const DisplayStatsOverview = ({ stats }) => (
         </tr>
       </thead>
       <tbody>
-        {stats.map(({ name, proficiencyPoints }) => (
+        {transformedCalculatedStatValues.map(({ name, proficiencyPoints }) => (
           <tr key={name}>
             <td className="left">{name}</td>
             <td></td>

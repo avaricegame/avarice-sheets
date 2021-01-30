@@ -28,15 +28,35 @@ import DisplaySuccessPoints from "../../components/character-sheet-components/di
 import DisplayProficiencyPoints from "../../components/character-sheet-components/display-stats-tables/display-proficiency-points.component"
 
 class StatsPage extends React.Component {
-  render() {
-    const { level, stats, wearables, classInfo } = this.props
-    const equippedWearables = findEquippedInventoryItems(wearables)
+  constructor(props) {
+    super(props)
 
-    const transformedCalculatedStatValues = calculateActualStatValuesAndTransform(
-      stats,
-      equippedWearables,
-      classInfo.stats
-    )
+    this.state = {
+      transformedCalculatedStatValues: [],
+    }
+  }
+
+  componentDidMount() {
+    const { stats, wearables, classInfo } = this.props
+
+    this.setState({
+      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
+        stats,
+        findEquippedInventoryItems(wearables),
+        classInfo.stats
+      ),
+    })
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      transformedCalculatedStatValues: [],
+    })
+  }
+
+  render() {
+    const { level } = this.props
+    const { transformedCalculatedStatValues } = this.state
 
     return (
       <>
@@ -74,7 +94,9 @@ class StatsPage extends React.Component {
                 heading="Proficiency Points Table"
                 subheading="Upgraded by Earning Success Points"
               >
-                <DisplayProficiencyPoints calculatedStatValues={transformedCalculatedStatValues} />
+                <DisplayProficiencyPoints
+                  transformedCalculatedStatValues={transformedCalculatedStatValues}
+                />
               </Card>
             </Section>
           </Column>
