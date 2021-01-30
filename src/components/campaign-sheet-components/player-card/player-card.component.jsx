@@ -125,7 +125,7 @@ class PlayerCard extends React.Component {
     } = this.state
 
     return (
-      <Card heading={playerName} flex>
+      <Card heading={`${playerName} as ${characterName}`} flex>
         <InteriorCard>
           <Column width={25}>
             <Subheading blue>Overview</Subheading>
