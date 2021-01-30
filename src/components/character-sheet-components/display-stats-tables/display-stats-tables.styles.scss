@@ -2,24 +2,65 @@
 
 .stats-table {
   margin-bottom: 2rem;
-  .td--fixedwidth {
-    vertical-align: middle;
-    width: 14rem;
+  th {
+    padding: 0.5rem 1rem 1rem 1rem;
+    text-align: center;
+    &.left {
+      text-align: left;
+    }
   }
   td {
-    padding: 0.5rem 0 1rem 0;
+    padding: 0.5rem 1rem 1rem 1rem;
+    text-align: center;
+    &.left {
+      text-align: left;
+    }
   }
   .point {
-    display: block;
-    width: 2.25rem;
-    height: 2.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
     border: 2px solid lighten($color-gray, 35%);
     border-radius: 100%;
+    span {
+      text-align: center;
+      vertical-align: middle;
+      padding-top: 0.2rem;
+      font-size: 1.5rem;
+      line-height: 0;
+    }
+  }
+  .point.gray {
+    border: 2px solid lighten($color-gray, 20%);
+    color: darken($color-gray, 50%);
+    background-color: lighten($color-gray, 40%);
   }
   .point.yellow {
     border: 2px solid $color-yellow;
+    color: darken($color-yellow, 50%);
     background-color: lighten($color-yellow, 10%);
   }
-  // .point.greu {
-  // }
+  .point.yellow-prof {
+    border: 2px solid $color-yellow;
+    color: darken($color-yellow, 20%);
+    background-color: lighten($color-yellow, 10%);
+  }
+  .point.purple {
+    border: 2px solid $color-purple;
+    color: darken($color-purple, 50%);
+    background-color: lighten($color-purple, 10%);
+  }
+  .point.red {
+    border: 2px solid $color-red;
+    color: darken($color-red, 50%);
+    background-color: lighten($color-red, 10%);
+  }
+  .point.green {
+    border: 2px solid $color-green;
+    color: darken($color-green, 50%);
+    background-color: lighten($color-green, 10%);
+  }
 }

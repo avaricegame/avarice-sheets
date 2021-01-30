@@ -7,24 +7,25 @@ const DisplayEnergyPoints = ({ stats }) => (
     <table className="stats-table">
       <thead>
         <tr>
-          <th>Stat</th>
-          <th></th>
+          <th className="left">Stat</th>
           <th>Current</th>
+          <th></th>
           <th>Max</th>
         </tr>
       </thead>
       <tbody>
         {stats.map(({ name, energyPoints, proficiencyPoints }) => (
           <tr key={name}>
-            <td className="td--fixedwidth">{name}</td>
-            <td></td>
+            <td className="td--fixedwidth left">{name}</td>
+
             <td>
-              <div className="point yellow">
+              <div className="point green">
                 <span>{energyPoints}</span>
               </div>
             </td>
+            <td></td>
             <td>
-              <div className="point grey">
+              <div className="point gray">
                 <span>{proficiencyPoints}</span>
               </div>
             </td>

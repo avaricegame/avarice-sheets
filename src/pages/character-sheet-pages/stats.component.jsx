@@ -20,7 +20,7 @@ import {
 } from "../../redux/character-sheet/character-sheet.selectors"
 
 // util functions
-import { calculateActualStatValues } from "./utils/stats.utils"
+import { calculateActualStatValuesAndTransform } from "./utils/stats.utils"
 import { findEquippedInventoryItems } from "./utils/inventory.utils"
 
 // display components
@@ -32,7 +32,7 @@ class StatsPage extends React.Component {
     const { level, stats, wearables, classInfo } = this.props
     const equippedWearables = findEquippedInventoryItems(wearables)
 
-    const calculatedStatValues = calculateActualStatValues(
+    const transformedCalculatedStatValues = calculateActualStatValuesAndTransform(
       stats,
       equippedWearables,
       classInfo.stats
@@ -61,7 +61,9 @@ class StatsPage extends React.Component {
                 heading="Success Points Table"
                 subheading="Earned by Succeeding on a Stat Check"
               >
-                <DisplaySuccessPoints stats={stats} />
+                <DisplaySuccessPoints
+                  transformedCalculatedStatValues={transformedCalculatedStatValues}
+                />
               </Card>
             </Section>
           </Column>
@@ -72,7 +74,7 @@ class StatsPage extends React.Component {
                 heading="Proficiency Points Table"
                 subheading="Upgraded by Earning Success Points"
               >
-                <DisplayProficiencyPoints calculatedStatValues={calculatedStatValues} />
+                <DisplayProficiencyPoints calculatedStatValues={transformedCalculatedStatValues} />
               </Card>
             </Section>
           </Column>

@@ -7,15 +7,15 @@ const DisplayStatsOverview = ({ stats }) => (
     <table className="stats-table">
       <thead>
         <tr>
-          <th>Stat</th>
+          <th className="left">Stat</th>
           <th></th>
-          <th>Proficiency Value</th>
+          <th>Proficiency</th>
         </tr>
       </thead>
       <tbody>
         {stats.map(({ name, proficiencyPoints }) => (
           <tr key={name}>
-            <td className="td--fixedwidth">{name}</td>
+            <td className="left">{name}</td>
             <td></td>
             <td>
               <div className="point yellow">

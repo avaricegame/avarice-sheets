@@ -45,7 +45,7 @@ export const findStatProficiencyValue = (stats, statName) => {
 // this takes the stat values from the three sources: stats, equipped wearables
 // stats, and the class stats, and combines them all into one data source that
 // i can use to display on the app
-export const calculateActualStatValues = (stats, equippedWearables, classStats) => {
+export const calculateActualStatValuesAndTransform = (stats, equippedWearables, classStats) => {
   stats.forEach((statObj) => transformStatValuesObjects(statObj))
 
   const equippedWearablesStats = equippedWearables.map((wearable) => wearable.statModifiers)
@@ -137,6 +137,6 @@ const addInClassesStats = (stats, classStats) => {
     const objToAddTo = stats.find(
       (obj) => obj.name.toUpperCase() === statsObj.modifier.toUpperCase()
     )
-    objToAddTo.newProficiencyPoints = [...objToAddTo.newProficiencyPoints, ...statsObj.newValue]
+    objToAddTo.newProficiencyPoints = [...statsObj.newValue, ...objToAddTo.newProficiencyPoints]
   })
 }
