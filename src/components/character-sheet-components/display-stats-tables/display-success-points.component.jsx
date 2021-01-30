@@ -15,8 +15,8 @@ const DisplaySuccessPoints = ({ transformedCalculatedStatValues }) => (
         </tr>
       </thead>
       <tbody>
-        {transformedCalculatedStatValues.map(({ name, successPoints, newProficiencyPoints }) => {
-          const neededPoints = newProficiencyPoints - successPoints
+        {transformedCalculatedStatValues.map(({ name, successPoints, proficiencyPoints }) => {
+          const neededPoints = proficiencyPoints - successPoints
           return (
             <tr key={name}>
               <td className="left">{name}</td>
@@ -28,8 +28,8 @@ const DisplaySuccessPoints = ({ transformedCalculatedStatValues }) => (
               </td>
               <td></td>
               <td>
-                <div className={`point ${neededPoints < 0 ? "green" : "red"}`}>
-                  <span>{newProficiencyPoints}</span>
+                <div className={`point ${neededPoints < 1 ? "green" : "red"}`}>
+                  <span>{neededPoints < 0 ? "0" : neededPoints}</span>
                 </div>
               </td>
             </tr>
