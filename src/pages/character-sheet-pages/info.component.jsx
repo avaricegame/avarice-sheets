@@ -25,6 +25,7 @@ import {
 
 // display components
 import DisplayCampaignInfo from "../../components/shared-sheets-components/display-campaign-info/display-campaign-info.component"
+import { default as Log } from "../../components/shared-sheets-components/display-log/display-log.component"
 
 class InfoPage extends React.Component {
   render() {
@@ -54,26 +55,14 @@ class InfoPage extends React.Component {
             <Section heading="Mission Logs">
               <Button>Add a New Character Log</Button>
               <Card heading="Character's Logs" subheading={`For ${characterName}`}>
-                {characterLog.map((log) => {
-                  const { id, title, details } = log
-                  return (
-                    <p data-logid={id} key={id}>
-                      <strong>{title}: </strong>
-                      {details}
-                    </p>
-                  )
-                })}
+                {characterLog.map(({ id, title, details }) => (
+                  <Log id={id} title={title} details={details} key={id} />
+                ))}
               </Card>
               <Card heading="Captain's Logs" subheading={`For ${campaignName}`}>
-                {captainsLog.map((log) => {
-                  const { id, title, details } = log
-                  return (
-                    <p data-logid={id} key={id}>
-                      <strong>{title}: </strong>
-                      {details}
-                    </p>
-                  )
-                })}
+                {captainsLog.map(({ id, title, details }) => (
+                  <Log id={id} title={title} details={details} key={id} />
+                ))}
               </Card>
             </Section>
           </Column>
