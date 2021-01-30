@@ -18,6 +18,8 @@ import {
   selectWearables,
   selectLevel,
   selectStats,
+  selectClassInfo,
+  selectRaceInfo,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
 // util functions
@@ -26,22 +28,55 @@ import {
   calculateArmourValueFromEquippedWearables,
 } from "./utils/inventory.utils"
 import { calculateMaxHPValue, calculateDodgeValue } from "./utils/gameplay.utils"
-import { findStatProficiencyValue } from "./utils/stats.utils"
+import {
+  calculateActualStatValuesAndTransform,
+  findStatProficiencyValue,
+} from "./utils/stats.utils"
 
 // display components
 import DisplayEnergyPoints from "../../components/character-sheet-components/display-stats-tables/display-energy-points.component"
 import DisplayStatsOverview from "../../components/character-sheet-components/display-stats-tables/display-stats-overview.component"
 
 class CharacterGameplayPage extends React.Component {
-  render() {
-    const { currentHP, lifeCredits, wearables, level, stats } = this.props
-    let equippedWearables = findEquippedInventoryItems(wearables)
-    let armourValue = calculateArmourValueFromEquippedWearables(equippedWearables)
-    const constitutionProficiencyValue = findStatProficiencyValue(stats, "constitution")
-    let maxHP = calculateMaxHPValue(level, constitutionProficiencyValue)
-    const reflexProficiencyValue = findStatProficiencyValue(stats, "reflex")
-    let dodgeValue = calculateDodgeValue(reflexProficiencyValue, "small")
+  constructor(props) {
+    super(props)
+    this.state = {
+      armourValue: null,
+      maxHP: null,
+      dodgeValue: null,
+      reflexProficiencyValue: null,
+      constitutionProficiencyValue: null,
+      transformedCalculatedStatValues: [],
+    }
+  }
 
+  componentDidMount() {
+    const { wearables, level, stats, classInfo, raceInfo } = this.props
+
+    this.setState({
+      armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
+      maxHP: calculateMaxHPValue(level, findStatProficiencyValue(stats, "constitution")),
+      dodgeValue: calculateDodgeValue(findStatProficiencyValue(stats, "reflex"), raceInfo.size),
+      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
+        stats,
+        findEquippedInventoryItems(wearables),
+        classInfo.stats
+      ),
+    })
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      armourValue: null,
+      maxHP: null,
+      dodgeValue: null,
+      transformedCalculatedStatValues: [],
+    })
+  }
+
+  render() {
+    const { currentHP, lifeCredits } = this.props
+    const { armourValue, transformedCalculatedStatValues, maxHP, dodgeValue } = this.state
     return (
       <>
         <SheetsHeading heading="Gameplay" />
@@ -84,7 +119,9 @@ class CharacterGameplayPage extends React.Component {
                 heading="Stats Overview Table"
                 subheading="More Stats can be seen on Stats Page"
               >
-                <DisplayStatsOverview stats={stats} />
+                <DisplayStatsOverview
+                  transformedCalculatedStatValues={transformedCalculatedStatValues}
+                />
               </Card>
             </Section>
           </Column>
@@ -92,7 +129,9 @@ class CharacterGameplayPage extends React.Component {
           <Column width={25}>
             <Section heading="Energy Points">
               <Card heading="Energy Points Table" subheading="Used When You Make a Stat Check">
-                <DisplayEnergyPoints stats={stats} />
+                <DisplayEnergyPoints
+                  transformedCalculatedStatValues={transformedCalculatedStatValues}
+                />
               </Card>
             </Section>
           </Column>
@@ -108,6 +147,8 @@ const mapStateToProps = createStructuredSelector({
   wearables: selectWearables,
   level: selectLevel,
   stats: selectStats,
+  classInfo: selectClassInfo,
+  raceInfo: selectRaceInfo,
 })
 
 export default connect(mapStateToProps)(CharacterGameplayPage)
