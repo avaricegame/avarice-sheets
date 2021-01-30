@@ -23,18 +23,39 @@ import { default as AbilityCard } from "../../components/character-sheet-compone
 import { findAllEquippedAbilities } from "./utils/abilities.utils"
 
 class AbilitiesPage extends React.Component {
-  render() {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      equippedAbilities: [],
+    }
+  }
+
+  componentDidMount() {
     const {
       abilities: { abilities, startingAbility },
       weapons,
       wearables,
     } = this.props
-    const equippedAbilities = findAllEquippedAbilities(
-      abilities,
-      startingAbility,
-      weapons,
-      wearables
-    )
+
+    this.setState({
+      equippedAbilities: findAllEquippedAbilities(abilities, startingAbility, weapons, wearables),
+    })
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      equippedAbilities: [],
+    })
+  }
+
+  render() {
+    const {
+      abilities: { abilities },
+    } = this.props
+
+    const { equippedAbilities } = this.state
+
     return (
       <>
         <SheetsHeading heading="Abilities" />
