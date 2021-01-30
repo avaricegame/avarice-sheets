@@ -128,7 +128,27 @@ export const fetchAdditionalCharSheetInfoStartAsync = (currentCharSheet) => {
       )
     }
 
-    currentCharSheet.campaignInfo = requestedCampaign[0]
+    const {
+      campaignName,
+      _id,
+      creatorName,
+      playersNames,
+      charactersNames,
+      missions,
+      background,
+    } = requestedCampaign[0]
+
+    const campaignInfoToShare = {
+      campaignName,
+      _id,
+      creatorName,
+      playersNames,
+      charactersNames,
+      missions,
+      background,
+    }
+
+    currentCharSheet.campaignInfo = campaignInfoToShare
 
     return dispatch(fetchCurrentCharSheetByIDSuccess(currentCharSheet))
   }
