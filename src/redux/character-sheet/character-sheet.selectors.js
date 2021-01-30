@@ -94,17 +94,22 @@ export const selectCurrentHP = createSelector(
 )
 
 // select character sheet additional resources
-export const selectCurrentRaceInfo = createSelector(
+export const selectRaceInfo = createSelector(
   [selectCurrentCharSheet],
-  (currentCharSheet) => currentCharSheet.currentRaceInfo
+  (currentCharSheet) => currentCharSheet.raceInfo
 )
 
-export const selectCurrentClassInfo = createSelector(
+export const selectClassInfo = createSelector(
   [selectCurrentCharSheet],
-  (currentCharSheet) => currentCharSheet.currentClassInfo
+  (currentCharSheet) => currentCharSheet.classInfo
 )
 
-export const selectCurrentCampaignInfo = createSelector(
+export const selectCampaignInfo = createSelector(
   [selectCurrentCharSheet],
-  (currentCharSheet) => currentCharSheet.currentCampaignInfo
+  (currentCharSheet) => currentCharSheet.campaignInfo
+)
+
+export const selectCaptainsLog = createSelector(
+  [selectCampaignInfo],
+  (currentCampaignInfo) => currentCampaignInfo.captainsLog
 )

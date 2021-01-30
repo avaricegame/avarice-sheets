@@ -75,7 +75,7 @@ export const fetchCurrentCharSheetByIDStartAsync = (charSheetIDParam, currentUse
       } else {
         console.log("You are able to view this Character Sheet because you are the owner.")
       }
-      return dispatch(fetchExtraCharSheetInfoStartAsync(currentCharSheet))
+      return dispatch(fetchAdditionalCharSheetInfoStartAsync(currentCharSheet))
     } else {
       return dispatch(
         fetchCurrentCharSheetByIDFailureNoPermission(
@@ -92,22 +92,7 @@ export const fetchAdditionalCharSheetResourcesFailure = (errorMessage) => ({
   payload: errorMessage,
 })
 
-export const fetchCharSheetAdditionalResourcesClassSuccess = (currentClass) => ({
-  type: CharSheetActionTypes.FETCH_CHAR_SHEET_CLASS_SUCCESS,
-  payload: currentClass,
-})
-
-export const fetchCharSheetAdditionalResourcesRaceSuccess = (currentRace) => ({
-  type: CharSheetActionTypes.FETCH_CHAR_SHEET_RACE_SUCCESS,
-  payload: currentRace,
-})
-
-export const fetchCharSheetAdditionalResourcesCampaignSuccess = (currentCampaign) => ({
-  type: CharSheetActionTypes.FETCH_CHAR_SHEET_CAMPAIGN_SUCCESS,
-  payload: currentCampaign,
-})
-
-export const fetchExtraCharSheetInfoStartAsync = (currentCharSheet) => {
+export const fetchAdditionalCharSheetInfoStartAsync = (currentCharSheet) => {
   return (dispatch) => {
     const { classID, raceID, campaignID } = currentCharSheet
 
@@ -122,7 +107,8 @@ export const fetchExtraCharSheetInfoStartAsync = (currentCharSheet) => {
         fetchAdditionalCharSheetResourcesFailure("Could not fetch a Class with the provided ID.")
       )
     }
-    dispatch(fetchCharSheetAdditionalResourcesClassSuccess(requestedClass[0]))
+
+    currentCharSheet.classInfo = requestedClass[0]
 
     // fetch the right race
     const requestedRace = RACES.filter((theRace) => theRace._id === raceID)
@@ -131,7 +117,8 @@ export const fetchExtraCharSheetInfoStartAsync = (currentCharSheet) => {
         fetchAdditionalCharSheetResourcesFailure("Could not fetch a Race with the provided ID.")
       )
     }
-    dispatch(fetchCharSheetAdditionalResourcesRaceSuccess(requestedRace[0]))
+
+    currentCharSheet.raceInfo = requestedRace[0]
 
     // fetch the right campaign
     const requestedCampaign = CAMPAIGN_SHEETS.filter((campaign) => campaign._id === campaignID)
@@ -140,7 +127,8 @@ export const fetchExtraCharSheetInfoStartAsync = (currentCharSheet) => {
         fetchAdditionalCharSheetResourcesFailure("Could not fetch a Campaign with the provided ID.")
       )
     }
-    dispatch(fetchCharSheetAdditionalResourcesCampaignSuccess(requestedCampaign[0]))
+
+    currentCharSheet.campaignInfo = requestedCampaign[0]
 
     return dispatch(fetchCurrentCharSheetByIDSuccess(currentCharSheet))
   }

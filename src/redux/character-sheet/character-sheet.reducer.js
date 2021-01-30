@@ -2,9 +2,6 @@ import CharSheetActionTypes from "./character-sheet.types"
 
 const INITIAL_STATE = {
   currentCharSheet: null,
-  currentClassInfo: null,
-  currentRaceInfo: null,
-  currentCampaignInfo: null,
   charSheetList: null,
   isListFetching: false,
   isCharSheetFetching: false,
@@ -76,21 +73,6 @@ const charSheetReducer = (state = INITIAL_STATE, action) => {
         isCharSheetFetching: false,
         errorMessage: action.payload,
         areAdditionalResourcesLoaded: false,
-      }
-    case CharSheetActionTypes.FETCH_CHAR_SHEET_RACE_SUCCESS:
-      return {
-        ...state,
-        currentRaceInfo: action.payload,
-      }
-    case CharSheetActionTypes.FETCH_CHAR_SHEET_CLASS_SUCCESS:
-      return {
-        ...state,
-        currentClassInfo: action.payload,
-      }
-    case CharSheetActionTypes.FETCH_CHAR_SHEET_CAMPAIGN_SUCCESS:
-      return {
-        ...state,
-        currentCampaignInfo: action.payload,
       }
     default:
       return state
