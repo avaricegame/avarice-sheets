@@ -2,12 +2,16 @@ import CharSheetActionTypes from "./character-sheet.types"
 
 const INITIAL_STATE = {
   currentCharSheet: null,
+  currentClassInfo: null,
+  currentRaceInfo: null,
+  currentCampaignInfo: null,
   charSheetList: null,
   isListFetching: false,
   isCharSheetFetching: false,
   errorMessage: undefined,
   doesCharacterSheetExist: true,
   doesUserHavePermission: true,
+  areAdditionalResourcesLoaded: true,
 }
 
 const charSheetReducer = (state = INITIAL_STATE, action) => {
@@ -47,6 +51,7 @@ const charSheetReducer = (state = INITIAL_STATE, action) => {
         errorMessage: undefined,
         doesCharacterSheetExist: true,
         doesUserHavePermission: true,
+        areAdditionalResourcesLoaded: true,
         currentCharSheet: action.payload,
       }
     case CharSheetActionTypes.FETCH_CURRENT_CHAR_SHEET_BY_ID_FAILURE_NONE_FOUND:
@@ -63,6 +68,29 @@ const charSheetReducer = (state = INITIAL_STATE, action) => {
         isCharSheetFetching: false,
         errorMessage: action.payload,
         doesUserHavePermission: false,
+      }
+    case CharSheetActionTypes.FETCH_ADDITIONAL_CHAR_SHEET_RESOURCES_FAILURE:
+      console.log(action.payload)
+      return {
+        ...state,
+        isCharSheetFetching: false,
+        errorMessage: action.payload,
+        areAdditionalResourcesLoaded: false,
+      }
+    case CharSheetActionTypes.FETCH_CHAR_SHEET_RACE_SUCCESS:
+      return {
+        ...state,
+        currentRaceInfo: action.payload,
+      }
+    case CharSheetActionTypes.FETCH_CHAR_SHEET_CLASS_SUCCESS:
+      return {
+        ...state,
+        currentClassInfo: action.payload,
+      }
+    case CharSheetActionTypes.FETCH_CHAR_SHEET_CAMPAIGN_SUCCESS:
+      return {
+        ...state,
+        currentCampaignInfo: action.payload,
       }
     default:
       return state

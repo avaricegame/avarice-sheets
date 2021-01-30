@@ -75,7 +75,7 @@ export const fetchCurrentCharSheetByIDStartAsync = (charSheetIDParam, currentUse
       } else {
         console.log("You are able to view this Character Sheet because you are the owner.")
       }
-      return dispatch(fetchCurrentCharSheetByIDSuccess(currentCharSheet))
+      return dispatch(fetchExtraCharSheetInfoStartAsync(currentCharSheet))
     } else {
       return dispatch(
         fetchCurrentCharSheetByIDFailureNoPermission(
@@ -83,5 +83,65 @@ export const fetchCurrentCharSheetByIDStartAsync = (charSheetIDParam, currentUse
         )
       )
     }
+  }
+}
+
+// fetching race, class, and campaign sheet information
+export const fetchAdditionalCharSheetResourcesFailure = (errorMessage) => ({
+  type: CharSheetActionTypes.FETCH_ADDITIONAL_CHAR_SHEET_RESOURCES_FAILURE,
+  payload: errorMessage,
+})
+
+export const fetchCharSheetAdditionalResourcesClassSuccess = (currentClass) => ({
+  type: CharSheetActionTypes.FETCH_CHAR_SHEET_CLASS_SUCCESS,
+  payload: currentClass,
+})
+
+export const fetchCharSheetAdditionalResourcesRaceSuccess = (currentRace) => ({
+  type: CharSheetActionTypes.FETCH_CHAR_SHEET_RACE_SUCCESS,
+  payload: currentRace,
+})
+
+export const fetchCharSheetAdditionalResourcesCampaignSuccess = (currentCampaign) => ({
+  type: CharSheetActionTypes.FETCH_CHAR_SHEET_CAMPAIGN_SUCCESS,
+  payload: currentCampaign,
+})
+
+export const fetchExtraCharSheetInfoStartAsync = (currentCharSheet) => {
+  return (dispatch) => {
+    const { classID, raceID, campaignID } = currentCharSheet
+
+    const CLASSES = require("../json/data/classes.json")
+    const RACES = require("../json/data/races.json")
+    const CAMPAIGN_SHEETS = require("../json/campaign-sheets.json")
+
+    // fetch the right class
+    const requestedClass = CLASSES.filter((theClass) => theClass._id === classID)
+    if (!requestedClass.length) {
+      return dispatch(
+        fetchAdditionalCharSheetResourcesFailure("Could not fetch a Class with the provided ID.")
+      )
+    }
+    dispatch(fetchCharSheetAdditionalResourcesClassSuccess(requestedClass[0]))
+
+    // fetch the right race
+    const requestedRace = RACES.filter((theRace) => theRace._id === raceID)
+    if (!requestedRace.length) {
+      return dispatch(
+        fetchAdditionalCharSheetResourcesFailure("Could not fetch a Race with the provided ID.")
+      )
+    }
+    dispatch(fetchCharSheetAdditionalResourcesRaceSuccess(requestedRace[0]))
+
+    // fetch the right campaign
+    const requestedCampaign = CAMPAIGN_SHEETS.filter((campaign) => campaign._id === campaignID)
+    if (!requestedCampaign.length) {
+      return dispatch(
+        fetchAdditionalCharSheetResourcesFailure("Could not fetch a Campaign with the provided ID.")
+      )
+    }
+    dispatch(fetchCharSheetAdditionalResourcesCampaignSuccess(requestedCampaign[0]))
+
+    return dispatch(fetchCurrentCharSheetByIDSuccess(currentCharSheet))
   }
 }
