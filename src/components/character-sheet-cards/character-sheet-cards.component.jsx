@@ -10,7 +10,15 @@ import { selectCharSheetList } from "../../redux/character-sheet/character-sheet
 const CharacterSheetCards = ({ charSheetList }) => (
   <>
     {charSheetList.map((charSheet) => {
-      const { _id, level, raceName, className, campaignID, characterName } = charSheet
+      const {
+        _id,
+        level,
+        raceName,
+        className,
+        campaignName,
+        characterName,
+        campaignCreatorName,
+      } = charSheet
       return (
         <Link className="sheets-card-link" to={`/character/${_id}`} key={_id}>
           <CardContainer heading={characterName} subheading={`ID#${_id}`}>
@@ -29,9 +37,13 @@ const CharacterSheetCards = ({ charSheetList }) => (
                   <td>{className}</td>
                 </tr>
                 <tr>
-                  <td>Campaign ID:</td>
+                  <td>CC:</td>
+                  <td>{campaignCreatorName}</td>
+                </tr>
+                <tr>
+                  <td>Campaign:</td>
                   <td>
-                    <em>{campaignID}</em>
+                    <em>{campaignName}</em>
                   </td>
                 </tr>
               </tbody>
