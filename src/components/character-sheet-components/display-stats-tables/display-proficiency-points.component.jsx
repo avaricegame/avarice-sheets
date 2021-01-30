@@ -2,8 +2,8 @@ import React from "react"
 
 import "./display-stats-tables.styles.scss"
 
-const DisplayProficiencyPoints = ({ calculatedStatValues }) => {
-  console.log(calculatedStatValues)
+const DisplayProficiencyPoints = ({ transformedCalculatedStatValues }) => {
+  console.log(transformedCalculatedStatValues)
   return (
     <table className="stats-table">
       <thead>
@@ -23,7 +23,7 @@ const DisplayProficiencyPoints = ({ calculatedStatValues }) => {
         </tr>
       </thead>
       <tbody>
-        {calculatedStatValues.map(({ name, newProficiencyPoints, energyPoints }) => {
+        {transformedCalculatedStatValues.map(({ name, newProficiencyPoints, energyPoints }) => {
           return (
             <tr key={name}>
               <td className="left">{name}</td>
