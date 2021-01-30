@@ -17,11 +17,35 @@ import {
   selectCharacterDescription,
   selectCharacterLog,
   selectCharacterName,
+  selectRaceInfo,
+  selectClassInfo,
+  selectCampaignInfo,
+  selectCaptainsLog,
 } from "../../redux/character-sheet/character-sheet.selectors"
+
+// display components
+import DisplayCampaignInfo from "../../components/shared-sheets-components/display-campaign-info/display-campaign-info.component"
 
 class InfoPage extends React.Component {
   render() {
-    const { characterBackground, characterDescription, characterLog, characterName } = this.props
+    const {
+      characterBackground,
+      characterDescription,
+      characterLog,
+      characterName,
+      raceInfo,
+      classInfo,
+      campaignInfo: {
+        playersNames,
+        charactersNames,
+        missions,
+        campaignName,
+        _id,
+        background,
+        creatorName,
+      },
+      captainsLog,
+    } = this.props
     return (
       <>
         <SheetsHeading heading="Info" />
@@ -41,50 +65,29 @@ class InfoPage extends React.Component {
                 })}
               </Card>
               <Card heading="Captain's Logs" subheading="For Campaign Name">
-                campaign
-                {/* <p>
-                  <strong>Log II: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Rerum ratione illum recusandae, omnis enim, quae porro doloribus fugiat reiciendis
-                  totam et iusto, mollitia exercitationem animi aspernatur. Id facere alias
-                  voluptatibus.
-                </p> */}
+                {captainsLog.map((log) => {
+                  const { id, title, details } = log
+                  return (
+                    <p data-logid={id} key={id}>
+                      <strong>{title}: </strong>
+                      {details}
+                    </p>
+                  )
+                })}
               </Card>
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Campaign Information">
-              <Card heading="Campaign Details" subheading="For Campaign Name">
-                campaign
-                {/* <p>
-                  <strong>Background: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                  ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-                </p>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Campaign Name:</td>
-                      <td>Fluttering Butterflies</td>
-                    </tr>
-                    <tr>
-                      <td>Campaign ID:</td>
-                      <td>#123ABC</td>
-                    </tr>
-                    <tr>
-                      <td>Players:</td>
-                      <td>Player 1, Player 2, Player 3</td>
-                    </tr>
-                    <tr>
-                      <td>Characters:</td>
-                      <td>Character 1, Character 2, Character 3</td>
-                    </tr>
-                    <tr>
-                      <td>Missions Served:</td>
-                      <td>3</td>
-                    </tr>
-                  </tbody>
-                </table> */}
+              <Card heading="Campaign Details" subheading={campaignName} terheading={`ID#${_id}`}>
+                <DisplayCampaignInfo
+                  creatorName={creatorName}
+                  playersNames={playersNames}
+                  charactersNames={charactersNames}
+                  missions={missions}
+                  background={background}
+                />
               </Card>
             </Section>
           </Column>
@@ -136,6 +139,10 @@ const mapStateToProps = createStructuredSelector({
   characterDescription: selectCharacterDescription,
   characterLog: selectCharacterLog,
   characterName: selectCharacterName,
+  raceInfo: selectRaceInfo,
+  classInfo: selectClassInfo,
+  campaignInfo: selectCampaignInfo,
+  captainsLog: selectCaptainsLog,
 })
 
 export default connect(mapStateToProps)(InfoPage)
