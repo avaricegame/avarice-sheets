@@ -22,7 +22,15 @@ const DisplaySuccessPoints = ({ transformedCalculatedStatValues }) => (
               <td className="left">{name}</td>
 
               <td>
-                <div className="point green">
+                <div
+                  className={`point ${
+                    successPoints >= proficiencyPoints
+                      ? "green"
+                      : successPoints == 0
+                      ? "red"
+                      : "yellow"
+                  }`}
+                >
                   <span>{successPoints}</span>
                 </div>
               </td>
