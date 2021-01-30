@@ -54,7 +54,13 @@ export const calculateActualStatValues = (stats, equippedWearables, classStats) 
     wearablesArray.forEach((statObj) => transformEquippedWearablesStatValuesObjects(statObj))
   })
 
-  combineTheArrays(stats, equippedWearablesStats)
+  classStats.forEach((classStatsObj) => {
+    transformClassesStatValuesObjects(classStatsObj)
+  })
+
+  addInEquippedWearablesStats(stats, equippedWearablesStats)
+
+  addInClassesStats(stats, classStats)
 
   return stats
 }
@@ -86,17 +92,34 @@ const transformEquippedWearablesStatValuesObjects = (wearableStatValueObject) =>
   wearableStatValueObject.newValue = wearableStatValueObject.value
 
   while (wearableStatValueObject.newValue > 0) {
-    newArray.push(true)
+    newArray.push("A")
     wearableStatValueObject.newValue -= 1
   }
 
   wearableStatValueObject.newValue = newArray
 }
 
+// the stat object proficiency values are stored as numbers
+// so this takes those objects, and adds a new array to them
+// the new array has the same number of items as the number
+// value of the proficiency, and those items are all the
+// value, "C", to let me know they are from the class
+const transformClassesStatValuesObjects = (classesStatValueObject) => {
+  let newArray = []
+  classesStatValueObject.newValue = classesStatValueObject.value
+
+  while (classesStatValueObject.newValue > 0) {
+    newArray.push("C")
+    classesStatValueObject.newValue -= 1
+  }
+
+  classesStatValueObject.newValue = newArray
+}
+
 // this takes the wearableStats array of arrays and loops through it,
-// then finds the associated array from the main stats array, and
+// then finds the associated object from the main stats array, and
 // adds the extra stats to that array
-const combineTheArrays = (stats, wearableStats) => {
+const addInEquippedWearablesStats = (stats, wearableStats) => {
   wearableStats.forEach((statsArray) => {
     statsArray.forEach((statsObj) => {
       const objToAddTo = stats.find(
@@ -104,5 +127,16 @@ const combineTheArrays = (stats, wearableStats) => {
       )
       objToAddTo.newProficiencyPoints = [...objToAddTo.newProficiencyPoints, ...statsObj.newValue]
     })
+  })
+}
+
+// then finds the associated object from the main stats array of
+// objects, and adds the extra stats to that array
+const addInClassesStats = (stats, classStats) => {
+  classStats.forEach((statsObj) => {
+    const objToAddTo = stats.find(
+      (obj) => obj.name.toUpperCase() === statsObj.modifier.toUpperCase()
+    )
+    objToAddTo.newProficiencyPoints = [...objToAddTo.newProficiencyPoints, ...statsObj.newValue]
   })
 }

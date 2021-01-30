@@ -27,8 +27,12 @@ const DisplayProficiencyPoints = ({ calculatedStatValues }) => {
               <td className="td--fixedwidth">{name}</td>
               {newProficiencyPoints.map((bool, index) => (
                 <td key={index}>
-                  <div className={`point ${bool ? "grey" : "yellow"}`}>
-                    <span>{bool ? "A" : ""}</span>
+                  <div
+                    className={`point ${
+                      bool === "C" ? "grey" : bool === "A" ? "yellow" : "yellow"
+                    }`}
+                  >
+                    <span>{bool === "C" ? "C" : bool === "A" ? "A" : ""}</span>
                   </div>
                 </td>
               ))}

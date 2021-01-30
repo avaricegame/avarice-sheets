@@ -16,6 +16,7 @@ import {
   selectLevel,
   selectStats,
   selectWearables,
+  selectClassInfo,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
 // util functions
@@ -28,9 +29,14 @@ import DisplayProficiencyPoints from "../../components/character-sheet-component
 
 class StatsPage extends React.Component {
   render() {
-    const { level, stats, wearables } = this.props
+    const { level, stats, wearables, classInfo } = this.props
     const equippedWearables = findEquippedInventoryItems(wearables)
-    const calculatedStatValues = calculateActualStatValues(stats, equippedWearables, "classStats")
+
+    const calculatedStatValues = calculateActualStatValues(
+      stats,
+      equippedWearables,
+      classInfo.stats
+    )
 
     return (
       <>
@@ -80,6 +86,7 @@ const mapStateToProps = createStructuredSelector({
   level: selectLevel,
   stats: selectStats,
   wearables: selectWearables,
+  classInfo: selectClassInfo,
 })
 
 export default connect(mapStateToProps)(StatsPage)
