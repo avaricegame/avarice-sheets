@@ -24,13 +24,13 @@ import { findEquippedInventoryItems } from "./utils/inventory.utils"
 
 // display components
 import DisplaySuccessPoints from "../../components/character-sheet-components/display-stats-tables/display-success-points.component"
-import DisplayProficiencyPoints from "../../components/character-sheet-components/display-proficiency-points/display-proficiency-points.component"
+import DisplayProficiencyPoints from "../../components/character-sheet-components/display-stats-tables/display-proficiency-points.component"
 
 class StatsPage extends React.Component {
   render() {
     const { level, stats, wearables } = this.props
     const equippedWearables = findEquippedInventoryItems(wearables)
-    const actualStatValues = calculateActualStatValues(stats, equippedWearables, "classStats")
+    const calculatedStatValues = calculateActualStatValues(stats, equippedWearables, "classStats")
 
     return (
       <>
@@ -66,7 +66,7 @@ class StatsPage extends React.Component {
                 heading="Proficiency Points Table"
                 subheading="Upgraded by Earning Success Points"
               >
-                <DisplayProficiencyPoints stats={actualStatValues} />
+                <DisplayProficiencyPoints calculatedStatValues={calculatedStatValues} />
               </Card>
             </Section>
           </Column>
