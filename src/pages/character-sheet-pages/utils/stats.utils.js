@@ -86,9 +86,6 @@ const transformOtherStatObjects = (statObject, letterToPush) => {
     statObject.newValue -= 1
   }
 
-  console.log(statObject)
-  console.log(newArray)
-
   statObject.newValue = newArray
 }
 
@@ -101,9 +98,6 @@ const addStatsToMainArray = (stats, statsToAdd, addToBeginning) => {
     const objToAddTo = stats.find(
       (obj) => obj.name.toUpperCase() === statsToAddObj.modifier.toUpperCase()
     )
-
-    console.log(objToAddTo)
-    console.log(statsToAddObj)
 
     // if there were any subtracted stat modifications
     // and X was push onto the array, then
