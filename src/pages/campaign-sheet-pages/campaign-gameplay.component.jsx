@@ -1,4 +1,6 @@
 import React from "react"
+import { connect } from "react-redux"
+import { createStructuredSelector } from "reselect"
 
 import SheetsHeading from "../../components/sheets-heading/sheets-heading.component"
 import SheetsPageContainer from "../../components/sheets-page-container/sheets-page-container.component"
@@ -10,8 +12,35 @@ import {
 import { default as Card } from "../../components/card-container/card-container.component"
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
+import { selectMissions } from "../../redux/campaign-sheet/campaign-sheet.selectors"
+
+// util functions
+import { getCurrentMission } from "./utils/campaign.utils"
+
 class CampaignGameplay extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      currentMission: {},
+    }
+  }
+
+  componentDidMount() {
+    const { missions } = this.props
+    this.setState({
+      currentMission: getCurrentMission(missions),
+    })
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      currentMission: null,
+    })
+  }
+
   render() {
+    const { currentMission } = this.state
     return (
       <>
         <SheetsHeading heading="Gameplay" />
@@ -31,7 +60,9 @@ class CampaignGameplay extends React.Component {
 
           <Column width={50}>
             <Section heading="Current Mission">
-              <Card heading="Date: Mission Name">mission notes and plans</Card>
+              <Card heading={`${currentMission.date}: ${currentMission.name}`}>
+                {currentMission.notes}
+              </Card>
             </Section>
           </Column>
 
@@ -95,4 +126,8 @@ class CampaignGameplay extends React.Component {
   }
 }
 
-export default CampaignGameplay
+const mapStateToProps = createStructuredSelector({
+  missions: selectMissions,
+})
+
+export default connect(mapStateToProps)(CampaignGameplay)

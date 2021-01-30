@@ -1,4 +1,6 @@
 import React from "react"
+import { connect } from "react-redux"
+import { createStructuredSelector } from "reselect"
 
 import SheetsHeading from "../../components/sheets-heading/sheets-heading.component"
 import SheetsPageContainer from "../../components/sheets-page-container/sheets-page-container.component"
@@ -10,7 +12,14 @@ import {
 import { default as Card } from "../../components/card-container/card-container.component"
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
-class DatabasePage extends React.Component {
+import {
+  selectEnvironment,
+  selectInventoryItems,
+  selectNPCS,
+  selectMissions,
+} from "../../redux/campaign-sheet/campaign-sheet.selectors"
+
+class PlanningPage extends React.Component {
   render() {
     return (
       <>
@@ -108,4 +117,11 @@ class DatabasePage extends React.Component {
   }
 }
 
-export default DatabasePage
+const mapStateToProps = createStructuredSelector({
+  environment: selectEnvironment,
+  inventoryItems: selectInventoryItems,
+  npcs: selectNPCS,
+  missions: selectMissions,
+})
+
+export default connect(mapStateToProps)(PlanningPage)
