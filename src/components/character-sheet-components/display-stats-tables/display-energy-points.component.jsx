@@ -2,6 +2,12 @@ import React from "react"
 
 import "./display-stats-tables.styles.scss"
 
+export const Point = ({ children, blue, green, yellow }) => (
+  <div className={`point ${blue ? "blue" : green ? "green" : yellow ? "yellow" : "blue"}`}>
+    <span>{children}</span>
+  </div>
+)
+
 const DisplayEnergyPoints = ({ transformedCalculatedStatValues }) => (
   <>
     <table className="stats-table">
