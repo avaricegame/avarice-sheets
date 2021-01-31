@@ -21,8 +21,11 @@ import {
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 // util functions
-import { findInteractablesOnlyFromCertainMission } from "./utils/plannings.utils"
-import { getCurrentMission } from "./utils/campaign.utils"
+import {
+  findInteractablesOnlyFromCertainMission,
+  getSingleMissionByID,
+} from "./utils/plannings.utils"
+import { getCurrentMissionID, getCurrentMissionNameAndStatus } from "./utils/campaign.utils"
 
 // display components
 import MissionCard from "../../components/campaign-sheet-components/mission-card/mission-card.component"
@@ -37,38 +40,77 @@ class PlanningPage extends React.Component {
     super(props)
 
     this.state = {
-      currentMission: {},
+      currentMission: false,
+      currentWeapons: [],
+      currentWearables: [],
+      currentItems: [],
+      currentNPCS: [],
+      currentEnvironment: [],
     }
   }
 
   componentDidMount() {
-    const { campaignName, missions } = this.props
-    document.title = `Planning | ${campaignName} | Avarice Sheets`
+    const {
+      missions,
+      environment,
+      inventoryItems: { weapons, wearables, items },
+      npcs,
+    } = this.props
+
+    const currentMissionID = getCurrentMissionID(missions)
+
     this.setState({
-      currentMission: getCurrentMission(missions),
+      currentMission: getSingleMissionByID(missions, currentMissionID),
+      currentEnvironment: findInteractablesOnlyFromCertainMission(environment, currentMissionID),
+      currentWeapons: findInteractablesOnlyFromCertainMission(weapons, currentMissionID),
+      currentWearables: findInteractablesOnlyFromCertainMission(wearables, currentMissionID),
+      currentItems: findInteractablesOnlyFromCertainMission(items, currentMissionID),
+      currentNPCS: findInteractablesOnlyFromCertainMission(npcs, currentMissionID),
     })
   }
 
   componentWillUnmount() {
-    this.setState({})
+    this.setState({
+      currentMission: false,
+      currentWeapons: [],
+      currentWearables: [],
+      currentItems: [],
+      currentNPCS: [],
+      currentEnvironment: [],
+    })
   }
-  render() {
-    const { currentMission } = this.state
+
+  selectMissionHandler({ target: { value } }) {
     const {
+      missions,
       environment,
       inventoryItems: { weapons, wearables, items },
       npcs,
-      missions,
     } = this.props
 
-    const currentEnvironment = findInteractablesOnlyFromCertainMission(
-      environment,
-      currentMission.id
-    )
-    const currentWeapons = findInteractablesOnlyFromCertainMission(weapons, currentMission.id)
-    const currentWearables = findInteractablesOnlyFromCertainMission(wearables, currentMission.id)
-    const currentItems = findInteractablesOnlyFromCertainMission(items, currentMission.id)
-    const currentNPCS = findInteractablesOnlyFromCertainMission(npcs, currentMission.id)
+    this.setState({
+      currentMission: getSingleMissionByID(missions, value),
+      currentEnvironment: findInteractablesOnlyFromCertainMission(environment, value),
+      currentWeapons: findInteractablesOnlyFromCertainMission(weapons, value),
+      currentWearables: findInteractablesOnlyFromCertainMission(wearables, value),
+      currentItems: findInteractablesOnlyFromCertainMission(items, value),
+      currentNPCS: findInteractablesOnlyFromCertainMission(npcs, value),
+    })
+  }
+
+  render() {
+    const {
+      currentMission,
+      currentWeapons,
+      currentWearables,
+      currentItems,
+      currentNPCS,
+      currentEnvironment,
+    } = this.state
+
+    const { missions } = this.props
+
+    console.log(currentMission)
 
     return (
       <>
@@ -78,13 +120,27 @@ class PlanningPage extends React.Component {
             <Section heading="Mission Notes">
               <Button>Create a New Mission</Button>
               <Card heading="Selected Mission:">
-                <select>
-                  <option>Current Mission</option>
-                  {missions.map((mission) => (
-                    <option key={mission.id}>
-                      {mission.date} | {mission.name}
-                    </option>
-                  ))}
+                <select onChange={(e) => this.selectMissionHandler(e)}>
+                  <option value={getCurrentMissionID(missions)}>
+                    {getCurrentMissionNameAndStatus(missions)}
+                  </option>
+                  {missions.map((mission) => {
+                    if (!mission.current) {
+                      return (
+                        <option value={mission.id} key={mission.id}>
+                          {mission.name} (
+                          {mission.complete
+                            ? "Complete"
+                            : mission.planned
+                            ? "Planned"
+                            : mission.date}
+                          )
+                        </option>
+                      )
+                    } else {
+                      return null
+                    }
+                  })}
                 </select>
               </Card>
               <MissionCard mission={currentMission} />

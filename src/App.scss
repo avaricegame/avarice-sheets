@@ -55,4 +55,9 @@ a {
   color: lighten($color-gray, 30%);
   text-align: right;
   margin-bottom: 0 !important;
+  span {
+    &.true {
+      color: $main-text-color-dark;
+    }
+  }
 }
