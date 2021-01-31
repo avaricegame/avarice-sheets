@@ -94,7 +94,7 @@ class PlayerCombatCard extends React.Component {
         terheading={`Armour Value: ${armourValue}`}
         quatheading={`Dodge Value: ${dodgeValue}`}
       >
-        <DisplayEquippedWeapons equippedWeapons={weapons} />
+        <DisplayEquippedWeapons campaignSheet equippedWeapons={weapons} />
         <table>
           <thead>
             <tr>

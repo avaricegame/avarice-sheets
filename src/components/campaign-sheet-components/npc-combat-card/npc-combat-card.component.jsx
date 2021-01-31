@@ -87,7 +87,7 @@ class NPCCombatCard extends React.Component {
         terheading={`Armour Value: ${armourValue}`}
         quatheading={`Dodge Value: ${dodgeValue}`}
       >
-        <DisplayEquippedWeapons equippedWeapons={weapons} />
+        <DisplayEquippedWeapons campaignSheet equippedWeapons={weapons} />
         <table>
           <thead>
             <tr>
@@ -124,6 +124,7 @@ class NPCCombatCard extends React.Component {
             )}
           </tbody>
         </table>
+        <p className="actions">FRIEND | ENEMY</p>
       </Card>
     )
   }

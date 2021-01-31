@@ -13,6 +13,7 @@ import AbilityCardInfo from "../ability-card-info/ability-card-info.component"
 
 const DisplayAbilityInColumn = ({ ability: { name, types } }) => (
   <Card heading={name} flex>
+    <p className="actions">CHOOSE EQUIPPED AUGMENTATION</p>
     <InteriorCard>
       {types.map((abilityType, index) => {
         const {

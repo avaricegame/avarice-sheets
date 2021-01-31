@@ -99,7 +99,7 @@ class CampaignPage extends React.Component {
               <Button>Add a New Captain's Log</Button>
               <Card blue heading="Captain's Logs" subheading={`For ${campaignName}`}>
                 {captainsLog.map(({ id, title, details }) => (
-                  <Log id={id} title={title} details={details} key={id} />
+                  <Log edit id={id} title={title} details={details} key={id} />
                 ))}
               </Card>
               <p>
@@ -126,7 +126,7 @@ class CampaignPage extends React.Component {
               <Button>Add a New Personal Log</Button>
               <Card blue heading="Personal Mission Logs" subheading={`For ${campaignName}`}>
                 {personalLog.map(({ id, title, details }) => (
-                  <Log id={id} title={title} details={details} key={id} />
+                  <Log edit id={id} title={title} details={details} key={id} />
                 ))}
               </Card>
               <p>* Note: ONLY YOU can see these logs.</p>

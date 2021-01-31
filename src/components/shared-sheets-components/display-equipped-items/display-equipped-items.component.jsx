@@ -1,6 +1,6 @@
 import React from "react"
 
-const DisplayEquippedItems = ({ equippedItems }) => (
+const DisplayEquippedItems = ({ equippedItems, unequip, campaignSheet }) => (
   <>
     {equippedItems.map(({ name, category, uses, id }) => (
       <div key={id}>
@@ -15,6 +15,7 @@ const DisplayEquippedItems = ({ equippedItems }) => (
             <em>Category:</em> {category}
           </li>
         </ul>
+        <p className="actions">{campaignSheet ? "SHOW MORE" : unequip ? "UNEQUIP" : ""}</p>
       </div>
     ))}
   </>

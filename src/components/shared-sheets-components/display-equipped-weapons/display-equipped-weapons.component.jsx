@@ -1,6 +1,6 @@
 import React from "react"
 
-const DisplayEquippedWeapons = ({ equippedWeapons }) => (
+const DisplayEquippedWeapons = ({ equippedWeapons, unequip, campaignSheet }) => (
   <>
     {equippedWeapons.map(({ name, rangedMelee, proficiencyCode, damage, id }) => (
       <div key={id}>
@@ -18,6 +18,7 @@ const DisplayEquippedWeapons = ({ equippedWeapons }) => (
             <em>Proficiency:</em> {proficiencyCode}
           </li>
         </ul>
+        <p className="actions">{campaignSheet ? "SHOW MORE" : unequip ? "UNEQUIP" : ""}</p>
       </div>
     ))}
   </>

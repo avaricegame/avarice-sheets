@@ -20,6 +20,7 @@ const CampaignSheetCards = ({ campSheetList }) => (
               charactersNames={charactersNames}
               missions={missions}
             />
+            <p className="actions">EDIT | DELETE</p>
           </CardContainer>
         </Link>
       )

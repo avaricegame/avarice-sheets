@@ -1,7 +1,6 @@
 import React from "react"
 
 import { default as Card } from "../../card-container/card-container.component"
-import { default as Button } from "../../custom-button/custom-button.component"
 
 // util functions
 import {
@@ -124,9 +123,9 @@ class NPCCard extends React.Component {
             </span>
           ))}
         </p>
-        <Button>Change Diplomacy</Button>
-        <Button>Copy to a mission</Button>
-        <Button>Move to a mission</Button>
+        <p className="actions">FRIEND | ENEMY</p>
+        {this.props.activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
+        {this.props.moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
       </Card>
     )
   }

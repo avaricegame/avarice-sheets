@@ -2,7 +2,7 @@ import React from "react"
 
 import { default as Card } from "../../card-container/card-container.component"
 
-const DisplayEnvironments = ({ environments }) => (
+const DisplayEnvironments = ({ environments, activate, moveEdit }) => (
   <>
     {environments.map((environment, index) => {
       const { name, hp, description, effects } = environment
@@ -16,6 +16,8 @@ const DisplayEnvironments = ({ environments }) => (
             <strong>Effects: </strong>
             {effects.name ? "yes" : "n/a"}
           </p>
+          {activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
+          {moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
         </Card>
       )
     })}

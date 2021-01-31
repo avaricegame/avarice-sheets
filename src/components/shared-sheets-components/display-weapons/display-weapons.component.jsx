@@ -2,7 +2,7 @@ import React from "react"
 
 import { default as Card } from "../../card-container/card-container.component"
 
-const DisplayWeapons = ({ weapons, blue, quatheading }) => (
+const DisplayWeapons = ({ weapons, blue, quatheading, edit, equip, activate, moveEdit }) => (
   <>
     {weapons.map((weapon) => {
       const {
@@ -65,6 +65,10 @@ const DisplayWeapons = ({ weapons, blue, quatheading }) => (
             <strong>Abilities: </strong>
             {abilities.length}
           </p>
+          {equip ? <p className="actions">EQUIP | UNEQUIP</p> : null}
+          {activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
+          {moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
+          {edit ? <p className="actions">EDIT | DELETE</p> : null}
         </Card>
       )
     })}

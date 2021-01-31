@@ -134,8 +134,6 @@ class CampaignGameplay extends React.Component {
       inactiveEnvironments,
     } = this.state
     const inactiveInventoryItems = [...inactiveWeapons, ...inactiveWearables, ...inactiveItems]
-    console.log(inactiveInventoryItems)
-    console.log(inactiveNPCS)
     return (
       <>
         <SheetsHeading heading="Gameplay" />
@@ -157,6 +155,7 @@ class CampaignGameplay extends React.Component {
             <Section heading="Current Mission">
               <Card heading={`${currentMission.date}: ${currentMission.name}`}>
                 {currentMission.notes}
+                <p className="actions">EDIT</p>
               </Card>
             </Section>
           </Column>
@@ -172,30 +171,39 @@ class CampaignGameplay extends React.Component {
                   <option value="wearables">Environment</option>
                 </select>
               </Card>
-              <DisplayNPCS npcs={activeNPCS} />
-              <DisplayEnvironments environments={activeEnvironments} />
-              <DisplayItems blue items={activeItems} />
-              <DisplayWearables blue wearables={activeWearables} />
-              <DisplayWeapons blue weapons={activeWeapons} />
+              <DisplayNPCS activate npcs={activeNPCS} />
+              <DisplayEnvironments activate environments={activeEnvironments} />
+              <DisplayItems activate blue items={activeItems} />
+              <DisplayWearables activate blue wearables={activeWearables} />
+              <DisplayWeapons activate blue weapons={activeWeapons} />
 
               <Card blue heading="Inactive">
                 {inactiveInventoryItems.map((inventoryItem, index) => (
-                  <p key={index}>
-                    <strong>{inventoryItem.name}: </strong> {inventoryItem.description}
-                    <span>see more</span>
-                  </p>
+                  <div key={index}>
+                    <p>
+                      <strong>{inventoryItem.name}: </strong> {inventoryItem.description}
+                      <span>see more</span>
+                    </p>
+                    <p className="actions">SHOW MORE | ACTIVATE</p>
+                  </div>
                 ))}
                 {inactiveNPCS.map((npc, index) => (
-                  <p key={index}>
-                    <strong>{npc.characterName}: </strong> {npc.enemy ? "Enemy" : "Friend"}
-                    <span>see more</span>
-                  </p>
+                  <div key={index}>
+                    <p>
+                      <strong>{npc.characterName}: </strong> {npc.enemy ? "Enemy" : "Friend"}
+                      <span>see more</span>
+                    </p>
+                    <p className="actions">SHOW MORE | ACTIVATE</p>
+                  </div>
                 ))}
                 {inactiveEnvironments.map((environment, index) => (
-                  <p key={index}>
-                    <strong>{environment.name}: </strong> {environment.description}
-                    <span>see more</span>
-                  </p>
+                  <div key={index}>
+                    <p>
+                      <strong>{environment.name}: </strong> {environment.description}
+                      <span>see more</span>
+                    </p>
+                    <p className="actions">SHOW MORE | ACTIVATE</p>
+                  </div>
                 ))}
               </Card>
             </Section>

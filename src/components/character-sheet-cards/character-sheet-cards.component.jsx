@@ -48,6 +48,7 @@ const CharacterSheetCards = ({ charSheetList }) => (
                 </tr>
               </tbody>
             </table>
+            <p className="actions">EDIT | DELETE</p>
           </CardContainer>
         </Link>
       )

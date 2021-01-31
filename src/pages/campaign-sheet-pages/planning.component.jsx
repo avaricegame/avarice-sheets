@@ -94,23 +94,23 @@ class PlanningPage extends React.Component {
           <Column width={25}>
             <Section heading="NPCS">
               <Button>Generate New NPC</Button>
-              <DisplayNPCS npcs={currentNPCS} />
+              <DisplayNPCS moveEdit npcs={currentNPCS} />
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Inventory Items">
               <Button>Generate New Inventory Item</Button>
-              <DisplayWeapons blue weapons={currentWeapons} quatheading="Weapon" />
-              <DisplayItems blue items={currentItems} quatheading="Item" />
-              <DisplayWearables blue wearables={currentWearables} quatheading="Wearable" />
+              <DisplayWeapons moveEdit blue weapons={currentWeapons} quatheading="Weapon" />
+              <DisplayItems moveEdit blue items={currentItems} quatheading="Item" />
+              <DisplayWearables moveEdit blue wearables={currentWearables} quatheading="Wearable" />
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Environment">
               <Button>Generate New Environment</Button>
-              <DisplayEnvironments environments={currentEnvironment} />
+              <DisplayEnvironments moveEdit environments={currentEnvironment} />
             </Section>
           </Column>
         </SheetsPageContainer>

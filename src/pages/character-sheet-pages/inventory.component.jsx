@@ -94,11 +94,11 @@ class InventoryPage extends React.Component {
                 heading="Weapons"
                 subheading={`Weapons Equipped: ${equippedWeapons.length} / 2`}
               >
-                <DisplayEquippedWeapons equippedWeapons={equippedWeapons} />
+                <DisplayEquippedWeapons unequip equippedWeapons={equippedWeapons} />
               </Card>
 
               <Card heading="Items" subheading={`Item's Equipped: ${equippedItems.length} / 3`}>
-                <DisplayEquippedItems equippedItems={equippedItems} />
+                <DisplayEquippedItems unequip equippedItems={equippedItems} />
               </Card>
 
               <Card heading="Wearables" subheading={`Armour Value: ${armourValue}`}>
@@ -144,9 +144,9 @@ class InventoryPage extends React.Component {
                   <option value="wearables">Wearables ({wearables.length})</option>
                 </select>
               </Card>
-              <DisplayWeapons weapons={weapons} />
-              <DisplayItems items={items} />
-              <DisplayWearables wearables={wearables} />
+              <DisplayWeapons equip edit weapons={weapons} />
+              <DisplayItems equip edit items={items} />
+              <DisplayWearables equip edit wearables={wearables} />
             </Section>
           </Column>
 
