@@ -51,7 +51,12 @@ class CampaignGameplay extends React.Component {
       inactiveItems: [],
       activeEnvironments: [],
       inactiveEnvironments: [],
+      displayNPCS: true,
+      displayEnvironment: true,
+      displayItems: true,
     }
+
+    this.handleInteractableSelect = this.handleInteractableSelect.bind(this)
   }
 
   componentDidMount() {
@@ -122,6 +127,41 @@ class CampaignGameplay extends React.Component {
     })
   }
 
+  handleInteractableSelect(e) {
+    console.log(e.target.value)
+    if (e.target.value === "NPCS") {
+      this.setState({
+        displayNPCS: true,
+        displayEnvironment: false,
+        displayItems: false,
+      })
+    } else if (e.target.value === "ENVIRONMENT") {
+      this.setState({
+        displayNPCS: false,
+        displayEnvironment: true,
+        displayItems: false,
+      })
+    } else if (e.target.value === "ITEMS") {
+      this.setState({
+        displayNPCS: false,
+        displayEnvironment: false,
+        displayItems: true,
+      })
+    } else if (e.target.value === "ALL") {
+      this.setState({
+        displayNPCS: true,
+        displayEnvironment: true,
+        displayItems: true,
+      })
+    } else {
+      this.setState({
+        displayNPCS: false,
+        displayEnvironment: false,
+        displayItems: false,
+      })
+    }
+  }
+
   render() {
     const { currentMission } = this.state
     const {
@@ -135,8 +175,17 @@ class CampaignGameplay extends React.Component {
       inactiveWearables,
       inactiveItems,
       inactiveEnvironments,
+      displayEnvironment,
+      displayItems,
+      displayNPCS,
     } = this.state
+    const activeInventoryItems = [...activeItems, ...activeWeapons, ...activeWearables]
     const inactiveInventoryItems = [...inactiveWeapons, ...inactiveWearables, ...inactiveItems]
+    const allActiveInteractablesTotal =
+      activeInventoryItems.length + activeNPCS.length + activeEnvironments.length
+    const allInactiveInteractablesTotal =
+      inactiveInventoryItems.length + inactiveNPCS.length + inactiveEnvironments.length
+
     const { togglePopupForm } = this.props
     return (
       <>
@@ -188,20 +237,23 @@ class CampaignGameplay extends React.Component {
                 Create Interactable
               </Button>
               <Card heading="View:">
-                <select>
-                  <option value="entire-inventory">All Interactables</option>
-                  <option value="weapons">NPCS</option>
-                  <option value="items">Inventory Items</option>
-                  <option value="wearables">Environment</option>
+                <select onChange={this.handleInteractableSelect}>
+                  <option value="ALL">All Interactables ({allActiveInteractablesTotal})</option>
+                  <option value="NPCS">NPCS ({activeNPCS.length})</option>
+                  <option value="ITEMS">Inventory Items ({activeInventoryItems.length})</option>
+                  <option value="ENVIRONMENT">Environment ({activeEnvironments.length})</option>
+                  <option value="NONE">None</option>
                 </select>
               </Card>
-              <DisplayNPCS activate npcs={activeNPCS} />
-              <DisplayEnvironments activate environments={activeEnvironments} />
-              <DisplayItems activate blue items={activeItems} />
-              <DisplayWearables activate blue wearables={activeWearables} />
-              <DisplayWeapons activate blue weapons={activeWeapons} />
+              {displayNPCS ? <DisplayNPCS activate npcs={activeNPCS} /> : null}
+              {displayEnvironment ? (
+                <DisplayEnvironments activate environments={activeEnvironments} />
+              ) : null}
+              {displayItems ? <DisplayItems activate blue items={activeItems} /> : null}
+              {displayItems ? <DisplayWearables activate blue wearables={activeWearables} /> : null}
+              {displayItems ? <DisplayWeapons activate blue weapons={activeWeapons} /> : null}
 
-              <Card blue heading="Inactive">
+              <Card blue heading={`Inactive (${allInactiveInteractablesTotal})`}>
                 {inactiveInventoryItems.map((inventoryItem, index) => (
                   <div key={index}>
                     <p>
@@ -211,6 +263,7 @@ class CampaignGameplay extends React.Component {
                     <p className="actions">SHOW MORE | ACTIVATE</p>
                   </div>
                 ))}
+
                 {inactiveNPCS.map((npc, index) => (
                   <div key={index}>
                     <p>
@@ -220,6 +273,7 @@ class CampaignGameplay extends React.Component {
                     <p className="actions">SHOW MORE | ACTIVATE</p>
                   </div>
                 ))}
+
                 {inactiveEnvironments.map((environment, index) => (
                   <div key={index}>
                     <p>

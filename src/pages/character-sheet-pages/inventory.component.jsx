@@ -48,7 +48,12 @@ class InventoryPage extends React.Component {
       equippedItems: [],
       armourValue: null,
       newEquippedWearables: [],
+      displayWeapons: true,
+      displayItems: true,
+      displayWearables: true,
     }
+
+    this.handleSURONISSelect = this.handleSURONISSelect.bind(this)
   }
 
   componentDidMount() {
@@ -77,6 +82,40 @@ class InventoryPage extends React.Component {
     })
   }
 
+  handleSURONISSelect(e) {
+    if (e.target.value === "WEAPONS") {
+      this.setState({
+        displayWeapons: true,
+        displayItems: false,
+        displayWearables: false,
+      })
+    } else if (e.target.value === "WEARABLES") {
+      this.setState({
+        displayWeapons: false,
+        displayItems: false,
+        displayWearables: true,
+      })
+    } else if (e.target.value === "ITEMS") {
+      this.setState({
+        displayWeapons: false,
+        displayItems: true,
+        displayWearables: false,
+      })
+    } else if (e.target.value === "ALL") {
+      this.setState({
+        displayWeapons: true,
+        displayItems: true,
+        displayWearables: true,
+      })
+    } else {
+      this.setState({
+        displayWeapons: false,
+        displayItems: false,
+        displayWearables: false,
+      })
+    }
+  }
+
   render() {
     const { lifeCredits, weapons, wearables, items, togglePopupForm } = this.props
     const {
@@ -85,6 +124,9 @@ class InventoryPage extends React.Component {
       equippedItems,
       armourValue,
       newEquippedWearables,
+      displayItems,
+      displayWeapons,
+      displayWearables,
     } = this.state
 
     return (
@@ -142,18 +184,17 @@ class InventoryPage extends React.Component {
           <Column width={25}>
             <Section heading="S.U.R.O.N.I.S.">
               <Card heading="See my:">
-                <select>
-                  <option value="entire-inventory">
-                    Entire Inventory ({entireInventory.length})
-                  </option>
-                  <option value="weapons">Weapons ({weapons.length})</option>
-                  <option value="items">Items ({items.length})</option>
-                  <option value="wearables">Wearables ({wearables.length})</option>
+                <select onChange={this.handleSURONISSelect}>
+                  <option value="ALL">Entire Inventory ({entireInventory.length})</option>
+                  <option value="WEAPONS">Weapons ({weapons.length})</option>
+                  <option value="ITEMS">Items ({items.length})</option>
+                  <option value="WEARABLES">Wearables ({wearables.length})</option>
+                  <option value="NONE">None</option>
                 </select>
               </Card>
-              <DisplayWeapons equip edit weapons={weapons} />
-              <DisplayItems equip edit items={items} />
-              <DisplayWearables equip edit wearables={wearables} />
+              {displayWeapons ? <DisplayWeapons equip edit weapons={weapons} /> : null}
+              {displayItems ? <DisplayItems equip edit items={items} /> : null}
+              {displayWearables ? <DisplayWearables equip edit wearables={wearables} /> : null}
             </Section>
           </Column>
 
