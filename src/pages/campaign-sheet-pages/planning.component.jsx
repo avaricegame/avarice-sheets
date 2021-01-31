@@ -21,10 +21,7 @@ import {
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 // util functions
-import {
-  getSingleMissionByID,
-  findInteractablesOnlyFromCertainMission,
-} from "./utils/plannings.utils"
+import { findInteractablesOnlyFromCertainMission } from "./utils/plannings.utils"
 import { getCurrentMission } from "./utils/campaign.utils"
 
 // display components
@@ -117,10 +114,10 @@ class PlanningPage extends React.Component {
           <Column width={25}>
             <Section heading="Environment">
               <Button>Generate New Environment</Button>
-              {currentEnvironment.map((environment) => {
+              {currentEnvironment.map((environment, index) => {
                 const { name, hp, description, effects } = environment
                 return (
-                  <Card blue heading={name} subheading={`Hit Points: ${hp}`}>
+                  <Card blue heading={name} subheading={`Hit Points: ${hp}`} key={index}>
                     <p>
                       <strong>Description: </strong>
                       {description}
