@@ -3,5 +3,5 @@ export const findInteractablesOnlyFromCertainMission = (interacatblesArray, miss
 }
 
 export const getSingleMissionByID = (missions, missionID) => {
-  return missions.filter((mission) => mission.id === missionID)
+  return missions.find((mission) => mission.id === missionID)
 }

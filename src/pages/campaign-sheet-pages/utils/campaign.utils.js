@@ -14,3 +14,8 @@ export const getCurrentMissionID = (missions) => {
   const currentMission = getCurrentMission(missions)
   return currentMission.id
 }
+
+export const getCurrentMissionNameAndStatus = (missions) => {
+  const currentMission = getCurrentMission(missions)
+  return `${currentMission.name} (Current)`
+}
