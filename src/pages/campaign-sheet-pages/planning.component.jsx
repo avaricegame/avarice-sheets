@@ -113,8 +113,6 @@ class PlanningPage extends React.Component {
 
     const { missions, togglePopupForm } = this.props
 
-    console.log(currentMission)
-
     return (
       <>
         <SheetsHeading heading="Planning" />
