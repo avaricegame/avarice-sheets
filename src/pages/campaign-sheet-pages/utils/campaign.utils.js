@@ -7,5 +7,5 @@ export const getOnlyCompletedMissions = (missions) => {
 }
 
 export const getCurrentMission = (missions) => {
-  return missions.filter((mission) => mission.current)
+  return missions.find((mission) => mission.current)
 }
