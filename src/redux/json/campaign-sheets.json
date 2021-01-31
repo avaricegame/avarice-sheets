@@ -999,8 +999,9 @@
     "environment": [
       {
         "name": "Door",
-        "active": false,
+        "active": true,
         "missionID": "1",
+        "id": "1",
         "description": "A large metal door.",
         "hp": "34",
         "effects": "n/a"
@@ -1008,7 +1009,8 @@
       {
         "name": "Ship",
         "active": true,
-        "missionID": "2",
+        "id": "2",
+        "missionID": "1",
         "description": "The ship they stole.",
         "hp": "n/a",
         "effects": "n/a"
@@ -1016,7 +1018,8 @@
       {
         "name": "Tree",
         "active": true,
-        "missionID": "3",
+        "id": "3",
+        "missionID": "1",
         "description": "A large tree",
         "hp": "n/a",
         "effects": "n/a"

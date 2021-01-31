@@ -14,3 +14,18 @@ export const togglePlanned = (missionID) => ({
   type: CampPageActionTypes.TOGGLE_MISSION_PLANNED,
   payload: missionID,
 })
+
+export const setAsFriend = (npcID) => ({
+  type: CampPageActionTypes.SET_AS_FRIEND,
+  payload: npcID,
+})
+
+export const setAsEnemy = (npcID) => ({
+  type: CampPageActionTypes.SET_AS_ENEMY,
+  payload: npcID,
+})
+
+export const toggleActive = (interactableIDAndType) => ({
+  type: CampPageActionTypes.TOGGLE_ACTIVE,
+  payload: interactableIDAndType,
+})
