@@ -20,23 +20,58 @@ import {
   selectCampaignName,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
+// util functions
+import {
+  getSingleMissionByID,
+  findInteractablesOnlyFromCertainMission,
+} from "./utils/plannings.utils"
+import { getCurrentMission } from "./utils/campaign.utils"
+
+// display components
+import MissionCard from "../../components/campaign-sheet-components/mission-card/mission-card.component"
+import NPCCard from "../../components/campaign-sheet-components/npc-card/npc-card.component"
+import DisplayWeapons from "../../components/shared-sheets-components/display-weapons/display-weapons.component"
+import DisplayItems from "../../components/shared-sheets-components/display-items/display-items.component"
+import DisplayWearables from "../../components/shared-sheets-components/display-wearables/display-wearables.component"
+
 class PlanningPage extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {}
+    this.state = {
+      currentMission: {},
+    }
   }
 
   componentDidMount() {
-    const { campaignName } = this.props
+    const { campaignName, missions } = this.props
     document.title = `Planning | ${campaignName} | Avarice Sheets`
-    this.setState({})
+    this.setState({
+      currentMission: getCurrentMission(missions),
+    })
   }
 
   componentWillUnmount() {
     this.setState({})
   }
   render() {
+    const { currentMission } = this.state
+    const {
+      environment,
+      inventoryItems: { weapons, wearables, items },
+      npcs,
+      missions,
+    } = this.props
+
+    const currentEnvironment = findInteractablesOnlyFromCertainMission(
+      environment,
+      currentMission.id
+    )
+    const currentWeapons = findInteractablesOnlyFromCertainMission(weapons, currentMission.id)
+    const currentWearables = findInteractablesOnlyFromCertainMission(wearables, currentMission.id)
+    const currentItems = findInteractablesOnlyFromCertainMission(items, currentMission.id)
+    const currentNPCS = findInteractablesOnlyFromCertainMission(npcs, currentMission.id)
+
     return (
       <>
         <SheetsHeading heading="Planning" />
@@ -46,85 +81,57 @@ class PlanningPage extends React.Component {
               <Button>Create a New Mission</Button>
               <Card heading="Selected Mission:">
                 <select>
-                  <option>Mission #1</option>
-                  <option>Mission #2</option>
-                  <option>Mission #3</option>
-                  <option>Mission #4</option>
+                  <option>Current Mission</option>
+                  {missions.map((mission) => (
+                    <option key={mission.id}>
+                      {mission.date} | {mission.name}
+                    </option>
+                  ))}
                 </select>
               </Card>
-              <Card blue heading="Mission #1s" subheading="Planned: 10/23/2021">
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi ratione enim
-                  voluptatum quis officiis minima esse labore itaque iste. Distinctio, repellendus
-                  ex fugit saepe iusto magni cupiditate qui nam aperiam.Ratione unde architecto ut
-                  veritatis vel. Illo tenetur culpa omnis necessitatibus quia quasi ut reprehenderit
-                  ullam dolores maiores. Odit cupiditate veniam vel perspiciatis repudiandae neque
-                  facilis. Nulla pariatur temporibus similique!
-                </p>
-              </Card>
+              <MissionCard mission={currentMission} />
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="NPCS">
               <Button>Generate New NPC</Button>
-              <Card heading="NPC Name">
-                <ul>
-                  <li>Race: race</li>
-                  <li>Level 4</li>
-                  <li>Hit Points: 34</li>
-                  <li>Armour Value: 7</li>
-                  <li>Dodge Value: 12</li>
-                  <li>Life Credits: 100</li>
-                  <li>Weapons: weapon 1</li>
-                </ul>
-
-                <select>
-                  <option>Friendly</option>
-                  <option>Enemy</option>
-                </select>
-                <Button>Copy to a mission</Button>
-                <Button>Move to a mission</Button>
-              </Card>
+              {currentNPCS.map((npc, index) => (
+                <NPCCard npc={npc} key={index} />
+              ))}
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Inventory Items">
               <Button>Generate New Inventory Item</Button>
-              <Card heading="Enemy Name">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Weapon</th>
-                      <th>Range</th>
-                      <th>Proficiency Value</th>
-                      <th>Damage</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Name</td>
-                      <td>2</td>
-                      <td>7</td>
-                      <td>D6</td>
-                    </tr>
-                    <tr>
-                      <td>Name</td>
-                      <td>8</td>
-                      <td>7</td>
-                      <td>D6</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </Card>
+
+              <DisplayWeapons blue weapons={currentWeapons} quatheading="Weapon" />
+
+              <DisplayItems blue items={currentItems} quatheading="Item" />
+
+              <DisplayWearables blue wearables={currentWearables} quatheading="Wearable" />
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Environment">
               <Button>Generate New Environment</Button>
-              <Card heading="Environment Name">environment thing</Card>
+              {currentEnvironment.map((environment) => {
+                const { name, hp, description, effects } = environment
+                return (
+                  <Card heading={name} subheading={`Hit Points: ${hp}`}>
+                    <p>
+                      <strong>Description: </strong>
+                      {description}
+                    </p>
+                    <p>
+                      <strong>Effects: </strong>
+                      {effects.name ? "yes" : "n/a"}
+                    </p>
+                  </Card>
+                )
+              })}
             </Section>
           </Column>
         </SheetsPageContainer>
