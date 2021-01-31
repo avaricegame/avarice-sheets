@@ -3,7 +3,7 @@ import React from "react"
 import { default as Card } from "../../card-container/card-container.component"
 
 // display components
-import MissionCardActions from "../mission-card-actions/mission-card-actions.component"
+import MissionCardActions from "../card-actions/mission-card-actions.component"
 import EditAndDeleteActions from "../../shared-sheets-components/edit-and-delete-actions/edit-and-delete-actions.component"
 
 const MissionCard = ({ mission: { complete, date, name, notes, id, planned, current } }) => (

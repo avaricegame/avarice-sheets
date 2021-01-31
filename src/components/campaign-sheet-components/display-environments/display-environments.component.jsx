@@ -3,12 +3,13 @@ import React from "react"
 import { default as Card } from "../../card-container/card-container.component"
 
 // display components
-import CopyMoveEditDeleteActions from "../copy-move-edit-delete-actions/copy-move-edit-delete-actions.component"
+import CopyMoveEditDeleteActions from "../card-actions/copy-move-edit-delete-actions.component"
+import ActivateDeactivateActions from "../card-actions/activate-deactivate-actions.component"
 
 const DisplayEnvironments = ({ environments, activate, moveEdit }) => (
   <>
     {environments.map((environment, index) => {
-      const { name, hp, description, effects } = environment
+      const { name, hp, description, effects, active, id } = environment
       return (
         <Card blue heading={name} subheading={`Hit Points: ${hp}`} key={index}>
           <p>
@@ -20,7 +21,9 @@ const DisplayEnvironments = ({ environments, activate, moveEdit }) => (
             {effects.name ? "yes" : "n/a"}
           </p>
           <div className="actions-div">
-            {activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
+            {activate ? (
+              <ActivateDeactivateActions type="environment" id={id} active={active} />
+            ) : null}
             {moveEdit ? <CopyMoveEditDeleteActions /> : null}
           </div>
         </Card>

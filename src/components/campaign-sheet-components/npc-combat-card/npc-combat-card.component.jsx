@@ -19,6 +19,7 @@ import {
 // display components
 import { Point } from "../../character-sheet-components/display-stats-tables/display-energy-points.component"
 import DisplayEquippedWeapons from "../../shared-sheets-components/display-equipped-weapons/display-equipped-weapons.component"
+import FriendEnemyActions from "../card-actions/friend-enemy-actions.component"
 
 class NPCCombatCard extends React.Component {
   constructor(props) {
@@ -75,7 +76,7 @@ class NPCCombatCard extends React.Component {
 
   render() {
     const {
-      character: { characterName, currentHP, weapons },
+      character: { characterName, currentHP, weapons, enemy, id },
     } = this.props
     const { armourValue, dodgeValue, maxHP, calculatedTransformedStats } = this.state
 
@@ -124,7 +125,7 @@ class NPCCombatCard extends React.Component {
             )}
           </tbody>
         </table>
-        <p className="actions">FRIEND | ENEMY</p>
+        <FriendEnemyActions id={id} enemy={enemy} />
       </Card>
     )
   }

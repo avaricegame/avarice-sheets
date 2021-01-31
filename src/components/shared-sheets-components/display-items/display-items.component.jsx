@@ -3,12 +3,13 @@ import React from "react"
 import { default as Card } from "../../card-container/card-container.component"
 
 import EditAndDeleteActions from "../edit-and-delete-actions/edit-and-delete-actions.component"
-import CopyMoveEditDeleteActions from "../../campaign-sheet-components/copy-move-edit-delete-actions/copy-move-edit-delete-actions.component"
+import CopyMoveEditDeleteActions from "../../campaign-sheet-components/card-actions/copy-move-edit-delete-actions.component"
+import ActivateDeactivateActions from "../../campaign-sheet-components/card-actions/activate-deactivate-actions.component"
 
 const DisplayItems = ({ items, blue, quatheading, edit, equip, activate, moveEdit }) => (
   <>
     {items.map((item) => {
-      const { name, id, equipped, description, category, uses, effects } = item
+      const { name, id, equipped, description, category, uses, effects, active } = item
       return (
         <Card
           blue={blue}
@@ -32,7 +33,7 @@ const DisplayItems = ({ items, blue, quatheading, edit, equip, activate, moveEdi
           </p>
           <div className="actions-div">
             {equip ? <p className="actions">EQUIP | UNEQUIP</p> : null}
-            {activate ? <p className="actions">DEACTIVATE</p> : null}
+            {activate ? <ActivateDeactivateActions type="item" id={id} active={active} /> : null}
             {moveEdit ? <CopyMoveEditDeleteActions /> : null}
             {edit ? <EditAndDeleteActions /> : null}
           </div>

@@ -3,7 +3,8 @@ import React from "react"
 import { default as Card } from "../../card-container/card-container.component"
 
 import EditAndDeleteActions from "../edit-and-delete-actions/edit-and-delete-actions.component"
-import CopyMoveEditDeleteActions from "../../campaign-sheet-components/copy-move-edit-delete-actions/copy-move-edit-delete-actions.component"
+import CopyMoveEditDeleteActions from "../../campaign-sheet-components/card-actions/copy-move-edit-delete-actions.component"
+import ActivateDeactivateActions from "../../campaign-sheet-components/card-actions/activate-deactivate-actions.component"
 
 const DisplayWeapons = ({ weapons, blue, quatheading, edit, equip, activate, moveEdit }) => (
   <>
@@ -20,6 +21,7 @@ const DisplayWeapons = ({ weapons, blue, quatheading, edit, equip, activate, mov
         damage,
         critical,
         abilities,
+        active,
       } = weapon
       return (
         <Card
@@ -70,7 +72,7 @@ const DisplayWeapons = ({ weapons, blue, quatheading, edit, equip, activate, mov
           </p>
           <div className="actions-div">
             {equip ? <p className="actions">EQUIP | UNEQUIP</p> : null}
-            {activate ? <p className="actions">DEACTIVATE</p> : null}
+            {activate ? <ActivateDeactivateActions type="weapon" id={id} active={active} /> : null}
             {moveEdit ? <CopyMoveEditDeleteActions /> : null}
             {edit ? <EditAndDeleteActions /> : null}
           </div>
