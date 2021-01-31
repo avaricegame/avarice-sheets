@@ -20,6 +20,9 @@ import {
   selectRaceInfo,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
+import { togglePopupForm } from "../../redux/app/app.actions"
+import PopupFormTypes from "../../components/popup-form/popup-form.types"
+
 // util functions
 import { calculateActualStatValuesAndTransform } from "./utils/stats.utils"
 import { findEquippedInventoryItems } from "./utils/inventory.utils"
@@ -58,7 +61,7 @@ class StatsPage extends React.Component {
   }
 
   render() {
-    const { level } = this.props
+    const { level, togglePopupForm } = this.props
     const { transformedCalculatedStatValues } = this.state
 
     return (
@@ -68,7 +71,7 @@ class StatsPage extends React.Component {
           <Column width={25}>
             <Section heading="Levels and Experience">
               <Card heading="Level" subheading={`You are at level ${level}`}>
-                <Button>Level Up</Button>
+                <Button onClick={() => togglePopupForm(PopupFormTypes.LEVEL_UP)}>Level Up</Button>
                 <Button>Remove Level</Button>
                 <p>
                   When you level up you get to choose a new ability to upgrade or learn from your
@@ -117,4 +120,8 @@ const mapStateToProps = createStructuredSelector({
   characterName: selectCharacterName,
 })
 
-export default connect(mapStateToProps)(StatsPage)
+const mapDispatchToProps = (dispatch) => ({
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(StatsPage)

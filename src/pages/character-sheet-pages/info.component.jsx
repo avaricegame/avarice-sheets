@@ -23,6 +23,9 @@ import {
   selectCaptainsLog,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
+import { togglePopupForm } from "../../redux/app/app.actions"
+import PopupFormTypes from "../../components/popup-form/popup-form.types"
+
 // display components
 import DisplayCampaignInfo from "../../components/shared-sheets-components/display-campaign-info/display-campaign-info.component"
 import { default as Log } from "../../components/shared-sheets-components/display-log/display-log.component"
@@ -51,6 +54,7 @@ class InfoPage extends React.Component {
         creatorName,
       },
       captainsLog,
+      togglePopupForm,
     } = this.props
     return (
       <>
@@ -58,7 +62,9 @@ class InfoPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Mission Logs">
-              <Button>Add a New Character Log</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.NEW_CHARACTER_LOG)}>
+                Add a New Character Log
+              </Button>
               <Card heading="Character's Logs" subheading={`For ${characterName}`}>
                 {characterLog.map(({ id, title, details }) => (
                   <Log edit id={id} title={title} details={details} key={id} />
@@ -188,4 +194,8 @@ const mapStateToProps = createStructuredSelector({
   captainsLog: selectCaptainsLog,
 })
 
-export default connect(mapStateToProps)(InfoPage)
+const mapDispatchToProps = (dispatch) => ({
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(InfoPage)

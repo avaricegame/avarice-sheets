@@ -1,4 +1,5 @@
 import React from "react"
+import { connect } from "react-redux"
 
 import { default as Column } from "../../sheets-page-container-column/sheets-page-container-column.component"
 
@@ -9,6 +10,9 @@ import {
   CardContainerContentContainer as InteriorCardContent,
 } from "../../card-container/card-container.component"
 import { default as Button } from "../../custom-button/custom-button.component"
+
+import { togglePopupForm } from "../../../redux/app/app.actions"
+import PopupFormTypes from "../../popup-form/popup-form.types"
 
 // util functions
 import {
@@ -113,6 +117,7 @@ class PlayerCard extends React.Component {
   render() {
     const {
       player: { characterName, playerName, raceName, className, currentHP, lifeCredits },
+      togglePopupForm,
     } = this.props
     const {
       armourValue,
@@ -190,7 +195,9 @@ class PlayerCard extends React.Component {
             <InteriorCardContent>
               <DisplayEquippedItems equippedItems={equippedItems} />
             </InteriorCardContent>
-            <Button>Open Players S.U.R.O.N.I.S</Button>
+            <Button onClick={() => togglePopupForm(PopupFormTypes.OPEN_PLAYERS_SURONIS)}>
+              Open Players S.U.R.O.N.I.S
+            </Button>
           </Column>
 
           <Column width={50}>
@@ -230,4 +237,8 @@ class PlayerCard extends React.Component {
   }
 }
 
-export default PlayerCard
+const mapDispatchToProps = (dispatch) => ({
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+})
+
+export default connect(null, mapDispatchToProps)(PlayerCard)

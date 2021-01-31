@@ -8,6 +8,9 @@ import DisplayCampaignInfo from "../shared-sheets-components/display-campaign-in
 
 import { selectCampSheetList } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
+// display components
+import EditAndDeleteActions from "../shared-sheets-components/edit-and-delete-actions/edit-and-delete-actions.component"
+
 const CampaignSheetCards = ({ campSheetList }) => (
   <>
     {campSheetList.map((campSheet) => {
@@ -20,7 +23,7 @@ const CampaignSheetCards = ({ campSheetList }) => (
               charactersNames={charactersNames}
               missions={missions}
             />
-            <p className="actions">EDIT | DELETE</p>
+            <EditAndDeleteActions />
           </CardContainer>
         </Link>
       )

@@ -23,6 +23,9 @@ import {
   selectRaceInfo,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
+import { togglePopupForm } from "../../redux/app/app.actions"
+import PopupFormTypes from "../../components/popup-form/popup-form.types"
+
 // util functions
 import {
   findEquippedInventoryItems,
@@ -78,7 +81,7 @@ class CharacterGameplayPage extends React.Component {
   }
 
   render() {
-    const { currentHP, lifeCredits } = this.props
+    const { currentHP, lifeCredits, togglePopupForm } = this.props
     const { armourValue, transformedCalculatedStatValues, maxHP, dodgeValue } = this.state
     return (
       <>
@@ -93,27 +96,45 @@ class CharacterGameplayPage extends React.Component {
                 quatheading={`Current Hit Points: ${currentHP}`}
                 purpleTerheading
               >
-                <Button>Take Damage</Button>
-                <Button>Heal HP</Button>
+                <Button onClick={() => togglePopupForm(PopupFormTypes.TAKE_OR_HEAL_DAMAGE)}>
+                  Take Damage
+                </Button>
+                <Button onClick={() => togglePopupForm(PopupFormTypes.TAKE_OR_HEAL_DAMAGE)}>
+                  Heal HP
+                </Button>
               </Card>
             </Section>
             <Section heading="Money">
               <Card heading="Life Credits" terheading={`Current Savings: ${lifeCredits} LC`}>
-                <Button>Pay Money</Button>
-                <Button>Recieve Money</Button>
+                <Button onClick={() => togglePopupForm(PopupFormTypes.PAY_OR_RECIEVE_MONEY)}>
+                  Pay Money
+                </Button>
+                <Button onClick={() => togglePopupForm(PopupFormTypes.PAY_OR_RECIEVE_MONEY)}>
+                  Recieve Money
+                </Button>
               </Card>
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Actions">
-              <Button>Attack</Button>
-              <Button>Make a Check</Button>
-              <Button>Use an Item</Button>
-              <Button>Use an Ability</Button>
-              <Button>Equip / Unequip</Button>
-              <Button>Take a Rest</Button>
-              <Button>Roll Dice</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.ATTACK)}>Attack</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.MAKE_A_CHECK)}>
+                Make a Check
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.USE_AN_ITEM)}>
+                Use an Item
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.USE_AN_ABILITY)}>
+                Use an Ability
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.EQUIP_AND_UNEQUIP)}>
+                Equip / Unequip
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.TAKE_A_REST)}>
+                Take a Rest
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.ROLL_DICE)}>Roll Dice</Button>
             </Section>
           </Column>
 
@@ -156,4 +177,8 @@ const mapStateToProps = createStructuredSelector({
   characterName: selectCharacterName,
 })
 
-export default connect(mapStateToProps)(CharacterGameplayPage)
+const mapDispatchToProps = (dispatch) => ({
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CharacterGameplayPage)

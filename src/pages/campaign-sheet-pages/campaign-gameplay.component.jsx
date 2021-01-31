@@ -20,6 +20,9 @@ import {
   selectEnvironment,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
+import { togglePopupForm } from "../../redux/app/app.actions"
+import PopupFormTypes from "../../components/popup-form/popup-form.types"
+
 // util functions
 import { getCurrentMission, getCurrentMissionID } from "./utils/campaign.utils"
 import { findOnlyActiveInteractables, findOnlyInactiveInteractables } from "./utils/combat.utils"
@@ -134,20 +137,37 @@ class CampaignGameplay extends React.Component {
       inactiveEnvironments,
     } = this.state
     const inactiveInventoryItems = [...inactiveWeapons, ...inactiveWearables, ...inactiveItems]
+    const { togglePopupForm } = this.props
     return (
       <>
         <SheetsHeading heading="Gameplay" />
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Actions">
-              <Button>Start Combat</Button>
-              <Button>Perform a Check</Button>
-              <Button>Dispense Damage</Button>
-              <Button>Give or Take Money</Button>
-              <Button>Buy or Sell Items</Button>
-              <Button>Give or Take Items</Button>
-              <Button>Rest Party</Button>
-              <Button>Level Up Party</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.START_COMBAT)}>
+                Start Combat
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.PERFORM_A_CHECK_CAMPAIGN)}>
+                Perform a Check
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.DISPENSE_DAMAGE)}>
+                Dispense Damage
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.GIVE_OR_TAKE_MONEY)}>
+                Give or Take Money
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.BUY_OR_SELL_ITEMS)}>
+                Buy or Sell Items
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.GIVE_OR_TAKE_ITEMS)}>
+                Give or Take Items
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.REST_PARTY_CAMPAIGN)}>
+                Rest Party
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.LEVEL_UP_PARTY_CAMPAIGN)}>
+                Level Up Party
+              </Button>
             </Section>
           </Column>
 
@@ -155,14 +175,18 @@ class CampaignGameplay extends React.Component {
             <Section heading="Current Mission">
               <Card heading={`${currentMission.date}: ${currentMission.name}`}>
                 {currentMission.notes}
-                <p className="actions">EDIT</p>
+                <p onClick={() => togglePopupForm(PopupFormTypes.EDIT_MISSION)} className="actions">
+                  EDIT
+                </p>
               </Card>
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Mission Interactables">
-              <Button>Create Interactable</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.CREATE_INTERACTABLE_GAMEPLAY)}>
+                Create Interactable
+              </Button>
               <Card heading="View:">
                 <select>
                   <option value="entire-inventory">All Interactables</option>
@@ -222,4 +246,8 @@ const mapStateToProps = createStructuredSelector({
   environment: selectEnvironment,
 })
 
-export default connect(mapStateToProps)(CampaignGameplay)
+const mapDispatchToProps = (dispatch) => ({
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CampaignGameplay)

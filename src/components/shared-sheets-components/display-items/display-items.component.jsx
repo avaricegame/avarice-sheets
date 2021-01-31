@@ -2,6 +2,9 @@ import React from "react"
 
 import { default as Card } from "../../card-container/card-container.component"
 
+import EditAndDeleteActions from "../edit-and-delete-actions/edit-and-delete-actions.component"
+import CopyMoveEditDeleteActions from "../../campaign-sheet-components/copy-move-edit-delete-actions/copy-move-edit-delete-actions.component"
+
 const DisplayItems = ({ items, blue, quatheading, edit, equip, activate, moveEdit }) => (
   <>
     {items.map((item) => {
@@ -30,8 +33,8 @@ const DisplayItems = ({ items, blue, quatheading, edit, equip, activate, moveEdi
           <div className="actions-div">
             {equip ? <p className="actions">EQUIP | UNEQUIP</p> : null}
             {activate ? <p className="actions">DEACTIVATE</p> : null}
-            {moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
-            {edit ? <p className="actions">EDIT | DELETE</p> : null}
+            {moveEdit ? <CopyMoveEditDeleteActions /> : null}
+            {edit ? <EditAndDeleteActions /> : null}
           </div>
         </Card>
       )

@@ -20,6 +20,9 @@ import {
   selectItems,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
+import { togglePopupForm } from "../../redux/app/app.actions"
+import PopupFormTypes from "../../components/popup-form/popup-form.types"
+
 // display components
 import DisplayWeapons from "../../components/shared-sheets-components/display-weapons/display-weapons.component"
 import DisplayItems from "../../components/shared-sheets-components/display-items/display-items.component"
@@ -75,7 +78,7 @@ class InventoryPage extends React.Component {
   }
 
   render() {
-    const { lifeCredits, weapons, wearables, items } = this.props
+    const { lifeCredits, weapons, wearables, items, togglePopupForm } = this.props
     const {
       entireInventory,
       equippedWeapons,
@@ -126,8 +129,12 @@ class InventoryPage extends React.Component {
           <Column width={25}>
             <Section heading="Money">
               <Card heading="Life Credits" terheading={`Current Savings: ${lifeCredits} LC`}>
-                <Button>Pay Money</Button>
-                <Button>Recieve Money</Button>
+                <Button onClick={() => togglePopupForm(PopupFormTypes.PAY_OR_RECIEVE_MONEY)}>
+                  Pay Money
+                </Button>
+                <Button onClick={() => togglePopupForm(PopupFormTypes.PAY_OR_RECIEVE_MONEY)}>
+                  Recieve Money
+                </Button>
               </Card>
             </Section>
           </Column>
@@ -152,10 +159,18 @@ class InventoryPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Add New">
-              <Button>Add New Weapon</Button>
-              <Button>Add New Item</Button>
-              <Button>Add New Wearable</Button>
-              <Button>Sell Something</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.ADD_A_NEW_WEAPON)}>
+                Add New Weapon
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.ADD_A_NEW_ITEM)}>
+                Add New Item
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.ADD_A_NEW_WEARABLE)}>
+                Add New Wearable
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.SELL_INVENTORY_ITEM)}>
+                Sell Something
+              </Button>
             </Section>
           </Column>
         </SheetsPageContainer>
@@ -172,4 +187,8 @@ const mapStateToProps = createStructuredSelector({
   characterName: selectCharacterName,
 })
 
-export default connect(mapStateToProps)(InventoryPage)
+const mapDispatchToProps = (dispatch) => ({
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryPage)

@@ -23,6 +23,9 @@ import {
   selectCharactersNames,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
+import { togglePopupForm } from "../../redux/app/app.actions"
+import PopupFormTypes from "../../components/popup-form/popup-form.types"
+
 // util functions
 import { getOnlyFutureMissions, getOnlyCompletedMissions } from "./utils/campaign.utils"
 
@@ -69,6 +72,7 @@ class CampaignPage extends React.Component {
       campaignID,
       playersNames,
       charactersNames,
+      togglePopupForm,
     } = this.props
     const { futureMissions, completedMissions } = this.state
     return (
@@ -77,7 +81,9 @@ class CampaignPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Details">
-              <Button>Edit Campaign Details</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.EDIT_CAMPAIGN_DETAILS)}>
+                Edit Campaign Details
+              </Button>
               <Card
                 blue
                 heading="Campaign Details"
@@ -96,7 +102,9 @@ class CampaignPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Campaign Logs">
-              <Button>Add a New Captain's Log</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.ADD_NEW_CAPTAINS_LOG)}>
+                Add a New Captain's Log
+              </Button>
               <Card blue heading="Captain's Logs" subheading={`For ${campaignName}`}>
                 {captainsLog.map(({ id, title, details }) => (
                   <Log edit id={id} title={title} details={details} key={id} />
@@ -123,7 +131,9 @@ class CampaignPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Personal Logs">
-              <Button>Add a New Personal Log</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.ADD_NEW_PERSONAL_LOG)}>
+                Add a New Personal Log
+              </Button>
               <Card blue heading="Personal Mission Logs" subheading={`For ${campaignName}`}>
                 {personalLog.map(({ id, title, details }) => (
                   <Log edit id={id} title={title} details={details} key={id} />
@@ -149,4 +159,8 @@ const mapStateToProps = createStructuredSelector({
   charactersNames: selectCharactersNames,
 })
 
-export default connect(mapStateToProps)(CampaignPage)
+const mapDispatchToProps = (dispatch) => ({
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CampaignPage)

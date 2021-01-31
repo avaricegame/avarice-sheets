@@ -7,6 +7,9 @@ import CardContainer from "../card-container/card-container.component"
 
 import { selectCharSheetList } from "../../redux/character-sheet/character-sheet.selectors"
 
+// display components
+import EditAndDeleteActions from "../shared-sheets-components/edit-and-delete-actions/edit-and-delete-actions.component"
+
 const CharacterSheetCards = ({ charSheetList }) => (
   <>
     {charSheetList.map((charSheet) => {
@@ -48,7 +51,7 @@ const CharacterSheetCards = ({ charSheetList }) => (
                 </tr>
               </tbody>
             </table>
-            <p className="actions">EDIT | DELETE</p>
+            <EditAndDeleteActions />
           </CardContainer>
         </Link>
       )

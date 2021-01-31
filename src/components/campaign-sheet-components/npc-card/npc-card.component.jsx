@@ -15,6 +15,7 @@ import { calculateArmourValueFromEquippedWearables } from "../../../pages/charac
 
 // display components
 import DisplayBasicCharacterInfo from "../display-basic-character-info/display-basic-character-info.component"
+import CopyMoveEditDeleteActions from "../copy-move-edit-delete-actions/copy-move-edit-delete-actions.component"
 
 class NPCCard extends React.Component {
   constructor(props) {
@@ -126,7 +127,7 @@ class NPCCard extends React.Component {
         <div className="actions-div">
           <p className="actions">FRIEND | ENEMY</p>
           {this.props.activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
-          {this.props.moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
+          {this.props.moveEdit ? <CopyMoveEditDeleteActions /> : null}
         </div>
       </Card>
     )

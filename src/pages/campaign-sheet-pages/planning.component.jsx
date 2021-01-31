@@ -20,6 +20,9 @@ import {
   selectCampaignName,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
+import { togglePopupForm } from "../../redux/app/app.actions"
+import PopupFormTypes from "../../components/popup-form/popup-form.types"
+
 // util functions
 import {
   findInteractablesOnlyFromCertainMission,
@@ -108,7 +111,7 @@ class PlanningPage extends React.Component {
       currentEnvironment,
     } = this.state
 
-    const { missions } = this.props
+    const { missions, togglePopupForm } = this.props
 
     console.log(currentMission)
 
@@ -118,7 +121,9 @@ class PlanningPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Mission Notes">
-              <Button>Create a New Mission</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.CREATE_A_NEW_MISSION)}>
+                Create a New Mission
+              </Button>
               <Card heading="Selected Mission:">
                 <select onChange={(e) => this.selectMissionHandler(e)}>
                   <option value={getCurrentMissionID(missions)}>
@@ -149,14 +154,18 @@ class PlanningPage extends React.Component {
 
           <Column width={25}>
             <Section heading="NPCS">
-              <Button>Generate New NPC</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_NPC)}>
+                Generate New NPC
+              </Button>
               <DisplayNPCS moveEdit npcs={currentNPCS} />
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Inventory Items">
-              <Button>Generate New Inventory Item</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_INVENTORY_ITEM)}>
+                Generate New Inventory Item
+              </Button>
               <DisplayWeapons moveEdit blue weapons={currentWeapons} quatheading="Weapon" />
               <DisplayItems moveEdit blue items={currentItems} quatheading="Item" />
               <DisplayWearables moveEdit blue wearables={currentWearables} quatheading="Wearable" />
@@ -165,7 +174,9 @@ class PlanningPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Environment">
-              <Button>Generate New Environment</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_ENVIRONMENT)}>
+                Generate New Environment
+              </Button>
               <DisplayEnvironments moveEdit environments={currentEnvironment} />
             </Section>
           </Column>
@@ -183,4 +194,8 @@ const mapStateToProps = createStructuredSelector({
   campaignName: selectCampaignName,
 })
 
-export default connect(mapStateToProps)(PlanningPage)
+const mapDispatchToProps = (dispatch) => ({
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlanningPage)

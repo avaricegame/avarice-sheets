@@ -17,6 +17,9 @@ import {
   selectPlayers,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
+import { togglePopupForm } from "../../redux/app/app.actions"
+import PopupFormTypes from "../../components/popup-form/popup-form.types"
+
 // util functions
 import {
   findOnlyActiveInteractables,
@@ -55,7 +58,7 @@ class CombatPage extends React.Component {
   }
 
   render() {
-    const { players } = this.props
+    const { players, togglePopupForm } = this.props
     const { friendNPCS, enemyNPCS } = this.state
     return (
       <>
@@ -87,11 +90,15 @@ class CombatPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Actions">
-              <Button>Attack</Button>
-              <Button>Make a Check</Button>
-              <Button>Take Damage</Button>
-              <Button>Heal</Button>
-              <Button>Roll Dice</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.ATTACK_COMBAT)}>Attack</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.MAKE_A_CHECK_COMBAT)}>
+                Make a Check
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.TAKE_DAMAGE_COMBAT)}>
+                Take Damage
+              </Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.HEAL_COMBAT)}>Heal</Button>
+              <Button onClick={() => togglePopupForm(PopupFormTypes.ROLL_DICE)}>Roll Dice</Button>
             </Section>
           </Column>
         </SheetsPageContainer>
@@ -106,4 +113,8 @@ const mapStateToProps = createStructuredSelector({
   campaignName: selectCampaignName,
 })
 
-export default connect(mapStateToProps)(CombatPage)
+const mapDispatchToProps = (dispatch) => ({
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CombatPage)
