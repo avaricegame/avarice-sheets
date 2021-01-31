@@ -16,8 +16,10 @@ const DisplayEnvironments = ({ environments, activate, moveEdit }) => (
             <strong>Effects: </strong>
             {effects.name ? "yes" : "n/a"}
           </p>
-          {activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
-          {moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
+          <div className="actions-div">
+            {activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
+            {moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
+          </div>
         </Card>
       )
     })}

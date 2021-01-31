@@ -46,7 +46,13 @@ a {
   }
 }
 
+.actions-div {
+  padding-top: 1rem;
+}
+
 .actions {
   cursor: pointer;
-  color: $color-gray;
+  color: lighten($color-gray, 30%);
+  text-align: right;
+  margin-bottom: 0 !important;
 }

@@ -123,9 +123,11 @@ class NPCCard extends React.Component {
             </span>
           ))}
         </p>
-        <p className="actions">FRIEND | ENEMY</p>
-        {this.props.activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
-        {this.props.moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
+        <div className="actions-div">
+          <p className="actions">FRIEND | ENEMY</p>
+          {this.props.activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
+          {this.props.moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
+        </div>
       </Card>
     )
   }

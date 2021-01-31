@@ -27,10 +27,12 @@ const DisplayItems = ({ items, blue, quatheading, edit, equip, activate, moveEdi
             <strong>Effects: </strong>
             {effects.name ? "yes" : "n/a"}
           </p>
-          {equip ? <p className="actions">EQUIP | UNEQUIP</p> : null}
-          {activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
-          {moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
-          {edit ? <p className="actions">EDIT | DELETE</p> : null}
+          <div className="actions-div">
+            {equip ? <p className="actions">EQUIP | UNEQUIP</p> : null}
+            {activate ? <p className="actions">DEACTIVATE</p> : null}
+            {moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
+            {edit ? <p className="actions">EDIT | DELETE</p> : null}
+          </div>
         </Card>
       )
     })}

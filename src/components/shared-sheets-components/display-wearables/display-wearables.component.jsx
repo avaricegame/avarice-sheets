@@ -59,10 +59,12 @@ const DisplayWearables = ({ wearables, blue, quatheading, edit, equip, activate,
             <strong>Abilities: </strong>
             {abilities.length}
           </p>
-          {equip ? <p className="actions">EQUIP | UNEQUIP</p> : null}
-          {activate ? <p className="actions">ACTIVATE | DEACTIVATE</p> : null}
-          {moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
-          {edit ? <p className="actions">EDIT | DELETE</p> : null}
+          <div className="actions-div">
+            {equip ? <p className="actions">EQUIP | UNEQUIP</p> : null}
+            {activate ? <p className="actions">DEACTIVATE</p> : null}
+            {moveEdit ? <p className="actions">COPY | MOVE | EDIT | DELETE</p> : null}
+            {edit ? <p className="actions">EDIT | DELETE</p> : null}
+          </div>
         </Card>
       )
     })}
