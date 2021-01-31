@@ -31,7 +31,9 @@ class CampaignGameplay extends React.Component {
 
   componentDidMount() {
     const { missions, campaignName } = this.props
+
     document.title = `Gameplay | ${campaignName} | Avarice Sheets`
+
     this.setState({
       currentMission: getCurrentMission(missions),
     })

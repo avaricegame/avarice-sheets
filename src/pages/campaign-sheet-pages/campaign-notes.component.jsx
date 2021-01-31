@@ -19,21 +19,11 @@ import {
 import "../sheets-pages/notes/notes.styles.scss"
 
 class CampaignNotesPage extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {}
-  }
-
   componentDidMount() {
     const { campaignName } = this.props
     document.title = `Notes | ${campaignName} | Avarice Sheets`
-    this.setState({})
   }
 
-  componentWillUnmount() {
-    this.setState({})
-  }
   render() {
     const { notes } = this.props
     return (

@@ -53,7 +53,9 @@ class CharacterGameplayPage extends React.Component {
 
   componentDidMount() {
     const { wearables, level, stats, classInfo, raceInfo, characterName } = this.props
+
     document.title = `Gameplay | ${characterName} | Avarice Sheets`
+
     this.setState({
       armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
       maxHP: calculateMaxHPValue(level, findStatProficiencyValue(stats, "constitution")),

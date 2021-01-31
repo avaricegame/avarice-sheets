@@ -39,7 +39,9 @@ class AbilitiesPage extends React.Component {
       wearables,
       characterName,
     } = this.props
+
     document.title = `Abilities | ${characterName} | Avarice Sheets`
+
     this.setState({
       equippedAbilities: findAllEquippedAbilities(abilities, startingAbility, weapons, wearables),
     })

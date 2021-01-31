@@ -18,21 +18,11 @@ import {
 import PlayerCard from "../../components/campaign-sheet-components/player-card/player-card.component"
 
 class PlayersPage extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {}
-  }
-
   componentDidMount() {
     const { campaignName } = this.props
     document.title = `Players | ${campaignName} | Avarice Sheets`
-    this.setState({})
   }
 
-  componentWillUnmount() {
-    this.setState({})
-  }
   render() {
     const { players } = this.props
     return (

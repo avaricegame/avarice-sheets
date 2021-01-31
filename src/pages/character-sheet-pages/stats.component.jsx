@@ -39,7 +39,9 @@ class StatsPage extends React.Component {
 
   componentDidMount() {
     const { stats, wearables, classInfo, characterName } = this.props
+
     document.title = `Stats | ${characterName} | Avarice Sheets`
+
     this.setState({
       transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
         stats,

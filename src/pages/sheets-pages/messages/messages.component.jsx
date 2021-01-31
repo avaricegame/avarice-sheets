@@ -6,6 +6,9 @@ import SheetsHeading from "../../../components/sheets-heading/sheets-heading.com
 import "./messages.styles.scss"
 
 class MessagesPage extends React.Component {
+  componentDidMount() {
+    document.title = `Messages | Avarice Sheets`
+  }
   render() {
     return (
       <>

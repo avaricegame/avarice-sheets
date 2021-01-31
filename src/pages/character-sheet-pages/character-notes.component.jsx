@@ -19,19 +19,11 @@ import {
 import "../sheets-pages/notes/notes.styles.scss"
 
 class CharacterNotesPage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   componentDidMount() {
     const { characterName } = this.props
     document.title = `Notes | ${characterName} | Avarice Sheets`
   }
 
-  componentWillUnmount() {
-    this.setState({})
-  }
   render() {
     const { notes } = this.props
     return (

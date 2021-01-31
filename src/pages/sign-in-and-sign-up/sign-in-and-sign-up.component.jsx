@@ -11,6 +11,14 @@ class SignInAndSignUpPage extends React.Component {
     hasAccount: false,
   }
 
+  componentDidMount() {
+    if (this.state.hasAccount) {
+      document.title = "Sign In | Avarice Sheets"
+    } else {
+      document.title = "Sign Up | Avarcie Sheets"
+    }
+  }
+
   handleClick = () => {
     const { hasAccount } = this.state
     this.setState({ hasAccount: !hasAccount })

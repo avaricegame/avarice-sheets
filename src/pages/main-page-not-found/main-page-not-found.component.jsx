@@ -10,6 +10,7 @@ class PageNotFound extends React.Component {
   componentDidMount() {
     document.title = `Page Not Found | Avarice Sheets`
   }
+
   render() {
     return (
       <>

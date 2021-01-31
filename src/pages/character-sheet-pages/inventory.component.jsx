@@ -50,7 +50,9 @@ class InventoryPage extends React.Component {
 
   componentDidMount() {
     const { weapons, wearables, items, characterName } = this.props
+
     document.title = `Inventory | ${characterName} | Avarice Sheets`
+
     this.setState({
       entireInventory: [...weapons, ...wearables, ...items],
       equippedWeapons: findEquippedInventoryItems(weapons),
