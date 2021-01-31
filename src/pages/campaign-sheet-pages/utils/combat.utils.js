@@ -1,5 +1,9 @@
-export const findOnlyActiveNPCS = (npcs) => {
-  return npcs.filter((npc) => npc.active)
+export const findOnlyActiveInteractables = (interactables) => {
+  return interactables.filter((interactable) => interactable.active)
+}
+
+export const findOnlyInactiveInteractables = (interactables) => {
+  return interactables.filter((interactable) => !interactable.active)
 }
 
 export const findOnlyEnemyNPCS = (npcs) => {

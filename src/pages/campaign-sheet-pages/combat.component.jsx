@@ -18,7 +18,11 @@ import {
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 // util functions
-import { findOnlyActiveNPCS, findOnlyFriendNPCS, findOnlyEnemyNPCS } from "./utils/combat.utils"
+import {
+  findOnlyActiveInteractables,
+  findOnlyFriendNPCS,
+  findOnlyEnemyNPCS,
+} from "./utils/combat.utils"
 
 // display components
 import NPCCombatCard from "../../components/campaign-sheet-components/npc-combat-card/npc-combat-card.component"
@@ -38,8 +42,8 @@ class CombatPage extends React.Component {
     const { campaignName, npcs } = this.props
     document.title = `Combat | ${campaignName} | Avarice Sheets`
     this.setState({
-      friendNPCS: findOnlyActiveNPCS(findOnlyFriendNPCS(npcs)),
-      enemyNPCS: findOnlyActiveNPCS(findOnlyEnemyNPCS(npcs)),
+      friendNPCS: findOnlyActiveInteractables(findOnlyFriendNPCS(npcs)),
+      enemyNPCS: findOnlyActiveInteractables(findOnlyEnemyNPCS(npcs)),
     })
   }
 

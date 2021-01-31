@@ -9,3 +9,8 @@ export const getOnlyCompletedMissions = (missions) => {
 export const getCurrentMission = (missions) => {
   return missions.find((mission) => mission.current)
 }
+
+export const getCurrentMissionID = (missions) => {
+  const currentMission = getCurrentMission(missions)
+  return currentMission.id
+}

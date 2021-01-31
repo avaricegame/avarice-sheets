@@ -13,7 +13,7 @@
       {
         "characterName": "William Bar",
         "id": "1",
-        "active": true,
+        "active": false,
         "enemy": false,
         "race": "Narak",
         "raceID": "3",
@@ -757,7 +757,7 @@
           "name": "Assassin's Wrist Mounted Gun",
           "id": "1",
           "damage": "D6",
-          "active": true,
+          "active": false,
           "missionID": "1",
           "proficiency": "constitution",
           "rangedMelee": "Ranged",
@@ -802,7 +802,7 @@
         {
           "name": "Assassin's Wrist Mounted Gun III",
           "damage": "D6",
-          "active": true,
+          "active": false,
           "missionID": "2",
           "id": "3",
           "proficiency": "constitution",
@@ -825,7 +825,7 @@
         {
           "name": "Assassin's Wrist Mounted Gun IV",
           "damage": "D6",
-          "active": true,
+          "active": false,
           "missionID": "3",
           "id": "4",
           "proficiency": "constitution",
@@ -862,7 +862,7 @@
         {
           "name": "All or Nothing Coin",
           "equipped": false,
-          "active": true,
+          "active": false,
           "category": "Leptics",
           "id": "2",
           "missionID": "2",
@@ -936,24 +936,54 @@
         {
           "name": "A Bucket of Disguise II",
           "equipped": false,
-          "active": true,
+          "active": false,
           "armourValue": 3,
           "missionID": "3",
           "id": "2",
           "bodyArea": "Head",
           "description": "The wearer of the bucket truly believes that they are invisible. It is highly sought after, but there is an interesting quality that only someone who wears it discovers. The wearer begins to hear thoughts that are not their own.",
-          "statModifiers": {
-            "strength": 0,
-            "constitution": 0,
-            "reflex": 0,
-            "speed": 0,
-            "speech": 0,
-            "performance": 0,
-            "technical": 0,
-            "practical": 1,
-            "ranged": 0,
-            "melee": -1
-          },
+          "statModifiers": [
+            {
+              "modifier": "strength",
+              "value": 0
+            },
+            {
+              "modifier": "constitution",
+              "value": 0
+            },
+            {
+              "modifier": "reflex",
+              "value": 0
+            },
+            {
+              "modifier": "speed",
+              "value": 0
+            },
+            {
+              "modifier": "speech",
+              "value": 0
+            },
+            {
+              "modifier": "perform",
+              "value": 0
+            },
+            {
+              "modifier": "technical",
+              "value": 0
+            },
+            {
+              "modifier": "practical",
+              "value": 1
+            },
+            {
+              "modifier": "ranged",
+              "value": 0
+            },
+            {
+              "modifier": "melee",
+              "value": -1
+            }
+          ],
           "abilities": [
             {
               "name": "Walaloo",
@@ -969,7 +999,7 @@
     "environment": [
       {
         "name": "Door",
-        "active": true,
+        "active": false,
         "missionID": "1",
         "description": "A large metal door.",
         "hp": "34",
@@ -997,7 +1027,7 @@
         "name": "The Beginning",
         "id": "1",
         "date": "Oct 10, 2020",
-        "current": false,
+        "current": true,
         "complete": true,
         "planned": false,
         "notes": "Bacon ipsum dolor amet landjaeger turducken pancetta short ribs ham, ham hock porchetta bresaola chislic chicken alcatra. Meatball tri-tip strip steak biltong shankle. Rump swine meatball tongue jowl. Tail picanha salami, porchetta ground round chicken chuck boudin. Chicken biltong ground round cow shoulder pancetta prosciutto pork belly salami. Ball tip corned beef tenderloin shank.\nBeef ribs burgdoggen alcatra turducken bacon short ribs ham prosciutto, shank frankfurter shankle cow meatloaf porchetta. Leberkas tenderloin ham hock pork belly flank. Shankle ham doner pig,"
@@ -1006,7 +1036,7 @@
         "name": "Finding Dory",
         "id": "2",
         "date": "Feb 1, 2021",
-        "current": true,
+        "current": false,
         "complete": false,
         "planned": true,
         "notes": "Bacon ipsum dolor amet landjaeger turducken pancetta short ribs ham, ham hock porchetta bresaola chislic chicken alcatra. Meatball tri-tip strip steak biltong shankle. Rump swine meatball tongue jowl. Tail picanha salami, porchetta ground round chicken chuck boudin. Chicken biltong ground round cow shoulder pancetta prosciutto pork belly salami. Ball tip corned beef tenderloin shank.\nBeef ribs burgdoggen alcatra turducken bacon short ribs ham prosciutto, shank frankfurter shankle cow meatloaf porchetta. Leberkas tenderloin ham hock pork belly flank. Shankle ham doner pig,"

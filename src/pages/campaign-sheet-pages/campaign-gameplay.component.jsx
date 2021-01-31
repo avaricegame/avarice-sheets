@@ -15,10 +15,22 @@ import { default as Button } from "../../components/custom-button/custom-button.
 import {
   selectCampaignName,
   selectMissions,
+  selectNPCS,
+  selectInventoryItems,
+  selectEnvironment,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 // util functions
-import { getCurrentMission } from "./utils/campaign.utils"
+import { getCurrentMission, getCurrentMissionID } from "./utils/campaign.utils"
+import { findOnlyActiveInteractables, findOnlyInactiveInteractables } from "./utils/combat.utils"
+import { findInteractablesOnlyFromCertainMission } from "./utils/plannings.utils"
+
+// display components
+import DisplayItems from "../../components/shared-sheets-components/display-items/display-items.component"
+import DisplayWearables from "../../components/shared-sheets-components/display-wearables/display-wearables.component"
+import DisplayWeapons from "../../components/shared-sheets-components/display-weapons/display-weapons.component"
+import DisplayEnvironments from "../../components/campaign-sheet-components/display-environments/display-environments.component"
+import DisplayNPCS from "../../components/campaign-sheet-components/display-npcs/display-npcs.component"
 
 class CampaignGameplay extends React.Component {
   constructor(props) {
@@ -26,27 +38,104 @@ class CampaignGameplay extends React.Component {
 
     this.state = {
       currentMission: {},
+      activeNPCS: [],
+      inactiveNPCS: [],
+      activeWeapons: [],
+      activeWearables: [],
+      activeItems: [],
+      inactiveWeapons: [],
+      inactiveWearables: [],
+      inactiveItems: [],
+      activeEnvironments: [],
+      inactiveEnvironments: [],
     }
   }
 
   componentDidMount() {
-    const { missions, campaignName } = this.props
+    const { missions, campaignName, npcs, inventoryItems, environment } = this.props
 
     document.title = `Gameplay | ${campaignName} | Avarice Sheets`
 
     this.setState({
       currentMission: getCurrentMission(missions),
+      activeNPCS: findOnlyActiveInteractables(
+        findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
+      ),
+      inactiveNPCS: findOnlyInactiveInteractables(
+        findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
+      ),
+      activeWeapons: findOnlyActiveInteractables(
+        findInteractablesOnlyFromCertainMission(
+          inventoryItems.weapons,
+          getCurrentMissionID(missions)
+        )
+      ),
+      activeWearables: findOnlyActiveInteractables(
+        findInteractablesOnlyFromCertainMission(
+          inventoryItems.wearables,
+          getCurrentMissionID(missions)
+        )
+      ),
+      activeItems: findOnlyActiveInteractables(
+        findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
+      ),
+      inactiveWeapons: findOnlyInactiveInteractables(
+        findInteractablesOnlyFromCertainMission(
+          inventoryItems.weapons,
+          getCurrentMissionID(missions)
+        )
+      ),
+      inactiveWearables: findOnlyInactiveInteractables(
+        findInteractablesOnlyFromCertainMission(
+          inventoryItems.wearables,
+          getCurrentMissionID(missions)
+        )
+      ),
+      inactiveItems: findOnlyInactiveInteractables(
+        findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
+      ),
+      activeEnvironments: findOnlyActiveInteractables(
+        findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
+      ),
+      inactiveEnvironments: findOnlyInactiveInteractables(
+        findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
+      ),
     })
   }
 
   componentWillUnmount() {
     this.setState({
       currentMission: null,
+      activeNPCS: [],
+      inactiveNPCS: [],
+      activeWeapons: [],
+      activeWearables: [],
+      activeItems: [],
+      inactiveWeapons: [],
+      inactiveWearables: [],
+      inactiveItems: [],
+      activeEnvironments: [],
+      inactiveEnvironments: [],
     })
   }
 
   render() {
     const { currentMission } = this.state
+    const {
+      activeNPCS,
+      activeWeapons,
+      activeWearables,
+      activeItems,
+      activeEnvironments,
+      inactiveNPCS,
+      inactiveWeapons,
+      inactiveWearables,
+      inactiveItems,
+      inactiveEnvironments,
+    } = this.state
+    const inactiveInventoryItems = [...inactiveWeapons, ...inactiveWearables, ...inactiveItems]
+    console.log(inactiveInventoryItems)
+    console.log(inactiveNPCS)
     return (
       <>
         <SheetsHeading heading="Gameplay" />
@@ -75,54 +164,39 @@ class CampaignGameplay extends React.Component {
           <Column width={25}>
             <Section heading="Mission Interactables">
               <Button>Create Interactable</Button>
-              <Card heading="Interactable Name" subheading="NPC" blue>
-                npc info diplomacy:
+              <Card heading="View:">
                 <select>
-                  <option>Friend</option>
-                  <option>Enemy</option>
-                  <option>Neutral</option>
-                </select>
-                status:
-                <select>
-                  <option>Active</option>
-                  <option>Inactive</option>
-                  <option>Dead</option>
+                  <option value="entire-inventory">All Interactables</option>
+                  <option value="weapons">NPCS</option>
+                  <option value="items">Inventory Items</option>
+                  <option value="wearables">Environment</option>
                 </select>
               </Card>
-              <Card heading="Interactable Name" subheading="NPC" blue>
-                npc info
-              </Card>
-              <Card heading="Interactable Name" subheading="Environment" blue>
-                environment info
-              </Card>
-              <Card heading="Interactable Name" subheading="Inventory" blue>
-                inventory item info
-              </Card>
-              <Card heading="Inactive">
-                <p>
-                  <strong>Name of it: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing
-                  elit... <span>see more</span>
-                </p>
-                <p>
-                  <strong>Name of it: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing
-                  elit Lorem ipsum dolor sit amet consectetur adipisicing elit. At cum neque
-                  architecto praesentium veniam? Officia quaerat aperiam neque et. Rem eum id quam.
-                  Provident nam voluptatem repellat exercitationem optio quidem.
-                  <br />
-                  <span>ACTIVATE</span>
-                </p>
-                <p>
-                  <strong>Name of it: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing
-                  elit... <span>see more</span>
-                </p>
-                <p>
-                  <strong>Name of it: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing
-                  elit... <span>see more</span>
-                </p>
-                <p>
-                  <strong>Name of it: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing
-                  elit... <span>see more</span>
-                </p>
+              <DisplayNPCS npcs={activeNPCS} />
+              <DisplayEnvironments environments={activeEnvironments} />
+              <DisplayItems blue items={activeItems} />
+              <DisplayWearables blue wearables={activeWearables} />
+              <DisplayWeapons blue weapons={activeWeapons} />
+
+              <Card blue heading="Inactive">
+                {inactiveInventoryItems.map((inventoryItem, index) => (
+                  <p key={index}>
+                    <strong>{inventoryItem.name}: </strong> {inventoryItem.description}
+                    <span>see more</span>
+                  </p>
+                ))}
+                {inactiveNPCS.map((npc, index) => (
+                  <p key={index}>
+                    <strong>{npc.characterName}: </strong> {npc.enemy ? "Enemy" : "Friend"}
+                    <span>see more</span>
+                  </p>
+                ))}
+                {inactiveEnvironments.map((environment, index) => (
+                  <p key={index}>
+                    <strong>{environment.name}: </strong> {environment.description}
+                    <span>see more</span>
+                  </p>
+                ))}
               </Card>
             </Section>
           </Column>
@@ -135,6 +209,9 @@ class CampaignGameplay extends React.Component {
 const mapStateToProps = createStructuredSelector({
   missions: selectMissions,
   campaignName: selectCampaignName,
+  npcs: selectNPCS,
+  inventoryItems: selectInventoryItems,
+  environment: selectEnvironment,
 })
 
 export default connect(mapStateToProps)(CampaignGameplay)

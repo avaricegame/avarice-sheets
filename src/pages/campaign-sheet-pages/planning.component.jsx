@@ -26,10 +26,11 @@ import { getCurrentMission } from "./utils/campaign.utils"
 
 // display components
 import MissionCard from "../../components/campaign-sheet-components/mission-card/mission-card.component"
-import NPCCard from "../../components/campaign-sheet-components/npc-card/npc-card.component"
 import DisplayWeapons from "../../components/shared-sheets-components/display-weapons/display-weapons.component"
 import DisplayItems from "../../components/shared-sheets-components/display-items/display-items.component"
 import DisplayWearables from "../../components/shared-sheets-components/display-wearables/display-wearables.component"
+import DisplayEnvironments from "../../components/campaign-sheet-components/display-environments/display-environments.component"
+import DisplayNPCS from "../../components/campaign-sheet-components/display-npcs/display-npcs.component"
 
 class PlanningPage extends React.Component {
   constructor(props) {
@@ -93,20 +94,15 @@ class PlanningPage extends React.Component {
           <Column width={25}>
             <Section heading="NPCS">
               <Button>Generate New NPC</Button>
-              {currentNPCS.map((npc, index) => (
-                <NPCCard npc={npc} key={index} />
-              ))}
+              <DisplayNPCS npcs={currentNPCS} />
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Inventory Items">
               <Button>Generate New Inventory Item</Button>
-
               <DisplayWeapons blue weapons={currentWeapons} quatheading="Weapon" />
-
               <DisplayItems blue items={currentItems} quatheading="Item" />
-
               <DisplayWearables blue wearables={currentWearables} quatheading="Wearable" />
             </Section>
           </Column>
@@ -114,21 +110,7 @@ class PlanningPage extends React.Component {
           <Column width={25}>
             <Section heading="Environment">
               <Button>Generate New Environment</Button>
-              {currentEnvironment.map((environment, index) => {
-                const { name, hp, description, effects } = environment
-                return (
-                  <Card blue heading={name} subheading={`Hit Points: ${hp}`} key={index}>
-                    <p>
-                      <strong>Description: </strong>
-                      {description}
-                    </p>
-                    <p>
-                      <strong>Effects: </strong>
-                      {effects.name ? "yes" : "n/a"}
-                    </p>
-                  </Card>
-                )
-              })}
+              <DisplayEnvironments environments={currentEnvironment} />
             </Section>
           </Column>
         </SheetsPageContainer>
