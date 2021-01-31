@@ -1,6 +1,6 @@
 import React from "react"
 
-import PopupForm from "../popup-form/popup-form.component"
+import PopupForm from "../popup-form.component"
 
 class NewCharacterSheet extends React.Component {
   constructor() {
