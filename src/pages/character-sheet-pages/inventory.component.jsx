@@ -21,9 +21,9 @@ import {
 } from "../../redux/character-sheet/character-sheet.selectors"
 
 // display components
-import DisplayWeapons from "../../components/character-sheet-components/display-weapons/display-weapons.component"
-import DisplayItems from "../../components/character-sheet-components/display-items/display-items.component"
-import DisplayWearables from "../../components/character-sheet-components/display-wearables/display-wearables.component"
+import DisplayWeapons from "../../components/shared-sheets-components/display-weapons/display-weapons.component"
+import DisplayItems from "../../components/shared-sheets-components/display-items/display-items.component"
+import DisplayWearables from "../../components/shared-sheets-components/display-wearables/display-wearables.component"
 import DisplayEquippedWeapons from "../../components/shared-sheets-components/display-equipped-weapons/display-equipped-weapons.component"
 import DisplayEquippedItems from "../../components/shared-sheets-components/display-equipped-items/display-equipped-items.component"
 

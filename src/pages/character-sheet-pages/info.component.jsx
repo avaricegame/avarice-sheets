@@ -110,16 +110,6 @@ class InfoPage extends React.Component {
                   <strong>Description: </strong>
                   {raceInfo.description}
                 </p>
-              </Card>
-              <Card
-                heading="Class Info"
-                subheading={`${classInfo.name} Class`}
-                terheading={classInfo.type}
-              >
-                <p>
-                  <strong>"{classInfo.quote}"</strong>
-                </p>
-
                 <table>
                   <thead>
                     <tr>
@@ -127,7 +117,7 @@ class InfoPage extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {classInfo.stats.map(({ modifier, value }) =>
+                    {raceInfo.stats.map(({ modifier, value }) =>
                       value ? (
                         <tr key={modifier}>
                           <td>
@@ -139,6 +129,15 @@ class InfoPage extends React.Component {
                     )}
                   </tbody>
                 </table>
+              </Card>
+              <Card
+                heading="Class Info"
+                subheading={`${classInfo.name} Class`}
+                terheading={classInfo.type}
+              >
+                <p>
+                  <strong>"{classInfo.quote}"</strong>
+                </p>
                 <p>
                   <strong>Description: </strong>
                   {classInfo.description}

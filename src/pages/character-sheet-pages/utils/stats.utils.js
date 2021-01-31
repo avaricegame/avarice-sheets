@@ -12,13 +12,13 @@ export const findStatProficiencyValue = (calculatedStats, statName) => {
 }
 
 // this takes the stat values from the three sources: stats, equipped wearables
-// stats, and the class stats, and combines them all into one data source that
+// stats, and the race stats, and combines them all into one data source that
 // i can use to display on the app
-export const calculateActualStatValuesAndTransform = (stats, equippedWearables, classStats) => {
+export const calculateActualStatValuesAndTransform = (stats, equippedWearables, raceStats) => {
   // deep copy the three passed args to remove ALL references to the original in memory
   let copiedStats = JSON.parse(JSON.stringify(stats))
   let copiedEquippedWearables = JSON.parse(JSON.stringify(equippedWearables))
-  let copiedClassStats = JSON.parse(JSON.stringify(classStats))
+  let copiedRaceStats = JSON.parse(JSON.stringify(raceStats))
 
   copiedStats.forEach((statObj) => transformStatValuesObjects(statObj))
 
@@ -29,8 +29,8 @@ export const calculateActualStatValuesAndTransform = (stats, equippedWearables, 
     statsArray.forEach((statObj) => transformOtherStatObjects(statObj, "A"))
   })
 
-  copiedClassStats.forEach((statObj) => {
-    transformOtherStatObjects(statObj, "C")
+  copiedRaceStats.forEach((statObj) => {
+    transformOtherStatObjects(statObj, "R")
   })
 
   // loop through the array to send each nested
@@ -39,7 +39,7 @@ export const calculateActualStatValuesAndTransform = (stats, equippedWearables, 
     addStatsToMainArray(copiedStats, statsArray)
   })
 
-  addStatsToMainArray(copiedStats, copiedClassStats, true)
+  addStatsToMainArray(copiedStats, copiedRaceStats, true)
 
   return copiedStats
 }

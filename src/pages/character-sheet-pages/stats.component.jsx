@@ -17,7 +17,7 @@ import {
   selectLevel,
   selectStats,
   selectWearables,
-  selectClassInfo,
+  selectRaceInfo,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
 // util functions
@@ -38,7 +38,7 @@ class StatsPage extends React.Component {
   }
 
   componentDidMount() {
-    const { stats, wearables, classInfo, characterName } = this.props
+    const { stats, wearables, raceInfo, characterName } = this.props
 
     document.title = `Stats | ${characterName} | Avarice Sheets`
 
@@ -46,7 +46,7 @@ class StatsPage extends React.Component {
       transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
         stats,
         findEquippedInventoryItems(wearables),
-        classInfo.stats
+        raceInfo.stats
       ),
     })
   }
@@ -113,7 +113,7 @@ const mapStateToProps = createStructuredSelector({
   level: selectLevel,
   stats: selectStats,
   wearables: selectWearables,
-  classInfo: selectClassInfo,
+  raceInfo: selectRaceInfo,
   characterName: selectCharacterName,
 })
 

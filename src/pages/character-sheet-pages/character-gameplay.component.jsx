@@ -52,7 +52,7 @@ class CharacterGameplayPage extends React.Component {
   }
 
   componentDidMount() {
-    const { wearables, level, stats, classInfo, raceInfo, characterName } = this.props
+    const { wearables, level, stats, raceInfo, characterName } = this.props
 
     document.title = `Gameplay | ${characterName} | Avarice Sheets`
 
@@ -63,7 +63,7 @@ class CharacterGameplayPage extends React.Component {
       transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
         stats,
         findEquippedInventoryItems(wearables),
-        classInfo.stats
+        raceInfo.stats
       ),
     })
   }

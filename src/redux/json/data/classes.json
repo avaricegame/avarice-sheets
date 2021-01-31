@@ -6,49 +6,7 @@
     "imgurl": "",
     "quote": "I'm very down to Earth.",
     "abilityDocID": 1,
-    "description": "Here is a description example, but I don't want to actually think of anything to write so I am just filling it with filler text and it is very fullfilling to me.",
-    "stats": [
-      {
-        "modifier": "strength",
-        "value": 0
-      },
-      {
-        "modifier": "constitution",
-        "value": 0
-      },
-      {
-        "modifier": "reflex",
-        "value": 2
-      },
-      {
-        "modifier": "speed",
-        "value": 0
-      },
-      {
-        "modifier": "speech",
-        "value": 0
-      },
-      {
-        "modifier": "perform",
-        "value": 0
-      },
-      {
-        "modifier": "technical",
-        "value": 0
-      },
-      {
-        "modifier": "practical",
-        "value": 1
-      },
-      {
-        "modifier": "ranged",
-        "value": 0
-      },
-      {
-        "modifier": "melee",
-        "value": 0
-      }
-    ]
+    "description": "Here is a description example, but I don't want to actually think of anything to write so I am just filling it with filler text and it is very fullfilling to me."
   },
   {
     "name": "Fawn II",
