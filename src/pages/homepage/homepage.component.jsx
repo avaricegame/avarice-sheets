@@ -14,7 +14,11 @@ import CustomButton from "../../components/custom-button/custom-button.component
 
 import { fetchCharSheetListStartAsync } from "../../redux/character-sheet/character-sheet.actions"
 import { fetchCampSheetListStartAsync } from "../../redux/campaign-sheet/campaign-sheet.actions"
+
 import { selectCurrentUser } from "../../redux/user/user.selectors"
+
+import { togglePopupForm } from "../../redux/app/app.actions"
+import PopupFormTypes from "../../components/popup-form/popup-form.types"
 
 import "./homepage.styles.scss"
 
@@ -31,16 +35,21 @@ class HomePage extends React.Component {
   }
 
   render() {
+    const { togglePopupForm } = this.props
     return (
       <>
         <MainHeader />
         <MainPageContainer>
           <Column heading="Character Sheets">
-            <CustomButton>Create a New Character Sheet</CustomButton>
+            <CustomButton onClick={() => togglePopupForm(PopupFormTypes.NEW_CHARACTER_SHEET)}>
+              Create a New Character Sheet
+            </CustomButton>
             <CharacterSheetCardsContainer />
           </Column>
           <Column heading="Campaign Sheets">
-            <CustomButton>Create a New Campaign Sheet</CustomButton>
+            <CustomButton onClick={() => togglePopupForm(PopupFormTypes.NEW_CAMPAIGN_SHEET)}>
+              Create a New Campaign Sheet
+            </CustomButton>
             <CampaignSheetCardsContainer />
           </Column>
         </MainPageContainer>
@@ -59,6 +68,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchCharSheetListStartAsync(currentUsersID)),
   fetchCampSheetListStartAsync: (currentUsersID) =>
     dispatch(fetchCampSheetListStartAsync(currentUsersID)),
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
