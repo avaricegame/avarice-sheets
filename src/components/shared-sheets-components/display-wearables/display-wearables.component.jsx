@@ -2,7 +2,7 @@ import React from "react"
 
 import { default as Card } from "../../card-container/card-container.component"
 
-const DisplayWearables = ({ wearables }) => (
+const DisplayWearables = ({ wearables, blue, quatheading }) => (
   <>
     {wearables.map((wearable) => {
       const {
@@ -17,9 +17,11 @@ const DisplayWearables = ({ wearables }) => (
       } = wearable
       return (
         <Card
+          blue={blue}
           heading={name}
           subheading={bodyArea}
           terheading={`${equipped ? "Equipped" : ""}`}
+          quatheading={quatheading ? quatheading : ""}
           key={id}
         >
           <p>

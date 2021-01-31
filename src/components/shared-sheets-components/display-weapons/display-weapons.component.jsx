@@ -2,7 +2,7 @@ import React from "react"
 
 import { default as Card } from "../../card-container/card-container.component"
 
-const DisplayWeapons = ({ weapons }) => (
+const DisplayWeapons = ({ weapons, blue, quatheading }) => (
   <>
     {weapons.map((weapon) => {
       const {
@@ -20,9 +20,11 @@ const DisplayWeapons = ({ weapons }) => (
       } = weapon
       return (
         <Card
+          blue={blue}
           heading={name}
           subheading={proficiency}
           terheading={`${equipped ? "Equipped" : ""}`}
+          quatheading={quatheading ? quatheading : ""}
           key={id}
         >
           <table>

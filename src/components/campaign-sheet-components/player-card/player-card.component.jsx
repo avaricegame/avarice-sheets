@@ -29,6 +29,7 @@ import { findAllEquippedAbilities } from "../../../pages/character-sheet-pages/u
 import { Point } from "../../character-sheet-components/display-stats-tables/display-energy-points.component"
 import DisplayEquippedWeapons from "../../shared-sheets-components/display-equipped-weapons/display-equipped-weapons.component"
 import DisplayEquippedItems from "../../shared-sheets-components/display-equipped-items/display-equipped-items.component"
+import DisplayBasicCharacterInfo from "../../campaign-sheet-components/display-basic-character-info/display-basic-character-info.component"
 
 class PlayerCard extends React.Component {
   constructor(props) {
@@ -50,7 +51,6 @@ class PlayerCard extends React.Component {
       player: {
         level,
         abilities: { abilities, startingAbility },
-        classInfo,
         raceInfo,
         wearables,
         stats,
@@ -65,7 +65,7 @@ class PlayerCard extends React.Component {
           calculateActualStatValuesAndTransform(
             stats,
             findEquippedInventoryItems(wearables),
-            classInfo.stats
+            raceInfo.stats
           ),
           "reflex"
         ),
@@ -77,7 +77,7 @@ class PlayerCard extends React.Component {
           calculateActualStatValuesAndTransform(
             stats,
             findEquippedInventoryItems(wearables),
-            classInfo.stats
+            raceInfo.stats
           ),
           "constitution"
         )
@@ -93,7 +93,7 @@ class PlayerCard extends React.Component {
       calculatedTransformedStats: calculateActualStatValuesAndTransform(
         stats,
         findEquippedInventoryItems(wearables),
-        classInfo.stats
+        raceInfo.stats
       ),
     })
   }
@@ -130,29 +130,16 @@ class PlayerCard extends React.Component {
           <Column width={25}>
             <Subheading blue>Overview</Subheading>
             <InteriorCardContent>
-              <p>
-                <strong>{characterName}</strong>
-              </p>
-              <ul>
-                <li>
-                  <em>Race:</em> {raceName}
-                </li>
-                <li>
-                  <em>Class:</em> {className}
-                </li>
-                <li>
-                  <em>Hit Points:</em> {currentHP} / {maxHP}
-                </li>
-                <li>
-                  <em>Armour Value:</em> {armourValue}
-                </li>
-                <li>
-                  <em>Dodge Value:</em> {dodgeValue}
-                </li>
-                <li>
-                  <em>Life Credits:</em> {lifeCredits}
-                </li>
-              </ul>
+              <DisplayBasicCharacterInfo
+                characterName={characterName}
+                raceName={raceName}
+                className={className}
+                currentHP={currentHP}
+                maxHP={maxHP}
+                armourValue={armourValue}
+                dodgeValue={dodgeValue}
+                lifeCredits={lifeCredits}
+              />
             </InteriorCardContent>
             <Subheading blue>Stats Overview</Subheading>
             <InteriorCardContent>
