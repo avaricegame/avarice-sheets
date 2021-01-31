@@ -9,7 +9,6 @@ import {
   SheetsPageContainerColumnSection as Section,
 } from "../../components/sheets-page-container-column/sheets-page-container-column.component"
 
-import { default as Card } from "../../components/card-container/card-container.component"
 import { default as Button } from "../../components/custom-button/custom-button.component"
 
 import {
@@ -18,136 +17,67 @@ import {
   selectPlayers,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
-class InteractablesPage extends React.Component {
+// util functions
+import { findOnlyActiveNPCS, findOnlyFriendNPCS, findOnlyEnemyNPCS } from "./utils/combat.utils"
+
+// display components
+import NPCCombatCard from "../../components/campaign-sheet-components/npc-combat-card/npc-combat-card.component"
+import PlayerCombatCard from "../../components/campaign-sheet-components/player-combat-card/player-combat-card.compnent"
+
+class CombatPage extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {}
+    this.state = {
+      friendNPCS: [],
+      enemyNPCS: [],
+    }
   }
 
   componentDidMount() {
-    const { campaignName } = this.props
+    const { campaignName, npcs } = this.props
     document.title = `Combat | ${campaignName} | Avarice Sheets`
-    this.setState({})
+    this.setState({
+      friendNPCS: findOnlyActiveNPCS(findOnlyFriendNPCS(npcs)),
+      enemyNPCS: findOnlyActiveNPCS(findOnlyEnemyNPCS(npcs)),
+    })
   }
 
   componentWillUnmount() {
-    this.setState({})
+    this.setState({
+      friendNPCS: [],
+      enemyNPCS: [],
+    })
   }
 
   render() {
+    const { players } = this.props
+    const { friendNPCS, enemyNPCS } = this.state
     return (
       <>
         <SheetsHeading heading="Combat" />
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Players">
-              <Card
-                blue
-                heading="Player Name"
-                subheading="Hit Points: 23"
-                terheading="Armour Value: 7"
-                quatheading="Dodge Value: 4"
-              >
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Weapon</th>
-                      <th>Range</th>
-                      <th>Proficiency Value</th>
-                      <th>Damage</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Name</td>
-                      <td>2</td>
-                      <td>7</td>
-                      <td>D6</td>
-                    </tr>
-                    <tr>
-                      <td>Name</td>
-                      <td>8</td>
-                      <td>7</td>
-                      <td>D6</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </Card>
+              {players.map((player, index) => (
+                <PlayerCombatCard player={player} key={index} />
+              ))}
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Enemies">
-              <Card
-                blue
-                heading="Enemy Name"
-                subheading="Hit Points: 23"
-                terheading="Armour Value: 7"
-                quatheading="Dodge Value: 4"
-              >
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Weapon</th>
-                      <th>Range</th>
-                      <th>Proficiency Value</th>
-                      <th>Damage</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Name</td>
-                      <td>2</td>
-                      <td>7</td>
-                      <td>D6</td>
-                    </tr>
-                    <tr>
-                      <td>Name</td>
-                      <td>8</td>
-                      <td>7</td>
-                      <td>D6</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </Card>
+              {enemyNPCS.map((character, index) => (
+                <NPCCombatCard character={character} key={index} />
+              ))}
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Friends">
-              <Card
-                blue
-                heading="Friend Name"
-                subheading="Hit Points: 23"
-                terheading="Armour Value: 7"
-                quatheading="Dodge Value: 4"
-              >
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Weapon</th>
-                      <th>Range</th>
-                      <th>Proficiency Value</th>
-                      <th>Damage</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Name</td>
-                      <td>2</td>
-                      <td>7</td>
-                      <td>D6</td>
-                    </tr>
-                    <tr>
-                      <td>Name</td>
-                      <td>8</td>
-                      <td>7</td>
-                      <td>D6</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </Card>
+              {friendNPCS.map((character, index) => (
+                <NPCCombatCard character={character} key={index} />
+              ))}
             </Section>
           </Column>
 
@@ -172,4 +102,4 @@ const mapStateToProps = createStructuredSelector({
   campaignName: selectCampaignName,
 })
 
-export default connect(mapStateToProps)(InteractablesPage)
+export default connect(mapStateToProps)(CombatPage)
