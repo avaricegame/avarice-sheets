@@ -14,8 +14,12 @@ import ProfilePage from "./pages/profile/profile.component"
 import { default as CharacterSheetPage } from "./pages/character-sheet/character-sheet.container"
 import { default as CampaignSheetPage } from "./pages/campaign-sheet/campaign-sheet.container"
 
+// app components
+import PopupForm from "./components/popup-form/popup-form.component"
+
 import { fetchCurrentUserStartAsync } from "./redux/user/user.actions"
 import { selectCurrentUser } from "./redux/user/user.selectors"
+import { selectIsPopupFormVisible } from "./redux/app/app.selectors"
 
 class App extends React.Component {
   componentDidMount() {
@@ -24,7 +28,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentUser } = this.props
+    const { currentUser, isPopupFormVisible } = this.props
     return (
       <>
         <Switch>
@@ -40,6 +44,7 @@ class App extends React.Component {
             <Route path="/not-found" component={MainPageNotFound} />
           </ErrorBoundary>
         </Switch>
+        {isPopupFormVisible ? <PopupForm /> : null}
       </>
     )
   }
@@ -47,6 +52,7 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  isPopupFormVisible: selectIsPopupFormVisible,
 })
 
 const mapDispatchToProps = (dispatch) => ({
