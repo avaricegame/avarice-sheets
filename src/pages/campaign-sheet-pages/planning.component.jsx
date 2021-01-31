@@ -120,7 +120,7 @@ class PlanningPage extends React.Component {
               {currentEnvironment.map((environment) => {
                 const { name, hp, description, effects } = environment
                 return (
-                  <Card heading={name} subheading={`Hit Points: ${hp}`}>
+                  <Card blue heading={name} subheading={`Hit Points: ${hp}`}>
                     <p>
                       <strong>Description: </strong>
                       {description}
