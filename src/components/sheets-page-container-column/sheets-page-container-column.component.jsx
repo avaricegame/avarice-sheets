@@ -15,8 +15,18 @@ export const SheetsPageContainerColumnSection = ({ children, heading, flex }) =>
   </>
 )
 
-const SheetsPageContainerColumn = ({ children, width }) => (
-  <div className={`sheets-page-container-column__${width} `}>{children}</div>
+const SheetsPageContainerColumn = ({ children, width, ability, unlocked, equipped }) => (
+  <div
+    className={`sheets-page-container-column__${width} ${
+      ability && !unlocked
+        ? "sheets-page-container-column--locked"
+        : ability && equipped
+        ? "sheets-page-container-column--equipped"
+        : ""
+    }`}
+  >
+    {children}
+  </div>
 )
 
 export default SheetsPageContainerColumn

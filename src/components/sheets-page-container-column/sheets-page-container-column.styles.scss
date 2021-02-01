@@ -1,6 +1,33 @@
 @import "../../sass/variables";
 
 .sheets-page-container-column {
+  &--locked {
+    //border: 0.4rem solid $color-gray;
+    background-color: lighten($color-gray, 45%);
+    &::after {
+      content: "LOCKED";
+      color: lighten($color-gray, 30%);
+      font-size: 2rem;
+      z-index: 1;
+      position: absolute;
+      bottom: 10px;
+      right: 10%;
+      transform: translateY(-50%);
+    }
+  }
+  &--equipped {
+    border: 0.4rem solid $color-purple;
+    &::after {
+      content: "EQUIPPED";
+      color: $color-purple;
+      font-size: 2rem;
+      z-index: 1;
+      position: absolute;
+      bottom: 10px;
+      right: 10%;
+      transform: translateY(-50%);
+    }
+  }
   &__section {
     padding: 2rem 1rem;
     &--flex {
@@ -17,6 +44,7 @@
     border-bottom: 1px solid $hr-color;
   }
   &__25 {
+    position: relative;
     width: 24%;
     margin: 0 0.5%;
     @media only screen and (max-width: 900px) {

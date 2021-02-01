@@ -23,7 +23,7 @@ export const Terheading = ({ children, purpleTerheading }) => (
 )
 
 export const CardContainerContentContainer = ({ children }) => (
-  <div className="card-container__content">{children}</div>
+  <div className={`card-container__content`}>{children}</div>
 )
 
 const CardContainer = ({
