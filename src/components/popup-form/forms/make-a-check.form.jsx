@@ -187,7 +187,7 @@ class MakeACheck extends React.Component {
             </p>
           </fieldset>
 
-          <ButtonPanel noSubmit />
+          <ButtonPanel noSubmit buttonValue="Done" />
         </form>
       </>
     )

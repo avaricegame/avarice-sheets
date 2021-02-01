@@ -71,6 +71,7 @@
     }
 
     select {
+      cursor: pointer;
       width: 100%;
       min-height: 4rem;
       border: 1px solid lighten($color-gray, 30%);

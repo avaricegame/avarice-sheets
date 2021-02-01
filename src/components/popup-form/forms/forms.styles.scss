@@ -31,11 +31,10 @@ label {
 }
 
 form input,
-textarea,
-select {
+form textarea {
   padding: 1rem;
   border: none;
-  box-shadow: $box-shadow;
+  border: 1px solid lighten($color-gray, 30%);
   min-height: 30px;
   width: 96%;
   margin: 0.5rem 2.5%;
@@ -77,5 +76,12 @@ form textarea {
 }
 
 form select {
+  padding: 1rem;
+  border: none;
+  border: 1px solid lighten($color-gray, 30%);
+  min-height: 30px;
+  width: 96%;
+  margin: 0.5rem 2.5%;
+  font-size: 1.4rem;
   cursor: pointer;
 }

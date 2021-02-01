@@ -5,7 +5,7 @@ import "./popup-form-button-panel.styles.scss"
 
 import { togglePopupForm } from "../../redux/app/app.actions"
 
-const PopupFormButtonPanel = ({ submitValue, noSubmit, togglePopupForm }) => (
+const PopupFormButtonPanel = ({ submitValue, buttonValue, noSubmit, togglePopupForm }) => (
   <div className="popupform__button-panel">
     {noSubmit ? (
       <button
@@ -13,7 +13,7 @@ const PopupFormButtonPanel = ({ submitValue, noSubmit, togglePopupForm }) => (
         onClick={() => togglePopupForm(null)}
         type="button"
       >
-        Done
+        {buttonValue}
       </button>
     ) : (
       <>
