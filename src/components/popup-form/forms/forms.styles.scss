@@ -1,4 +1,4 @@
-@import "../../sass/variables";
+@import "../../../sass/variables";
 
 form input,
 form select,
@@ -10,6 +10,11 @@ form textarea {
 form {
   width: 100%;
   height: 100%;
+  background-color: $main-background-color-light;
+
+  &.purple-top-border {
+    border-top: 0.5rem solid $color-purple;
+  }
 }
 
 fieldset {
@@ -22,7 +27,7 @@ label {
   font-weight: bold;
   font-size: 1.4rem;
   display: block;
-  margin: 1.5rem 0.5rem 0 1rem;
+  padding: 1.5rem 0.5rem 0 1rem;
 }
 
 form input,
