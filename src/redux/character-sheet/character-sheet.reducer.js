@@ -1,4 +1,7 @@
 import CharSheetActionTypes from "./character-sheet.types"
+import CharPageActionTypes from "./pages/pages.types"
+
+import { makeACheck } from "./utils/gameplay.utils"
 
 const INITIAL_STATE = {
   currentCharSheet: null,
@@ -73,6 +76,14 @@ const charSheetReducer = (state = INITIAL_STATE, action) => {
         isCharSheetFetching: false,
         errorMessage: action.payload,
         areAdditionalResourcesLoaded: false,
+      }
+    case CharPageActionTypes.MAKE_A_CHECK:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          stats: makeACheck(state.currentCharSheet.stats, action.payload),
+        },
       }
     default:
       return state
