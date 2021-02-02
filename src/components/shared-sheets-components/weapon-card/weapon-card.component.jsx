@@ -2,7 +2,7 @@ import React from "react"
 
 import { default as Card } from "../../card-container/card-container.component"
 
-import EditAndDeleteActions from "../edit-and-delete-actions/edit-and-delete-actions.component"
+import EditAndDeleteActions from "../card-actions/edit-and-delete-actions.component"
 import CopyMoveEditDeleteActions from "../../campaign-sheet-components/card-actions/copy-move-edit-delete-actions.component"
 import ActivateDeactivateActions from "../../campaign-sheet-components/card-actions/activate-deactivate-actions.component"
 import EquipAndUnequipActions from "../card-actions/equip-and-unequip.component"

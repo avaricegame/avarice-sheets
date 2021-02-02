@@ -4,7 +4,7 @@ import { default as Card } from "../../card-container/card-container.component"
 
 // display components
 import MissionCardActions from "../card-actions/mission-card-actions.component"
-import EditAndDeleteActions from "../../shared-sheets-components/edit-and-delete-actions/edit-and-delete-actions.component"
+import EditAndDeleteActions from "../../shared-sheets-components/card-actions/edit-and-delete-actions.component"
 
 class MissionCard extends React.Component {
   render() {

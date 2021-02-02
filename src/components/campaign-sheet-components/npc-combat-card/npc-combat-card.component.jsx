@@ -88,7 +88,7 @@ class NPCCombatCard extends React.Component {
         terheading={`Armour Value: ${armourValue}`}
         quatheading={`Dodge Value: ${dodgeValue}`}
       >
-        <DisplayEquippedWeapons campaignSheet equippedWeapons={weapons} />
+        <DisplayEquippedWeapons equippedWeapons={weapons} />
         <table>
           <thead>
             <tr>

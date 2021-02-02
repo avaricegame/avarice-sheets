@@ -9,7 +9,7 @@ import DisplayCampaignInfo from "../shared-sheets-components/display-campaign-in
 import { selectCampSheetList } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 // display components
-import EditAndDeleteActions from "../shared-sheets-components/edit-and-delete-actions/edit-and-delete-actions.component"
+import EditAndDeleteActions from "../shared-sheets-components/card-actions/edit-and-delete-actions.component"
 
 const CampaignSheetCards = ({ campSheetList }) => (
   <>

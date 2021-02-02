@@ -1,6 +1,6 @@
 import React from "react"
 
-import EditAndDeleteActions from "../edit-and-delete-actions/edit-and-delete-actions.component"
+import EditAndDeleteActions from "../card-actions/edit-and-delete-actions.component"
 
 const DisplayLog = ({ log, edit, whatToEdit, popupFormType }) => {
   const { title, date, details } = log

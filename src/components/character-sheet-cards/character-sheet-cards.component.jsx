@@ -8,7 +8,7 @@ import CardContainer from "../card-container/card-container.component"
 import { selectCharSheetList } from "../../redux/character-sheet/character-sheet.selectors"
 
 // display components
-import EditAndDeleteActions from "../shared-sheets-components/edit-and-delete-actions/edit-and-delete-actions.component"
+import EditAndDeleteActions from "../shared-sheets-components/card-actions/edit-and-delete-actions.component"
 
 const CharacterSheetCards = ({ charSheetList }) => (
   <>
