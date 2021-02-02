@@ -77,8 +77,8 @@ class MakeACheck extends React.Component {
             <label htmlFor="ability-to-use">Which Ability</label>
             <select name="ability-to-use" onChange={(e) => this.setCurrentAbility(e)}>
               <option value="PLEASE SPECIFY">Please Specify</option>
-              {equippedAbilities.map((ability) => (
-                <option key={ability.name} value={ability.name}>
+              {equippedAbilities.map((ability, index) => (
+                <option key={index} value={ability.name}>
                   {ability.name}
                 </option>
               ))}
