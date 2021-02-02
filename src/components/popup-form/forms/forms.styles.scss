@@ -97,9 +97,36 @@ form select {
     &--equipped {
       border: 0.4rem solid $color-purple;
     }
-
     &--locked {
       background-color: lighten($color-gray, 40%);
+    }
+  }
+}
+
+.level-up-form {
+  &__abilities-overview {
+    margin: 1rem 1rem 5rem 1rem;
+  }
+
+  &__abilities {
+    margin-top: 1rem;
+    cursor: pointer;
+    position: relative;
+    &--selected {
+      border: 0.4rem solid $color-purple;
+    }
+    &--locked {
+      background-color: lighten($color-gray, 45%);
+      &::after {
+        content: "LOCKED";
+        color: lighten($color-gray, 30%);
+        font-size: 2rem;
+        z-index: 0;
+        position: absolute;
+        top: 50px;
+        right: 10%;
+        transform: translateY(-50%);
+      }
     }
   }
 }
