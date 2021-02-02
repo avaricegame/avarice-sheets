@@ -8,7 +8,8 @@ import { PopupFormHeading } from "../../popup-form.component"
 import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-form-button-panel.component"
 
 // actions
-import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
+import { togglePopupForm } from "../../../../redux/app/app.actions"
+import { payOrRecieveMoney } from "../../../../redux/character-sheet/pages/pages.actions"
 
 class PayOrRecieveMoney extends React.Component {
   constructor(props) {
@@ -23,12 +24,20 @@ class PayOrRecieveMoney extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     const { payOrRecieve, amount } = this.state
+    const { payOrRecieveMoney, togglePopupForm } = this.props
 
     if (payOrRecieve === "PLEASE SPECIFY")
       return window.alert("Please specify whether you need to pay or recieve money.")
 
-    window.alert("This form action has not been set up yet.")
-    console.log(payOrRecieve, amount)
+    if (payOrRecieve === "PAY") {
+      payOrRecieveMoney(-amount)
+      togglePopupForm()
+    }
+
+    if (payOrRecieve === "RECIEVE") {
+      payOrRecieveMoney(+amount)
+      togglePopupForm()
+    }
   }
 
   render() {
@@ -45,7 +54,7 @@ class PayOrRecieveMoney extends React.Component {
             >
               <option value="PLEASE SPECIFY">Please Specify</option>
               <option value="PAY">Pay Money</option>
-              <option value="REVIEVE">Recieve Money</option>
+              <option value="RECIEVE">Recieve Money</option>
             </select>
 
             <label htmlFor="amount">How Much</label>
@@ -71,7 +80,8 @@ class PayOrRecieveMoney extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  makeACheck: (typeAndSuccess) => dispatch(makeACheck(typeAndSuccess)),
+  payOrRecieveMoney: (amount) => dispatch(payOrRecieveMoney(amount)),
+  togglePopupForm: () => dispatch(togglePopupForm()),
 })
 
 export default connect(null, mapDispatchToProps)(PayOrRecieveMoney)
