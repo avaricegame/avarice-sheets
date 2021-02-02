@@ -7,6 +7,7 @@ import { selectPopupFormType } from "../../redux/app/app.selectors"
 import PopupFormTypes from "./popup-form.types"
 
 // import the form components
+// char sheet
 import Attack from "./forms/character-sheet/attack.form"
 import MakeACheck from "./forms/character-sheet/make-a-check.form"
 import UseAnItem from "./forms/character-sheet/use-an-item.form"
@@ -21,6 +22,9 @@ import AddNewItem from "./forms/character-sheet/add-new-item.form"
 import SellInventoryItem from "./forms/character-sheet/sell-inventory-item.form"
 import LevelUp from "./forms/character-sheet/level-up.form"
 import NewCharacterLog from "./forms/character-sheet/new-character-log.form"
+// camp sheet
+import NewCaptainsLog from "./forms/campaign-sheet/new-captains-log.form"
+import NewPersonalLog from "./forms/campaign-sheet/new-personal-log.form"
 
 import "./popup-form.styles.scss"
 
@@ -50,6 +54,9 @@ const PopupForm = ({ popupFormType }) => (
       {popupFormType === PopupFormTypes.LEVEL_UP ? <LevelUp /> : null}
       {/* INFO FORMS */}
       {popupFormType === PopupFormTypes.NEW_CHARACTER_LOG ? <NewCharacterLog /> : null}
+      {/* CAMPAIGN FORMS */}
+      {popupFormType === PopupFormTypes.ADD_NEW_CAPTAINS_LOG ? <NewCaptainsLog /> : null}
+      {popupFormType === PopupFormTypes.ADD_NEW_PERSONAL_LOG ? <NewPersonalLog /> : null}
     </div>
   </div>
 )

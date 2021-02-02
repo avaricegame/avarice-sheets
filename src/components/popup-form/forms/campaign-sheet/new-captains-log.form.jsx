@@ -9,10 +9,10 @@ import { PopupFormHeading } from "../../popup-form.component"
 import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-form-button-panel.component"
 
 // actions
-import { selectCharLogToEdit } from "../../../../redux/app/app.selectors"
+import { selectCapLogToEdit } from "../../../../redux/app/app.selectors"
 import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
 
-class NewCharacterLog extends React.Component {
+class NewCaptainsLog extends React.Component {
   constructor(props) {
     super(props)
 
@@ -25,9 +25,9 @@ class NewCharacterLog extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.charLogToEdit) {
+    if (this.props.capLogToEdit) {
       const {
-        charLogToEdit: { id, title, date, details },
+        capLogToEdit: { id, title, date, details },
       } = this.props
       this.setState({
         id: id,
@@ -53,7 +53,7 @@ class NewCharacterLog extends React.Component {
     const { title, log, date } = this.state
     return (
       <>
-        <PopupFormHeading>Edit Character Log</PopupFormHeading>
+        <PopupFormHeading>Edit Captain's Log</PopupFormHeading>
         <form className="popupform__form purple-top-border" onSubmit={(e) => this.handleSubmit(e)}>
           <fieldset>
             <label htmlFor="title">Title</label>
@@ -81,7 +81,7 @@ class NewCharacterLog extends React.Component {
             ></textarea>
           </fieldset>
 
-          <ButtonPanel submitValue={`Save Character Log`} />
+          <ButtonPanel submitValue={`Save Captain's Log`} />
         </form>
       </>
     )
@@ -89,11 +89,11 @@ class NewCharacterLog extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  charLogToEdit: selectCharLogToEdit,
+  capLogToEdit: selectCapLogToEdit,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   makeACheck: (typeAndSuccess) => dispatch(makeACheck(typeAndSuccess)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewCharacterLog)
+export default connect(mapStateToProps, mapDispatchToProps)(NewCaptainsLog)

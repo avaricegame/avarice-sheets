@@ -118,10 +118,6 @@ class InfoPage extends React.Component {
                     ))}
                   </tbody>
                 </table>
-                <p>
-                  <strong>Description: </strong>
-                  {raceInfo.description}
-                </p>
                 <table>
                   <thead>
                     <tr>
@@ -141,6 +137,10 @@ class InfoPage extends React.Component {
                     )}
                   </tbody>
                 </table>
+                <p>
+                  <strong>Description: </strong>
+                  {raceInfo.description}
+                </p>
               </Card>
               <Card
                 heading="Class Info"
