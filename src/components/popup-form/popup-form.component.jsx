@@ -25,6 +25,8 @@ import NewCharacterLog from "./forms/character-sheet/new-character-log.form"
 // camp sheet
 import NewCaptainsLog from "./forms/campaign-sheet/new-captains-log.form"
 import NewPersonalLog from "./forms/campaign-sheet/new-personal-log.form"
+import AddNewNPC from "./forms/campaign-sheet/add-new-npc.form"
+import AddNewEnvironment from "./forms/campaign-sheet/add-new-environment.form"
 
 import "./popup-form.styles.scss"
 
@@ -57,6 +59,9 @@ const PopupForm = ({ popupFormType }) => (
       {/* CAMPAIGN FORMS */}
       {popupFormType === PopupFormTypes.ADD_NEW_CAPTAINS_LOG ? <NewCaptainsLog /> : null}
       {popupFormType === PopupFormTypes.ADD_NEW_PERSONAL_LOG ? <NewPersonalLog /> : null}
+      {/* PLANNING FORMS */}
+      {popupFormType === PopupFormTypes.ADD_A_NEW_NPC ? <AddNewNPC /> : null}
+      {popupFormType === PopupFormTypes.ADD_A_NEW_ENVIRONMENT ? <AddNewEnvironment /> : null}
     </div>
   </div>
 )
