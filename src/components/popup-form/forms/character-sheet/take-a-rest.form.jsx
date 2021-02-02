@@ -49,7 +49,7 @@ class TakeARest extends React.Component {
           type: null,
         },
       },
-      restType: null,
+      restType: "PLEASE SPECIFY",
     }
   }
 
@@ -90,8 +90,7 @@ class TakeARest extends React.Component {
     e.preventDefault()
     const { abilityLoadout, restType } = this.state
 
-    if (restType === "PLEASE SPECIFY" || restType === null)
-      return window.alert("You must specify a rest type.")
+    if (restType === "PLEASE SPECIFY") return window.alert("You must specify a rest type.")
 
     window.alert("This form action has not been set up yet.")
     console.log(abilityLoadout, restType)
@@ -165,7 +164,7 @@ class TakeARest extends React.Component {
             })}
           </fieldset>
 
-          <ButtonPanel submitValue={`${restType ? `${restType}` : `Please Specify`}`} />
+          <ButtonPanel submitValue={restType} />
         </form>
       </>
     )

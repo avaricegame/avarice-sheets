@@ -87,7 +87,7 @@ class CharacterGameplayPage extends React.Component {
                   Take Damage
                 </Button>
                 <Button onClick={() => togglePopupForm(PopupFormTypes.TAKE_OR_HEAL_DAMAGE)}>
-                  Heal HP
+                  Heal Damage
                 </Button>
               </Card>
             </Section>
