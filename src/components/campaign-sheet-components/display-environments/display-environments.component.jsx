@@ -22,7 +22,7 @@ const DisplayEnvironments = ({ environments, activate, moveEdit }) => (
           </p>
           <div className="actions-div">
             {activate ? (
-              <ActivateDeactivateActions type="environment" id={id} active={active} />
+              <ActivateDeactivateActions type="ENVIRONMENT" id={id} active={active} />
             ) : null}
             {moveEdit ? <CopyMoveEditDeleteActions /> : null}
           </div>
