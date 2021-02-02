@@ -1,6 +1,4 @@
 import React from "react"
-import { connect } from "react-redux"
-import { createStructuredSelector } from "reselect"
 
 import "../forms.styles.scss"
 
@@ -9,55 +7,16 @@ import { PopupFormHeading } from "../../popup-form.component"
 import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-form-button-panel.component"
 import { default as Button } from "../../../custom-button/custom-button.component"
 
-// selectors
-import {
-  selectStats,
-  selectWearables,
-  selectRaceInfo,
-} from "../../../../redux/character-sheet/character-sheet.selectors"
-
-// util functions
-import { calculateActualStatValuesAndTransform } from "../../../../pages/character-sheet-pages/utils/stats.utils"
-import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
-import {
-  mapDifficultyToValueToBeat,
-  findStatBeingChecked,
-  addOrSubtractAdvantageToValueToBeat,
-  determineAdvantageBonus,
-} from "../../utils/make-a-check.utils"
-
-// actions
-import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
-
-class MakeACheck extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      transformedCalculatedStatValues: [],
-      advantage: 0,
-      difficulty: null,
-    }
+class RollDie extends React.Component {
+  rollHandler(number) {
+    const roll = Math.ceil(Math.random() * number)
+    window.alert("You rolled " + roll + ".")
   }
 
-  componentDidMount() {
-    const { stats, wearables, raceInfo } = this.props
+  customRollHandler() {
+    const numberToRoll = window.prompt("How many sided die do you want to roll?")
 
-    this.setState({
-      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
-    })
-  }
-
-  makeCheck(type) {}
-
-  componentWillUnmount() {
-    this.setState({
-      transformedCalculatedStatValues: [],
-    })
+    this.rollHandler(numberToRoll)
   }
 
   render() {
@@ -65,23 +24,40 @@ class MakeACheck extends React.Component {
       <>
         <PopupFormHeading>Roll Dice</PopupFormHeading>
         <form className="popupform__form purple-top-border">
-          <fieldset></fieldset>
-
-          <ButtonPanel submitValue={`Submit`} />
+          <fieldset>
+            <Button type="button" onClick={() => this.rollHandler(4)}>
+              D4
+            </Button>
+            <Button type="button" onClick={() => this.rollHandler(6)}>
+              D6
+            </Button>
+            <Button type="button" onClick={() => this.rollHandler(8)}>
+              D8
+            </Button>
+            <Button type="button" onClick={() => this.rollHandler(10)}>
+              D10
+            </Button>
+            <Button type="button" onClick={() => this.rollHandler(12)}>
+              D12
+            </Button>
+            <Button type="button" onClick={() => this.rollHandler(20)}>
+              D20
+            </Button>
+            <Button type="button" onClick={() => this.rollHandler(60)}>
+              D60
+            </Button>
+            <Button type="button" onClick={() => this.rollHandler(100)}>
+              D100
+            </Button>
+            <Button type="button" onClick={this.customRollHandler}>
+              Custom
+            </Button>
+          </fieldset>
+          <ButtonPanel noSubmit buttonValue={`Done`} />
         </form>
       </>
     )
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  stats: selectStats,
-  wearables: selectWearables,
-  raceInfo: selectRaceInfo,
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  makeACheck: (typeAndSuccess) => dispatch(makeACheck(typeAndSuccess)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(MakeACheck)
+export default RollDie
