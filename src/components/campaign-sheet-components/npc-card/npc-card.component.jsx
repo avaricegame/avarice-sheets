@@ -15,9 +15,11 @@ import { calculateArmourValueFromEquippedWearables } from "../../../pages/charac
 
 // display components
 import DisplayBasicCharacterInfo from "../display-basic-character-info/display-basic-character-info.component"
-import CopyMoveEditDeleteActions from "../card-actions/copy-move-edit-delete-actions.component"
+import EditAndDeleteActions from "../../shared-sheets-components/card-actions/edit-and-delete-actions.component"
 import FriendEnemyActions from "../card-actions/friend-enemy-actions.component"
 import ActivateDeactivateActions from "../card-actions/activate-deactivate-actions.component"
+
+import PopupFormTypes from "../../popup-form/popup-form.types"
 
 class NPCCard extends React.Component {
   constructor(props) {
@@ -82,6 +84,8 @@ class NPCCard extends React.Component {
         items,
         id,
       },
+      moveEdit,
+      whatToEdit,
     } = this.props
     const { maxHP, armourValue, dodgeValue } = this.state
 
@@ -132,7 +136,14 @@ class NPCCard extends React.Component {
           {this.props.activate ? (
             <ActivateDeactivateActions type="NPC" id={id} active={active} />
           ) : null}
-          {this.props.moveEdit ? <CopyMoveEditDeleteActions /> : null}
+          {this.props.moveEdit ? (
+            <EditAndDeleteActions
+              moveEdit={moveEdit}
+              whatToEdit={whatToEdit}
+              objToEdit={this.props.npc}
+              popupFormType={PopupFormTypes.ADD_A_NEW_NPC}
+            />
+          ) : null}
         </div>
       </Card>
     )

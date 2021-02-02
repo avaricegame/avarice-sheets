@@ -2,7 +2,16 @@ import React from "react"
 
 import WeaponCard from "../weapon-card/weapon-card.component"
 
-const DisplayWeapons = ({ weapons, blue, quatheading, edit, equip, activate, moveEdit }) => (
+const DisplayWeapons = ({
+  weapons,
+  blue,
+  quatheading,
+  edit,
+  equip,
+  activate,
+  moveEdit,
+  whatToEdit,
+}) => (
   <>
     {weapons.map((weapon, index) => {
       return (
@@ -15,6 +24,7 @@ const DisplayWeapons = ({ weapons, blue, quatheading, edit, equip, activate, mov
           equip={equip}
           activate={activate}
           moveEdit={moveEdit}
+          whatToEdit={whatToEdit}
         />
       )
     })}

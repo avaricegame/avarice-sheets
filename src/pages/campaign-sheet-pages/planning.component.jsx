@@ -115,7 +115,7 @@ class PlanningPage extends React.Component {
               <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_NPC)}>
                 Generate New NPC
               </Button>
-              <DisplayNPCS moveEdit npcs={currentNPCS} />
+              <DisplayNPCS moveEdit npcs={currentNPCS} whatToEdit="npcToEdit" />
             </Section>
           </Column>
 
@@ -124,9 +124,27 @@ class PlanningPage extends React.Component {
               <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_INVENTORY_ITEM)}>
                 Generate New Inventory Item
               </Button>
-              <DisplayWeapons moveEdit blue weapons={currentWeapons} quatheading="Weapon" />
-              <DisplayItems moveEdit blue items={currentItems} quatheading="Item" />
-              <DisplayWearables moveEdit blue wearables={currentWearables} quatheading="Wearable" />
+              <DisplayWeapons
+                moveEdit
+                blue
+                weapons={currentWeapons}
+                quatheading="Weapon"
+                whatToEdit="weaponToEdit"
+              />
+              <DisplayItems
+                moveEdit
+                blue
+                items={currentItems}
+                quatheading="Item"
+                whatToEdit="itemToEdit"
+              />
+              <DisplayWearables
+                moveEdit
+                blue
+                wearables={currentWearables}
+                quatheading="Wearable"
+                whatToEdit="wearableToEdit"
+              />
             </Section>
           </Column>
 
@@ -135,7 +153,11 @@ class PlanningPage extends React.Component {
               <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_ENVIRONMENT)}>
                 Generate New Environment
               </Button>
-              <DisplayEnvironments moveEdit environments={currentEnvironment} />
+              <DisplayEnvironments
+                moveEdit
+                environments={currentEnvironment}
+                whatToEdit="environmentToEdit"
+              />
             </Section>
           </Column>
         </SheetsPageContainer>

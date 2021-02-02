@@ -3,11 +3,21 @@ import React from "react"
 import { default as Card } from "../../card-container/card-container.component"
 
 import EditAndDeleteActions from "../card-actions/edit-and-delete-actions.component"
-import CopyMoveEditDeleteActions from "../../campaign-sheet-components/card-actions/copy-move-edit-delete-actions.component"
 import ActivateDeactivateActions from "../../campaign-sheet-components/card-actions/activate-deactivate-actions.component"
 import EquipAndUnequipActions from "../card-actions/equip-and-unequip.component"
 
-const WearableCard = ({ wearable, blue, quatheading, edit, equip, activate, moveEdit }) => {
+import PopupFormTypes from "../../popup-form/popup-form.types"
+
+const WearableCard = ({
+  wearable,
+  blue,
+  quatheading,
+  edit,
+  equip,
+  activate,
+  moveEdit,
+  whatToEdit,
+}) => {
   const {
     name,
     id,
@@ -67,8 +77,14 @@ const WearableCard = ({ wearable, blue, quatheading, edit, equip, activate, move
           <EquipAndUnequipActions type="WEARABLE" id={id} equipped={equipped} bodyArea={bodyArea} />
         ) : null}
         {activate ? <ActivateDeactivateActions type="WEARABLE" id={id} active={active} /> : null}
-        {moveEdit ? <CopyMoveEditDeleteActions /> : null}
-        {edit ? <EditAndDeleteActions /> : null}
+        {edit || moveEdit ? (
+          <EditAndDeleteActions
+            moveEdit={moveEdit}
+            whatToEdit={whatToEdit}
+            objToEdit={wearable}
+            popupFormType={PopupFormTypes.ADD_A_NEW_WEARABLE}
+          />
+        ) : null}
       </div>
     </Card>
   )

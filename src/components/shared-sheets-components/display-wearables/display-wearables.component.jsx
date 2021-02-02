@@ -2,7 +2,16 @@ import React from "react"
 
 import WearableCard from "../wearable-card/wearable-card.component"
 
-const DisplayWearables = ({ wearables, blue, quatheading, edit, equip, activate, moveEdit }) => (
+const DisplayWearables = ({
+  wearables,
+  blue,
+  quatheading,
+  edit,
+  equip,
+  activate,
+  moveEdit,
+  whatToEdit,
+}) => (
   <>
     {wearables.map((wearable) => (
       <WearableCard
@@ -14,6 +23,7 @@ const DisplayWearables = ({ wearables, blue, quatheading, edit, equip, activate,
         equip={equip}
         activate={activate}
         moveEdit={moveEdit}
+        whatToEdit={whatToEdit}
       />
     ))}
   </>

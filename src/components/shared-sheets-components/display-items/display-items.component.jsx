@@ -2,7 +2,16 @@ import React from "react"
 
 import ItemCard from "../item-card/item-card.component"
 
-const DisplayItems = ({ items, blue, quatheading, edit, equip, activate, moveEdit }) => (
+const DisplayItems = ({
+  items,
+  blue,
+  quatheading,
+  edit,
+  equip,
+  activate,
+  moveEdit,
+  whatToEdit,
+}) => (
   <>
     {items.map((item) => (
       <ItemCard
@@ -14,6 +23,7 @@ const DisplayItems = ({ items, blue, quatheading, edit, equip, activate, moveEdi
         activate={activate}
         moveEdit={moveEdit}
         key={item.id}
+        whatToEdit={whatToEdit}
       />
     ))}
   </>
