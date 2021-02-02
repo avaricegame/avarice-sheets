@@ -22,11 +22,18 @@ import SheetsPageNotFound from "../sheets-page-not-found/sheets-page-not-found.c
 
 import { selectCurrentUser } from "../../redux/user/user.selectors"
 import { fetchCurrentCampSheetByIDStartAsync } from "../../redux/campaign-sheet/campaign-sheet.actions"
+import { fetchAdditionalResourcesStartAsync } from "../../redux/app/app.actions"
 
 class CampaignSheetPage extends React.Component {
   componentDidMount() {
-    const { fetchCurrentCampSheetByIDStartAsync, match, currentUser } = this.props
+    const {
+      fetchCurrentCampSheetByIDStartAsync,
+      fetchAdditionalResourcesStartAsync,
+      match,
+      currentUser,
+    } = this.props
     fetchCurrentCampSheetByIDStartAsync(match.params.campid, currentUser)
+    fetchAdditionalResourcesStartAsync()
   }
 
   render() {
@@ -64,6 +71,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrentCampSheetByIDStartAsync: (campSheetIDParam, currentUser) =>
     dispatch(fetchCurrentCampSheetByIDStartAsync(campSheetIDParam, currentUser)),
+  fetchAdditionalResourcesStartAsync: () => dispatch(fetchAdditionalResourcesStartAsync()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CampaignSheetPage)

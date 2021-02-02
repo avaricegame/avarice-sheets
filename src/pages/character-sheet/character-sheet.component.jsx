@@ -22,11 +22,18 @@ import SheetsPageNotFound from "../sheets-page-not-found/sheets-page-not-found.c
 
 import { selectCurrentUser } from "../../redux/user/user.selectors"
 import { fetchCurrentCharSheetByIDStartAsync } from "../../redux/character-sheet/character-sheet.actions"
+import { fetchAdditionalResourcesStartAsync } from "../../redux/app/app.actions"
 
 class CharacterSheetPage extends React.Component {
   componentDidMount() {
-    const { fetchCurrentCharSheetByIDStartAsync, match, currentUser } = this.props
+    const {
+      fetchCurrentCharSheetByIDStartAsync,
+      fetchAdditionalResourcesStartAsync,
+      match,
+      currentUser,
+    } = this.props
     fetchCurrentCharSheetByIDStartAsync(match.params.charid, currentUser)
+    fetchAdditionalResourcesStartAsync()
   }
 
   render() {
@@ -64,6 +71,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrentCharSheetByIDStartAsync: (charSheetIDParam, currentUser) =>
     dispatch(fetchCurrentCharSheetByIDStartAsync(charSheetIDParam, currentUser)),
+  fetchAdditionalResourcesStartAsync: () => dispatch(fetchAdditionalResourcesStartAsync()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterSheetPage)

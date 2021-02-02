@@ -46,7 +46,6 @@ const campSheetReducer = (state = INITIAL_STATE, action) => {
         isCampSheetFetching: true,
       }
     case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_SUCCESS:
-      console.log(action.payload)
       return {
         ...state,
         isCampSheetFetching: false,
