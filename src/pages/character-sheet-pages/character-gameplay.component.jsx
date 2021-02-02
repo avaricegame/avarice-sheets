@@ -42,47 +42,34 @@ import DisplayEnergyPoints from "../../components/character-sheet-components/dis
 import DisplayStatsOverview from "../../components/character-sheet-components/display-stats-tables/display-stats-overview.component"
 
 class CharacterGameplayPage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      armourValue: null,
-      maxHP: null,
-      dodgeValue: null,
-      reflexProficiencyValue: null,
-      constitutionProficiencyValue: null,
-      transformedCalculatedStatValues: [],
-    }
-  }
-
   componentDidMount() {
-    const { wearables, level, stats, raceInfo, characterName } = this.props
-
+    const { characterName } = this.props
     document.title = `Gameplay | ${characterName} | Avarice Sheets`
-
-    this.setState({
-      armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
-      maxHP: calculateMaxHPValue(level, findStatProficiencyValue(stats, "constitution")),
-      dodgeValue: calculateDodgeValue(findStatProficiencyValue(stats, "reflex"), raceInfo.size),
-      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
-    })
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      armourValue: null,
-      maxHP: null,
-      dodgeValue: null,
-      transformedCalculatedStatValues: [],
-    })
   }
 
   render() {
-    const { currentHP, lifeCredits, togglePopupForm } = this.props
-    const { armourValue, transformedCalculatedStatValues, maxHP, dodgeValue } = this.state
+    const {
+      currentHP,
+      lifeCredits,
+      togglePopupForm,
+      raceInfo,
+      stats,
+      wearables,
+      level,
+    } = this.props
+
+    const equippedWearables = findEquippedInventoryItems(wearables)
+    const armourValue = calculateArmourValueFromEquippedWearables(
+      findEquippedInventoryItems(wearables)
+    )
+    const maxHP = calculateMaxHPValue(level, findStatProficiencyValue(stats, "constitution"))
+    const dodgeValue = calculateDodgeValue(findStatProficiencyValue(stats, "reflex"), raceInfo.size)
+    const transformedCalculatedStatValues = calculateActualStatValuesAndTransform(
+      stats,
+      equippedWearables,
+      raceInfo.stats
+    )
+
     return (
       <>
         <SheetsHeading heading="Gameplay" />

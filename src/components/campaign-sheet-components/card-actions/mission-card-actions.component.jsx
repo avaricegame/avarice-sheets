@@ -8,29 +8,37 @@ import {
   toggleComplete,
 } from "../../../redux/campaign-sheet/pages/pages.actions"
 
-const MissionCardActions = ({
-  complete,
-  id,
-  planned,
-  current,
-  setCurrentMission,
-  toggleComplete,
-  togglePlanned,
-}) => (
-  <>
-    <span onClick={() => setCurrentMission(id)} className={current ? "true" : ""}>
-      CURRENT
-    </span>{" "}
-    |{" "}
-    <span onClick={() => togglePlanned(id)} className={planned ? "true" : ""}>
-      PLANNED
-    </span>{" "}
-    |{" "}
-    <span onClick={() => toggleComplete(id)} className={complete ? "true" : ""}>
-      COMPLETE
-    </span>
-  </>
-)
+import { selectMissions } from "../../../redux/campaign-sheet/campaign-sheet.selectors"
+
+class MissionCardActions extends React.Component {
+  render() {
+    const {
+      setCurrentMission,
+      toggleComplete,
+      togglePlanned,
+      id,
+      current,
+      planned,
+      complete,
+    } = this.props
+
+    return (
+      <>
+        <span onClick={() => setCurrentMission(id)} className={current ? "true" : ""}>
+          CURRENT
+        </span>{" "}
+        |{" "}
+        <span onClick={() => togglePlanned(id)} className={planned ? "true" : ""}>
+          PLANNED
+        </span>{" "}
+        |{" "}
+        <span onClick={() => toggleComplete(id)} className={complete ? "true" : ""}>
+          COMPLETE
+        </span>
+      </>
+    )
+  }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentMission: (missionID) => dispatch(setCurrentMission(missionID)),

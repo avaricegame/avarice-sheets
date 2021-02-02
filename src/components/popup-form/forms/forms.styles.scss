@@ -85,3 +85,21 @@ form select {
   font-size: 1.4rem;
   cursor: pointer;
 }
+
+.take-a-rest-form {
+  &__abilities-overview {
+    margin: 1rem 1rem 5rem 1rem;
+  }
+
+  &__abilities {
+    margin-top: 1rem;
+    cursor: pointer;
+    &--equipped {
+      border: 0.4rem solid $color-purple;
+    }
+
+    &--locked {
+      background-color: lighten($color-gray, 40%);
+    }
+  }
+}

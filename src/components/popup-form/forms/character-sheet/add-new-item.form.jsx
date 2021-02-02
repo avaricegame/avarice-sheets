@@ -2,32 +2,32 @@ import React from "react"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 
-import "./forms.styles.scss"
+import "../forms.styles.scss"
 
 // display components
-import { PopupFormHeading } from "../popup-form.component"
-import { default as ButtonPanel } from "../../popup-form-button-panel/popup-form-button-panel.component"
-import { default as Button } from "../../custom-button/custom-button.component"
+import { PopupFormHeading } from "../../popup-form.component"
+import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-form-button-panel.component"
+import { default as Button } from "../../../custom-button/custom-button.component"
 
 // selectors
 import {
   selectStats,
   selectWearables,
   selectRaceInfo,
-} from "../../../redux/character-sheet/character-sheet.selectors"
+} from "../../../../redux/character-sheet/character-sheet.selectors"
 
 // util functions
-import { calculateActualStatValuesAndTransform } from "../../../pages/character-sheet-pages/utils/stats.utils"
-import { findEquippedInventoryItems } from "../../../pages/character-sheet-pages/utils/inventory.utils"
+import { calculateActualStatValuesAndTransform } from "../../../../pages/character-sheet-pages/utils/stats.utils"
+import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
 import {
   mapDifficultyToValueToBeat,
   findStatBeingChecked,
   addOrSubtractAdvantageToValueToBeat,
   determineAdvantageBonus,
-} from "../utils/make-a-check.utils"
+} from "../../utils/make-a-check.utils"
 
 // actions
-import { makeACheck } from "../../../redux/character-sheet/pages/pages.actions"
+import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
 
 class MakeACheck extends React.Component {
   constructor(props) {
@@ -63,11 +63,20 @@ class MakeACheck extends React.Component {
   render() {
     return (
       <>
-        <PopupFormHeading>Level Up</PopupFormHeading>
+        <PopupFormHeading>Add New Item</PopupFormHeading>
         <form className="popupform__form purple-top-border">
-          <fieldset></fieldset>
+          <fieldset>
+            <label htmlFor="difficulty">Please Choose a Item</label>
+            <select name="difficulty">
+              <option value={null}>Select One</option>
+              <option value="RISK">Item 1</option>
+              <option value={1}>Item 2</option>
+            </select>
 
-          <ButtonPanel submitValue={`Submit`} />
+            {/* <ItemCard /> */}
+          </fieldset>
+
+          <ButtonPanel submitValue={`Please Select`} />
         </form>
       </>
     )

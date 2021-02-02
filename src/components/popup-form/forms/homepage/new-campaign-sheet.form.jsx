@@ -1,8 +1,8 @@
 import React from "react"
 
-import PopupForm from "../popup-form.component"
+import PopupForm from "../../popup-form.component"
 
-class NewCharacterSheet extends React.Component {
+class NewCampaignSheet extends React.Component {
   constructor() {
     super()
 
@@ -20,13 +20,13 @@ class NewCharacterSheet extends React.Component {
 
   render() {
     return (
-      <PopupForm submitValue="Create Character Sheet" heading="New Character Sheet">
+      <PopupForm submitValue="Create Campaign Sheet" heading="New Campaign Sheet">
         <form className="popup__form" onSubmit={this.handleSubmit}>
-          <label>New character sheet form under construction</label>
+          <label>New campaign sheet form under construction</label>
         </form>
       </PopupForm>
     )
   }
 }
 
-export default NewCharacterSheet
+export default NewCampaignSheet

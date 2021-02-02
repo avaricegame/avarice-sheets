@@ -17,7 +17,11 @@ const PopupFormButtonPanel = ({ submitValue, buttonValue, noSubmit, togglePopupF
       </button>
     ) : (
       <>
-        <button className="popupform__close-button" onClick={() => togglePopupForm(null)}>
+        <button
+          className="popupform__close-button"
+          type="button"
+          onClick={() => togglePopupForm(null)}
+        >
           Cancel
         </button>
         <input type="submit" className="popupform__submit-button" value={submitValue} />
