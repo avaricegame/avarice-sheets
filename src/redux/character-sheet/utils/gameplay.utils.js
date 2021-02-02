@@ -16,3 +16,5 @@ export const makeACheck = (stats, { type, success, critFail, critSuccess }) => {
     return stat
   })
 }
+
+export const levelUp = (abilities, abilityToUnlockIDAndType) => {}

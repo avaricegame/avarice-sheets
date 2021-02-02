@@ -18,7 +18,8 @@ import {
 import { selectAbilities } from "../../../../redux/character-sheet/character-sheet.selectors"
 
 // actions
-import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
+import { levelUp } from "../../../../redux/character-sheet/pages/pages.actions"
+import { togglePopupForm } from "../../../../redux/app/app.actions"
 
 class LevelUp extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class LevelUp extends React.Component {
 
     this.state = {
       abilityToUnlockID: null,
+      abilityToUnlockType: null,
       abilityToUnlock: {
         ability1: {
           id: null,
@@ -76,18 +78,20 @@ class LevelUp extends React.Component {
     }
     this.setState({
       abilityToUnlockID: id,
+      abilityToUnlockType: type,
       abilityToUnlock: { ...newAbilityToUnlock, [`ability${id}`]: { id, type } },
     })
   }
 
   handleSubmit(e) {
     e.preventDefault()
-    const { abilityToUnlock, abilityToUnlockID } = this.state
+    const { abilityToUnlock, abilityToUnlockID, abilityToUnlockType } = this.state
+    const { togglePopupForm, levelUp } = this.props
 
     if (!abilityToUnlockID) return window.alert("You must select an ability to unlock.")
 
-    window.alert("This form action has not been set up yet.")
-    console.log(abilityToUnlock)
+    // levelUp({ abiliites: abilityToUnlock, id: abilityToUnlockID, type: abilityToUnlockType })
+    // togglePopupForm()
   }
 
   render() {
@@ -154,7 +158,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  makeACheck: (typeAndSuccess) => dispatch(makeACheck(typeAndSuccess)),
+  levelUp: (abilityToUnlockIDAndType) => dispatch(levelUp(abilityToUnlockIDAndType)),
+  togglePopupForm: () => dispatch(togglePopupForm()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LevelUp)

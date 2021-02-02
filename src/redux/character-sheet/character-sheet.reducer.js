@@ -1,7 +1,7 @@
 import CharSheetActionTypes from "./character-sheet.types"
 import CharPageActionTypes from "./pages/pages.types"
 
-import { makeACheck } from "./utils/gameplay.utils"
+import { makeACheck, levelUp } from "./utils/gameplay.utils"
 import {
   equipWeapon,
   unequipWeapon,
@@ -184,7 +184,14 @@ const charSheetReducer = (state = INITIAL_STATE, action) => {
           wearables: addNewOrEditWearable(state.currentCharSheet.wearables, action.payload),
         },
       }
-
+    case CharPageActionTypes.LEVEL_UP:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          abilities: levelUp(state.currentCharSheet.abilities, action.payload),
+        },
+      }
     default:
       return state
   }
