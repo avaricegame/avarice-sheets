@@ -16,7 +16,7 @@ const AbilityCardInfo = ({ difficulty, associatedStat, description, effects }) =
     </p>
     <p>
       <strong>Effects: </strong>
-      {effects.name ? "yes" : "n/a"}
+      {effects ? "yes" : "n/a"}
     </p>
   </>
 )

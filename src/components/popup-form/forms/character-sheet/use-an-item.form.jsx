@@ -7,24 +7,13 @@ import "../forms.styles.scss"
 // display components
 import { PopupFormHeading } from "../../popup-form.component"
 import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-form-button-panel.component"
-import { default as Button } from "../../../custom-button/custom-button.component"
+import ItemCard from "../../../shared-sheets-components/item-card/item-card.component"
 
 // selectors
-import {
-  selectStats,
-  selectWearables,
-  selectRaceInfo,
-} from "../../../../redux/character-sheet/character-sheet.selectors"
+import { selectItems } from "../../../../redux/character-sheet/character-sheet.selectors"
 
 // util functions
-import { calculateActualStatValuesAndTransform } from "../../../../pages/character-sheet-pages/utils/stats.utils"
 import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
-import {
-  mapDifficultyToValueToBeat,
-  findStatBeingChecked,
-  addOrSubtractAdvantageToValueToBeat,
-  determineAdvantageBonus,
-} from "../../utils/make-a-check.utils"
 
 // actions
 import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
@@ -34,40 +23,55 @@ class MakeACheck extends React.Component {
     super(props)
 
     this.state = {
-      transformedCalculatedStatValues: [],
-      advantage: 0,
-      difficulty: null,
+      equippedItems: [],
+      currentItem: {},
+      currentItemSet: false,
     }
   }
 
   componentDidMount() {
-    const { stats, wearables, raceInfo } = this.props
+    const { items } = this.props
 
     this.setState({
-      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
+      equippedItems: findEquippedInventoryItems(items),
     })
   }
 
-  makeCheck(type) {}
-
   componentWillUnmount() {
     this.setState({
-      transformedCalculatedStatValues: [],
+      equippedItems: [],
+    })
+  }
+
+  setCurrentItem(e) {
+    const { equippedItems } = this.state
+
+    this.setState({
+      currentItem: equippedItems.find((item) => (item.name = e.target.value)),
+      currentItemSet: true,
     })
   }
 
   render() {
+    const { equippedItems, currentItem, currentItemSet } = this.state
     return (
       <>
         <PopupFormHeading>Use An Item</PopupFormHeading>
         <form className="popupform__form purple-top-border">
-          <fieldset></fieldset>
+          <fieldset>
+            <label htmlFor="item-to-use">Which Item</label>
+            <select name="item-to-use" onChange={(e) => this.setCurrentItem(e)}>
+              <option value="PLEASE SPECIFY">Please Specify</option>
+              {equippedItems.map((item) => (
+                <option key={item.id} value={item.name}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+            {currentItemSet ? <ItemCard item={currentItem} /> : null}
+          </fieldset>
 
-          <ButtonPanel submitValue={`Submit`} />
+          <ButtonPanel noSubmit buttonValue={`Done`} />
         </form>
       </>
     )
@@ -75,9 +79,7 @@ class MakeACheck extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  stats: selectStats,
-  wearables: selectWearables,
-  raceInfo: selectRaceInfo,
+  items: selectItems,
 })
 
 const mapDispatchToProps = (dispatch) => ({
