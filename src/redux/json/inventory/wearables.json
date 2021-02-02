@@ -3,24 +3,56 @@
     "name": "A Bucket of Disguise",
     "_id": "1",
     "equipped": false,
+    "armourValue": 7,
     "bodyArea": "Head",
     "description": "The wearer of the bucket truly believes that they are invisible. It is highly sought after, but there is an interesting quality that only someone who wears it discovers. The wearer begins to hear thoughts that are not their own.",
-    "statModifiers": {
-      "strength": 0,
-      "constitution": 0,
-      "reflex": 0,
-      "speed": 0,
-      "speech": 0,
-      "performance": 0,
-      "technical": 0,
-      "practical": 1,
-      "ranged": 0,
-      "melee": -1
-    },
+    "statModifiers": [
+      {
+        "modifier": "strength",
+        "value": 0
+      },
+      {
+        "modifier": "constitution",
+        "value": 0
+      },
+      {
+        "modifier": "reflex",
+        "value": 0
+      },
+      {
+        "modifier": "speed",
+        "value": 0
+      },
+      {
+        "modifier": "speech",
+        "value": 0
+      },
+      {
+        "modifier": "perform",
+        "value": 0
+      },
+      {
+        "modifier": "technical",
+        "value": 0
+      },
+      {
+        "modifier": "practical",
+        "value": 1
+      },
+      {
+        "modifier": "ranged",
+        "value": 0
+      },
+      {
+        "modifier": "melee",
+        "value": -1
+      }
+    ],
     "abilities": [
       {
         "name": "Walaloo",
         "associatedStat": "n/a",
+        "type": "Wearable Ability",
         "effects": {},
         "difficulty": 1,
         "description": "You will probably run into things."
@@ -28,27 +60,59 @@
     ]
   },
   {
-    "name": "A Bucket of Disguise II",
-    "_id": "2",
+    "name": "A Bucket of Disguise",
+    "_id": "1",
     "equipped": false,
+    "armourValue": 7,
     "bodyArea": "Head",
     "description": "The wearer of the bucket truly believes that they are invisible. It is highly sought after, but there is an interesting quality that only someone who wears it discovers. The wearer begins to hear thoughts that are not their own.",
-    "statModifiers": {
-      "strength": 0,
-      "constitution": 0,
-      "reflex": 0,
-      "speed": 0,
-      "speech": 0,
-      "performance": 0,
-      "technical": 0,
-      "practical": 1,
-      "ranged": 0,
-      "melee": -1
-    },
+    "statModifiers": [
+      {
+        "modifier": "strength",
+        "value": 0
+      },
+      {
+        "modifier": "constitution",
+        "value": 0
+      },
+      {
+        "modifier": "reflex",
+        "value": 0
+      },
+      {
+        "modifier": "speed",
+        "value": 0
+      },
+      {
+        "modifier": "speech",
+        "value": 0
+      },
+      {
+        "modifier": "perform",
+        "value": 0
+      },
+      {
+        "modifier": "technical",
+        "value": 0
+      },
+      {
+        "modifier": "practical",
+        "value": 1
+      },
+      {
+        "modifier": "ranged",
+        "value": 0
+      },
+      {
+        "modifier": "melee",
+        "value": -1
+      }
+    ],
     "abilities": [
       {
         "name": "Walaloo",
         "associatedStat": "n/a",
+        "type": "Wearable Ability",
         "effects": {},
         "difficulty": 1,
         "description": "You will probably run into things."
@@ -56,27 +120,59 @@
     ]
   },
   {
-    "name": "A Bucket of Disguise III",
-    "_id": "3",
+    "name": "A Bucket of Disguise",
+    "_id": "1",
     "equipped": false,
+    "armourValue": 7,
     "bodyArea": "Head",
     "description": "The wearer of the bucket truly believes that they are invisible. It is highly sought after, but there is an interesting quality that only someone who wears it discovers. The wearer begins to hear thoughts that are not their own.",
-    "statModifiers": {
-      "strength": 0,
-      "constitution": 0,
-      "reflex": 0,
-      "speed": 0,
-      "speech": 0,
-      "performance": 0,
-      "technical": 0,
-      "practical": 1,
-      "ranged": 0,
-      "melee": -1
-    },
+    "statModifiers": [
+      {
+        "modifier": "strength",
+        "value": 0
+      },
+      {
+        "modifier": "constitution",
+        "value": 0
+      },
+      {
+        "modifier": "reflex",
+        "value": 0
+      },
+      {
+        "modifier": "speed",
+        "value": 0
+      },
+      {
+        "modifier": "speech",
+        "value": 0
+      },
+      {
+        "modifier": "perform",
+        "value": 0
+      },
+      {
+        "modifier": "technical",
+        "value": 0
+      },
+      {
+        "modifier": "practical",
+        "value": 1
+      },
+      {
+        "modifier": "ranged",
+        "value": 0
+      },
+      {
+        "modifier": "melee",
+        "value": -1
+      }
+    ],
     "abilities": [
       {
         "name": "Walaloo",
         "associatedStat": "n/a",
+        "type": "Wearable Ability",
         "effects": {},
         "difficulty": 1,
         "description": "You will probably run into things."

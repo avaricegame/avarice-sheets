@@ -7,76 +7,158 @@ import "../forms.styles.scss"
 // display components
 import { PopupFormHeading } from "../../popup-form.component"
 import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-form-button-panel.component"
-import { default as Button } from "../../../custom-button/custom-button.component"
+import WearableCard from "../../../shared-sheets-components/wearable-card/wearable-card.component"
 
 // selectors
-import {
-  selectStats,
-  selectWearables,
-  selectRaceInfo,
-} from "../../../../redux/character-sheet/character-sheet.selectors"
-
-// util functions
-import { calculateActualStatValuesAndTransform } from "../../../../pages/character-sheet-pages/utils/stats.utils"
-import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
-import {
-  mapDifficultyToValueToBeat,
-  findStatBeingChecked,
-  addOrSubtractAdvantageToValueToBeat,
-  determineAdvantageBonus,
-} from "../../utils/make-a-check.utils"
+import { selectWearableToEdit, selectWearables } from "../../../../redux/app/app.selectors"
 
 // actions
 import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
 
-class MakeACheck extends React.Component {
+class AddNewWearable extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      transformedCalculatedStatValues: [],
-      advantage: 0,
-      difficulty: null,
+      id: null,
+      name: "",
+      description: "",
+      currentWearable: {},
+      displayWearable: false,
     }
   }
 
   componentDidMount() {
-    const { stats, wearables, raceInfo } = this.props
+    if (this.props.wearableToEdit) {
+      const {
+        wearableToEdit: { id, name, description },
+      } = this.props
 
-    this.setState({
-      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
-    })
+      this.setState({
+        id: id,
+        name: name,
+        description: description,
+      })
+    }
   }
 
-  makeCheck(type) {}
+  handleChange(e) {
+    const { wearables } = this.props
+    console.log(e.target.value)
+    if (e.target.value !== "SELECT ONE") {
+      const currWearable = wearables.find((wearable) => wearable._id === e.target.value)
 
-  componentWillUnmount() {
-    this.setState({
-      transformedCalculatedStatValues: [],
-    })
+      this.setState({
+        currentWearable: currWearable,
+        id: currWearable.id,
+        name: currWearable.name,
+        description: currWearable.description,
+        displayWearable: true,
+      })
+    } else {
+      this.setState({
+        displayWearable: false,
+        currentWearable: {},
+      })
+    }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    const { name, description, id } = this.state
+
+    if (name === "" || description === "")
+      return window.alert("You must have a name and a description written to save.")
+
+    window.alert("Form is not hooked up yet")
+    console.log(name, description, id)
   }
 
   render() {
+    const { wearables } = this.props
+    const { name, description, currentWearable, displayWearable } = this.state
+
+    let newWearableObj
+
+    if (this.props.wearableToEdit) {
+      newWearableObj = {
+        ...this.props.wearableToEdit,
+        name: name,
+        description: description,
+      }
+    } else {
+      newWearableObj = {
+        ...currentWearable,
+        name: name,
+        description: description,
+      }
+    }
+
     return (
       <>
-        <PopupFormHeading>Add New Wearable</PopupFormHeading>
-        <form className="popupform__form purple-top-border">
+        <PopupFormHeading>
+          {this.props.wearableToEdit ? "Edit Wearable" : "Add New Wearable"}
+        </PopupFormHeading>
+        <form className="popupform__form purple-top-border" onSubmit={(e) => this.handleSubmit(e)}>
           <fieldset>
-            <label htmlFor="difficulty">Please Choose a Wearable</label>
-            <select name="difficulty">
-              <option value={null}>Select One</option>
-              <option value="RISK">Wearable 1</option>
-              <option value={1}>Wearable 2</option>
-            </select>
+            {!this.props.wearableToEdit ? (
+              <>
+                <label htmlFor="choose-an-item">Please Choose a Wearable</label>
+                <select name="choose-an-item" onChange={(e) => this.handleChange(e)}>
+                  <option value="SELECT ONE">Select One</option>
+                  {wearables.map(({ name, _id }, index) => (
+                    <option key={index} value={_id}>
+                      {name}
+                    </option>
+                  ))}
+                </select>
 
-            {/* <WearableCard /> */}
+                {displayWearable ? (
+                  <>
+                    <label htmlFor="name">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={name}
+                      onChange={(e) => this.setState({ name: e.target.value })}
+                    />
+
+                    <label htmlFor="description">Description</label>
+                    <textarea
+                      rows="5"
+                      type="text"
+                      name="description"
+                      value={description}
+                      onChange={(e) => this.setState({ description: e.target.value })}
+                    />
+                    <WearableCard wearable={newWearableObj} />
+                  </>
+                ) : null}
+              </>
+            ) : (
+              <>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={(e) => this.setState({ name: e.target.value })}
+                />
+
+                <label htmlFor="description">Description</label>
+                <textarea
+                  rows="5"
+                  type="text"
+                  name="description"
+                  value={description}
+                  onChange={(e) => this.setState({ description: e.target.value })}
+                />
+
+                <WearableCard wearable={newWearableObj} />
+              </>
+            )}
           </fieldset>
-
-          <ButtonPanel submitValue={`Please Select`} />
+          <ButtonPanel submitValue={`Save Wearable`} />
         </form>
       </>
     )
@@ -84,13 +166,12 @@ class MakeACheck extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  stats: selectStats,
+  wearableToEdit: selectWearableToEdit,
   wearables: selectWearables,
-  raceInfo: selectRaceInfo,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   makeACheck: (typeAndSuccess) => dispatch(makeACheck(typeAndSuccess)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MakeACheck)
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewWearable)

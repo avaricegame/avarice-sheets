@@ -44,17 +44,23 @@ class AddNewItem extends React.Component {
 
   handleChange(e) {
     const { items } = this.props
-    console.log(e.target.value)
-    const currItem = items.find((item) => item._id === e.target.value)
 
-    console.log(currItem)
-    this.setState({
-      currentItem: currItem,
-      id: currItem.id,
-      name: currItem.name,
-      description: currItem.description,
-      displayItem: true,
-    })
+    if (e.target.value !== "SELECT ONE") {
+      const currItem = items.find((item) => item._id === e.target.value)
+
+      this.setState({
+        currentItem: currItem,
+        id: currItem.id,
+        name: currItem.name,
+        description: currItem.description,
+        displayItem: true,
+      })
+    } else {
+      this.setState({
+        displayItem: false,
+        currentItem: {},
+      })
+    }
   }
 
   handleSubmit(e) {
@@ -90,12 +96,12 @@ class AddNewItem extends React.Component {
 
     return (
       <>
-        <PopupFormHeading>Edit Item</PopupFormHeading>
+        <PopupFormHeading>{this.props.itemToEdit ? "Edit Item" : "Add New Item"}</PopupFormHeading>
         <form className="popupform__form purple-top-border" onSubmit={(e) => this.handleSubmit(e)}>
           <fieldset>
             {!this.props.itemToEdit ? (
               <>
-                <label htmlFor="choose-an-item">Please Choose a Item</label>
+                <label htmlFor="choose-an-item">Please Choose an Item</label>
                 <select name="choose-an-item" onChange={(e) => this.handleChange(e)}>
                   <option value="SELECT ONE">Select One</option>
                   {items.map(({ name, _id }, index) => (
@@ -104,22 +110,28 @@ class AddNewItem extends React.Component {
                     </option>
                   ))}
                 </select>
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={name}
-                  onChange={(e) => this.setState({ name: e.target.value })}
-                />
 
-                <label htmlFor="description">Description</label>
-                <textarea
-                  type="text"
-                  name="description"
-                  value={description}
-                  onChange={(e) => this.setState({ description: e.target.value })}
-                />
-                {displayItem ? <ItemCard item={newItemObj} /> : null}
+                {displayItem ? (
+                  <>
+                    <label htmlFor="name">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={name}
+                      onChange={(e) => this.setState({ name: e.target.value })}
+                    />
+
+                    <label htmlFor="description">Description</label>
+                    <textarea
+                      rows="5"
+                      type="text"
+                      name="description"
+                      value={description}
+                      onChange={(e) => this.setState({ description: e.target.value })}
+                    />
+                    <ItemCard item={newItemObj} />
+                  </>
+                ) : null}
               </>
             ) : (
               <>
@@ -133,6 +145,7 @@ class AddNewItem extends React.Component {
 
                 <label htmlFor="description">Description</label>
                 <textarea
+                  rows="5"
                   type="text"
                   name="description"
                   value={description}
