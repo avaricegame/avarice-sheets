@@ -50,7 +50,7 @@ class CampaignNotesPage extends React.Component {
           <Column width={75}>
             <Section heading="Note Content">
               <p className="editable-note-content" contentEditable>
-                {notes[0].content}
+                {notes[0] ? notes[0].content : null}
               </p>
             </Section>
           </Column>
