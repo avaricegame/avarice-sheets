@@ -8,12 +8,16 @@ export const setCurrentMission = (missions, missionToSetID) => {
 
 export const togglePlanned = (missions, missionToSetID) => {
   return missions.map((mission) => {
-    return mission.id === missionToSetID ? { ...mission, planned: !mission.planned } : mission
+    return mission.id === missionToSetID
+      ? { ...mission, planned: !mission.planned, complete: !mission.complete }
+      : mission
   })
 }
 
 export const toggleComplete = (missions, missionToSetID) => {
   return missions.map((mission) => {
-    return mission.id === missionToSetID ? { ...mission, complete: !mission.complete } : mission
+    return mission.id === missionToSetID
+      ? { ...mission, complete: !mission.complete, planned: !mission.planned }
+      : mission
   })
 }
