@@ -6,59 +6,53 @@ import EditAndDeleteActions from "../edit-and-delete-actions/edit-and-delete-act
 import CopyMoveEditDeleteActions from "../../campaign-sheet-components/card-actions/copy-move-edit-delete-actions.component"
 import ActivateDeactivateActions from "../../campaign-sheet-components/card-actions/activate-deactivate-actions.component"
 
-const WeaponCard = ({ weapon, blue, quatheading, edit, equip, activate, moveEdit }) => {
+const WearableCard = ({ wearable, blue, quatheading, edit, equip, activate, moveEdit }) => {
   const {
     name,
     id,
-    size,
-    rangedMelee,
-    range,
-    proficiency,
-    equipped,
+    armourValue,
+    bodyArea,
     description,
-    damage,
-    critical,
+    equipped,
+    statModifiers,
     abilities,
     active,
-  } = weapon
+  } = wearable
   return (
     <Card
       blue={blue}
       heading={name}
-      subheading={proficiency}
+      subheading={bodyArea}
       terheading={`${equipped ? "Equipped" : ""}`}
       quatheading={quatheading ? quatheading : ""}
     >
+      <p>
+        <strong>Armour Value: </strong>
+        {armourValue}
+      </p>
       <table>
         <thead>
           <tr>
-            <th>Weapon Stats:</th>
+            <th>Stat Modifiers:</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Type:</td>
-            <td>{rangedMelee}</td>
-          </tr>
-          <tr>
-            <td>Damage:</td>
-            <td>{damage}</td>
-          </tr>
-          <tr>
-            <td>Size:</td>
-            <td>{size}</td>
-          </tr>
-          <tr>
-            <td>Range:</td>
-            <td>{range}</td>
-          </tr>
-          <tr>
-            <td>Critical:</td>
-            <td>{critical}</td>
-          </tr>
+          {statModifiers.map(({ modifier, value }) => {
+            if (value !== 0) {
+              return (
+                <tr key={modifier}>
+                  <td>
+                    <span className="uppercase">{modifier}</span>
+                  </td>
+                  <td>{value}</td>
+                </tr>
+              )
+            } else {
+              return null
+            }
+          })}
         </tbody>
       </table>
-
       <p>
         <strong>Description: </strong>
         {description}
@@ -69,7 +63,7 @@ const WeaponCard = ({ weapon, blue, quatheading, edit, equip, activate, moveEdit
       </p>
       <div className="actions-div">
         {equip ? <p className="actions">EQUIP | UNEQUIP</p> : null}
-        {activate ? <ActivateDeactivateActions type="weapon" id={id} active={active} /> : null}
+        {activate ? <ActivateDeactivateActions type="wearable" id={id} active={active} /> : null}
         {moveEdit ? <CopyMoveEditDeleteActions /> : null}
         {edit ? <EditAndDeleteActions /> : null}
       </div>
@@ -77,4 +71,4 @@ const WeaponCard = ({ weapon, blue, quatheading, edit, equip, activate, moveEdit
   )
 }
 
-export default WeaponCard
+export default WearableCard
