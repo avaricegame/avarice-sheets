@@ -32,37 +32,19 @@ import DisplaySuccessPoints from "../../components/character-sheet-components/di
 import DisplayProficiencyPoints from "../../components/character-sheet-components/display-stats-tables/display-proficiency-points.component"
 
 class StatsPage extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      transformedCalculatedStatValues: [],
-    }
-  }
-
   componentDidMount() {
-    const { stats, wearables, raceInfo, characterName } = this.props
-
+    const { characterName } = this.props
     document.title = `Stats | ${characterName} | Avarice Sheets`
-
-    this.setState({
-      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
-    })
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      transformedCalculatedStatValues: [],
-    })
   }
 
   render() {
-    const { level, togglePopupForm } = this.props
-    const { transformedCalculatedStatValues } = this.state
+    const { level, togglePopupForm, stats, raceInfo, wearables } = this.props
+
+    const transformedCalculatedStatValues = calculateActualStatValuesAndTransform(
+      stats,
+      findEquippedInventoryItems(wearables),
+      raceInfo.stats
+    )
 
     return (
       <>

@@ -8,8 +8,6 @@ import {
   toggleComplete,
 } from "../../../redux/campaign-sheet/pages/pages.actions"
 
-import { selectMissions } from "../../../redux/campaign-sheet/campaign-sheet.selectors"
-
 class MissionCardActions extends React.Component {
   render() {
     const {

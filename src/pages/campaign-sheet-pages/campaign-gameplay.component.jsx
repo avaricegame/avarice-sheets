@@ -40,17 +40,6 @@ class CampaignGameplay extends React.Component {
     super(props)
 
     this.state = {
-      currentMission: {},
-      activeNPCS: [],
-      inactiveNPCS: [],
-      activeWeapons: [],
-      activeWearables: [],
-      activeItems: [],
-      inactiveWeapons: [],
-      inactiveWearables: [],
-      inactiveItems: [],
-      activeEnvironments: [],
-      inactiveEnvironments: [],
       displayNPCS: true,
       displayEnvironment: true,
       displayItems: true,
@@ -60,71 +49,8 @@ class CampaignGameplay extends React.Component {
   }
 
   componentDidMount() {
-    const { missions, campaignName, npcs, inventoryItems, environment } = this.props
-
+    const { campaignName } = this.props
     document.title = `Gameplay | ${campaignName} | Avarice Sheets`
-
-    this.setState({
-      currentMission: getCurrentMission(missions),
-      activeNPCS: findOnlyActiveInteractables(
-        findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
-      ),
-      inactiveNPCS: findOnlyInactiveInteractables(
-        findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
-      ),
-      activeWeapons: findOnlyActiveInteractables(
-        findInteractablesOnlyFromCertainMission(
-          inventoryItems.weapons,
-          getCurrentMissionID(missions)
-        )
-      ),
-      activeWearables: findOnlyActiveInteractables(
-        findInteractablesOnlyFromCertainMission(
-          inventoryItems.wearables,
-          getCurrentMissionID(missions)
-        )
-      ),
-      activeItems: findOnlyActiveInteractables(
-        findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
-      ),
-      inactiveWeapons: findOnlyInactiveInteractables(
-        findInteractablesOnlyFromCertainMission(
-          inventoryItems.weapons,
-          getCurrentMissionID(missions)
-        )
-      ),
-      inactiveWearables: findOnlyInactiveInteractables(
-        findInteractablesOnlyFromCertainMission(
-          inventoryItems.wearables,
-          getCurrentMissionID(missions)
-        )
-      ),
-      inactiveItems: findOnlyInactiveInteractables(
-        findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
-      ),
-      activeEnvironments: findOnlyActiveInteractables(
-        findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
-      ),
-      inactiveEnvironments: findOnlyInactiveInteractables(
-        findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
-      ),
-    })
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      currentMission: null,
-      activeNPCS: [],
-      inactiveNPCS: [],
-      activeWeapons: [],
-      activeWearables: [],
-      activeItems: [],
-      inactiveWeapons: [],
-      inactiveWearables: [],
-      inactiveItems: [],
-      activeEnvironments: [],
-      inactiveEnvironments: [],
-    })
   }
 
   handleInteractableSelect(e) {
@@ -163,22 +89,47 @@ class CampaignGameplay extends React.Component {
   }
 
   render() {
-    const { currentMission } = this.state
-    const {
-      activeNPCS,
-      activeWeapons,
-      activeWearables,
-      activeItems,
-      activeEnvironments,
-      inactiveNPCS,
-      inactiveWeapons,
-      inactiveWearables,
-      inactiveItems,
-      inactiveEnvironments,
-      displayEnvironment,
-      displayItems,
-      displayNPCS,
-    } = this.state
+    const { missions, npcs, inventoryItems, environment, togglePopupForm } = this.props
+    const { displayEnvironment, displayItems, displayNPCS } = this.state
+
+    const currentMission = getCurrentMission(missions)
+    const activeNPCS = findOnlyActiveInteractables(
+      findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
+    )
+    const inactiveNPCS = findOnlyInactiveInteractables(
+      findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
+    )
+    const activeWeapons = findOnlyActiveInteractables(
+      findInteractablesOnlyFromCertainMission(inventoryItems.weapons, getCurrentMissionID(missions))
+    )
+    const activeWearables = findOnlyActiveInteractables(
+      findInteractablesOnlyFromCertainMission(
+        inventoryItems.wearables,
+        getCurrentMissionID(missions)
+      )
+    )
+    const activeItems = findOnlyActiveInteractables(
+      findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
+    )
+    const inactiveWeapons = findOnlyInactiveInteractables(
+      findInteractablesOnlyFromCertainMission(inventoryItems.weapons, getCurrentMissionID(missions))
+    )
+    const inactiveWearables = findOnlyInactiveInteractables(
+      findInteractablesOnlyFromCertainMission(
+        inventoryItems.wearables,
+        getCurrentMissionID(missions)
+      )
+    )
+    const inactiveItems = findOnlyInactiveInteractables(
+      findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
+    )
+    const activeEnvironments = findOnlyActiveInteractables(
+      findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
+    )
+    const inactiveEnvironments = findOnlyInactiveInteractables(
+      findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
+    )
+
     const activeInventoryItems = [...activeItems, ...activeWeapons, ...activeWearables]
     const inactiveInventoryItems = [...inactiveWeapons, ...inactiveWearables, ...inactiveItems]
     const allActiveInteractablesTotal =
@@ -186,7 +137,6 @@ class CampaignGameplay extends React.Component {
     const allInactiveInteractablesTotal =
       inactiveInventoryItems.length + inactiveNPCS.length + inactiveEnvironments.length
 
-    const { togglePopupForm } = this.props
     return (
       <>
         <SheetsHeading heading="Gameplay" />

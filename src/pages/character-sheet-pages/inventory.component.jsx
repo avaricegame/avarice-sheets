@@ -42,12 +42,6 @@ class InventoryPage extends React.Component {
     super(props)
 
     this.state = {
-      entireInventory: [],
-      equippedWeapons: [],
-      equippedWearables: [],
-      equippedItems: [],
-      armourValue: null,
-      newEquippedWearables: [],
       displayWeapons: true,
       displayItems: true,
       displayWearables: true,
@@ -57,29 +51,8 @@ class InventoryPage extends React.Component {
   }
 
   componentDidMount() {
-    const { weapons, wearables, items, characterName } = this.props
-
+    const { characterName } = this.props
     document.title = `Inventory | ${characterName} | Avarice Sheets`
-
-    this.setState({
-      entireInventory: [...weapons, ...wearables, ...items],
-      equippedWeapons: findEquippedInventoryItems(weapons),
-      equippedWearables: findEquippedInventoryItems(wearables),
-      equippedItems: findEquippedInventoryItems(items),
-      armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
-      newEquippedWearables: restructureEquippedWearables(findEquippedInventoryItems(wearables)),
-    })
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      entireInventory: [],
-      equippedWeapons: [],
-      equippedWearables: [],
-      equippedItems: [],
-      armourValue: null,
-      newEquippedWearables: [],
-    })
   }
 
   handleSURONISSelect(e) {
@@ -118,16 +91,14 @@ class InventoryPage extends React.Component {
 
   render() {
     const { lifeCredits, weapons, wearables, items, togglePopupForm } = this.props
-    const {
-      entireInventory,
-      equippedWeapons,
-      equippedItems,
-      armourValue,
-      newEquippedWearables,
-      displayItems,
-      displayWeapons,
-      displayWearables,
-    } = this.state
+    const { displayItems, displayWeapons, displayWearables } = this.state
+
+    const entireInventory = [...weapons, ...wearables, ...items]
+    const equippedWeapons = findEquippedInventoryItems(weapons)
+    const equippedWearables = findEquippedInventoryItems(wearables)
+    const equippedItems = findEquippedInventoryItems(items)
+    const armourValue = calculateArmourValueFromEquippedWearables(equippedWearables)
+    const newEquippedWearables = restructureEquippedWearables(equippedWearables)
 
     return (
       <>

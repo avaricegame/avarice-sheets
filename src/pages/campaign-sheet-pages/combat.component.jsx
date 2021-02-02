@@ -32,34 +32,17 @@ import NPCCombatCard from "../../components/campaign-sheet-components/npc-combat
 import PlayerCombatCard from "../../components/campaign-sheet-components/player-combat-card/player-combat-card.compnent"
 
 class CombatPage extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      friendNPCS: [],
-      enemyNPCS: [],
-    }
-  }
-
   componentDidMount() {
-    const { campaignName, npcs } = this.props
+    const { campaignName } = this.props
     document.title = `Combat | ${campaignName} | Avarice Sheets`
-    this.setState({
-      friendNPCS: findOnlyActiveInteractables(findOnlyFriendNPCS(npcs)),
-      enemyNPCS: findOnlyActiveInteractables(findOnlyEnemyNPCS(npcs)),
-    })
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      friendNPCS: [],
-      enemyNPCS: [],
-    })
   }
 
   render() {
-    const { players, togglePopupForm } = this.props
-    const { friendNPCS, enemyNPCS } = this.state
+    const { players, togglePopupForm, npcs } = this.props
+
+    const friendNPCS = findOnlyActiveInteractables(findOnlyFriendNPCS(npcs))
+    const enemyNPCS = findOnlyActiveInteractables(findOnlyEnemyNPCS(npcs))
+
     return (
       <>
         <SheetsHeading heading="Combat" />

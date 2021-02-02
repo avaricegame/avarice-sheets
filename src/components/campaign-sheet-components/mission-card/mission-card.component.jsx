@@ -9,9 +9,6 @@ import EditAndDeleteActions from "../../shared-sheets-components/edit-and-delete
 class MissionCard extends React.Component {
   render() {
     const { complete, date, name, notes, id, planned, current } = this.props.mission
-
-    console.log(id)
-
     return (
       <Card blue heading={name} subheading={complete ? `Completed ${date}` : `Planned for ${date}`}>
         <p>{notes}</p>

@@ -43,75 +43,35 @@ class PlanningPage extends React.Component {
     super(props)
 
     this.state = {
-      currentMission: false,
-      currentWeapons: [],
-      currentWearables: [],
-      currentItems: [],
-      currentNPCS: [],
-      currentEnvironment: [],
+      currentMissionID: getCurrentMissionID(this.props.missions),
     }
   }
 
-  componentDidMount() {
-    const {
-      missions,
-      environment,
-      inventoryItems: { weapons, wearables, items },
-      npcs,
-    } = this.props
-
-    const currentMissionID = getCurrentMissionID(missions)
-
-    this.setState({
-      currentMission: getSingleMissionByID(missions, currentMissionID),
-      currentEnvironment: findInteractablesOnlyFromCertainMission(environment, currentMissionID),
-      currentWeapons: findInteractablesOnlyFromCertainMission(weapons, currentMissionID),
-      currentWearables: findInteractablesOnlyFromCertainMission(wearables, currentMissionID),
-      currentItems: findInteractablesOnlyFromCertainMission(items, currentMissionID),
-      currentNPCS: findInteractablesOnlyFromCertainMission(npcs, currentMissionID),
-    })
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      currentMission: false,
-      currentWeapons: [],
-      currentWearables: [],
-      currentItems: [],
-      currentNPCS: [],
-      currentEnvironment: [],
-    })
-  }
-
   selectMissionHandler({ target: { value } }) {
-    const {
-      missions,
-      environment,
-      inventoryItems: { weapons, wearables, items },
-      npcs,
-    } = this.props
-
     this.setState({
-      currentMission: getSingleMissionByID(missions, value),
-      currentEnvironment: findInteractablesOnlyFromCertainMission(environment, value),
-      currentWeapons: findInteractablesOnlyFromCertainMission(weapons, value),
-      currentWearables: findInteractablesOnlyFromCertainMission(wearables, value),
-      currentItems: findInteractablesOnlyFromCertainMission(items, value),
-      currentNPCS: findInteractablesOnlyFromCertainMission(npcs, value),
+      currentMissionID: value,
     })
   }
 
   render() {
     const {
-      currentMission,
-      currentWeapons,
-      currentWearables,
-      currentItems,
-      currentNPCS,
-      currentEnvironment,
-    } = this.state
+      missions,
+      togglePopupForm,
+      environment,
+      inventoryItems: { weapons, wearables, items },
+      npcs,
+    } = this.props
+    const { currentMissionID } = this.state
 
-    const { missions, togglePopupForm } = this.props
+    const currentMission = getSingleMissionByID(missions, currentMissionID)
+    const currentEnvironment = findInteractablesOnlyFromCertainMission(
+      environment,
+      currentMissionID
+    )
+    const currentWeapons = findInteractablesOnlyFromCertainMission(weapons, currentMissionID)
+    const currentWearables = findInteractablesOnlyFromCertainMission(wearables, currentMissionID)
+    const currentItems = findInteractablesOnlyFromCertainMission(items, currentMissionID)
+    const currentNPCS = findInteractablesOnlyFromCertainMission(npcs, currentMissionID)
 
     return (
       <>

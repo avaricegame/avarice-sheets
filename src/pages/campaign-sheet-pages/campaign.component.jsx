@@ -35,31 +35,9 @@ import { default as Log } from "../../components/shared-sheets-components/displa
 import MissionCard from "../../components/campaign-sheet-components/mission-card/mission-card.component"
 
 class CampaignPage extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      futureMissions: [],
-      completedMissions: [],
-    }
-  }
-
   componentDidMount() {
-    const { missions, campaignName } = this.props
-
+    const { campaignName } = this.props
     document.title = `Campaign | ${campaignName} | Avarice Sheets`
-
-    this.setState({
-      futureMissions: getOnlyFutureMissions(missions),
-      completedMissions: getOnlyCompletedMissions(missions),
-    })
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      futureMissions: [],
-      completedMissions: [],
-    })
   }
 
   render() {
@@ -74,7 +52,10 @@ class CampaignPage extends React.Component {
       charactersNames,
       togglePopupForm,
     } = this.props
-    const { futureMissions, completedMissions } = this.state
+
+    const futureMissions = getOnlyFutureMissions(missions)
+    const completedMissions = getOnlyCompletedMissions(missions)
+
     return (
       <>
         <SheetsHeading heading="Campaign" />
