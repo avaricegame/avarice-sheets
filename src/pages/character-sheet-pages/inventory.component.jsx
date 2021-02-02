@@ -36,6 +36,7 @@ import {
   calculateArmourValueFromEquippedWearables,
   restructureEquippedWearables,
 } from "./utils/inventory.utils"
+import DisplayEquippedWearables from "../../components/shared-sheets-components/display-equipped-wearables/display-equipped-wearables.component"
 
 class InventoryPage extends React.Component {
   constructor(props) {
@@ -118,23 +119,7 @@ class InventoryPage extends React.Component {
               </Card>
 
               <Card heading="Wearables" subheading={`Armour Value: ${armourValue}`}>
-                {newEquippedWearables.map(({ name, bodyArea, armourValue, augments }) => (
-                  <div key={bodyArea}>
-                    <p>
-                      <strong>
-                        {bodyArea}: {name}
-                      </strong>
-                    </p>
-                    <ul>
-                      <li>
-                        <em>Armour Value:</em> {armourValue}
-                      </li>
-                      <li>
-                        <em>Augments:</em> {augments}
-                      </li>
-                    </ul>
-                  </div>
-                ))}
+                <DisplayEquippedWearables unequip newEquippedWearables={newEquippedWearables} />
               </Card>
             </Section>
           </Column>

@@ -2,6 +2,14 @@ import CharSheetActionTypes from "./character-sheet.types"
 import CharPageActionTypes from "./pages/pages.types"
 
 import { makeACheck } from "./utils/gameplay.utils"
+import {
+  equipWeapon,
+  unequipWeapon,
+  equipItem,
+  unequipItem,
+  equipWearable,
+  unequipWearable,
+} from "./utils/inventory.utils"
 
 const INITIAL_STATE = {
   currentCharSheet: null,
@@ -83,6 +91,54 @@ const charSheetReducer = (state = INITIAL_STATE, action) => {
         currentCharSheet: {
           ...state.currentCharSheet,
           stats: makeACheck(state.currentCharSheet.stats, action.payload),
+        },
+      }
+    case CharPageActionTypes.EQUIP_WEAPON:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          weapons: equipWeapon(state.currentCharSheet.weapons, action.payload),
+        },
+      }
+    case CharPageActionTypes.UNEQUIP_WEAPON:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          weapons: unequipWeapon(state.currentCharSheet.weapons, action.payload),
+        },
+      }
+    case CharPageActionTypes.EQUIP_WEARABLE:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          wearables: equipWearable(state.currentCharSheet.wearables, action.payload),
+        },
+      }
+    case CharPageActionTypes.UNEQUIP_WEARABLE:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          wearables: unequipWearable(state.currentCharSheet.wearables, action.payload),
+        },
+      }
+    case CharPageActionTypes.EQUIP_ITEM:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          items: equipItem(state.currentCharSheet.items, action.payload),
+        },
+      }
+    case CharPageActionTypes.UNEQUIP_ITEM:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          items: unequipItem(state.currentCharSheet.items, action.payload),
         },
       }
     default:

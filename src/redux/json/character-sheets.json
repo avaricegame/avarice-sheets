@@ -491,7 +491,7 @@
         "id": "1",
         "equipped": false,
         "armourValue": 7,
-        "bodyArea": "Head",
+        "bodyArea": "Torso",
         "description": "The wearer of the bucket truly believes that they are invisible. It is highly sought after, but there is an interesting quality that only someone who wears it discovers. The wearer begins to hear thoughts that are not their own.",
         "statModifiers": [
           {

@@ -5,6 +5,7 @@ import { default as Card } from "../../card-container/card-container.component"
 import EditAndDeleteActions from "../edit-and-delete-actions/edit-and-delete-actions.component"
 import CopyMoveEditDeleteActions from "../../campaign-sheet-components/card-actions/copy-move-edit-delete-actions.component"
 import ActivateDeactivateActions from "../../campaign-sheet-components/card-actions/activate-deactivate-actions.component"
+import EquipAndUnequipActions from "../card-actions/equip-and-unequip.component"
 
 const WearableCard = ({ wearable, blue, quatheading, edit, equip, activate, moveEdit }) => {
   const {
@@ -62,7 +63,9 @@ const WearableCard = ({ wearable, blue, quatheading, edit, equip, activate, move
         {abilities.length}
       </p>
       <div className="actions-div">
-        {equip ? <p className="actions">EQUIP | UNEQUIP</p> : null}
+        {equip ? (
+          <EquipAndUnequipActions type="WEARABLE" id={id} equipped={equipped} bodyArea={bodyArea} />
+        ) : null}
         {activate ? <ActivateDeactivateActions type="wearable" id={id} active={active} /> : null}
         {moveEdit ? <CopyMoveEditDeleteActions /> : null}
         {edit ? <EditAndDeleteActions /> : null}

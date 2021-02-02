@@ -7,9 +7,13 @@ export const findEquippedInventoryItems = (array) => {
 // this loops through the equipped wearables and takes out just their armour
 // value, then reduces that down and returns the value
 export const calculateArmourValueFromEquippedWearables = (equippedWearables) => {
-  return equippedWearables
-    .map((wearable) => wearable.armourValue)
-    .reduce((total, wearableArmourValue) => total + wearableArmourValue)
+  if (equippedWearables.length) {
+    return equippedWearables
+      .map((wearable) => wearable.armourValue)
+      .reduce((total, wearableArmourValue) => total + wearableArmourValue)
+  } else {
+    return 0
+  }
 }
 
 // this goes through the array of equipped wearables and totally

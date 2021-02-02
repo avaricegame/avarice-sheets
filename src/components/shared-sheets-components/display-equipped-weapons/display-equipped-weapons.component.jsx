@@ -1,9 +1,11 @@
 import React from "react"
 
+import EquipAndUnequipActions from "../card-actions/equip-and-unequip.component"
+
 const DisplayEquippedWeapons = ({ equippedWeapons, unequip, campaignSheet }) => (
   <>
     {equippedWeapons.map(({ name, rangedMelee, proficiencyCode, damage, id }) => (
-      <div key={id}>
+      <div key={id} className="equipped-inventory-items-display">
         <p>
           <strong>{name}: </strong>
         </p>
@@ -18,7 +20,8 @@ const DisplayEquippedWeapons = ({ equippedWeapons, unequip, campaignSheet }) => 
             <em>Proficiency:</em> {proficiencyCode}
           </li>
         </ul>
-        <p className="actions">{campaignSheet ? "SHOW MORE" : unequip ? "UNEQUIP" : ""}</p>
+        {unequip ? <EquipAndUnequipActions equipped isEquippedList type="WEAPON" id={id} /> : null}
+        {campaignSheet ? <p className="actions">SHOW MORE</p> : null}
       </div>
     ))}
   </>

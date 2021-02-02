@@ -55,9 +55,22 @@ a {
   color: lighten($color-gray, 30%);
   text-align: right;
   margin-bottom: 0 !important;
+  &--equipped-inventory-items-display {
+    margin-top: -3rem !important;
+    margin-bottom: 1rem !important;
+  }
   span {
     &.true {
       color: $main-text-color-dark;
     }
   }
+}
+
+.equipped-inventory-items-display {
+  border-bottom: 1px solid $hr-color;
+  &:first-of-type {
+    border-top: 1px solid $hr-color;
+  }
+
+  padding: 0.5rem 0;
 }
