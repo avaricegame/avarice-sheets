@@ -54,7 +54,7 @@ class NewCaptainsLog extends React.Component {
     return (
       <>
         <PopupFormHeading>Edit Captain's Log</PopupFormHeading>
-        <form className="popupform__form purple-top-border" onSubmit={(e) => this.handleSubmit(e)}>
+        <form className="popupform__form blue-top-border" onSubmit={(e) => this.handleSubmit(e)}>
           <fieldset>
             <label htmlFor="title">Title</label>
             <input
