@@ -90,8 +90,8 @@ class LevelUp extends React.Component {
 
     if (!abilityToUnlockID) return window.alert("You must select an ability to unlock.")
 
-    // levelUp({ abiliites: abilityToUnlock, id: abilityToUnlockID, type: abilityToUnlockType })
-    // togglePopupForm()
+    levelUp({ abiliites: abilityToUnlock, id: abilityToUnlockID, type: abilityToUnlockType })
+    togglePopupForm()
   }
 
   render() {

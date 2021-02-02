@@ -1,7 +1,7 @@
 import CharSheetActionTypes from "./character-sheet.types"
 import CharPageActionTypes from "./pages/pages.types"
 
-import { makeACheck, levelUp } from "./utils/gameplay.utils"
+import { makeACheck, levelUp, takeARest, loadAbilitiesFromLoadout } from "./utils/gameplay.utils"
 import {
   equipWeapon,
   unequipWeapon,
@@ -23,6 +23,7 @@ const INITIAL_STATE = {
   doesCharacterSheetExist: true,
   doesUserHavePermission: true,
   areAdditionalResourcesLoaded: true,
+  prevLevelsAbilityUnlocked: null,
 }
 
 const charSheetReducer = (state = INITIAL_STATE, action) => {
@@ -189,7 +190,26 @@ const charSheetReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentCharSheet: {
           ...state.currentCharSheet,
-          abilities: levelUp(state.currentCharSheet.abilities, action.payload),
+          level: state.currentCharSheet.level + 1,
+          abilities: {
+            ...state.currentCharSheet.abilities,
+            abilities: levelUp(state.currentCharSheet.abilities.abilities, action.payload),
+          },
+        },
+      }
+    case CharPageActionTypes.TAKE_A_REST:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          stats: takeARest(state.currentCharSheet.stats, action.payload.type),
+          abilities: {
+            ...state.currentCharSheet.abilities,
+            abilities: loadAbilitiesFromLoadout(
+              state.currentCharSheet.abilities.abilities,
+              action.payload.abilities
+            ),
+          },
         },
       }
     default:
