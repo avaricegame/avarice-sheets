@@ -29,6 +29,7 @@
       "abilities": [
         {
           "name": "WATAH YA GONNA DO 'BOUT IT",
+          "id": "1",
           "types": [
             {
               "type": "standard",
@@ -77,6 +78,7 @@
         },
         {
           "name": "WHY'RE YA GONNA DO 'BOUT IT",
+          "id": "2",
           "types": [
             {
               "type": "standard",
@@ -125,6 +127,7 @@
         },
         {
           "name": "The Need For Speed",
+          "id": "3",
           "types": [
             {
               "type": "standard",
@@ -173,6 +176,7 @@
         },
         {
           "name": "Flavor Your Water",
+          "id": "4",
           "types": [
             {
               "type": "standard",
@@ -221,6 +225,7 @@
         },
         {
           "name": "Cool Your Jets",
+          "id": "5",
           "types": [
             {
               "type": "standard",
@@ -660,6 +665,7 @@
       "abilities": [
         {
           "name": "WATAH YA GONNA DO 'BOUT IT",
+          "id": "1",
           "types": [
             {
               "type": "standard",
@@ -708,6 +714,7 @@
         },
         {
           "name": "WHY'RE YA GONNA DO 'BOUT IT",
+          "id": "2",
           "types": [
             {
               "type": "standard",
@@ -756,6 +763,7 @@
         },
         {
           "name": "The Need For Speed",
+          "id": "3",
           "types": [
             {
               "type": "standard",
@@ -804,6 +812,7 @@
         },
         {
           "name": "Flavor Your Water",
+          "id": "4",
           "types": [
             {
               "type": "standard",
@@ -852,6 +861,7 @@
         },
         {
           "name": "Cool Your Jets",
+          "id": "5",
           "types": [
             {
               "type": "standard",
@@ -1291,6 +1301,7 @@
       "abilities": [
         {
           "name": "WATAH YA GONNA DO 'BOUT IT",
+          "id": "1",
           "types": [
             {
               "type": "standard",
@@ -1339,6 +1350,7 @@
         },
         {
           "name": "WHY'RE YA GONNA DO 'BOUT IT",
+          "id": "2",
           "types": [
             {
               "type": "standard",
@@ -1387,6 +1399,7 @@
         },
         {
           "name": "The Need For Speed",
+          "id": "3",
           "types": [
             {
               "type": "standard",
@@ -1435,6 +1448,7 @@
         },
         {
           "name": "Flavor Your Water",
+          "id": "4",
           "types": [
             {
               "type": "standard",
@@ -1483,6 +1497,7 @@
         },
         {
           "name": "Cool Your Jets",
+          "id": "5",
           "types": [
             {
               "type": "standard",
