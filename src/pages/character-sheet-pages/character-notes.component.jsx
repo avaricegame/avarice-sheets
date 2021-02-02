@@ -52,7 +52,6 @@ class CharacterNotesPage extends React.Component {
               <p className="editable-note-content" contentEditable>
                 {notes[0].content}
               </p>
-              <Button formButton>Save Note</Button>
             </Section>
           </Column>
         </SheetsPageContainer>
