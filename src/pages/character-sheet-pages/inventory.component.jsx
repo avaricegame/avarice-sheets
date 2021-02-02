@@ -148,9 +148,15 @@ class InventoryPage extends React.Component {
                   <option value="NONE">None</option>
                 </select>
               </Card>
-              {displayWeapons ? <DisplayWeapons equip edit weapons={weapons} /> : null}
-              {displayItems ? <DisplayItems equip edit items={items} /> : null}
-              {displayWearables ? <DisplayWearables equip edit wearables={wearables} /> : null}
+              {displayWeapons ? (
+                <DisplayWeapons equip edit weapons={weapons} whatToEdit="weaponToEdit" />
+              ) : null}
+              {displayItems ? (
+                <DisplayItems equip edit items={items} whatToEdit="itemToEdit" />
+              ) : null}
+              {displayWearables ? (
+                <DisplayWearables equip edit wearables={wearables} whatToEdit="wearableToEdit" />
+              ) : null}
             </Section>
           </Column>
 

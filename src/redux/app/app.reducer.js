@@ -26,6 +26,14 @@ const appReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isPopupFormVisible: !state.isPopupFormVisible,
         popupFormType: action.payload,
+        charLogToEdit: null,
+        capLogToEdit: null,
+        perLogToEdit: null,
+        npcToEdit: null,
+        weaponToEdit: null,
+        itemToEdit: null,
+        wearableToEdit: null,
+        environmentToEdit: null,
       }
     case AppActionTypes.TOGGLE_POPUP_FOR_EDIT:
       return {

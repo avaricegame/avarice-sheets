@@ -10,6 +10,8 @@ import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-f
 
 // actions
 import { selectCharLogToEdit } from "../../../../redux/app/app.selectors"
+
+// actions
 import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
 
 class NewCharacterLog extends React.Component {

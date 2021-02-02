@@ -7,8 +7,10 @@ import { selectPopupFormType } from "../../redux/app/app.selectors"
 import PopupFormTypes from "./popup-form.types"
 
 // import the form components
-// char sheet
-import Attack from "./forms/character-sheet/attack.form"
+// create new character sheet (and edit)
+// create new campaign sheet (and edit)
+// CHARACTER SHEET
+import Attack from "./forms/character-sheet/attack.form" // TO DO
 import MakeACheck from "./forms/character-sheet/make-a-check.form"
 import UseAnItem from "./forms/character-sheet/use-an-item.form"
 import UseAnAbility from "./forms/character-sheet/use-an-ability.form"
@@ -16,17 +18,38 @@ import TakeARest from "./forms/character-sheet/take-a-rest.form"
 import RollDice from "./forms/character-sheet/roll-dice.form"
 import TakeOrHealDamage from "./forms/character-sheet/take-or-heal-damage.form"
 import PayOrRecieveMoney from "./forms/character-sheet/pay-or-recieve-money.form"
-import AddNewWeapon from "./forms/character-sheet/add-new-weapon.form"
-import AddNewWearable from "./forms/character-sheet/add-new-wearable.form"
-import AddNewItem from "./forms/character-sheet/add-new-item.form"
-import SellInventoryItem from "./forms/character-sheet/sell-inventory-item.form"
+import AddNewWeapon from "./forms/character-sheet/add-new-weapon.form" // TO DO (and edit)
+import AddNewWearable from "./forms/character-sheet/add-new-wearable.form" // TO DO (and edit)
+import AddNewItem from "./forms/character-sheet/add-new-item.form" // TO DO (and edit)
+import SellInventoryItem from "./forms/character-sheet/sell-inventory-item.form" // TO DO
 import LevelUp from "./forms/character-sheet/level-up.form"
 import NewCharacterLog from "./forms/character-sheet/new-character-log.form"
-// camp sheet
+// CAMPAIGN SHEET
+// gameplay perform a check
+// gameplay dispense damage
+// gameplay give or take money
+// gameplay buy or sell items
+// gameplay give or take items
+// gameplay rest party
+// gameplay level up party
+// create/generate interactable gameplay
+// combat attack
+// combat make a check
+// combat take damage
+// combat heal
+// combat roll dice
+// open players suronis
 import NewCaptainsLog from "./forms/campaign-sheet/new-captains-log.form"
 import NewPersonalLog from "./forms/campaign-sheet/new-personal-log.form"
+// edit campaign details
 import AddNewNPC from "./forms/campaign-sheet/add-new-npc.form"
 import AddNewEnvironment from "./forms/campaign-sheet/add-new-environment.form"
+// create new mission (and edit)
+import MoveInteractable from "./forms/campaign-sheet/move-interactable.form"
+import CopyInteractable from "./forms/campaign-sheet/copy-interactable.form"
+// generate npc
+// generate environment
+// generate inventory item
 
 import "./popup-form.styles.scss"
 
@@ -62,6 +85,12 @@ const PopupForm = ({ popupFormType }) => (
       {/* PLANNING FORMS */}
       {popupFormType === PopupFormTypes.ADD_A_NEW_NPC ? <AddNewNPC /> : null}
       {popupFormType === PopupFormTypes.ADD_A_NEW_ENVIRONMENT ? <AddNewEnvironment /> : null}
+      {popupFormType === PopupFormTypes.MOVE_INTERACTABLE_TO_DIFFERENT_MISSION ? (
+        <MoveInteractable />
+      ) : null}
+      {popupFormType === PopupFormTypes.COPY_INTERACTABLE_TO_DIFFERENT_MISSION ? (
+        <CopyInteractable />
+      ) : null}
     </div>
   </div>
 )

@@ -3,6 +3,7 @@
     "name": "All or Nothing Coin",
     "_id": "1",
     "equipped": false,
+    "category": "Leptics",
     "uses": 1,
     "effects": {},
     "description": "Once per day, instead of rolling a d20, you can flip a coin. Heads = critical hit; Tails = critical fail."
@@ -11,6 +12,7 @@
     "name": "All or Nothing Coin II",
     "_id": "2",
     "equipped": false,
+    "category": "Leptics",
     "uses": 1,
     "effects": {},
     "description": "Once per day, instead of rolling a d20, you can flip a coin. Heads = critical hit; Tails = critical fail."
@@ -18,6 +20,7 @@
   {
     "name": "All or Nothing Coin III",
     "_id": "3",
+    "category": "Leptics",
     "equipped": false,
     "uses": 1,
     "effects": {},

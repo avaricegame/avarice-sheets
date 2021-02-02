@@ -7,76 +7,143 @@ import "../forms.styles.scss"
 // display components
 import { PopupFormHeading } from "../../popup-form.component"
 import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-form-button-panel.component"
-import { default as Button } from "../../../custom-button/custom-button.component"
+import ItemCard from "../../../shared-sheets-components/item-card/item-card.component"
 
 // selectors
-import {
-  selectStats,
-  selectWearables,
-  selectRaceInfo,
-} from "../../../../redux/character-sheet/character-sheet.selectors"
-
-// util functions
-import { calculateActualStatValuesAndTransform } from "../../../../pages/character-sheet-pages/utils/stats.utils"
-import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
-import {
-  mapDifficultyToValueToBeat,
-  findStatBeingChecked,
-  addOrSubtractAdvantageToValueToBeat,
-  determineAdvantageBonus,
-} from "../../utils/make-a-check.utils"
+import { selectItemToEdit, selectItems } from "../../../../redux/app/app.selectors"
 
 // actions
 import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
 
-class MakeACheck extends React.Component {
+class AddNewItem extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      transformedCalculatedStatValues: [],
-      advantage: 0,
-      difficulty: null,
+      id: null,
+      name: "",
+      description: "",
+      currentItem: {},
+      displayItem: false,
     }
   }
 
   componentDidMount() {
-    const { stats, wearables, raceInfo } = this.props
+    if (this.props.itemToEdit) {
+      const {
+        itemToEdit: { id, name, description },
+      } = this.props
 
+      this.setState({
+        id: id,
+        name: name,
+        description: description,
+      })
+    }
+  }
+
+  handleChange(e) {
+    const { items } = this.props
+    console.log(e.target.value)
+    const currItem = items.find((item) => item._id === e.target.value)
+
+    console.log(currItem)
     this.setState({
-      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
+      currentItem: currItem,
+      id: currItem.id,
+      name: currItem.name,
+      description: currItem.description,
+      displayItem: true,
     })
   }
 
-  makeCheck(type) {}
+  handleSubmit(e) {
+    e.preventDefault()
+    const { name, description, id } = this.state
 
-  componentWillUnmount() {
-    this.setState({
-      transformedCalculatedStatValues: [],
-    })
+    if (name === "" || description === "")
+      return window.alert("You must have a name and a description written to save.")
+
+    window.alert("Form is not hooked up yet")
+    console.log(name, description, id)
   }
 
   render() {
+    const { items } = this.props
+    const { name, description, currentItem, displayItem } = this.state
+
+    let newItemObj
+
+    if (this.props.itemToEdit) {
+      newItemObj = {
+        ...this.props.itemToEdit,
+        name: name,
+        description: description,
+      }
+    } else {
+      newItemObj = {
+        ...currentItem,
+        name: name,
+        description: description,
+      }
+    }
+
     return (
       <>
-        <PopupFormHeading>Add New Item</PopupFormHeading>
-        <form className="popupform__form purple-top-border">
+        <PopupFormHeading>Edit Item</PopupFormHeading>
+        <form className="popupform__form purple-top-border" onSubmit={(e) => this.handleSubmit(e)}>
           <fieldset>
-            <label htmlFor="difficulty">Please Choose a Item</label>
-            <select name="difficulty">
-              <option value={null}>Select One</option>
-              <option value="RISK">Item 1</option>
-              <option value={1}>Item 2</option>
-            </select>
+            {!this.props.itemToEdit ? (
+              <>
+                <label htmlFor="choose-an-item">Please Choose a Item</label>
+                <select name="choose-an-item" onChange={(e) => this.handleChange(e)}>
+                  <option value="SELECT ONE">Select One</option>
+                  {items.map(({ name, _id }, index) => (
+                    <option key={index} value={_id}>
+                      {name}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={(e) => this.setState({ name: e.target.value })}
+                />
 
-            {/* <ItemCard /> */}
+                <label htmlFor="description">Description</label>
+                <textarea
+                  type="text"
+                  name="description"
+                  value={description}
+                  onChange={(e) => this.setState({ description: e.target.value })}
+                />
+                {displayItem ? <ItemCard item={newItemObj} /> : null}
+              </>
+            ) : (
+              <>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={(e) => this.setState({ name: e.target.value })}
+                />
+
+                <label htmlFor="description">Description</label>
+                <textarea
+                  type="text"
+                  name="description"
+                  value={description}
+                  onChange={(e) => this.setState({ description: e.target.value })}
+                />
+
+                <ItemCard item={newItemObj} />
+              </>
+            )}
           </fieldset>
-
-          <ButtonPanel submitValue={`Please Select`} />
+          <ButtonPanel submitValue={`Save Item`} />
         </form>
       </>
     )
@@ -84,13 +151,12 @@ class MakeACheck extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  stats: selectStats,
-  wearables: selectWearables,
-  raceInfo: selectRaceInfo,
+  itemToEdit: selectItemToEdit,
+  items: selectItems,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   makeACheck: (typeAndSuccess) => dispatch(makeACheck(typeAndSuccess)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MakeACheck)
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewItem)
