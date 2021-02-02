@@ -36,7 +36,8 @@ class MakeACheck extends React.Component {
     this.state = {
       transformedCalculatedStatValues: [],
       advantage: 0,
-      difficulty: null,
+      difficulty: "SELECT DIFFICULTY",
+      risk: "NO",
     }
   }
 
@@ -54,54 +55,116 @@ class MakeACheck extends React.Component {
 
   makeCheck(type) {
     const { makeACheck } = this.props
-    const { transformedCalculatedStatValues, difficulty, advantage } = this.state
-    console.log(type)
-    console.log(difficulty)
-    console.log(advantage)
+    const { transformedCalculatedStatValues, difficulty, advantage, risk } = this.state
 
-    if (difficulty === "RISK") {
-      const roll1 = Math.ceil(Math.random() * 20)
-      const roll2 = Math.ceil(Math.random() * 20)
-
-      return window.alert(`You rolled: ${roll1} and ${roll2}. `)
-    }
+    if (difficulty === "SELECT DIFFICULTY")
+      return window.alert("You must set the difficulty of the check.")
 
     const valueToBeat = mapDifficultyToValueToBeat(difficulty)
-    console.log(valueToBeat)
+    console.log("VALUE TO BEAT " + valueToBeat)
     const statChecking = findStatBeingChecked(transformedCalculatedStatValues, type)
     console.log(statChecking)
-    const newValueToBeat = addOrSubtractAdvantageToValueToBeat(valueToBeat, parseInt(advantage))
-    console.log(newValueToBeat)
+    const advantageBonus = determineAdvantageBonus(parseInt(advantage))
+    console.log("ADVANTAGE BONUS " + advantageBonus)
 
-    if (statChecking.proficiencyPoints >= newValueToBeat) {
+    const valueToBeatTotal = valueToBeat + -advantageBonus
+    console.log("VALUE TO BEAT TOTAL " + valueToBeatTotal)
+
+    if (statChecking.proficiencyPoints >= valueToBeatTotal) {
       return window.alert(`Your check automatically succeeds, no further actions neccessary.`)
     }
 
-    const roll = Math.ceil(Math.random() * 20)
+    let roll
+    let roll1
+    let roll2
+
+    if (risk === "NO") {
+      if (advantage > 0) {
+        roll1 = Math.ceil(Math.random() * 20)
+        roll2 = Math.ceil(Math.random() * 20)
+
+        if (roll1 > roll2) {
+          roll = roll1
+        } else {
+          roll = roll2
+        }
+      }
+
+      if (advantage < 0) {
+        roll1 = Math.ceil(Math.random() * 20)
+        roll2 = Math.ceil(Math.random() * 20)
+
+        if (roll1 < roll2) {
+          roll = roll1
+        } else {
+          roll = roll2
+        }
+      }
+
+      if (advantage === 0) {
+        roll = Math.ceil(Math.random() * 20)
+        roll1 = roll
+        roll2 = "none"
+      }
+    } else {
+      roll1 = Math.ceil(Math.random() * 20)
+      roll2 = Math.ceil(Math.random() * 20)
+
+      let diff1
+      let diff2
+
+      if (roll1 > 10) {
+        diff1 = roll1 - 10
+      } else {
+        diff1 = 10 - roll1
+      }
+
+      if (roll2 > 10) {
+        diff2 = roll2 - 10
+      } else {
+        diff2 = 10 - roll2
+      }
+
+      console.log(diff1, diff2)
+
+      if (diff1 > diff2) {
+        roll = roll1
+      } else {
+        roll = roll2
+      }
+    }
 
     if (roll === 20) {
       makeACheck({ type, success: true, critFail: false, critSuccess: true })
       return window.alert(
-        `You rolled a ${roll}, and needed a(n) ${newValueToBeat} to succeed. You have gained 2 success points and used 1 energy point for ${type} and critically succeeded in your check.`
+        `CRITICAL SUCCESS!! You rolled a ${roll}, and had an advantage bonus of ${advantageBonus}, which totals ${
+          roll + advantageBonus
+        }. You needed a(n) ${valueToBeat} to succeed. You have gained 2 success points and used 1 energy point for ${type} and critically succeeded in your check. ROLL1: ${roll1}. ROLL2: ${roll2}.`
       )
     }
 
     if (roll === 1) {
       makeACheck({ type, success: false, critFail: true, critSuccess: false })
       return window.alert(
-        `You rolled a ${roll}, and needed a(n) ${newValueToBeat} to succeed. You have gained 0 success points and used 2 energy points for ${type} and critically failed in your check.`
+        `CRITICAL FAIL!! You rolled a ${roll}, and had an advantage bonus of ${advantageBonus}, which totals ${
+          roll + advantageBonus
+        }. You needed a(n) ${valueToBeat} to succeed. You have gained 0 success points and used 2 energy points for ${type} and critically failed in your check. ROLL1: ${roll1}. ROLL2: ${roll2}.`
       )
     }
 
-    if (roll > newValueToBeat) {
+    if (roll >= valueToBeatTotal) {
       makeACheck({ type, success: true, critFail: false, critSuccess: false })
       return window.alert(
-        `You rolled a(n) ${roll}, and needed a(n) ${newValueToBeat} to succeed. You have gained 1 success point and used 1 energy point for ${type} and succeeded in your check.`
+        `SUCCESS!! You rolled a(n) ${roll}, and had an advantage bonus of ${advantageBonus}, which totals ${
+          roll + advantageBonus
+        }. You needed a(n) ${valueToBeat} to succeed. You have gained 1 success point and used 1 energy point for ${type} and succeeded in your check. ROLL1: ${roll1}. ROLL2: ${roll2}.`
       )
     } else {
       makeACheck({ type, success: false, critFail: false, critSuccess: false })
       return window.alert(
-        `You rolled a(n) ${roll}, and needed a(n) ${newValueToBeat} to succeed. You have gained 0 success points and used 1 energy points for ${type} and failed in your check.`
+        `FAILURE!! You rolled a(n) ${roll}, and had an advantage bonus of ${advantageBonus}, which totals ${
+          roll + advantageBonus
+        }. You needed a(n) ${valueToBeat} to succeed. You have gained 0 success points and used 1 energy points for ${type} and failed in your check. ROLL1: ${roll1}. ROLL2: ${roll2}.`
       )
     }
   }
@@ -123,8 +186,7 @@ class MakeACheck extends React.Component {
               name="difficulty"
               onChange={(e) => this.setState({ difficulty: e.target.value })}
             >
-              <option value={null}>Select Difficulty</option>
-              <option value="RISK">Roll with Risk</option>
+              <option value="SELECT DIFFICULTY">Select Difficulty</option>
               <option value={1}>1 (Easy)</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
@@ -140,6 +202,12 @@ class MakeACheck extends React.Component {
               <option value={13}>13</option>
               <option value={14}>14</option>
               <option value={15}>15 (Impossible)</option>
+            </select>
+
+            <label htmlFor="risk">Roll With Risk</label>
+            <select name="risk" onChange={(e) => this.setState({ risk: e.target.value })}>
+              <option value="NO">No</option>
+              <option value="YES">Yes</option>
             </select>
 
             <label htmlFor="advantage">Advantage</label>
@@ -180,11 +248,6 @@ class MakeACheck extends React.Component {
             <Button onClick={() => this.makeCheck("PERFORM")} type="button">
               Perform
             </Button>
-
-            <p>
-              Why can't I make a Ranged or Melee check? Ranged and Melee checks are made when you
-              attack.
-            </p>
           </fieldset>
 
           <ButtonPanel noSubmit buttonValue="Done" />

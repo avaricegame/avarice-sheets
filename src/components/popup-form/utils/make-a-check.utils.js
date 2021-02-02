@@ -11,11 +11,11 @@ export const addOrSubtractAdvantageToValueToBeat = (valueToBeat, advantage) => {
   if (advantage === -1 || advantage === 0 || advantage === 1) return valueToBeat
 
   if (advantage > 0) {
-    return valueToBeat + (advantage - 1) * 2
+    return valueToBeat - (advantage - 1) * 2
   }
 
   if (advantage < 0) {
-    return valueToBeat - (advantage + 1) * 2
+    return valueToBeat + (advantage + 1) * 2
   }
 }
 
