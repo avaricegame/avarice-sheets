@@ -27,6 +27,16 @@ class App extends React.Component {
     fetchCurrentUserStartAsync("peter@peter.com", "password")
   }
 
+  componentDidUpdate() {
+    const { isPopupFormVisible } = this.props
+
+    if (isPopupFormVisible) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+  }
+
   render() {
     const { currentUser, isPopupFormVisible } = this.props
     return (
