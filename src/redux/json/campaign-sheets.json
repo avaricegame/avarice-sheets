@@ -1072,13 +1072,15 @@
       {
         "id": 1,
         "missionID": "1",
-        "title": "March 20, 2021: Mission Name",
+        "title": "Mission Name",
+        "date": "2016-12-03",
         "details": "I was walking down the street when out of the corner of my eye I saw a pretty little girl looking at me. Then I woke up and remember no girls will ever love me. It was a very sad mission."
       },
       {
         "id": 2,
         "missionID": "2",
-        "title": "March 28, 2021: Mission Name",
+        "title": "Mission Name",
+        "date": "2016-12-03",
         "details": "I died."
       }
     ],
@@ -1086,13 +1088,15 @@
       {
         "id": 1,
         "missionID": "1",
-        "title": "March 20, 2021: Mission Name",
+        "title": "Mission Name",
+        "date": "2016-12-03",
         "details": "I was walking down the street when out of the corner of my eye I saw a pretty little girl looking at me. Then I woke up and remember no girls will ever love me. It was a very sad mission."
       },
       {
         "id": 2,
         "missionID": "2",
-        "title": "March 28, 2021: Mission Name",
+        "date": "2016-12-03",
+        "title": "Mission Name",
         "details": "I died."
       }
     ]

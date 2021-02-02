@@ -1,19 +1,29 @@
 import React from "react"
 import { connect } from "react-redux"
 
-import { togglePopupForm } from "../../../redux/app/app.actions"
-import PopupFormTypes from "../../popup-form/popup-form.types"
+import { togglePopupFormForEdit } from "../../../redux/app/app.actions"
 
-const EditAndDeleteActions = ({ id, togglePopupForm }) => {
+const EditAndDeleteActions = ({ whatToEdit, objToEdit, togglePopupFormForEdit, popupFormType }) => {
   return (
     <p className="actions">
-      <span onClick={() => togglePopupForm(PopupFormTypes.EDIT_INVENTORY_ITEM)}>EDIT</span> | DELETE
+      <span
+        onClick={() =>
+          togglePopupFormForEdit({
+            popupFormType: popupFormType,
+            whatToEdit: whatToEdit,
+            objToEdit: objToEdit,
+          })
+        }
+      >
+        EDIT
+      </span>{" "}
+      | DELETE
     </p>
   )
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+  togglePopupFormForEdit: (object) => dispatch(togglePopupFormForEdit(object)),
 })
 
 export default connect(null, mapDispatchToProps)(EditAndDeleteActions)

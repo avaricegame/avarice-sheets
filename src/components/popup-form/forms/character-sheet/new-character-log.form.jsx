@@ -7,70 +7,76 @@ import "../forms.styles.scss"
 // display components
 import { PopupFormHeading } from "../../popup-form.component"
 import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-form-button-panel.component"
-import { default as Button } from "../../../custom-button/custom-button.component"
-
-// selectors
-import {
-  selectStats,
-  selectWearables,
-  selectRaceInfo,
-} from "../../../../redux/character-sheet/character-sheet.selectors"
-
-// util functions
-import { calculateActualStatValuesAndTransform } from "../../../../pages/character-sheet-pages/utils/stats.utils"
-import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
-import {
-  mapDifficultyToValueToBeat,
-  findStatBeingChecked,
-  addOrSubtractAdvantageToValueToBeat,
-  determineAdvantageBonus,
-} from "../../utils/make-a-check.utils"
 
 // actions
+import { selectCharLogToEdit } from "../../../../redux/app/app.selectors"
 import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
 
-class MakeACheck extends React.Component {
+class NewCharacterLog extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      transformedCalculatedStatValues: [],
-      advantage: 0,
-      difficulty: null,
+      id: null,
+      title: "",
+      date: "",
+      log: "",
     }
   }
 
   componentDidMount() {
-    const { stats, wearables, raceInfo } = this.props
-
+    const {
+      charLogToEdit: { id, title, date, details },
+    } = this.props
     this.setState({
-      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
+      id: id,
+      title: title,
+      date: date,
+      log: details,
     })
   }
 
-  makeCheck(type) {}
+  handleSubmit(e) {
+    e.preventDefault()
+    const { title, log, id, date } = this.state
 
-  componentWillUnmount() {
-    this.setState({
-      transformedCalculatedStatValues: [],
-    })
+    if (title === "" || log === "" || date === "")
+      return window.alert("You must have a title and a log written to save.")
+
+    window.alert("Form is not hooked up yet")
+    console.log(title, log, id, date)
   }
 
   render() {
+    const { title, log, date } = this.state
     return (
       <>
-        <PopupFormHeading>Add New Character Log</PopupFormHeading>
-        <form className="popupform__form purple-top-border">
+        <PopupFormHeading>Edit Character Log</PopupFormHeading>
+        <form className="popupform__form purple-top-border" onSubmit={(e) => this.handleSubmit(e)}>
           <fieldset>
-            <label htmlFor="difficulty">Title</label>
-            <input type="text" name="difficulty" id="" />
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              name="title"
+              value={title}
+              onChange={(e) => this.setState({ title: e.target.value })}
+            />
 
-            <label htmlFor="">Log</label>
-            <textarea name="" id="" cols="30" rows="20"></textarea>
+            <label htmlFor="date">Date</label>
+            <input
+              type="date"
+              name="date"
+              value={date}
+              onChange={(e) => this.setState({ date: e.target.value })}
+            />
+
+            <label htmlFor="log">Log</label>
+            <textarea
+              name="log"
+              rows="15"
+              value={log}
+              onChange={(e) => this.setState({ log: e.target.value })}
+            ></textarea>
           </fieldset>
 
           <ButtonPanel submitValue={`Save Character Log`} />
@@ -81,13 +87,11 @@ class MakeACheck extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  stats: selectStats,
-  wearables: selectWearables,
-  raceInfo: selectRaceInfo,
+  charLogToEdit: selectCharLogToEdit,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   makeACheck: (typeAndSuccess) => dispatch(makeACheck(typeAndSuccess)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MakeACheck)
+export default connect(mapStateToProps, mapDispatchToProps)(NewCharacterLog)

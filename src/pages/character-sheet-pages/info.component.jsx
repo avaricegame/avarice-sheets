@@ -66,13 +66,19 @@ class InfoPage extends React.Component {
                 Add a New Character Log
               </Button>
               <Card heading="Character's Logs" subheading={`For ${characterName}`}>
-                {characterLog.map(({ id, title, details }) => (
-                  <Log edit id={id} title={title} details={details} key={id} />
+                {characterLog.map((log, index) => (
+                  <Log
+                    edit
+                    key={index}
+                    log={log}
+                    whatToEdit="charLogToEdit"
+                    popupFormType={PopupFormTypes.NEW_CHARACTER_LOG}
+                  />
                 ))}
               </Card>
               <Card heading="Captain's Logs" subheading={`For ${campaignName}`}>
-                {captainsLog.map(({ id, title, details }) => (
-                  <Log id={id} title={title} details={details} key={id} />
+                {captainsLog.map((log, index) => (
+                  <Log key={index} log={log} />
                 ))}
               </Card>
             </Section>

@@ -106,8 +106,14 @@ class CampaignPage extends React.Component {
                 Add a New Captain's Log
               </Button>
               <Card blue heading="Captain's Logs" subheading={`For ${campaignName}`}>
-                {captainsLog.map(({ id, title, details }) => (
-                  <Log edit id={id} title={title} details={details} key={id} />
+                {captainsLog.map((log, index) => (
+                  <Log
+                    edit
+                    key={index}
+                    log={log}
+                    whatToEdit="capLogToEdit"
+                    popupFormType={PopupFormTypes.ADD_NEW_CAPTAINS_LOG}
+                  />
                 ))}
               </Card>
               <p>
@@ -135,8 +141,14 @@ class CampaignPage extends React.Component {
                 Add a New Personal Log
               </Button>
               <Card blue heading="Personal Mission Logs" subheading={`For ${campaignName}`}>
-                {personalLog.map(({ id, title, details }) => (
-                  <Log edit id={id} title={title} details={details} key={id} />
+                {personalLog.map((log, index) => (
+                  <Log
+                    edit
+                    key={index}
+                    log={log}
+                    whatToEdit="perLogToEdit"
+                    popupFormType={PopupFormTypes.ADD_NEW_PERSONAL_LOG}
+                  />
                 ))}
               </Card>
               <p>* Note: ONLY YOU can see these logs.</p>

@@ -362,13 +362,15 @@
     ],
     "characterLog": [
       {
-        "id": 1,
-        "title": "March 20, 2021: Mission Name",
+        "id": "1",
+        "title": "A Nice Song",
+        "date": "2016-12-03",
         "details": "I was walking down the street when out of the corner of my eye I saw a pretty little girl looking at me. Then I woke up and remember no girls will ever love me. It was a very sad mission."
       },
       {
-        "id": 2,
-        "title": "March 28, 2021: Mission Name",
+        "id": "2",
+        "title": "Uh Oh!",
+        "date": "2016-12-03",
         "details": "I died."
       }
     ],
@@ -998,13 +1000,15 @@
     ],
     "characterLog": [
       {
-        "id": 1,
-        "title": "March 20, 2021: Mission Name",
+        "id": "1",
+        "title": "A Nice Song",
+        "date": "2016-12-03",
         "details": "I was walking down the street when out of the corner of my eye I saw a pretty little girl looking at me. Then I woke up and remember no girls will ever love me. It was a very sad mission."
       },
       {
-        "id": 2,
-        "title": "March 28, 2021: Mission Name",
+        "id": "2",
+        "title": "Uh Oh!",
+        "date": "2016-12-03",
         "details": "I died."
       }
     ],
@@ -1634,13 +1638,15 @@
     ],
     "characterLog": [
       {
-        "id": 1,
-        "title": "March 20, 2021: Mission Name",
+        "id": "1",
+        "title": "A Nice Song",
+        "date": "2016-12-03",
         "details": "I was walking down the street when out of the corner of my eye I saw a pretty little girl looking at me. Then I woke up and remember no girls will ever love me. It was a very sad mission."
       },
       {
-        "id": 2,
-        "title": "March 28, 2021: Mission Name",
+        "id": "2",
+        "title": "Uh Oh!",
+        "date": "2016-12-03",
         "details": "I died."
       }
     ],
