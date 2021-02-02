@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
+import uniqid from "uniqid"
 
 import "../forms.styles.scss"
 
@@ -13,7 +14,8 @@ import ItemCard from "../../../shared-sheets-components/item-card/item-card.comp
 import { selectItemToEdit, selectItems } from "../../../../redux/app/app.selectors"
 
 // actions
-import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
+import { addNewOrEditItem } from "../../../../redux/character-sheet/pages/pages.actions"
+import { togglePopupForm } from "../../../../redux/app/app.actions"
 
 class AddNewItem extends React.Component {
   constructor(props) {
@@ -35,6 +37,7 @@ class AddNewItem extends React.Component {
       } = this.props
 
       this.setState({
+        currentItem: { ...this.props.itemToEdit },
         id: id,
         name: name,
         description: description,
@@ -65,13 +68,35 @@ class AddNewItem extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const { name, description, id } = this.state
+    const { name, description, id, currentItem } = this.state
+    const { togglePopupForm, addNewOrEditItem } = this.props
 
     if (name === "" || description === "")
       return window.alert("You must have a name and a description written to save.")
 
-    window.alert("Form is not hooked up yet")
-    console.log(name, description, id)
+    console.log(currentItem)
+
+    let itemToAdd
+
+    if (id === undefined) {
+      itemToAdd = {
+        ...currentItem,
+        name: name,
+        description: description,
+        id: uniqid(),
+      }
+    } else {
+      itemToAdd = {
+        ...currentItem,
+        name: name,
+        description: description,
+        id: id,
+      }
+    }
+
+    console.log(itemToAdd)
+    addNewOrEditItem(itemToAdd)
+    togglePopupForm()
   }
 
   render() {
@@ -169,7 +194,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  makeACheck: (typeAndSuccess) => dispatch(makeACheck(typeAndSuccess)),
+  addNewOrEditItem: (item) => dispatch(addNewOrEditItem(item)),
+  togglePopupForm: () => dispatch(togglePopupForm()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddNewItem)

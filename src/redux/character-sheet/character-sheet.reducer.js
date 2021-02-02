@@ -9,6 +9,9 @@ import {
   unequipItem,
   equipWearable,
   unequipWearable,
+  addNewOrEditWeapon,
+  addNewOrEditWearable,
+  addNewOrEditItem,
 } from "./utils/inventory.utils"
 
 const INITIAL_STATE = {
@@ -141,6 +144,47 @@ const charSheetReducer = (state = INITIAL_STATE, action) => {
           items: unequipItem(state.currentCharSheet.items, action.payload),
         },
       }
+    case CharPageActionTypes.PAY_OR_RECIEVE_MONEY:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          lifeCredits: state.currentCharSheet.lifeCredits + action.payload,
+        },
+      }
+    case CharPageActionTypes.TAKE_OR_HEAL_DAMAGE:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          currentHP: state.currentCharSheet.currentHP + action.payload,
+        },
+      }
+    case CharPageActionTypes.ADD_NEW_OR_EDIT_WEAPON:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          weapons: addNewOrEditWeapon(state.currentCharSheet.weapons, action.payload),
+        },
+      }
+    case CharPageActionTypes.ADD_NEW_OR_EDIT_ITEM:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          items: addNewOrEditItem(state.currentCharSheet.items, action.payload),
+        },
+      }
+    case CharPageActionTypes.ADD_NEW_OR_EDIT_WEARABLE:
+      return {
+        ...state,
+        currentCharSheet: {
+          ...state.currentCharSheet,
+          wearables: addNewOrEditWearable(state.currentCharSheet.wearables, action.payload),
+        },
+      }
+
     default:
       return state
   }

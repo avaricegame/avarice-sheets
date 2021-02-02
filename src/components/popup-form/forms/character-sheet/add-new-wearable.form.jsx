@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
+import uniqid from "uniqid"
 
 import "../forms.styles.scss"
 
@@ -13,7 +14,8 @@ import WearableCard from "../../../shared-sheets-components/wearable-card/wearab
 import { selectWearableToEdit, selectWearables } from "../../../../redux/app/app.selectors"
 
 // actions
-import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
+import { addNewOrEditWearable } from "../../../../redux/character-sheet/pages/pages.actions"
+import { togglePopupForm } from "../../../../redux/app/app.actions"
 
 class AddNewWearable extends React.Component {
   constructor(props) {
@@ -35,6 +37,7 @@ class AddNewWearable extends React.Component {
       } = this.props
 
       this.setState({
+        currentWearable: { ...this.props.wearableToEdit },
         id: id,
         name: name,
         description: description,
@@ -65,13 +68,35 @@ class AddNewWearable extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const { name, description, id } = this.state
+    const { name, description, id, currentWearable } = this.state
+    const { togglePopupForm, addNewOrEditWearable } = this.props
 
     if (name === "" || description === "")
       return window.alert("You must have a name and a description written to save.")
 
-    window.alert("Form is not hooked up yet")
-    console.log(name, description, id)
+    console.log(currentWearable)
+
+    let wearableToAdd
+
+    if (id === undefined) {
+      wearableToAdd = {
+        ...currentWearable,
+        name: name,
+        description: description,
+        id: uniqid(),
+      }
+    } else {
+      wearableToAdd = {
+        ...currentWearable,
+        name: name,
+        description: description,
+        id: id,
+      }
+    }
+
+    console.log(wearableToAdd)
+    addNewOrEditWearable(wearableToAdd)
+    togglePopupForm()
   }
 
   render() {
@@ -171,7 +196,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  makeACheck: (typeAndSuccess) => dispatch(makeACheck(typeAndSuccess)),
+  addNewOrEditWearable: (wearable) => dispatch(addNewOrEditWearable(wearable)),
+  togglePopupForm: () => dispatch(togglePopupForm()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddNewWearable)

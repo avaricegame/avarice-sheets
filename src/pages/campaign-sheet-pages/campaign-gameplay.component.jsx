@@ -194,7 +194,7 @@ class CampaignGameplay extends React.Component {
               <Card heading="View:">
                 <select onChange={this.handleInteractableSelect}>
                   <option value="ALL">
-                    All Interactables({allActiveInteractablesTotal} Active)
+                    All Interactables ({allActiveInteractablesTotal} Active)
                   </option>
                   <option value="NPCS">NPCS ({activeNPCS.length} Active)</option>
                   <option value="ITEMS">
