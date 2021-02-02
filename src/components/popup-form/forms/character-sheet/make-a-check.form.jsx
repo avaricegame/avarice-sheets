@@ -22,7 +22,6 @@ import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pa
 import {
   mapDifficultyToValueToBeat,
   findStatBeingChecked,
-  addOrSubtractAdvantageToValueToBeat,
   determineAdvantageBonus,
 } from "../../utils/make-a-check.utils"
 
