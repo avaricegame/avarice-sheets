@@ -66,7 +66,7 @@ const WearableCard = ({ wearable, blue, quatheading, edit, equip, activate, move
         {equip ? (
           <EquipAndUnequipActions type="WEARABLE" id={id} equipped={equipped} bodyArea={bodyArea} />
         ) : null}
-        {activate ? <ActivateDeactivateActions type="wearable" id={id} active={active} /> : null}
+        {activate ? <ActivateDeactivateActions type="WEARABLE" id={id} active={active} /> : null}
         {moveEdit ? <CopyMoveEditDeleteActions /> : null}
         {edit ? <EditAndDeleteActions /> : null}
       </div>

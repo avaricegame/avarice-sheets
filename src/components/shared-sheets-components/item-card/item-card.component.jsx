@@ -31,7 +31,7 @@ const ItemCard = ({ item, blue, quatheading, edit, equip, activate, moveEdit }) 
       </p>
       <div className="actions-div">
         {equip ? <EquipAndUnequipActions type="ITEM" id={id} equipped={equipped} /> : null}
-        {activate ? <ActivateDeactivateActions type="item" id={id} active={active} /> : null}
+        {activate ? <ActivateDeactivateActions type="ITEM" id={id} active={active} /> : null}
         {moveEdit ? <CopyMoveEditDeleteActions /> : null}
         {edit ? <EditAndDeleteActions /> : null}
       </div>

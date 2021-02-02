@@ -70,7 +70,7 @@ const WeaponCard = ({ weapon, blue, quatheading, edit, equip, activate, moveEdit
       </p>
       <div className="actions-div">
         {equip ? <EquipAndUnequipActions type="WEAPON" id={id} equipped={equipped} /> : null}
-        {activate ? <ActivateDeactivateActions type="weapon" id={id} active={active} /> : null}
+        {activate ? <ActivateDeactivateActions type="WEAPON" id={id} active={active} /> : null}
         {moveEdit ? <CopyMoveEditDeleteActions /> : null}
         {edit ? <EditAndDeleteActions /> : null}
       </div>

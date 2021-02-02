@@ -130,7 +130,7 @@ class NPCCard extends React.Component {
         <div className="actions-div">
           <FriendEnemyActions id={id} enemy={enemy} />
           {this.props.activate ? (
-            <ActivateDeactivateActions type="npc" id={id} active={active} />
+            <ActivateDeactivateActions type="NPC" id={id} active={active} />
           ) : null}
           {this.props.moveEdit ? <CopyMoveEditDeleteActions /> : null}
         </div>

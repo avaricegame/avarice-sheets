@@ -757,7 +757,7 @@
           "name": "Assassin's Wrist Mounted Gun",
           "id": "1",
           "damage": "D6",
-          "active": false,
+          "active": true,
           "missionID": "1",
           "proficiency": "constitution",
           "rangedMelee": "Ranged",
@@ -779,7 +779,7 @@
         {
           "name": "Assassin's Wrist Mounted Gun II",
           "damage": "D6",
-          "active": false,
+          "active": true,
           "id": "2",
           "missionID": "1",
           "proficiency": "constitution",
@@ -802,7 +802,7 @@
         {
           "name": "Assassin's Wrist Mounted Gun III",
           "damage": "D6",
-          "active": false,
+          "active": true,
           "missionID": "2",
           "id": "3",
           "proficiency": "constitution",
@@ -825,7 +825,7 @@
         {
           "name": "Assassin's Wrist Mounted Gun IV",
           "damage": "D6",
-          "active": false,
+          "active": true,
           "missionID": "3",
           "id": "4",
           "proficiency": "constitution",
@@ -862,7 +862,7 @@
         {
           "name": "All or Nothing Coin",
           "equipped": false,
-          "active": false,
+          "active": true,
           "category": "Leptics",
           "id": "2",
           "missionID": "2",
@@ -936,7 +936,7 @@
         {
           "name": "A Bucket of Disguise II",
           "equipped": false,
-          "active": false,
+          "active": true,
           "armourValue": 3,
           "missionID": "3",
           "id": "2",

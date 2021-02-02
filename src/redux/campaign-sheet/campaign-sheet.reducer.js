@@ -2,7 +2,7 @@ import CampSheetActionTypes from "./campaign-sheet.types"
 import CampPageActionTypes from "./pages/pages.types"
 
 import { setCurrentMission, toggleComplete, togglePlanned } from "./utils/missions.utils"
-import { setNPCAsFriend, setNPCAsEnemy, toggleActive } from "./utils/npcs.utils"
+import { setNPCAsFriend, setNPCAsEnemy, toggleActive } from "./utils/interactables.utils"
 
 const INITIAL_STATE = {
   currentCampSheet: null,
@@ -123,10 +123,7 @@ const campSheetReducer = (state = INITIAL_STATE, action) => {
     case CampPageActionTypes.TOGGLE_ACTIVE:
       return {
         ...state,
-        currentCampSheet: {
-          ...state.currentCampSheet,
-          npcs: toggleActive(state.currentCampSheet, action.payload),
-        },
+        currentCampSheet: toggleActive(state.currentCampSheet, action.payload),
       }
     default:
       return state

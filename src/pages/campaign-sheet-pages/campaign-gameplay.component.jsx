@@ -34,6 +34,11 @@ import DisplayWearables from "../../components/shared-sheets-components/display-
 import DisplayWeapons from "../../components/shared-sheets-components/display-weapons/display-weapons.component"
 import DisplayEnvironments from "../../components/campaign-sheet-components/display-environments/display-environments.component"
 import DisplayNPCS from "../../components/campaign-sheet-components/display-npcs/display-npcs.component"
+import DisplayInactiveItems from "../../components/campaign-sheet-components/display-inactive-interactables/display-inactive-items.component"
+import DisplayInactiveWearables from "../../components/campaign-sheet-components/display-inactive-interactables/display-inactive-wearables.component"
+import DisplayInactiveWeapons from "../../components/campaign-sheet-components/display-inactive-interactables/display-inactive-weapons.component"
+import DisplayInactiveEnvironments from "../../components/campaign-sheet-components/display-inactive-interactables/display-inactive-environments.component"
+import DisplayInactiveNPCS from "../../components/campaign-sheet-components/display-inactive-interactables/display-inactive-npcs.component"
 
 class CampaignGameplay extends React.Component {
   constructor(props) {
@@ -188,10 +193,16 @@ class CampaignGameplay extends React.Component {
               </Button>
               <Card heading="View:">
                 <select onChange={this.handleInteractableSelect}>
-                  <option value="ALL">All Interactables ({allActiveInteractablesTotal})</option>
-                  <option value="NPCS">NPCS ({activeNPCS.length})</option>
-                  <option value="ITEMS">Inventory Items ({activeInventoryItems.length})</option>
-                  <option value="ENVIRONMENT">Environment ({activeEnvironments.length})</option>
+                  <option value="ALL">
+                    All Interactables({allActiveInteractablesTotal} Active)
+                  </option>
+                  <option value="NPCS">NPCS ({activeNPCS.length} Active)</option>
+                  <option value="ITEMS">
+                    Inventory Items ({activeInventoryItems.length} Active)
+                  </option>
+                  <option value="ENVIRONMENT">
+                    Environment ({activeEnvironments.length} Active)
+                  </option>
                   <option value="NONE">None</option>
                 </select>
               </Card>
@@ -204,35 +215,11 @@ class CampaignGameplay extends React.Component {
               {displayItems ? <DisplayWeapons activate blue weapons={activeWeapons} /> : null}
 
               <Card blue heading={`Inactive (${allInactiveInteractablesTotal})`}>
-                {inactiveInventoryItems.map((inventoryItem, index) => (
-                  <div key={index}>
-                    <p>
-                      <strong>{inventoryItem.name}: </strong> {inventoryItem.description}
-                      <span>see more</span>
-                    </p>
-                    <p className="actions">SHOW MORE | ACTIVATE</p>
-                  </div>
-                ))}
-
-                {inactiveNPCS.map((npc, index) => (
-                  <div key={index}>
-                    <p>
-                      <strong>{npc.characterName}: </strong> {npc.enemy ? "Enemy" : "Friend"}
-                      <span>see more</span>
-                    </p>
-                    <p className="actions">SHOW MORE | ACTIVATE</p>
-                  </div>
-                ))}
-
-                {inactiveEnvironments.map((environment, index) => (
-                  <div key={index}>
-                    <p>
-                      <strong>{environment.name}: </strong> {environment.description}
-                      <span>see more</span>
-                    </p>
-                    <p className="actions">SHOW MORE | ACTIVATE</p>
-                  </div>
-                ))}
+                <DisplayInactiveNPCS inactiveNPCS={inactiveNPCS} />
+                <DisplayInactiveEnvironments inactiveEnvironments={inactiveEnvironments} />
+                <DisplayInactiveItems inactiveItems={inactiveItems} />
+                <DisplayInactiveWearables inactiveWearables={inactiveWearables} />
+                <DisplayInactiveWeapons inactiveWeapons={inactiveWeapons} />
               </Card>
             </Section>
           </Column>
