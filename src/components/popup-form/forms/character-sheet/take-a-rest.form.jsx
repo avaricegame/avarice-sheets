@@ -20,7 +20,9 @@ import { returnOnlyEquippedAbilityTypesAsObject } from "../../utils/take-a-rest.
 import { selectAbilities } from "../../../../redux/character-sheet/character-sheet.selectors"
 
 // actions
-import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
+
+import { takeARest } from "../../../../redux/character-sheet/pages/pages.actions"
+import { togglePopupForm } from "../../../../redux/app/app.actions"
 
 class TakeARest extends React.Component {
   constructor(props) {
@@ -89,11 +91,13 @@ class TakeARest extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     const { abilityLoadout, restType } = this.state
+    const { takeARest, togglePopupForm } = this.props
 
     if (restType === "PLEASE SPECIFY") return window.alert("You must specify a rest type.")
 
-    window.alert("This form action has not been set up yet.")
     console.log(abilityLoadout, restType)
+    takeARest({ abilities: abilityLoadout, type: restType })
+    togglePopupForm()
   }
 
   equipAbility(id, type) {
@@ -176,7 +180,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  makeACheck: (typeAndSuccess) => dispatch(makeACheck(typeAndSuccess)),
+  takeARest: (typeAndAbilities) => dispatch(takeARest(typeAndAbilities)),
+  togglePopupForm: () => dispatch(togglePopupForm()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TakeARest)
