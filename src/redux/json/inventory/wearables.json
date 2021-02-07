@@ -53,7 +53,12 @@
         "name": "Walaloo",
         "associatedStat": "n/a",
         "type": "Wearable Ability",
-        "effects": {},
+        "effects": {
+          "roll": 20,
+          "check": "strength",
+          "heal": 20,
+          "damage": 20
+        },
         "difficulty": 1,
         "description": "You will probably run into things."
       }
