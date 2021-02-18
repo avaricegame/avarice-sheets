@@ -1,7 +1,7 @@
 import UserActionTypes from "./user.types"
 
 const INITIAL_STATE = {
-  token: null,
+  token: localStorage.getItem("token"),
   currentUser: null,
   error: null,
 }
@@ -11,14 +11,24 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
-        token: action.payload,
+        token: action.payload.token,
         error: null,
       }
-    case UserActionTypes.SIGN_OUT_SUCCESS:
+    case UserActionTypes.SIGN_OUT:
+      // remove the token from local storage as well
+      localStorage.removeItem("token")
+      // temporarily alert
+      window.alert("You have logged out.")
       return {
         ...state,
         currentUser: null,
+        token: null,
         error: null,
+      }
+    case UserActionTypes.FETCH_CURRENT_USER_START:
+      return {
+        ...state,
+        token: action.payload.token,
       }
     case UserActionTypes.FETCH_CURRENT_USER_SUCCESS:
       return {
@@ -27,12 +37,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
         error: null,
       }
     case UserActionTypes.SIGN_IN_FAILURE:
-    case UserActionTypes.SIGN_OUT_FAILURE:
     case UserActionTypes.SIGN_UP_FAILURE:
     case UserActionTypes.FETCH_CURRENT_USER_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        token: null,
+        error: action.payload.message,
       }
     default:
       return state

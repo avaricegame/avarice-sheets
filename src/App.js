@@ -1,5 +1,5 @@
 import React from "react"
-import { Switch, Route, Redirect } from "react-router-dom"
+import { Switch, Route } from "react-router-dom"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 
@@ -10,7 +10,7 @@ import MainPageNotFound from "./pages/main-page-not-found/main-page-not-found.co
 
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
 import { default as HomePage } from "./pages/homepage/homepage.container"
-import ProfilePage from "./pages/profile/profile.component"
+import { default as ProfilePage } from "./pages/profile/profile.container"
 import { default as CharacterSheetPage } from "./pages/character-sheet/character-sheet.container"
 import { default as CampaignSheetPage } from "./pages/campaign-sheet/campaign-sheet.container"
 
@@ -18,13 +18,13 @@ import { default as CampaignSheetPage } from "./pages/campaign-sheet/campaign-sh
 import PopupForm from "./components/popup-form/popup-form.component"
 
 import { fetchCurrentUserStart } from "./redux/user/user.actions"
-import { selectCurrentUser, selectToken } from "./redux/user/user.selectors"
+import { selectToken } from "./redux/user/user.selectors"
 import { selectIsPopupFormVisible } from "./redux/app/app.selectors"
 
 class App extends React.Component {
   componentDidMount() {
-    const { fetchCurrentUserStart } = this.props
-    const token = localStorage.getItem("token")
+    const { fetchCurrentUserStart, token } = this.props
+
     if (token) {
       fetchCurrentUserStart({ token })
     }
@@ -41,20 +41,28 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentUser, isPopupFormVisible } = this.props
+    const { token, isPopupFormVisible } = this.props
     return (
       <>
         <Switch>
           <ErrorBoundary>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/profile" component={ProfilePage} />
-            <Route path="/character/:charid" component={CharacterSheetPage} />
-            <Route path="/campaign/:campid" component={CampaignSheetPage} />
-            <Route path="/not-found" component={MainPageNotFound} />
+            <Route exact path="/" render={() => (token ? <HomePage /> : <SignInAndSignUpPage />)} />
             <Route
               exact
-              path="/signin"
-              render={() => (currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />)}
+              path="/profile"
+              render={() => (token ? <ProfilePage /> : <SignInAndSignUpPage />)}
+            />
+            <Route
+              path="/character/:charid"
+              render={() => (token ? <CharacterSheetPage /> : <SignInAndSignUpPage />)}
+            />
+            <Route
+              path="/campaign/:campid"
+              render={() => (token ? <CampaignSheetPage /> : <SignInAndSignUpPage />)}
+            />
+            <Route
+              path="/not-found"
+              render={() => (token ? <MainPageNotFound /> : <SignInAndSignUpPage />)}
             />
           </ErrorBoundary>
         </Switch>
@@ -66,7 +74,6 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   token: selectToken,
-  currentUser: selectCurrentUser,
   isPopupFormVisible: selectIsPopupFormVisible,
 })
 

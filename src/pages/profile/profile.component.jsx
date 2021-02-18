@@ -12,6 +12,7 @@ import CardContainer from "../../components/card-container/card-container.compon
 import CustomButton from "../../components/custom-button/custom-button.component"
 
 import { selectCurrentUser } from "../../redux/user/user.selectors"
+import { signOut } from "../../redux/user/user.actions"
 
 import "./profile.styles.scss"
 
@@ -24,7 +25,7 @@ class ProfilePage extends React.Component {
   }
 
   render() {
-    const { user } = this.props
+    const { user, signOut } = this.props
     return (
       <>
         <MainHeader />
@@ -58,7 +59,9 @@ class ProfilePage extends React.Component {
             <CustomButton>Edit my Account Settings on AvariceGame.com</CustomButton>
             <hr className="profile-page-hr" />
             <Link to="/">
-              <CustomButton signOut>Sign Out</CustomButton>
+              <CustomButton signOut onClick={signOut}>
+                Sign Out
+              </CustomButton>
             </Link>
           </Column>
         </MainPageContainer>
@@ -72,4 +75,8 @@ const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
 })
 
-export default connect(mapStateToProps)(ProfilePage)
+const mapDispatchToProps = (dispatch) => ({
+  signOut: () => dispatch(signOut()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage)

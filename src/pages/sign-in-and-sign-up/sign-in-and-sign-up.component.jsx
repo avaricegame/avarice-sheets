@@ -8,7 +8,7 @@ import "./sign-in-and-sign-up.styles.scss"
 
 class SignInAndSignUpPage extends React.Component {
   state = {
-    hasAccount: false,
+    hasAccount: localStorage.getItem("hasAccount"),
   }
 
   componentDidMount() {

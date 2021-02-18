@@ -1,10 +1,5 @@
 import UserActionTypes from "./user.types"
 
-// CHECK TOKEN
-export const checkUserSession = () => ({
-  type: UserActionTypes.CHECK_USER_SESSION,
-})
-
 // USER SIGN IN
 export const signInStart = (emailAndPassword) => ({
   type: UserActionTypes.SIGN_IN_START,
@@ -22,17 +17,8 @@ export const signInFailure = (error) => ({
 })
 
 // USER SIGN OUT
-export const signOutStart = () => ({
-  type: UserActionTypes.SIGN_OUT_START,
-})
-
-export const signOutSuccess = () => ({
-  type: UserActionTypes.SIGN_OUT_SUCCESS,
-})
-
-export const signOutFailure = (error) => ({
-  type: UserActionTypes.SIGN_OUT_FAILURE,
-  payload: error,
+export const signOut = () => ({
+  type: UserActionTypes.SIGN_OUT,
 })
 
 // USER SIGN UP

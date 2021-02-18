@@ -5,15 +5,13 @@ import UserActionTypes from "./user.types"
 import {
   signInSuccess,
   signInFailure,
-  signOutSuccess,
-  signOutFailure,
   signUpSuccess,
   signUpFailure,
   fetchCurrentUserSuccess,
   fetchCurrentUserFailure,
 } from "./user.actions"
 
-import { signUserIn, fetchUser, checkToken } from "../api/api"
+import { signUserIn, fetchUser } from "../api/api"
 
 // FETCH CURRENT USER
 export function* onFetchCurrentUserStart() {
@@ -25,7 +23,10 @@ export function* fetchCurrentUser({ payload: { token } }) {
     const response = yield fetchUser(token)
     yield put(fetchCurrentUserSuccess(response.data))
   } catch (error) {
-    yield put(fetchCurrentUserFailure(error))
+    window.alert("You have been signed out.")
+    // since token is invalid or expired, remove from local storage
+    localStorage.removeItem("token")
+    yield put(fetchCurrentUserFailure(error.response.data))
   }
 }
 
@@ -39,8 +40,15 @@ export function* signIn({ payload: { email, password } }) {
     const response = yield signUserIn(email, password)
 
     if (response.data.token) {
+      // add token to local storage to persist sign ins
       localStorage.setItem("token", response.data.token)
-      yield put(signInSuccess(response.data.token))
+      // add item to local storage to save whether to load sign in or sign up
+      localStorage.setItem("hasAccount", true)
+      // dispatch the sign in success
+      yield put(signInSuccess({ token: response.data.token }))
+      // if sign in was successful, then fetch the current user
+      const fetchUserResponse = yield fetchUser(response.data.token)
+      yield put(fetchCurrentUserSuccess(fetchUserResponse.data))
     } else {
       window.alert(response.data.error)
       yield put(signInFailure(response.data.error))
@@ -73,44 +81,11 @@ export function* signIn({ payload: { email, password } }) {
 //   yield getSnapshotFromUserAuth(user, additionalData)
 // }
 
-// // SIGN OUT A USER
-// export function* onSignOutStart() {
-//   yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut)
-// }
-
-// export function* signOut() {
-//   try {
-//     yield auth.signOut()
-//     yield put(signOutSuccess())
-//   } catch (error) {
-//     yield put(signOutFailure(error))
-//   }
-// }
-
-// // CHECK USER SESSION
-// export function* onCheckUserSession() {
-//   yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated)
-// }
-
-// export function* isUserAuthenticated() {
-//   try {
-//     const userAuth = yield getCurrentUser()
-//     if (!userAuth) return
-
-//     yield getSnapshotFromUserAuth(userAuth)
-//   } catch (error) {
-//     yield put(signInFailure(error))
-//   }
-// }
-
 // EXPORT USER SAGAS
 export function* userSagas() {
   yield all([
     call(onSignInStart),
     call(onFetchCurrentUserStart),
-    // call(onCheckUserSession),
-    // call(onSignOutStart),
     // call(onSignUpStart),
-    // call(onSignUpSuccess),
   ])
 }
