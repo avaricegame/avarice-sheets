@@ -5,14 +5,14 @@ import { createStructuredSelector } from "reselect"
 
 import CardContainer from "../card-container/card-container.component"
 
-import { selectCharSheetList } from "../../redux/character-sheet/character-sheet.selectors"
+import { selectUsersCharSheets } from "../../redux/user/user.selectors"
 
 // display components
 import EditAndDeleteActions from "../shared-sheets-components/card-actions/edit-and-delete-actions.component"
 
-const CharacterSheetCards = ({ charSheetList }) => (
+const CharacterSheetCards = ({ charSheets }) => (
   <>
-    {charSheetList.map((charSheet) => {
+    {charSheets.map((charSheet) => {
       const {
         _id,
         level,
@@ -60,7 +60,7 @@ const CharacterSheetCards = ({ charSheetList }) => (
 )
 
 const mapStateToProps = createStructuredSelector({
-  charSheetList: selectCharSheetList,
+  charSheets: selectUsersCharSheets,
 })
 
 export default connect(mapStateToProps)(CharacterSheetCards)

@@ -6,23 +6,19 @@ import { createStructuredSelector } from "reselect"
 import CardContainer from "../card-container/card-container.component"
 import DisplayCampaignInfo from "../shared-sheets-components/display-campaign-info/display-campaign-info.component"
 
-import { selectCampSheetList } from "../../redux/campaign-sheet/campaign-sheet.selectors"
+import { selectUsersCampSheets } from "../../redux/user/user.selectors"
 
 // display components
 import EditAndDeleteActions from "../shared-sheets-components/card-actions/edit-and-delete-actions.component"
 
-const CampaignSheetCards = ({ campSheetList }) => (
+const CampaignSheetCards = ({ campSheets }) => (
   <>
-    {campSheetList.map((campSheet) => {
-      const { campaignName, _id, playersNames, charactersNames, missions } = campSheet
+    {campSheets.map((campSheet) => {
+      const { campaignName, _id, players, missions } = campSheet
       return (
         <Link className="sheets-card-link" to={`/campaign/${_id}`} key={_id}>
           <CardContainer blue heading={campaignName} subheading={`ID#${_id}`}>
-            <DisplayCampaignInfo
-              playersNames={playersNames}
-              charactersNames={charactersNames}
-              missions={missions}
-            />
+            <DisplayCampaignInfo players={players} missions={missions} />
             <EditAndDeleteActions />
           </CardContainer>
         </Link>
@@ -32,7 +28,7 @@ const CampaignSheetCards = ({ campSheetList }) => (
 )
 
 const mapStateToProps = createStructuredSelector({
-  campSheetList: selectCampSheetList,
+  campSheets: selectUsersCampSheets,
 })
 
 export default connect(mapStateToProps)(CampaignSheetCards)
