@@ -1,30 +1,38 @@
 import UserActionTypes from "./user.types"
 
 const INITIAL_STATE = {
+  token: null,
   currentUser: null,
-  isUserFetching: false,
-  errorMessage: null,
+  error: null,
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case UserActionTypes.FETCH_CURRENT_USER_START:
+    case UserActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
-        isUserFetching: true,
+        token: action.payload,
+        error: null,
+      }
+    case UserActionTypes.SIGN_OUT_SUCCESS:
+      return {
+        ...state,
+        currentUser: null,
+        error: null,
       }
     case UserActionTypes.FETCH_CURRENT_USER_SUCCESS:
       return {
         ...state,
-        isUserFetching: false,
-        errorMessage: undefined,
         currentUser: action.payload,
+        error: null,
       }
+    case UserActionTypes.SIGN_IN_FAILURE:
+    case UserActionTypes.SIGN_OUT_FAILURE:
+    case UserActionTypes.SIGN_UP_FAILURE:
     case UserActionTypes.FETCH_CURRENT_USER_FAILURE:
       return {
         ...state,
-        isUserFetching: false,
-        errorMessage: action.payload,
+        error: action.payload,
       }
     default:
       return state

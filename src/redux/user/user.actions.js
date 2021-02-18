@@ -1,37 +1,48 @@
 import UserActionTypes from "./user.types"
 
-export const fetchCurrentUserStart = () => ({
-  type: UserActionTypes.FETCH_CURRENT_USER_START,
+export const signInStart = (emailAndPassword) => ({
+  type: UserActionTypes.SIGN_IN_START,
+  payload: emailAndPassword,
 })
 
-export const fetchCurrentUserSuccess = (currentUser) => ({
-  type: UserActionTypes.FETCH_CURRENT_USER_SUCCESS,
-  payload: currentUser,
+export const signInSuccess = (user) => ({
+  type: UserActionTypes.SIGN_IN_SUCCESS,
+  payload: user,
 })
 
-export const fetchCurrentUserFailure = (errorMessage) => ({
-  type: UserActionTypes.FETCH_CURRENT_USER_FAILURE,
-  payload: errorMessage,
+export const signInFailure = (error) => ({
+  type: UserActionTypes.SIGN_IN_FAILURE,
+  payload: error,
 })
 
-export const fetchCurrentUserStartAsync = (userNameOrEmail, userPassword) => {
-  return (dispatch) => {
-    const USERS = require("../json/users.json")
+export const checkUserSession = () => ({
+  type: UserActionTypes.CHECK_USER_SESSION,
+})
 
-    const requestedUser = USERS.find(
-      (user) => user.email === userNameOrEmail || user.username === userNameOrEmail
-    )
+export const signOutStart = () => ({
+  type: UserActionTypes.SIGN_OUT_START,
+})
 
-    if (!requestedUser) {
-      return dispatch(
-        fetchCurrentUserFailure("There is no account associated with those credentials.")
-      )
-    }
+export const signOutSuccess = () => ({
+  type: UserActionTypes.SIGN_OUT_SUCCESS,
+})
 
-    if (requestedUser.password === userPassword) {
-      return dispatch(fetchCurrentUserSuccess(requestedUser))
-    }
+export const signOutFailure = (error) => ({
+  type: UserActionTypes.SIGN_OUT_FAILURE,
+  payload: error,
+})
 
-    return dispatch(fetchCurrentUserFailure("Provided credentials do not match."))
-  }
-}
+export const signUpStart = (userCredentials) => ({
+  type: UserActionTypes.SIGN_UP_START,
+  payload: userCredentials,
+})
+
+export const signUpSuccess = ({ user, additionalData }) => ({
+  type: UserActionTypes.SIGN_UP_SUCCESS,
+  payload: { user, additionalData },
+})
+
+export const signUpFailure = (error) => ({
+  type: UserActionTypes.SIGN_UP_FAILURE,
+  payload: error,
+})

@@ -17,14 +17,14 @@ import { default as CampaignSheetPage } from "./pages/campaign-sheet/campaign-sh
 // app components
 import PopupForm from "./components/popup-form/popup-form.component"
 
-import { fetchCurrentUserStartAsync } from "./redux/user/user.actions"
+//import { fetchCurrentUserStartAsync } from "./redux/user/user.actions"
 import { selectCurrentUser } from "./redux/user/user.selectors"
 import { selectIsPopupFormVisible } from "./redux/app/app.selectors"
 
 class App extends React.Component {
   componentDidMount() {
-    const { fetchCurrentUserStartAsync } = this.props
-    fetchCurrentUserStartAsync("peter@peter.com", "password")
+    //const { fetchCurrentUserStartAsync } = this.props
+    //fetchCurrentUserStartAsync("peter@peter.com", "password")
   }
 
   componentDidUpdate() {
@@ -66,8 +66,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCurrentUserStartAsync: (userNameOrEmail, userPassword) =>
-    dispatch(fetchCurrentUserStartAsync(userNameOrEmail, userPassword)),
+  //fetchCurrentUserStartAsync: (userNameOrEmail, userPassword) =>
+  // dispatch(fetchCurrentUserStartAsync(userNameOrEmail, userPassword)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
