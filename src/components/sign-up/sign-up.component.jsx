@@ -1,7 +1,10 @@
 import React from "react"
+import { connect } from "react-redux"
 
 import FormInput from "../form-input/form-input.component"
 import CustomButton from "../custom-button/custom-button.component"
+
+import { signUpStart } from "../../redux/user/user.actions"
 
 import "./sign-up.styles.scss"
 
@@ -10,7 +13,7 @@ class SignUp extends React.Component {
     super()
 
     this.state = {
-      displayName: "",
+      username: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -19,6 +22,18 @@ class SignUp extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault()
+
+    // [TO DO] client side data validation
+
+    const { username, email, password, confirmPassword } = this.state
+    const { signUpStart } = this.props
+
+    if (password === confirmPassword) {
+      signUpStart(username, email, password)
+    } else {
+      // temp alert
+      window.alert("Passwords do not match.")
+    }
   }
 
   handleChange = (event) => {
@@ -27,7 +42,7 @@ class SignUp extends React.Component {
   }
 
   render() {
-    const { displayName, email, password, confirmPassword } = this.state
+    const { username, email, password, confirmPassword } = this.state
 
     return (
       <div className="sign-up">
@@ -36,10 +51,10 @@ class SignUp extends React.Component {
         <form className="sign-up__form" onSubmit={this.handleSubmit}>
           <FormInput
             type="text"
-            name="displayName"
-            value={displayName}
+            name="username"
+            value={username}
             onChange={this.handleChange}
-            label="Display Name"
+            label="Username"
             required
           />
 
@@ -79,4 +94,8 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (username, email, password) => dispatch(signUpStart({ username, email, password })),
+})
+
+export default connect(null, mapDispatchToProps)(SignUp)

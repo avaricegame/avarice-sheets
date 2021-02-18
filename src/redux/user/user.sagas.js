@@ -11,7 +11,7 @@ import {
   fetchCurrentUserFailure,
 } from "./user.actions"
 
-import { signUserIn, fetchUser } from "../api/api"
+import { signUserIn, signUserUp, fetchUser } from "../api/api"
 
 // FETCH CURRENT USER
 export function* onFetchCurrentUserStart() {
@@ -55,37 +55,42 @@ export function* signIn({ payload: { email, password } }) {
     }
   } catch (error) {
     window.alert("Oops, something went wrong on our end. Please try again later.")
-    yield put(signInFailure(error))
+    yield put(signInFailure(error.message))
   }
 }
 
 // SIGN A USER UP
-// export function* onSignUpStart() {
-//   yield takeLatest(UserActionTypes.SIGN_UP_START, signUp)
-// }
+export function* onSignUpStart() {
+  yield takeLatest(UserActionTypes.SIGN_UP_START, signUp)
+}
 
-// export function* signUp({ payload: { email, password, displayName } }) {
-//   try {
-//     const user = yield auth.createUserWithEmailAndPassword(email, password)
-//     yield put(signUpSuccess({ user, additionalData: { displayName } }))
-//   } catch (error) {
-//     yield put(signUpFailure(error))
-//   }
-// }
+export function* signUp({ payload: { username, email, password } }) {
+  // [TO DO] refactor this code to be more dry, because it is basically the exact same as the sign in code
+  console.log(username, email, password)
+  try {
+    const response = yield signUserUp(username, email, password)
 
-// export function* onSignUpSuccess() {
-//   yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp)
-// }
-
-// export function* signInAfterSignUp({ payload: { user, additionalData } }) {
-//   yield getSnapshotFromUserAuth(user, additionalData)
-// }
+    if (response.data.token) {
+      // add token to local storage to persist sign ins
+      localStorage.setItem("token", response.data.token)
+      // add item to local storage to save whether to load sign in or sign up
+      localStorage.setItem("hasAccount", true)
+      // dispatch the sign in success
+      yield put(signUpSuccess({ token: response.data.token }))
+      // if sign in was successful, then fetch the current user
+      const fetchUserResponse = yield fetchUser(response.data.token)
+      yield put(fetchCurrentUserSuccess(fetchUserResponse.data))
+    } else {
+      window.alert(response.data.error)
+      yield put(signUpFailure(response.data.error))
+    }
+  } catch (error) {
+    window.alert("Oops, something went wrong on our end. Please try again later.")
+    yield put(signUpFailure(error.message))
+  }
+}
 
 // EXPORT USER SAGAS
 export function* userSagas() {
-  yield all([
-    call(onSignInStart),
-    call(onFetchCurrentUserStart),
-    // call(onSignUpStart),
-  ])
+  yield all([call(onSignInStart), call(onFetchCurrentUserStart), call(onSignUpStart)])
 }

@@ -34,7 +34,9 @@ class ProfilePage extends React.Component {
             <hr className="profile-page-hr" />
             <Link to="/">&larr; BACK TO HOME</Link>
             <hr className="profile-page-hr" />
-            <h2 className="profile-page-greeting">Hello there, {user.firstName}</h2>
+            <h2 className="profile-page-greeting">
+              Hello there, {user.firstName || user.username}
+            </h2>
 
             <hr className="profile-page-hr" />
             <CardContainer heading="Your Profile Details">

@@ -21,6 +21,8 @@ class SignIn extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault()
 
+    // [TO DO] client side data validation
+
     const { email, password } = this.state
     const { signInStart } = this.props
 

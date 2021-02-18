@@ -8,6 +8,14 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case UserActionTypes.SIGN_UP_SUCCESS:
+      // temporarily alert
+      window.alert("You have successfully signed up.")
+      return {
+        ...state,
+        token: action.payload.token,
+        error: null,
+      }
     case UserActionTypes.SIGN_IN_SUCCESS:
       // temporarily alert
       window.alert("You have successfully signed in.")
@@ -44,7 +52,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         token: null,
-        error: action.payload.message,
+        error: action.payload,
       }
     default:
       return state
