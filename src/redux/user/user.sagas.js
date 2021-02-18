@@ -9,9 +9,25 @@ import {
   signOutFailure,
   signUpSuccess,
   signUpFailure,
+  fetchCurrentUserSuccess,
+  fetchCurrentUserFailure,
 } from "./user.actions"
 
-import { signUserIn } from "../api/api"
+import { signUserIn, fetchUser, checkToken } from "../api/api"
+
+// FETCH CURRENT USER
+export function* onFetchCurrentUserStart() {
+  yield takeLatest(UserActionTypes.FETCH_CURRENT_USER_START, fetchCurrentUser)
+}
+
+export function* fetchCurrentUser({ payload: { token } }) {
+  try {
+    const response = yield fetchUser(token)
+    yield put(fetchCurrentUserSuccess(response.data))
+  } catch (error) {
+    yield put(fetchCurrentUserFailure(error))
+  }
+}
 
 // SIGN IN A USER
 export function* onSignInStart() {
@@ -23,6 +39,7 @@ export function* signIn({ payload: { email, password } }) {
     const response = yield signUserIn(email, password)
 
     if (response.data.token) {
+      localStorage.setItem("token", response.data.token)
       yield put(signInSuccess(response.data.token))
     } else {
       window.alert(response.data.error)
@@ -90,6 +107,7 @@ export function* signIn({ payload: { email, password } }) {
 export function* userSagas() {
   yield all([
     call(onSignInStart),
+    call(onFetchCurrentUserStart),
     // call(onCheckUserSession),
     // call(onSignOutStart),
     // call(onSignUpStart),

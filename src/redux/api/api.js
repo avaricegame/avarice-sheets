@@ -16,3 +16,11 @@ export function fetchUser(token) {
     },
   })
 }
+
+export function checkToken(token) {
+  return Axios.get(`http://localhost:2890/checktoken`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+}
