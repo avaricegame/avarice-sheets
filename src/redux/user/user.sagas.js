@@ -11,7 +11,7 @@ import {
   fetchCurrentUserFailure,
 } from "./user.actions"
 
-import { signUserIn, signUserUp, fetchUser } from "../api/api"
+import { signUserIn, signUserUp, fetchUser } from "../api/user.api"
 
 // FETCH CURRENT USER
 export function* onFetchCurrentUserStart() {
