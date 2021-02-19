@@ -7,7 +7,7 @@ import { selectPopupFormType } from "../../redux/app/app.selectors"
 import PopupFormTypes from "./popup-form.types"
 
 // import the form components
-// create new character sheet (and edit)
+import NewCharacterSheet from "./forms/homepage/new-character-sheet.form"
 // create new campaign sheet (and edit)
 // CHARACTER SHEET
 import Attack from "./forms/character-sheet/attack.form" // TO DO
@@ -60,6 +60,8 @@ export const PopupFormHeading = ({ children }) => (
 const PopupForm = ({ popupFormType }) => (
   <div className="popupform__background">
     <div className="popupform__popup">
+      {/*  HOMEPAGE FORMS */}
+      {popupFormType === PopupFormTypes.NEW_CHARACTER_SHEET ? <NewCharacterSheet /> : null}
       {/* GAMEPLAY ACTIONS */}
       {popupFormType === PopupFormTypes.ATTACK ? <Attack /> : null}
       {popupFormType === PopupFormTypes.MAKE_A_CHECK ? <MakeACheck /> : null}
