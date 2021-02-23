@@ -8,7 +8,7 @@ import PopupFormTypes from "./popup-form.types"
 
 // import the form components
 import NewCharacterSheet from "./forms/homepage/new-character-sheet.form"
-// create new campaign sheet (and edit)
+import NewCampaignSheet from "./forms/homepage/new-campaign-sheet.form"
 // CHARACTER SHEET
 import Attack from "./forms/character-sheet/attack.form" // TO DO
 import MakeACheck from "./forms/character-sheet/make-a-check.form"
@@ -62,6 +62,7 @@ const PopupForm = ({ popupFormType }) => (
     <div className="popupform__popup">
       {/*  HOMEPAGE FORMS */}
       {popupFormType === PopupFormTypes.NEW_CHARACTER_SHEET ? <NewCharacterSheet /> : null}
+      {popupFormType === PopupFormTypes.NEW_CAMPAIGN_SHEET ? <NewCampaignSheet /> : null}
       {/* GAMEPLAY ACTIONS */}
       {popupFormType === PopupFormTypes.ATTACK ? <Attack /> : null}
       {popupFormType === PopupFormTypes.MAKE_A_CHECK ? <MakeACheck /> : null}
