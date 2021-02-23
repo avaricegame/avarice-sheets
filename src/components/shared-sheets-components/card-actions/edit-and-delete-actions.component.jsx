@@ -58,7 +58,7 @@ const EditAndDeleteActions = ({
           |{" "}
         </>
       ) : null}
-      DELETE
+      <span onClick={() => console.log("Are you sure?")}>DELETE</span>
     </p>
   )
 }

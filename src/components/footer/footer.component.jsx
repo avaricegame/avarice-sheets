@@ -13,7 +13,7 @@ const Footer = () => (
     </p> */}
     <p>
       &copy; {new Date().getFullYear()} by{" "}
-      <a href="https://avarice-website.netlify.app/" rel="noopener noreferrer" target="_blank">
+      <a href="https://avaricegame.com/" rel="noopener noreferrer" target="_blank">
         Avarice
       </a>
       . All rights reserved. Application built by{" "}
