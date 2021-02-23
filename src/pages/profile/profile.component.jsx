@@ -44,7 +44,11 @@ class ProfilePage extends React.Component {
                 <tbody>
                   <tr>
                     <td>Name:</td>
-                    <td>{user.firstName + " " + user.lastName}</td>
+                    <td>
+                      {user.firstName && user.lastName
+                        ? `${user.firstName + " " + user.lastName}`
+                        : ""}
+                    </td>
                   </tr>
                   <tr>
                     <td>Username:</td>
@@ -54,11 +58,17 @@ class ProfilePage extends React.Component {
                     <td>Email:</td>
                     <td>{user.email}</td>
                   </tr>
+                  <tr>
+                    <td>Plan:</td>
+                    <td>Free</td>
+                  </tr>
                 </tbody>
               </table>
             </CardContainer>
             <hr className="profile-page-hr" />
-            <CustomButton>Edit my Account Settings on AvariceGame.com</CustomButton>
+            <a href="https://www.avaricegame.com/dashboard" target="_blank">
+              EDIT ACCOUNT SETTINGS ON AVARICEGAME.COM &rarr;
+            </a>
             <hr className="profile-page-hr" />
             <Link to="/">
               <CustomButton signOut onClick={signOut}>

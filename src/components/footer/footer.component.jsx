@@ -4,13 +4,13 @@ import "./footer.styles.scss"
 
 const Footer = () => (
   <footer className="footer">
-    <p>
+    {/* <p>
       <a href="/about">About</a>
       {"   "}|{"   "}
       <a href="/terms">Terms</a>
       {"   "}|{"   "}
       <a href="/privacy">Privacy</a>
-    </p>
+    </p> */}
     <p>
       &copy; {new Date().getFullYear()} by{" "}
       <a href="https://avarice-website.netlify.app/" rel="noopener noreferrer" target="_blank">
