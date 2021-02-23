@@ -52,3 +52,10 @@ export const fetchCurrentUserFailure = (error) => ({
   type: UserActionTypes.FETCH_CURRENT_USER_FAILURE,
   payload: error,
 })
+
+// CREATE AND DELETE CAMPAIGN SHEETS
+export const createNewCampSheet = (data) => ({
+  type: UserActionTypes.cre,
+})
+
+// CREATE AND DELETE CHARACTER SHEETS
