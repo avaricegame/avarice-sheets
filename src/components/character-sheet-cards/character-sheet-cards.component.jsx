@@ -51,7 +51,7 @@ const CharacterSheetCards = ({ charSheets }) => (
                 </tr>
               </tbody>
             </table>
-            <EditAndDeleteActions />
+            <EditAndDeleteActions onlyDelete />
           </CardContainer>
         </Link>
       )

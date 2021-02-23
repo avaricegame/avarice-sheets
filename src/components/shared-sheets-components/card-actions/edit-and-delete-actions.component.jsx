@@ -10,6 +10,7 @@ const EditAndDeleteActions = ({
   togglePopupFormForEdit,
   popupFormType,
   moveEdit,
+  onlyDelete,
 }) => {
   return (
     <p className="actions">
@@ -41,18 +42,23 @@ const EditAndDeleteActions = ({
           |{" "}
         </>
       ) : null}
-      <span
-        onClick={() =>
-          togglePopupFormForEdit({
-            popupFormType: popupFormType,
-            whatToEdit: whatToEdit,
-            objToEdit: objToEdit,
-          })
-        }
-      >
-        EDIT
-      </span>{" "}
-      | DELETE
+      {!onlyDelete ? (
+        <>
+          <span
+            onClick={() =>
+              togglePopupFormForEdit({
+                popupFormType: popupFormType,
+                whatToEdit: whatToEdit,
+                objToEdit: objToEdit,
+              })
+            }
+          >
+            EDIT
+          </span>{" "}
+          |{" "}
+        </>
+      ) : null}
+      DELETE
     </p>
   )
 }
