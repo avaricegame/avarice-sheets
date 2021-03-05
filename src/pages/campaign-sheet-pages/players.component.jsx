@@ -11,7 +11,7 @@ import {
 
 import {
   selectCampaignName,
-  selectPlayers,
+  selectPlayersCharacterSheets,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 // display components
@@ -24,16 +24,16 @@ class PlayersPage extends React.Component {
   }
 
   render() {
-    const { players } = this.props
+    const { playersCharacterSheets } = this.props
     return (
       <>
         <SheetsHeading heading="Players" />
         <SheetsPageContainer>
           <Column width={100}>
             <Section heading="Players Information">
-              {/* {players.map((player, index) => {
-                return <PlayerCard player={player} key={index} />
-              })} */}
+              {playersCharacterSheets.map((playerCharSheet, index) => {
+                return <PlayerCard player={playerCharSheet} key={index} />
+              })}
             </Section>
           </Column>
         </SheetsPageContainer>
@@ -43,7 +43,7 @@ class PlayersPage extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  players: selectPlayers,
+  playersCharacterSheets: selectPlayersCharacterSheets,
   campaignName: selectCampaignName,
 })
 

@@ -87,3 +87,8 @@ export const selectPlayers = createSelector(
   [selectCurrentCampSheet],
   (currentCampSheet) => currentCampSheet.players
 )
+
+export const selectPlayersCharacterSheets = createSelector(
+  [selectCurrentCampSheet],
+  (currentCampSheet) => currentCampSheet.playersCharacterSheets
+)
