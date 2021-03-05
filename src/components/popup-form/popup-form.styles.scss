@@ -3,7 +3,7 @@
 .popupform {
   &__background {
     //cursor: pointer;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -13,7 +13,7 @@
   }
 
   &__popup {
-    position: absolute;
+    position: fixed;
     top: 10px;
     right: 10px;
     bottom: 10px;
