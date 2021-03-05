@@ -67,7 +67,7 @@ class CharacterSheetPage extends React.Component {
     ) : doesExist && !hasPermission ? (
       "YOU DO NOT HAVE PERMISSION TO VIEW THIS CHARACTER SHEET"
     ) : (
-      "THIS CHARACTER SHEET DOES NOT EXIST"
+      "THE CHARACTER SHEET YOU ARE LOOKING FOR DOES NOT EXIST"
     )
   }
 }
@@ -79,8 +79,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCurrentCharSheetStart: (charSheetIDParam, currentUser) =>
-    dispatch(fetchCurrentCharSheetStart(charSheetIDParam, currentUser)),
+  fetchCurrentCharSheetStart: (TokenAndID) => dispatch(fetchCurrentCharSheetStart(TokenAndID)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CharacterSheetPage))

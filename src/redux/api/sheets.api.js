@@ -3,6 +3,22 @@ import Axios from "axios"
 // [TO DO] use axios instances to be able to have different base urls (because I need to switch between sheets and regular api)
 Axios.defaults.baseURL = process.env.REACT_APP_SHEETS_API_URL
 
+export function getCharSheet(token, charid) {
+  return Axios.get(`/character/${charid}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+}
+
+export function getCampSheet(token, campid) {
+  return Axios.get(`/campaign/${campid}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+}
+
 // export function createCharSheet(charSheetData, token) {
 //   return Axios.post(
 //     `/character/create`,
@@ -17,14 +33,6 @@ Axios.defaults.baseURL = process.env.REACT_APP_SHEETS_API_URL
 //     }
 //   )
 // }
-
-export function getCharSheet(token, charid) {
-  return Axios.get(`/character/${charid}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-}
 
 // export function deleteCharSheet(charid, token) {
 //   return Axios.post(

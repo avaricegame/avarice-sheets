@@ -7,19 +7,14 @@ export const selectCurrentCampSheet = createSelector(
   (campSheet) => campSheet.currentCampSheet
 )
 
-export const selectCampSheetList = createSelector(
+export const selectDoesExist = createSelector(
   [selectCampSheet],
-  (campSheet) => campSheet.campSheetList
+  (campSheet) => campSheet.doesCampaignSheetExist
 )
 
-export const selectIsCampSheetListFetching = createSelector(
+export const selectHasPermission = createSelector(
   [selectCampSheet],
-  (campSheet) => campSheet.isListFetching
-)
-
-export const selectIsCampSheetListLoaded = createSelector(
-  [selectCampSheet],
-  (campSheet) => !!campSheet.campSheetList
+  (campSheet) => campSheet.doesUserHavePermission
 )
 
 export const selectIsCurrentCampSheetLoaded = createSelector(

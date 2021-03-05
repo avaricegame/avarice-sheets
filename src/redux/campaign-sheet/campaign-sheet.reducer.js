@@ -6,8 +6,6 @@ import { setNPCAsFriend, setNPCAsEnemy, toggleActive } from "./utils/interactabl
 
 const INITIAL_STATE = {
   currentCampSheet: null,
-  campSheetList: null,
-  isListFetching: false,
   isCampSheetFetching: false,
   errorMessage: undefined,
   doesCampaignSheetExist: true,
@@ -17,35 +15,12 @@ const INITIAL_STATE = {
 
 const campSheetReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case CampSheetActionTypes.SET_CURRENT_CAMP_SHEET:
-      return {
-        ...state,
-        currentCampSheet: action.payload,
-      }
-    case CampSheetActionTypes.FETCH_CAMP_SHEET_LIST_START:
-      return {
-        ...state,
-        isListFetching: true,
-      }
-    case CampSheetActionTypes.FETCH_CAMP_SHEET_LIST_SUCCESS:
-      return {
-        ...state,
-        isListFetching: false,
-        errorMessage: undefined,
-        campSheetList: action.payload,
-      }
-    case CampSheetActionTypes.FETCH_CAMP_SHEET_LIST_FAILURE:
-      return {
-        ...state,
-        isListFetching: false,
-        errorMessage: action.payload,
-      }
-    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_START:
+    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_START:
       return {
         ...state,
         isCampSheetFetching: true,
       }
-    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_SUCCESS:
+    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_SUCCESS:
       return {
         ...state,
         isCampSheetFetching: false,
@@ -55,7 +30,7 @@ const campSheetReducer = (state = INITIAL_STATE, action) => {
         arePlayersCharSheetsLoaded: true,
         currentCampSheet: action.payload,
       }
-    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_FAILURE_NONE_FOUND:
+    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_FAILURE_NONE_FOUND:
       console.log(action.payload)
       return {
         ...state,
@@ -63,7 +38,7 @@ const campSheetReducer = (state = INITIAL_STATE, action) => {
         errorMessage: action.payload,
         doesCampaignSheetExist: false,
       }
-    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_BY_ID_FAILURE_NO_PERMISSION:
+    case CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_FAILURE_NO_PERMISSION:
       console.log(action.payload)
       return {
         ...state,
