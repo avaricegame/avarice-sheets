@@ -17,6 +17,7 @@ import { default as CampaignSheetPage } from "./pages/campaign-sheet/campaign-sh
 
 // app components
 import PopupForm, { PopupFormBackground } from "./components/popup-form/popup-form.component"
+import FlashMessage from "./components/flash-message/flash-message.component"
 
 // actions
 import { fetchCurrentUserStart } from "./redux/user/user.actions"
@@ -25,6 +26,7 @@ import { togglePopupForm } from "./redux/app/app.actions"
 // selectors
 import { selectToken } from "./redux/user/user.selectors"
 import { selectIsPopupFormVisible } from "./redux/app/app.selectors"
+import { selectFlashMessages } from "./redux/app/app.selectors"
 
 class App extends React.Component {
   componentDidMount() {
@@ -46,7 +48,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { token, isPopupFormVisible, togglePopupForm } = this.props
+    const { token, isPopupFormVisible, togglePopupForm, flashMessages } = this.props
     return (
       <>
         <Switch>
@@ -72,6 +74,9 @@ class App extends React.Component {
           </ErrorBoundary>
         </Switch>
 
+        {/* FLASH MESSAGES */}
+        <FlashMessage messages={flashMessages} />
+
         {/* POPUP FORM AND BACKGROUND */}
         <CSSTransition
           timeout={500}
@@ -84,7 +89,6 @@ class App extends React.Component {
         <CSSTransition timeout={500} in={isPopupFormVisible} classNames="popupform" unmountOnExit>
           <PopupForm />
         </CSSTransition>
-        {/* FLASH MESSAGES */}
       </>
     )
   }
@@ -93,6 +97,7 @@ class App extends React.Component {
 const mapStateToProps = createStructuredSelector({
   token: selectToken,
   isPopupFormVisible: selectIsPopupFormVisible,
+  flashMessages: selectFlashMessages,
 })
 
 const mapDispatchToProps = (dispatch) => ({

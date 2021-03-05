@@ -1,6 +1,7 @@
 import AppActionTypes from "./app.types"
 
 const INITIAL_STATE = {
+  flashMessages: [],
   isPopupFormVisible: false,
   popupFormType: null,
   charLogToEdit: null,
@@ -41,6 +42,11 @@ const appReducer = (state = INITIAL_STATE, action) => {
         isPopupFormVisible: !state.isPopupFormVisible,
         popupFormType: action.payload.popupFormType,
         [action.payload.whatToEdit]: action.payload.objToEdit,
+      }
+    case AppActionTypes.ADD_FLASH_MESSAGE:
+      return {
+        ...state,
+        flashMessages: state.flashMessages.concat(action.payload),
       }
     case AppActionTypes.FETCH_WEAPONS:
       return {

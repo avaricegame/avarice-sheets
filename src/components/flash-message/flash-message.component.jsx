@@ -2,11 +2,13 @@ import React from "react"
 
 import "./flash-message.styles.scss"
 
-const FlashMessage = ({ message }) => (
+const FlashMessage = ({ messages }) => (
   <div className="flash-messages">
-    <div className="flash-message" key>
-      {message}
-    </div>
+    {messages.map((message, index) => (
+      <div className="flash-message" key={index}>
+        {message}
+      </div>
+    ))}
   </div>
 )
 

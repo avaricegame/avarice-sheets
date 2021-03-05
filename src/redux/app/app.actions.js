@@ -10,6 +10,11 @@ export const togglePopupFormForEdit = (object) => ({
   payload: object,
 })
 
+export const addFlashMessage = (message) => ({
+  type: AppActionTypes.ADD_FLASH_MESSAGE,
+  payload: message,
+})
+
 export const fetchRacesSuccess = (theRaces) => ({
   type: AppActionTypes.FETCH_RACES,
   payload: theRaces,

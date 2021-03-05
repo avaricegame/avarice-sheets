@@ -6,13 +6,13 @@
   padding: 1rem 1.5rem;
   border-radius: 0;
   z-index: 999;
-  top: 100px;
-  left: 50%;
+  bottom: 100px;
+  left: 5%;
   transform: translateX(-50%);
-  -moz-animation: floatingAlert ease-in 5s forwards;
-  -webkit-animation: floatingAlert ease-in 5s forwards;
-  -o-animation: floatingAlert ease-in 5s forwards;
-  animation: floatingAlert ease-in 5s forwards;
+  -moz-animation: flashMessage ease-in 5s forwards;
+  -webkit-animation: flashMessage ease-in 5s forwards;
+  -o-animation: flashMessage ease-in 5s forwards;
+  animation: flashMessage ease-in 5s forwards;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
