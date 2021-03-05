@@ -43,7 +43,7 @@ class PlanningPage extends React.Component {
     super(props)
 
     this.state = {
-      currentMissionID: getCurrentMissionID(this.props.missions),
+      currentMissionID: this.props.missions[0].id,
     }
   }
 
@@ -64,10 +64,10 @@ class PlanningPage extends React.Component {
     const { currentMissionID } = this.state
 
     const currentMission = getSingleMissionByID(missions, currentMissionID)
-    const currentEnvironment = findInteractablesOnlyFromCertainMission(
-      environment,
-      currentMissionID
-    )
+    // const currentEnvironment = findInteractablesOnlyFromCertainMission(
+    //   environment,
+    //   currentMissionID
+    // )
     const currentWeapons = findInteractablesOnlyFromCertainMission(weapons, currentMissionID)
     const currentWearables = findInteractablesOnlyFromCertainMission(wearables, currentMissionID)
     const currentItems = findInteractablesOnlyFromCertainMission(items, currentMissionID)
@@ -83,7 +83,7 @@ class PlanningPage extends React.Component {
                 Create a New Mission
               </Button>
               <Card heading="Selected Mission:">
-                <select onChange={(e) => this.selectMissionHandler(e)}>
+                {/* <select onChange={(e) => this.selectMissionHandler(e)}>
                   <option value={getCurrentMissionID(missions)}>
                     {getCurrentMissionNameAndStatus(missions)}
                   </option>
@@ -104,7 +104,7 @@ class PlanningPage extends React.Component {
                       return null
                     }
                   })}
-                </select>
+                </select> */}
               </Card>
               <MissionCard mission={currentMission} />
             </Section>
@@ -124,13 +124,13 @@ class PlanningPage extends React.Component {
               <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_INVENTORY_ITEM)}>
                 Generate New Inventory Item
               </Button>
-              <DisplayWeapons
+              {/* <DisplayWeapons
                 moveEdit
                 blue
                 weapons={currentWeapons}
                 quatheading="Weapon"
                 whatToEdit="weaponToEdit"
-              />
+              /> */}
               <DisplayItems
                 moveEdit
                 blue
@@ -153,11 +153,11 @@ class PlanningPage extends React.Component {
               <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_ENVIRONMENT)}>
                 Generate New Environment
               </Button>
-              <DisplayEnvironments
+              {/* <DisplayEnvironments
                 moveEdit
                 environments={currentEnvironment}
                 whatToEdit="environmentToEdit"
-              />
+              /> */}
             </Section>
           </Column>
         </SheetsPageContainer>

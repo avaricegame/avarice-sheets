@@ -11,6 +11,7 @@ export const getCurrentMission = (missions) => {
 }
 
 export const getCurrentMissionID = (missions) => {
+  console.log(missions)
   const currentMission = getCurrentMission(missions)
   return currentMission.id
 }

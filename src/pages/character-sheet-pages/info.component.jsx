@@ -87,13 +87,13 @@ class InfoPage extends React.Component {
           <Column width={25}>
             <Section heading="Campaign Information">
               <Card heading="Campaign Details" subheading={campaignName} terheading={`ID#${_id}`}>
-                <DisplayCampaignInfo
+                {/* <DisplayCampaignInfo
                   creatorName={creatorName}
                   playersNames={playersNames}
                   charactersNames={charactersNames}
                   missions={missions}
                   background={background}
-                />
+                /> */}
               </Card>
             </Section>
           </Column>

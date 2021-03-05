@@ -97,50 +97,51 @@ class CampaignGameplay extends React.Component {
     const { missions, npcs, inventoryItems, environment, togglePopupForm } = this.props
     const { displayEnvironment, displayItems, displayNPCS } = this.state
 
+    console.log(missions)
     const currentMission = getCurrentMission(missions)
-    const activeNPCS = findOnlyActiveInteractables(
-      findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
-    )
-    const inactiveNPCS = findOnlyInactiveInteractables(
-      findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
-    )
-    const activeWeapons = findOnlyActiveInteractables(
-      findInteractablesOnlyFromCertainMission(inventoryItems.weapons, getCurrentMissionID(missions))
-    )
-    const activeWearables = findOnlyActiveInteractables(
-      findInteractablesOnlyFromCertainMission(
-        inventoryItems.wearables,
-        getCurrentMissionID(missions)
-      )
-    )
-    const activeItems = findOnlyActiveInteractables(
-      findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
-    )
-    const inactiveWeapons = findOnlyInactiveInteractables(
-      findInteractablesOnlyFromCertainMission(inventoryItems.weapons, getCurrentMissionID(missions))
-    )
-    const inactiveWearables = findOnlyInactiveInteractables(
-      findInteractablesOnlyFromCertainMission(
-        inventoryItems.wearables,
-        getCurrentMissionID(missions)
-      )
-    )
-    const inactiveItems = findOnlyInactiveInteractables(
-      findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
-    )
-    const activeEnvironments = findOnlyActiveInteractables(
-      findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
-    )
-    const inactiveEnvironments = findOnlyInactiveInteractables(
-      findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
-    )
+    // const activeNPCS = findOnlyActiveInteractables(
+    //   findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
+    // )
+    // const inactiveNPCS = findOnlyInactiveInteractables(
+    //   findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
+    // )
+    // const activeWeapons = findOnlyActiveInteractables(
+    //   findInteractablesOnlyFromCertainMission(inventoryItems.weapons, getCurrentMissionID(missions))
+    // )
+    // const activeWearables = findOnlyActiveInteractables(
+    //   findInteractablesOnlyFromCertainMission(
+    //     inventoryItems.wearables,
+    //     getCurrentMissionID(missions)
+    //   )
+    // )
+    // const activeItems = findOnlyActiveInteractables(
+    //   findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
+    // )
+    // const inactiveWeapons = findOnlyInactiveInteractables(
+    //   findInteractablesOnlyFromCertainMission(inventoryItems.weapons, getCurrentMissionID(missions))
+    // )
+    // const inactiveWearables = findOnlyInactiveInteractables(
+    //   findInteractablesOnlyFromCertainMission(
+    //     inventoryItems.wearables,
+    //     getCurrentMissionID(missions)
+    //   )
+    // )
+    // const inactiveItems = findOnlyInactiveInteractables(
+    //   findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
+    // )
+    // const activeEnvironments = findOnlyActiveInteractables(
+    //   findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
+    // )
+    // const inactiveEnvironments = findOnlyInactiveInteractables(
+    //   findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
+    // )
 
-    const activeInventoryItems = [...activeItems, ...activeWeapons, ...activeWearables]
-    const inactiveInventoryItems = [...inactiveWeapons, ...inactiveWearables, ...inactiveItems]
-    const allActiveInteractablesTotal =
-      activeInventoryItems.length + activeNPCS.length + activeEnvironments.length
-    const allInactiveInteractablesTotal =
-      inactiveInventoryItems.length + inactiveNPCS.length + inactiveEnvironments.length
+    // const activeInventoryItems = [...activeItems, ...activeWeapons, ...activeWearables]
+    // const inactiveInventoryItems = [...inactiveWeapons, ...inactiveWearables, ...inactiveItems]
+    // const allActiveInteractablesTotal =
+    //   activeInventoryItems.length + activeNPCS.length + activeEnvironments.length
+    // const allInactiveInteractablesTotal =
+    //   inactiveInventoryItems.length + inactiveNPCS.length + inactiveEnvironments.length
 
     return (
       <>
@@ -177,12 +178,12 @@ class CampaignGameplay extends React.Component {
 
           <Column width={50}>
             <Section heading="Current Mission">
-              <Card heading={`${currentMission.date}: ${currentMission.name}`}>
+              {/* <Card heading={`${currentMission.date}: ${currentMission.name}`}>
                 {currentMission.notes}
                 <p onClick={() => togglePopupForm(PopupFormTypes.EDIT_MISSION)} className="actions">
                   EDIT
                 </p>
-              </Card>
+              </Card> */}
             </Section>
           </Column>
 
@@ -192,7 +193,7 @@ class CampaignGameplay extends React.Component {
                 Create Interactable
               </Button>
               <Card heading="View:">
-                <select onChange={this.handleInteractableSelect}>
+                {/* <select onChange={this.handleInteractableSelect}>
                   <option value="ALL">
                     All Interactables ({allActiveInteractablesTotal} Active)
                   </option>
@@ -204,9 +205,9 @@ class CampaignGameplay extends React.Component {
                     Environment ({activeEnvironments.length} Active)
                   </option>
                   <option value="NONE">None</option>
-                </select>
+                </select> */}
               </Card>
-              {displayNPCS ? <DisplayNPCS activate npcs={activeNPCS} /> : null}
+              {/* {displayNPCS ? <DisplayNPCS activate npcs={activeNPCS} /> : null}
               {displayEnvironment ? (
                 <DisplayEnvironments activate environments={activeEnvironments} />
               ) : null}
@@ -219,8 +220,8 @@ class CampaignGameplay extends React.Component {
                 <DisplayInactiveEnvironments inactiveEnvironments={inactiveEnvironments} />
                 <DisplayInactiveItems inactiveItems={inactiveItems} />
                 <DisplayInactiveWearables inactiveWearables={inactiveWearables} />
-                <DisplayInactiveWeapons inactiveWeapons={inactiveWeapons} />
-              </Card>
+                <DisplayInactiveWeapons inactiveWeapons={inactiveWeapons} /> 
+              </Card>*/}
             </Section>
           </Column>
         </SheetsPageContainer>

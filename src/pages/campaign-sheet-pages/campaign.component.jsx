@@ -71,12 +71,12 @@ class CampaignPage extends React.Component {
                 subheading={`For ${campaignName}`}
                 terheading={`ID#${campaignID}`}
               >
-                <DisplayCampaignInfo
+                {/* <DisplayCampaignInfo
                   playersNames={playersNames}
                   charactersNames={charactersNames}
                   missions={missions}
                   background={campaignBackground}
-                />
+                /> */}
               </Card>
             </Section>
           </Column>

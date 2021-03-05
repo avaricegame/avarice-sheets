@@ -49,9 +49,9 @@ class CombatPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Players">
-              {players.map((player, index) => (
+              {/* {players.map((player, index) => (
                 <PlayerCombatCard player={player} key={index} />
-              ))}
+              ))} */}
             </Section>
           </Column>
 

@@ -31,9 +31,9 @@ class PlayersPage extends React.Component {
         <SheetsPageContainer>
           <Column width={100}>
             <Section heading="Players Information">
-              {players.map((player, index) => {
+              {/* {players.map((player, index) => {
                 return <PlayerCard player={player} key={index} />
-              })}
+              })} */}
             </Section>
           </Column>
         </SheetsPageContainer>
