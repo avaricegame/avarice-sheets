@@ -25,7 +25,7 @@ class NewCampaignSheet extends React.Component {
     event.preventDefault()
 
     const { name, background } = this.state
-    const { createNewCampSheet } = this.props
+    //const { createNewCampSheet } = this.props
 
     if (name === "" || background === "") {
       return window.alert("You must provide a name and background for your new campaign.")

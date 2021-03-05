@@ -66,7 +66,7 @@ class ProfilePage extends React.Component {
               </table>
             </CardContainer>
             <hr className="profile-page-hr" />
-            <a href="https://www.avaricegame.com/dashboard" target="_blank">
+            <a href="https://www.avaricegame.com/dashboard" target="_blank" rel="noreferrer">
               EDIT ACCOUNT SETTINGS ON AVARICEGAME.COM &rarr;
             </a>
             <hr className="profile-page-hr" />

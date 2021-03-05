@@ -24,11 +24,6 @@ const INITIAL_STATE = {
 
 const charSheetReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case CharSheetActionTypes.SET_CURRENT_CHAR_SHEET:
-      return {
-        ...state,
-        currentCharSheet: action.payload,
-      }
     case CharSheetActionTypes.FETCH_CURRENT_CHAR_SHEET_START:
       return {
         ...state,

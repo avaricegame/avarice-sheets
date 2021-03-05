@@ -7,7 +7,7 @@ import "../forms.styles.scss"
 // display components
 import { PopupFormHeading } from "../../popup-form.component"
 import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-form-button-panel.component"
-import { default as Button } from "../../../custom-button/custom-button.component"
+//import { default as Button } from "../../../custom-button/custom-button.component"
 
 // selectors
 import {
@@ -19,12 +19,12 @@ import {
 // util functions
 import { calculateActualStatValuesAndTransform } from "../../../../pages/character-sheet-pages/utils/stats.utils"
 import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
-import {
-  mapDifficultyToValueToBeat,
-  findStatBeingChecked,
-  addOrSubtractAdvantageToValueToBeat,
-  determineAdvantageBonus,
-} from "../../utils/make-a-check.utils"
+// import {
+//   mapDifficultyToValueToBeat,
+//   findStatBeingChecked,
+//   addOrSubtractAdvantageToValueToBeat,
+//   determineAdvantageBonus,
+// } from "../../utils/make-a-check.utils"
 
 // actions
 import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"

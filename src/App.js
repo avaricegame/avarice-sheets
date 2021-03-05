@@ -12,8 +12,8 @@ import MainPageNotFound from "./pages/main-page-not-found/main-page-not-found.co
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
 import { default as HomePage } from "./pages/homepage/homepage.container"
 import { default as ProfilePage } from "./pages/profile/profile.container"
-import { default as CharacterSheetPage } from "./pages/character-sheet/character-sheet.component"
-import { default as CampaignSheetPage } from "./pages/campaign-sheet/campaign-sheet.component"
+import CharacterSheetPage from "./pages/character-sheet/character-sheet.component"
+import CampaignSheetPage from "./pages/campaign-sheet/campaign-sheet.component"
 
 // app components
 import PopupForm, { PopupFormBackground } from "./components/popup-form/popup-form.component"
