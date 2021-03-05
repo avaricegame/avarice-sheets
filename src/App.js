@@ -2,6 +2,7 @@ import React from "react"
 import { Switch, Route } from "react-router-dom"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
+import { CSSTransition } from "react-transition-group"
 
 import "./App.scss"
 
@@ -15,9 +16,13 @@ import { default as CharacterSheetPage } from "./pages/character-sheet/character
 import { default as CampaignSheetPage } from "./pages/campaign-sheet/campaign-sheet.container"
 
 // app components
-import PopupForm from "./components/popup-form/popup-form.component"
+import PopupForm, { PopupFormBackground } from "./components/popup-form/popup-form.component"
 
+// actions
 import { fetchCurrentUserStart } from "./redux/user/user.actions"
+import { togglePopupForm } from "./redux/app/app.actions"
+
+// selectors
 import { selectToken } from "./redux/user/user.selectors"
 import { selectIsPopupFormVisible } from "./redux/app/app.selectors"
 
@@ -41,7 +46,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { token, isPopupFormVisible } = this.props
+    const { token, isPopupFormVisible, togglePopupForm } = this.props
     return (
       <>
         <Switch>
@@ -66,7 +71,20 @@ class App extends React.Component {
             />
           </ErrorBoundary>
         </Switch>
-        {isPopupFormVisible ? <PopupForm /> : null}
+
+        {/* POPUP FORM AND BACKGROUND */}
+        <CSSTransition
+          timeout={500}
+          in={isPopupFormVisible}
+          classNames="popupform-background"
+          unmountOnExit
+        >
+          <PopupFormBackground onClick={() => togglePopupForm(null)} />
+        </CSSTransition>
+        <CSSTransition timeout={500} in={isPopupFormVisible} classNames="popupform" unmountOnExit>
+          <PopupForm />
+        </CSSTransition>
+        {/* FLASH MESSAGES */}
       </>
     )
   }
@@ -79,6 +97,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrentUserStart: (token) => dispatch(fetchCurrentUserStart(token)),
+  togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

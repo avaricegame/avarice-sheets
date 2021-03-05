@@ -2,7 +2,8 @@
 
 .popupform {
   &__background {
-    position: fixed;
+    //cursor: pointer;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -20,7 +21,7 @@
     width: 400px;
     box-shadow: 0 0 10rem $color-black;
     z-index: 1001;
-    background-color: $color-purple;
+    background-color: $main-background-color-light;
     transition: transform 0.2s ease-in-out;
     overflow-y: hidden;
     padding-top: 5rem;

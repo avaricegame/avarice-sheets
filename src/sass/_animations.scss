@@ -1,0 +1,30 @@
+// popup form animations
+.popupform-enter {
+  transform: translateX(100vw);
+}
+.popupform-enter-active {
+  transform: translateX(0);
+  transition: all 200ms;
+}
+.popupform-exit {
+  transform: translateX(0);
+}
+.popupform-exit-active {
+  transform: translateX(100vw);
+  transition: all 200ms;
+}
+// popupform background animations
+.popupform-background-enter {
+  opacity: 0;
+}
+.popupform-background-enter-active {
+  opacity: 1;
+  transition: all 200ms;
+}
+.popupform-background-exit {
+  opacity: 1;
+}
+.popupform-background-exit-active {
+  opacity: 0;
+  transition: all 200ms;
+}

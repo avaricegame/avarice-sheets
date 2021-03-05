@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 
+// selectors
 import { selectPopupFormType } from "../../redux/app/app.selectors"
 
 import PopupFormTypes from "./popup-form.types"
@@ -53,48 +54,52 @@ import CopyInteractable from "./forms/campaign-sheet/copy-interactable.form"
 
 import "./popup-form.styles.scss"
 
+export const PopupFormBackground = ({ children, ...otherProps }) => (
+  <div className="popupform__background" {...otherProps}>
+    {children}
+  </div>
+)
+
 export const PopupFormHeading = ({ children }) => (
   <h3 className="popupform__heading">{children ? children : "Blank Form"}</h3>
 )
 
 const PopupForm = ({ popupFormType }) => (
-  <div className="popupform__background">
-    <div className="popupform__popup">
-      {/*  HOMEPAGE FORMS */}
-      {popupFormType === PopupFormTypes.NEW_CHARACTER_SHEET ? <NewCharacterSheet /> : null}
-      {popupFormType === PopupFormTypes.NEW_CAMPAIGN_SHEET ? <NewCampaignSheet /> : null}
-      {/* GAMEPLAY ACTIONS */}
-      {popupFormType === PopupFormTypes.ATTACK ? <Attack /> : null}
-      {popupFormType === PopupFormTypes.MAKE_A_CHECK ? <MakeACheck /> : null}
-      {popupFormType === PopupFormTypes.USE_AN_ITEM ? <UseAnItem /> : null}
-      {popupFormType === PopupFormTypes.USE_AN_ABILITY ? <UseAnAbility /> : null}
-      {popupFormType === PopupFormTypes.TAKE_A_REST ? <TakeARest /> : null}
-      {popupFormType === PopupFormTypes.ROLL_DICE ? <RollDice /> : null}
-      {/* GAMEPLAY FORMS */}
-      {popupFormType === PopupFormTypes.TAKE_OR_HEAL_DAMAGE ? <TakeOrHealDamage /> : null}
-      {popupFormType === PopupFormTypes.PAY_OR_RECIEVE_MONEY ? <PayOrRecieveMoney /> : null}
-      {/* INVENTORY FORMS */}
-      {popupFormType === PopupFormTypes.ADD_A_NEW_WEAPON ? <AddNewWeapon /> : null}
-      {popupFormType === PopupFormTypes.ADD_A_NEW_WEARABLE ? <AddNewWearable /> : null}
-      {popupFormType === PopupFormTypes.ADD_A_NEW_ITEM ? <AddNewItem /> : null}
-      {popupFormType === PopupFormTypes.SELL_INVENTORY_ITEM ? <SellInventoryItem /> : null}
-      {/* STATS FORMS */}
-      {popupFormType === PopupFormTypes.LEVEL_UP ? <LevelUp /> : null}
-      {/* INFO FORMS */}
-      {popupFormType === PopupFormTypes.NEW_CHARACTER_LOG ? <NewCharacterLog /> : null}
-      {/* CAMPAIGN FORMS */}
-      {popupFormType === PopupFormTypes.ADD_NEW_CAPTAINS_LOG ? <NewCaptainsLog /> : null}
-      {popupFormType === PopupFormTypes.ADD_NEW_PERSONAL_LOG ? <NewPersonalLog /> : null}
-      {/* PLANNING FORMS */}
-      {popupFormType === PopupFormTypes.ADD_A_NEW_NPC ? <AddNewNPC /> : null}
-      {popupFormType === PopupFormTypes.ADD_A_NEW_ENVIRONMENT ? <AddNewEnvironment /> : null}
-      {popupFormType === PopupFormTypes.MOVE_INTERACTABLE_TO_DIFFERENT_MISSION ? (
-        <MoveInteractable />
-      ) : null}
-      {popupFormType === PopupFormTypes.COPY_INTERACTABLE_TO_DIFFERENT_MISSION ? (
-        <CopyInteractable />
-      ) : null}
-    </div>
+  <div className="popupform__popup">
+    {/*  HOMEPAGE FORMS */}
+    {popupFormType === PopupFormTypes.NEW_CHARACTER_SHEET ? <NewCharacterSheet /> : null}
+    {popupFormType === PopupFormTypes.NEW_CAMPAIGN_SHEET ? <NewCampaignSheet /> : null}
+    {/* GAMEPLAY ACTIONS */}
+    {popupFormType === PopupFormTypes.ATTACK ? <Attack /> : null}
+    {popupFormType === PopupFormTypes.MAKE_A_CHECK ? <MakeACheck /> : null}
+    {popupFormType === PopupFormTypes.USE_AN_ITEM ? <UseAnItem /> : null}
+    {popupFormType === PopupFormTypes.USE_AN_ABILITY ? <UseAnAbility /> : null}
+    {popupFormType === PopupFormTypes.TAKE_A_REST ? <TakeARest /> : null}
+    {popupFormType === PopupFormTypes.ROLL_DICE ? <RollDice /> : null}
+    {/* GAMEPLAY FORMS */}
+    {popupFormType === PopupFormTypes.TAKE_OR_HEAL_DAMAGE ? <TakeOrHealDamage /> : null}
+    {popupFormType === PopupFormTypes.PAY_OR_RECIEVE_MONEY ? <PayOrRecieveMoney /> : null}
+    {/* INVENTORY FORMS */}
+    {popupFormType === PopupFormTypes.ADD_A_NEW_WEAPON ? <AddNewWeapon /> : null}
+    {popupFormType === PopupFormTypes.ADD_A_NEW_WEARABLE ? <AddNewWearable /> : null}
+    {popupFormType === PopupFormTypes.ADD_A_NEW_ITEM ? <AddNewItem /> : null}
+    {popupFormType === PopupFormTypes.SELL_INVENTORY_ITEM ? <SellInventoryItem /> : null}
+    {/* STATS FORMS */}
+    {popupFormType === PopupFormTypes.LEVEL_UP ? <LevelUp /> : null}
+    {/* INFO FORMS */}
+    {popupFormType === PopupFormTypes.NEW_CHARACTER_LOG ? <NewCharacterLog /> : null}
+    {/* CAMPAIGN FORMS */}
+    {popupFormType === PopupFormTypes.ADD_NEW_CAPTAINS_LOG ? <NewCaptainsLog /> : null}
+    {popupFormType === PopupFormTypes.ADD_NEW_PERSONAL_LOG ? <NewPersonalLog /> : null}
+    {/* PLANNING FORMS */}
+    {popupFormType === PopupFormTypes.ADD_A_NEW_NPC ? <AddNewNPC /> : null}
+    {popupFormType === PopupFormTypes.ADD_A_NEW_ENVIRONMENT ? <AddNewEnvironment /> : null}
+    {popupFormType === PopupFormTypes.MOVE_INTERACTABLE_TO_DIFFERENT_MISSION ? (
+      <MoveInteractable />
+    ) : null}
+    {popupFormType === PopupFormTypes.COPY_INTERACTABLE_TO_DIFFERENT_MISSION ? (
+      <CopyInteractable />
+    ) : null}
   </div>
 )
 
