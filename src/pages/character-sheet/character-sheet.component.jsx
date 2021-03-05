@@ -20,27 +20,23 @@ import {
 
 import SheetsPageNotFound from "../sheets-page-not-found/sheets-page-not-found.component"
 
-import { selectCurrentUser } from "../../redux/user/user.selectors"
-import { fetchCurrentCharSheetByIDStartAsync } from "../../redux/character-sheet/character-sheet.actions"
-import { fetchAdditionalResourcesStartAsync } from "../../redux/app/app.actions"
+// selectors
+import { selectToken } from "../../redux/user/user.selectors"
+
+// actions
+import { fetchCurrentCharSheetStart } from "../../redux/character-sheet/character-sheet.actions"
 
 class CharacterSheetPage extends React.Component {
   componentDidMount() {
-    const {
-      fetchCurrentCharSheetByIDStartAsync,
-      fetchAdditionalResourcesStartAsync,
-      match,
-      currentUser,
-    } = this.props
+    const { fetchCurrentCharSheetStart, match, token } = this.props
 
-    console.log(this.props)
-    fetchCurrentCharSheetByIDStartAsync(match.params.charid, currentUser)
-    fetchAdditionalResourcesStartAsync()
+    if (token) {
+      fetchCurrentCharSheetStart({ token, charid: match.params.charid })
+    }
   }
 
   render() {
     const { match } = this.props
-    console.log(this.props)
     return (
       <>
         <CharacterSheetHeader />
@@ -68,13 +64,12 @@ class CharacterSheetPage extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
+  token: selectToken,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCurrentCharSheetByIDStartAsync: (charSheetIDParam, currentUser) =>
-    dispatch(fetchCurrentCharSheetByIDStartAsync(charSheetIDParam, currentUser)),
-  fetchAdditionalResourcesStartAsync: () => dispatch(fetchAdditionalResourcesStartAsync()),
+  fetchCurrentCharSheetStart: (charSheetIDParam, currentUser) =>
+    dispatch(fetchCurrentCharSheetStart(charSheetIDParam, currentUser)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CharacterSheetPage))

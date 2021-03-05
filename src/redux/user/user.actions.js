@@ -54,8 +54,9 @@ export const fetchCurrentUserFailure = (error) => ({
 })
 
 // CREATE AND DELETE CAMPAIGN SHEETS
-export const createNewCampSheet = (data) => ({
-  type: UserActionTypes.cre,
-})
+export const createNewCampSheet = (data) => ({})
+export const deleteCampSheet = () => ({})
 
 // CREATE AND DELETE CHARACTER SHEETS
+export const createNewCharSheet = (data) => ({})
+export const deleteCharSheet = () => ({})

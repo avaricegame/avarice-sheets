@@ -25,8 +25,7 @@ import { togglePopupForm } from "./redux/app/app.actions"
 
 // selectors
 import { selectToken } from "./redux/user/user.selectors"
-import { selectIsPopupFormVisible } from "./redux/app/app.selectors"
-import { selectFlashMessages } from "./redux/app/app.selectors"
+import { selectIsPopupFormVisible, selectFlashMessages } from "./redux/app/app.selectors"
 
 class App extends React.Component {
   componentDidMount() {
