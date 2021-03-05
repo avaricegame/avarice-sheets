@@ -1,5 +1,5 @@
 import React from "react"
-import { Switch, Route, Redirect } from "react-router-dom"
+import { Switch, Route, Redirect, withRouter } from "react-router-dom"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 
@@ -74,4 +74,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchAdditionalResourcesStartAsync: () => dispatch(fetchAdditionalResourcesStartAsync()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CampaignSheetPage)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CampaignSheetPage))

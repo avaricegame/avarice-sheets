@@ -1,5 +1,5 @@
 import React from "react"
-import { Switch, Route, Redirect } from "react-router-dom"
+import { Switch, Route, Redirect, withRouter } from "react-router-dom"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 
@@ -32,12 +32,15 @@ class CharacterSheetPage extends React.Component {
       match,
       currentUser,
     } = this.props
+
+    console.log(this.props)
     fetchCurrentCharSheetByIDStartAsync(match.params.charid, currentUser)
     fetchAdditionalResourcesStartAsync()
   }
 
   render() {
     const { match } = this.props
+    console.log(this.props)
     return (
       <>
         <CharacterSheetHeader />
@@ -74,4 +77,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchAdditionalResourcesStartAsync: () => dispatch(fetchAdditionalResourcesStartAsync()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CharacterSheetPage)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CharacterSheetPage))
