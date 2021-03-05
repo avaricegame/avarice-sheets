@@ -20,7 +20,7 @@ const WeaponCard = ({ weapon, blue, quatheading, edit, equip, activate, moveEdit
     description,
     damage,
     critical,
-    abilities,
+    ability,
     active,
   } = weapon
   return (
@@ -67,7 +67,7 @@ const WeaponCard = ({ weapon, blue, quatheading, edit, equip, activate, moveEdit
       </p>
       <p>
         <strong>Abilities: </strong>
-        {abilities.length}
+        {ability}
       </p>
       <div className="actions-div">
         {equip ? <EquipAndUnequipActions type="WEAPON" id={id} equipped={equipped} /> : null}

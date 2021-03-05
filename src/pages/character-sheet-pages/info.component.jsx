@@ -44,15 +44,7 @@ class InfoPage extends React.Component {
       characterName,
       raceInfo,
       classInfo,
-      campaignInfo: {
-        playersNames,
-        charactersNames,
-        missions,
-        campaignName,
-        _id,
-        background,
-        creatorName,
-      },
+      campaignInfo: { players, missions, campaignName, _id, background, creatorName },
       captainsLog,
       togglePopupForm,
     } = this.props
@@ -87,13 +79,12 @@ class InfoPage extends React.Component {
           <Column width={25}>
             <Section heading="Campaign Information">
               <Card heading="Campaign Details" subheading={campaignName} terheading={`ID#${_id}`}>
-                {/* <DisplayCampaignInfo
+                <DisplayCampaignInfo
                   creatorName={creatorName}
-                  playersNames={playersNames}
-                  charactersNames={charactersNames}
+                  players={players}
                   missions={missions}
                   background={background}
-                /> */}
+                />
               </Card>
             </Section>
           </Column>

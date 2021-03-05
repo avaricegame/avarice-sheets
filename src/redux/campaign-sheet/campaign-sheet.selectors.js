@@ -30,7 +30,7 @@ export const selectNotes = createSelector(
 
 export const selectEnvironment = createSelector(
   [selectCurrentCampSheet],
-  (currentCampSheet) => currentCampSheet.environment
+  (currentCampSheet) => currentCampSheet.environments
 )
 
 export const selectInventoryItems = createSelector(

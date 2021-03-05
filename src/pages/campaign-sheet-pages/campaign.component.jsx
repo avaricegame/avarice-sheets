@@ -48,8 +48,7 @@ class CampaignPage extends React.Component {
       campaignName,
       campaignBackground,
       campaignID,
-      playersNames,
-      charactersNames,
+      players,
       togglePopupForm,
     } = this.props
 
@@ -71,12 +70,11 @@ class CampaignPage extends React.Component {
                 subheading={`For ${campaignName}`}
                 terheading={`ID#${campaignID}`}
               >
-                {/* <DisplayCampaignInfo
-                  playersNames={playersNames}
-                  charactersNames={charactersNames}
+                <DisplayCampaignInfo
+                  players={players}
                   missions={missions}
                   background={campaignBackground}
-                /> */}
+                />
               </Card>
             </Section>
           </Column>

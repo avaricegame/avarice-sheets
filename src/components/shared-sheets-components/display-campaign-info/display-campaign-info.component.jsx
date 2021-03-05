@@ -5,10 +5,10 @@ import React from "react"
 //   return currentMission[0].name
 // }
 
-// const findTotalMissionsServed = (missionsArray) => {
-//   const completedMissions = missionsArray.filter((mission) => mission.complete)
-//   return completedMissions.length
-// }
+const findTotalMissionsServed = (missionsArray) => {
+  const completedMissions = missionsArray.filter((mission) => mission.complete)
+  return completedMissions.length
+}
 
 const DisplayCampaignInfo = ({ players, missions, background, creatorName }) => (
   <>
@@ -22,15 +22,15 @@ const DisplayCampaignInfo = ({ players, missions, background, creatorName }) => 
         ) : null}
         <tr>
           <td>Players:</td>
-          <td>{players.join(", ")}</td>
+          <td>{players}</td>
         </tr>
         <tr>
           <td>Characters:</td>
-          <td>{players.join(", ")}</td>
+          <td>{players}</td>
         </tr>
         <tr>
           <td>Missions Served:</td>
-          {/* <td>{findTotalMissionsServed(missions)}</td> */}
+          <td>{findTotalMissionsServed(missions)}</td>
         </tr>
         <tr>
           <td>Current Mission:</td>
