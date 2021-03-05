@@ -7,19 +7,14 @@ export const selectCurrentCharSheet = createSelector(
   (charSheet) => charSheet.currentCharSheet
 )
 
-export const selectCharSheetList = createSelector(
+export const selectDoesExist = createSelector(
   [selectCharSheet],
-  (charSheet) => charSheet.charSheetList
+  (charSheet) => charSheet.doesCharacterSheetExist
 )
 
-export const selectIsCharSheetListFetching = createSelector(
+export const selectHasPermission = createSelector(
   [selectCharSheet],
-  (charSheet) => charSheet.isListFetching
-)
-
-export const selectIsCharSheetListLoaded = createSelector(
-  [selectCharSheet],
-  (charSheet) => !!charSheet.charSheetList
+  (charSheet) => charSheet.doesUserHavePermission
 )
 
 export const selectIsCurrentCharSheetLoaded = createSelector(

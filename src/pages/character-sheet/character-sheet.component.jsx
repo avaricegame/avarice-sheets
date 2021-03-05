@@ -19,9 +19,14 @@ import {
 } from "../character-sheet-pages/containers/character-sheet-pages.container"
 
 import SheetsPageNotFound from "../sheets-page-not-found/sheets-page-not-found.component"
+//import MainPageNotFound from "../main-page-not-found/main-page-not-found.component"
 
 // selectors
 import { selectToken } from "../../redux/user/user.selectors"
+import {
+  selectDoesExist,
+  selectHasPermission,
+} from "../../redux/character-sheet/character-sheet.selectors"
 
 // actions
 import { fetchCurrentCharSheetStart } from "../../redux/character-sheet/character-sheet.actions"
@@ -36,8 +41,8 @@ class CharacterSheetPage extends React.Component {
   }
 
   render() {
-    const { match } = this.props
-    return (
+    const { match, doesExist, hasPermission } = this.props
+    return doesExist && hasPermission ? (
       <>
         <CharacterSheetHeader />
         <CharacterSheetNavigation />
@@ -59,12 +64,18 @@ class CharacterSheetPage extends React.Component {
         </Switch>
         <Footer />
       </>
+    ) : doesExist && !hasPermission ? (
+      "YOU DO NOT HAVE PERMISSION TO VIEW THIS CHARACTER SHEET"
+    ) : (
+      "THIS CHARACTER SHEET DOES NOT EXIST"
     )
   }
 }
 
 const mapStateToProps = createStructuredSelector({
   token: selectToken,
+  doesExist: selectDoesExist,
+  hasPermission: selectHasPermission,
 })
 
 const mapDispatchToProps = (dispatch) => ({
