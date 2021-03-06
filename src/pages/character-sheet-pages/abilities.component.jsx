@@ -12,6 +12,8 @@ import {
 import {
   selectCharacterName,
   selectAbilities,
+  selectEquippedWeapons,
+  selectEquippedWearables,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
 // display components
@@ -30,9 +32,16 @@ class AbilitiesPage extends React.Component {
   render() {
     const {
       abilities: { abilities, startingAbility },
+      equippedWeapons,
+      equippedWearables,
     } = this.props
 
-    const equippedAbilities = findAllEquippedAbilities(abilities, startingAbility)
+    const equippedAbilities = findAllEquippedAbilities(
+      abilities,
+      startingAbility,
+      equippedWeapons,
+      equippedWearables
+    )
 
     return (
       <>
@@ -62,6 +71,8 @@ class AbilitiesPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   abilities: selectAbilities,
   characterName: selectCharacterName,
+  equippedWeapons: selectEquippedWeapons,
+  equippedWearables: selectEquippedWearables,
 })
 
 export default connect(mapStateToProps)(AbilitiesPage)

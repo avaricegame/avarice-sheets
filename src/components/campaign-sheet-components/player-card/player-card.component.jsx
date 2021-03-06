@@ -60,44 +60,44 @@ class PlayerCard extends React.Component {
       },
     } = this.props
     const raceInfo = findPlayersRace([], raceID)
-    // this.setState({
-    //   armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
-    //   dodgeValue: calculateDodgeValue(
-    //     findStatProficiencyValue(
-    //       calculateActualStatValuesAndTransform(
-    //         stats,
-    //         findEquippedInventoryItems(wearables),
-    //         raceInfo.stats
-    //       ),
-    //       "reflex"
-    //     ),
-    //     raceInfo.size
-    //   ),
-    //   maxHP: calculateMaxHPValue(
-    //     level,
-    //     findStatProficiencyValue(
-    //       calculateActualStatValuesAndTransform(
-    //         stats,
-    //         findEquippedInventoryItems(wearables),
-    //         raceInfo.stats
-    //       ),
-    //       "constitution"
-    //     )
-    //   ),
-    //   equippedWeapons: findEquippedInventoryItems(weapons),
-    //   equippedItems: findEquippedInventoryItems(items),
-    //   equippedAbilities: findAllEquippedAbilities(
-    //     abilities,
-    //     startingAbility,
-    //     findEquippedInventoryItems(weapons),
-    //     findEquippedInventoryItems(wearables)
-    //   ),
-    //   calculatedTransformedStats: calculateActualStatValuesAndTransform(
-    //     stats,
-    //     findEquippedInventoryItems(wearables),
-    //     raceInfo.stats
-    //   ),
-    // })
+    this.setState({
+      //   armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
+      //   dodgeValue: calculateDodgeValue(
+      //     findStatProficiencyValue(
+      //       calculateActualStatValuesAndTransform(
+      //         stats,
+      //         findEquippedInventoryItems(wearables),
+      //         raceInfo.stats
+      //       ),
+      //       "reflex"
+      //     ),
+      //     raceInfo.size
+      //   ),
+      //   maxHP: calculateMaxHPValue(
+      //     level,
+      //     findStatProficiencyValue(
+      //       calculateActualStatValuesAndTransform(
+      //         stats,
+      //         findEquippedInventoryItems(wearables),
+      //         raceInfo.stats
+      //       ),
+      //       "constitution"
+      //     )
+      //   ),
+      equippedWeapons: findEquippedInventoryItems(weapons),
+      equippedItems: findEquippedInventoryItems(items),
+      equippedAbilities: findAllEquippedAbilities(
+        abilities,
+        startingAbility,
+        findEquippedInventoryItems(weapons),
+        findEquippedInventoryItems(wearables)
+      ),
+      //   calculatedTransformedStats: calculateActualStatValuesAndTransform(
+      //     stats,
+      //     findEquippedInventoryItems(wearables),
+      //     raceInfo.stats
+      //   ),
+    })
   }
 
   render() {
