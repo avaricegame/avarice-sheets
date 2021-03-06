@@ -25,7 +25,6 @@ import { togglePopupForm } from "../../redux/app/app.actions"
 import PopupFormTypes from "../../components/popup-form/popup-form.types"
 
 // util functions
-import { getCurrentMission, getCurrentMissionID } from "./utils/campaign.utils"
 import { findOnlyActiveInteractables, findOnlyInactiveInteractables } from "./utils/combat.utils"
 import { findInteractablesOnlyFromCertainMission } from "./utils/plannings.utils"
 

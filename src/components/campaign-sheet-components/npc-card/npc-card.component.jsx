@@ -6,7 +6,6 @@ import { default as Card } from "../../card-container/card-container.component"
 import {
   calculateActualStatValuesAndTransform,
   findStatProficiencyValue,
-  findEquippedInventoryItems,
   calculateArmourValueFromEquippedWearables,
   calculateMaxHPValue,
   calculateDodgeValue,

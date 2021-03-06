@@ -18,8 +18,6 @@ import {
 } from "../../../../redux/character-sheet/character-sheet.selectors"
 
 // util functions
-import { calculateActualStatValuesAndTransform } from "../../../../pages/character-sheet-pages/utils/stats.utils"
-import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
 import {
   mapDifficultyToValueToBeat,
   findStatBeingChecked,
