@@ -21,6 +21,7 @@ import FlashMessage from "./components/flash-message/flash-message.component"
 
 // actions
 import { fetchCurrentUserStart } from "./redux/user/user.actions"
+import { fetchAdditionalResourcesStart } from "./redux/app/app.actions"
 import { togglePopupForm } from "./redux/app/app.actions"
 
 // selectors
@@ -29,11 +30,13 @@ import { selectIsPopupFormVisible, selectFlashMessages } from "./redux/app/app.s
 
 class App extends React.Component {
   componentDidMount() {
-    const { fetchCurrentUserStart, token } = this.props
+    const { fetchCurrentUserStart, token, fetchAdditionalResourcesStart } = this.props
 
     if (token) {
       fetchCurrentUserStart({ token })
     }
+
+    fetchAdditionalResourcesStart()
   }
 
   componentDidUpdate() {
@@ -102,6 +105,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrentUserStart: (token) => dispatch(fetchCurrentUserStart(token)),
   togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
+  fetchAdditionalResourcesStart: () => dispatch(fetchAdditionalResourcesStart()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

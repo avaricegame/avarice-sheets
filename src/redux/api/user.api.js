@@ -1,6 +1,6 @@
 import Axios from "axios"
 
-// [TO DO] use axios instances to be able to have different base urls (because I need to switch between sheets and regular api)
+// [TO DO] use axios instances to be able to have different base urls (because I need to switch between sheets and regular api and the future user api)
 Axios.defaults.baseURL = process.env.REACT_APP_SHEETS_API_URL
 
 export function signUserIn(email, password) {

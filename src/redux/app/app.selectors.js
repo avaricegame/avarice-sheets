@@ -8,17 +8,45 @@ export const selectPopupFormType = createSelector([selectApp], (app) => app.popu
 
 export const selectFlashMessages = createSelector([selectApp], (app) => app.flashMessages)
 
-export const selectCharLogToEdit = createSelector([selectApp], (app) => app.charLogToEdit)
-export const selectPerLogToEdit = createSelector([selectApp], (app) => app.perLogToEdit)
-export const selectCapLogToEdit = createSelector([selectApp], (app) => app.capLogToEdit)
-export const selectNPCToEdit = createSelector([selectApp], (app) => app.npcToEdit)
-export const selectWeaponToEdit = createSelector([selectApp], (app) => app.weaponToEdit)
-export const selectItemToEdit = createSelector([selectApp], (app) => app.itemToEdit)
-export const selectWearableToEdit = createSelector([selectApp], (app) => app.wearableToEdit)
-export const selectEnvironmentToEdit = createSelector([selectApp], (app) => app.environmentToEdit)
+// TO EDIT
+export const selectToEdit = createSelector([selectApp], (app) => app.toEdit)
+export const selectCharLogToEdit = createSelector([selectToEdit], (toEdit) => toEdit.charLogToEdit)
+export const selectPerLogToEdit = createSelector([selectToEdit], (toEdit) => toEdit.perLogToEdit)
+export const selectCapLogToEdit = createSelector([selectToEdit], (toEdit) => toEdit.capLogToEdit)
+export const selectNPCToEdit = createSelector([selectToEdit], (toEdit) => toEdit.npcToEdit)
+export const selectWeaponToEdit = createSelector([selectToEdit], (toEdit) => toEdit.weaponToEdit)
+export const selectItemToEdit = createSelector([selectToEdit], (toEdit) => toEdit.itemToEdit)
+export const selectWearableToEdit = createSelector(
+  [selectToEdit],
+  (toEdit) => toEdit.wearableToEdit
+)
+export const selectEnvironmentToEdit = createSelector(
+  [selectToEdit],
+  (toEdit) => toEdit.environmentToEdit
+)
 
-export const selectWeapons = createSelector([selectApp], (app) => app.weapons)
-export const selectWearables = createSelector([selectApp], (app) => app.wearables)
-export const selectItems = createSelector([selectApp], (app) => app.items)
-export const selectRaces = createSelector([selectApp], (app) => app.races)
-export const selectClasses = createSelector([selectApp], (app) => app.classes)
+// ADDITIONAL RESOURCES
+export const selectAdditionalResources = createSelector(
+  [selectApp],
+  (app) => app.additionalResources
+)
+export const selectWeapons = createSelector(
+  [selectAdditionalResources],
+  (additionalResources) => additionalResources.weapons
+)
+export const selectWearables = createSelector(
+  [selectAdditionalResources],
+  (additionalResources) => additionalResources.wearables
+)
+export const selectItems = createSelector(
+  [selectAdditionalResources],
+  (additionalResources) => additionalResources.items
+)
+export const selectRaces = createSelector(
+  [selectAdditionalResources],
+  (additionalResources) => additionalResources.races
+)
+export const selectClasses = createSelector(
+  [selectAdditionalResources],
+  (additionalResources) => additionalResources.classes
+)

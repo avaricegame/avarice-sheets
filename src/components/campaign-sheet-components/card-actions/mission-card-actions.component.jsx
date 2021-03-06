@@ -10,15 +10,7 @@ import {
 
 class MissionCardActions extends React.Component {
   render() {
-    const {
-      setCurrentMission,
-      toggleComplete,
-      togglePlanned,
-      id,
-      current,
-      planned,
-      complete,
-    } = this.props
+    const { setCurrentMission, toggleComplete, togglePlanned, id, current, complete } = this.props
 
     return (
       <>

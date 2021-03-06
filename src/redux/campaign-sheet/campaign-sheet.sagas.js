@@ -10,7 +10,7 @@ import {
 
 import { getCampSheet } from "../api/sheets.api"
 
-// FETCH CURRENT CHAR SHEET
+// FETCH CURRENT CAMP SHEET
 export function* onFetchCurrentCampSheetStart() {
   yield takeLatest(CampSheetActionTypes.FETCH_CURRENT_CAMP_SHEET_START, fetchCurrentCampSheet)
 }
@@ -30,7 +30,7 @@ export function* fetchCurrentCampSheet({ payload: { token, campid } }) {
   }
 }
 
-// EXPORT Camp SHEET SAGAS
+// EXPORT CAMP SHEET SAGAS
 export function* campSheetSagas() {
   yield all([call(onFetchCurrentCampSheetStart)])
 }

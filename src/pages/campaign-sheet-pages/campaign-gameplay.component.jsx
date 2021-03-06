@@ -94,14 +94,7 @@ class CampaignGameplay extends React.Component {
   }
 
   render() {
-    const {
-      missions,
-      npcs,
-      inventoryItems,
-      environment,
-      togglePopupForm,
-      currentMission,
-    } = this.props
+    const { npcs, inventoryItems, environment, togglePopupForm, currentMission } = this.props
     const { displayEnvironment, displayItems, displayNPCS } = this.state
 
     const activeNPCS = findOnlyActiveInteractables(
