@@ -13,9 +13,13 @@ import {
 } from "../../../redux/character-sheet/utils/selector.utils"
 
 // display components
-import { Point } from "../../character-sheet-components/display-stats-tables/display-energy-points.component"
 import DisplayEquippedWeapons from "../../shared-sheets-components/display-equipped-weapons/display-equipped-weapons.component"
 import FriendEnemyActions from "../card-actions/friend-enemy-actions.component"
+
+// import to display the points, and import to style the points
+// [TO DO] make this a litte easier to reuse in the future
+import { Point } from "../../character-sheet-components/display-stats-tables/display-energy-points.component"
+import "../../character-sheet-components/display-stats-tables/display-stats-tables.styles.scss"
 
 class NPCCombatCard extends React.Component {
   constructor(props) {

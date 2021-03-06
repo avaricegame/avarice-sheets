@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import { createStructuredSelector } from "reselect"
 
 import { default as Column } from "../../sheets-page-container-column/sheets-page-container-column.component"
 
@@ -26,11 +27,18 @@ import {
 import { findAllEquippedAbilities } from "../../../pages/character-sheet-pages/utils/abilities.utils"
 import { findPlayersRace } from "../../../pages/campaign-sheet-pages/utils/players.utils"
 
+// selectors
+import { selectRaces } from "../../../redux/app/app.selectors"
+
 // display components
-import { Point } from "../../character-sheet-components/display-stats-tables/display-energy-points.component"
 import DisplayEquippedWeapons from "../../shared-sheets-components/display-equipped-weapons/display-equipped-weapons.component"
 import DisplayEquippedItems from "../../shared-sheets-components/display-equipped-items/display-equipped-items.component"
 import DisplayBasicCharacterInfo from "../../campaign-sheet-components/display-basic-character-info/display-basic-character-info.component"
+
+// import to display the points, and import to style the points
+// [TO DO] make this a litte easier to reuse in the future
+import { Point } from "../../character-sheet-components/display-stats-tables/display-energy-points.component"
+import "../../character-sheet-components/display-stats-tables/display-stats-tables.styles.scss"
 
 class PlayerCard extends React.Component {
   constructor(props) {
@@ -58,32 +66,34 @@ class PlayerCard extends React.Component {
         weapons,
         items,
       },
+      races,
     } = this.props
-    const raceInfo = findPlayersRace([], raceID)
+    const raceInfo = findPlayersRace(races, raceID)
+    console.log(raceInfo)
     this.setState({
-      //   armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
-      //   dodgeValue: calculateDodgeValue(
-      //     findStatProficiencyValue(
-      //       calculateActualStatValuesAndTransform(
-      //         stats,
-      //         findEquippedInventoryItems(wearables),
-      //         raceInfo.stats
-      //       ),
-      //       "reflex"
-      //     ),
-      //     raceInfo.size
-      //   ),
-      //   maxHP: calculateMaxHPValue(
-      //     level,
-      //     findStatProficiencyValue(
-      //       calculateActualStatValuesAndTransform(
-      //         stats,
-      //         findEquippedInventoryItems(wearables),
-      //         raceInfo.stats
-      //       ),
-      //       "constitution"
-      //     )
-      //   ),
+      armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
+      dodgeValue: calculateDodgeValue(
+        findStatProficiencyValue(
+          calculateActualStatValuesAndTransform(
+            stats,
+            findEquippedInventoryItems(wearables),
+            raceInfo.stats
+          ),
+          "reflex"
+        ),
+        raceInfo.size
+      ),
+      maxHP: calculateMaxHPValue(
+        level,
+        findStatProficiencyValue(
+          calculateActualStatValuesAndTransform(
+            stats,
+            findEquippedInventoryItems(wearables),
+            raceInfo.stats
+          ),
+          "constitution"
+        )
+      ),
       equippedWeapons: findEquippedInventoryItems(weapons),
       equippedItems: findEquippedInventoryItems(items),
       equippedAbilities: findAllEquippedAbilities(
@@ -92,17 +102,17 @@ class PlayerCard extends React.Component {
         findEquippedInventoryItems(weapons),
         findEquippedInventoryItems(wearables)
       ),
-      //   calculatedTransformedStats: calculateActualStatValuesAndTransform(
-      //     stats,
-      //     findEquippedInventoryItems(wearables),
-      //     raceInfo.stats
-      //   ),
+      calculatedTransformedStats: calculateActualStatValuesAndTransform(
+        stats,
+        findEquippedInventoryItems(wearables),
+        raceInfo.stats
+      ),
     })
   }
 
   render() {
     const {
-      player: { characterName, playerName, raceName, className, currentHP, lifeCredits },
+      player: { characterName, playerUsername, raceName, className, currentHP, lifeCredits },
       togglePopupForm,
     } = this.props
     const {
@@ -116,7 +126,7 @@ class PlayerCard extends React.Component {
     } = this.state
 
     return (
-      <Card heading={`${playerName} as ${characterName}`} flex>
+      <Card heading={`${playerUsername} as ${characterName}`} flex>
         <InteriorCard>
           <Column width={25}>
             <Subheading blue>Overview</Subheading>
@@ -134,10 +144,10 @@ class PlayerCard extends React.Component {
             </InteriorCardContent>
             <Subheading blue>Stats Overview</Subheading>
             <InteriorCardContent>
-              <table>
+              <table className="stats-table">
                 <thead>
                   <tr>
-                    <th>Stat</th>
+                    <th className="left">Stat</th>
                     <th>Proficiency</th>
                     <th>Energy</th>
                     <th>Success</th>
@@ -148,17 +158,15 @@ class PlayerCard extends React.Component {
                     ({ name, proficiencyPoints, energyPoints, successPoints }) => {
                       return (
                         <tr key={name}>
-                          <td>{name}</td>
+                          <td className="left">{name}</td>
                           <td>
-                            <Point blue>{proficiencyPoints}</Point>
+                            <Point purple>{proficiencyPoints}</Point>
                           </td>
-
                           <td>
-                            <Point blue>{energyPoints}</Point>
+                            <Point yellow>{energyPoints}</Point>
                           </td>
-
                           <td>
-                            <Point blue>{successPoints}</Point>
+                            <Point green>{successPoints}</Point>
                           </td>
                         </tr>
                       )
@@ -223,8 +231,12 @@ class PlayerCard extends React.Component {
   }
 }
 
+const mapStateToProps = createStructuredSelector({
+  races: selectRaces,
+})
+
 const mapDispatchToProps = (dispatch) => ({
   togglePopupForm: (popupFormType) => dispatch(togglePopupForm(popupFormType)),
 })
 
-export default connect(null, mapDispatchToProps)(PlayerCard)
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerCard)
