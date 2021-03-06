@@ -17,8 +17,8 @@ import {
 } from "../../../../redux/character-sheet/character-sheet.selectors"
 
 // util functions
-import { calculateActualStatValuesAndTransform } from "../../../../pages/character-sheet-pages/utils/stats.utils"
-import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
+// import { calculateActualStatValuesAndTransform } from "../../../../pages/character-sheet-pages/utils/stats.utils"
+// import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
 // import {
 //   mapDifficultyToValueToBeat,
 //   findStatBeingChecked,
@@ -38,26 +38,6 @@ class MakeACheck extends React.Component {
       advantage: 0,
       difficulty: null,
     }
-  }
-
-  componentDidMount() {
-    const { stats, wearables, raceInfo } = this.props
-
-    this.setState({
-      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
-    })
-  }
-
-  makeCheck(type) {}
-
-  componentWillUnmount() {
-    this.setState({
-      transformedCalculatedStatValues: [],
-    })
   }
 
   render() {

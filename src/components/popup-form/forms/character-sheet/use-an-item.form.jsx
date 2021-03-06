@@ -10,10 +10,7 @@ import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-f
 import ItemCard from "../../../shared-sheets-components/item-card/item-card.component"
 
 // selectors
-import { selectItems } from "../../../../redux/character-sheet/character-sheet.selectors"
-
-// util functions
-import { findEquippedInventoryItems } from "../../../../pages/character-sheet-pages/utils/inventory.utils"
+import { selectEquippedItems } from "../../../../redux/character-sheet/character-sheet.selectors"
 
 // actions
 import { makeACheck } from "../../../../redux/character-sheet/pages/pages.actions"
@@ -23,28 +20,13 @@ class MakeACheck extends React.Component {
     super(props)
 
     this.state = {
-      equippedItems: [],
       currentItem: {},
       currentItemSet: false,
     }
   }
 
-  componentDidMount() {
-    const { items } = this.props
-
-    this.setState({
-      equippedItems: findEquippedInventoryItems(items),
-    })
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      equippedItems: [],
-    })
-  }
-
   setCurrentItem(e) {
-    const { equippedItems } = this.state
+    const { equippedItems } = this.props
 
     this.setState({
       currentItem: equippedItems.find((item) => (item.name = e.target.value)),
@@ -53,7 +35,8 @@ class MakeACheck extends React.Component {
   }
 
   render() {
-    const { equippedItems, currentItem, currentItemSet } = this.state
+    const { equippedItems } = this.props
+    const { currentItem, currentItemSet } = this.state
     return (
       <>
         <PopupFormHeading>Use An Item</PopupFormHeading>
@@ -79,7 +62,7 @@ class MakeACheck extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  items: selectItems,
+  equippedItems: selectEquippedItems,
 })
 
 const mapDispatchToProps = (dispatch) => ({

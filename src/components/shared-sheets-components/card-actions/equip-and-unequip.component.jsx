@@ -13,15 +13,12 @@ import {
 } from "../../../redux/character-sheet/pages/pages.actions"
 
 import {
-  selectWeapons,
-  selectWearables,
-  selectItems,
+  selectEquippedWeapons,
+  selectEquippedWearables,
+  selectEquippedItems,
 } from "../../../redux/character-sheet/character-sheet.selectors"
 
-import {
-  findEquippedInventoryItems,
-  restructureEquippedWearables,
-} from "../../../pages/character-sheet-pages/utils/inventory.utils"
+import { restructureEquippedWearables } from "../../../pages/character-sheet-pages/utils/inventory.utils"
 
 class EquipAndUnequipActions extends React.Component {
   constructor(props) {
@@ -36,17 +33,14 @@ class EquipAndUnequipActions extends React.Component {
       type,
       id,
       bodyArea,
-      weapons,
-      wearables,
-      items,
       equipWeapon,
       equipItem,
       equipWearable,
+      equippedWeapons,
+      equippedWearables,
+      equippedItems,
     } = this.props
 
-    const equippedWeapons = findEquippedInventoryItems(weapons)
-    const equippedWearables = findEquippedInventoryItems(wearables)
-    const equippedItems = findEquippedInventoryItems(items)
     const newEquippedWearables = restructureEquippedWearables(equippedWearables)
 
     console.log(newEquippedWearables)
@@ -130,9 +124,9 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const mapStateToProps = createStructuredSelector({
-  weapons: selectWeapons,
-  wearables: selectWearables,
-  items: selectItems,
+  equippedWeapons: selectEquippedWeapons,
+  equippedWearables: selectEquippedWearables,
+  equippedItems: selectEquippedItems,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EquipAndUnequipActions)

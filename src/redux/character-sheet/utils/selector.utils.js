@@ -162,3 +162,9 @@ export const findStatProficiencyValue = (calculatedStats, statName) => {
 
   return proficiencyValue
 }
+
+// this filters through whatever inventory item array it is given
+// and returns just the items that have an equipped value of true
+export const findEquippedInventoryItems = (inventoryItemArray) => {
+  return inventoryItemArray.filter((inventoryItem) => inventoryItem.equipped)
+}

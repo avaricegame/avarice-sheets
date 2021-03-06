@@ -6,12 +6,11 @@ import { default as Card } from "../../card-container/card-container.component"
 import {
   calculateActualStatValuesAndTransform,
   findStatProficiencyValue,
-} from "../../../pages/character-sheet-pages/utils/stats.utils"
-import {
+  findEquippedInventoryItems,
+  calculateArmourValueFromEquippedWearables,
   calculateMaxHPValue,
   calculateDodgeValue,
-} from "../../../pages/character-sheet-pages/utils/gameplay.utils"
-import { calculateArmourValueFromEquippedWearables } from "../../../pages/character-sheet-pages/utils/inventory.utils"
+} from "../../../redux/character-sheet/utils/selector.utils"
 
 // display components
 import DisplayBasicCharacterInfo from "../display-basic-character-info/display-basic-character-info.component"

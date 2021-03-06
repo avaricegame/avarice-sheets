@@ -14,6 +14,7 @@ import {
   selectStats,
   selectWearables,
   selectRaceInfo,
+  selectCalculatedTransformedStats,
 } from "../../../../redux/character-sheet/character-sheet.selectors"
 
 // util functions
@@ -33,35 +34,22 @@ class MakeACheck extends React.Component {
     super(props)
 
     this.state = {
-      transformedCalculatedStatValues: [],
       advantage: 0,
       difficulty: "SELECT DIFFICULTY",
       risk: "NO",
     }
   }
 
-  componentDidMount() {
-    const { stats, wearables, raceInfo } = this.props
-
-    this.setState({
-      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
-    })
-  }
-
   makeCheck(type) {
-    const { makeACheck } = this.props
-    const { transformedCalculatedStatValues, difficulty, advantage, risk } = this.state
+    const { makeACheck, calculatedTransformedStats } = this.props
+    const { difficulty, advantage, risk } = this.state
 
     if (difficulty === "SELECT DIFFICULTY")
       return window.alert("You must set the difficulty of the check.")
 
     const valueToBeat = mapDifficultyToValueToBeat(difficulty)
     console.log("VALUE TO BEAT " + valueToBeat)
-    const statChecking = findStatBeingChecked(transformedCalculatedStatValues, type)
+    const statChecking = findStatBeingChecked(calculatedTransformedStats, type)
     console.log(statChecking)
     const advantageBonus = determineAdvantageBonus(parseInt(advantage))
     console.log("ADVANTAGE BONUS " + advantageBonus)
@@ -168,12 +156,6 @@ class MakeACheck extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this.setState({
-      transformedCalculatedStatValues: [],
-    })
-  }
-
   render() {
     return (
       <>
@@ -260,6 +242,7 @@ const mapStateToProps = createStructuredSelector({
   stats: selectStats,
   wearables: selectWearables,
   raceInfo: selectRaceInfo,
+  calculatedTransformedStats: selectCalculatedTransformedStats,
 })
 
 const mapDispatchToProps = (dispatch) => ({

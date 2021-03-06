@@ -1,21 +1,3 @@
-// // this filters through whatever inventory item array it is given
-// // and returns just the items that have an equipped value of true
-// export const findEquippedInventoryItems = (array) => {
-//   return array.filter((inventoryItem) => inventoryItem.equipped)
-// }
-
-// // this loops through the equipped wearables and takes out just their armour
-// // value, then reduces that down and returns the value
-// export const calculateArmourValueFromEquippedWearables = (equippedWearables) => {
-//   if (equippedWearables.length) {
-//     return equippedWearables
-//       .map((wearable) => wearable.armourValue)
-//       .reduce((total, wearableArmourValue) => total + wearableArmourValue)
-//   } else {
-//     return 0
-//   }
-// }
-
 // this goes through the array of equipped wearables and totally
 // restructures it, to make it easier for me to display them on
 // the app
@@ -109,18 +91,18 @@ export const restructureEquippedWearables = (equippedWearables) => {
   return [head, face, torso, arms, hands, legs, feet]
 }
 
-// // this loops through each wearable and returns a bool
-// // value whether or not the wearable changes any stats
-// // at all -- it does NOT return that value, just whether
-// // it has one
-// const determineWhetherWearableAugments = (wearable) => {
-//   const { statModifiers } = wearable
+// this loops through each wearable and returns a bool
+// value whether or not the wearable changes any stats
+// at all -- it does NOT return that value, just whether
+// it has one
+const determineWhetherWearableAugments = (wearable) => {
+  const { statModifiers } = wearable
 
-//   statModifiers.forEach((stat) => {
-//     if (stat.value === 0) {
-//       wearable.augments = false
-//     } else {
-//       wearable.augments = true
-//     }
-//   })
-// }
+  statModifiers.forEach((stat) => {
+    if (stat.value === 0) {
+      wearable.augments = false
+    } else {
+      wearable.augments = true
+    }
+  })
+}

@@ -6,6 +6,7 @@ import {
   calculateDodgeValue,
   calculateMaxHPValue,
   findStatProficiencyValue,
+  findEquippedInventoryItems,
 } from "./utils/selector.utils"
 
 const selectCharSheet = (state) => state.charSheet
@@ -66,8 +67,8 @@ export const selectWeapons = createSelector(
   (currentCharSheet) => currentCharSheet.weapons
 )
 
-export const selectEquippedWeapons = createSelector([selectCurrentCharSheet], (currentCharSheet) =>
-  currentCharSheet.weapons.filter((weapon) => weapon.equipped)
+export const selectEquippedWeapons = createSelector([selectWeapons], (weapons) =>
+  findEquippedInventoryItems(weapons)
 )
 
 export const selectWearables = createSelector(
@@ -75,9 +76,8 @@ export const selectWearables = createSelector(
   (currentCharSheet) => currentCharSheet.wearables
 )
 
-export const selectEquippedWearables = createSelector(
-  [selectCurrentCharSheet],
-  (currentCharSheet) => currentCharSheet.wearables.filter((wearable) => wearable.equipped)
+export const selectEquippedWearables = createSelector([selectWearables], (wearables) =>
+  findEquippedInventoryItems(wearables)
 )
 
 export const selectItems = createSelector(
@@ -85,8 +85,8 @@ export const selectItems = createSelector(
   (currentCharSheet) => currentCharSheet.items
 )
 
-export const selectEquippedItems = createSelector([selectCurrentCharSheet], (currentCharSheet) =>
-  currentCharSheet.items.filter((item) => item.equipped)
+export const selectEquippedItems = createSelector([selectItems], (items) =>
+  findEquippedInventoryItems(items)
 )
 
 export const selectLevel = createSelector(

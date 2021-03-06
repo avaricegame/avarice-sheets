@@ -11,9 +11,9 @@ import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-f
 
 // selectors
 import {
-  selectStats,
-  selectWearables,
-  selectRaceInfo,
+  selectArmourValue,
+  selectEquippedWeapons,
+  selectCalculatedTransformedStats,
 } from "../../../../redux/character-sheet/character-sheet.selectors"
 
 // util functions
@@ -34,33 +34,17 @@ class MakeACheck extends React.Component {
     super(props)
 
     this.state = {
-      transformedCalculatedStatValues: [],
       advantage: 0,
       difficulty: null,
     }
   }
 
-  componentDidMount() {
-    const { stats, wearables, raceInfo } = this.props
-
-    this.setState({
-      transformedCalculatedStatValues: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
-    })
-  }
-
   makeCheck(type) {}
 
-  componentWillUnmount() {
-    this.setState({
-      transformedCalculatedStatValues: [],
-    })
-  }
-
   render() {
+    const { calculatedTransformedStats, armourValue, equippedWeapons } = this.props
+
+    console.log(calculatedTransformedStats, armourValue, equippedWeapons)
     return (
       <>
         <PopupFormHeading>Attack</PopupFormHeading>
@@ -75,9 +59,9 @@ class MakeACheck extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  stats: selectStats,
-  wearables: selectWearables,
-  raceInfo: selectRaceInfo,
+  calculatedTransformedStats: selectCalculatedTransformedStats,
+  armourValue: selectArmourValue,
+  equippedWeapons: selectEquippedWeapons,
 })
 
 const mapDispatchToProps = (dispatch) => ({
