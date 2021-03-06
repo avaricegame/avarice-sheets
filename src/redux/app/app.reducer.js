@@ -15,6 +15,7 @@ const INITIAL_STATE = {
     wearableToEdit: null,
     environmentToEdit: null,
   },
+  additionalResourcesLoaded: false,
   additionalResources: {
     weapons: undefined,
     wearables: undefined,
@@ -60,6 +61,7 @@ const appReducer = (state = INITIAL_STATE, action) => {
     case AppActionTypes.FETCH_ADDITIONAL_RESOURCES_SUCCESS:
       return {
         ...state,
+        additionalResourcesLoaded: true,
         additionalResources: {
           races: action.payload.races,
           classes: action.payload.classes,
@@ -72,6 +74,7 @@ const appReducer = (state = INITIAL_STATE, action) => {
       console.log(action.payload)
       return {
         ...state,
+        additionalResourcesLoaded: false,
         errorMessage: action.payload,
       }
     default:

@@ -8,6 +8,11 @@ export const selectPopupFormType = createSelector([selectApp], (app) => app.popu
 
 export const selectFlashMessages = createSelector([selectApp], (app) => app.flashMessages)
 
+export const selectAreAdditionalResourcesLoaded = createSelector(
+  [selectApp],
+  (app) => !!app.additionalResourcesLoaded
+)
+
 // TO EDIT
 export const selectToEdit = createSelector([selectApp], (app) => app.toEdit)
 export const selectCharLogToEdit = createSelector([selectToEdit], (toEdit) => toEdit.charLogToEdit)
