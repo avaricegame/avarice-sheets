@@ -18,17 +18,14 @@ import {
   selectNPCS,
   selectMissions,
   selectCampaignName,
+  selectCurrentMission,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 import { togglePopupForm } from "../../redux/app/app.actions"
 import PopupFormTypes from "../../components/popup-form/popup-form.types"
 
 // util functions
-import {
-  findInteractablesOnlyFromCertainMission,
-  getSingleMissionByID,
-} from "./utils/plannings.utils"
-import { getCurrentMissionID, getCurrentMissionNameAndStatus } from "./utils/campaign.utils"
+import { findInteractablesOnlyFromCertainMission } from "./utils/plannings.utils"
 
 // display components
 import MissionCard from "../../components/campaign-sheet-components/mission-card/mission-card.component"
@@ -43,7 +40,7 @@ class PlanningPage extends React.Component {
     super(props)
 
     this.state = {
-      currentMissionID: this.props.missions[0].id,
+      currentMissionID: this.props.currentMission.id,
     }
   }
 
@@ -60,10 +57,10 @@ class PlanningPage extends React.Component {
       environment,
       inventoryItems: { weapons, wearables, items },
       npcs,
+      currentMission,
     } = this.props
     const { currentMissionID } = this.state
 
-    const currentMission = getSingleMissionByID(missions, currentMissionID)
     const currentEnvironment = findInteractablesOnlyFromCertainMission(
       environment,
       currentMissionID
@@ -84,9 +81,7 @@ class PlanningPage extends React.Component {
               </Button>
               <Card heading="Selected Mission:">
                 <select onChange={(e) => this.selectMissionHandler(e)}>
-                  <option value={getCurrentMissionID(missions)}>
-                    {getCurrentMissionNameAndStatus(missions)}
-                  </option>
+                  <option value={currentMission.id}>{`${currentMission.name} (Current)`}</option>
                   {missions.map((mission) => {
                     if (!mission.current) {
                       return (
@@ -172,6 +167,7 @@ const mapStateToProps = createStructuredSelector({
   npcs: selectNPCS,
   missions: selectMissions,
   campaignName: selectCampaignName,
+  currentMission: selectCurrentMission,
 })
 
 const mapDispatchToProps = (dispatch) => ({

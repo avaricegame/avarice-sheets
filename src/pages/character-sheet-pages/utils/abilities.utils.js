@@ -1,14 +1,12 @@
-import { findEquippedInventoryItems } from "./inventory.utils"
+import {
+  selectEquippedWeapons,
+  selectEquippedWearables,
+} from "../../../redux/character-sheet/character-sheet.selectors"
 
 // this pulls together all the equipped abilities from the various
 // sources, the starting ability, the equipped abilities from the class
 // tree, and the abilities given from the equipped inventory items
-export const findAllEquippedAbilities = (
-  abilitiesArray,
-  startingAbilityObj,
-  weaponsArray,
-  wearablesArray
-) => {
+export const findAllEquippedAbilities = (abilitiesArray, startingAbilityObj) => {
   let equippedAbilities = []
 
   abilitiesArray.forEach((abilityObj) => {
@@ -17,8 +15,8 @@ export const findAllEquippedAbilities = (
     equippedAbilities.push(equipped[0])
   })
 
-  const equippedWeapons = findEquippedInventoryItems(weaponsArray)
-  const equippedWearables = findEquippedInventoryItems(wearablesArray)
+  const equippedWeapons = selectEquippedWeapons
+  const equippedWearables = selectEquippedWearables
 
   const equipment = equippedWeapons.concat(equippedWearables)
 

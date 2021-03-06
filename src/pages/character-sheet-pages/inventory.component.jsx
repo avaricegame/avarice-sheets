@@ -16,8 +16,12 @@ import {
   selectCharacterName,
   selectLifeCredits,
   selectWeapons,
+  selectEquippedWeapons,
   selectWearables,
+  selectEquippedWearables,
   selectItems,
+  selectEquippedItems,
+  selectArmourValue,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
 import { togglePopupForm } from "../../redux/app/app.actions"
@@ -29,14 +33,10 @@ import DisplayItems from "../../components/shared-sheets-components/display-item
 import DisplayWearables from "../../components/shared-sheets-components/display-wearables/display-wearables.component"
 import DisplayEquippedWeapons from "../../components/shared-sheets-components/display-equipped-weapons/display-equipped-weapons.component"
 import DisplayEquippedItems from "../../components/shared-sheets-components/display-equipped-items/display-equipped-items.component"
+import DisplayEquippedWearables from "../../components/shared-sheets-components/display-equipped-wearables/display-equipped-wearables.component"
 
 // util functions
-import {
-  findEquippedInventoryItems,
-  calculateArmourValueFromEquippedWearables,
-  restructureEquippedWearables,
-} from "./utils/inventory.utils"
-import DisplayEquippedWearables from "../../components/shared-sheets-components/display-equipped-wearables/display-equipped-wearables.component"
+import { restructureEquippedWearables } from "./utils/inventory.utils"
 
 class InventoryPage extends React.Component {
   constructor(props) {
@@ -91,14 +91,20 @@ class InventoryPage extends React.Component {
   }
 
   render() {
-    const { lifeCredits, weapons, wearables, items, togglePopupForm } = this.props
+    const {
+      lifeCredits,
+      weapons,
+      wearables,
+      items,
+      equippedWeapons,
+      equippedWearables,
+      equippedItems,
+      armourValue,
+      togglePopupForm,
+    } = this.props
     const { displayItems, displayWeapons, displayWearables } = this.state
 
     const entireInventory = [...weapons, ...wearables, ...items]
-    const equippedWeapons = findEquippedInventoryItems(weapons)
-    const equippedWearables = findEquippedInventoryItems(wearables)
-    const equippedItems = findEquippedInventoryItems(items)
-    const armourValue = calculateArmourValueFromEquippedWearables(equippedWearables)
     const newEquippedWearables = restructureEquippedWearables(equippedWearables)
 
     return (
@@ -187,6 +193,10 @@ const mapStateToProps = createStructuredSelector({
   weapons: selectWeapons,
   wearables: selectWearables,
   items: selectItems,
+  equippedWeapons: selectEquippedWeapons,
+  equippedWearables: selectEquippedWearables,
+  equippedItems: selectEquippedItems,
+  armourValue: selectArmourValue,
   characterName: selectCharacterName,
 })
 

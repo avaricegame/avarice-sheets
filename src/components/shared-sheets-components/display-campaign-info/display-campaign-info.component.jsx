@@ -22,11 +22,11 @@ const DisplayCampaignInfo = ({ players, missions, background, creatorName }) => 
         ) : null}
         <tr>
           <td>Players:</td>
-          <td>{players}</td>
+          <td></td>
         </tr>
         <tr>
           <td>Characters:</td>
-          <td>{players}</td>
+          <td></td>
         </tr>
         <tr>
           <td>Missions Served:</td>

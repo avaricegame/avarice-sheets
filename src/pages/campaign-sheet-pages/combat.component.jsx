@@ -14,7 +14,7 @@ import { default as Button } from "../../components/custom-button/custom-button.
 import {
   selectCampaignName,
   selectNPCS,
-  selectPlayers,
+  selectPlayersCharacterSheets,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 import { togglePopupForm } from "../../redux/app/app.actions"
@@ -38,7 +38,9 @@ class CombatPage extends React.Component {
   }
 
   render() {
-    const { players, togglePopupForm, npcs } = this.props
+    const { playersCharacterSheets, togglePopupForm, npcs } = this.props
+
+    console.log(playersCharacterSheets)
 
     const friendNPCS = findOnlyActiveInteractables(findOnlyFriendNPCS(npcs))
     const enemyNPCS = findOnlyActiveInteractables(findOnlyEnemyNPCS(npcs))
@@ -49,9 +51,10 @@ class CombatPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Players">
-              {/* {players.map((player, index) => (
-                <PlayerCombatCard player={player} key={index} />
-              ))} */}
+              {playersCharacterSheets.map((player, index) => {
+                console.log(player)
+                return <PlayerCombatCard player={player} key={index} />
+              })}
             </Section>
           </Column>
 
@@ -92,7 +95,7 @@ class CombatPage extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   npcs: selectNPCS,
-  players: selectPlayers,
+  playersCharacterSheets: selectPlayersCharacterSheets,
   campaignName: selectCampaignName,
 })
 

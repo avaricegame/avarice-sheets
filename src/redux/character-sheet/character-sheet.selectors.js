@@ -1,5 +1,13 @@
 import { createSelector } from "reselect"
 
+import {
+  calculateActualStatValuesAndTransform,
+  calculateArmourValueFromEquippedWearables,
+  calculateDodgeValue,
+  calculateMaxHPValue,
+  findStatProficiencyValue,
+} from "./utils/selector.utils"
+
 const selectCharSheet = (state) => state.charSheet
 
 export const selectCurrentCharSheet = createSelector(
@@ -58,14 +66,27 @@ export const selectWeapons = createSelector(
   (currentCharSheet) => currentCharSheet.weapons
 )
 
+export const selectEquippedWeapons = createSelector([selectCurrentCharSheet], (currentCharSheet) =>
+  currentCharSheet.weapons.filter((weapon) => weapon.equipped)
+)
+
 export const selectWearables = createSelector(
   [selectCurrentCharSheet],
   (currentCharSheet) => currentCharSheet.wearables
 )
 
+export const selectEquippedWearables = createSelector(
+  [selectCurrentCharSheet],
+  (currentCharSheet) => currentCharSheet.wearables.filter((wearable) => wearable.equipped)
+)
+
 export const selectItems = createSelector(
   [selectCurrentCharSheet],
   (currentCharSheet) => currentCharSheet.items
+)
+
+export const selectEquippedItems = createSelector([selectCurrentCharSheet], (currentCharSheet) =>
+  currentCharSheet.items.filter((item) => item.equipped)
 )
 
 export const selectLevel = createSelector(
@@ -107,4 +128,34 @@ export const selectCampaignInfo = createSelector(
 export const selectCaptainsLog = createSelector(
   [selectCampaignInfo],
   (currentCampaignInfo) => currentCampaignInfo.captainsLog
+)
+
+// calculate some stats
+export const selectCalculatedTransformedStats = createSelector(
+  [selectCurrentCharSheet, selectEquippedWearables],
+  (currentCharSheet, equippedWearables) =>
+    calculateActualStatValuesAndTransform(
+      currentCharSheet.stats,
+      equippedWearables,
+      currentCharSheet.raceInfo.stats
+    )
+)
+
+export const selectMaxHP = createSelector(
+  [selectLevel, selectCalculatedTransformedStats],
+  (level, calculatedTransformedStats) =>
+    calculateMaxHPValue(level, findStatProficiencyValue(calculatedTransformedStats, "constitution"))
+)
+
+export const selectDodgeValue = createSelector(
+  [selectRaceInfo, selectCalculatedTransformedStats],
+  (raceInfo, calculatedTransformedStats) =>
+    calculateDodgeValue(
+      findStatProficiencyValue(calculatedTransformedStats, "reflex"),
+      raceInfo.size
+    )
+)
+
+export const selectArmourValue = createSelector([selectEquippedWearables], (equippedWearables) =>
+  calculateArmourValueFromEquippedWearables(equippedWearables)
 )

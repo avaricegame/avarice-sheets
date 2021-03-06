@@ -16,26 +16,14 @@ import {
   selectCharacterName,
   selectCurrentHP,
   selectLifeCredits,
-  selectWearables,
-  selectLevel,
-  selectStats,
-  selectClassInfo,
-  selectRaceInfo,
+  selectArmourValue,
+  selectCalculatedTransformedStats,
+  selectMaxHP,
+  selectDodgeValue,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
 import { togglePopupForm } from "../../redux/app/app.actions"
 import PopupFormTypes from "../../components/popup-form/popup-form.types"
-
-// util functions
-import {
-  findEquippedInventoryItems,
-  calculateArmourValueFromEquippedWearables,
-} from "./utils/inventory.utils"
-import { calculateMaxHPValue, calculateDodgeValue } from "./utils/gameplay.utils"
-import {
-  calculateActualStatValuesAndTransform,
-  findStatProficiencyValue,
-} from "./utils/stats.utils"
 
 // display components
 import DisplayEnergyPoints from "../../components/character-sheet-components/display-stats-tables/display-energy-points.component"
@@ -52,23 +40,11 @@ class CharacterGameplayPage extends React.Component {
       currentHP,
       lifeCredits,
       togglePopupForm,
-      raceInfo,
-      stats,
-      wearables,
-      level,
+      armourValue,
+      calculatedTransformedStats,
+      maxHP,
+      dodgeValue,
     } = this.props
-
-    const equippedWearables = findEquippedInventoryItems(wearables)
-    const armourValue = calculateArmourValueFromEquippedWearables(
-      findEquippedInventoryItems(wearables)
-    )
-    const maxHP = calculateMaxHPValue(level, findStatProficiencyValue(stats, "constitution"))
-    const dodgeValue = calculateDodgeValue(findStatProficiencyValue(stats, "reflex"), raceInfo.size)
-    const transformedCalculatedStatValues = calculateActualStatValuesAndTransform(
-      stats,
-      equippedWearables,
-      raceInfo.stats
-    )
 
     return (
       <>
@@ -132,7 +108,7 @@ class CharacterGameplayPage extends React.Component {
                 subheading="More Stats can be seen on Stats Page"
               >
                 <DisplayStatsOverview
-                  transformedCalculatedStatValues={transformedCalculatedStatValues}
+                  transformedCalculatedStatValues={calculatedTransformedStats}
                 />
               </Card>
             </Section>
@@ -141,9 +117,7 @@ class CharacterGameplayPage extends React.Component {
           <Column width={25}>
             <Section heading="Energy Points">
               <Card heading="Energy Points Table" subheading="Used When You Make a Stat Check">
-                <DisplayEnergyPoints
-                  transformedCalculatedStatValues={transformedCalculatedStatValues}
-                />
+                <DisplayEnergyPoints transformedCalculatedStatValues={calculatedTransformedStats} />
               </Card>
             </Section>
           </Column>
@@ -156,12 +130,11 @@ class CharacterGameplayPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   currentHP: selectCurrentHP,
   lifeCredits: selectLifeCredits,
-  wearables: selectWearables,
-  level: selectLevel,
-  stats: selectStats,
-  classInfo: selectClassInfo,
-  raceInfo: selectRaceInfo,
   characterName: selectCharacterName,
+  armourValue: selectArmourValue,
+  calculatedTransformedStats: selectCalculatedTransformedStats,
+  maxHP: selectMaxHP,
+  dodgeValue: selectDodgeValue,
 })
 
 const mapDispatchToProps = (dispatch) => ({

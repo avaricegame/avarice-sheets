@@ -48,6 +48,10 @@ export const selectMissions = createSelector(
   (currentCampSheet) => currentCampSheet.missions
 )
 
+export const selectCurrentMission = createSelector([selectMissions], (missions) =>
+  missions.find((mission) => mission.current)
+)
+
 export const selectPersonalLog = createSelector(
   [selectCurrentCampSheet],
   (currentCampSheet) => currentCampSheet.personalLog

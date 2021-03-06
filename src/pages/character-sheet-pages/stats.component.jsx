@@ -15,17 +15,11 @@ import { default as Button } from "../../components/custom-button/custom-button.
 import {
   selectCharacterName,
   selectLevel,
-  selectStats,
-  selectWearables,
-  selectRaceInfo,
+  selectCalculatedTransformedStats,
 } from "../../redux/character-sheet/character-sheet.selectors"
 
 import { togglePopupForm } from "../../redux/app/app.actions"
 import PopupFormTypes from "../../components/popup-form/popup-form.types"
-
-// util functions
-import { calculateActualStatValuesAndTransform } from "./utils/stats.utils"
-import { findEquippedInventoryItems } from "./utils/inventory.utils"
 
 // display components
 import DisplaySuccessPoints from "../../components/character-sheet-components/display-stats-tables/display-success-points.component"
@@ -38,13 +32,7 @@ class StatsPage extends React.Component {
   }
 
   render() {
-    const { level, togglePopupForm, stats, raceInfo, wearables } = this.props
-
-    const transformedCalculatedStatValues = calculateActualStatValuesAndTransform(
-      stats,
-      findEquippedInventoryItems(wearables),
-      raceInfo.stats
-    )
+    const { level, togglePopupForm, calculatedTransformedStats } = this.props
 
     return (
       <>
@@ -70,7 +58,7 @@ class StatsPage extends React.Component {
                 subheading="Earned by Succeeding on a Stat Check"
               >
                 <DisplaySuccessPoints
-                  transformedCalculatedStatValues={transformedCalculatedStatValues}
+                  transformedCalculatedStatValues={calculatedTransformedStats}
                 />
               </Card>
             </Section>
@@ -83,7 +71,7 @@ class StatsPage extends React.Component {
                 subheading="Upgraded by Earning Success Points"
               >
                 <DisplayProficiencyPoints
-                  transformedCalculatedStatValues={transformedCalculatedStatValues}
+                  transformedCalculatedStatValues={calculatedTransformedStats}
                 />
               </Card>
             </Section>
@@ -96,10 +84,8 @@ class StatsPage extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   level: selectLevel,
-  stats: selectStats,
-  wearables: selectWearables,
-  raceInfo: selectRaceInfo,
   characterName: selectCharacterName,
+  calculatedTransformedStats: selectCalculatedTransformedStats,
 })
 
 const mapDispatchToProps = (dispatch) => ({

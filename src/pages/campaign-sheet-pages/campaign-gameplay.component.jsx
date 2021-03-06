@@ -18,6 +18,7 @@ import {
   selectNPCS,
   selectInventoryItems,
   selectEnvironment,
+  selectCurrentMission,
 } from "../../redux/campaign-sheet/campaign-sheet.selectors"
 
 import { togglePopupForm } from "../../redux/app/app.actions"
@@ -94,47 +95,48 @@ class CampaignGameplay extends React.Component {
   }
 
   render() {
-    const { missions, npcs, inventoryItems, environment, togglePopupForm } = this.props
+    const {
+      missions,
+      npcs,
+      inventoryItems,
+      environment,
+      togglePopupForm,
+      currentMission,
+    } = this.props
     const { displayEnvironment, displayItems, displayNPCS } = this.state
 
     console.log(missions)
-    const currentMission = getCurrentMission(missions)
     console.log(currentMission)
+
     const activeNPCS = findOnlyActiveInteractables(
-      findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
+      findInteractablesOnlyFromCertainMission(npcs, currentMission.id)
     )
     const inactiveNPCS = findOnlyInactiveInteractables(
-      findInteractablesOnlyFromCertainMission(npcs, getCurrentMissionID(missions))
+      findInteractablesOnlyFromCertainMission(npcs, currentMission.id)
     )
     const activeWeapons = findOnlyActiveInteractables(
-      findInteractablesOnlyFromCertainMission(inventoryItems.weapons, getCurrentMissionID(missions))
+      findInteractablesOnlyFromCertainMission(inventoryItems.weapons, currentMission.id)
     )
     const activeWearables = findOnlyActiveInteractables(
-      findInteractablesOnlyFromCertainMission(
-        inventoryItems.wearables,
-        getCurrentMissionID(missions)
-      )
+      findInteractablesOnlyFromCertainMission(inventoryItems.wearables, currentMission.id)
     )
     const activeItems = findOnlyActiveInteractables(
-      findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
+      findInteractablesOnlyFromCertainMission(inventoryItems.items, currentMission.id)
     )
     const inactiveWeapons = findOnlyInactiveInteractables(
-      findInteractablesOnlyFromCertainMission(inventoryItems.weapons, getCurrentMissionID(missions))
+      findInteractablesOnlyFromCertainMission(inventoryItems.weapons, currentMission.id)
     )
     const inactiveWearables = findOnlyInactiveInteractables(
-      findInteractablesOnlyFromCertainMission(
-        inventoryItems.wearables,
-        getCurrentMissionID(missions)
-      )
+      findInteractablesOnlyFromCertainMission(inventoryItems.wearables, currentMission.id)
     )
     const inactiveItems = findOnlyInactiveInteractables(
-      findInteractablesOnlyFromCertainMission(inventoryItems.items, getCurrentMissionID(missions))
+      findInteractablesOnlyFromCertainMission(inventoryItems.items, currentMission.id)
     )
     const activeEnvironments = findOnlyActiveInteractables(
-      findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
+      findInteractablesOnlyFromCertainMission(environment, currentMission.id)
     )
     const inactiveEnvironments = findOnlyInactiveInteractables(
-      findInteractablesOnlyFromCertainMission(environment, getCurrentMissionID(missions))
+      findInteractablesOnlyFromCertainMission(environment, currentMission.id)
     )
 
     const activeInventoryItems = [...activeItems, ...activeWeapons, ...activeWearables]
@@ -237,6 +239,7 @@ const mapStateToProps = createStructuredSelector({
   npcs: selectNPCS,
   inventoryItems: selectInventoryItems,
   environment: selectEnvironment,
+  currentMission: selectCurrentMission,
 })
 
 const mapDispatchToProps = (dispatch) => ({

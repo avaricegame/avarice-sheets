@@ -39,34 +39,34 @@ class PlayerCombatCard extends React.Component {
     } = this.props
     this.setState({
       armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
-      dodgeValue: calculateDodgeValue(
-        findStatProficiencyValue(
-          calculateActualStatValuesAndTransform(
-            stats,
-            findEquippedInventoryItems(wearables),
-            raceInfo.stats
-          ),
-          "reflex"
-        ),
-        raceInfo.size
-      ),
-      maxHP: calculateMaxHPValue(
-        level,
-        findStatProficiencyValue(
-          calculateActualStatValuesAndTransform(
-            stats,
-            findEquippedInventoryItems(wearables),
-            raceInfo.stats
-          ),
-          "constitution"
-        )
-      ),
+      // dodgeValue: calculateDodgeValue(
+      //   findStatProficiencyValue(
+      //     calculateActualStatValuesAndTransform(
+      //       stats,
+      //       findEquippedInventoryItems(wearables),
+      //       raceInfo.stats
+      //     ),
+      //     "reflex"
+      //   ),
+      //   raceInfo.size
+      // ),
+      // maxHP: calculateMaxHPValue(
+      //   level,
+      //   findStatProficiencyValue(
+      //     calculateActualStatValuesAndTransform(
+      //       stats,
+      //       findEquippedInventoryItems(wearables),
+      //       raceInfo.stats
+      //     ),
+      //     "constitution"
+      //   )
+      // ),
       equippedWeapons: findEquippedInventoryItems(weapons),
-      calculatedTransformedStats: calculateActualStatValuesAndTransform(
-        stats,
-        findEquippedInventoryItems(wearables),
-        raceInfo.stats
-      ),
+      // calculatedTransformedStats: calculateActualStatValuesAndTransform(
+      //   stats,
+      //   findEquippedInventoryItems(wearables),
+      //   raceInfo.stats
+      // ),
     })
   }
 
