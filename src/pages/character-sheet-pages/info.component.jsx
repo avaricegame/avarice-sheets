@@ -29,6 +29,8 @@ import PopupFormTypes from "../../components/popup-form/popup-form.types"
 // display components
 import DisplayCampaignInfo from "../../components/shared-sheets-components/display-campaign-info/display-campaign-info.component"
 import { default as Log } from "../../components/shared-sheets-components/display-log/display-log.component"
+import RaceCard from "../../components/character-sheet-components/race-card/race-card.component"
+import ClassCard from "../../components/character-sheet-components/class-card/class-card.component"
 
 class InfoPage extends React.Component {
   componentDidMount() {
@@ -91,61 +93,8 @@ class InfoPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Race and Class Information">
-              <Card heading="Race Info" subheading={`${raceInfo.name} Race`}>
-                <p>
-                  <strong>"{raceInfo.quote}"</strong>
-                </p>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Size:</td>
-                      <td>{raceInfo.size}</td>
-                    </tr>
-                    {raceInfo.basicInfo.map(({ descriptor, description }) => (
-                      <tr key={descriptor}>
-                        <td>{descriptor}:</td>
-                        <td>{description}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Stat Mods:</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {raceInfo.stats.map(({ modifier, value }) =>
-                      value ? (
-                        <tr key={modifier}>
-                          <td>
-                            <span className="uppercase">{modifier}</span>
-                          </td>
-                          <td>{value}</td>
-                        </tr>
-                      ) : null
-                    )}
-                  </tbody>
-                </table>
-                <p>
-                  <strong>Description: </strong>
-                  {raceInfo.description}
-                </p>
-              </Card>
-              <Card
-                heading="Class Info"
-                subheading={`${classInfo.name} Class`}
-                terheading={classInfo.type}
-              >
-                <p>
-                  <strong>"{classInfo.quote}"</strong>
-                </p>
-                <p>
-                  <strong>Description: </strong>
-                  {classInfo.description}
-                </p>
-              </Card>
+              <RaceCard raceInfo={raceInfo} />
+              <ClassCard classInfo={classInfo} />
             </Section>
           </Column>
 
