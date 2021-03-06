@@ -11,6 +11,7 @@ import {
   calculateMaxHPValue,
   calculateDodgeValue,
 } from "../../../redux/character-sheet/utils/selector.utils"
+import { findPlayersRace } from "../../../pages/campaign-sheet-pages/utils/players.utils"
 
 // display components
 import { Point } from "../../character-sheet-components/display-stats-tables/display-energy-points.component"
@@ -31,49 +32,40 @@ class PlayerCombatCard extends React.Component {
 
   componentDidMount() {
     const {
-      player: { level, raceInfo, wearables, stats, weapons },
+      player: { level, wearables, stats, weapons, raceID },
     } = this.props
-    this.setState({
-      armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
-      // dodgeValue: calculateDodgeValue(
-      //   findStatProficiencyValue(
-      //     calculateActualStatValuesAndTransform(
-      //       stats,
-      //       findEquippedInventoryItems(wearables),
-      //       raceInfo.stats
-      //     ),
-      //     "reflex"
-      //   ),
-      //   raceInfo.size
-      // ),
-      // maxHP: calculateMaxHPValue(
-      //   level,
-      //   findStatProficiencyValue(
-      //     calculateActualStatValuesAndTransform(
-      //       stats,
-      //       findEquippedInventoryItems(wearables),
-      //       raceInfo.stats
-      //     ),
-      //     "constitution"
-      //   )
-      // ),
-      equippedWeapons: findEquippedInventoryItems(weapons),
-      // calculatedTransformedStats: calculateActualStatValuesAndTransform(
-      //   stats,
-      //   findEquippedInventoryItems(wearables),
-      //   raceInfo.stats
-      // ),
-    })
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      armourValue: null,
-      dodgeValue: null,
-      maxHP: null,
-      equippedWeapons: [],
-      calculatedTransformedStats: [],
-    })
+    const raceInfo = findPlayersRace([], raceID)
+    // this.setState({
+    //   armourValue: calculateArmourValueFromEquippedWearables(findEquippedInventoryItems(wearables)),
+    //   dodgeValue: calculateDodgeValue(
+    //     findStatProficiencyValue(
+    //       calculateActualStatValuesAndTransform(
+    //         stats,
+    //         findEquippedInventoryItems(wearables),
+    //         raceInfo.stats
+    //       ),
+    //       "reflex"
+    //     ),
+    //     raceInfo.size
+    //   ),
+    //   maxHP: calculateMaxHPValue(
+    //     level,
+    //     findStatProficiencyValue(
+    //       calculateActualStatValuesAndTransform(
+    //         stats,
+    //         findEquippedInventoryItems(wearables),
+    //         raceInfo.stats
+    //       ),
+    //       "constitution"
+    //     )
+    //   ),
+    //   equippedWeapons: findEquippedInventoryItems(weapons),
+    //   calculatedTransformedStats: calculateActualStatValuesAndTransform(
+    //     stats,
+    //     findEquippedInventoryItems(wearables),
+    //     raceInfo.stats
+    //   ),
+    // })
   }
 
   render() {
