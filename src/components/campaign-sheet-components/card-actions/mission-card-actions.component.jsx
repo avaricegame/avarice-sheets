@@ -26,7 +26,7 @@ class MissionCardActions extends React.Component {
           CURRENT
         </span>{" "}
         |{" "}
-        <span onClick={() => togglePlanned(id)} className={planned ? "true" : ""}>
+        <span onClick={() => togglePlanned(id)} className={!complete ? "true" : ""}>
           PLANNED
         </span>{" "}
         |{" "}

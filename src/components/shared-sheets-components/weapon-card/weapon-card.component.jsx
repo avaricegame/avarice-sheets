@@ -12,14 +12,13 @@ const WeaponCard = ({ weapon, blue, quatheading, edit, equip, activate, moveEdit
   const {
     name,
     id,
-    size,
-    rangedMelee,
+    type,
     range,
     proficiency,
     equipped,
     description,
     damage,
-    critical,
+    criticalRange,
     ability,
     active,
   } = weapon
@@ -40,15 +39,11 @@ const WeaponCard = ({ weapon, blue, quatheading, edit, equip, activate, moveEdit
         <tbody>
           <tr>
             <td>Type:</td>
-            <td>{rangedMelee}</td>
+            <td>{type}</td>
           </tr>
           <tr>
             <td>Damage:</td>
             <td>{damage}</td>
-          </tr>
-          <tr>
-            <td>Size:</td>
-            <td>{size}</td>
           </tr>
           <tr>
             <td>Range:</td>
@@ -56,7 +51,7 @@ const WeaponCard = ({ weapon, blue, quatheading, edit, equip, activate, moveEdit
           </tr>
           <tr>
             <td>Critical:</td>
-            <td>{critical}</td>
+            <td>{criticalRange}</td>
           </tr>
         </tbody>
       </table>
@@ -66,7 +61,7 @@ const WeaponCard = ({ weapon, blue, quatheading, edit, equip, activate, moveEdit
         {description}
       </p>
       <p>
-        <strong>Abilities: </strong>
+        <strong>Ability: </strong>
         {ability}
       </p>
       <div className="actions-div">

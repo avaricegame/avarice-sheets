@@ -40,8 +40,6 @@ class CombatPage extends React.Component {
   render() {
     const { playersCharacterSheets, togglePopupForm, npcs } = this.props
 
-    console.log(playersCharacterSheets)
-
     const friendNPCS = findOnlyActiveInteractables(findOnlyFriendNPCS(npcs))
     const enemyNPCS = findOnlyActiveInteractables(findOnlyEnemyNPCS(npcs))
 
@@ -51,10 +49,9 @@ class CombatPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Players">
-              {playersCharacterSheets.map((player, index) => {
-                console.log(player)
-                return <PlayerCombatCard player={player} key={index} />
-              })}
+              {playersCharacterSheets.map((player, index) => (
+                <PlayerCombatCard player={player} key={index} />
+              ))}
             </Section>
           </Column>
 

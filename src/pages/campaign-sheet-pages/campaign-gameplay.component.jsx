@@ -104,9 +104,6 @@ class CampaignGameplay extends React.Component {
     } = this.props
     const { displayEnvironment, displayItems, displayNPCS } = this.state
 
-    console.log(missions)
-    console.log(currentMission)
-
     const activeNPCS = findOnlyActiveInteractables(
       findInteractablesOnlyFromCertainMission(npcs, currentMission.id)
     )
@@ -181,7 +178,7 @@ class CampaignGameplay extends React.Component {
           <Column width={50}>
             <Section heading="Current Mission">
               <Card heading={`${currentMission.date}: ${currentMission.name}`}>
-                {currentMission.notes}
+                {currentMission.details}
                 <p onClick={() => togglePopupForm(PopupFormTypes.EDIT_MISSION)} className="actions">
                   EDIT
                 </p>

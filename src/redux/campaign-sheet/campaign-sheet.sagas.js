@@ -16,10 +16,8 @@ export function* onFetchCurrentCampSheetStart() {
 }
 
 export function* fetchCurrentCampSheet({ payload: { token, campid } }) {
-  console.log(token, campid)
   try {
     const response = yield getCampSheet(token, campid)
-    console.log(response)
     if (response.data) {
       yield put(fetchCurrentCampSheetSuccess(response.data))
     }

@@ -18,17 +18,7 @@ const WearableCard = ({
   moveEdit,
   whatToEdit,
 }) => {
-  const {
-    name,
-    id,
-    armourValue,
-    bodyArea,
-    description,
-    equipped,
-    statModifiers,
-    abilities,
-    active,
-  } = wearable
+  const { name, id, armourValue, bodyArea, description, equipped, statModifiers, active } = wearable
   return (
     <Card
       blue={blue}
@@ -67,10 +57,6 @@ const WearableCard = ({
       <p>
         <strong>Description: </strong>
         {description}
-      </p>
-      <p>
-        <strong>Abilities: </strong>
-        {abilities.length}
       </p>
       <div className="actions-div">
         {equip ? (
