@@ -77,7 +77,7 @@ class App extends React.Component {
         </Switch>
 
         {/* FLASH MESSAGES */}
-        <FlashMessage messages={flashMessages} />
+        <FlashMessage flashMessages={flashMessages} />
 
         {/* POPUP FORM AND BACKGROUND */}
         <CSSTransition

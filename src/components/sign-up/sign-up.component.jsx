@@ -5,6 +5,7 @@ import FormInput from "../form-input/form-input.component"
 import CustomButton from "../custom-button/custom-button.component"
 
 import { signUpStart } from "../../redux/user/user.actions"
+import { addFlashMessage } from "../../redux/app/app.actions"
 
 import "./sign-up.styles.scss"
 
@@ -26,13 +27,13 @@ class SignUp extends React.Component {
     // [TO DO] client side data validation
 
     const { username, email, password, confirmPassword } = this.state
-    const { signUpStart } = this.props
+    const { signUpStart, addFlashMessage } = this.props
 
     if (password === confirmPassword) {
       signUpStart(username, email, password)
     } else {
       // temp alert
-      window.alert("Passwords do not match.")
+      addFlashMessage("Passwords must match.", "alert")
     }
   }
 
@@ -98,6 +99,7 @@ class SignUp extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   signUpStart: (username, email, password) => dispatch(signUpStart({ username, email, password })),
+  addFlashMessage: (message, type) => dispatch(addFlashMessage(message, type)),
 })
 
 export default connect(null, mapDispatchToProps)(SignUp)

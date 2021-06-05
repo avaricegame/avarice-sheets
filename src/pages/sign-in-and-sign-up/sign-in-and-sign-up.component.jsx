@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import SignIn from "../../components/sign-in/sign-in.component"
 import SignUp from "../../components/sign-up/sign-up.component"
 
-import { ReactComponent as AvariceLogo } from "../../assets/avarice-logo-light.svg"
+import { ReactComponent as AvariceLogo } from "../../assets/avarice-logo-dark.svg"
 
 import "./sign-in-and-sign-up.styles.scss"
 
