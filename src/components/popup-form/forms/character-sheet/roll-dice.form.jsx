@@ -8,12 +8,12 @@ import { default as ButtonPanel } from "../../../popup-form-button-panel/popup-f
 import { default as Button } from "../../../custom-button/custom-button.component"
 
 class RollDie extends React.Component {
-  rollHandler(number) {
+  rollHandler = (number) => {
     const roll = Math.ceil(Math.random() * number)
     window.alert("You rolled " + roll + ".")
   }
 
-  customRollHandler() {
+  customRollHandler = () => {
     const numberToRoll = window.prompt("How many sided die do you want to roll?")
 
     this.rollHandler(numberToRoll)
