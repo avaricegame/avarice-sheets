@@ -9,7 +9,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  background-color: lighten($main-background-color-dark, 3%);
+  background-color: $main-background-color-light;
 
   display: flex;
   flex-direction: column;
@@ -21,19 +21,19 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 2rem;
+    padding: 3rem 2rem 2rem 2rem;
   }
 
   &__header-logo {
-    height: 6rem;
+    height: 7rem;
   }
 
   &__form {
     min-width: 30vw;
     background-color: $main-background-color-light;
-    border: 1px solid rgb(109, 109, 109);
+    //border: 1px solid rgb(197, 197, 197);
+    box-shadow: $box-shadow;
     padding: 4rem 5rem;
-    border-radius: 0.4rem;
   }
 
   &__form-footer-text {
@@ -59,6 +59,6 @@
   &__footer-text {
     text-align: center;
     font-size: 1.3rem;
-    color: rgb(168, 168, 168);
+    color: rgb(100, 100, 100);
   }
 }
