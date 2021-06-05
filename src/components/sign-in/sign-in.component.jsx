@@ -38,7 +38,7 @@ class SignIn extends React.Component {
     const { email, password } = this.state
     return (
       <div className="sign-in">
-        <h2 className="sign-in__title">Sign in</h2>
+        <h2 className="sign-in__title">Log in to Avarice</h2>
         <form className="sign-in__form" onSubmit={this.handleSubmit}>
           <FormInput
             type="text"
@@ -49,7 +49,7 @@ class SignIn extends React.Component {
             required
           />
           <FormInput
-            type="text"
+            type="password"
             name="password"
             value={password}
             onChange={this.handleChange}
@@ -58,7 +58,7 @@ class SignIn extends React.Component {
           />
 
           <CustomButton type="submit" formButton>
-            Go to my homepage
+            Log In
           </CustomButton>
         </form>
       </div>
