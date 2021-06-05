@@ -3,13 +3,12 @@
 .flash-message {
   display: none;
   position: fixed;
-  background-color: $color-black-op;
   color: $color-white;
   padding: 1rem 1.5rem;
   border-radius: 0;
   z-index: 999;
-  bottom: 100px;
-  left: 5%;
+  top: 130px;
+  left: 50%;
   transform: translateX(-50%);
   -moz-animation: flashMessage ease-in 5s forwards;
   -webkit-animation: flashMessage ease-in 5s forwards;
@@ -17,6 +16,18 @@
   animation: flashMessage ease-in 5s forwards;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+
+  &.alert {
+    background-color: red;
+  }
+
+  &.success {
+    background-color: green;
+  }
+
+  &.info {
+    background-color: $color-black-op;
+  }
 }
 
 .flash-messages .flash-message:last-of-type {

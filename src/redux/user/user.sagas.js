@@ -11,6 +11,8 @@ import {
   fetchCurrentUserFailure,
 } from "./user.actions"
 
+import { addFlashMessage } from "../app/app.actions"
+
 import { signUserIn, signUserUp, fetchUser } from "../api/user.api"
 
 // FETCH CURRENT USER
@@ -23,7 +25,8 @@ export function* fetchCurrentUser({ payload: { token } }) {
     const response = yield fetchUser(token)
     yield put(fetchCurrentUserSuccess(response.data))
   } catch (error) {
-    window.alert("You have been signed out.")
+    // flash the error
+    yield put(addFlashMessage("You have been signed out.", "success"))
     // since token is invalid or expired, remove from local storage
     localStorage.removeItem("token")
     yield put(fetchCurrentUserFailure(error.response.data))
@@ -46,15 +49,21 @@ export function* signIn({ payload: { email, password } }) {
       localStorage.setItem("hasAccount", true)
       // dispatch the sign in success
       yield put(signInSuccess({ token: response.data.token }))
+      // flash the success message
+      yield put(addFlashMessage("You have successfully signed in.", "success"))
       // if sign in was successful, then fetch the current user
       const fetchUserResponse = yield fetchUser(response.data.token)
       yield put(fetchCurrentUserSuccess(fetchUserResponse.data))
     } else {
-      window.alert(response.data.error)
+      // flash the error
+      yield put(addFlashMessage(response.data.error, "alert"))
       yield put(signInFailure(response.data.error))
     }
   } catch (error) {
-    window.alert("Oops, something went wrong on our end. Please try again later.")
+    // flash the error
+    yield put(
+      addFlashMessage("Oops, something went wrong on our end. Please try again later.", "alert")
+    )
     yield put(signInFailure(error.message))
   }
 }
@@ -66,7 +75,6 @@ export function* onSignUpStart() {
 
 export function* signUp({ payload: { username, email, password } }) {
   // [TO DO] refactor this code to be more dry, because it is basically the exact same as the sign in code
-  console.log(username, email, password)
   try {
     const response = yield signUserUp(username, email, password)
 
@@ -77,15 +85,21 @@ export function* signUp({ payload: { username, email, password } }) {
       localStorage.setItem("hasAccount", true)
       // dispatch the sign in success
       yield put(signUpSuccess({ token: response.data.token }))
+      // flash the success message
+      yield put(addFlashMessage("You have successfully signed up.", "success"))
       // if sign in was successful, then fetch the current user
       const fetchUserResponse = yield fetchUser(response.data.token)
       yield put(fetchCurrentUserSuccess(fetchUserResponse.data))
     } else {
-      window.alert(response.data.error)
+      // flash the error
+      yield put(addFlashMessage(response.data.error, "alert"))
       yield put(signUpFailure(response.data.error))
     }
   } catch (error) {
-    window.alert("Oops, something went wrong on our end. Please try again later.")
+    // flash the error
+    yield put(
+      addFlashMessage("Oops, something went wrong on our end. Please try again later.", "alert")
+    )
     yield put(signUpFailure(error.message))
   }
 }

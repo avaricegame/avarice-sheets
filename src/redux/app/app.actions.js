@@ -10,9 +10,10 @@ export const togglePopupFormForEdit = (object) => ({
   payload: object,
 })
 
-export const addFlashMessage = (message) => ({
+// FLASH MESSAGE TYPES ARE 'ALERT', 'SUCCESS', 'INFO'
+export const addFlashMessage = (message, type) => ({
   type: AppActionTypes.ADD_FLASH_MESSAGE,
-  payload: message,
+  payload: { message, type },
 })
 
 export const fetchAdditionalResourcesStart = () => ({

@@ -9,26 +9,18 @@ const INITIAL_STATE = {
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UserActionTypes.SIGN_UP_SUCCESS:
-      // temporarily alert
-      window.alert("You have successfully signed up.")
       return {
         ...state,
         token: action.payload.token,
         error: null,
       }
     case UserActionTypes.SIGN_IN_SUCCESS:
-      // temporarily alert
-      window.alert("You have successfully signed in.")
       return {
         ...state,
         token: action.payload.token,
         error: null,
       }
     case UserActionTypes.SIGN_OUT:
-      // remove the token from local storage as well
-      localStorage.removeItem("token")
-      // temporarily alert
-      window.alert("You have successfully logged out.")
       return {
         ...state,
         currentUser: null,
