@@ -61,7 +61,10 @@ class CampaignPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Details">
-              <Button onClick={() => togglePopupForm(PopupFormTypes.EDIT_CAMPAIGN_DETAILS)}>
+              <Button
+                disabled
+                onClick={() => togglePopupForm(PopupFormTypes.EDIT_CAMPAIGN_DETAILS)}
+              >
                 Edit Campaign Details
               </Button>
               <Card

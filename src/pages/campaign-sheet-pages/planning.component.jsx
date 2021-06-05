@@ -76,7 +76,7 @@ class PlanningPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Mission Notes">
-              <Button onClick={() => togglePopupForm(PopupFormTypes.CREATE_A_NEW_MISSION)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.CREATE_A_NEW_MISSION)}>
                 Create a New Mission
               </Button>
               <Card heading="Selected Mission:">
@@ -107,34 +107,37 @@ class PlanningPage extends React.Component {
 
           <Column width={25}>
             <Section heading="NPCS">
-              <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_NPC)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_NPC)}>
                 Generate New NPC
               </Button>
-              <DisplayNPCS moveEdit npcs={currentNPCS} whatToEdit="npcToEdit" />
+              <DisplayNPCS /* moveEdit */ npcs={currentNPCS} whatToEdit="npcToEdit" />
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Inventory Items">
-              <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_INVENTORY_ITEM)}>
+              <Button
+                disabled
+                onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_INVENTORY_ITEM)}
+              >
                 Generate New Inventory Item
               </Button>
               <DisplayWeapons
-                moveEdit
+                // moveEdit
                 blue
                 weapons={currentWeapons}
                 quatheading="Weapon"
                 whatToEdit="weaponToEdit"
               />
               <DisplayItems
-                moveEdit
+                // moveEdit
                 blue
                 items={currentItems}
                 quatheading="Item"
                 whatToEdit="itemToEdit"
               />
               <DisplayWearables
-                moveEdit
+                // moveEdit
                 blue
                 wearables={currentWearables}
                 quatheading="Wearable"
@@ -145,11 +148,14 @@ class PlanningPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Environment">
-              <Button onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_ENVIRONMENT)}>
+              <Button
+                disabled
+                onClick={() => togglePopupForm(PopupFormTypes.GENERATE_NEW_ENVIRONMENT)}
+              >
                 Generate New Environment
               </Button>
               <DisplayEnvironments
-                moveEdit
+                // moveEdit
                 environments={currentEnvironment}
                 whatToEdit="environmentToEdit"
               />

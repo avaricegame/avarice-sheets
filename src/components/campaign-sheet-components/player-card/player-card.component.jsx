@@ -190,7 +190,7 @@ class PlayerCard extends React.Component {
             <InteriorCardContent>
               <DisplayEquippedItems equippedItems={equippedItems} />
             </InteriorCardContent>
-            <Button onClick={() => togglePopupForm(PopupFormTypes.OPEN_PLAYERS_SURONIS)}>
+            <Button disabled onClick={() => togglePopupForm(PopupFormTypes.OPEN_PLAYERS_SURONIS)}>
               Open Players S.U.R.O.N.I.S
             </Button>
           </Column>

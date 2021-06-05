@@ -15,7 +15,7 @@ class MissionCard extends React.Component {
         <p className="actions">
           <MissionCardActions id={id} complete={complete} planned={planned} current={current} />
         </p>
-        <EditAndDeleteActions />
+        {/* <EditAndDeleteActions /> */}
       </Card>
     )
   }

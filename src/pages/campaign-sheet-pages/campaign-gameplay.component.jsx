@@ -141,28 +141,34 @@ class CampaignGameplay extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Actions">
-              <Button onClick={() => togglePopupForm(PopupFormTypes.START_COMBAT)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.START_COMBAT)}>
                 Start Combat
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.PERFORM_A_CHECK_CAMPAIGN)}>
+              <Button
+                disabled
+                onClick={() => togglePopupForm(PopupFormTypes.PERFORM_A_CHECK_CAMPAIGN)}
+              >
                 Perform a Check
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.DISPENSE_DAMAGE)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.DISPENSE_DAMAGE)}>
                 Dispense Damage
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.GIVE_OR_TAKE_MONEY)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.GIVE_OR_TAKE_MONEY)}>
                 Give or Take Money
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.BUY_OR_SELL_ITEMS)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.BUY_OR_SELL_ITEMS)}>
                 Buy or Sell Items
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.GIVE_OR_TAKE_ITEMS)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.GIVE_OR_TAKE_ITEMS)}>
                 Give or Take Items
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.REST_PARTY_CAMPAIGN)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.REST_PARTY_CAMPAIGN)}>
                 Rest Party
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.LEVEL_UP_PARTY_CAMPAIGN)}>
+              <Button
+                disabled
+                onClick={() => togglePopupForm(PopupFormTypes.LEVEL_UP_PARTY_CAMPAIGN)}
+              >
                 Level Up Party
               </Button>
             </Section>
@@ -172,16 +178,19 @@ class CampaignGameplay extends React.Component {
             <Section heading="Current Mission">
               <Card heading={`${currentMission.date}: ${currentMission.name}`}>
                 {currentMission.details}
-                <p onClick={() => togglePopupForm(PopupFormTypes.EDIT_MISSION)} className="actions">
+                {/* <p onClick={() => togglePopupForm(PopupFormTypes.EDIT_MISSION)} className="actions">
                   EDIT
-                </p>
+                </p> */}
               </Card>
             </Section>
           </Column>
 
           <Column width={25}>
             <Section heading="Mission Interactables">
-              <Button onClick={() => togglePopupForm(PopupFormTypes.CREATE_INTERACTABLE_GAMEPLAY)}>
+              <Button
+                disabled
+                onClick={() => togglePopupForm(PopupFormTypes.CREATE_INTERACTABLE_GAMEPLAY)}
+              >
                 Create Interactable
               </Button>
               <Card heading="View:">

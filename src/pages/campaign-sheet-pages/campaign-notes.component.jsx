@@ -32,7 +32,7 @@ class CampaignNotesPage extends React.Component {
         <SheetsPageContainer>
           <Column width={25}>
             <Section heading="Your Notes">
-              <Button>Create a New Note</Button>
+              <Button disabled>Create a New Note</Button>
               {notes.map((note, index) => {
                 return (
                   <div

@@ -73,14 +73,18 @@ class CombatPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Actions">
-              <Button onClick={() => togglePopupForm(PopupFormTypes.ATTACK_COMBAT)}>Attack</Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.MAKE_A_CHECK_COMBAT)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.ATTACK_COMBAT)}>
+                Attack
+              </Button>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.MAKE_A_CHECK_COMBAT)}>
                 Make a Check
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.TAKE_DAMAGE_COMBAT)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.TAKE_DAMAGE_COMBAT)}>
                 Take Damage
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.HEAL_COMBAT)}>Heal</Button>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.HEAL_COMBAT)}>
+                Heal
+              </Button>
               <Button onClick={() => togglePopupForm(PopupFormTypes.ROLL_DICE)}>Roll Dice</Button>
             </Section>
           </Column>
