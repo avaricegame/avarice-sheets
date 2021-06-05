@@ -21,10 +21,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
         error: null,
       }
     case UserActionTypes.SIGN_OUT:
-      // remove the token from local storage as well
-      localStorage.removeItem("token")
-      // temporarily alert
-      window.alert("You have successfully logged out.")
       return {
         ...state,
         currentUser: null,

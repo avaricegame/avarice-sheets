@@ -13,6 +13,7 @@ import CustomButton from "../../components/custom-button/custom-button.component
 
 import { selectCurrentUser } from "../../redux/user/user.selectors"
 import { signOut } from "../../redux/user/user.actions"
+import { addFlashMessage } from "../../redux/app/app.actions"
 
 import "./profile.styles.scss"
 
@@ -24,8 +25,21 @@ class ProfilePage extends React.Component {
     document.title = `${firstName ? firstName : username} | Profile | Avarice Sheets`
   }
 
+  handleSignOut = () => {
+    const { signOut, addFlashMessage } = this.props
+    // remove the token from local storage as well
+    localStorage.removeItem("token")
+
+    if (!localStorage.getItem("token")) {
+      signOut()
+      addFlashMessage("You have successfully signed out", "success")
+    } else {
+      addFlashMessage("Something went wrong signing out.", "alert")
+    }
+  }
+
   render() {
-    const { user, signOut } = this.props
+    const { user } = this.props
     return (
       <>
         <MainHeader />
@@ -71,7 +85,7 @@ class ProfilePage extends React.Component {
             </a>
             <hr className="profile-page-hr" />
             <Link to="/">
-              <CustomButton signOut onClick={signOut}>
+              <CustomButton signOut onClick={this.handleSignOut}>
                 Sign Out
               </CustomButton>
             </Link>
@@ -89,6 +103,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(signOut()),
+  addFlashMessage: (message, type) => dispatch(addFlashMessage(message, type)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
