@@ -13,15 +13,8 @@ import EditAndDeleteActions from "../shared-sheets-components/card-actions/edit-
 const CharacterSheetCards = ({ charSheets }) => (
   <>
     {charSheets.map((charSheet) => {
-      const {
-        _id,
-        level,
-        raceName,
-        className,
-        campaignName,
-        characterName,
-        campaignCreatorName,
-      } = charSheet
+      const { _id, level, raceName, className, campaignName, characterName, campaignCreatorName } =
+        charSheet
       return (
         <Link className="sheets-card-link" to={`/character/${_id}`} key={_id}>
           <CardContainer heading={characterName} subheading={`ID#${_id}`}>
@@ -51,7 +44,7 @@ const CharacterSheetCards = ({ charSheets }) => (
                 </tr>
               </tbody>
             </table>
-            <EditAndDeleteActions onlyDelete />
+            {/* <EditAndDeleteActions onlyDelete /> */}
           </CardContainer>
         </Link>
       )

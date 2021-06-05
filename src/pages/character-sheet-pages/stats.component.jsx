@@ -42,7 +42,7 @@ class StatsPage extends React.Component {
             <Section heading="Levels and Experience">
               <Card heading="Level" subheading={`You are at level ${level}`}>
                 <Button onClick={() => togglePopupForm(PopupFormTypes.LEVEL_UP)}>Level Up</Button>
-                <Button>Remove Level</Button>
+                <Button disabled>Remove Level</Button>
                 <p>
                   When you level up you get to choose a new ability to upgrade or learn from your
                   ability tree.

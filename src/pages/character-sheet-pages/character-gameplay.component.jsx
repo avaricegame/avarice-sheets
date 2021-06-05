@@ -81,20 +81,22 @@ class CharacterGameplayPage extends React.Component {
 
           <Column width={25}>
             <Section heading="Actions">
-              <Button onClick={() => togglePopupForm(PopupFormTypes.ATTACK)}>Attack</Button>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.ATTACK)}>
+                Attack
+              </Button>
               <Button onClick={() => togglePopupForm(PopupFormTypes.MAKE_A_CHECK)}>
                 Make a Check
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.USE_AN_ITEM)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.USE_AN_ITEM)}>
                 Use an Item
               </Button>
               <Button onClick={() => togglePopupForm(PopupFormTypes.USE_AN_ABILITY)}>
                 Use an Ability
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.EQUIP_AND_UNEQUIP)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.EQUIP_AND_UNEQUIP)}>
                 Equip / Unequip
               </Button>
-              <Button onClick={() => togglePopupForm(PopupFormTypes.TAKE_A_REST)}>
+              <Button disabled onClick={() => togglePopupForm(PopupFormTypes.TAKE_A_REST)}>
                 Take a Rest
               </Button>
               <Button onClick={() => togglePopupForm(PopupFormTypes.ROLL_DICE)}>Roll Dice</Button>

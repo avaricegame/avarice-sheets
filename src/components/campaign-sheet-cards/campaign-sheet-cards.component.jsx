@@ -19,7 +19,7 @@ const CampaignSheetCards = ({ campSheets }) => (
         <Link className="sheets-card-link" to={`/campaign/${_id}`} key={_id}>
           <CardContainer blue heading={campaignName} subheading={`ID#${_id}`}>
             <DisplayCampaignInfo players={players} missions={missions} />
-            <EditAndDeleteActions onlyDelete />
+            {/* <EditAndDeleteActions onlyDelete /> */}
           </CardContainer>
         </Link>
       )

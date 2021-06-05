@@ -34,13 +34,19 @@ class HomePage extends React.Component {
         <MainHeader />
         <MainPageContainer>
           <Column heading="Character Sheets">
-            <CustomButton onClick={() => togglePopupForm(PopupFormTypes.NEW_CHARACTER_SHEET)}>
+            <CustomButton
+              onClick={() => togglePopupForm(PopupFormTypes.NEW_CHARACTER_SHEET)}
+              disabled
+            >
               Create a New Character Sheet
             </CustomButton>
             <CharacterSheetCards />
           </Column>
           <Column heading="Campaign Sheets">
-            <CustomButton onClick={() => togglePopupForm(PopupFormTypes.NEW_CAMPAIGN_SHEET)}>
+            <CustomButton
+              onClick={() => togglePopupForm(PopupFormTypes.NEW_CAMPAIGN_SHEET)}
+              disabled
+            >
               Create a New Campaign Sheet
             </CustomButton>
             <CampaignSheetCards />

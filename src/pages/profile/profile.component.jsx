@@ -79,10 +79,10 @@ class ProfilePage extends React.Component {
                 </tbody>
               </table>
             </CardContainer>
-            <hr className="profile-page-hr" />
+            {/* <hr className="profile-page-hr" />
             <a href="https://www.avaricegame.com/dashboard" target="_blank" rel="noreferrer">
               EDIT ACCOUNT SETTINGS ON AVARICEGAME.COM &rarr;
-            </a>
+            </a> */}
             <hr className="profile-page-hr" />
             <Link to="/">
               <CustomButton signOut onClick={this.handleSignOut}>
