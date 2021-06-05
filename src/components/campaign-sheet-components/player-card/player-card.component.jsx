@@ -112,7 +112,7 @@ class PlayerCard extends React.Component {
 
   render() {
     const {
-      player: { characterName, playerUsername, raceName, className, currentHP, lifeCredits },
+      player: { _id, characterName, playerUsername, raceName, className, currentHP, lifeCredits },
       togglePopupForm,
     } = this.props
     const {
@@ -175,8 +175,9 @@ class PlayerCard extends React.Component {
                 </tbody>
               </table>
             </InteriorCardContent>
-
-            <Button>View Character Sheet</Button>
+            <a href={`/character/${_id}`} target="_blank" rel="noreferrer">
+              <Button>View Character Sheet</Button>
+            </a>
           </Column>
 
           <Column width={25}>
