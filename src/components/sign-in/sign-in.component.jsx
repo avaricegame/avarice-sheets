@@ -27,6 +27,9 @@ class SignIn extends React.Component {
     const { signInStart } = this.props
 
     signInStart(email, password)
+
+    // until I make a better solution...
+    window.alert("One minute while we start up the servers.")
   }
 
   handleChange = (event) => {
@@ -35,7 +38,7 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const { email, password } = this.state
+    const { email, password, buttonText } = this.state
     return (
       <div className="sign-in">
         <h2 className="sign-in__title">Log in to Avarice</h2>

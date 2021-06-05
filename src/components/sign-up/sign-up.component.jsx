@@ -31,6 +31,8 @@ class SignUp extends React.Component {
 
     if (password === confirmPassword) {
       signUpStart(username, email, password)
+      // until I make a better solution...
+      window.alert("One minute while we start up the servers.")
     } else {
       // temp alert
       addFlashMessage("Passwords must match.", "alert")
