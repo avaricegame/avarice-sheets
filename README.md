@@ -3,4 +3,6 @@ react app for managing character and campaign sheets
 
 ## IMPORTANT 
 
-I am right in the middle of adding Redux-Saga and connecting the React App to the backend REST API. I have finished the logging in and registering functionality (pardon the design, it will be fixed), but you cannot currently view the individual sheets without causing an error.
+I am always working on this, so some features are disabled. Also, please follow the instructions to login that are listed on my portfolio site [here](https://talondurrant.com/#work).
+
+It is also worth noting that I am currently redesigining the UI issues on the register/login screens.

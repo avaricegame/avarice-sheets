@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import SignIn from "../../components/sign-in/sign-in.component"
 import SignUp from "../../components/sign-up/sign-up.component"
 
+import { ReactComponent as AvariceLogo } from "../../assets/avarice-logo-light.svg"
+
 import "./sign-in-and-sign-up.styles.scss"
 
 class SignInAndSignUpPage extends React.Component {
@@ -13,9 +15,9 @@ class SignInAndSignUpPage extends React.Component {
 
   componentDidMount() {
     if (this.state.hasAccount) {
-      document.title = "Sign In | Avarice Sheets"
+      document.title = "Sign In | Avarice Account"
     } else {
-      document.title = "Sign Up | Avarcie Sheets"
+      document.title = "Sign Up | Avarcie Account"
     }
   }
 
@@ -29,7 +31,7 @@ class SignInAndSignUpPage extends React.Component {
     return (
       <div className="sign-in-and-sign-up">
         <div className="sign-in-and-sign-up__header">
-          <h1 className="sign-in-and-sign-up__header-logotype">Avarice Sheets</h1>
+          <AvariceLogo className="sign-in-and-sign-up__header-logo" />
         </div>
         <div className="sign-in-and-sign-up__form">
           {hasAccount ? <SignIn /> : <SignUp />}
@@ -37,22 +39,23 @@ class SignInAndSignUpPage extends React.Component {
             <p className="sign-in-and-sign-up__form-footer-text">
               Already have an account?{" "}
               <span className="sign-in-and-sign-up__form-footer-link" onClick={this.handleClick}>
-                Sign in
+                Sign in.
               </span>
             </p>
           ) : (
             <p className="sign-in-and-sign-up__form-footer-text">
               Don't have an account?{" "}
               <span className="sign-in-and-sign-up__form-footer-link" onClick={this.handleClick}>
-                Sign up
+                Sign up.
               </span>
             </p>
           )}
         </div>
         <div className="sign-in-and-sign-up__footer">
-          <Link to="/about" className="sign-in-and-sign-up__footer-text">
-            What is Avarice Sheets?
-          </Link>
+          <p className="sign-in-and-sign-up__footer-text">
+            By signing {hasAccount ? "in" : "up"} to Avarice, you agree to our{" "}
+            <Link to="/">terms of service.</Link>
+          </p>
         </div>
       </div>
     )

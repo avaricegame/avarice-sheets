@@ -46,7 +46,9 @@ class SignUp extends React.Component {
 
     return (
       <div className="sign-up">
-        <h2 className="sign-up__title">Create an account</h2>
+        <h2 className="sign-up__title">
+          Create an <br /> Avarice account
+        </h2>
 
         <form className="sign-up__form" onSubmit={this.handleSubmit}>
           <FormInput
